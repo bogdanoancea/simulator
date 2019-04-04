@@ -1,11 +1,10 @@
 #include "Agent.h"
 
-Agent::Agent()
-{
-    //ctor
-}
+Agent::Agent() {}
 
-Agent::~Agent()
-{
-    //dtor
+Agent::~Agent() {}
+
+
+bool Agent::operator==(const Agent& a) {
+    return true;
 }

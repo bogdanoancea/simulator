@@ -9,6 +9,10 @@ World::World(){}
 World::~World() {}
 
 void World::runSimulation() {
-    cout << "Hello from our mobile phone simulator" << endl;
+    cout << "Hello from our mobile phone simulator!" << endl;
 
+}
+
+unsigned int World::getCurrentTime() {
+    return m_clock.GetCurrentTime();
 }

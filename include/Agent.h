@@ -12,6 +12,7 @@ class Agent
         /** Default destructor */
         virtual ~Agent();
 
+        bool operator==(const Agent& a);
     protected:
 
     private:

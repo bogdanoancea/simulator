@@ -2,11 +2,10 @@
 #define AGENTSCOLLECTION_H
 
 
-#include "World.h"
 #include "Agent.h"
 #include<vector>
 
-
+using namespace std;
 
 class AgentsCollection
 {
@@ -16,11 +15,14 @@ class AgentsCollection
 
         /** Default destructor */
         virtual ~AgentsCollection();
+        unsigned int getCurrentTime();
+        void addAgent(Agent);
+        void deleteAgent(Agent);
+        void performAction();
 
     protected:
 
     private:
-        World world;
         vector<Agent> agents;
 };
 
