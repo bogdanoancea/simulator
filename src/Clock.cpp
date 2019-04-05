@@ -11,3 +11,26 @@ void Clock::tick() {
     m_currentTime += m_increment;
 }
 
+unsigned int Clock::getCurrentTime() const {
+	return m_currentTime;
+}
+
+void Clock::setCurrentTime(unsigned int currentTime) {
+	m_currentTime = currentTime;
+}
+
+unsigned int Clock::getIncrement() const {
+	return m_increment;
+}
+
+void Clock::setIncrement(unsigned int increment) {
+	m_increment = increment;
+}
+
+unsigned int Clock::getInitialTime() const {
+	return m_initialTime;
+}
+
+void Clock::setInitialTime(unsigned int initialTime) {
+	m_initialTime = initialTime;
+}

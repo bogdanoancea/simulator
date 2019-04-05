@@ -23,7 +23,12 @@ class World {
 
         unsigned int getCurrentTime();
 
-
+		const AgentsCollection& getAgents() const;
+		void setAgents(const AgentsCollection& agents);
+		const Clock& getClock() const;
+		void setClock(const Clock& clock);
+		const Map& getMap() const;
+		void setMap(const Map& map);
 
     private:
         AgentsCollection m_agents;

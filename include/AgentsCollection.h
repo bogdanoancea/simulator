@@ -3,7 +3,7 @@
 
 
 #include "Agent.h"
-#include<vector>
+#include <vector>
 
 using namespace std;
 
@@ -14,7 +14,6 @@ class AgentsCollection {
 
         /** Default destructor */
         virtual ~AgentsCollection();
-        unsigned int getCurrentTime();
         void addAgent(Agent);
         void deleteAgent(Agent);
         void performAction();

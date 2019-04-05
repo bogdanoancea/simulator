@@ -16,3 +16,10 @@ LocatableAgent::~LocatableAgent() {
 	// TODO Auto-generated destructor stub
 }
 
+const Point& LocatableAgent::getLocation() const {
+	return m_location;
+}
+
+void LocatableAgent::setLocation(const Point& location) {
+	m_location = location;
+}

@@ -13,25 +13,14 @@ class Clock {
         /** Default destructor */
         virtual ~Clock();
 
-        /** Access m_currentTime
-         * \return The current value of m_currentTime
-         */
-        unsigned int GetCurrentTime() { return m_currentTime; }
-
-        /** Set m_currentTime
-         * \param val New value to set
-         */
-        void SetCurrentTime(unsigned int val) { m_currentTime = val; }
-
-        unsigned int GetIncrement() { return m_increment; }
-        void SetIncrement(unsigned int val) { m_increment = val; }
-
-        unsigned int GetInitialTime() { return m_initialTime; }
-        void SetInitialTime(unsigned int val) { m_initialTime = val; }
 
         void tick();
-
-
+		unsigned int getCurrentTime() const;
+		void setCurrentTime(unsigned int currentTime);
+		unsigned int getIncrement() const;
+		void setIncrement(unsigned int increment);
+		unsigned int getInitialTime() const;
+		void setInitialTime(unsigned int initialTime);
 
     private:
         unsigned int m_initialTime;
