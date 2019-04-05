@@ -10,6 +10,12 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <geos/geom/GeometryFactory.h>
+using namespace geos;
+using namespace geos::geom;
+
+
+
 class Map {
 	public:
 		/** Default constructor */
@@ -17,8 +23,10 @@ class Map {
 
 		/** Default destructor */
 		virtual ~Map();
+		const GeometryFactory::Ptr& getGlobalFactory() const;
 
 	private:
+		GeometryFactory::Ptr m_globalFactory;
 
 };
 

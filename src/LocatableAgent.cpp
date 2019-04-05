@@ -9,10 +9,10 @@
 
 #include "LocatableAgent.h"
 
-LocatableAgent::LocatableAgent(Point initLocation) :
-		m_location { initLocation } {
-	// TODO Auto-generated constructor stub
-
+LocatableAgent::LocatableAgent(Point initLocation) {
+	m_location = new Point(initLocation.getCoordinate(),
+			initLocation.getPrecisionModel(),
+			initLocation.getSRID())
 }
 
 LocatableAgent::~LocatableAgent() {

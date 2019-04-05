@@ -26,7 +26,7 @@ void World::runSimulation() {
 }
 
 unsigned int World::getCurrentTime() {
-	return m_clock.GetCurrentTime();
+	return m_clock.getCurrentTime();
 }
 
 const AgentsCollection& World::getAgents() const {

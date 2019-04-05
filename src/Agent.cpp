@@ -9,7 +9,8 @@
 
 #include "Agent.h"
 
-Agent::Agent() {
+Agent::Agent(World* w) :
+		m_world { w } {
 }
 
 Agent::~Agent() {
@@ -17,4 +18,12 @@ Agent::~Agent() {
 
 bool Agent::operator==(const Agent& a) {
 	return true;
+}
+
+const World* Agent::getWorld() const {
+	return m_world;
+}
+
+void Agent::setWorld(World* world) {
+	m_world = world;
 }

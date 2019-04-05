@@ -6,6 +6,10 @@
  */
 
 #include "Person.h"
+#include <geos/geom/GeometryFactory.h>
+using namespace geos;
+using namespace geos::geom;
+
 
 Person::Person() {
 	// TODO Auto-generated constructor stub
@@ -37,5 +41,7 @@ const Point& Person::getPosition() const {
 }
 
 void Person::setPosition(const Point& position) {
-	m_position = position;
+	GeometryFactory::Ptr factory = getWorld().getMap().getGlobalFactory();
+	Coordinate c = position.getCoordinate();
+	factory->createPoint(c);
 }
