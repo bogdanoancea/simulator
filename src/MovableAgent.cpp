@@ -20,7 +20,7 @@ MovableAgent::~MovableAgent() {
 	// TODO Auto-generated destructor stub
 }
 
-double MovableAgent::getSpeed() {
+double MovableAgent::getSpeed() const {
 	return m_speed;
 }
 
