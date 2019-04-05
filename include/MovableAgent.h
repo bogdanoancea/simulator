@@ -1,9 +1,13 @@
 /*
+ * Data simulator for mobile phone network events
+ *
  * MovableAgent.h
  *
- *  Created on: Apr 5, 2019
- *      Author: bogdan
+ *  Created on: Apr 4, 2019
+ *      Author: Bogdan Oancea
  */
+
+
 
 #ifndef MOVABLEAGENT_H_
 #define MOVABLEAGENT_H_

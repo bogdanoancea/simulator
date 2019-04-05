@@ -1,13 +1,16 @@
 /*
+ * Data simulator for mobile phone network events
+ *
  * LocatableAgent.cpp
  *
  *  Created on: Apr 4, 2019
- *      Author: bogdan
+ *      Author: Bogdan Oancea
  */
 
 #include "LocatableAgent.h"
 
-LocatableAgent::LocatableAgent(Point initLocation) : m_location{initLocation} {
+LocatableAgent::LocatableAgent(Point initLocation) :
+		m_location { initLocation } {
 	// TODO Auto-generated constructor stub
 
 }

@@ -2,7 +2,7 @@
  * Person.cpp
  *
  *  Created on: Apr 5, 2019
- *      Author: bogdan
+ *      Author: Bogdan Oancea
  */
 
 #include "Person.h"

@@ -1,9 +1,13 @@
 /*
+ * Data simulator for mobile phone network events
+ *
  * Person.h
  *
  *  Created on: Apr 5, 2019
- *      Author: bogdan
+ *      Author: Bogdan Oancea
  */
+
+
 
 #ifndef PERSON_H_
 #define PERSON_H_
@@ -13,7 +17,6 @@
 
 using namespace geos;
 using namespace geos::geom;
-
 
 /*
  *
@@ -34,8 +37,6 @@ class Person: public MovableAgent {
 		long m_id;
 		int m_age;
 		Point m_position;
-
-
 
 };
 

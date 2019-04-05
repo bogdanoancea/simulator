@@ -1,20 +1,28 @@
+/*
+ * Data simulator for mobile phone network events
+ *
+ * Clock.h
+ *
+ *  Created on: Apr 4, 2019
+ *      Author: Bogdan Oancea
+ */
+
+
 #ifndef CLOCK_H
 #define CLOCK_H
 
-
 class Clock {
-    public:
-        /** Default constructor */
-        Clock();
+	public:
+		/** Default constructor */
+		Clock();
 
-        /** Constructor */
-        Clock(unsigned int init, unsigned int inc);
+		/** Constructor */
+		Clock(unsigned int init, unsigned int inc);
 
-        /** Default destructor */
-        virtual ~Clock();
+		/** Default destructor */
+		virtual ~Clock();
 
-
-        void tick();
+		void tick();
 		unsigned int getCurrentTime() const;
 		void setCurrentTime(unsigned int currentTime);
 		unsigned int getIncrement() const;
@@ -22,10 +30,10 @@ class Clock {
 		unsigned int getInitialTime() const;
 		void setInitialTime(unsigned int initialTime);
 
-    private:
-        unsigned int m_initialTime;
-        unsigned int m_currentTime;
-        unsigned int m_increment;
+	private:
+		unsigned int m_initialTime;
+		unsigned int m_currentTime;
+		unsigned int m_increment;
 };
 
 #endif // CLOCK_H

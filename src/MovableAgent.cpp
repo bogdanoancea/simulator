@@ -1,13 +1,17 @@
 /*
+ * Data simulator for mobile phone network events
+ *
  * MovableAgent.cpp
  *
- *  Created on: Apr 5, 2019
- *      Author: bogdan
+ *  Created on: Apr 4, 2019
+ *      Author: Bogdan Oancea
  */
+
 
 #include <MovableAgent.h>
 
-MovableAgent::MovableAgent(): m_speed{0.0} {
+MovableAgent::MovableAgent() :
+		m_speed { 0.0 } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -15,7 +19,6 @@ MovableAgent::MovableAgent(): m_speed{0.0} {
 MovableAgent::~MovableAgent() {
 	// TODO Auto-generated destructor stub
 }
-
 
 double MovableAgent::getSpeed() {
 	return m_speed;

@@ -1,3 +1,13 @@
+/*
+ * Data simulator for mobile phone network events
+ *
+ * World.h
+ *
+ *  Created on: Apr 4, 2019
+ *      Author: Bogdan Oancea
+ */
+
+
 #ifndef WORLD_H
 #define WORLD_H
 
@@ -5,23 +15,21 @@
 #include "Map.h"
 #include "Clock.h"
 
-
 using namespace std;
 
-
 class World {
-    public:
-        /** Default constructor */
-        World();
+	public:
+		/** Default constructor */
+		World();
 
-        /** Default destructor */
-        virtual ~World();
+		/** Default destructor */
+		virtual ~World();
 
-        void runSimulation();
+		void runSimulation();
 
-        void dumpState();
+		void dumpState();
 
-        unsigned int getCurrentTime();
+		unsigned int getCurrentTime();
 
 		const AgentsCollection& getAgents() const;
 		void setAgents(const AgentsCollection& agents);
@@ -30,10 +38,10 @@ class World {
 		const Map& getMap() const;
 		void setMap(const Map& map);
 
-    private:
-        AgentsCollection m_agents;
-        Map m_map;
-        Clock m_clock;
+	private:
+		AgentsCollection m_agents;
+		Map m_map;
+		Clock m_clock;
 
 };
 

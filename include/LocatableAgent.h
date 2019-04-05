@@ -1,8 +1,10 @@
 /*
+ * Data simulator for mobile phone network events
+ *
  * LocatableAgent.h
  *
  *  Created on: Apr 4, 2019
- *      Author: bogdan
+ *      Author: Bogdan Oancea
  */
 
 #ifndef LOCATABLEAGENT_H_

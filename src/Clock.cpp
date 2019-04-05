@@ -1,14 +1,27 @@
+/*
+ * Data simulator for mobile phone network events
+ *
+ * Clock.cpp
+ *
+ *  Created on: Apr 4, 2019
+ *      Author: Bogdan Oancea
+ */
+
 #include "Clock.h"
 
-Clock::Clock(): m_initialTime{0}, m_currentTime{0}, m_increment{1} {}
+Clock::Clock() :
+		m_initialTime { 0 }, m_currentTime { 0 }, m_increment { 1 } {
+}
 
-Clock::Clock(unsigned int init, unsigned int inc): m_initialTime{init}, m_currentTime{init}, m_increment{inc} {}
+Clock::Clock(unsigned int init, unsigned int inc) :
+		m_initialTime { init }, m_currentTime { init }, m_increment { inc } {
+}
 
-
-Clock::~Clock() {}
+Clock::~Clock() {
+}
 
 void Clock::tick() {
-    m_currentTime += m_increment;
+	m_currentTime += m_increment;
 }
 
 unsigned int Clock::getCurrentTime() const {
