@@ -9,11 +9,20 @@
 #define LOCATABLEAGENT_H_
 
 #include <Agent.h>
+#include <geos/geom/Point.h>
+
+using namespace geos;
+using namespace geos::geom;
 
 class LocatableAgent: public Agent {
-public:
-	LocatableAgent();
-	virtual ~LocatableAgent();
+	public:
+		LocatableAgent(Point initLocation);
+
+		virtual ~LocatableAgent();
+
+		Point getLocation();
+	private:
+		Point m_location;
 };
 
 #endif /* LOCATABLEAGENT_H_ */

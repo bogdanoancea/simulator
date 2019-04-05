@@ -9,17 +9,18 @@
 using namespace std;
 
 
-class World
-{
+class World {
     public:
         /** Default constructor */
         World();
+
         /** Default destructor */
         virtual ~World();
 
         void runSimulation();
 
         void dumpState();
+
         unsigned int getCurrentTime();
 
 

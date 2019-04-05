@@ -2,8 +2,7 @@
 #define CLOCK_H
 
 
-class Clock
-{
+class Clock {
     public:
         /** Default constructor */
         Clock();

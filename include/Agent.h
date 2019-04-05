@@ -4,18 +4,15 @@
 #include <Agent.h>
 
 
-class Agent
-{
+class Agent {
     public:
         /** Default constructor */
         Agent();
+
         /** Default destructor */
         virtual ~Agent();
 
         bool operator==(const Agent& a);
-    protected:
-
-    private:
 };
 
 #endif // AGENT_H

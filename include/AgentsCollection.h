@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class AgentsCollection
-{
+class AgentsCollection {
     public:
         /** Default constructor */
         AgentsCollection();
@@ -19,8 +18,6 @@ class AgentsCollection
         void addAgent(Agent);
         void deleteAgent(Agent);
         void performAction();
-
-    protected:
 
     private:
         vector<Agent> agents;

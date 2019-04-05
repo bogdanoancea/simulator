@@ -7,7 +7,7 @@
 
 #include "LocatableAgent.h"
 
-LocatableAgent::LocatableAgent() {
+LocatableAgent::LocatableAgent(Point initLocation) : m_location{initLocation} {
 	// TODO Auto-generated constructor stub
 
 }
