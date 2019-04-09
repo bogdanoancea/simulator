@@ -21,7 +21,7 @@ using namespace geos::geom;
  */
 class ImmovableAgent: public LocatableAgent {
 	public:
-		ImmovableAgent(Point initialPosition);
+		ImmovableAgent(World& w, Point& initialPosition);
 		virtual ~ImmovableAgent();
 
 };

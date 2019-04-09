@@ -8,22 +8,22 @@
  */
 
 #include "Agent.h"
+#include "World.h"
 
-Agent::Agent(World* w) :
+Agent::Agent(World& w) :
 		m_world { w } {
 }
 
-Agent::~Agent() {
-}
+
 
 bool Agent::operator==(const Agent& a) {
 	return true;
 }
 
-World* Agent::getWorld() const {
+World& Agent::getWorld() const {
 	return m_world;
 }
 
-void Agent::setWorld(World* world) {
+void Agent::setWorld(World& world) {
 	m_world = world;
 }

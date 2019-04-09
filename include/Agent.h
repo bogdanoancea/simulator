@@ -12,23 +12,22 @@
 
 #include "World.h"
 
+
 class Agent {
 	public:
-		/** Default constructor */
-		Agent();
 
-		Agent(World* world);
+		Agent(World& w);
 
 		/** Default destructor */
 		virtual ~Agent();
 
 		bool operator==(const Agent& a);
 
-		World* getWorld() const;
-		void setWorld(World* world);
+		World& getWorld() const;
+		void setWorld(World& world);
 
 	private:
-		World* m_world;
+		World& m_world;
 };
 
 #endif // AGENT_H

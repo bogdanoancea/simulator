@@ -17,8 +17,14 @@
  */
 class Tablet: public HoldableAgent {
 	public:
-		Tablet();
+		Tablet(World& w, Point& initPosition, long tabletId);
 		virtual ~Tablet();
+		long getTabletId() const;
+		void settabletId(long phoneId);
+
+	private:
+		long m_tabletId;
+
 };
 
 #endif /* TABLET_H_ */

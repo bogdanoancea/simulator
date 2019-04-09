@@ -13,7 +13,7 @@
 #define PERSON_H_
 
 #include <geos/geom/Point.h>
-#include <MovableAgent.h>
+#include "MovableAgent.h"
 
 using namespace geos;
 using namespace geos::geom;
@@ -23,20 +23,21 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 	public:
-		Person();
+		Person(World& w, Point& initPosition, long id, int age);
 		virtual ~Person();
 
 		int getAge() const;
 		void setAge(int age);
+
 		long getId() const;
 		void setId(long id);
+
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
 	private:
 		long m_id;
 		int m_age;
-		Point m_position;
 
 };
 

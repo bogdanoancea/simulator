@@ -13,6 +13,7 @@
 #define MOVABLEAGENT_H_
 
 #include "LocatableAgent.h"
+#include "World.h"
 #include <geos/geom/Point.h>
 
 using namespace geos;
@@ -21,7 +22,7 @@ using namespace geos::geom;
 class MovableAgent: public LocatableAgent {
 	public:
 
-		MovableAgent();
+		MovableAgent(World& w, Point& initPosition);
 
 		virtual ~MovableAgent();
 

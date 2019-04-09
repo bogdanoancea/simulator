@@ -6,12 +6,14 @@
  */
 
 #include "Person.h"
+#include "MovableAgent.h"
 #include <geos/geom/GeometryFactory.h>
 using namespace geos;
 using namespace geos::geom;
 
 
-Person::Person() {
+Person::Person(World& w, Point& initPosition, long id, int age) :
+		MovableAgent(w, initPosition), m_id { id }, m_age { age } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -36,12 +38,3 @@ void Person::setId(long id) {
 	m_id = id;
 }
 
-const Point& Person::getPosition() const {
-	return m_position;
-}
-
-void Person::setPosition(const Point& position) {
-	GeometryFactory::Ptr factory = getWorld().getMap().getGlobalFactory();
-	Coordinate c = position.getCoordinate();
-	factory->createPoint(c);
-}

@@ -7,11 +7,14 @@
  *      Author: Bogdan Oancea
  */
 
-#include <Antenna.h>
+#include "Antenna.h"
+#include "ImmovableAgent.h"
 
-Antenna::Antenna() {
-	// TODO Auto-generated constructor stub
-
+Antenna::Antenna(World& w, Point& initPosition) :
+		ImmovableAgent(w, initPosition), m_power { 0.0 }, m_attenuationFactor {
+				0.0 }, m_maxConnections { 0 }
+{
+	m_cell = getWorld().getMap()->getGlobalFactory()->createPolygon();
 }
 
 Antenna::~Antenna() {
@@ -26,7 +29,7 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 	m_attenuationFactor = attenuationFactor;
 }
 
-const Polygon& Antenna::getCell() const {
+Polygon* Antenna::getCell() const {
 	return m_cell;
 }
 

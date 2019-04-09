@@ -10,14 +10,14 @@
 #ifndef MOBILEPHONE_H_
 #define MOBILEPHONE_H_
 
-#include <HoldableAgent.h>
+#include "HoldableAgent.h"
 
 /*
  *
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		MobilePhone();
+		MobilePhone(World& w, Point& initPosition, long phoneId);
 		virtual ~MobilePhone();
 		long getPhoneId() const;
 		void setPhoneId(long phoneId);

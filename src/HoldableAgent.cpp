@@ -7,11 +7,13 @@
  *      Author: Bogdan Oancea
  */
 
-#include <HoldableAgent.h>
+#include "HoldableAgent.h"
+#include "LocatableAgent.h"
 
-HoldableAgent::HoldableAgent() {
+HoldableAgent::HoldableAgent(World& w, Point& initPosition, long idHolder) :
+		MovableAgent(w, initPosition), m_idHolder { idHolder } {
 	// TODO Auto-generated constructor stub
-	
+
 }
 
 HoldableAgent::~HoldableAgent() {

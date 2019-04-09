@@ -11,8 +11,8 @@
 #ifndef AGENTSCOLLECTION_H
 #define AGENTSCOLLECTION_H
 
-#include <Agent.h>
-#include <World.h>
+#include "Agent.h"
+#include "World.h"
 #include <vector>
 
 using namespace std;
@@ -25,19 +25,16 @@ class AgentsCollection {
 		/** Default destructor */
 		virtual ~AgentsCollection();
 
-		void addAgent(Agent a);
-		Agent deleteAgent(Agent a);
+		void addAgent(Agent* a);
+		Agent* deleteAgent(Agent* a);
 		void performAction();
 
-		const vector<Agent>& getAgents() const;
-		void setAgents(vector<Agent> agents);
+		const vector<Agent*>& getAgents() const;
+		void setAgents(vector<Agent*> agents);
 
-		World* getWorld() const;
-		void setWorld(World* world);
 
 	private:
-		vector<Agent> m_agents;
-		World* m_world;
+		vector<Agent*> m_agents;
 };
 
 #endif // AGENTSCOLLECTION_H

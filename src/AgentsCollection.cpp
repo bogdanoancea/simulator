@@ -17,14 +17,14 @@ AgentsCollection::AgentsCollection() {
 AgentsCollection::~AgentsCollection() {
 }
 
-void AgentsCollection::addAgent(Agent a) {
+void AgentsCollection::addAgent(Agent* a) {
 	m_agents.push_back(a);
 }
 
-Agent AgentsCollection::deleteAgent(Agent a) {
-	Agent result = nullptr;
-	vector<Agent>::iterator position = std::find(m_agents.begin(), m_agents.end(),
-			a);
+Agent* AgentsCollection::deleteAgent(Agent* a) {
+	Agent* result = nullptr;
+	vector<Agent*>::iterator position = std::find(m_agents.begin(),
+			m_agents.end(), a);
 	if (position != m_agents.end()) { // == agents.end() means the element was not found
 		result = *position;
 		m_agents.erase(position);
@@ -32,19 +32,12 @@ Agent AgentsCollection::deleteAgent(Agent a) {
 	return result;
 }
 
-const vector<Agent>& AgentsCollection::getAgents() const {
+const vector<Agent*>& AgentsCollection::getAgents() const {
 	return m_agents;
 }
 
-void AgentsCollection::setAgents(vector<Agent> agents) {
+void AgentsCollection::setAgents(vector<Agent*> agents) {
 	m_agents = std::move(agents);
 }
 
 
-World* AgentsCollection::getWorld() const {
-	return m_world;
-}
-
-void AgentsCollection::setWorld(World* world) {
-	m_world = world;
-}

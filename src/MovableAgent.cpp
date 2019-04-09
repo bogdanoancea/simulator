@@ -10,8 +10,8 @@
 
 #include "MovableAgent.h"
 
-MovableAgent::MovableAgent() :
-		m_speed { 0.0 } {
+MovableAgent::MovableAgent(World& w, Point& initialPosition) :
+		LocatableAgent(w, initialPosition), m_speed { 0.0 } {
 	// TODO Auto-generated constructor stub
 }
 
@@ -27,10 +27,4 @@ void MovableAgent::setSpeed(double val) {
 	m_speed = val;
 }
 
-double MovableAgent::getSpeed() const {
-	return m_speed;
-}
 
-void MovableAgent::setSpeed(double speed) {
-	m_speed = speed;
-}
