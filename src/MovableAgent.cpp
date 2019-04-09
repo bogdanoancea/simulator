@@ -8,12 +8,11 @@
  */
 
 
-#include <MovableAgent.h>
+#include "MovableAgent.h"
 
 MovableAgent::MovableAgent() :
 		m_speed { 0.0 } {
 	// TODO Auto-generated constructor stub
-
 }
 
 MovableAgent::~MovableAgent() {

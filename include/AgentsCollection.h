@@ -25,14 +25,14 @@ class AgentsCollection {
 		/** Default destructor */
 		virtual ~AgentsCollection();
 
-		void addAgent(Agent);
-		void deleteAgent(Agent);
+		void addAgent(Agent a);
+		Agent deleteAgent(Agent a);
 		void performAction();
 
 		const vector<Agent>& getAgents() const;
-		void setAgents(const vector<Agent>& agents);
+		void setAgents(vector<Agent> agents);
 
-		const World* getWorld() const;
+		World* getWorld() const;
 		void setWorld(World* world);
 
 	private:

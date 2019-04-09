@@ -12,7 +12,7 @@
 #ifndef MOVABLEAGENT_H_
 #define MOVABLEAGENT_H_
 
-#include <LocatableAgent.h>
+#include "LocatableAgent.h"
 #include <geos/geom/Point.h>
 
 using namespace geos;

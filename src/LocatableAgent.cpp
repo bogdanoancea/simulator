@@ -8,21 +8,25 @@
  */
 
 #include "LocatableAgent.h"
+#include <geos/geom/Point.h>
+
+using namespace geos;
+using namespace geos::geom;
+
 
 LocatableAgent::LocatableAgent(Point initLocation) {
-	m_location = new Point(initLocation.getCoordinate(),
-			initLocation.getPrecisionModel(),
-			initLocation.getSRID())
+	const Coordinate *c = initLocation.getCoordinate();
+	m_location = getWorld()->getMap()->getGlobalFactory()->createPoint(*c);
 }
 
 LocatableAgent::~LocatableAgent() {
 	// TODO Auto-generated destructor stub
 }
 
-const Point& LocatableAgent::getLocation() const {
+Point* LocatableAgent::getLocation() const {
 	return m_location;
 }
 
-void LocatableAgent::setLocation(const Point& location) {
+void LocatableAgent::setLocation(Point* location) {
 	m_location = location;
 }

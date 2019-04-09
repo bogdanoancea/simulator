@@ -20,7 +20,7 @@ bool Agent::operator==(const Agent& a) {
 	return true;
 }
 
-const World* Agent::getWorld() const {
+World* Agent::getWorld() const {
 	return m_world;
 }
 

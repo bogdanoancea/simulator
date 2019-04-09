@@ -8,10 +8,10 @@
  */
 
 #include "AgentsCollection.h"
+#include "Agent.h"
 #include <algorithm>
 
-AgentsCollection::AgentsCollection() :
-		m_agents { } {
+AgentsCollection::AgentsCollection() {
 }
 
 AgentsCollection::~AgentsCollection() {
@@ -21,24 +21,27 @@ void AgentsCollection::addAgent(Agent a) {
 	m_agents.push_back(a);
 }
 
-void AgentsCollection::deleteAgent(Agent a) {
-
+Agent AgentsCollection::deleteAgent(Agent a) {
+	Agent result = nullptr;
 	vector<Agent>::iterator position = std::find(m_agents.begin(), m_agents.end(),
 			a);
-	if (position != m_agents.end()) // == agents.end() means the element was not found
+	if (position != m_agents.end()) { // == agents.end() means the element was not found
+		result = *position;
 		m_agents.erase(position);
+	}
+	return result;
 }
 
 const vector<Agent>& AgentsCollection::getAgents() const {
 	return m_agents;
 }
 
-void AgentsCollection::setAgents(const vector<Agent>& agents) {
-	m_agents = agents;
+void AgentsCollection::setAgents(vector<Agent> agents) {
+	m_agents = std::move(agents);
 }
 
 
-const World* AgentsCollection::getWorld() const {
+World* AgentsCollection::getWorld() const {
 	return m_world;
 }
 

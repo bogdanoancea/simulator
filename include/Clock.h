@@ -23,10 +23,13 @@ class Clock {
 		virtual ~Clock();
 
 		void tick();
+
 		unsigned int getCurrentTime() const;
 		void setCurrentTime(unsigned int currentTime);
+
 		unsigned int getIncrement() const;
 		void setIncrement(unsigned int increment);
+
 		unsigned int getInitialTime() const;
 		void setInitialTime(unsigned int initialTime);
 

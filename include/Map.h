@@ -23,6 +23,8 @@ class Map {
 
 		/** Default destructor */
 		virtual ~Map();
+
+
 		const GeometryFactory::Ptr& getGlobalFactory() const;
 
 	private:

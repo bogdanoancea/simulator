@@ -21,11 +21,12 @@ class LocatableAgent: public Agent {
 		LocatableAgent(Point initLocation);
 
 		virtual ~LocatableAgent();
-		const Point& getLocation() const;
-		void setLocation(const Point& location);
+
+		Point* getLocation() const;
+		void setLocation(Point* location);
 
 	private:
-		Point m_location;
+		Point* m_location;
 };
 
 #endif /* LOCATABLEAGENT_H_ */
