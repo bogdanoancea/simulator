@@ -13,21 +13,19 @@
 
 using namespace geos;
 using namespace geos::geom;
-
+using namespace std;
 
 Map::Map() {
 
 	// Define a precision model using 0,0 as the reference origin
 	// and 2.0 as coordinates scale.
-	PrecisionModel* pm = new PrecisionModel(2.0, 0, 0);
-
+	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
     // Initialize global factory with defined PrecisionModel
 	// and a SRID of -1 (undefined).
 	m_globalFactory = GeometryFactory::create(pm, -1);
 
     // We do not need PrecisionMode object anymore, it has
 	// been copied to global_factory private storage
-	delete pm;
 }
 
 Map::~Map() {

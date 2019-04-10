@@ -20,7 +20,9 @@ class LocatableAgent: public Agent {
 	public:
 		LocatableAgent(World& w, Point& initLocation);
 
-		virtual ~LocatableAgent();
+		virtual ~LocatableAgent() {
+		}
+		;
 
 		Point& getLocation() const;
 		void setLocation(Point& location);

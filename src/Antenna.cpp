@@ -12,8 +12,7 @@
 
 Antenna::Antenna(World& w, Point& initPosition) :
 		ImmovableAgent(w, initPosition), m_power { 0.0 }, m_attenuationFactor {
-				0.0 }, m_maxConnections { 0 }
-{
+				0.0 }, m_maxConnections { 0 } {
 	m_cell = getWorld().getMap()->getGlobalFactory()->createPolygon();
 }
 

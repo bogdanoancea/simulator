@@ -19,7 +19,9 @@ class Agent {
 		Agent(World& w);
 
 		/** Default destructor */
-		virtual ~Agent();
+		virtual ~Agent() {
+		}
+		;
 
 		bool operator==(const Agent& a);
 

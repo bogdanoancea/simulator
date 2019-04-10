@@ -21,9 +21,6 @@ LocatableAgent::LocatableAgent(World& w, Point& initLocation) :
 	m_location = getWorld().getMap()->getGlobalFactory()->createPoint(*c);
 }
 
-LocatableAgent::~LocatableAgent() {
-	// TODO Auto-generated destructor stub
-}
 
 Point& LocatableAgent::getLocation() const {
 	return *m_location;
