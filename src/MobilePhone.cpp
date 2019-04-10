@@ -7,12 +7,11 @@
  *      Author: Bogdan Oancea
  */
 
-#include "MobilePhone.h"
-#include "HoldableAgent.h"
+#include <MobilePhone.h>
 
 
-MobilePhone::MobilePhone(World& w, long id, Point& initPosition, long id_holder) :
-		HoldableAgent(w, id, initPosition, -1) {
+MobilePhone::MobilePhone(Map* m, long id, Point& initPosition, long id_holder) :
+		HoldableAgent(m, id, initPosition, -1) {
 	// TODO Auto-generated constructor stub
 
 }

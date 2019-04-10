@@ -18,7 +18,7 @@ using namespace geos::geom;
 
 class LocatableAgent: public Agent {
 	public:
-		LocatableAgent(World& w, long id, Point& initLocation);
+		LocatableAgent(Map* m, long id, Point& initLocation);
 
 		virtual ~LocatableAgent();
 

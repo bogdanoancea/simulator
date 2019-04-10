@@ -10,21 +10,21 @@
 #ifndef AGENT_H
 #define AGENT_H
 
-#include "World.h"
+#include "Map.h"
 
 
 class Agent {
 	public:
 
-		Agent(World& w, long id);
+		Agent(Map* m, long id);
 
 		/** Default destructor */
 		virtual ~Agent();
 
 		bool operator==(const Agent& a);
 
-		World& getWorld() const;
-		void setWorld(World& world);
+		Map* getMap() const;
+		void setMap(Map* map);
 
 		long getId() const {
 			return m_id;
@@ -35,7 +35,7 @@ class Agent {
 		}
 
 	private:
-		World& m_world;
+		Map* m_map;
 		long m_id;
 };
 

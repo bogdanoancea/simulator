@@ -15,10 +15,10 @@ using namespace geos;
 using namespace geos::geom;
 
 
-LocatableAgent::LocatableAgent(World& w, long id, Point& initLocation) :
-		Agent(w, id) {
+LocatableAgent::LocatableAgent(Map* m, long id, Point& initLocation) :
+		Agent(m, id) {
 	const Coordinate *c = initLocation.getCoordinate();
-	m_location = getWorld().getMap()->getGlobalFactory()->createPoint(*c);
+	m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
 }
 
 LocatableAgent::~LocatableAgent() {
@@ -31,5 +31,5 @@ Point& LocatableAgent::getLocation() const {
 
 void LocatableAgent::setLocation(Point& location) {
 	const Coordinate *c = location.getCoordinate();
-	m_location = getWorld().getMap()->getGlobalFactory()->createPoint(*c);
+	m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
 }

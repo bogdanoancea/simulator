@@ -7,11 +7,11 @@
  *      Author: Bogdan Oancea
  */
 
-#include "Agent.h"
-#include "World.h"
+#include <Agent.h>
 
-Agent::Agent(World& w, long id) :
-		m_world { w }, m_id { id } {
+Agent::Agent(Map* m, long id) :
+		m_id { id } {
+	m_map = m;
 }
 
 Agent::~Agent() {
@@ -22,10 +22,9 @@ bool Agent::operator==(const Agent& a) {
 	return true;
 }
 
-World& Agent::getWorld() const {
-	return m_world;
+Map* Agent::getMap() const {
+	return m_map;
 }
-
-void Agent::setWorld(World& world) {
-	m_world = world;
+void Agent::setMap(Map* map) {
+	m_map = map;
 }

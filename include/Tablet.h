@@ -17,7 +17,7 @@
  */
 class Tablet: public HoldableAgent {
 	public:
-		Tablet(World& w, long id, Point& initPosition);
+		Tablet(Map* m, long id, Point& initPosition);
 		virtual ~Tablet();
 
 	private:

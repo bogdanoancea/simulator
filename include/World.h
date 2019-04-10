@@ -11,7 +11,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-///#include "AgentsCollection.h"
+#include "AgentsCollection.h"
 #include "Map.h"
 #include "Clock.h"
 
@@ -31,8 +31,8 @@ class World {
 
 		unsigned int getCurrentTime();
 
-//		AgentsCollection* getAgents() const;
-//		void setAgents(AgentsCollection* agents);
+		AgentsCollection* getAgents() const;
+		void setAgents(AgentsCollection* agents);
 
 		Clock* getClock() const;
 		void setClock(Clock* clock);
@@ -41,7 +41,7 @@ class World {
 		void setMap(Map* map);
 
 	private:
-		//AgentsCollection* m_agents;
+		AgentsCollection* m_agents;
 		Map* m_map;
 		Clock* m_clock;
 

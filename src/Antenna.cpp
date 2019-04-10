@@ -10,10 +10,10 @@
 #include "Antenna.h"
 #include "ImmovableAgent.h"
 
-Antenna::Antenna(World& w, long id, Point& initPosition) :
-		ImmovableAgent(w, id, initPosition), m_power { 0.0 }, m_attenuationFactor {
+Antenna::Antenna(Map* m, long id, Point& initPosition) :
+		ImmovableAgent(m, id, initPosition), m_power { 0.0 }, m_attenuationFactor {
 				0.0 }, m_maxConnections { 0 } {
-	m_cell = getWorld().getMap()->getGlobalFactory()->createPolygon();
+	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
 Antenna::~Antenna() {

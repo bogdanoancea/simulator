@@ -11,8 +11,7 @@
 #ifndef AGENTSCOLLECTION_H
 #define AGENTSCOLLECTION_H
 
-#include "Agent.h"
-#include "World.h"
+#include <Agent.h>
 #include <vector>
 
 using namespace std;
@@ -29,8 +28,6 @@ class AgentsCollection {
 		Agent* deleteAgent(Agent* a);
 		void performAction();
 
-		const vector<Agent*>& getAgents() const;
-		void setAgents(vector<Agent*> agents);
 
 
 	private:

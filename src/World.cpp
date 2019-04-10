@@ -8,9 +8,9 @@
  */
 
 
-#include "World.h"
-#include "AgentsCollection.h"
+#include <World.h>
 #include <iostream>
+#include <AgentsCollection.h>
 
 using namespace std;
 //ctor
@@ -30,13 +30,13 @@ unsigned int World::getCurrentTime() {
 	return m_clock->getCurrentTime();
 }
 
-//AgentsCollection* World::getAgents() const {
-//	return m_agents;
-//}
-//
-//void World::setAgents(AgentsCollection* agents) {
-//	m_agents = agents;
-//}
+AgentsCollection* World::getAgents() const {
+	return m_agents;
+}
+
+void World::setAgents(AgentsCollection* agents) {
+	m_agents = agents;
+}
 
 Clock* World::getClock() const {
 	return m_clock;

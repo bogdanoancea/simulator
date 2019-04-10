@@ -7,9 +7,9 @@
  *      Author: Bogdan Oancea
  */
 
-#include "AgentsCollection.h"
-#include "Agent.h"
+#include <AgentsCollection.h>
 #include <algorithm>
+#include <iterator>
 
 AgentsCollection::AgentsCollection() {
 }
@@ -32,12 +32,12 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 	return result;
 }
 
-const vector<Agent*>& AgentsCollection::getAgents() const {
-	return m_agents;
-}
-
-void AgentsCollection::setAgents(vector<Agent*> agents) {
-	m_agents = std::move(agents);
-}
+//const vector<Agent*>& AgentsCollection::getAgents() const {
+//	return m_agents;
+//}
+//
+//void AgentsCollection::setAgents(vector<Agent*> agents) {
+//	m_agents = std::move(agents);
+//}
 
 

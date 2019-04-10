@@ -23,7 +23,7 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 	public:
-		Person(World& w, long id, Point& initPosition, int age);
+		Person(Map* m, long id, Point& initPosition, int age);
 		virtual ~Person();
 
 		int getAge() const;

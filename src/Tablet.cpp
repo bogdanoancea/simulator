@@ -9,8 +9,8 @@
 
 #include <Tablet.h>
 
-Tablet::Tablet(World& w, long id, Point& initPosition) :
-		HoldableAgent(w, id, initPosition, -1) {
+Tablet::Tablet(Map* m, long id, Point& initPosition) :
+		HoldableAgent(m, id, initPosition, -1) {
 // TODO Auto-generated constructor stub
 
 }

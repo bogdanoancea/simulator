@@ -17,7 +17,7 @@
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		MobilePhone(World& w, long id, Point& initPosition, long id_holder);
+		MobilePhone(Map* m, long id, Point& initPosition, long id_holder);
 		virtual ~MobilePhone();
 
 	private:
