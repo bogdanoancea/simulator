@@ -12,8 +12,8 @@ using namespace geos;
 using namespace geos::geom;
 
 
-Person::Person(World& w, Point& initPosition, long id, int age) :
-		MovableAgent(w, initPosition), m_id { id }, m_age { age } {
+Person::Person(World& w, long id, Point& initPosition, int age) :
+		MovableAgent(w, id, initPosition), m_age { age } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -30,11 +30,4 @@ void Person::setAge(int age) {
 	m_age = age;
 }
 
-long Person::getId() const {
-	return m_id;
-}
-
-void Person::setId(long id) {
-	m_id = id;
-}
 

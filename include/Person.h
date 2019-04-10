@@ -23,20 +23,16 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 	public:
-		Person(World& w, Point& initPosition, long id, int age);
+		Person(World& w, long id, Point& initPosition, int age);
 		virtual ~Person();
 
 		int getAge() const;
 		void setAge(int age);
 
-		long getId() const;
-		void setId(long id);
-
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
 	private:
-		long m_id;
 		int m_age;
 
 };

@@ -10,8 +10,8 @@
 
 #include "MovableAgent.h"
 
-MovableAgent::MovableAgent(World& w, Point& initialPosition) :
-		LocatableAgent(w, initialPosition), m_speed { 0.0 } {
+MovableAgent::MovableAgent(World& w, long id, Point& initialPosition) :
+		LocatableAgent(w, id, initialPosition), m_speed { 0.0 } {
 	// TODO Auto-generated constructor stub
 }
 

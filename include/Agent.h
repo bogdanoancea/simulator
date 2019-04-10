@@ -16,20 +16,27 @@
 class Agent {
 	public:
 
-		Agent(World& w);
+		Agent(World& w, long id);
 
 		/** Default destructor */
-		virtual ~Agent() {
-		}
-		;
+		virtual ~Agent();
 
 		bool operator==(const Agent& a);
 
 		World& getWorld() const;
 		void setWorld(World& world);
 
+		long getId() const {
+			return m_id;
+		}
+
+		void setId(long id) {
+			m_id = id;
+		}
+
 	private:
 		World& m_world;
+		long m_id;
 };
 
 #endif // AGENT_H

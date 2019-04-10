@@ -11,8 +11,8 @@
 #include "HoldableAgent.h"
 
 
-MobilePhone::MobilePhone(World& w, Point& initPosition, long phoneId) :
-		HoldableAgent(w, initPosition, -1), m_phoneId { phoneId } {
+MobilePhone::MobilePhone(World& w, long id, Point& initPosition, long id_holder) :
+		HoldableAgent(w, id, initPosition, -1) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -22,10 +22,3 @@ MobilePhone::~MobilePhone() {
 }
 
 
-long MobilePhone::getPhoneId() const {
-	return m_phoneId;
-}
-
-void MobilePhone::setPhoneId(long phoneId) {
-	m_phoneId = phoneId;
-}

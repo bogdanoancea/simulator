@@ -17,13 +17,11 @@
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		MobilePhone(World& w, Point& initPosition, long phoneId);
+		MobilePhone(World& w, long id, Point& initPosition, long id_holder);
 		virtual ~MobilePhone();
-		long getPhoneId() const;
-		void setPhoneId(long phoneId);
 
 	private:
-		long m_phoneId;
+
 
 };
 

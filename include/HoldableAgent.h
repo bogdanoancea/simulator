@@ -17,7 +17,7 @@
  */
 class HoldableAgent: public MovableAgent {
 	public:
-		HoldableAgent(World& w, Point& initPosition, long idHolder);
+		HoldableAgent(World& w, long id, Point& initPosition, long idHolder);
 		virtual ~HoldableAgent();
 		long getIdHolder() const;
 		void setIdHolder(long idHolder);

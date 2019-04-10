@@ -10,10 +10,12 @@
 #include "Agent.h"
 #include "World.h"
 
-Agent::Agent(World& w) :
-		m_world { w } {
+Agent::Agent(World& w, long id) :
+		m_world { w }, m_id { id } {
 }
 
+Agent::~Agent() {
+}
 
 
 bool Agent::operator==(const Agent& a) {

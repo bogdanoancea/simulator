@@ -17,13 +17,11 @@
  */
 class Tablet: public HoldableAgent {
 	public:
-		Tablet(World& w, Point& initPosition, long tabletId);
+		Tablet(World& w, long id, Point& initPosition);
 		virtual ~Tablet();
-		long getTabletId() const;
-		void settabletId(long phoneId);
 
 	private:
-		long m_tabletId;
+
 
 };
 

@@ -14,8 +14,8 @@ using namespace geos;
 using namespace geos::geom;
 
 
-ImmovableAgent::ImmovableAgent(World& w, Point& initialPosition) :
-		LocatableAgent(w, initialPosition) {
+ImmovableAgent::ImmovableAgent(World& w, long id, Point& initialPosition) :
+		LocatableAgent(w, id, initialPosition) {
 	// TODO Auto-generated constructor stub
 }
 

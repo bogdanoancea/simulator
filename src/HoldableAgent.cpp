@@ -10,8 +10,9 @@
 #include "HoldableAgent.h"
 #include "LocatableAgent.h"
 
-HoldableAgent::HoldableAgent(World& w, Point& initPosition, long idHolder) :
-		MovableAgent(w, initPosition), m_idHolder { idHolder } {
+HoldableAgent::HoldableAgent(World& w, long id, Point& initPosition,
+		long idHolder) :
+		MovableAgent(w, id, initPosition), m_idHolder { idHolder } {
 	// TODO Auto-generated constructor stub
 
 }

@@ -22,7 +22,7 @@ using namespace geos::geom;
 class MovableAgent: public LocatableAgent {
 	public:
 
-		MovableAgent(World& w, Point& initPosition);
+		MovableAgent(World& w, long id, Point& initPosition);
 
 		virtual ~MovableAgent();
 

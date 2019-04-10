@@ -18,11 +18,9 @@ using namespace geos::geom;
 
 class LocatableAgent: public Agent {
 	public:
-		LocatableAgent(World& w, Point& initLocation);
+		LocatableAgent(World& w, long id, Point& initLocation);
 
-		virtual ~LocatableAgent() {
-		}
-		;
+		virtual ~LocatableAgent();
 
 		Point& getLocation() const;
 		void setLocation(Point& location);
