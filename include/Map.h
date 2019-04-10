@@ -11,10 +11,19 @@
 #define MAP_H
 
 #include <geos/geom/GeometryFactory.h>
+#include <geos/geom/Polygon.h>
+
 using namespace geos;
 using namespace geos::geom;
 
 
+enum class Geometries {
+	RECTANGLE
+};
+
+enum class MAP_TYPE {
+	GEOM, FROM_FILE
+};
 
 class Map {
 	public:
@@ -26,6 +35,10 @@ class Map {
 
 
 		const GeometryFactory::Ptr& getGlobalFactory() const;
+		Polygon* create_rectangle(double llX, double llY, double width,
+				double height);
+
+		Polygon* makeBox(double xmin, double ymin, double xmax, double ymax);
 
 	private:
 		GeometryFactory::Ptr m_globalFactory;
