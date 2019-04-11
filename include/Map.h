@@ -10,8 +10,8 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <geos/geom/Geometry.h>
 #include <geos/geom/GeometryFactory.h>
-#include <geos/geom/Polygon.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -35,8 +35,12 @@ class Map {
 
 
 		const GeometryFactory::Ptr& getGlobalFactory() const;
+
 		Polygon* create_rectangle(double llX, double llY, double width,
 				double height);
+
+	private:
+		Geometry m_externalBoundary;
 
 
 
