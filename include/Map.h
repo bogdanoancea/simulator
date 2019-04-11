@@ -38,7 +38,7 @@ class Map {
 		Polygon* create_rectangle(double llX, double llY, double width,
 				double height);
 
-		Polygon* makeBox(double xmin, double ymin, double xmax, double ymax);
+
 
 	private:
 		GeometryFactory::Ptr m_globalFactory;
