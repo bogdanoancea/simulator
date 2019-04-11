@@ -10,7 +10,7 @@
 
 #include "MovableAgent.h"
 
-MovableAgent::MovableAgent(Map* m, long id, Point& initialPosition) :
+MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition) :
 		LocatableAgent(m, id, initialPosition), m_speed { 0.0 } {
 	// TODO Auto-generated constructor stub
 }

@@ -15,9 +15,9 @@ using namespace geos;
 using namespace geos::geom;
 
 
-LocatableAgent::LocatableAgent(Map* m, long id, Point& initLocation) :
+LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation) :
 		Agent(m, id) {
-	const Coordinate *c = initLocation.getCoordinate();
+	const Coordinate *c = initLocation->getCoordinate();
 	m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
 }
 

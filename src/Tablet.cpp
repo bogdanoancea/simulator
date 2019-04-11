@@ -9,7 +9,7 @@
 
 #include <Tablet.h>
 
-Tablet::Tablet(Map* m, long id, Point& initPosition) :
+Tablet::Tablet(Map* m, long id, Point* initPosition) :
 		HoldableAgent(m, id, initPosition, -1) {
 // TODO Auto-generated constructor stub
 

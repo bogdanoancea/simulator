@@ -21,7 +21,7 @@ using namespace geos::geom;
  */
 class Antenna: public ImmovableAgent {
 	public:
-		Antenna(Map* m, long id, Point& initPosition);
+		Antenna(Map* m, long id, Point* initPosition);
 		virtual ~Antenna();
 
 		double getAttenuationFactor() const;

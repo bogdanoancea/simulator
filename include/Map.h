@@ -10,25 +10,21 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include <geos/geom/Geometry.h>
 #include <geos/geom/GeometryFactory.h>
 
+using namespace std;
 using namespace geos;
 using namespace geos::geom;
 
 
-enum class Geometries {
-	RECTANGLE
-};
 
-enum class MAP_TYPE {
-	GEOM, FROM_FILE
-};
 
 class Map {
 	public:
 		/** Default constructor */
 		Map();
+
+		Map(double llX, double llY, double width, double height);
 
 		/** Default destructor */
 		virtual ~Map();
@@ -36,17 +32,24 @@ class Map {
 
 		const GeometryFactory::Ptr& getGlobalFactory() const;
 
+
+		Geometry* getBoundary() const {
+			return m_boundary;
+		}
+
+
+		void setBoundary(Geometry* boundary) {
+			m_boundary = boundary;
+		}
+
+	private:
 		Polygon* create_rectangle(double llX, double llY, double width,
 				double height);
 
-	private:
-		Geometry m_externalBoundary;
 
-
-
-	private:
 		GeometryFactory::Ptr m_globalFactory;
 
+		Geometry* m_boundary;
 };
 
 #endif // MAP_H

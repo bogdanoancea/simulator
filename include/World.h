@@ -11,16 +11,20 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "AgentsCollection.h"
-#include "Map.h"
-#include "Clock.h"
+#include <Person.h>
+#include <random>
+#include <vector>
+#include <AgentsCollection.h>
+#include <Clock.h>;
+
+
 
 using namespace std;
 
 class World {
 	public:
 		/** Default constructor */
-		World();
+		World(Map* map, int numPersons);
 
 		/** Default destructor */
 		virtual ~World();
@@ -41,9 +45,13 @@ class World {
 		void setMap(Map* map);
 
 	private:
-		AgentsCollection* m_agents;
+
 		Map* m_map;
+
+		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
+		default_random_engine m_generator;
+		vector<Person*> generatePopulation(int numPersons);
 
 };
 

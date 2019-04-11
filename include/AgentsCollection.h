@@ -27,7 +27,9 @@ class AgentsCollection {
 		void addAgent(Agent* a);
 		Agent* deleteAgent(Agent* a);
 		void performAction();
-
+		Agent* getAgent(int i) {
+			return (m_agents[i]);
+		}
 
 
 	private:

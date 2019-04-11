@@ -10,7 +10,7 @@
 #include <MobilePhone.h>
 
 
-MobilePhone::MobilePhone(Map* m, long id, Point& initPosition, long id_holder) :
+MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, long id_holder) :
 		HoldableAgent(m, id, initPosition, -1) {
 	// TODO Auto-generated constructor stub
 

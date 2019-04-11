@@ -8,12 +8,10 @@
  */
 
 
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/Polygon.h>
 #include <geos/geom/PrecisionModel.h>
 #include <geos/util/GeometricShapeFactory.h>
-#include <geos/geom/GeometryFactory.h>
-#include <geos/geom/Point.h>
-#include <geos/geom/Coordinate.h>
-
 #include <Map.h>
 #include <memory>
 
@@ -35,10 +33,26 @@ Map::Map() {
 
     // We do not need PrecisionMode object anymore, it has
 	// been copied to global_factory private storage
+	delete pm;
+
+}
+
+Map::Map(double llx, double llY, double width, double height) :
+		Map() {
+	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
+	// Initialize global factory with defined PrecisionModel
+	// and a SRID of -1 (undefined).
+	m_globalFactory = GeometryFactory::create(pm, -1);
+
+	// We do not need PrecisionMode object anymore, it has
+	// been copied to global_factory private storage
+	delete pm;
+
+	m_boundary = (geos::geom::Geometry*) create_rectangle(0, 0, 10, 10);
 }
 
 Map::~Map() {
-	//dtor
+	delete m_boundary;
 }
 
 const GeometryFactory::Ptr& Map::getGlobalFactory() const {
@@ -54,6 +68,6 @@ Map::create_rectangle(double llX, double llY, double width, double height) {
 	shapefactory.setWidth(width);
 	shapefactory.setNumPoints(4); // we don't need more then 4 points for a rectangle...
 	// can use setSize for a square
-	return shapefactory.createRectangle();
+	return (shapefactory.createRectangle());
 }
 
