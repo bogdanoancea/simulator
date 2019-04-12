@@ -11,6 +11,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
+#include <Antenna.h>
 #include <Person.h>
 #include <random>
 #include <vector>
@@ -19,12 +20,13 @@
 
 
 
+
 using namespace std;
 
 class World {
 	public:
 		/** Default constructor */
-		World(Map* map, int numPersons);
+		World(Map* map, int numPersons, int numAntennas);
 
 		/** Default destructor */
 		virtual ~World();
@@ -52,7 +54,7 @@ class World {
 		Clock* m_clock;
 		std::mt19937 m_generator;
 		vector<Person*> generatePopulation(int numPersons);
-
+		vector<Antenna*> generateAntennas(int numAntennas);
 };
 
 #endif // WORLD_H

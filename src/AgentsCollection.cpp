@@ -19,6 +19,7 @@ AgentsCollection::~AgentsCollection() {
 
 void AgentsCollection::addAgent(Agent* a) {
 	m_agents.push_back(a);
+	m_agents2.insert( { typeid(*a).name(), a });
 }
 
 Agent* AgentsCollection::deleteAgent(Agent* a) {
@@ -30,6 +31,10 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 		m_agents.erase(position);
 	}
 	return result;
+}
+
+umit AgentsCollection::getAgentListByType(string agentType) {
+	return m_agents2.find(agentType);
 }
 
 //const vector<Agent*>& AgentsCollection::getAgents() const {

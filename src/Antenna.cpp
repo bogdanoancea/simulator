@@ -10,9 +10,9 @@
 #include "Antenna.h"
 #include "ImmovableAgent.h"
 
-Antenna::Antenna(Map* m, long id, Point* initPosition) :
-		ImmovableAgent(m, id, initPosition), m_power { 0.0 }, m_attenuationFactor {
-				0.0 }, m_maxConnections { 0 } {
+Antenna::Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections) :
+		ImmovableAgent(m, id, initPosition), m_power { power }, m_attenuationFactor {
+			attenuationFactor }, m_maxConnections { maxConnections } {
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 

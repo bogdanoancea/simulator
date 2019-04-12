@@ -8,6 +8,8 @@
  */
 
 
+#include <AgentsCollection.h>
+#include <Clock.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
 #include <Map.h>
@@ -19,7 +21,7 @@
 using namespace std;
 
 //ctor
-World::World(Map* map, int numPersons) :
+World::World(Map* map, int numPersons, int numAntennas) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 
@@ -29,6 +31,11 @@ World::World(Map* map, int numPersons) :
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
+	}
+
+	vector<Antenna*> antennas = generateAntennas(numAntennas);
+	for (int i = 0; i < antennas.size(); i++) {
+		m_agentsCollection->addAgent(antennas[i]);
 	}
 }
 
@@ -81,6 +88,25 @@ vector<Person*> World::generatePopulation(int numPersons) {
 		id = IDGenerator::instance()->next();
 
 		Person* p = new Person(getMap(), id, positions[i], int_distribution(m_generator));
+		result.push_back(p);
+	}
+	return (result);
+}
+
+vector<Antenna*> World::generateAntennas(int numAntennas) {
+	vector<Antenna*> result;
+
+	unsigned id;
+	double power = 100;
+	double attFactor = 2;
+	int maxConnections = 100;
+
+	uniform_int_distribution<int> int_distribution(1, 100);
+	vector<Point*> positions = generatePoints(getMap(), m_generator, numAntennas);
+	for (auto i = 0; i < numAntennas; i++) {
+		id = IDGenerator::instance()->next();
+
+		Antenna* p = new Antenna(getMap(), id, positions[i], attFactor, power, maxConnections);
 		result.push_back(p);
 	}
 	return (result);
