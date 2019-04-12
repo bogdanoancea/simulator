@@ -17,33 +17,34 @@ using namespace geos::geom;
 using namespace std;
 
 
-Point* generatePoint(Map* m, default_random_engine generator) {
-	Point* result;
-	//cout << " enter generate point" << endl;
+vector<Point*> generatePoints(Map* m, std::mt19937 generator, int n) {
+	vector<Point*> result;
+
 
 	Geometry* g = m->getBoundary();
 	if (dynamic_cast<Polygon*>(g) != nullptr) {
 		Polygon* p = dynamic_cast<Polygon*>(g);
-		//cout << "am castuit granita la poligon" << endl;
-		const Envelope* env = g->getEnvelopeInternal();
+		const Envelope* env = p->getEnvelopeInternal();
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
 		double ymax = env->getMaxX();
 
-		uniform_real_distribution<double> distributionX(xmin, xmax);
-		double x = distributionX(generator);
-		uniform_real_distribution<double> distributionY(ymin, ymax);
-		double y = distributionY(generator);
-		Coordinate c = Coordinate(x, y);
-		result = m->getGlobalFactory()->createPoint(c);
+		static uniform_real_distribution<double> distributionX(xmin, xmax);
+		static uniform_real_distribution<double> distributionY(ymin, ymax);
+		for (int i = 0; i < n; i++) {
+			double x = distributionX(generator);
+			double y = distributionY(generator);
+			Coordinate c = Coordinate(x, y);
+			result.push_back(m->getGlobalFactory()->createPoint(c));
+		}
 	}
 	return (result);
 }
 
-int generateAge(int minAge, int maxAge, default_random_engine generator) {
-
-	uniform_int_distribution<int> distributionAge(minAge, maxAge);
-	return (distributionAge(generator));
-}
+//int generateAge(int minAge, int maxAge, std::mt19937 generator) {
+//
+//	uniform_int_distribution<int> distributionAge(minAge, maxAge);
+//	return (distributionAge(generator));
+//}
 

@@ -15,7 +15,7 @@
 #include <random>
 #include <vector>
 #include <AgentsCollection.h>
-#include <Clock.h>;
+#include <Clock.h>
 
 
 
@@ -50,7 +50,7 @@ class World {
 
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
-		default_random_engine m_generator;
+		std::mt19937 m_generator;
 		vector<Person*> generatePopulation(int numPersons);
 
 };

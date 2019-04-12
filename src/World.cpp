@@ -8,11 +8,12 @@
  */
 
 
-#include <Clock.h>
+#include <geos/geom/Point.h>
 #include <IDGenerator.h>
+#include <Map.h>
+#include <Utils.h>
 #include <World.h>
 #include <iostream>
-#include <Utils.h>
 
 
 using namespace std;
@@ -21,6 +22,10 @@ using namespace std;
 World::World(Map* map, int numPersons) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
+
+	std::random_device device;
+	std::mt19937 m_generator(device());
+
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -70,11 +75,12 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	vector<Person*> result;
 
 	unsigned id;
+	uniform_int_distribution<int> int_distribution(1, 100);
+	vector<Point*> positions = generatePoints(getMap(), m_generator, numPersons);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		cout << id << endl;
-		Point* position = generatePoint(getMap(), m_generator);
-		Person* p = new Person(getMap(), id, position, generateAge(1, 100, m_generator));
+
+		Person* p = new Person(getMap(), id, positions[i], int_distribution(m_generator));
 		result.push_back(p);
 	}
 	return (result);

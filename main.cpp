@@ -1,6 +1,7 @@
 #include <Map.h>
 #include <World.h>
 #include <iostream>
+#include <iomanip>
 #include <geos.h>
 
 using namespace std;
@@ -18,12 +19,12 @@ int main() {
 	cout << "And it has " << numPersons << " persons!" << endl;
 	World w(map, numPersons);
 
-	cout << "Person ID" << '\t' << " X " << '\t' << " Y " << '\t' << '\t' << " Age " << endl;
+	cout << setw(10) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << setw(15) << " Age " << endl;
 	for (int i = 0; i < numPersons; i++) {
 		AgentsCollection* c = w.getAgents();
 		Person* p = dynamic_cast<Person*>(c->getAgent(i));
-		cout << p->getId() << '\t' << '\t' << p->getLocation().getCoordinate()->x << '\t' << p->getLocation().getCoordinate()->y << '\t'
-				<< '\t' << p->getAge()
+		cout << setw(10) << p->getId() << setw(15) << setw(15) << p->getLocation().getCoordinate()->x << setw(15)
+				<< p->getLocation().getCoordinate()->y << setw(15) << setw(15) << p->getAge()
 				<< endl;
 	}
 	w.runSimulation();
