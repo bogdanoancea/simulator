@@ -11,7 +11,7 @@
 #define AGENT_H
 
 #include "Map.h"
-
+#include <string>
 
 class Agent {
 	public:
@@ -23,7 +23,7 @@ class Agent {
 
 		bool operator==(const Agent& a);
 
-		virtual string getName() = 0;
+		virtual string getName();
 
 		Map* getMap() const;
 		void setMap(Map* map);

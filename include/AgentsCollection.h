@@ -16,7 +16,7 @@
 #include <vector>
 
 using namespace std;
-typedef unordered_multimap<string, Agent*>::iterator umit;
+typedef unordered_multimap<string, Agent*>::iterator um_iterator;
 
 class AgentsCollection {
 	public:
@@ -34,13 +34,13 @@ class AgentsCollection {
 
 		Agent* getAgent(int id);
 
-		umit getAgentListByType(string agentType);
+		um_iterator getAgentListByType(string agentType);
 
-		umit end() {
+		um_iterator end() {
 			return m_agents2.end();
 		}
 
-		umit begin() {
+		um_iterator begin() {
 			return m_agents2.begin();
 		}
 
