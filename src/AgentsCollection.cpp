@@ -24,9 +24,6 @@ void AgentsCollection::addAgent(Agent* a) {
 
 Agent* AgentsCollection::deleteAgent(Agent* a) {
 	Agent* result = nullptr;
-
-
-
 	std::pair<umit, umit> iterpair = m_agents2.equal_range(typeid(*a).name());
 	umit it = iterpair.first;
 	for (; it != iterpair.second; ++it) {
@@ -35,14 +32,24 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 	        break;
 	    }
 	}
-
-
 	return result;
 }
+
 
 umit AgentsCollection::getAgentListByType(string agentType) {
 	return m_agents2.find(agentType);
 }
+
+
+Agent* AgentsCollection::getAgent(int id) {
+	Agent* result = nullptr;
+	for(auto& a : m_agents2){
+		if(a.second->getId() == id)
+			return a.second;
+	}
+	return result;
+}
+
 
 //const vector<Agent*>& AgentsCollection::getAgents() const {
 //	return m_agents;

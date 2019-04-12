@@ -32,9 +32,7 @@ class AgentsCollection {
 
 		void performAction();
 
-//		Agent* getAgent(int i) {
-//			return (m_agents[i]);
-//		}
+		Agent* getAgent(int id);
 
 		umit getAgentListByType(string agentType);
 
@@ -51,7 +49,6 @@ class AgentsCollection {
 		}
 
 	private:
-		//vector<Agent*> m_agents;
 		unordered_multimap<string, Agent*> m_agents2;
 };
 
