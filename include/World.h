@@ -17,7 +17,7 @@
 #include <vector>
 #include <AgentsCollection.h>
 #include <Clock.h>
-
+#include <MobilePhone.h>
 
 
 
@@ -26,7 +26,7 @@ using namespace std;
 class World {
 	public:
 		/** Default constructor */
-		World(Map* map, int numPersons, int numAntennas);
+		World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
 		/** Default destructor */
 		virtual ~World();
@@ -55,6 +55,8 @@ class World {
 		std::mt19937 m_generator;
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
+		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
+
 };
 
 #endif // WORLD_H

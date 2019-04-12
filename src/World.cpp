@@ -7,21 +7,18 @@
  *      Author: Bogdan Oancea
  */
 
-
-#include <AgentsCollection.h>
-#include <Clock.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
 #include <Map.h>
 #include <Utils.h>
 #include <World.h>
+#include <algorithm>
 #include <iostream>
-
 
 using namespace std;
 
 //ctor
-World::World(Map* map, int numPersons, int numAntennas) :
+World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 
@@ -37,8 +34,12 @@ World::World(Map* map, int numPersons, int numAntennas) :
 	for (int i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 	}
-}
 
+	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
+	for (int i = 0; i < phones.size(); i++) {
+		m_agentsCollection->addAgent(phones[i]);
+	}
+}
 
 //dtor
 World::~World() {
@@ -110,4 +111,16 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 		result.push_back(p);
 	}
 	return (result);
+}
+
+vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
+	vector<MobilePhone*> result;
+	unsigned id;
+	for (auto i = 0; i < numMobilePhones; i++) {
+		id = IDGenerator::instance()->next();
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, -1);
+		result.push_back(p);
+	}
+
+	return result;
 }

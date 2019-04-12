@@ -26,16 +26,18 @@ int main() {
 
 	int numPersons = 100;
 	int numAntennas = 10;
-	cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas!" << endl;
+	double market_share = 0.3;
+	int numMobilePhones = numPersons * market_share;
+	cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
+			<< " mobile phones!" << endl;
 
-	World w(map, numPersons, numAntennas);
+	World w(map, numPersons, numAntennas, numMobilePhones);
 	AgentsCollection* c = w.getAgents();
 
 	unordered_multimap<string, Agent*>::iterator it = c->getAgentListByType(typeid(Person).name());
 	cout << setw(10) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Age " << endl;
 
-
-	 while (it != c->end()) {
+	while (it != c->end()) {
 		Person* p = dynamic_cast<Person*>(it->second);
 		cout << setw(10) << p->getId() << setw(15) << p->getLocation().getCoordinate()->x << setw(15) << p->getLocation().getCoordinate()->y
 				<< setw(15) << setw(15) << p->getAge() << endl;
@@ -52,6 +54,15 @@ int main() {
 		it2++;
 	}
 
+	cout << setw(10) << "Mobile Phone ID" << setw(15) << " Owner id " << endl;
+//	unordered_multimap<string, Agent*>::iterator it3 = c->getAgentListByType(typeid(MobilePhone).name());
+//
+//
+//	while (it3 != c->end()) {
+//		MobilePhone* a = dynamic_cast<MobilePhone*>(it3->second);
+//		cout << setw(15) << a->getId() << setw(15) << a->getIdHolder() << endl;
+//		it3++;
+//	}
 	w.runSimulation();
 
 	return 0;

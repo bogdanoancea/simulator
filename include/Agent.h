@@ -23,7 +23,7 @@ class Agent {
 
 		bool operator==(const Agent& a);
 
-		virtual string getName();
+		virtual string getName() = 0;
 
 		Map* getMap() const;
 		void setMap(Map* map);
