@@ -19,7 +19,7 @@ Agent::~Agent() {
 
 
 bool Agent::operator==(const Agent& a) {
-	return true;
+	return this->m_id == a.getId();
 }
 
 Map* Agent::getMap() const {

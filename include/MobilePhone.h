@@ -20,6 +20,7 @@ class MobilePhone: public HoldableAgent {
 		MobilePhone(Map* m, long id, Point* initPosition, long id_holder);
 		virtual ~MobilePhone();
 
+		virtual string getName() { return "MobilePhone";}
 	private:
 
 

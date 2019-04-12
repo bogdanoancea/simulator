@@ -8,8 +8,9 @@
  */
 
 #include <AgentsCollection.h>
-#include <algorithm>
-#include <iterator>
+#include <initializer_list>
+#include <iostream>
+#include <utility>
 
 AgentsCollection::AgentsCollection() {
 }
@@ -18,18 +19,24 @@ AgentsCollection::~AgentsCollection() {
 }
 
 void AgentsCollection::addAgent(Agent* a) {
-	m_agents.push_back(a);
 	m_agents2.insert( { typeid(*a).name(), a });
 }
 
 Agent* AgentsCollection::deleteAgent(Agent* a) {
 	Agent* result = nullptr;
-	vector<Agent*>::iterator position = std::find(m_agents.begin(),
-			m_agents.end(), a);
-	if (position != m_agents.end()) { // == agents.end() means the element was not found
-		result = *position;
-		m_agents.erase(position);
+
+
+
+	std::pair<umit, umit> iterpair = m_agents2.equal_range(typeid(*a).name());
+	umit it = iterpair.first;
+	for (; it != iterpair.second; ++it) {
+	    if (it->second == a) {
+	        m_agents2.erase(it);
+	        break;
+	    }
 	}
+
+
 	return result;
 }
 

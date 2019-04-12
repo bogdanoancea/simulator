@@ -24,6 +24,8 @@ class MovableAgent: public LocatableAgent {
 
 		virtual ~MovableAgent();
 
+		virtual string getName() { return "MovableAgent";}
+
 		Point move();
 		double getSpeed() const;
 		void setSpeed(double speed);

@@ -33,12 +33,6 @@ int main() {
 
 	unordered_multimap<string, Agent*>::iterator it = c->getAgentListByType(typeid(Person).name());
 	cout << setw(10) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Age " << endl;
-//	for (int i = 0; i < numPersons; i++) {
-//		Person* p = dynamic_cast<Person*>(c->getAgent(i));
-//		cout << setw(10) << p->getId() << setw(15) << p->getLocation().getCoordinate()->x << setw(15)
-//				<< p->getLocation().getCoordinate()->y << setw(15) << setw(15) << p->getAge() << endl;
-//	}
-
 
 
 	 while (it != c->end()) {
@@ -50,10 +44,12 @@ int main() {
 	cout << setw(10) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(25) << "Max Connections"
 			<< setw(20) << "Attenuation Factor" << endl;
 
-	for (int i = numPersons; i < numPersons + numAntennas; i++) {
-		Antenna* a = dynamic_cast<Antenna*>(c->getAgent(i));
+	unordered_multimap<string, Agent*>::iterator it2 = c->getAgentListByType(typeid(Antenna).name());
+	while (it2 != c->end()) {
+		Antenna* a = dynamic_cast<Antenna*>(it2->second);
 		cout << setw(10) << a->getId() << setw(15) << a->getLocation().getCoordinate()->x << setw(15) << a->getLocation().getCoordinate()->y
 				<< setw(15) << a->getPower() << setw(15) << a->getMaxConnections() << setw(15) << a->getAttenuationFactor() << endl;
+		it2++;
 	}
 
 	w.runSimulation();

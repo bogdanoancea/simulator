@@ -22,6 +22,8 @@ class HoldableAgent: public MovableAgent {
 		long getIdHolder() const;
 		void setIdHolder(long idHolder);
 
+		virtual string getName() { return "HoldableAgent";}
+
 	private:
 		long m_idHolder;
 };

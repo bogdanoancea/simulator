@@ -27,12 +27,17 @@ class AgentsCollection {
 		virtual ~AgentsCollection();
 
 		void addAgent(Agent* a);
+
 		Agent* deleteAgent(Agent* a);
+
 		void performAction();
-		Agent* getAgent(int i) {
-			return (m_agents[i]);
-		}
+
+//		Agent* getAgent(int i) {
+//			return (m_agents[i]);
+//		}
+
 		umit getAgentListByType(string agentType);
+
 		umit end() {
 			return m_agents2.end();
 		}
@@ -46,7 +51,7 @@ class AgentsCollection {
 		}
 
 	private:
-		vector<Agent*> m_agents;
+		//vector<Agent*> m_agents;
 		unordered_multimap<string, Agent*> m_agents2;
 };
 

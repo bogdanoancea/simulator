@@ -22,6 +22,8 @@ class LocatableAgent: public Agent {
 
 		virtual ~LocatableAgent();
 
+		virtual string getName() { return "LocatableAgent";}
+
 		Point& getLocation() const;
 		void setLocation(Point& location);
 
