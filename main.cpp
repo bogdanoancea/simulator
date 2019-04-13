@@ -37,32 +37,35 @@ int main() {
 	unordered_multimap<string, Agent*>::iterator it = c->getAgentListByType(typeid(Person).name());
 	cout << setw(10) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Age " << endl;
 
-	while (it != c->end()) {
+	for (; it != c->end(); it++) {
 		Person* p = dynamic_cast<Person*>(it->second);
-		cout << setw(10) << p->getId() << setw(15) << p->getLocation().getCoordinate()->x << setw(15) << p->getLocation().getCoordinate()->y
-				<< setw(15) << setw(15) << p->getAge() << endl;
-		it++;
+		if (p != nullptr)
+			cout << setw(10) << p->getId() << setw(15) << p->getLocation().getCoordinate()->x << setw(15)
+					<< p->getLocation().getCoordinate()->y << setw(15) << setw(15) << p->getAge() << endl;
 	}
+
 	cout << setw(10) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(25) << "Max Connections"
 			<< setw(20) << "Attenuation Factor" << endl;
 
 	unordered_multimap<string, Agent*>::iterator it2 = c->getAgentListByType(typeid(Antenna).name());
-	while (it2 != c->end()) {
+	for (; it2 != c->end(); it2++) {
 		Antenna* a = dynamic_cast<Antenna*>(it2->second);
-		cout << setw(10) << a->getId() << setw(15) << a->getLocation().getCoordinate()->x << setw(15) << a->getLocation().getCoordinate()->y
-				<< setw(15) << a->getPower() << setw(15) << a->getMaxConnections() << setw(15) << a->getAttenuationFactor() << endl;
-		it2++;
+		if (a != nullptr)
+			cout << setw(10) << a->getId() << setw(15) << a->getLocation().getCoordinate()->x << setw(15)
+					<< a->getLocation().getCoordinate()->y << setw(15) << a->getPower() << setw(15) << a->getMaxConnections() << setw(15)
+					<< a->getAttenuationFactor() << endl;
+
 	}
 
 	cout << setw(10) << "Mobile Phone ID" << setw(15) << " Owner id " << endl;
-//	unordered_multimap<string, Agent*>::iterator it3 = c->getAgentListByType(typeid(MobilePhone).name());
-//
-//
-//	while (it3 != c->end()) {
-//		MobilePhone* a = dynamic_cast<MobilePhone*>(it3->second);
-//		cout << setw(15) << a->getId() << setw(15) << a->getIdHolder() << endl;
-//		it3++;
-//	}
+	unordered_multimap<string, Agent*>::iterator it3 = c->getAgentListByType(typeid(MobilePhone).name());
+
+	for (; it3 != c->end(); it3++) {
+		MobilePhone* a = dynamic_cast<MobilePhone*>(it3->second);
+		if (a != nullptr)
+			cout << setw(15) << a->getId() << setw(15) << a->getIdHolder() << endl;
+
+	}
 	w.runSimulation();
 
 	return 0;

@@ -36,7 +36,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 
 	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
-	for (int i = 0; i < phones.size(); i++) {
+	for(int i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
 }
