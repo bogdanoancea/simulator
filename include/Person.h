@@ -34,8 +34,17 @@ class Person: public MovableAgent {
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
+		void addPhone(long id) {
+			m_idPhones.push_back(id);
+		}
+
+		const vector<long>& getIdPhones() const {
+			return m_idPhones;
+		}
+
 	private:
 		int m_age;
+		vector<long> m_idPhones;
 
 };
 

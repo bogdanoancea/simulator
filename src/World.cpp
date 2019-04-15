@@ -102,7 +102,7 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	double attFactor = 2;
 	int maxConnections = 100;
 
-	uniform_int_distribution<int> int_distribution(1, 100);
+	//uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = generatePoints(getMap(), m_generator, numAntennas);
 	for (auto i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
@@ -122,5 +122,5 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 		result.push_back(p);
 	}
 
-	return result;
+	return (result);
 }

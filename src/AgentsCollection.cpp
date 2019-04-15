@@ -19,6 +19,7 @@ AgentsCollection::~AgentsCollection() {
 }
 
 void AgentsCollection::addAgent(Agent* a) {
+	cout << "introduc agent : " << typeid(*a).name() << endl;
 	m_agents2.insert( { typeid(*a).name(), a });
 }
 
@@ -37,7 +38,7 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 
 
 um_iterator AgentsCollection::getAgentListByType(string agentType) {
-	return m_agents2.find(agentType);
+	return (m_agents2.find(agentType));
 }
 
 
