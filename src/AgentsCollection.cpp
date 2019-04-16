@@ -19,8 +19,7 @@ AgentsCollection::~AgentsCollection() {
 }
 
 void AgentsCollection::addAgent(Agent* a) {
-	cout << "introduc agent : " << typeid(*a).name() << endl;
-	m_agents2.insert( { typeid(*a).name(), a });
+	m_agents2.insert(std::pair<string, Agent*>(typeid(*a).name(), a));
 }
 
 Agent* AgentsCollection::deleteAgent(Agent* a) {
@@ -29,35 +28,25 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 	um_iterator it = iterpair.first;
 	for (; it != iterpair.second; ++it) {
 	    if (it->second == a) {
-	        m_agents2.erase(it);
+			m_agents2.erase(it);
 	        break;
 	    }
 	}
-	return result;
+	return (result);
 }
 
 
-um_iterator AgentsCollection::getAgentListByType(string agentType) {
-	return (m_agents2.find(agentType));
+std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const string& agentType) {
+	return (m_agents2.equal_range(agentType));
 }
-
 
 Agent* AgentsCollection::getAgent(int id) {
 	Agent* result = nullptr;
 	for(auto& a : m_agents2){
 		if(a.second->getId() == id)
-			return a.second;
+			result = a.second;
 	}
-	return result;
+	return (result);
 }
-
-
-//const vector<Agent*>& AgentsCollection::getAgents() const {
-//	return m_agents;
-//}
-//
-//void AgentsCollection::setAgents(vector<Agent*> agents) {
-//	m_agents = std::move(agents);
-//}
 
 

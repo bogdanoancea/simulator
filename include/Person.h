@@ -14,6 +14,8 @@
 
 #include <MovableAgent.h>
 #include <geos/geom/Point.h>
+#include <string>
+#include <unordered_map>
 
 using namespace geos;
 using namespace geos::geom;
@@ -34,17 +36,13 @@ class Person: public MovableAgent {
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
-		void addPhone(long id) {
-			m_idPhones.push_back(id);
-		}
-
-		const vector<long>& getIdPhones() const {
-			return m_idPhones;
+		void addDevice(string type, long id) {
+			m_idDevices.insert(std::pair<string, long>(type, id));
 		}
 
 	private:
 		int m_age;
-		vector<long> m_idPhones;
+		unordered_multimap<string, long> m_idDevices;
 
 };
 

@@ -34,18 +34,18 @@ class AgentsCollection {
 
 		Agent* getAgent(int id);
 
-		um_iterator getAgentListByType(string agentType);
+		std::pair<um_iterator, um_iterator> getAgentListByType(const string& agentType);
 
 		um_iterator end() {
-			return m_agents2.end();
+			return (m_agents2.end());
 		}
 
 		um_iterator begin() {
-			return m_agents2.begin();
+			return (m_agents2.begin());
 		}
 
 		long size() {
-			return m_agents2.size();
+			return (m_agents2.size());
 		}
 
 	private:
