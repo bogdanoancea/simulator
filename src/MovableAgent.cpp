@@ -9,6 +9,10 @@
 
 
 #include "MovableAgent.h"
+#include <string>
+#include <iomanip>
+#include <sstream>
+
 
 MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition) :
 		LocatableAgent(m, id, initialPosition), m_speed { 0.0 } {
@@ -27,4 +31,9 @@ void MovableAgent::setSpeed(double val) {
 	m_speed = val;
 }
 
+string MovableAgent::toString() {
+	ostringstream ss;
+	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
+	return (ss.str());
+}
 

@@ -28,7 +28,11 @@ class Person: public MovableAgent {
 		Person(Map* m, long id, Point* initPosition, int age);
 		virtual ~Person();
 
-		virtual string getName() { return "Person";}
+		string getName() override {
+			return "Person";
+		}
+
+		string toString() override;
 
 		int getAge() const;
 		void setAge(int age);

@@ -36,43 +36,41 @@ int main() {
 	World w(map, numPersons, numAntennas, numMobilePhones);
 	AgentsCollection* c = w.getAgents();
 
-	cout << setw(10) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Age " << endl;
+	cout << left << setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << endl;
 
 	auto itr = c->getAgentListByType(typeid(Person).name());
-	vector<long> persons;
+	vector<Person*> persons;
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = dynamic_cast<Person*>(it->second);
-		persons.push_back(p->getId());
-		cout << setw(10) << p->getId() << setw(15) << p->getLocation().getCoordinate()->x << setw(15) << p->getLocation().getCoordinate()->y
-				<< setw(15) << setw(15) << p->getAge() << endl;
+		persons.push_back(p);
+		cout << p->toString() << endl;
 	}
 
-	cout << setw(10) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(25) << "Max Connections"
-			<< setw(20) << "Attenuation Factor" << endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
+			<< "Max Connections" << setw(20) << "Attenuation Factor" << endl;
 
 	int noa = 0;
 	auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = dynamic_cast<Antenna*>(it->second);
 		noa++;
-		cout << setw(10) << a->getId() << setw(15) << a->getLocation().getCoordinate()->x << setw(15) << a->getLocation().getCoordinate()->y
-				<< setw(15) << a->getPower() << setw(15) << a->getMaxConnections() << setw(15) << a->getAttenuationFactor() << endl;
-
+		cout << a->toString() << endl;
 	}
 	cout << "no of antennas " << noa << endl;
 
-	cout << setw(10) << "Mobile Phone ID" << setw(15) << " Owner id " << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15)
+			<< " Owner id " << endl;
+
 	auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
 
 	int nom = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
-		MobilePhone* a = dynamic_cast<MobilePhone*>(it->second);
+		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 		nom++;
-		//if (a != nullptr)
-		cout << setw(15) << a->getId() << setw(15) << a->getIdHolder() << endl;
-
+		cout << m->toString() << endl;
 	}
 	cout << " no of mobile phones : " << nom << endl;
+
 	cout << "... now we give mobile phones to persons... " << endl;
 	// randomly select numMobilePhones people
 	unordered_set<int> indices;
@@ -87,7 +85,8 @@ int main() {
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 		//Person* p = dynamic_cast<Person*>(it->second);
-		m->setIdHolder(persons[pindices[i]]);
+		m->setHolder(persons[pindices[i]]);
+		//m->setLocation(location)
 		//cout << "scot persoana cu indexul " << *iter << endl;
 		//std::advance(iter, 1);
 		//iter++;
@@ -97,13 +96,14 @@ int main() {
 	}
 
 
-	cout << "Again, the mobiles phones but this time with assigned owners... " << endl;
-	cout << setw(10) << "Mobile Phone ID" << setw(15) << " Owner id " << endl;
+	cout << "Again the mobile phones but this time with assigned owners... " << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
+			<< endl;
 	for (auto it = itr3.first; it != itr3.second; it++) {
-		MobilePhone* a = dynamic_cast<MobilePhone*>(it->second);
-		cout << setw(15) << a->getId() << setw(15) << a->getIdHolder() << endl;
-
+		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+		cout << m->toString() << endl;
 	}
+
 	w.runSimulation();
 
 	return 0;

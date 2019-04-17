@@ -22,7 +22,11 @@ class LocatableAgent: public Agent {
 
 		virtual ~LocatableAgent();
 
-		virtual string getName() { return "LocatableAgent";}
+		string getName() override {
+			return "LocatableAgent";
+		}
+
+		string toString() override;
 
 		Point& getLocation() const;
 		void setLocation(Point& location);

@@ -118,7 +118,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	unsigned id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, -1);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr);
 		result.push_back(p);
 	}
 

@@ -10,7 +10,7 @@
 #include <Tablet.h>
 
 Tablet::Tablet(Map* m, long id, Point* initPosition) :
-		HoldableAgent(m, id, initPosition, -1) {
+		HoldableAgent(m, id, initPosition, nullptr) {
 // TODO Auto-generated constructor stub
 
 }
@@ -19,3 +19,6 @@ Tablet::~Tablet() {
 	// TODO Auto-generated destructor stub
 }
 
+string Tablet::toString() {
+	return (HoldableAgent::toString());
+}

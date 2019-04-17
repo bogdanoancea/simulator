@@ -8,6 +8,10 @@
 #include "Person.h"
 #include "MovableAgent.h"
 #include <geos/geom/GeometryFactory.h>
+#include <iomanip>
+#include <sstream>
+
+
 using namespace geos;
 using namespace geos::geom;
 
@@ -23,7 +27,7 @@ Person::~Person() {
 }
 
 int Person::getAge() const {
-	return m_age;
+	return (m_age);
 }
 
 void Person::setAge(int age) {
@@ -31,3 +35,14 @@ void Person::setAge(int age) {
 }
 
 
+string Person::toString() {
+	ostringstream ss;
+	ss << MovableAgent::toString() << left << setw(15) << m_age;
+
+	if (m_idDevices.size() > 0) {
+		for (pair<string, long> i : m_idDevices) {
+			ss << setw(15) << (i.second);
+		}
+	}
+	return (ss.str());
+}

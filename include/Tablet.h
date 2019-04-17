@@ -20,7 +20,11 @@ class Tablet: public HoldableAgent {
 		Tablet(Map* m, long id, Point* initPosition);
 		virtual ~Tablet();
 
-		virtual string getName() { return "Tablet";}
+		string getName() override {
+			return "Tablet";
+		}
+
+		string toString() override;
 
 	private:
 

@@ -24,7 +24,12 @@ class MovableAgent: public LocatableAgent {
 
 		virtual ~MovableAgent();
 
-		virtual string getName() { return "MovableAgent";}
+		string getName() override {
+			return "MovableAgent";
+		}
+
+		string toString() override;
+
 
 		Point move();
 		double getSpeed() const;

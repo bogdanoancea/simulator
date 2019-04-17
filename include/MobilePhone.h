@@ -17,10 +17,15 @@
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		MobilePhone(Map* m, long id, Point* initPosition, long id_holder);
+		MobilePhone(Map* m, long id, Point* initPosition, Agent* holder);
 		virtual ~MobilePhone();
 
-		virtual string getName() { return "MobilePhone";}
+		string getName() override {
+			return "MobilePhone";
+		}
+
+		string toString() override;
+
 	private:
 
 

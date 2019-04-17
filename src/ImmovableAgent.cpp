@@ -23,3 +23,6 @@ ImmovableAgent::~ImmovableAgent() {
 	// TODO Auto-generated destructor stub
 }
 
+string ImmovableAgent::toString() {
+	return (LocatableAgent::toString());
+}

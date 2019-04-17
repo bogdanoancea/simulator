@@ -9,6 +9,8 @@
 
 #include "Antenna.h"
 #include "ImmovableAgent.h"
+#include <iomanip>
+#include <sstream>
 
 Antenna::Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections) :
 		ImmovableAgent(m, id, initPosition), m_power { power }, m_attenuationFactor {
@@ -35,6 +37,14 @@ Polygon* Antenna::getCell() const {
 void Antenna::setCell(const Polygon& cell) {
 	//m_cell = cell;
 }
+
+string Antenna::toString() {
+	ostringstream result;
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15)
+			<< m_attenuationFactor;
+	return (result.str());
+}
+
 
 double Antenna::getPower() const {
 	return m_power;

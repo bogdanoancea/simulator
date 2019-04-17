@@ -24,7 +24,11 @@ class ImmovableAgent: public LocatableAgent {
 		ImmovableAgent(Map* m, long id, Point* initialPosition);
 		virtual ~ImmovableAgent();
 
-		virtual string getName() { return "ImovableAgent";}
+		string toString() override;
+
+		string getName() override {
+			return "ImovableAgent";
+		}
 };
 
 #endif /* IMMOVABLEAGENT_H_ */

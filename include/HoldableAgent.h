@@ -11,21 +11,26 @@
 #define HOLDABLEAGENT_H_
 
 #include <MovableAgent.h>
+#include <string>
+
 
 /*
  *
  */
 class HoldableAgent: public MovableAgent {
 	public:
-		HoldableAgent(Map* m, long id, Point* initPosition, long idHolder);
+		HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder);
 		virtual ~HoldableAgent();
-		long getIdHolder() const;
-		void setIdHolder(long idHolder);
+		Agent* getHolder() const;
+		void setHolder(Agent* holder);
 
-		virtual string getName() { return "HoldableAgent";}
+		string getName() override {
+			return "HoldableAgent";
+		}
 
+		string toString() override;
 	private:
-		long m_idHolder;
+		Agent* m_holder;
 };
 
 #endif /* HOLDABLEAGENT_H_ */

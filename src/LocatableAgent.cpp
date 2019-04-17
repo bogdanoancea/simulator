@@ -10,6 +10,9 @@
 #include "LocatableAgent.h"
 #include "Agent.h"
 #include <geos/geom/Point.h>
+#include <string>
+#include <sstream>
+#include <iomanip>
 
 using namespace geos;
 using namespace geos::geom;
@@ -35,4 +38,14 @@ Point& LocatableAgent::getLocation() const {
 void LocatableAgent::setLocation(Point& location) {
 	const Coordinate *c = location.getCoordinate();
 	m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
+}
+
+string LocatableAgent::toString() {
+	ostringstream ss;
+	if (m_location != nullptr)
+		ss << left << setw(15) << getId() << setw(15) << getLocation().getCoordinate()->x << setw(15) << getLocation().getCoordinate()->y;
+	else
+		ss << left << setw(15) << getId() << setw(15) << "null" << setw(15) << "null";
+	return (ss.str());
+
 }

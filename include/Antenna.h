@@ -24,7 +24,11 @@ class Antenna: public ImmovableAgent {
 		Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections);
 		virtual ~Antenna();
 
-		virtual string getName() { return "Antenna";}
+		string getName() override {
+			return "Antenna";
+		}
+
+		string toString() override;
 
 		double getAttenuationFactor() const;
 		void setAttenuationFactor(double attenuationFactor);

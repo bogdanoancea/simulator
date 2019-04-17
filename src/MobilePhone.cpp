@@ -10,8 +10,8 @@
 #include <MobilePhone.h>
 
 
-MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, long id_holder) :
-		HoldableAgent(m, id, initPosition, -1) {
+MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder) :
+		HoldableAgent(m, id, initPosition, nullptr) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -20,4 +20,6 @@ MobilePhone::~MobilePhone() {
 	// TODO Auto-generated destructor stub
 }
 
-
+string MobilePhone::toString() {
+	return (HoldableAgent::toString());
+}
