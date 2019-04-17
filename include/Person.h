@@ -40,13 +40,13 @@ class Person: public MovableAgent {
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
-		void addDevice(string type, long id) {
-			m_idDevices.insert(std::pair<string, long>(type, id));
+		void addDevice(string type, Agent* ag) {
+			m_idDevices.insert(std::pair<string, Agent*>(type, ag));
 		}
 
 	private:
 		int m_age;
-		unordered_multimap<string, long> m_idDevices;
+		unordered_multimap<string, Agent*> m_idDevices;
 
 };
 

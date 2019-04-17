@@ -49,26 +49,18 @@ int main() {
 	}
 
 	utils::printAntennaHeader();
-	int noa = 0;
 	auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = dynamic_cast<Antenna*>(it->second);
-		noa++;
 		cout << a->toString() << endl;
 	}
-	cout << "no of antennas " << noa << endl;
-
 
 	utils::printPhoneHeader();
 	auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
-
-	int nom = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-		nom++;
 		cout << m->toString() << endl;
 	}
-	cout << " no of mobile phones : " << nom << endl;
 
 	cout << "... now we give mobile phones to persons... " << endl;
 	// randomly select numMobilePhones people
@@ -82,8 +74,9 @@ int main() {
 	int i = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-		m->setHolder(persons[pindices[i]]);
-		//p->addDevice(typeid(MobilePhone), persons[indices[i]]);
+		Person* p = persons[pindices[i]];
+		m->setHolder(p);
+		p->addDevice(typeid(MobilePhone).name(), m);
 		i++;
 	}
 
@@ -92,6 +85,14 @@ int main() {
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 		cout << m->toString() << endl;
+	}
+
+	cout << "Again the persons now with mobile phones... " << endl;
+	utils::printPersonHeader();
+	itr = c->getAgentListByType(typeid(Person).name());
+	for (auto it = itr.first; it != itr.second; it++) {
+		Person* p = dynamic_cast<Person*>(it->second);
+		cout << p->toString() << endl;
 	}
 
 	w.runSimulation();

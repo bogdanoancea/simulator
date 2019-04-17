@@ -6,7 +6,8 @@
  */
 
 #include "Person.h"
-#include "MovableAgent.h"
+#include <MovableAgent.h>
+#include <HoldableAgent.h>
 #include <geos/geom/GeometryFactory.h>
 #include <iomanip>
 #include <sstream>
@@ -40,8 +41,9 @@ string Person::toString() {
 	ss << MovableAgent::toString() << left << setw(15) << m_age;
 
 	if (m_idDevices.size() > 0) {
-		for (pair<string, long> i : m_idDevices) {
-			ss << setw(15) << (i.second);
+		for (pair<string, Agent*> i : m_idDevices) {
+			HoldableAgent* h = dynamic_cast<HoldableAgent*>(i.second);
+			ss << setw(15) << (h->getId());
 		}
 	}
 	return (ss.str());
