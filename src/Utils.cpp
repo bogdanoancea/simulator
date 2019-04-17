@@ -27,8 +27,8 @@ namespace utils {
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
-			static uniform_real_distribution<double> distributionX(xmin, xmax);
-			static uniform_real_distribution<double> distributionY(ymin, ymax);
+			uniform_real_distribution<double> distributionX(xmin, xmax);
+			uniform_real_distribution<double> distributionY(ymin, ymax);
 			for (int i = 0; i < n; i++) {
 				double x = distributionX(generator);
 				double y = distributionY(generator);
@@ -52,5 +52,10 @@ namespace utils {
 	void printPhoneHeader() {
 		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
 				<< endl;
+	}
+
+	double drand(double min, double max, std::mt19937 generator) {
+		uniform_real_distribution<double> dX(min, max);
+		return (dX(generator));
 	}
 }

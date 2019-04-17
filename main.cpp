@@ -74,10 +74,9 @@ int main() {
 	int i = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-		Person* p = persons[pindices[i]];
+		Person* p = persons[pindices[i++]];
 		m->setHolder(p);
 		p->addDevice(typeid(MobilePhone).name(), m);
-		i++;
 	}
 
 	cout << "Again the mobile phones but this time with assigned owners... " << endl;
@@ -93,6 +92,17 @@ int main() {
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = dynamic_cast<Person*>(it->second);
 		cout << p->toString() << endl;
+	}
+
+	double dist = 0;
+	for (int i = 1; i < 101; i++) {
+		double x0 = 2 * sqrt(2) * (drand(0, 1, w.getRandomNumberGenerator()) - 0.5);
+		double y0 = 2 * sqrt(2) * (drand(0, 1, w.getRandomNumberGenerator()) - 0.5);
+		double x = x + x0;
+		double y = y + y0;
+		dist = sqrt(x * x + y * y);
+		cout << x << ", " << y << endl;
+		//cout << log(i) << " " << log(dist) << endl;
 	}
 
 	w.runSimulation();

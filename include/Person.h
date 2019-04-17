@@ -40,8 +40,8 @@ class Person: public MovableAgent {
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
-		void addDevice(string type, Agent* ag) {
-			m_idDevices.insert(std::pair<string, Agent*>(type, ag));
+		void addDevice(string type, Agent* agent) {
+			m_idDevices.insert(std::pair<string, Agent*>(type, agent));
 		}
 
 	private:
