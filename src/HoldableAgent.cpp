@@ -32,8 +32,6 @@ void HoldableAgent::setHolder(Agent* holder) {
 	LocatableAgent* l = dynamic_cast<LocatableAgent*>(holder);
 	if (l != nullptr)
 		setLocation(l->getLocation());
-
-	//TODO set the position of the holder
 }
 
 string HoldableAgent::toString() {

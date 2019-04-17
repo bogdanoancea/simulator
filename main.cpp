@@ -14,10 +14,13 @@
 #include <string>
 #include <typeinfo>
 #include <unordered_set>
+#include <Utils.h>
 
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
+using namespace utils;
+
 
 int main() {
 	cout << "Hello from our mobile phone network simulator!" << endl;
@@ -36,8 +39,7 @@ int main() {
 	World w(map, numPersons, numAntennas, numMobilePhones);
 	AgentsCollection* c = w.getAgents();
 
-	cout << left << setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << endl;
-
+	utils::printPersonHeader();
 	auto itr = c->getAgentListByType(typeid(Person).name());
 	vector<Person*> persons;
 	for (auto it = itr.first; it != itr.second; it++) {
@@ -46,9 +48,7 @@ int main() {
 		cout << p->toString() << endl;
 	}
 
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
-			<< "Max Connections" << setw(20) << "Attenuation Factor" << endl;
-
+	utils::printAntennaHeader();
 	int noa = 0;
 	auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
@@ -58,9 +58,8 @@ int main() {
 	}
 	cout << "no of antennas " << noa << endl;
 
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15)
-			<< " Owner id " << endl;
 
+	utils::printPhoneHeader();
 	auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
 
 	int nom = 0;
@@ -80,25 +79,16 @@ int main() {
 	}
 	vector<int> pindices;
 	std::move(indices.begin(), indices.end(), back_inserter(pindices));
-	//unordered_set<int>::iterator iter = indices.begin();
 	int i = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-		//Person* p = dynamic_cast<Person*>(it->second);
 		m->setHolder(persons[pindices[i]]);
-		//m->setLocation(location)
-		//cout << "scot persoana cu indexul " << *iter << endl;
-		//std::advance(iter, 1);
-		//iter++;
-
 		//p->addDevice(typeid(MobilePhone), persons[indices[i]]);
 		i++;
 	}
 
-
 	cout << "Again the mobile phones but this time with assigned owners... " << endl;
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
-			<< endl;
+	utils::printPhoneHeader();
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 		cout << m->toString() << endl;
@@ -106,5 +96,5 @@ int main() {
 
 	w.runSimulation();
 
-	return 0;
+	return (0);
 }

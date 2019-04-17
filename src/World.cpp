@@ -10,12 +10,12 @@
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
 #include <Map.h>
-#include <Utils.h>
 #include <World.h>
 #include <algorithm>
 #include <iostream>
-
+#include "Utils.h"
 using namespace std;
+using namespace utils;
 
 //ctor
 World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
@@ -84,7 +84,7 @@ vector<Person*> World::generatePopulation(int numPersons) {
 
 	unsigned id;
 	uniform_int_distribution<int> int_distribution(1, 100);
-	vector<Point*> positions = generatePoints(getMap(), m_generator, numPersons);
+	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numPersons);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 
@@ -103,7 +103,7 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	int maxConnections = 100;
 
 	//uniform_int_distribution<int> int_distribution(1, 100);
-	vector<Point*> positions = generatePoints(getMap(), m_generator, numAntennas);
+	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numAntennas);
 	for (auto i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
 
