@@ -20,7 +20,7 @@ using namespace geos::geom;
 class MovableAgent: public LocatableAgent {
 	public:
 
-		MovableAgent(Map* m, long id, Point* initPosition);
+		MovableAgent(Map* m, long id, Point* initPosition, double initSpeed);
 
 		virtual ~MovableAgent();
 
@@ -32,6 +32,7 @@ class MovableAgent: public LocatableAgent {
 
 
 		Point move();
+
 		double getSpeed() const;
 		void setSpeed(double speed);
 

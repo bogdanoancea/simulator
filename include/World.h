@@ -46,7 +46,7 @@ class World {
 		Map* getMap() const;
 		void setMap(Map* map);
 
-		const std::mt19937& getRandomNumberGenerator() const {
+		std::mt19937 getRandomNumberGenerator() const {
 			return m_generator;
 		}
 

@@ -58,4 +58,18 @@ namespace utils {
 		uniform_real_distribution<double> dX(min, max);
 		return (dX(generator));
 	}
+
+	double* generateSpeed(int n, std::mt19937 generator) {
+		double* speeds = new double[n];
+		normal_distribution<double> distribution1(0.1, 0.01);
+		normal_distribution<double> distribution2(0.5, 0.1);
+		for (int i = 0; i < n; i++) {
+			if (i % 2)
+				speeds[i] = distribution1(generator);
+			else
+				speeds[i] = distribution2(generator);
+
+		}
+		return (speeds);
+	}
 }

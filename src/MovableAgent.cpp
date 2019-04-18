@@ -14,8 +14,8 @@
 #include <sstream>
 
 
-MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition) :
-		LocatableAgent(m, id, initialPosition), m_speed { 0.0 } {
+MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, double initialSpeed) :
+		LocatableAgent(m, id, initialPosition), m_speed { initialSpeed } {
 	// TODO Auto-generated constructor stub
 }
 
@@ -24,7 +24,7 @@ MovableAgent::~MovableAgent() {
 }
 
 double MovableAgent::getSpeed() const {
-	return m_speed;
+	return (m_speed);
 }
 
 void MovableAgent::setSpeed(double val) {

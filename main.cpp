@@ -22,6 +22,7 @@ using namespace geos::geom;
 using namespace utils;
 
 
+
 int main() {
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -95,9 +96,13 @@ int main() {
 	}
 
 	double dist = 0;
+	uniform_real_distribution<double> dX(0, 1);
+	std::mt19937 generator = w.getRandomNumberGenerator();
 	for (int i = 1; i < 101; i++) {
-		double x0 = 2 * sqrt(2) * (drand(0, 1, w.getRandomNumberGenerator()) - 0.5);
-		double y0 = 2 * sqrt(2) * (drand(0, 1, w.getRandomNumberGenerator()) - 0.5);
+		double x0 = 2 * sqrt(2) * (dX(generator) - 0.5);
+		cout << (dX(generator) - 0.5) << endl;
+		double y0 = 2 * sqrt(2) * (dX(generator) - 0.5);
+		cout << (dX(generator) - 0.5) << endl;
 		double x = x + x0;
 		double y = y + y0;
 		dist = sqrt(x * x + y * y);

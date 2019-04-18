@@ -85,10 +85,11 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	unsigned id;
 	uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numPersons);
+	double* speeds = utils::generateSpeed(numPersons, m_generator);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 
-		Person* p = new Person(getMap(), id, positions[i], int_distribution(m_generator));
+		Person* p = new Person(getMap(), id, positions[i], speeds[i], int_distribution(m_generator));
 		result.push_back(p);
 	}
 	return (result);

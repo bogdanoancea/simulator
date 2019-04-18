@@ -17,8 +17,8 @@ using namespace geos;
 using namespace geos::geom;
 
 
-Person::Person(Map* m, long id, Point* initPosition, int age) :
-		MovableAgent(m, id, initPosition), m_age { age } {
+Person::Person(Map* m, long id, Point* initPosition, double initSpeed, int age) :
+		MovableAgent(m, id, initPosition, initSpeed), m_age { age } {
 	// TODO Auto-generated constructor stub
 
 }

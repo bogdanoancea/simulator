@@ -33,6 +33,7 @@ namespace utils {
 	void printAntennaHeader();
 	void printPhoneHeader();
 	double drand(double min, double max, std::mt19937 generator);
+	double* generateSpeed(int n, std::mt19937 generator);
 }
 
 #endif

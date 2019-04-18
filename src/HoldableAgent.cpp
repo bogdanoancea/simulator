@@ -9,12 +9,12 @@
 
 #include "HoldableAgent.h"
 #include "LocatableAgent.h"
+#include <MovableAgent.h>
 #include <iomanip>
 #include <sstream>
 
-HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition,
-		Agent* holder) :
-		MovableAgent(m, id, initPosition), m_holder { holder } {
+HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder) :
+		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -32,6 +32,12 @@ void HoldableAgent::setHolder(Agent* holder) {
 	LocatableAgent* l = dynamic_cast<LocatableAgent*>(holder);
 	if (l != nullptr)
 		setLocation(l->getLocation());
+
+	MovableAgent* m = dynamic_cast<MovableAgent*>(holder);
+	if (m != nullptr)
+		setSpeed(m->getSpeed());
+	else
+		setSpeed(0.0);
 }
 
 string HoldableAgent::toString() {
