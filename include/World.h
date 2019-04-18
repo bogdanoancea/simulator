@@ -46,10 +46,9 @@ class World {
 		Map* getMap() const;
 		void setMap(Map* map);
 
-		std::mt19937 getRandomNumberGenerator() const {
-			return m_generator;
+		const std::mt19937* getRandomNumberGenerator() const {
+			return &m_generator;
 		}
-
 
 	private:
 
@@ -61,6 +60,7 @@ class World {
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
+
 
 };
 

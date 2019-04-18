@@ -8,6 +8,8 @@
  */
 
 #include <Utils.h>
+#include <time.h>
+#include <RandomNumberGenerator.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -54,22 +56,32 @@ namespace utils {
 				<< endl;
 	}
 
-	double drand(double min, double max, std::mt19937 generator) {
-		uniform_real_distribution<double> dX(min, max);
-		return (dX(generator));
+	double* generateNormal2Double(double m1, double sd1, double m2, double sd2, int n, std::mt19937 generator) {
+		double* result = new double[n];
+		normal_distribution<double> d1 = RandomNumberGenerator::instance()->getNormalDoubleDistribution();
+		normal_distribution<double>::param_type p1(m1, sd1);
+		normal_distribution<double>::param_type p2(m2, sd2);
+
+		for (int i = 0; i < n; i++) {
+			if (i % 2) {
+				d1.param(p1);
+				result[i] = d1(generator);
+			}
+			else {
+				d1.param(p2);
+				result[i] = d1(generator);
+			}
+		}
+		return (result);
 	}
 
-	double* generateSpeed(int n, std::mt19937 generator) {
-		double* speeds = new double[n];
-		normal_distribution<double> distribution1(0.1, 0.01);
-		normal_distribution<double> distribution2(0.5, 0.1);
-		for (int i = 0; i < n; i++) {
-			if (i % 2)
-				speeds[i] = distribution1(generator);
-			else
-				speeds[i] = distribution2(generator);
+	double generateDouble(double min, double max, std::mt19937 generator) {
+		double result = 0.0;
+		uniform_real_distribution<double>::param_type p(min, max);
+		uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
+		r.param(p); //(min, max);
 
-		}
-		return (speeds);
+		result = r(generator);
+		return (result);
 	}
 }

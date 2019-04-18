@@ -25,6 +25,9 @@ class Tablet: public HoldableAgent {
 		}
 
 		string toString() override;
+		Point& move(std::mt19937 *generator) override {
+			return getLocation();
+		}
 
 	private:
 

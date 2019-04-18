@@ -31,6 +31,8 @@ class LocatableAgent: public Agent {
 		Point& getLocation() const;
 		void setLocation(Point& location);
 
+		void dumpLocation();
+
 	private:
 		Point* m_location;
 };

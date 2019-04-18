@@ -13,6 +13,7 @@
 #define MOVABLEAGENT_H_
 
 #include <LocatableAgent.h>
+#include <random>
 
 using namespace geos;
 using namespace geos::geom;
@@ -31,7 +32,7 @@ class MovableAgent: public LocatableAgent {
 		string toString() override;
 
 
-		Point move();
+		virtual Point& move(std::mt19937 *generator) = 0;
 
 		double getSpeed() const;
 		void setSpeed(double speed);

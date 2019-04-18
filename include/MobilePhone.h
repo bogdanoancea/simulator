@@ -11,6 +11,10 @@
 #define MOBILEPHONE_H_
 
 #include "HoldableAgent.h"
+#include <geos/geom/Point.h>
+
+using namespace geos;
+using namespace geos::geom;
 
 /*
  *
@@ -25,6 +29,11 @@ class MobilePhone: public HoldableAgent {
 		}
 
 		string toString() override;
+
+		Point& move(std::mt19937 *generator) override {
+			return this->getLocation();
+		}
+
 
 	private:
 

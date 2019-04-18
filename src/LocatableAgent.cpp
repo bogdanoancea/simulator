@@ -49,3 +49,7 @@ string LocatableAgent::toString() {
 	return (ss.str());
 
 }
+
+void LocatableAgent::dumpLocation() {
+	cout << left << getId() << "," << getLocation().getCoordinate()->x << "," << getLocation().getCoordinate()->y << endl;
+}

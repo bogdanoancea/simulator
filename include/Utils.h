@@ -18,7 +18,6 @@
 #include <Map.h>
 #include <iomanip>
 #include <random>
-
 #include <iostream>
 #include <vector>
 
@@ -33,7 +32,10 @@ namespace utils {
 	void printAntennaHeader();
 	void printPhoneHeader();
 	double drand(double min, double max, std::mt19937 generator);
-	double* generateSpeed(int n, std::mt19937 generator);
+	double* generateNormal2Double(double m1, double sd1, double m2, double sd2, int n, std::mt19937 generator);
+	double generateDouble(double min, double max, std::mt19937 generator);
+	const double PI = std::atan(1.0) * 4;
+
 }
 
 #endif

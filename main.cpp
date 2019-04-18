@@ -15,13 +15,17 @@
 #include <typeinfo>
 #include <unordered_set>
 #include <Utils.h>
+#include <random>
+#include <RandomNumberGenerator.h>
+#include <IDGenerator.h>
 
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
 using namespace utils;
 
-
+RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
+IDGenerator* IDGenerator::m_instance = nullptr;
 
 int main() {
 	cout << "Hello from our mobile phone network simulator!" << endl;
@@ -95,22 +99,18 @@ int main() {
 		cout << p->toString() << endl;
 	}
 
-	double dist = 0;
-	uniform_real_distribution<double> dX(0, 1);
-	std::mt19937 generator = w.getRandomNumberGenerator();
-	for (int i = 1; i < 101; i++) {
-		double x0 = 2 * sqrt(2) * (dX(generator) - 0.5);
-		cout << (dX(generator) - 0.5) << endl;
-		double y0 = 2 * sqrt(2) * (dX(generator) - 0.5);
-		cout << (dX(generator) - 0.5) << endl;
-		double x = x + x0;
-		double y = y + y0;
-		dist = sqrt(x * x + y * y);
-		cout << x << ", " << y << endl;
-		//cout << log(i) << " " << log(dist) << endl;
-	}
 
 	w.runSimulation();
-
+//	std::mt19937 g = w.getRandomNumberGenerator();
+//
+//	for (int i = 0; i < 10; i++) {
+//		uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
+//		uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
+//
+//		r.param(p);
+//
+//		double theta = r(g);
+//		cout << theta << endl;
+//	}
 	return (0);
 }

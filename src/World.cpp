@@ -23,7 +23,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_agentsCollection = new AgentsCollection();
 
 	std::random_device device;
-	std::mt19937 m_generator(device());
+	m_generator.seed(device());
 
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
@@ -36,7 +36,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 
 	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
-	for(int i = 0; i < phones.size(); i++) {
+	for (int i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
 }
@@ -49,6 +49,19 @@ World::~World() {
 void World::runSimulation() {
 	cout << "The show begins in few seconds ..." << endl;
 
+	int no_steps = 100;
+
+	for (int i = 0; i < no_steps; i++) {
+
+		//iterate over all persons and call move()
+		auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
+		for (auto it = itr.first; it != itr.second; it++) {
+			Person* p = dynamic_cast<Person*>(it->second);
+			p->move(&m_generator);
+			p->dumpLocation();
+			break;
+		}
+	}
 }
 
 unsigned int World::getCurrentTime() {
@@ -85,7 +98,9 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	unsigned id;
 	uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numPersons);
-	double* speeds = utils::generateSpeed(numPersons, m_generator);
+	// temporary
+	double* speeds = utils::generateNormal2Double(1, 0.1, 5, 0.1, numPersons, m_generator);
+
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 

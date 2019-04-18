@@ -11,11 +11,14 @@
 #include <geos/geom/GeometryFactory.h>
 #include <iomanip>
 #include <sstream>
-
+#include <Utils.h>
+#include <cmath>
+#include <RandomNumberGenerator.h>
 
 using namespace geos;
 using namespace geos::geom;
 
+class RandomNumberGenerator;
 
 Person::Person(Map* m, long id, Point* initPosition, double initSpeed, int age) :
 		MovableAgent(m, id, initPosition, initSpeed), m_age { age } {
@@ -35,7 +38,6 @@ void Person::setAge(int age) {
 	m_age = age;
 }
 
-
 string Person::toString() {
 	ostringstream ss;
 	ss << MovableAgent::toString() << left << setw(15) << m_age;
@@ -47,4 +49,39 @@ string Person::toString() {
 		}
 	}
 	return (ss.str());
+}
+
+Point& Person::move(std::mt19937 *generator) {
+	double theta = 0.0;
+	double newX, newY;
+	uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
+	uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
+	r.param(p);
+	theta = r(*generator);
+
+	newX = getLocation().getCoordinate()->x + getSpeed() * cos(theta);
+	newY = getLocation().getCoordinate()->y + getSpeed() * sin(theta);
+	Geometry* g = getMap()->getBoundary();
+	if (dynamic_cast<Polygon*>(g) != nullptr) {
+		Polygon* p = dynamic_cast<Polygon*>(g);
+		const Envelope* env = p->getEnvelopeInternal();
+		double xmin = env->getMinX();
+		double xmax = env->getMaxX();
+		double ymin = env->getMinY();
+		double ymax = env->getMaxX();
+		if (newX > xmax)
+			newX = xmax;
+		if (newX < xmin)
+			newX = xmin;
+		if (newY > ymax)
+			newY = ymax;
+		if (newY < ymin)
+			newY = ymin;
+
+		Coordinate c = Coordinate(newX, newY);
+		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
+		setLocation(*pt);
+
+	}
+	return (getLocation());
 }

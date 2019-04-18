@@ -33,6 +33,5 @@ class IDGenerator {
 		uint32_t m_id;
 
 };
-IDGenerator* IDGenerator::m_instance;
 
 #endif /* IDGENERATOR_H_ */
