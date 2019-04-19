@@ -11,6 +11,7 @@
 #define LOCATABLEAGENT_H_
 
 #include <Agent.h>
+#include <Clock.h>
 #include <geos/geom/Point.h>
 
 using namespace geos;
@@ -31,7 +32,7 @@ class LocatableAgent: public Agent {
 		Point& getLocation() const;
 		void setLocation(Point& location);
 
-		void dumpLocation();
+		string dumpLocation(Clock* clock);
 
 	private:
 		Point* m_location;

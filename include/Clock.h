@@ -11,6 +11,12 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 
+#include <chrono>
+#include <ctime>
+#include <time.h>
+
+using namespace std::chrono;
+
 class Clock {
 	public:
 		/** Default constructor */
@@ -22,7 +28,7 @@ class Clock {
 		/** Default destructor */
 		virtual ~Clock();
 
-		void tick();
+		unsigned int tick();
 
 		unsigned int getCurrentTime() const;
 		void setCurrentTime(unsigned int currentTime);
@@ -33,10 +39,21 @@ class Clock {
 		unsigned int getInitialTime() const;
 		void setInitialTime(unsigned int initialTime);
 
+		time_t realTime();
+
+		unsigned int getFinalTime() const {
+			return m_finalTime;
+		}
+
+		void setFinalTime(unsigned int finalTime) {
+			m_finalTime = finalTime;
+		}
+
 	private:
 		unsigned int m_initialTime;
 		unsigned int m_currentTime;
 		unsigned int m_increment;
+		unsigned int m_finalTime;
 };
 
 #endif // CLOCK_H

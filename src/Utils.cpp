@@ -17,7 +17,7 @@ using namespace std;
 
 namespace utils {
 
-	vector<Point*> generatePoints(Map* m, std::mt19937 generator, int n) {
+	vector<Point*> generatePoints(Map* m, int n) {
 		vector<Point*> result;
 
 		Geometry* g = m->getBoundary();
@@ -29,14 +29,16 @@ namespace utils {
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
-			uniform_real_distribution<double> distributionX(xmin, xmax);
-			uniform_real_distribution<double> distributionY(ymin, ymax);
+			double* x = new double[n];
+			double *y = new double[n];
+			x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
+			y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
 			for (int i = 0; i < n; i++) {
-				double x = distributionX(generator);
-				double y = distributionY(generator);
-				Coordinate c = Coordinate(x, y);
+				Coordinate c = Coordinate(x[i], y[i]);
 				result.push_back(m->getGlobalFactory()->createPoint(c));
 			}
+			delete x;
+			delete y;
 		}
 		return (result);
 	}
@@ -56,32 +58,5 @@ namespace utils {
 				<< endl;
 	}
 
-	double* generateNormal2Double(double m1, double sd1, double m2, double sd2, int n, std::mt19937 generator) {
-		double* result = new double[n];
-		normal_distribution<double> d1 = RandomNumberGenerator::instance()->getNormalDoubleDistribution();
-		normal_distribution<double>::param_type p1(m1, sd1);
-		normal_distribution<double>::param_type p2(m2, sd2);
 
-		for (int i = 0; i < n; i++) {
-			if (i % 2) {
-				d1.param(p1);
-				result[i] = d1(generator);
-			}
-			else {
-				d1.param(p2);
-				result[i] = d1(generator);
-			}
-		}
-		return (result);
-	}
-
-	double generateDouble(double min, double max, std::mt19937 generator) {
-		double result = 0.0;
-		uniform_real_distribution<double>::param_type p(min, max);
-		uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
-		r.param(p); //(min, max);
-
-		result = r(generator);
-		return (result);
-	}
 }

@@ -31,7 +31,7 @@ class World {
 		/** Default destructor */
 		virtual ~World();
 
-		void runSimulation();
+		void runSimulation(string personsFile, string antennasFile);
 
 		void dumpState();
 
@@ -46,9 +46,9 @@ class World {
 		Map* getMap() const;
 		void setMap(Map* map);
 
-		const std::mt19937* getRandomNumberGenerator() const {
-			return &m_generator;
-		}
+//		const std::mt19937* getRandomNumberGenerator() const {
+//			return &m_generator;
+//		}
 
 	private:
 
@@ -56,7 +56,7 @@ class World {
 
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
-		std::mt19937 m_generator;
+		//std::mt19937 m_generator;
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);

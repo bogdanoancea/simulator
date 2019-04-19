@@ -100,7 +100,7 @@ int main() {
 	}
 
 
-	w.runSimulation();
+	w.runSimulation("persons.csv", "antennas.csv");
 
 	return (0);
 }

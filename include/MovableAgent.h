@@ -32,7 +32,7 @@ class MovableAgent: public LocatableAgent {
 		string toString() override;
 
 
-		virtual Point& move(std::mt19937 *generator) = 0;
+		virtual Point& move(std::mt19937& generator) = 0;
 
 		double getSpeed() const;
 		void setSpeed(double speed);

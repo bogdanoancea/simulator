@@ -27,13 +27,10 @@ using namespace std;
 
 namespace utils {
 
-	vector<Point*> generatePoints(Map* m, std::mt19937 generator, int n);
+	vector<Point*> generatePoints(Map* m, int n);
 	void printPersonHeader();
 	void printAntennaHeader();
 	void printPhoneHeader();
-	double drand(double min, double max, std::mt19937 generator);
-	double* generateNormal2Double(double m1, double sd1, double m2, double sd2, int n, std::mt19937 generator);
-	double generateDouble(double min, double max, std::mt19937 generator);
 	const double PI = std::atan(1.0) * 4;
 
 }

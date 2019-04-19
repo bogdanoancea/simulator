@@ -9,6 +9,7 @@
 
 #include "LocatableAgent.h"
 #include "Agent.h"
+#include <Clock.h>
 #include <geos/geom/Point.h>
 #include <string>
 #include <sstream>
@@ -50,6 +51,12 @@ string LocatableAgent::toString() {
 
 }
 
-void LocatableAgent::dumpLocation() {
-	cout << left << getId() << "," << getLocation().getCoordinate()->x << "," << getLocation().getCoordinate()->y << endl;
+string LocatableAgent::dumpLocation(Clock* clock) {
+	ostringstream ss;
+	char sep = ',';
+	if (clock != nullptr)
+		ss << left << clock->getCurrentTime() << sep;
+	ss << getId() << sep << getLocation().getCoordinate()->x << sep << getLocation().getCoordinate()->y;
+	return (ss.str());
+
 }

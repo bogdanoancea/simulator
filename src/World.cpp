@@ -14,6 +14,9 @@
 #include <algorithm>
 #include <iostream>
 #include <Utils.h>
+#include <fstream>
+#include <RandomNumberGenerator.h>
+
 
 using namespace std;
 using namespace utils;
@@ -23,8 +26,9 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 
-	std::random_device device;
-	m_generator.seed(device());
+
+//	std::random_device device;
+//	m_generator.seed(device());
 
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
@@ -40,6 +44,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	for (int i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
+	m_clock = new Clock();
 }
 
 //dtor
@@ -47,27 +52,56 @@ World::~World() {
 	cout << "End of simulation!" << endl;
 }
 
-void World::runSimulation() {
-	cout << "The show begins in few seconds ..." << endl;
+void World::runSimulation(string personsFile, string antennasFile) {
+	ofstream pFile, aFile;
+	try {
+		pFile.open(personsFile, ios::out);
+		aFile.open(antennasFile, ios::out);
+	}
+	catch (std::ofstream::failure& e) {
+		cerr << "Error opening output files!" << endl;
+		throw e;
+	}
 
-	int no_steps = 100;
+	//dumping antennas positions
+	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+	for (auto it = itr2.first; it != itr2.second; it++) {
+		Antenna* a = dynamic_cast<Antenna*>(it->second);
+		aFile << a->dumpLocation(nullptr) << endl;
+	}
 
-	for (int i = 0; i < no_steps; i++) {
+	time_t tt = getClock()->realTime();
+	pFile << "Simulation started at " << ctime(&tt) << endl;
+	m_clock->setInitialTime(0);
+	m_clock->setIncrement(1);
+	m_clock->setFinalTime(100);
+
+	for (unsigned t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 
 		//iterate over all persons and call move()
 		auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
-			p->move(&m_generator);
-			p->dumpLocation();
-			break;
+			pFile << p->dumpLocation(m_clock) << p->dumpDevices() << endl;
+			p->move(RandomNumberGenerator::instance()->getGenerator());
 		}
+	}
+
+	try {
+		pFile.close();
+		aFile.close();
+	}
+	catch (std::ofstream::failure& e) {
+		cerr << "Error closing output files!" << endl;
+		throw e;
 	}
 }
 
+
 unsigned int World::getCurrentTime() {
-	return m_clock->getCurrentTime();
+	return (m_clock->getCurrentTime());
 }
+
 
 AgentsCollection* World::getAgents() const {
 	return m_agentsCollection;
@@ -98,14 +132,14 @@ vector<Person*> World::generatePopulation(int numPersons) {
 
 	unsigned id;
 	uniform_int_distribution<int> int_distribution(1, 100);
-	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numPersons);
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
-	double* speeds = utils::generateNormal2Double(1, 0.1, 5, 0.1, numPersons, m_generator);
+	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.5, 0.1, 2.5, 0.1, numPersons);
 
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 
-		Person* p = new Person(getMap(), id, positions[i], speeds[i], int_distribution(m_generator));
+		Person* p = new Person(getMap(), id, positions[i], speeds[i], int_distribution(RandomNumberGenerator::instance()->getGenerator()));
 		result.push_back(p);
 	}
 	return (result);
@@ -119,7 +153,7 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	double attFactor = 2;
 	int maxConnections = 100;
 
-	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numAntennas);
+	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (auto i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
 		Antenna* p = new Antenna(getMap(), id, positions[i], attFactor, power, maxConnections);

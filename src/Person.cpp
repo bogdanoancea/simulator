@@ -51,13 +51,13 @@ string Person::toString() {
 	return (ss.str());
 }
 
-Point& Person::move(std::mt19937 *generator) {
+Point& Person::move(std::mt19937& generator) {
 	double theta = 0.0;
 	double newX, newY;
 	uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
 	uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
 	r.param(p);
-	theta = r(*generator);
+	theta = r(generator);
 
 	newX = getLocation().getCoordinate()->x + getSpeed() * cos(theta);
 	newY = getLocation().getCoordinate()->y + getSpeed() * sin(theta);
@@ -81,7 +81,33 @@ Point& Person::move(std::mt19937 *generator) {
 		Coordinate c = Coordinate(newX, newY);
 		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 		setLocation(*pt);
-
+		//get devices and set the location for them
+		int d = m_idDevices.size();
+		if (d > 0) {
+			unordered_multimap<string, Agent*>::iterator it;
+			for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
+				Agent* a = it->second;
+				LocatableAgent* l = dynamic_cast<LocatableAgent*>(a);
+				if (l != nullptr)
+					l->setLocation(*pt);
+			}
+		}
 	}
 	return (getLocation());
+}
+
+bool Person::hasDevices() {
+	return (m_idDevices.size() > 0);
+}
+
+string Person::dumpDevices() {
+	stringstream ss;
+	char sep = ',';
+	unordered_multimap<string, Agent*>::iterator it;
+	for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
+		Agent* a = it->second;
+		ss << sep << a->getId();
+	}
+
+	return (ss.str());
 }
