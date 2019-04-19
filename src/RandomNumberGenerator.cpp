@@ -6,8 +6,8 @@
  *  Created on: Apr 18, 2019
  *      Author: Bogdan Oancea
  */
+#include <RandomNumberGenerator.h>
 
-
-//RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
+RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
 

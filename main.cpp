@@ -24,8 +24,8 @@ using namespace geos;
 using namespace geos::geom;
 using namespace utils;
 
-RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
-IDGenerator* IDGenerator::m_instance = nullptr;
+//RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
+//IDGenerator* IDGenerator::m_instance = nullptr;
 
 int main() {
 	cout << "Hello from our mobile phone network simulator!" << endl;
@@ -101,16 +101,6 @@ int main() {
 
 
 	w.runSimulation();
-//	std::mt19937 g = w.getRandomNumberGenerator();
-//
-//	for (int i = 0; i < 10; i++) {
-//		uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
-//		uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
-//
-//		r.param(p);
-//
-//		double theta = r(g);
-//		cout << theta << endl;
-//	}
+
 	return (0);
 }

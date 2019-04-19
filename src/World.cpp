@@ -13,7 +13,8 @@
 #include <World.h>
 #include <algorithm>
 #include <iostream>
-#include "Utils.h"
+#include <Utils.h>
+
 using namespace std;
 using namespace utils;
 
@@ -118,11 +119,9 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	double attFactor = 2;
 	int maxConnections = 100;
 
-	//uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = utils::generatePoints(getMap(), m_generator, numAntennas);
 	for (auto i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-
 		Antenna* p = new Antenna(getMap(), id, positions[i], attFactor, power, maxConnections);
 		result.push_back(p);
 	}
@@ -137,6 +136,5 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr);
 		result.push_back(p);
 	}
-
 	return (result);
 }

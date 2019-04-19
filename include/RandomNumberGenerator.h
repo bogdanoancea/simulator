@@ -13,6 +13,8 @@
 
 #include <random>
 
+using namespace std;
+
 class RandomNumberGenerator {
 	public:
 		static RandomNumberGenerator* instance() {
