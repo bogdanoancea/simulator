@@ -24,7 +24,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-class RandomNumberGenerator;
+
 
 Person::Person(Map* m, long id, Point* initPosition, double initSpeed, int age) :
 		MovableAgent(m, id, initPosition, initSpeed), m_age { age } {
