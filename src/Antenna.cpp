@@ -7,8 +7,9 @@
  *      Author: Bogdan Oancea
  */
 
-#include "Antenna.h"
-#include "ImmovableAgent.h"
+#include <Antenna.h>
+#include <geos/geom/GeometryFactory.h>
+#include <Map.h>
 #include <iomanip>
 #include <sstream>
 

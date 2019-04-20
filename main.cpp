@@ -1,23 +1,20 @@
-#include <Agent.h>
 #include <AgentsCollection.h>
 #include <Antenna.h>
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/Point.h>
 #include <geos/io/WKTWriter.h>
 #include <Map.h>
 #include <MobilePhone.h>
 #include <Person.h>
-#include <World.h>
-#include <iomanip>
-#include <unordered_map>
-#include <iostream>
-#include <string>
-#include <typeinfo>
-#include <unordered_set>
 #include <Utils.h>
-#include <random>
-#include <RandomNumberGenerator.h>
-#include <IDGenerator.h>
+#include <World.h>
+#include <algorithm>
+#include <cstdlib>
+#include <iostream>
+#include <iterator>
+#include <typeinfo>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
 using namespace std;
 using namespace geos;

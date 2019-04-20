@@ -7,11 +7,9 @@
  *      Author: Bogdan Oancea
  */
 
-#include "Clock.h"
+#include <Clock.h>
+#include <sys/_types/_time_t.h>
 
-#include <chrono>
-#include <ctime>
-#include <time.h>
 using namespace std;
 using namespace std::chrono;
 
@@ -21,7 +19,7 @@ Clock::Clock() :
 }
 
 Clock::Clock(unsigned int init, unsigned int inc) :
-		m_initialTime { init }, m_currentTime { init }, m_increment { inc } {
+		m_initialTime { init }, m_currentTime { init }, m_increment { inc },m_finalTime{init} {
 }
 
 Clock::~Clock() {

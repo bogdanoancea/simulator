@@ -8,8 +8,7 @@
  */
 
 
-#include "MovableAgent.h"
-#include <string>
+#include <MovableAgent.h>
 #include <iomanip>
 #include <sstream>
 

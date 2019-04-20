@@ -10,6 +10,7 @@
 #ifndef RANDOMNUMBERGENERATOR_H_
 #define RANDOMNUMBERGENERATOR_H_
 
+#include <algorithm>
 #include <random>
 
 using namespace std;

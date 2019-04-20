@@ -8,6 +8,7 @@
  */
 
 #include <MobilePhone.h>
+#include <iostream>
 
 
 MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder) :

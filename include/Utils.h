@@ -10,16 +10,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/Envelope.h>
-#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
-#include <geos/geom/Polygon.h>
-#include <Map.h>
-#include <iomanip>
-#include <random>
-#include <iostream>
+#include <cmath>
 #include <vector>
+
+class Map;
 
 using namespace geos;
 using namespace geos::geom;

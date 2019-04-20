@@ -7,9 +7,8 @@
  *      Author: Bogdan Oancea
  */
 
-#include "HoldableAgent.h"
-#include "LocatableAgent.h"
-#include <MovableAgent.h>
+#include <Agent.h>
+#include <HoldableAgent.h>
 #include <iomanip>
 #include <sstream>
 

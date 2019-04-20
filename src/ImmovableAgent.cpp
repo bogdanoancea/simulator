@@ -7,8 +7,8 @@
  *      Author: Bogdan Oancea
  */
 
-#include "ImmovableAgent.h"
-#include <geos/geom/Point.h>
+#include <ImmovableAgent.h>
+#include <iostream>
 
 using namespace geos;
 using namespace geos::geom;

@@ -5,15 +5,21 @@
  *      Author: Bogdan Oancea
  */
 
-#include "Person.h"
-#include <MovableAgent.h>
-#include <HoldableAgent.h>
+#include <Agent.h>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/Envelope.h>
 #include <geos/geom/GeometryFactory.h>
-#include <iomanip>
-#include <sstream>
+#include <geos/geom/Polygon.h>
+#include <HoldableAgent.h>
+#include <Map.h>
+#include <Person.h>
+#include <RandomNumberGenerator.h>
 #include <Utils.h>
 #include <cmath>
-#include <RandomNumberGenerator.h>
+#include <iomanip>
+#include <random>
+#include <sstream>
+#include <utility>
 
 using namespace geos;
 using namespace geos::geom;

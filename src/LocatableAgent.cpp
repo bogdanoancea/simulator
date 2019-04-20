@@ -7,13 +7,12 @@
  *      Author: Bogdan Oancea
  */
 
-#include "LocatableAgent.h"
-#include "Agent.h"
-#include <Clock.h>
-#include <geos/geom/Point.h>
-#include <string>
-#include <sstream>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/GeometryFactory.h>
+#include <LocatableAgent.h>
+#include <Map.h>
 #include <iomanip>
+#include <sstream>
 
 using namespace geos;
 using namespace geos::geom;

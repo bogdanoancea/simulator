@@ -7,9 +7,8 @@
  *      Author: Bogdan Oancea
  */
 
-#include <Utils.h>
-#include <time.h>
 #include <RandomNumberGenerator.h>
+#include <Utils.h>
 
 using namespace geos;
 using namespace geos::geom;
