@@ -34,6 +34,7 @@ class MobilePhone: public HoldableAgent {
 			return this->getLocation();
 		}
 
+		bool tryConnect() override;
 
 	private:
 

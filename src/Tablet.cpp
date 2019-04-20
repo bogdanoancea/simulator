@@ -23,3 +23,7 @@ Tablet::~Tablet() {
 string Tablet::toString() {
 	return (HoldableAgent::toString());
 }
+
+bool Tablet::tryConnect() {
+	return false;
+}

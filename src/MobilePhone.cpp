@@ -24,3 +24,7 @@ MobilePhone::~MobilePhone() {
 string MobilePhone::toString() {
 	return (HoldableAgent::toString());
 }
+
+bool MobilePhone::tryConnect() {
+	return false;
+}

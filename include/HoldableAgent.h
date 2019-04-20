@@ -30,6 +30,7 @@ class HoldableAgent: public MovableAgent {
 		}
 
 		string toString() override;
+		virtual bool tryConnect() = 0;
 	private:
 		Agent* m_holder;
 };

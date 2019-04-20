@@ -29,6 +29,8 @@ class Tablet: public HoldableAgent {
 			return getLocation();
 		}
 
+		bool tryConnect() override;
+
 	private:
 
 
