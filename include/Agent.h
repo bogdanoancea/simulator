@@ -10,7 +10,8 @@
 #ifndef AGENT_H
 #define AGENT_H
 
-#include "Map.h"
+
+#include <Map.h>
 #include <string>
 
 class Agent {

@@ -15,6 +15,7 @@
 #include <ctime>
 #include <time.h>
 
+using namespace std;
 using namespace std::chrono;
 
 class Clock {
