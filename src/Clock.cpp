@@ -8,7 +8,7 @@
  */
 
 #include <Clock.h>
-#include <sys/_types/_time_t.h>
+#include <ctime>
 
 using namespace std;
 using namespace std::chrono;

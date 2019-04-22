@@ -52,6 +52,23 @@ double* RandomNumberGenerator::generateDouble(double min, double max, int n) {
 	for (int i = 0; i < n; i++) {
 		result[i] = m_unif_double_distribution(m_generator);
 	}
+	return (result);
+}
 
-	return result;
+int RandomNumberGenerator::generateInt(int min, int max) {
+	double result = 0.0;
+	uniform_int_distribution<int>::param_type p(min, max);
+	m_unif_int_distribution.param(p);
+	result = m_unif_int_distribution(m_generator);
+	return (result);
+}
+
+int* RandomNumberGenerator::generateInt(int min, int max, int n) {
+	int* result = new int[n];
+	uniform_int_distribution<int>::param_type p(min, max);
+	m_unif_int_distribution.param(p);
+	for (int i = 0; i < n; i++) {
+		result[i] = m_unif_int_distribution(m_generator);
+	}
+	return (result);
 }

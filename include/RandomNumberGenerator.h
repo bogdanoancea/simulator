@@ -43,6 +43,9 @@ class RandomNumberGenerator {
 		double* generateNormal2Double(double m1, double sd1, double m2, double sd2, int n);
 		double generateDouble(double min, double max);
 		double* generateDouble(double min, double max, int n);
+		int generateInt(int min, int max);
+		int* generateInt(int min, int max, int n);
+
 
 	private:
 		RandomNumberGenerator();

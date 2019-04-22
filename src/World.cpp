@@ -11,7 +11,7 @@
 #include <IDGenerator.h>
 #include <Map.h>
 #include <RandomNumberGenerator.h>
-#include <sys/_types/_time_t.h>
+#include <ctime>
 #include <Utils.h>
 #include <World.h>
 #include <algorithm>
@@ -140,11 +140,11 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
 	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.5, 0.1, 2.5, 0.1, numPersons);
-
+	int* ages = RandomNumberGenerator::instance()->generateInt(1, 100, numPersons);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 
-		Person* p = new Person(getMap(), id, positions[i], speeds[i], int_distribution(RandomNumberGenerator::instance()->getGenerator()));
+		Person* p = new Person(getMap(), id, positions[i], speeds[i], ages[i]);
 		result.push_back(p);
 	}
 	return (result);
