@@ -60,10 +60,10 @@ string Person::toString() {
 Point& Person::move(std::mt19937& generator) {
 	double theta = 0.0;
 	double newX, newY;
-	uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
-	uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
-	r.param(p);
-	theta = r(generator);
+	//uniform_real_distribution<double>::param_type p(0.0, 2 * utils::PI);
+	//uniform_real_distribution<double> r = RandomNumberGenerator::instance()->getUnifDoubleDistribution();
+	//r.param(p);
+	theta = RandomNumberGenerator::instance()->generateDouble(0.0, 2 * utils::PI);
 
 	newX = getLocation().getCoordinate()->x + getSpeed() * cos(theta);
 	newY = getLocation().getCoordinate()->y + getSpeed() * sin(theta);
