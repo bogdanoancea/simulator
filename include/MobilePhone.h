@@ -30,7 +30,7 @@ class MobilePhone: public HoldableAgent {
 
 		string toString() override;
 
-		Point& move(std::mt19937 &generator) override {
+		Point& move() override {
 			return this->getLocation();
 		}
 
