@@ -21,7 +21,7 @@ using namespace geos::geom;
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		MobilePhone(Map* m, long id, Point* initPosition, Agent* holder);
+		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder);
 		virtual ~MobilePhone();
 
 		string getName() override {

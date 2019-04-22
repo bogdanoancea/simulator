@@ -25,7 +25,7 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 	public:
-		Person(Map* m, long id, Point* initPosition, double initSpeed, int age);
+		explicit Person(Map* m, long id, Point* initPosition, double initSpeed, int age);
 		virtual ~Person();
 
 		string getName() override {

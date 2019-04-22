@@ -21,7 +21,7 @@ using namespace geos::geom;
 class MovableAgent: public LocatableAgent {
 	public:
 
-		MovableAgent(Map* m, long id, Point* initPosition, double initSpeed);
+		explicit MovableAgent(Map* m, long id, Point* initPosition, double initSpeed);
 
 		virtual ~MovableAgent();
 

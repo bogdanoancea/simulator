@@ -22,7 +22,7 @@ using namespace geos::geom;
  */
 class Antenna: public ImmovableAgent {
 	public:
-		Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections);
+		explicit Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections);
 		virtual ~Antenna();
 
 		string getName() override {

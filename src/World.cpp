@@ -139,7 +139,7 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
-	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.5, 0.1, 2.5, 0.1, numPersons);
+	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
 	int* ages = RandomNumberGenerator::instance()->generateInt(1, 100, numPersons);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();

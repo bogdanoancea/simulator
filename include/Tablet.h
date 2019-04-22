@@ -17,7 +17,7 @@
  */
 class Tablet: public HoldableAgent {
 	public:
-		Tablet(Map* m, long id, Point* initPosition);
+		explicit Tablet(Map* m, long id, Point* initPosition);
 		virtual ~Tablet();
 
 		string getName() override {

@@ -21,7 +21,7 @@ using namespace geos::geom;
  */
 class ImmovableAgent: public LocatableAgent {
 	public:
-		ImmovableAgent(Map* m, long id, Point* initialPosition);
+		explicit ImmovableAgent(Map* m, long id, Point* initialPosition);
 		virtual ~ImmovableAgent();
 
 		string toString() override;

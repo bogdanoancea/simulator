@@ -19,7 +19,7 @@
  */
 class HoldableAgent: public MovableAgent {
 	public:
-		HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder);
+		explicit HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder);
 		virtual ~HoldableAgent();
 
 		Agent* getHolder() const;
