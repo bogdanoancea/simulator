@@ -11,9 +11,10 @@
 #include <HoldableAgent.h>
 #include <iomanip>
 #include <sstream>
+#include <algorithm>
 
 HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder) :
-		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } , m_isConnected {false}{
+		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -21,7 +22,7 @@ HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder
 HoldableAgent::HoldableAgent(const HoldableAgent &h):
 		MovableAgent(h.getMap(), h.getId(), h.getLocation(), 0.0) {
 	m_holder = h.getHolder();
-	m_isConnected = h.isConnected();
+	std::copy(h.getAntennas().begin(), h.getAntennas().end(), m_antennas.begin());
 }
 
 
@@ -47,12 +48,16 @@ void HoldableAgent::setHolder(Agent* holder) {
 }
 
 bool HoldableAgent::isConnected() const {
-	return m_isConnected;
+	return m_antennas.size() > 0;
 }
 
-void HoldableAgent::setConnected(bool c) {
-	m_isConnected = c;
+vector<Antenna*> HoldableAgent::getAntennas() const {
+	return (m_antennas);
 }
+
+//void HoldableAgent::setConnected(bool c) {
+//	m_isConnected = c;
+//}
 
 string HoldableAgent::toString() {
 	ostringstream result;

@@ -67,7 +67,7 @@ void Antenna::setMaxConnections(int maxConnections) {
 	m_maxConnections = maxConnections;
 }
 
-bool Antenna::tryConnect(HoldableAgent* ag) {
+bool Antenna::tryRegister(HoldableAgent* ag) {
 	bool result = false;
 	if (m_numActiveConnections < m_maxConnections) {
 		attachDevice(ag);
