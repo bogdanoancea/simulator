@@ -22,6 +22,8 @@ void AgentsCollection::addAgent(Agent* a) {
 	m_agents2.insert(std::pair<string, Agent*>(typeid(*a).name(), a));
 }
 
+
+//TODO equals between two agents to be implmented
 Agent* AgentsCollection::deleteAgent(Agent* a) {
 	Agent* result = nullptr;
 	std::pair<um_iterator, um_iterator> iterpair = m_agents2.equal_range(typeid(*a).name());

@@ -11,6 +11,7 @@
 #include <IDGenerator.h>
 #include <Map.h>
 #include <RandomNumberGenerator.h>
+#include <EMField.h>
 #include <ctime>
 #include <Utils.h>
 #include <World.h>
@@ -31,10 +32,6 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 
-
-//	std::random_device device;
-//	m_generator.seed(device());
-
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -43,6 +40,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	vector<Antenna*> antennas = generateAntennas(numAntennas);
 	for (int i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
+		EMField::instance()->addAntenna(antennas[i]);
 	}
 
 	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
@@ -91,6 +89,14 @@ void World::runSimulation(string personsFile, string antennasFile) {
 			p->move();
 		}
 	}
+
+	//test EMField
+//	Coordinate c = Coordinate(0,0);
+//	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+//	pair<Antenna*, double> x = EMField::instance()->computeMaxPower(p);
+//	int id = x.first->getId();
+//	cout << "most powerful antenna in " << p->toText() << " is: " << id << " with power : " << x.second << endl;
+
 
 	try {
 		pFile.close();
@@ -172,7 +178,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	unsigned id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, 10);
 		result.push_back(p);
 	}
 	return (result);

@@ -29,8 +29,8 @@ class LocatableAgent: public Agent {
 
 		string toString() override;
 
-		Point& getLocation() const;
-		void setLocation(Point& location);
+		Point* getLocation() const;
+		void setLocation(Point* location);
 
 		string dumpLocation(Clock* clock);
 

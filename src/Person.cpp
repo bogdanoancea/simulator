@@ -57,13 +57,13 @@ string Person::toString() {
 	return (ss.str());
 }
 
-Point& Person::move() {
+Point* Person::move() {
 	double theta = 0.0;
 	double newX, newY;
 	theta = RandomNumberGenerator::instance()->generateDouble(0.0, 2 * utils::PI);
 
-	newX = getLocation().getCoordinate()->x + getSpeed() * cos(theta);
-	newY = getLocation().getCoordinate()->y + getSpeed() * sin(theta);
+	newX = getLocation()->getCoordinate()->x + getSpeed() * cos(theta);
+	newY = getLocation()->getCoordinate()->y + getSpeed() * sin(theta);
 	Geometry* g = getMap()->getBoundary();
 	if (dynamic_cast<Polygon*>(g) != nullptr) {
 		Polygon* p = dynamic_cast<Polygon*>(g);
@@ -83,7 +83,7 @@ Point& Person::move() {
 
 		Coordinate c = Coordinate(newX, newY);
 		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-		setLocation(*pt);
+		setLocation(pt);
 		//get devices and set the location for them
 		int d = m_idDevices.size();
 		if (d > 0) {
@@ -92,7 +92,7 @@ Point& Person::move() {
 				Agent* a = it->second;
 				LocatableAgent* l = dynamic_cast<LocatableAgent*>(a);
 				if (l != nullptr)
-					l->setLocation(*pt);
+					l->setLocation(pt);
 			}
 		}
 	}

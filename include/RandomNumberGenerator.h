@@ -49,7 +49,6 @@ class RandomNumberGenerator {
 
 	private:
 		RandomNumberGenerator();
-
 		RandomNumberGenerator(const RandomNumberGenerator&);
 		RandomNumberGenerator& operator=(const RandomNumberGenerator&);
 
