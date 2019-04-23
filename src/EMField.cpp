@@ -25,7 +25,7 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	if (size > 0) {
 		double max = -1;
 		for (Antenna* a : m_antennas) {
-			double power = a->getPower() * pow(p->distance(&a->getLocation()), -a->getAttenuationFactor());
+			double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());
 			if (power > max) {
 				max = power;
 				result = make_pair(a, power);

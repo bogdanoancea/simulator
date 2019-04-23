@@ -31,19 +31,19 @@ LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation) :
 LocatableAgent::~LocatableAgent() {
 }
 
-Point& LocatableAgent::getLocation() const {
-	return *m_location;
+Point* LocatableAgent::getLocation() const {
+	return m_location;
 }
 
-void LocatableAgent::setLocation(Point& location) {
-	const Coordinate *c = location.getCoordinate();
-	m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
+void LocatableAgent::setLocation(Point* location) {
+	//const Coordinate *c = location.getCoordinate();
+	m_location = location;//this->getMap()->getGlobalFactory()->createPoint(*c);
 }
 
 string LocatableAgent::toString() {
 	ostringstream ss;
 	if (m_location != nullptr)
-		ss << left << setw(15) << getId() << setw(15) << getLocation().getCoordinate()->x << setw(15) << getLocation().getCoordinate()->y;
+		ss << left << setw(15) << getId() << setw(15) << getLocation()->getCoordinate()->x << setw(15) << getLocation()->getCoordinate()->y;
 	else
 		ss << left << setw(15) << getId() << setw(15) << "null" << setw(15) << "null";
 	return (ss.str());
@@ -55,7 +55,7 @@ string LocatableAgent::dumpLocation(Clock* clock) {
 	char sep = ',';
 	if (clock != nullptr)
 		ss << left << clock->getCurrentTime() << sep;
-	ss << getId() << sep << getLocation().getCoordinate()->x << sep << getLocation().getCoordinate()->y;
+	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
 	return (ss.str());
 
 }

@@ -36,7 +36,8 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 
 
 	//select the most powerful antenna
-	pair<Antenna*, double> antenna = EMField::instance()->computeMaxPower(m_location);
+	Point *p = this->getLocation();
+	pair<Antenna*, double> antenna = EMField::instance()->computeMaxPower(p);
 	if (antenna.second > m_powerThreshold) {
 		antenna.first->tryConnect(this);
 	}

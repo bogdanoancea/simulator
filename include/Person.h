@@ -43,7 +43,7 @@ class Person: public MovableAgent {
 		const Point& getPosition() const;
 		void setPosition(const Point& position);
 
-		Point& move() override;
+		Point* move() override;
 
 		void addDevice(string type, Agent* agent) {
 			m_idDevices.insert(std::pair<string, Agent*>(type, agent));

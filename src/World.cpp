@@ -91,7 +91,7 @@ void World::runSimulation(string personsFile, string antennasFile) {
 	}
 
 	//test EMField
-//	Coordinate c = Coordinate(0, 10);
+//	Coordinate c = Coordinate(0,0);
 //	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 //	pair<Antenna*, double> x = EMField::instance()->computeMaxPower(p);
 //	int id = x.first->getId();

@@ -30,7 +30,7 @@ class MobilePhone: public HoldableAgent {
 
 		string toString() override;
 
-		Point& move() override {
+		Point* move() override {
 			return (this->getLocation());
 		}
 

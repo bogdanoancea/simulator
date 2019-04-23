@@ -13,13 +13,15 @@
 #include <sstream>
 
 HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder) :
-		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } {
+		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } , m_isConnected {false}{
 	// TODO Auto-generated constructor stub
 
 }
 
-HoldableAgent::HoldableAgent(const HoldableAgent &h) {
+HoldableAgent::HoldableAgent(const HoldableAgent &h):
+		MovableAgent(h.getMap(), h.getId(), h.getLocation(), 0.0) {
 	m_holder = h.getHolder();
+	m_isConnected = h.isConnected();
 }
 
 
@@ -42,6 +44,14 @@ void HoldableAgent::setHolder(Agent* holder) {
 		setSpeed(m->getSpeed());
 	else
 		setSpeed(0.0);
+}
+
+bool HoldableAgent::isConnected() const {
+	return m_isConnected;
+}
+
+void HoldableAgent::setConnected(bool c) {
+	m_isConnected = c;
 }
 
 string HoldableAgent::toString() {
