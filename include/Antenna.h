@@ -10,7 +10,8 @@
 #ifndef ANTENNA_H_
 #define ANTENNA_H_
 
-#include "ImmovableAgent.h"
+#include <ImmovableAgent.h>
+#include <HoldableAgent.h>
 #include <geos/geom/Polygon.h>
 
 
@@ -43,13 +44,18 @@ class Antenna: public ImmovableAgent {
 		int getMaxConnections() const;
 		void setMaxConnections(int maxConnections);
 
+		bool tryConnect(HoldableAgent* ag);
+		void attachDevice(HoldableAgent* device);
+		void dettachDevice(HoldableAgent* device);
+
+
 	private:
 		double m_power;
 		double m_attenuationFactor;
 		Polygon* m_cell;
 		int m_maxConnections;
-
-
+		int m_numActiveConnections;
+		vector<HoldableAgent*> m_devices;
 };
 
 #endif /* ANTENNA_H_ */

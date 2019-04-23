@@ -21,7 +21,7 @@ using namespace geos::geom;
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder);
+		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, double powerThreshold);
 		virtual ~MobilePhone();
 
 		string getName() override {
@@ -31,12 +31,14 @@ class MobilePhone: public HoldableAgent {
 		string toString() override;
 
 		Point& move() override {
-			return this->getLocation();
+			return (this->getLocation());
 		}
 
 		bool tryConnect() override;
 
 	private:
+		bool tryConnectNaiveAlgorithm();
+		double m_powerThreshold;
 
 
 };

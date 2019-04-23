@@ -19,7 +19,6 @@ RandomNumberGenerator::RandomNumberGenerator() {
 
 double* RandomNumberGenerator::generateNormal2Double(double m1, double sd1, double m2, double sd2, int n) {
 	double* result = new double[n];
-	//normal_distribution<double> d1 = m_normal_double_distribution;
 	normal_distribution<double>::param_type p1(m1, sd1);
 	normal_distribution<double>::param_type p2(m2, sd2);
 

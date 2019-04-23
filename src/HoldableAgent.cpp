@@ -18,6 +18,11 @@ HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder
 
 }
 
+HoldableAgent::HoldableAgent(const HoldableAgent &h) {
+	m_holder = h.getHolder();
+}
+
+
 HoldableAgent::~HoldableAgent() {
 	// TODO Auto-generated destructor stub
 }
