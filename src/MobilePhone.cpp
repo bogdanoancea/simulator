@@ -44,6 +44,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 		bool inRange = EMField::instance()->isAntennaInRange(p, m_connectedTo, m_powerThreshold);
 		if (!inRange) {
 			m_connectedTo->dettachDevice(this);
+			m_connectedTo = nullptr;
 			connected = false;
 		}
 	}
@@ -52,13 +53,17 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 
 	if (antenna.second > m_powerThreshold) {
 		connected = antenna.first->tryRegisterDevice(this);
+		cout << "m-am conectat la antena:" << antenna.first->getId() << endl;
+		//cout << "tre sa ma detasez de la antena:" << m_connectedTo->getId() << endl;
+
+
 	}
 	if (connected) {
-		if (antenna.first->getId() != m_connectedTo->getId()) {
-			//cout << "suuuuuunt aiiici  " << endl;
+		if (m_connectedTo!= nullptr && antenna.first->getId() != m_connectedTo->getId()) {
+			cout << "suuuuuunt aiiici  " << endl;
 			m_connectedTo->dettachDevice(this);
-			m_connectedTo = antenna.first;
 		}
+		m_connectedTo = antenna.first;
 	}
 	else {
 		//try to connect to another antenna in range
