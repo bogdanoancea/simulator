@@ -11,7 +11,7 @@
 #define EMFIELD_H_
 
 #include <Antenna.h>
-
+#include <Constants.h>
 #include <utility>
 #include <vector>
 
@@ -41,13 +41,15 @@ class EMField {
 		 * @return
 		 */
 		pair<Antenna*, double> computeMaxPower(Point* p);
-		vector<Antenna*> getActiveAntennas(Point p);
+		vector<pair<Antenna*, double>> getInRangeAntennas(Point* p, double powerThreshold = Constants::POWER_THRESHOLD);
+		bool isAntennaInRange(Point* p, Antenna* a, double powerThreshold = Constants::POWER_THRESHOLD);
 
 	private:
 		EMField();
 
 		EMField(const EMField&);
 		EMField& operator=(const EMField&);
+
 		static EMField* m_instance;
 		vector<Antenna*> m_antennas;
 };

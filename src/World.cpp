@@ -87,6 +87,7 @@ void World::runSimulation(string personsFile, string antennasFile) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation(m_clock) << p->dumpDevices() << endl;
 			p->move();
+
 		}
 	}
 

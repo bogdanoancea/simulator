@@ -13,7 +13,7 @@
 #include <ImmovableAgent.h>
 #include <HoldableAgent.h>
 #include <geos/geom/Polygon.h>
-
+#include <EventType.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -44,12 +44,15 @@ class Antenna: public ImmovableAgent {
 		int getMaxConnections() const;
 		void setMaxConnections(int maxConnections);
 
-		bool tryRegister(HoldableAgent* ag);
+		bool tryRegisterDevice(HoldableAgent* device);
 		void attachDevice(HoldableAgent* device);
 		void dettachDevice(HoldableAgent* device);
 
 
 	private:
+
+		bool alreadyRegistered(HoldableAgent * ag);
+		void registerEvent(HoldableAgent * ag, EventType event);
 		double m_power;
 		double m_attenuationFactor;
 		Polygon* m_cell;
