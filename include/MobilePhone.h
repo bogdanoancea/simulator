@@ -10,7 +10,8 @@
 #ifndef MOBILEPHONE_H_
 #define MOBILEPHONE_H_
 
-#include "HoldableAgent.h"
+#include <HoldableAgent.h>
+#include <Antenna.h>
 #include <geos/geom/Point.h>
 
 using namespace geos;
@@ -36,9 +37,18 @@ class MobilePhone: public HoldableAgent {
 
 		bool tryConnect() override;
 
+		double getPowerThreshold() const {
+			return m_powerThreshold;
+		}
+		
+		void setPowerThreshold(double powerThreshold) {
+			m_powerThreshold = powerThreshold;
+		}
+
 	private:
 		bool tryConnectNaiveAlgorithm();
 		double m_powerThreshold;
+		Antenna* m_connectedTo;
 
 
 };

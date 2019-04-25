@@ -15,6 +15,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <Constants.h>
 
 using namespace std;
 using namespace geos;
@@ -31,10 +32,9 @@ int main() {
 	geos::io::WKTWriter writter;
 	cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
-	int numPersons = 100;
-	int numAntennas = 10;
-	double market_share = 0.3;
-	int numMobilePhones = numPersons * market_share;
+	int numPersons = Constants::NO_PERSONS;
+	int numAntennas = Constants::NO_ANTENNAS;
+	int numMobilePhones = Constants::NO_MOBILE_PHONES;
 	cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
 			<< " mobile phones!" << endl;
 

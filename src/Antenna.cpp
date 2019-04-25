@@ -13,6 +13,8 @@
 #include <Map.h>
 #include <iomanip>
 #include <sstream>
+#include <algorithm>
+#include <EventType.h>
 
 using namespace std;
 
@@ -67,17 +69,29 @@ void Antenna::setMaxConnections(int maxConnections) {
 	m_maxConnections = maxConnections;
 }
 
-bool Antenna::tryRegister(HoldableAgent* ag) {
+bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 	bool result = false;
 	if (m_numActiveConnections < m_maxConnections) {
-		attachDevice(ag);
-		m_numActiveConnections++;
+		//if the device is not yet registered
+		if (!alreadyRegistered(device)) {
+			attachDevice(device);
+			result = true;
+		}
+		else {
+			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE);
+		}
 	}
+	else {
+		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE);
+	}
+
 	return (result);
 }
 
 void Antenna::attachDevice(HoldableAgent* device) {
 	m_devices.push_back(device);
+	registerEvent(device, EventType::ATTACH_DEVICE);
+	m_numActiveConnections++;
 }
 
 
@@ -85,4 +99,32 @@ void Antenna::dettachDevice(HoldableAgent* device) {
 	vector<HoldableAgent*>::iterator it = std::find(m_devices.begin(), m_devices.end(), device);
 	if (it != m_devices.end())
 		m_devices.erase(it);
+	registerEvent(device, EventType::DETACH_DEVICE);
+}
+
+bool Antenna::alreadyRegistered(HoldableAgent * device) {
+	vector<HoldableAgent*>::iterator it = std::find(m_devices.begin(), m_devices.end(), device);
+	if (it != m_devices.end())
+		return (true);
+	else
+		return (false);
+}
+
+void Antenna::registerEvent(HoldableAgent * ag, EventType event) {
+
+	cout << getId() << " event registered for device:" << ag->getId();
+	switch (event) {
+		case EventType::ATTACH_DEVICE:
+			cout << ":" << "Attached";
+			break;
+		case EventType::DETACH_DEVICE:
+			cout << ":" << "Detached";
+			break;
+		case EventType::ALREADY_ATTACHED_DEVICE:
+			cout << ":" << " In range, attached";
+			break;
+		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+			cout << ":" << " In range, not attached";
+	}
+	cout << endl;
 }
