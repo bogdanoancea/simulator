@@ -79,6 +79,7 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		}
 		else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE);
+			result = true;
 		}
 	}
 	else {
@@ -126,5 +127,6 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event) {
 		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
 			cout << ":" << " In range, not attached" << " time " << getClock()->getCurrentTime();
 	}
+	cout << " location " << ag->getLocation()->getCoordinate()->x << "," << ag->getLocation()->getCoordinate()->y;
 	cout << endl;
 }

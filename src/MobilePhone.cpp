@@ -55,12 +55,9 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 		connected = antenna.first->tryRegisterDevice(this);
 		//cout << "m-am conectat la antena:" << antenna.first->getId() << endl;
 		//cout << "tre sa ma detasez de la antena:" << m_connectedTo->getId() << endl;
-
-
 	}
 	if (connected) {
 		if (m_connectedTo!= nullptr && antenna.first->getId() != m_connectedTo->getId()) {
-			cout << "suuuuuunt aiiici  " << endl;
 			m_connectedTo->dettachDevice(this);
 		}
 		m_connectedTo = antenna.first;
