@@ -31,7 +31,7 @@ using namespace utils;
 World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
-
+	m_clock = new Clock();
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (int i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -47,7 +47,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	for (int i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
-	m_clock = new Clock();
+
 }
 
 //dtor
@@ -78,11 +78,9 @@ void World::runSimulation(string personsFile, string antennasFile) {
 	m_clock->setInitialTime(0);
 	m_clock->setIncrement(1);
 	m_clock->setFinalTime(100);
-
+	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 	for (unsigned t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
-
 		//iterate over all persons and call move()
-		auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation(m_clock) << p->dumpDevices() << endl;
@@ -151,7 +149,7 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 
-		Person* p = new Person(getMap(), id, positions[i], speeds[i], ages[i]);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i]);
 		result.push_back(p);
 	}
 	return (result);
@@ -168,7 +166,7 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (auto i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], attFactor, power, maxConnections);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections);
 		result.push_back(p);
 	}
 	return (result);
@@ -179,7 +177,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	unsigned id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, 10);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD);
 		result.push_back(p);
 	}
 	return (result);

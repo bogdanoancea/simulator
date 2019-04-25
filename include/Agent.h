@@ -12,12 +12,13 @@
 
 
 #include <Map.h>
+#include <Clock.h>
 #include <string>
 
 class Agent {
 	public:
 
-		Agent(Map* m, long id);
+		Agent(Map* m, long id, Clock* clock);
 
 		/** Default destructor */
 		virtual ~Agent();
@@ -30,6 +31,8 @@ class Agent {
 		Map* getMap() const;
 		void setMap(Map* map);
 
+		Clock* getClock() const;
+
 		long getId() const {
 			return m_id;
 		}
@@ -41,6 +44,7 @@ class Agent {
 	private:
 		Map* m_map;
 		long m_id;
+		Clock* m_clock;
 };
 
 #endif // AGENT_H

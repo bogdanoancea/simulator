@@ -13,14 +13,14 @@
 #include <sstream>
 #include <algorithm>
 
-HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder) :
-		MovableAgent(m, id, initPosition, 0.0), m_holder { holder } {
+HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock) :
+		MovableAgent(m, id, initPosition, clock, 0.0), m_holder { holder } {
 	// TODO Auto-generated constructor stub
 
 }
 
 HoldableAgent::HoldableAgent(const HoldableAgent &h):
-		MovableAgent(h.getMap(), h.getId(), h.getLocation(), 0.0) {
+		MovableAgent(h.getMap(), h.getId(), h.getLocation(), h.getClock(), 0.0) {
 	m_holder = h.getHolder();
 	std::copy(h.getAntennas().begin(), h.getAntennas().end(), m_antennas.begin());
 }

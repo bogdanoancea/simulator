@@ -13,6 +13,7 @@
 #define MOVABLEAGENT_H_
 
 #include <LocatableAgent.h>
+#include <Clock.h>
 #include <random>
 
 using namespace geos;
@@ -21,7 +22,7 @@ using namespace geos::geom;
 class MovableAgent: public LocatableAgent {
 	public:
 
-		explicit MovableAgent(Map* m, long id, Point* initPosition, double initSpeed);
+		explicit MovableAgent(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed);
 
 		virtual ~MovableAgent();
 
