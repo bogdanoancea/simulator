@@ -13,8 +13,8 @@
 #include <sstream>
 
 
-MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, double initialSpeed) :
-		LocatableAgent(m, id, initialPosition), m_speed { initialSpeed } {
+MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, Clock* clock, double initialSpeed) :
+		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
 	// TODO Auto-generated constructor stub
 }
 

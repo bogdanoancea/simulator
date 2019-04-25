@@ -26,8 +26,8 @@ using namespace geos::geom;
 
 
 
-Person::Person(Map* m, long id, Point* initPosition, double initSpeed, int age) :
-		MovableAgent(m, id, initPosition, initSpeed), m_age { age } {
+Person::Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age } {
 	// TODO Auto-generated constructor stub
 
 }
@@ -85,18 +85,15 @@ Point* Person::move() {
 		setLocation(pt);
 		//get devices and set the location for them
 		int d = m_idDevices.size();
-
 		if (d > 0) {
 			unordered_multimap<string, Agent*>::iterator it;
 			for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
 				Agent* a = it->second;
 				HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
-
 				if (device != nullptr) {
 					device->setLocation(pt);
 					device->tryConnect();
 				}
-
 			}
 		}
 	}
@@ -115,6 +112,5 @@ string Person::dumpDevices() {
 		Agent* a = it->second;
 		ss << sep << a->getId();
 	}
-
 	return (ss.str());
 }

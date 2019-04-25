@@ -15,8 +15,8 @@
 
 using namespace std;
 
-MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, double powerThreshold) :
-		HoldableAgent(m, id, initPosition, nullptr), m_powerThreshold { Constants::POWER_THRESHOLD } {
+MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold) :
+		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD } {
 	m_connectedTo = nullptr;
 	// TODO Auto-generated constructor stub
 
@@ -53,14 +53,11 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 
 	if (antenna.second > m_powerThreshold) {
 		connected = antenna.first->tryRegisterDevice(this);
-		cout << "m-am conectat la antena:" << antenna.first->getId() << endl;
+		//cout << "m-am conectat la antena:" << antenna.first->getId() << endl;
 		//cout << "tre sa ma detasez de la antena:" << m_connectedTo->getId() << endl;
-
-
 	}
 	if (connected) {
 		if (m_connectedTo!= nullptr && antenna.first->getId() != m_connectedTo->getId()) {
-			cout << "suuuuuunt aiiici  " << endl;
 			m_connectedTo->dettachDevice(this);
 		}
 		m_connectedTo = antenna.first;
@@ -72,6 +69,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 		for (int i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);
 			if (connected) {
+				m_connectedTo->dettachDevice(this);
 				m_connectedTo = antennas[i].first;
 				break;
 			}

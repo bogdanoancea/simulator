@@ -11,6 +11,7 @@
 #define IMMOVABLEAGENT_H_
 
 #include "LocatableAgent.h"
+#include <Clock.h>
 #include <geos/geom/Point.h>
 
 using namespace geos;
@@ -21,7 +22,7 @@ using namespace geos::geom;
  */
 class ImmovableAgent: public LocatableAgent {
 	public:
-		explicit ImmovableAgent(Map* m, long id, Point* initialPosition);
+		explicit ImmovableAgent(Map* m, long id, Point* initialPosition, Clock* clock);
 		virtual ~ImmovableAgent();
 
 		string toString() override;

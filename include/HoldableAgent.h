@@ -11,7 +11,7 @@
 #define HOLDABLEAGENT_H_
 
 #include <MovableAgent.h>
-//#include <Antenna.h>
+#include <Clock.h>
 #include <string>
 
 class Antenna;
@@ -20,7 +20,7 @@ class Antenna;
  */
 class HoldableAgent: public MovableAgent {
 	public:
-		explicit HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder);
+		explicit HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock);
 		HoldableAgent(const HoldableAgent &h);
 
 		virtual ~HoldableAgent();

@@ -18,8 +18,8 @@
 
 using namespace std;
 
-Antenna::Antenna(Map* m, long id, Point* initPosition, double attenuationFactor, double power, int maxConnections) :
-		ImmovableAgent(m, id, initPosition), m_power { power }, m_attenuationFactor {
+Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections) :
+		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor {
 			attenuationFactor }, m_maxConnections { maxConnections }, m_numActiveConnections {
 				0 } {
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
@@ -79,6 +79,7 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		}
 		else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE);
+			result = true;
 		}
 	}
 	else {
@@ -115,16 +116,17 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event) {
 	cout << getId() << " event registered for device:" << ag->getId();
 	switch (event) {
 		case EventType::ATTACH_DEVICE:
-			cout << ":" << "Attached";
+			cout << ":" << "Attached " << " time " << getClock()->getCurrentTime();
 			break;
 		case EventType::DETACH_DEVICE:
-			cout << ":" << "Detached";
+			cout << ":" << "Detached" << " time " << getClock()->getCurrentTime();
 			break;
 		case EventType::ALREADY_ATTACHED_DEVICE:
-			cout << ":" << " In range, attached";
+			cout << ":" << " In range, attached" << " time " << getClock()->getCurrentTime();
 			break;
 		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-			cout << ":" << " In range, not attached";
+			cout << ":" << " In range, not attached" << " time " << getClock()->getCurrentTime();
 	}
+	cout << " location " << ag->getLocation()->getCoordinate()->x << "," << ag->getLocation()->getCoordinate()->y;
 	cout << endl;
 }

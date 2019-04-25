@@ -12,6 +12,7 @@
 
 #include <HoldableAgent.h>
 #include <Antenna.h>
+#include <Clock.h>
 #include <geos/geom/Point.h>
 
 using namespace geos;
@@ -22,7 +23,7 @@ using namespace geos::geom;
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, double powerThreshold);
+		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold);
 		virtual ~MobilePhone();
 
 		string getName() override {
@@ -40,7 +41,7 @@ class MobilePhone: public HoldableAgent {
 		double getPowerThreshold() const {
 			return m_powerThreshold;
 		}
-		
+
 		void setPowerThreshold(double powerThreshold) {
 			m_powerThreshold = powerThreshold;
 		}

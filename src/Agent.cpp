@@ -9,9 +9,11 @@
 
 #include <Agent.h>
 
-Agent::Agent(Map* m, long id) :
+
+Agent::Agent(Map* m, long id, Clock* clock) :
 		m_id { id } {
 	m_map = m;
+	m_clock = clock;
 }
 
 Agent::~Agent() {
@@ -27,4 +29,8 @@ Map* Agent::getMap() const {
 }
 void Agent::setMap(Map* map) {
 	m_map = map;
+}
+
+Clock* Agent::getClock() const {
+	return m_clock;
 }
