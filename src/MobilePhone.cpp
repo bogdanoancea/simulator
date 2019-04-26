@@ -18,8 +18,6 @@ using namespace std;
 MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold) :
 		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD } {
 	m_connectedTo = nullptr;
-	// TODO Auto-generated constructor stub
-
 }
 
 MobilePhone::~MobilePhone() {
@@ -69,7 +67,10 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 		for (int i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);
 			if (connected) {
-				m_connectedTo->dettachDevice(this);
+				if (m_connectedTo!= nullptr && antennas[i].first->getId() != m_connectedTo->getId()) {
+					m_connectedTo->dettachDevice(this);
+				}
+				//m_connectedTo->dettachDevice(this);
 				m_connectedTo = antennas[i].first;
 				break;
 			}

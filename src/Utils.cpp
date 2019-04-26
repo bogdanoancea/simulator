@@ -37,10 +37,8 @@ using namespace std;
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
-			double* x = new double[n];
-			double *y = new double[n];
-			x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
-			y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
+			double* x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
+			double* y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
 			for (int i = 0; i < n; i++) {
 				Coordinate c = Coordinate(x[i], y[i]);
 				result.push_back(m->getGlobalFactory()->createPoint(c));

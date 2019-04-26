@@ -52,6 +52,9 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 
 //dtor
 World::~World() {
+	delete m_clock;
+	delete m_agentsCollection;
+
 	cout << "End of simulation!" << endl;
 }
 
@@ -77,8 +80,9 @@ void World::runSimulation(string personsFile, string antennasFile) {
 	pFile << "Simulation started at " << ctime(&tt) << endl;
 	m_clock->setInitialTime(0);
 	m_clock->setIncrement(1);
-	m_clock->setFinalTime(100);
+	m_clock->setFinalTime(Constants::SIMULATION_TIME);
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
+
 	for (unsigned t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {
@@ -141,17 +145,18 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	vector<Person*> result;
 
 	unsigned id;
-	uniform_int_distribution<int> int_distribution(1, 100);
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
 	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
 	int* ages = RandomNumberGenerator::instance()->generateInt(1, 100, numPersons);
 	for (auto i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-
 		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i]);
 		result.push_back(p);
 	}
+	delete []speeds;
+	delete []ages;
+
 	return (result);
 }
 

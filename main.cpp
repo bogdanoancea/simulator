@@ -16,6 +16,9 @@
 #include <utility>
 #include <vector>
 #include <Constants.h>
+#include <exception>
+#include <typeinfo>
+#include <stdexcept>
 
 using namespace std;
 using namespace geos;
@@ -35,6 +38,7 @@ int main() {
 	int numPersons = Constants::NO_PERSONS;
 	int numAntennas = Constants::NO_ANTENNAS;
 	int numMobilePhones = Constants::NO_MOBILE_PHONES;
+
 	cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
 			<< " mobile phones!" << endl;
 
@@ -71,6 +75,7 @@ int main() {
 		int num = rand() % numPersons;
 		indices.insert(num);
 	}
+
 	vector<int> pindices;
 	std::move(indices.begin(), indices.end(), back_inserter(pindices));
 	int i = 0;
@@ -96,8 +101,17 @@ int main() {
 		cout << p->toString() << endl;
 	}
 
+	try
+	{
+		w.runSimulation("persons.csv", "antennas.csv");
+	}
+	catch(std::runtime_error& e)
+	{
+	   cout << e.what() << "\n";
+	}
 
-	w.runSimulation("persons.csv", "antennas.csv");
-
+	catch( const std::exception &e) {
+		cout << e.what() << "\n";
+	}
 	return (0);
 }

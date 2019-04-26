@@ -20,6 +20,7 @@ class Constants {
 		static const int NO_ANTENNAS;
 		static const double MARKET_SHARE;
 		static const int NO_MOBILE_PHONES;
+		static const int SIMULATION_TIME;
 };
 
 #endif /* CONSTANTS_H_ */

@@ -56,7 +56,6 @@ class World {
 
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
-		//std::mt19937 m_generator;
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);

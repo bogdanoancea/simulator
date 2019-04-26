@@ -43,7 +43,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double powe
 	vector<pair<Antenna*, double>> result;
 	int size = m_antennas.size();
 	if (size > 0) {
-		for (Antenna* a : m_antennas) {
+		for (Antenna*& a : m_antennas) {
 			double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());
 			if (power > powerThreshold) {
 				result.push_back(make_pair(a, power));

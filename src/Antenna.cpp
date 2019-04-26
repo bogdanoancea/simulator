@@ -98,8 +98,10 @@ void Antenna::attachDevice(HoldableAgent* device) {
 
 void Antenna::dettachDevice(HoldableAgent* device) {
 	vector<HoldableAgent*>::iterator it = std::find(m_devices.begin(), m_devices.end(), device);
-	if (it != m_devices.end())
+	if (it != m_devices.end()) {
 		m_devices.erase(it);
+		m_numActiveConnections--;
+	}
 	registerEvent(device, EventType::DETACH_DEVICE);
 }
 
