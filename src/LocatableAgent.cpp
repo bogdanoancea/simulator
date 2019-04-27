@@ -19,11 +19,12 @@ using namespace geos::geom;
 
 LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation, Clock* clock) :
 		Agent(m, id, clock) {
-	if (initLocation != nullptr) {
-		const Coordinate *c = initLocation->getCoordinate();
-		m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
-	} else
-		m_location = nullptr;
+//	if (initLocation != nullptr) {
+//		const Coordinate *c = initLocation->getCoordinate();
+//		m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
+//	} else
+//		m_location = nullptr;
+	m_location = initLocation;
 
 }
 

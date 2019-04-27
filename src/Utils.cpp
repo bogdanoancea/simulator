@@ -18,51 +18,48 @@
 
 #include <geos/geom/Polygon.h>
 
-
-
-
 namespace utils {
 using namespace geos;
 using namespace geos::geom;
 using namespace std;
-	vector<Point*> generatePoints(Map* m, int n) {
-		vector<Point*> result;
 
-		Geometry* g = m->getBoundary();
-		if (dynamic_cast<Polygon*>(g) != nullptr) {
-			Polygon* p = dynamic_cast<Polygon*>(g);
-			const Envelope* env = p->getEnvelopeInternal();
-			double xmin = env->getMinX();
-			double xmax = env->getMaxX();
-			double ymin = env->getMinY();
-			double ymax = env->getMaxX();
+vector<Point*> generatePoints(Map* m, int n) {
+	vector<Point*> result;
 
-			double* x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
-			double* y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
-			for (int i = 0; i < n; i++) {
-				Coordinate c = Coordinate(x[i], y[i]);
-				result.push_back(m->getGlobalFactory()->createPoint(c));
-			}
-			delete[] x;
-			delete[] y;
+	Geometry* g = m->getBoundary();
+	if (dynamic_cast<Polygon*>(g) != nullptr) {
+		Polygon* p = dynamic_cast<Polygon*>(g);
+		const Envelope* env = p->getEnvelopeInternal();
+		double xmin = env->getMinX();
+		double xmax = env->getMaxX();
+		double ymin = env->getMinY();
+		double ymax = env->getMaxX();
+
+		double* x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
+		double* y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
+		for (int i = 0; i < n; i++) {
+			Coordinate c = Coordinate(x[i], y[i]);
+			result.push_back(m->getGlobalFactory()->createPoint(c));
 		}
-		return (result);
+		delete[] x;
+		delete[] y;
 	}
+	return (result);
+}
 
-	void printPersonHeader() {
-		std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
-				<< endl;
-	}
+void printPersonHeader() {
+	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
+			<< endl;
+}
 
-	void printAntennaHeader() {
-		cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
-				<< "Max Connections" << setw(20) << "Attenuation Factor" << endl;
-	}
+void printAntennaHeader() {
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
+			<< "Max Connections" << setw(20) << "Attenuation Factor" << endl;
+}
 
-	void printPhoneHeader() {
-		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
-				<< endl;
-	}
-
+void printPhoneHeader() {
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
+			<< endl;
+}
 
 }
