@@ -30,8 +30,8 @@ public:
 
 	string toString() override;
 
-	Point* getLocation() const;
-	void setLocation(Point* location);
+	virtual Point* getLocation() const;
+	virtual void setLocation(Point* location);
 
 	string dumpLocation(Clock* clock);
 
