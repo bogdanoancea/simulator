@@ -82,6 +82,9 @@ Point* Person::move() {
 
 		Coordinate c = Coordinate(newX, newY);
 		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
+
+		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+
 		setLocation(pt);
 		//get devices and set the location for them
 		int d = m_idDevices.size();
@@ -91,6 +94,7 @@ Point* Person::move() {
 				Agent* a = it->second;
 				HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
 				if (device != nullptr) {
+					//delete device->getLocation();
 					device->setLocation(pt);
 					device->tryConnect();
 				}

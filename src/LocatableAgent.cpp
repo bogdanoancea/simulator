@@ -22,13 +22,14 @@ LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation, Clock* cloc
 	if (initLocation != nullptr) {
 		const Coordinate *c = initLocation->getCoordinate();
 		m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
-	}
-	else
+	} else
 		m_location = nullptr;
 
 }
 
 LocatableAgent::~LocatableAgent() {
+//		if (m_location != nullptr)
+//			this->getMap()->getGlobalFactory()->destroyGeometry(m_location);
 }
 
 Point* LocatableAgent::getLocation() const {
@@ -37,7 +38,17 @@ Point* LocatableAgent::getLocation() const {
 
 void LocatableAgent::setLocation(Point* location) {
 	//const Coordinate *c = location.getCoordinate();
-	m_location = location;//this->getMap()->getGlobalFactory()->createPoint(*c);
+//	if (m_location != nullptr)
+//		this->getMap()->getGlobalFactory()->destroyGeometry(m_location);
+	m_location = location; //this->getMap()->getGlobalFactory()->createPoint(*c);
+}
+
+void LocatableAgent::setLocation2(const unique_ptr<Point> location) {
+	//m_location2 = location;
+}
+
+const unique_ptr<Point>& LocatableAgent::getLocation2() const {
+	return m_location2;
 }
 
 string LocatableAgent::toString() {
