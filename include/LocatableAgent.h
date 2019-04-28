@@ -35,11 +35,9 @@ public:
 
 	string dumpLocation(Clock* clock);
 
-	const unique_ptr<Point>& getLocation2() const;
-	void setLocation2(const unique_ptr<Point> location);
 
 private:
-	unique_ptr<Point> m_location2;
+
 	Point* m_location;
 };
 
