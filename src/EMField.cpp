@@ -22,7 +22,7 @@ EMField::EMField() {
 
 pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
-	int size = m_antennas.size();
+	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		double max = -1;
 		for (Antenna* a : m_antennas) {
@@ -44,7 +44,7 @@ void EMField::addAntenna(Antenna* a) {
 
 vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double powerThreshold) {
 	vector<pair<Antenna*, double>> result;
-	int size = m_antennas.size();
+	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
 			double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());

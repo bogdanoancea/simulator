@@ -21,7 +21,7 @@ using namespace std;
 Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
 		AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor { attenuationFactor }, m_maxConnections {
-				maxConnections }, m_numActiveConnections { 0 }, m_type { type } {
+				maxConnections }, /*m_numActiveConnections { 0 },*/ m_type { type } {
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
@@ -69,7 +69,7 @@ void Antenna::setMaxConnections(int maxConnections) {
 
 bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 	bool result = false;
-	if (m_numActiveConnections < m_maxConnections) {
+	if (/*m_numActiveConnections*/ getNumActiveConections() < m_maxConnections) {
 		//if the device is not yet registered
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
@@ -88,14 +88,14 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 void Antenna::attachDevice(HoldableAgent* device) {
 	m_devices.push_back(device);
 	registerEvent(device, EventType::ATTACH_DEVICE);
-	m_numActiveConnections++;
+	//m_numActiveConnections++;
 }
 
 void Antenna::dettachDevice(HoldableAgent* device) {
 	vector<HoldableAgent*>::iterator it = std::find(m_devices.begin(), m_devices.end(), device);
 	if (it != m_devices.end()) {
 		m_devices.erase(it);
-		m_numActiveConnections--;
+		//m_numActiveConnections--;
 	}
 	registerEvent(device, EventType::DETACH_DEVICE);
 }
@@ -115,6 +115,11 @@ AntennaType Antenna::getType() const {
 void Antenna::setType(AntennaType type) {
 	m_type = type;
 }
+
+unsigned long Antenna:: getNumActiveConections(){
+	return (m_devices.size());
+}
+
 
 void Antenna::registerEvent(HoldableAgent * ag, EventType event) {
 

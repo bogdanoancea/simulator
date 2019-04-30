@@ -58,11 +58,13 @@ private:
 
 	bool alreadyRegistered(HoldableAgent * ag);
 	void registerEvent(HoldableAgent * ag, EventType event);
+	unsigned long getNumActiveConections();
+
 	double m_power;
 	double m_attenuationFactor;
 	Polygon* m_cell;
 	int m_maxConnections;
-	int m_numActiveConnections;
+	//int m_numActiveConnections;
 	vector<HoldableAgent*> m_devices;
 	AntennaType m_type;
 };
