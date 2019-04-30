@@ -22,6 +22,7 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
+#include <AntennaType.h>
 
 
 using namespace std;
@@ -33,18 +34,18 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
 	vector<Person*> persons = generatePopulation(numPersons);
-	for (int i = 0; i < persons.size(); i++) {
+	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
 
 	vector<Antenna*> antennas = generateAntennas(numAntennas);
-	for (int i = 0; i < antennas.size(); i++) {
+	for (unsigned long i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
 	}
 
 	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
-	for (int i = 0; i < phones.size(); i++) {
+	for (unsigned long i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
 
@@ -149,7 +150,7 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	// temporary
 	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
 	int* ages = RandomNumberGenerator::instance()->generateInt(1, 100, numPersons);
-	for (auto i = 0; i < numPersons; i++) {
+	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i]);
 		result.push_back(p);
@@ -169,9 +170,9 @@ vector<Antenna*> World::generateAntennas(int numAntennas) {
 	int maxConnections = 100;
 
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
-	for (auto i = 0; i < numAntennas; i++) {
+	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);

@@ -12,6 +12,7 @@
 #include <cmath>
 #include <algorithm>
 #include <vector>
+#include <AntennaType.h>
 
 EMField* EMField::m_instance = nullptr;
 
@@ -25,10 +26,12 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	if (size > 0) {
 		double max = -1;
 		for (Antenna* a : m_antennas) {
-			double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());
-			if (power > max) {
-				max = power;
-				result = make_pair(a, power);
+			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
+				double power = computePowerOmnidirectional(a, p);
+				if (power > max) {
+					max = power;
+					result = make_pair(a, power);
+				}
 			}
 		}
 	}
@@ -64,5 +67,9 @@ bool EMField::isAntennaInRange(Point* p, Antenna* a, double powerThreshold) {
 		result = true;
 	}
 	return (result);
+}
+
+double EMField::computePowerOmnidirectional(Antenna* a, Point* p){
+	return (a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor()));
 }
 

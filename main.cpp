@@ -25,8 +25,7 @@ using namespace geos;
 using namespace geos::geom;
 using namespace utils;
 
-//RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
-//IDGenerator* IDGenerator::m_instance = nullptr;
+
 
 int main() {
 	cout << "Hello from our mobile phone network simulator!" << endl;
@@ -76,9 +75,9 @@ int main() {
 		indices.insert(num);
 	}
 
-	vector<int> pindices;
+	vector<unsigned long> pindices;
 	std::move(indices.begin(), indices.end(), back_inserter(pindices));
-	int i = 0;
+	unsigned long i = 0;
 	for (auto it = itr3.first; it != itr3.second; it++) {
 		MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 		Person* p = persons[pindices[i++]];

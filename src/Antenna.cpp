@@ -18,10 +18,10 @@
 
 using namespace std;
 
-Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections) :
-		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor {
-			attenuationFactor }, m_maxConnections { maxConnections }, m_numActiveConnections {
-				0 } {
+Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
+		AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor { attenuationFactor }, m_maxConnections {
+				maxConnections }, m_numActiveConnections { 0 }, m_type { type } {
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
@@ -47,11 +47,9 @@ void Antenna::setCell(const Polygon& cell) {
 
 string Antenna::toString() {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15)
-			<< m_attenuationFactor;
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_attenuationFactor;
 	return (result.str());
 }
-
 
 double Antenna::getPower() const {
 	return m_power;
@@ -76,13 +74,11 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
 			result = true;
-		}
-		else {
+		} else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE);
 			result = true;
 		}
-	}
-	else {
+	} else {
 		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE);
 	}
 
@@ -94,7 +90,6 @@ void Antenna::attachDevice(HoldableAgent* device) {
 	registerEvent(device, EventType::ATTACH_DEVICE);
 	m_numActiveConnections++;
 }
-
 
 void Antenna::dettachDevice(HoldableAgent* device) {
 	vector<HoldableAgent*>::iterator it = std::find(m_devices.begin(), m_devices.end(), device);
@@ -113,21 +108,29 @@ bool Antenna::alreadyRegistered(HoldableAgent * device) {
 		return (false);
 }
 
+AntennaType Antenna::getType() const {
+	return m_type;
+}
+
+void Antenna::setType(AntennaType type) {
+	m_type = type;
+}
+
 void Antenna::registerEvent(HoldableAgent * ag, EventType event) {
 
 	cout << getId() << " event registered for device:" << ag->getId();
 	switch (event) {
-		case EventType::ATTACH_DEVICE:
-			cout << ":" << "Attached " << " time " << getClock()->getCurrentTime();
-			break;
-		case EventType::DETACH_DEVICE:
-			cout << ":" << "Detached" << " time " << getClock()->getCurrentTime();
-			break;
-		case EventType::ALREADY_ATTACHED_DEVICE:
-			cout << ":" << " In range, attached" << " time " << getClock()->getCurrentTime();
-			break;
-		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-			cout << ":" << " In range, not attached" << " time " << getClock()->getCurrentTime();
+	case EventType::ATTACH_DEVICE:
+		cout << ":" << "Attached " << " time " << getClock()->getCurrentTime();
+		break;
+	case EventType::DETACH_DEVICE:
+		cout << ":" << "Detached" << " time " << getClock()->getCurrentTime();
+		break;
+	case EventType::ALREADY_ATTACHED_DEVICE:
+		cout << ":" << " In range, attached" << " time " << getClock()->getCurrentTime();
+		break;
+	case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+		cout << ":" << " In range, not attached" << " time " << getClock()->getCurrentTime();
 	}
 	cout << " location " << ag->getLocation()->getCoordinate()->x << "," << ag->getLocation()->getCoordinate()->y;
 	cout << endl;

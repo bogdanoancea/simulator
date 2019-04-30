@@ -63,8 +63,8 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 	else {
 		//try to connect to another antenna in range
 		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p);
-		int size = antennas.size();
-		for (int i = 0; i < size; i++) {
+		unsigned long size = antennas.size();
+		for (unsigned long i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);
 			if (connected) {
 				if (m_connectedTo!= nullptr && antennas[i].first->getId() != m_connectedTo->getId()) {

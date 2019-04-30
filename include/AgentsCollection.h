@@ -44,7 +44,7 @@ class AgentsCollection {
 			return (m_agents2.begin());
 		}
 
-		long size() {
+		unsigned long size() {
 			return (m_agents2.size());
 		}
 
