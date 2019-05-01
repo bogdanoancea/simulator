@@ -1,11 +1,4 @@
-/*
- * Data simulator for mobile phone network events
- *
- * Antenna.cpp
- *
- *  Created on: Apr 5, 2019
- *      Author: Bogdan Oancea
- */
+
 
 #include <Antenna.h>
 #include <HoldableAgent.h>
