@@ -51,7 +51,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, int numPersons, char* configAntennasFile, int numMobilePhones) :
+World::World(Map* map, int numPersons, string configAntennasFile, int numMobilePhones) :
 		m_map { map } {
 
 	m_agentsCollection = new AgentsCollection();
@@ -208,10 +208,10 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	return (result);
 }
 
-vector<Antenna*> World::parseAntennas(char* configAntennasFile) noexcept(false) {
+vector<Antenna*> World::parseAntennas(string configAntennasFile) noexcept(false) {
 	vector<Antenna*> result;
 	XMLDocument doc;
-	XMLError err = doc.LoadFile(configAntennasFile);
+	XMLError err = doc.LoadFile(configAntennasFile.c_str());
 	if (err != XML_SUCCESS)
 		throw std::runtime_error("Error opening configuration file for antennas ");
 

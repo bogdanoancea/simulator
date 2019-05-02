@@ -7,36 +7,34 @@
  *      Author: Bogdan Oancea
  */
 
-
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Polygon.h>
 #include <geos/geom/PrecisionModel.h>
 #include <geos/util/GeometricShapeFactory.h>
 #include <Map.h>
 #include <memory>
-
+#include <geos/io/WKTReader.h>
+#include <geos/io/WKTWriter.h>
 
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
 
 Map::Map() {
-
 	// Define a precision model using 0,0 as the reference origin
 	// and 2.0 as coordinates scale.
 	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
-    // Initialize global factory with defined PrecisionModel
+	// Initialize global factory with defined PrecisionModel
 	// and a SRID of -1 (undefined).
 	m_globalFactory = GeometryFactory::create(pm, -1);
 
-    // We do not need PrecisionMode object anymore, it has
+	// We do not need PrecisionMode object anymore, it has
 	// been copied to global_factory private storage
 	delete pm;
 
 }
 
-Map::Map(double llx, double llY, double width, double height) :
-		Map() {
+Map::Map(double llx, double llY, double width, double height) {
 	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
 	// Initialize global factory with defined PrecisionModel
 	// and a SRID of -1 (undefined).
@@ -48,13 +46,27 @@ Map::Map(double llx, double llY, double width, double height) :
 
 	m_boundary = (geos::geom::Geometry*) create_rectangle(0, 0, 10, 10);
 }
+Map::Map(string wktFile) {
+	geos::io::WKTReader reader;
+	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
+	// Initialize global factory with defined PrecisionModel
+	// and a SRID of -1 (undefined).
+	m_globalFactory = GeometryFactory::create(pm, -1);
+
+	// We do not need PrecisionMode object anymore, it has
+	// been copied to global_factory private storage
+	delete pm;
+	m_boundary = reader.read(wktFile);
+	geos::io::WKTWriter writter;
+	cout << "Our world has a map:" << endl << writter.write(this->getBoundary()) << endl;
+}
 
 Map::~Map() {
 	delete m_boundary;
 }
 
 const GeometryFactory::Ptr& Map::getGlobalFactory() const {
-	return m_globalFactory;
+	return (m_globalFactory);
 }
 
 Polygon*

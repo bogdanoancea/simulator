@@ -25,6 +25,7 @@ class Map {
 		Map();
 
 		Map(double llX, double llY, double width, double height);
+		Map(string wktFile);
 
 		/** Default destructor */
 		virtual ~Map();

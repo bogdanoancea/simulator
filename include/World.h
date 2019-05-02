@@ -29,7 +29,7 @@ class World {
 		/** Default constructor */
 		World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
-		World(Map* map, int numPersons, char* configAntennasFile, int numMobilePhones) noexcept(false);
+		World(Map* map, int numPersons, string configAntennasFile, int numMobilePhones) noexcept(false);
 		/** Default destructor */
 		virtual ~World();
 
@@ -56,7 +56,7 @@ class World {
 		Clock* m_clock;
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
-		vector<Antenna*> parseAntennas(char* configAntennasFile) noexcept(false);
+		vector<Antenna*> parseAntennas(string configAntennasFile) noexcept(false);
 
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
 		XMLNode* getNode(XMLElement* el, const char* name) noexcept(false);

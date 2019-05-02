@@ -16,6 +16,7 @@
 #include <utility>
 #include <vector>
 #include <Constants.h>
+#include <InputParser.h>
 #include <exception>
 #include <typeinfo>
 #include <stdexcept>
@@ -26,22 +27,40 @@ using namespace geos::geom;
 using namespace utils;
 
 int main(int argc, char** argv) {
+	InputParser parser(argc, argv);
+	if (argc == 2 && parser.cmdOptionExists("-h")) {
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml>" << endl;
+		exit(0);
+	}
+
+	const std::string &antennasConfigFile = parser.getCmdOption("-a");
+	const std::string &mapFile = parser.getCmdOption("-m");
+
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
-	Map* map = new Map(0, 0, 10, 10);
-	geos::io::WKTWriter writter;
-	cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
-
-	int numPersons = Constants::NO_PERSONS;
-	int numAntennas = Constants::NO_ANTENNAS;
-	int numMobilePhones = Constants::NO_MOBILE_PHONES;
-
-	cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
-			<< " mobile phones!" << endl;
-
 	//World w(map, numPersons, numAntennas, numMobilePhones);
 	try {
-		World w(map, numPersons, "antennas.xml", numMobilePhones);
+		Map* map;
+		if (mapFile.empty()) {
+			throw runtime_error("no map file!");
+		}
+		else
+			map = new Map(mapFile);
+
+		geos::io::WKTWriter writter;
+		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
+
+		int numPersons = Constants::NO_PERSONS;
+		int numAntennas = Constants::NO_ANTENNAS;
+		int numMobilePhones = Constants::NO_MOBILE_PHONES;
+
+		cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
+				<< " mobile phones!" << endl;
+
+		if (antennasConfigFile.empty()) {
+			throw runtime_error("no antenna config file");
+		}
+		World w(map, numPersons, antennasConfigFile, numMobilePhones);
 
 		AgentsCollection* c = w.getAgents();
 
