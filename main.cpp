@@ -21,6 +21,9 @@
 #include <typeinfo>
 #include <stdexcept>
 
+#include <geos/io/WKTReader.h>
+#include <geos/io/WKTWriter.h>
+
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
@@ -35,6 +38,7 @@ int main(int argc, char** argv) {
 
 	const std::string &antennasConfigFile = parser.getCmdOption("-a");
 	const std::string &mapFile = parser.getCmdOption("-m");
+
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
