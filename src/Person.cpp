@@ -7,9 +7,9 @@
 
 #include <Agent.h>
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/Envelope.h>
-#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Polygon.h>
+#include <geos/geom/LineString.h>
+
 #include <HoldableAgent.h>
 #include <Map.h>
 #include <Person.h>
@@ -17,9 +17,15 @@
 #include <Utils.h>
 #include <cmath>
 #include <iomanip>
-#include <random>
+#include <iostream>
 #include <sstream>
 #include <utility>
+
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/CoordinateSequence.h>
+#include <geos/geom/CoordinateArraySequence.h>
+#include <geos/geom/Point.h>
+#include <geos/geom/Polygon.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -57,33 +63,60 @@ string Person::toString() {
 
 Point* Person::move() {
 	double theta = 0.0;
-	double newX, newY;
+	double x, y, newX, newY;
 	theta = RandomNumberGenerator::instance()->generateDouble(0.0, 2 * utils::PI);
-	newX = getLocation()->getCoordinate()->x + getSpeed() * cos(theta);
-	newY = getLocation()->getCoordinate()->y + getSpeed() * sin(theta);
+	x = getLocation()->getCoordinate()->x;
+	y = getLocation()->getCoordinate()->y;
+	newX = x + getSpeed() * cos(theta);
+	newY = y + getSpeed() * sin(theta);
 	Geometry* g = getMap()->getBoundary();
 	if (dynamic_cast<Polygon*>(g) != nullptr) {
 		Polygon* p = dynamic_cast<Polygon*>(g);
 		const Envelope* env = p->getEnvelopeInternal();
-		double xmin = env->getMinX();
-		double xmax = env->getMaxX();
-		double ymin = env->getMinY();
-		double ymax = env->getMaxX();
-		if (newX > xmax)
-			newX = xmax;
-		if (newX < xmin)
-			newX = xmin;
-		if (newY > ymax)
-			newY = ymax;
-		if (newY < ymin)
-			newY = ymin;
-
+		//double xmin = env->getMinX();
+		//double xmax = env->getMaxX();
+		//double ymin = env->getMinY();
+		//double ymax = env->getMaxX();
 		Coordinate c = Coordinate(newX, newY);
 		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 
-		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+		if (pt->within(g)) {
+			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+			setLocation(pt);
+		} else {
+			cout << "ies afara" << endl;
+			CoordinateSequence* cl = new CoordinateArraySequence();
+			cl->add(Coordinate(x, y));
+			cl->add(Coordinate(newX, newY));
 
-		setLocation(pt);
+			LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
+			Geometry* intersect = ls->intersection(g);
+			Point* ptInt = dynamic_cast<Point*>(intersect);
+			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+			setLocation(ptInt);
+			// fac o linie (x,y) la (newX, newY)
+			// intersectez linia asta cu g si iau primul punct de intersectie
+			// asta va fi noua locatie
+
+		}
+
+		/*
+		 if (newX > xmax)
+		 newX = xmax;
+		 if (newX < xmin)
+		 newX = xmin;
+		 if (newY > ymax)
+		 newY = ymax;
+		 if (newY < ymin)
+		 newY = ymin;
+
+		 Coordinate c = Coordinate(newX, newY);
+		 Point* pt = getMap()->getGlobalFactory()->createPoint(c);
+
+		 this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+
+		 setLocation(pt);
+		 */
 		//get devices and set the location for them
 		if (hasDevices()) {
 			unordered_multimap<string, Agent*>::iterator it;
@@ -104,7 +137,7 @@ bool Person::hasDevices() {
 }
 
 void Person::setLocation(Point* location) {
-	LocatableAgent::setLocation(location);//
+	LocatableAgent::setLocation(location); //
 	if (hasDevices()) {
 		unordered_multimap<string, Agent*>::iterator it;
 		for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
