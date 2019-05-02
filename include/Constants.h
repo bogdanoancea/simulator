@@ -16,6 +16,9 @@
 class Constants {
 	public:
 		static const double POWER_THRESHOLD;
+		static const double ANTENNA_POWER;
+		static const double ATT_FACTOR;
+		static const int MAX_CONNECTIONS;
 		static const int NO_PERSONS;
 		static const int NO_ANTENNAS;
 		static const double MARKET_SHARE;

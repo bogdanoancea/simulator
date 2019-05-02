@@ -18,20 +18,22 @@
 #include <AgentsCollection.h>
 #include <Clock.h>
 #include <MobilePhone.h>
-
+#include <tinyxml2.h>
 
 
 using namespace std;
+using namespace tinyxml2;
 
 class World {
 	public:
 		/** Default constructor */
 		World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
+		World(Map* map, int numPersons, char* configAntennasFile, int numMobilePhones) noexcept(false);
 		/** Default destructor */
 		virtual ~World();
 
-		void runSimulation(string personsFile, string antennasFile) throw (exception);
+		void runSimulation(string personsFile, string antennasFile) noexcept(false);
 
 		void dumpState();
 
@@ -46,10 +48,6 @@ class World {
 		Map* getMap() const;
 		void setMap(Map* map);
 
-//		const std::mt19937* getRandomNumberGenerator() const {
-//			return &m_generator;
-//		}
-
 	private:
 
 		Map* m_map;
@@ -58,9 +56,12 @@ class World {
 		Clock* m_clock;
 		vector<Person*> generatePopulation(int numPersons);
 		vector<Antenna*> generateAntennas(int numAntennas);
+		vector<Antenna*> parseAntennas(char* configAntennasFile) noexcept(false);
+
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
-
-
+		XMLNode* getNode(XMLElement* el, const char* name) noexcept(false);
+		XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
+		Antenna* buildAntenna(XMLElement* amtennaEl) noexcept(false);
 };
 
 #endif // WORLD_H

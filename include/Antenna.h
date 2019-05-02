@@ -23,50 +23,52 @@ using namespace geos::geom;
  *
  */
 class Antenna: public ImmovableAgent {
-public:
-	explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
-			AntennaType type);
-	virtual ~Antenna();
+	public:
+		explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
+				AntennaType type);
 
-	string getName() override {
-		return "Antenna";
-	}
 
-	string toString() override;
+		virtual ~Antenna();
 
-	double getAttenuationFactor() const;
-	void setAttenuationFactor(double attenuationFactor);
+		string getName() override {
+			return "Antenna";
+		}
 
-	Polygon* getCell() const;
-	void setCell(const Polygon& cell);
+		string toString() override;
 
-	double getPower() const;
-	void setPower(double power);
+		double getAttenuationFactor() const;
+		void setAttenuationFactor(double attenuationFactor);
 
-	int getMaxConnections() const;
-	void setMaxConnections(int maxConnections);
+		Polygon* getCell() const;
+		void setCell(const Polygon& cell);
 
-	bool tryRegisterDevice(HoldableAgent* device);
-	void attachDevice(HoldableAgent* device);
-	void dettachDevice(HoldableAgent* device);
+		double getPower() const;
+		void setPower(double power);
 
-	AntennaType getType() const ;
+		int getMaxConnections() const;
+		void setMaxConnections(int maxConnections);
 
-	void setType(AntennaType type);
+		bool tryRegisterDevice(HoldableAgent* device);
+		void attachDevice(HoldableAgent* device);
+		void dettachDevice(HoldableAgent* device);
 
-private:
+		AntennaType getType() const;
 
-	bool alreadyRegistered(HoldableAgent * ag);
-	void registerEvent(HoldableAgent * ag, EventType event);
-	unsigned long getNumActiveConections();
+		void setType(AntennaType type);
 
-	double m_power;
-	double m_attenuationFactor;
-	Polygon* m_cell;
-	int m_maxConnections;
-	//int m_numActiveConnections;
-	vector<HoldableAgent*> m_devices;
-	AntennaType m_type;
+	private:
+
+		bool alreadyRegistered(HoldableAgent * ag);
+		void registerEvent(HoldableAgent * ag, EventType event);
+		unsigned long getNumActiveConections();
+
+		double m_power;
+		double m_attenuationFactor;
+		Polygon* m_cell;
+		int m_maxConnections;
+		//int m_numActiveConnections;
+		vector<HoldableAgent*> m_devices;
+		AntennaType m_type;
 };
 
 #endif /* ANTENNA_H_ */

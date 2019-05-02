@@ -10,6 +10,9 @@
 #include <Constants.h>
 
 const double Constants::POWER_THRESHOLD = 10;
+const double Constants::ATT_FACTOR = 2;
+const int Constants::MAX_CONNECTIONS = 100;
+const double Constants::ANTENNA_POWER = 100;
 const int Constants::NO_PERSONS = 10;
 const int Constants::NO_ANTENNAS = 10;
 const double Constants::MARKET_SHARE = 0.3;

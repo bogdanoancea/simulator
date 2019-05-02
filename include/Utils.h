@@ -27,6 +27,7 @@ namespace utils {
 	void printAntennaHeader();
 	void printPhoneHeader();
 	const double PI = std::atan(1.0) * 4;
+	const char* getAntennasFile(int argc, char** argv);
 
 }
 
