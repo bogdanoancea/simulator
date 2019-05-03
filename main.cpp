@@ -54,9 +54,9 @@ int main(int argc, char** argv) {
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
-		int numPersons = Constants::NO_PERSONS;
-		int numAntennas = Constants::NO_ANTENNAS;
-		int numMobilePhones = Constants::NO_MOBILE_PHONES;
+		unsigned long numPersons = Constants::NO_PERSONS;
+		unsigned long numAntennas = Constants::NO_ANTENNAS;
+		unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
 
 		cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
 				<< " mobile phones!" << endl;

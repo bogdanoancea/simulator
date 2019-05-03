@@ -19,10 +19,10 @@ class Constants {
 		static const double ANTENNA_POWER;
 		static const double ATT_FACTOR;
 		static const int MAX_CONNECTIONS;
-		static const int NO_PERSONS;
-		static const int NO_ANTENNAS;
+		static const unsigned long NO_PERSONS;
+		static const unsigned long NO_ANTENNAS;
 		static const double MARKET_SHARE;
-		static const int NO_MOBILE_PHONES;
+		static const unsigned long NO_MOBILE_PHONES;
 		static const unsigned int SIMULATION_TIME;
 };
 

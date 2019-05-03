@@ -96,7 +96,7 @@ void World::runSimulation(string personsFile, string antennasFile) noexcept(fals
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = dynamic_cast<Antenna*>(it->second);
-		aFile << a->dumpLocation(nullptr) << endl;
+		aFile << a->dumpLocation() << endl;
 	}
 
 	time_t tt = getClock()->realTime();
@@ -110,7 +110,7 @@ void World::runSimulation(string personsFile, string antennasFile) noexcept(fals
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
-			pFile << p->dumpLocation(m_clock) << p->dumpDevices() << endl;
+			pFile << p->dumpLocation() << p->dumpDevices() << endl;
 			p->move();
 
 		}
@@ -161,7 +161,7 @@ void World::setMap(Map* map) {
 	m_map = map;
 }
 
-vector<Person*> World::generatePopulation(int numPersons) {
+vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	vector<Person*> result;
 
 	unsigned id;
@@ -180,7 +180,7 @@ vector<Person*> World::generatePopulation(int numPersons) {
 	return (result);
 }
 
-vector<Antenna*> World::generateAntennas(int numAntennas) {
+vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Antenna*> result;
 
 	unsigned id;

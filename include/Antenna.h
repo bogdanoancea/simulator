@@ -24,8 +24,8 @@ using namespace geos::geom;
  */
 class Antenna: public ImmovableAgent {
 	public:
-		explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
-				AntennaType type);
+		explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power,
+				unsigned long maxConnections, AntennaType type);
 
 
 		virtual ~Antenna();
@@ -65,7 +65,7 @@ class Antenna: public ImmovableAgent {
 		double m_power;
 		double m_attenuationFactor;
 		Polygon* m_cell;
-		int m_maxConnections;
+		unsigned long m_maxConnections;
 		//int m_numActiveConnections;
 		vector<HoldableAgent*> m_devices;
 		AntennaType m_type;

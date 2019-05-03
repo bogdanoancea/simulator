@@ -46,11 +46,11 @@ string LocatableAgent::toString() {
 
 }
 
-string LocatableAgent::dumpLocation(Clock* clock) {
+string LocatableAgent::dumpLocation() {
 	ostringstream ss;
 	char sep = ',';
-	if (clock != nullptr)
-		ss << left << clock->getCurrentTime() << sep;
+	if (getClock() != nullptr)
+		ss << left << getClock()->getCurrentTime() << sep;
 	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
 	return (ss.str());
 }

@@ -23,6 +23,7 @@
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
+using namespace geos::io;
 
 Map::Map() {
 	// Define a precision model using 0,0 as the reference origin
@@ -49,7 +50,7 @@ Map::Map(double llx, double llY, double width, double height) {
 	// been copied to global_factory private storage
 	delete pm;
 
-	m_boundary = (geos::geom::Geometry*) create_rectangle(0, 0, 10, 10);
+	m_boundary = (Geometry*) create_rectangle(0, 0, 10, 10);
 }
 
 
@@ -58,11 +59,12 @@ Map::Map(string wktFileName) {
 	m_globalFactory = GeometryFactory::create(pm, -1);
 	delete pm;
 
-	geos::io::WKTReader reader(*m_globalFactory);
+	WKTReader reader(*m_globalFactory);
 	ifstream wktFile;
 	try {
 		wktFile.open(wktFileName, ios::in);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (ofstream::failure& e) {
 		cerr << "Error opening map file!" << endl;
 		throw e;
 	}
@@ -72,7 +74,8 @@ Map::Map(string wktFileName) {
 	m_boundary = reader.read(buffer.str());
 	try {
 		wktFile.close();
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (ofstream::failure& e) {
 		cerr << "Error closing map file!" << endl;
 		throw e;
 	}

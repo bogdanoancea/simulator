@@ -24,8 +24,6 @@
 #include <sstream>
 #include <utility>
 
-
-
 using namespace geos;
 using namespace geos::geom;
 
@@ -69,67 +67,39 @@ Point* Person::move() {
 	newX = x + getSpeed() * cos(theta);
 	newY = y + getSpeed() * sin(theta);
 	Geometry* g = getMap()->getBoundary();
-	if (dynamic_cast<Polygon*>(g) != nullptr) {
-		Polygon* p = dynamic_cast<Polygon*>(g);
-		const Envelope* env = p->getEnvelopeInternal();
-		//double xmin = env->getMinX();
-		//double xmax = env->getMaxX();
-		//double ymin = env->getMinY();
-		//double ymax = env->getMaxX();
-		Coordinate c = Coordinate(newX, newY);
-		Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 
-		if (pt->within(g)) {
+	Coordinate c = Coordinate(newX, newY);
+	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
+
+	if (pt->within(g)) {
+		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+		setLocation(pt);
+	}
+	else {
+		CoordinateSequence* cl = new CoordinateArraySequence();
+		cl->add(Coordinate(x, y));
+		cl->add(Coordinate(newX, newY));
+
+		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
+		Geometry* intersect = ls->intersection(g);
+		Point* ptInt = dynamic_cast<Point*>(intersect);
+		if (ptInt) {
 			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-			setLocation(pt);
-		} else {
-			cout << "ies afara" << endl;
-			CoordinateSequence* cl = new CoordinateArraySequence();
-			cl->add(Coordinate(x, y));
-			cl->add(Coordinate(newX, newY));
-
-			LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
-			Geometry* intersect = ls->intersection(g);
-			Point* ptInt = dynamic_cast<Point*>(intersect);
-			if (ptInt) {
-				this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-				setLocation(ptInt);
-			}
-			// fac o linie (x,y) la (newX, newY)
-			// intersectez linia asta cu g si iau primul punct de intersectie
-			// asta va fi noua locatie
-
+			setLocation(ptInt);
 		}
-
-		/*
-		 if (newX > xmax)
-		 newX = xmax;
-		 if (newX < xmin)
-		 newX = xmin;
-		 if (newY > ymax)
-		 newY = ymax;
-		 if (newY < ymin)
-		 newY = ymin;
-
-		 Coordinate c = Coordinate(newX, newY);
-		 Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-
-		 this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-
-		 setLocation(pt);
-		 */
-		//get devices and set the location for them
-		if (hasDevices()) {
-			unordered_multimap<string, Agent*>::iterator it;
-			for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
-				Agent* a = it->second;
-				HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
-				if (device != nullptr) {
-					device->tryConnect();
-				}
+	}
+	//get devices and set the location for them
+	if (hasDevices()) {
+		unordered_multimap<string, Agent*>::iterator it;
+		for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
+			Agent* a = it->second;
+			HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
+			if (device != nullptr) {
+				device->tryConnect();
 			}
 		}
 	}
+	//}
 	return (getLocation());
 }
 

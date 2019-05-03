@@ -40,8 +40,6 @@ class Person: public MovableAgent {
 		int getAge() const;
 		void setAge(int age);
 
-		//const Point& getPosition() const;
-		//void setPosition(const Point& position);
 
 		Point* move() override;
 		virtual void setLocation(Point* pt) override;

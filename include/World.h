@@ -54,8 +54,8 @@ class World {
 
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
-		vector<Person*> generatePopulation(int numPersons);
-		vector<Antenna*> generateAntennas(int numAntennas);
+		vector<Person*> generatePopulation(unsigned long numPersons);
+		vector<Antenna*> generateAntennas(unsigned long numAntennas);
 		vector<Antenna*> parseAntennas(string configAntennasFile) noexcept(false);
 
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);

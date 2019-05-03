@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, int maxConnections,
+Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
 		AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor { attenuationFactor }, m_maxConnections {
 				maxConnections }, /*m_numActiveConnections { 0 },*/ m_type { type } {

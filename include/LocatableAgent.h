@@ -33,7 +33,7 @@ public:
 	virtual Point* getLocation() const;
 	virtual void setLocation(Point* location);
 
-	string dumpLocation(Clock* clock);
+		string dumpLocation();
 
 
 private:
