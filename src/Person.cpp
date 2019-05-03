@@ -9,6 +9,9 @@
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Polygon.h>
 #include <geos/geom/LineString.h>
+#include <geos/geom/CoordinateSequence.h>
+#include <geos/geom/CoordinateArraySequence.h>
+#include <geos/geom/Point.h>
 
 #include <HoldableAgent.h>
 #include <Map.h>
@@ -21,11 +24,7 @@
 #include <sstream>
 #include <utility>
 
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/CoordinateSequence.h>
-#include <geos/geom/CoordinateArraySequence.h>
-#include <geos/geom/Point.h>
-#include <geos/geom/Polygon.h>
+
 
 using namespace geos;
 using namespace geos::geom;
@@ -92,8 +91,10 @@ Point* Person::move() {
 			LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
 			Geometry* intersect = ls->intersection(g);
 			Point* ptInt = dynamic_cast<Point*>(intersect);
-			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-			setLocation(ptInt);
+			if (ptInt) {
+				this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+				setLocation(ptInt);
+			}
 			// fac o linie (x,y) la (newX, newY)
 			// intersectez linia asta cu g si iau primul punct de intersectie
 			// asta va fi noua locatie
