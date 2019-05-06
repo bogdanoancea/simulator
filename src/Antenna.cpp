@@ -52,7 +52,7 @@ void Antenna::setPower(double power) {
 	m_power = power;
 }
 
-int Antenna::getMaxConnections() const {
+unsigned long Antenna::getMaxConnections() const {
 	return (m_maxConnections);
 }
 

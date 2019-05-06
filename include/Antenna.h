@@ -45,7 +45,7 @@ class Antenna: public ImmovableAgent {
 		double getPower() const;
 		void setPower(double power);
 
-		int getMaxConnections() const;
+		unsigned long getMaxConnections() const;
 		void setMaxConnections(int maxConnections);
 
 		bool tryRegisterDevice(HoldableAgent* device);
