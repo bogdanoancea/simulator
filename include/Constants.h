@@ -24,6 +24,7 @@ class Constants {
 		static const double MARKET_SHARE;
 		static const unsigned long NO_MOBILE_PHONES;
 		static const unsigned int SIMULATION_TIME;
+		static const char sep;
 };
 
 #endif /* CONSTANTS_H_ */

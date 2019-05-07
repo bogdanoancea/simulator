@@ -59,7 +59,7 @@ class Antenna: public ImmovableAgent {
 	private:
 
 		bool alreadyRegistered(HoldableAgent * ag);
-		void registerEvent(HoldableAgent * ag, EventType event);
+		void registerEvent(HoldableAgent * ag, EventType event, bool verbose);
 		unsigned long getNumActiveConections();
 
 		double m_power;

@@ -18,3 +18,4 @@ const unsigned long Constants::NO_ANTENNAS = 10;
 const double Constants::MARKET_SHARE = 0.3;
 const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::MARKET_SHARE;
 const unsigned int Constants::SIMULATION_TIME = 220;
+const char Constants::sep = ',';
