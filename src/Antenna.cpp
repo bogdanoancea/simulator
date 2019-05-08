@@ -4,9 +4,11 @@
 #include <Map.h>
 #include <iomanip>
 #include <sstream>
+#include <fstream>
 #include <algorithm>
 #include <EventType.h>
 #include <Constants.h>
+#include <string.h>
 
 using namespace std;
 
@@ -14,15 +16,26 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 		AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor { attenuationFactor }, m_maxConnections {
 				maxConnections }, /*m_numActiveConnections { 0 },*/m_type { type } {
+
+	string fileName = getName() + std::to_string(id) + ".csv";
+	cout << "aaaaaa" << fileName;
+	try {
+		m_file.open(fileName, ios::out);
+	}
+	catch (std::ofstream::failure& e) {
+		cerr << "Error opening output files!" << endl;
+		cerr << "Output goes to the console!" << endl;
+	}
+
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
 Antenna::~Antenna() {
-	// TODO Auto-generated destructor stub
+// TODO Auto-generated destructor stub
 }
 
 double Antenna::getAttenuationFactor() const {
-	return m_attenuationFactor;
+	return (m_attenuationFactor);
 }
 
 void Antenna::setAttenuationFactor(double attenuationFactor) {
@@ -30,11 +43,11 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 }
 
 Polygon* Antenna::getCell() const {
-	return m_cell;
+	return (m_cell);
 }
 
 void Antenna::setCell(const Polygon& cell) {
-	//m_cell = cell;
+//m_cell = cell;
 }
 
 string Antenna::toString() {
@@ -82,7 +95,7 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 void Antenna::attachDevice(HoldableAgent* device) {
 	m_devices.push_back(device);
 	registerEvent(device, EventType::ATTACH_DEVICE, false);
-	//m_numActiveConnections++;
+//m_numActiveConnections++;
 }
 
 void Antenna::dettachDevice(HoldableAgent* device) {
@@ -150,9 +163,14 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
 			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
 				code = 4;
 		}
-		cout << getClock()->getCurrentTime() << sep << getId() << sep << code << sep << ag->getLocation()->getCoordinate()->x << sep
-				<< ag->getLocation()->getCoordinate()->y;
-		cout << endl;
+		stringstream ss;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << code << sep << ag->getId() << sep
+				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
+
+		if (m_file)
+			m_file << ss.str();
+		else
+			cout << ss.str();
 	}
 
 }

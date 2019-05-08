@@ -33,7 +33,7 @@ class World {
 		/** Default destructor */
 		virtual ~World();
 
-		void runSimulation(string personsFile, string antennasFile) noexcept(false);
+		void runSimulation(string personsFile, string& antennasFile) noexcept(false);
 
 		void dumpState();
 

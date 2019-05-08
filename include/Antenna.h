@@ -15,6 +15,8 @@
 #include <geos/geom/Polygon.h>
 #include <EventType.h>
 #include <AntennaType.h>
+#include <string>
+#include <fstream>
 
 using namespace geos;
 using namespace geos::geom;
@@ -31,7 +33,7 @@ class Antenna: public ImmovableAgent {
 		virtual ~Antenna();
 
 		string getName() override {
-			return "Antenna";
+			return ("Antenna");
 		}
 
 		string toString() override;
@@ -69,6 +71,7 @@ class Antenna: public ImmovableAgent {
 		//int m_numActiveConnections;
 		vector<HoldableAgent*> m_devices;
 		AntennaType m_type;
+		ofstream m_file;
 };
 
 #endif /* ANTENNA_H_ */

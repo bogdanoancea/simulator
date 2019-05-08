@@ -23,6 +23,7 @@
 #include <iostream>
 #include <sstream>
 #include <utility>
+#include <Constants.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -123,7 +124,7 @@ void Person::setLocation(Point* location) {
 
 string Person::dumpDevices() {
 	stringstream ss;
-	char sep = ',';
+	char sep = Constants::sep;
 	unordered_multimap<string, Agent*>::iterator it;
 	for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
 		Agent* a = it->second;

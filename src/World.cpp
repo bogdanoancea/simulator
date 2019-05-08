@@ -22,6 +22,7 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
+#include <sstream>
 #include <AntennaType.h>
 #include <tinyxml2.h>
 
@@ -81,7 +82,7 @@ World::~World() {
 	cout << "End of simulation!" << endl;
 }
 
-void World::runSimulation(string personsFile, string antennasFile) noexcept(false) {
+void World::runSimulation(string personsFile, string& antennasFile) noexcept(false) {
 	ofstream pFile, aFile;
 	try {
 		pFile.open(personsFile, ios::out);
@@ -267,7 +268,6 @@ Antenna* World::buildAntenna(XMLElement* antennaEl) noexcept(false) {
 	Coordinate c = Coordinate(x, y);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	id = IDGenerator::instance()->next();
-
 	a = new Antenna(getMap(), id, p, m_clock, attentuationFactor, power, maxConn, type);
 
 	return (a);

@@ -32,7 +32,7 @@ using namespace utils;
 int main(int argc, char** argv) {
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml>" << endl;
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt>" << endl;
 		exit(0);
 	}
 
@@ -64,6 +64,7 @@ int main(int argc, char** argv) {
 		if (antennasConfigFile.empty()) {
 			throw runtime_error("no antenna config file");
 		}
+
 		World w(map, numPersons, antennasConfigFile, numMobilePhones);
 
 		AgentsCollection* c = w.getAgents();
@@ -124,7 +125,9 @@ int main(int argc, char** argv) {
 			cout << p->toString() << endl;
 		}
 
-		w.runSimulation("persons.csv", "antennas.csv");
+		string persFileName("persons.csv");
+		string antennasFileName("antennas.csv");
+		w.runSimulation(persFileName, antennasFileName);
 	}
 	catch (std::runtime_error& e) {
 		cout << e.what() << "\n";
