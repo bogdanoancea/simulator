@@ -52,7 +52,27 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, int numPersons, string configAntennasFile, int numMobilePhones) :
+World::World(Map* map, int numPersons, string& configAntennasFile, int numMobilePhones) :
+		m_map { map } {
+
+	m_agentsCollection = new AgentsCollection();
+	m_clock = new Clock();
+	vector<Person*> persons = parsePopulation(personsFileName);
+	for (unsigned long i = 0; i < persons.size(); i++) {
+		m_agentsCollection->addAgent(persons[i]);
+	}
+	vector<Antenna*> antennas = parseAntennas(configAntennasFile);
+	for (unsigned long i = 0; i < antennas.size(); i++) {
+		m_agentsCollection->addAgent(antennas[i]);
+		EMField::instance()->addAntenna(antennas[i]);
+	}
+	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
+	for (unsigned long i = 0; i < phones.size(); i++) {
+		m_agentsCollection->addAgent(phones[i]);
+	}
+}
+
+World::World(Map* map, string& personsFileName, string& configAntennasFile, int numMobilePhones) :
 		m_map { map } {
 
 	m_agentsCollection = new AgentsCollection();
@@ -209,7 +229,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	return (result);
 }
 
-vector<Antenna*> World::parseAntennas(string configAntennasFile) noexcept(false) {
+vector<Antenna*> World::parseAntennas(string& configAntennasFile) noexcept(false) {
 	vector<Antenna*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configAntennasFile.c_str());
@@ -271,4 +291,47 @@ Antenna* World::buildAntenna(XMLElement* antennaEl) noexcept(false) {
 	a = new Antenna(getMap(), id, p, m_clock, attentuationFactor, power, maxConn, type);
 
 	return (a);
+}
+
+vector<Person*> World::parsePersons(string& personsFileName) noexcept(false) {
+	vector<Person*> result;
+	XMLDocument doc;
+	XMLError err = doc.LoadFile(personsFileName.c_str());
+	if (err != XML_SUCCESS)
+		throw std::runtime_error("Error opening configuration file for persons ");
+
+	XMLElement* personsEl = doc.FirstChildElement("persons");
+	if (!personsEl)
+		throw std::runtime_error("Syntax error in the configuration file for persons ");
+	else {
+
+		XMLNode* numNode = getNode(personsEl, "num_persons");
+		int numPersons = atoi(numNode->ToText()->Value());
+		XMLNode* minAgeNode = getNode(personsEl, "min_age");
+		unsigned int min_age = atoi(minAgeNode->ToText()->Value());
+		XMLNode* maxAgeNode = getNode(personsEl, "max_age");
+		unsigned int max_age = atoi(maxAgeNode->ToText()->Value());
+
+		XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
+		XMLNode* distribTypeNode = getNode(ageDistribEl, "type");
+		const char* distrib = distribTypeNode->ToText()->Value();
+		if (strcmp(distrib, "normal") || strcmp(distrib, "uniform"))
+			throw std::runtime_error("Unknown age distribution for population!");
+		if (!strcmp(distrib, "normal")) {
+			XMLNode* meanNode = getNode(ageDistribEl, "mean");
+			double mean_age = atof(distribTypeNode->ToText()->Value());
+			XMLNode* sdNode = getNode(ageDistribEl, "sd");
+			double sd = atof(distribTypeNode->ToText()->Value());
+
+		}
+		else if (!strcmp(distrib, "uniform")) {
+
+		}
+
+		for (int i = 0; i < numPersons; i++) {
+			Person* p = buildPerson(antennaEl);
+			result.push_back(p);
+		}
+	}
+	return (result);
 }

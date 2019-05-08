@@ -37,36 +37,38 @@ int main(int argc, char** argv) {
 		exit(0);
 	}
 
-	const std::string &antennasConfigFile = parser.getCmdOption("-a");
-	const std::string &mapFile = parser.getCmdOption("-m");
-
+	const std::string &antennasConfigFileName = parser.getCmdOption("-a");
+	const std::string &mapFileName = parser.getCmdOption("-m");
+	const std::string &personsFileName = parser.getCmdOption("-p");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
 
 	try {
 		Map* map;
-		if (mapFile.empty()) {
+		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
 		}
 		else
-			map = new Map(mapFile);
+			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
-		unsigned long numPersons = Constants::NO_PERSONS;
-		//unsigned long numAntennas = Constants::NO_ANTENNAS;
-		unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
+		//unsigned long numPersons = Constants::NO_PERSONS;
+		//unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
 
-		cout << "... and it has " << numPersons << " persons and " << numMobilePhones
-				<< " mobile phones!" << endl;
+		//cout << "... and it has " << numPersons << " persons and " << numMobilePhones
+		//		<< " mobile phones!" << endl;
 
-		if (antennasConfigFile.empty()) {
+		if (antennasConfigFileName.empty()) {
 			throw runtime_error("no antenna config file!");
 		}
+		if (personsFileName.empty()) {
+			throw runtime_error("no persons config file!");
+		}
 
-		World w(map, numPersons, antennasConfigFile, numMobilePhones);
+		World w(map, personsFile, antennasConfigFile, numMobilePhones);
 
 		AgentsCollection* c = w.getAgents();
 
