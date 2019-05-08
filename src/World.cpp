@@ -57,7 +57,7 @@ World::World(Map* map, int numPersons, string& configAntennasFile, int numMobile
 
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
-	vector<Person*> persons = parsePopulation(personsFileName);
+	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
@@ -77,7 +77,7 @@ World::World(Map* map, string& personsFileName, string& configAntennasFile, int 
 
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
-	vector<Person*> persons = generatePopulation(numPersons);
+	vector<Person*> persons = parsePersons(personsFileName);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}

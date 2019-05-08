@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
 		//unsigned long numPersons = Constants::NO_PERSONS;
-		//unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
+		unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
 
 		//cout << "... and it has " << numPersons << " persons and " << numMobilePhones
 		//		<< " mobile phones!" << endl;
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 			throw runtime_error("no persons config file!");
 		}
 
-		World w(map, personsFile, antennasConfigFile, numMobilePhones);
+		World w(map, personsFileName, antennasConfigFileName, numMobilePhones);
 
 		AgentsCollection* c = w.getAgents();
 
