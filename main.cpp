@@ -30,6 +30,7 @@ using namespace geos::geom;
 using namespace utils;
 
 int main(int argc, char** argv) {
+
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt>" << endl;
@@ -42,7 +43,7 @@ int main(int argc, char** argv) {
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
-	//World w(map, numPersons, numAntennas, numMobilePhones);
+
 	try {
 		Map* map;
 		if (mapFile.empty()) {
@@ -55,14 +56,14 @@ int main(int argc, char** argv) {
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
 		unsigned long numPersons = Constants::NO_PERSONS;
-		unsigned long numAntennas = Constants::NO_ANTENNAS;
+		//unsigned long numAntennas = Constants::NO_ANTENNAS;
 		unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
 
-		cout << "... and it has " << numPersons << " persons and " << numAntennas << " antennas" << " and " << numMobilePhones
+		cout << "... and it has " << numPersons << " persons and " << numMobilePhones
 				<< " mobile phones!" << endl;
 
 		if (antennasConfigFile.empty()) {
-			throw runtime_error("no antenna config file");
+			throw runtime_error("no antenna config file!");
 		}
 
 		World w(map, numPersons, antennasConfigFile, numMobilePhones);

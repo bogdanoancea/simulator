@@ -18,7 +18,6 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 				maxConnections }, /*m_numActiveConnections { 0 },*/m_type { type } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
-	cout << "aaaaaa" << fileName;
 	try {
 		m_file.open(fileName, ios::out);
 	}
@@ -31,7 +30,14 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 }
 
 Antenna::~Antenna() {
-// TODO Auto-generated destructor stub
+	if (m_file.is_open()) {
+		try {
+			m_file.close();
+		}
+		catch (std::ofstream::failure& e) {
+			cerr << "Error closing output files!" << endl;
+		}
+	}
 }
 
 double Antenna::getAttenuationFactor() const {
@@ -42,7 +48,7 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 	m_attenuationFactor = attenuationFactor;
 }
 
-Polygon* Antenna::getCell() const {
+Polygon * Antenna::getCell() const {
 	return (m_cell);
 }
 
@@ -167,10 +173,9 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
 		ss << getClock()->getCurrentTime() << sep << getId() << sep << code << sep << ag->getId() << sep
 				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
 
-		if (m_file)
+		if (m_file.is_open())
 			m_file << ss.str();
 		else
 			cout << ss.str();
 	}
-
 }
