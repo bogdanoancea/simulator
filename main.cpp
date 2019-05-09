@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt>" << endl;
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <perosnsConfigFile.xml>" << endl;
 		exit(0);
 	}
 
@@ -56,7 +56,7 @@ int main(int argc, char** argv) {
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
 		//unsigned long numPersons = Constants::NO_PERSONS;
-		unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
+		//unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
 
 		//cout << "... and it has " << numPersons << " persons and " << numMobilePhones
 		//		<< " mobile phones!" << endl;
