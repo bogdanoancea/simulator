@@ -29,9 +29,9 @@ class World {
 		/** Default constructor */
 		World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
-		World(Map* map, int numPersons, string& configAntennasFile, int numMobilePhones) noexcept(false);
+		World(Map* map, int numPersons, const string& configAntennasFile, int numMobilePhones) noexcept(false);
 
-		World(Map* map, string& personsFileName, string& configAntennasFile, int numMobilePhones) noexcept(false);
+		World(Map* map, const string& personsFileName, const string& configAntennasFile, int numMobilePhones) noexcept(false);
 
 		/** Default destructor */
 		virtual ~World();
@@ -58,9 +58,11 @@ class World {
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
 		vector<Person*> generatePopulation(unsigned long numPersons);
+		vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+				double male_share, double speed_walk, double speed_car);
 		vector<Antenna*> generateAntennas(unsigned long numAntennas);
-		vector<Antenna*> parseAntennas(string& configAntennasFile) noexcept(false);
-		vector<Person*> parsePersons(string& personsFileName) noexcept(false);
+		vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
+		vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
 
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
 		XMLNode* getNode(XMLElement* el, const char* name) noexcept(false);

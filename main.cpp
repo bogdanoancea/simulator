@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
 		// randomly select numMobilePhones people
 		unordered_set<int> indices;
 		while (indices.size() < numMobilePhones) {
-			int num = rand() % numPersons;
+			int num = rand() % persons.size();
 			indices.insert(num);
 		}
 

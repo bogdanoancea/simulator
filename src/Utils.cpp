@@ -35,8 +35,8 @@ namespace utils {
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
-			double* x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
-			double* y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
+			double* x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n);
+			double* y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n);
 			for (int i = 0; i < n; i++) {
 				Coordinate c = Coordinate(x[i], y[i]);
 				result.push_back(m->getGlobalFactory()->createPoint(c));

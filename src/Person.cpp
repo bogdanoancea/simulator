@@ -28,10 +28,9 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age } {
+Person::Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gen) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
 	// TODO Auto-generated constructor stub
-
 }
 
 Person::~Person() {
@@ -62,7 +61,7 @@ string Person::toString() {
 Point* Person::move() {
 	double theta = 0.0;
 	double x, y, newX, newY;
-	theta = RandomNumberGenerator::instance()->generateDouble(0.0, 2 * utils::PI);
+	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 	x = getLocation()->getCoordinate()->x;
 	y = getLocation()->getCoordinate()->y;
 	newX = x + getSpeed() * cos(theta);

@@ -25,7 +25,15 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 	public:
-		explicit Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age);
+		enum Gender {
+			MALE, FEMALE
+		};
+		enum AgeDistributions {
+			NORMAL, UNIFORM
+		};
+
+		explicit Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gender);
+
 		virtual ~Person();
 
 		string getName() override {
@@ -50,6 +58,7 @@ class Person: public MovableAgent {
 
 	private:
 		int m_age;
+		Gender m_gender;
 		unordered_multimap<string, Agent*> m_idDevices;
 
 };

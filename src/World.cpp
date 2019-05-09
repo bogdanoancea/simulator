@@ -25,6 +25,7 @@
 #include <sstream>
 #include <AntennaType.h>
 #include <tinyxml2.h>
+#include <cstring>
 
 using namespace std;
 using namespace utils;
@@ -52,7 +53,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, int numPersons, string& configAntennasFile, int numMobilePhones) :
+World::World(Map* map, int numPersons, const string& configAntennasFile, int numMobilePhones) :
 		m_map { map } {
 
 	m_agentsCollection = new AgentsCollection();
@@ -72,7 +73,7 @@ World::World(Map* map, int numPersons, string& configAntennasFile, int numMobile
 	}
 }
 
-World::World(Map* map, string& personsFileName, string& configAntennasFile, int numMobilePhones) :
+World::World(Map* map, const string& personsFileName, const string& configAntennasFile, int numMobilePhones) :
 		m_map { map } {
 
 	m_agentsCollection = new AgentsCollection();
@@ -189,10 +190,10 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
 	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
-	int* ages = RandomNumberGenerator::instance()->generateInt(1, 100, numPersons);
+	int* ages = RandomNumberGenerator::instance()->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i]);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -229,7 +230,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	return (result);
 }
 
-vector<Antenna*> World::parseAntennas(string& configAntennasFile) noexcept(false) {
+vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept(false) {
 	vector<Antenna*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configAntennasFile.c_str());
@@ -293,7 +294,7 @@ Antenna* World::buildAntenna(XMLElement* antennaEl) noexcept(false) {
 	return (a);
 }
 
-vector<Person*> World::parsePersons(string& personsFileName) noexcept(false) {
+vector<Person*> World::parsePersons(const string& personsFileName) noexcept(false) {
 	vector<Person*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(personsFileName.c_str());
@@ -304,7 +305,6 @@ vector<Person*> World::parsePersons(string& personsFileName) noexcept(false) {
 	if (!personsEl)
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
-
 		XMLNode* numNode = getNode(personsEl, "num_persons");
 		int numPersons = atoi(numNode->ToText()->Value());
 		XMLNode* minAgeNode = getNode(personsEl, "min_age");
@@ -315,23 +315,86 @@ vector<Person*> World::parsePersons(string& personsFileName) noexcept(false) {
 		XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
 		XMLNode* distribTypeNode = getNode(ageDistribEl, "type");
 		const char* distrib = distribTypeNode->ToText()->Value();
-		if (strcmp(distrib, "normal") || strcmp(distrib, "uniform"))
+
+		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
 			throw std::runtime_error("Unknown age distribution for population!");
+
+		Person::AgeDistributions d;
+		vector<double> params;
 		if (!strcmp(distrib, "normal")) {
 			XMLNode* meanNode = getNode(ageDistribEl, "mean");
-			double mean_age = atof(distribTypeNode->ToText()->Value());
+			double mean_age = atof(meanNode->ToText()->Value());
 			XMLNode* sdNode = getNode(ageDistribEl, "sd");
-			double sd = atof(distribTypeNode->ToText()->Value());
-
+			double sd = atof(sdNode->ToText()->Value());
+			d = Person::AgeDistributions::NORMAL;
+			params.push_back(mean_age);
+			params.push_back(sd);
+			params.push_back(min_age);
+			params.push_back(max_age);
 		}
 		else if (!strcmp(distrib, "uniform")) {
-
+			d = Person::AgeDistributions::UNIFORM;
+			params.push_back(min_age);
+			params.push_back(max_age);
 		}
+		XMLNode* maleShareNode = getNode(personsEl, "male_share");
+		double male_share = atof(maleShareNode->ToText()->Value());
 
-		for (int i = 0; i < numPersons; i++) {
-			Person* p = buildPerson(antennaEl);
-			result.push_back(p);
-		}
+		XMLNode* prob_mobilePhoneNode = getNode(personsEl, "prob_mobile_phone");
+		double probMobilePhone = atof(prob_mobilePhoneNode->ToText()->Value());
+
+		XMLNode* speed_walkNode = getNode(personsEl, "speed_walk");
+		double speed_walk = atof(speed_walkNode->ToText()->Value());
+
+		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
+		double speed_car = atof(speed_carNode->ToText()->Value());
+
+		result = generatePopulation(numPersons, params, d, male_share, speed_walk, speed_car);
 	}
+	return (result);
+}
+
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+		double male_share, double speed_walk, double speed_car) {
+
+	vector<Person*> result;
+
+	unsigned id;
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
+
+	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
+	int sum = 0;
+	for (unsigned long i = 0; i < numPersons; i++)
+		sum += walk_car[i];
+
+	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
+
+	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
+	double* speeds_car = RandomNumberGenerator::instance()->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
+
+	double* ages;
+	if (age_distribution == Person::AgeDistributions::UNIFORM)
+		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
+	else if (age_distribution == Person::AgeDistributions::NORMAL) {
+		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
+	}
+
+	unsigned long cars = 0;
+	unsigned long walks = 0;
+	Person* p;
+	for (unsigned long i = 0; i < numPersons; i++) {
+		id = IDGenerator::instance()->next();
+		if (walk_car[i])
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+		else
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[walks++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+		result.push_back(p);
+	}
+	delete[] speeds_walk;
+	delete[] speeds_car;
+	delete[] ages;
+
 	return (result);
 }
