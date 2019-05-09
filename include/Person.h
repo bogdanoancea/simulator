@@ -56,6 +56,8 @@ class Person: public MovableAgent {
 			m_idDevices.insert(std::pair<string, Agent*>(type, agent));
 		}
 
+	Gender getGender() const;
+
 	private:
 		int m_age;
 		Gender m_gender;

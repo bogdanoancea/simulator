@@ -47,7 +47,7 @@ void Person::setAge(int age) {
 
 string Person::toString() {
 	ostringstream ss;
-	ss << MovableAgent::toString() << left << setw(15) << m_age;
+	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE? "Male" : "Female");
 
 	if (m_idDevices.size() > 0) {
 		for (pair<string, Agent*> i : m_idDevices) {
@@ -130,4 +130,8 @@ string Person::dumpDevices() {
 		ss << sep << a->getId();
 	}
 	return (ss.str());
+}
+
+Person::Gender Person::getGender() const {
+	return m_gender;
 }

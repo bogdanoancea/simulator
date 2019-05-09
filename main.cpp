@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 			throw runtime_error("no persons config file!");
 		}
 
-		World w(map, personsFileName, antennasConfigFileName, numMobilePhones);
+		World w(map, personsFileName, antennasConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
 
@@ -95,38 +95,38 @@ int main(int argc, char** argv) {
 			cout << m->toString() << endl;
 		}
 
-		cout << "... now we give mobile phones to persons... " << endl;
+//		cout << "... now we give mobile phones to persons... " << endl;
 		// randomly select numMobilePhones people
-		unordered_set<int> indices;
-		while (indices.size() < numMobilePhones) {
-			int num = rand() % persons.size();
-			indices.insert(num);
-		}
+//		unordered_set<int> indices;
+//		while (indices.size() < numMobilePhones) {
+//			int num = rand() % persons.size();
+//			indices.insert(num);
+//		}
+//
+//		vector<unsigned long> pindices;
+//		std::move(indices.begin(), indices.end(), back_inserter(pindices));
+//		unsigned long i = 0;
+//		for (auto it = itr3.first; it != itr3.second; it++) {
+//			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+//			Person* p = persons[pindices[i++]];
+//			m->setHolder(p);
+//			p->addDevice(typeid(MobilePhone).name(), m);
+//		}
 
-		vector<unsigned long> pindices;
-		std::move(indices.begin(), indices.end(), back_inserter(pindices));
-		unsigned long i = 0;
-		for (auto it = itr3.first; it != itr3.second; it++) {
-			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-			Person* p = persons[pindices[i++]];
-			m->setHolder(p);
-			p->addDevice(typeid(MobilePhone).name(), m);
-		}
-
-		cout << "Again the mobile phones but this time with assigned owners... " << endl;
-		utils::printPhoneHeader();
-		for (auto it = itr3.first; it != itr3.second; it++) {
-			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-			cout << m->toString() << endl;
-		}
-
-		cout << "Again the persons now with mobile phones... " << endl;
-		utils::printPersonHeader();
-		itr = c->getAgentListByType(typeid(Person).name());
-		for (auto it = itr.first; it != itr.second; it++) {
-			Person* p = dynamic_cast<Person*>(it->second);
-			cout << p->toString() << endl;
-		}
+//		cout << "Again the mobile phones but this time with assigned owners... " << endl;
+//		utils::printPhoneHeader();
+//		for (auto it = itr3.first; it != itr3.second; it++) {
+//			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+//			cout << m->toString() << endl;
+//		}
+//
+//		cout << "Again the persons now with mobile phones... " << endl;
+//		utils::printPersonHeader();
+//		itr = c->getAgentListByType(typeid(Person).name());
+//		for (auto it = itr.first; it != itr.second; it++) {
+//			Person* p = dynamic_cast<Person*>(it->second);
+//			cout << p->toString() << endl;
+//		}
 
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");

@@ -73,7 +73,7 @@ World::World(Map* map, int numPersons, const string& configAntennasFile, int num
 	}
 }
 
-World::World(Map* map, const string& personsFileName, const string& configAntennasFile, int numMobilePhones) :
+World::World(Map* map, const string& personsFileName, const string& configAntennasFile) :
 		m_map { map } {
 
 	m_agentsCollection = new AgentsCollection();
@@ -87,11 +87,6 @@ World::World(Map* map, const string& personsFileName, const string& configAntenn
 	for (unsigned long i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
-	}
-
-	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
-	for (unsigned long i = 0; i < phones.size(); i++) {
-		m_agentsCollection->addAgent(phones[i]);
 	}
 }
 
@@ -108,8 +103,7 @@ void World::runSimulation(string personsFile, string& antennasFile) noexcept(fal
 	try {
 		pFile.open(personsFile, ios::out);
 		aFile.open(antennasFile, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
@@ -148,8 +142,7 @@ void World::runSimulation(string personsFile, string& antennasFile) noexcept(fal
 	try {
 		pFile.close();
 		aFile.close();
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;
 	}
@@ -226,6 +219,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 		id = IDGenerator::instance()->next();
 		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD);
 		result.push_back(p);
+		m_agentsCollection->addAgent(p);
 	}
 	return (result);
 }
@@ -337,6 +331,12 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 			params.push_back(min_age);
 			params.push_back(max_age);
 		}
+		else {
+			d = Person::AgeDistributions::UNIFORM;
+			params.push_back(min_age);
+			params.push_back(max_age);
+		}
+
 		XMLNode* maleShareNode = getNode(personsEl, "male_share");
 		double male_share = atof(maleShareNode->ToText()->Value());
 
@@ -349,13 +349,13 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, probMobilePhone, speed_walk, speed_car);
 	}
 	return (result);
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
-		double male_share, double speed_walk, double speed_car) {
+		double male_share, double probMobilePhone, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
@@ -363,11 +363,16 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 
 	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
+	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
 	int sum = 0;
-	for (unsigned long i = 0; i < numPersons; i++)
+	unsigned long numPhones = 0;
+	for (unsigned long i = 0; i < numPersons; i++){
 		sum += walk_car[i];
+		numPhones += phone[i];
+	}
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
+
 
 	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
 	double* speeds_car = RandomNumberGenerator::instance()->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
@@ -381,6 +386,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	unsigned long cars = 0;
 	unsigned long walks = 0;
+	vector<MobilePhone*> mobiles = generateMobilePhones(numPhones);
+	unsigned long m_index = 0;
 	Person* p;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
@@ -390,11 +397,17 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		else
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+
+		if(phone[i]) {
+			mobiles[m_index]->setHolder(p);
+			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
+			m_index++;
+		}
 		result.push_back(p);
 	}
 	delete[] speeds_walk;
 	delete[] speeds_car;
 	delete[] ages;
-
+	delete[] gender;
 	return (result);
 }

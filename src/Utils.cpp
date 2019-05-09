@@ -49,7 +49,7 @@ namespace utils {
 
 	void printPersonHeader() {
 		std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15)
-				<< " Age" << endl;
+				<< " Age" << setw(15)<< "Gender" << endl;
 	}
 
 	void printAntennaHeader() {
@@ -60,10 +60,5 @@ namespace utils {
 	void printPhoneHeader() {
 		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
 				<< endl;
-	}
-
-	const char* getAntennasFile(int argc, char** argv) {
-		return (nullptr);
-		//TODO implement it
 	}
 }
