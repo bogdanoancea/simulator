@@ -388,7 +388,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[walks++], ages[i],
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		result.push_back(p);
 	}
