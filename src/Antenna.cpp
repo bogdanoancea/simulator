@@ -179,3 +179,15 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
 			cout << ss.str();
 	}
 }
+
+double Antenna::S0() {
+	return (30 + 10 * log10(m_power));
+}
+
+double Antenna::SDist(double dist) {
+	return (10 * m_attenuationFactor * log10(dist));
+}
+
+double Antenna::S(double dist) {
+	return (S0() - SDist(dist));
+}

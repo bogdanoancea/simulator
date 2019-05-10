@@ -372,8 +372,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	}
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
-
-
 	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
 	double* speeds_car = RandomNumberGenerator::instance()->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 
@@ -382,6 +380,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	else if (age_distribution == Person::AgeDistributions::NORMAL) {
 		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
+	}
+	else {
+		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	}
 
 	unsigned long cars = 0;

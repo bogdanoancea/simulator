@@ -58,12 +58,15 @@ class Antenna: public ImmovableAgent {
 
 		void setType(AntennaType type);
 
+		double S(double dist);
+
 	private:
 
 		bool alreadyRegistered(HoldableAgent * ag);
 		void registerEvent(HoldableAgent * ag, EventType event, bool verbose);
 		unsigned long getNumActiveConections();
-
+		double S0();
+		double SDist(double dist);
 		double m_power;
 		double m_attenuationFactor;
 		Polygon* m_cell;

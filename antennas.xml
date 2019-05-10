@@ -1,7 +1,7 @@
 <antennas>
     <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>0</x>
@@ -9,7 +9,7 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>1</x>
@@ -17,15 +17,15 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
-        <attenuationfactor>2</attenuationfactor>
+        <power>10</power>
+        <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
         <x>2</x>
         <y>5</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>3</x>
@@ -33,7 +33,7 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>4</x>
@@ -41,15 +41,15 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
-        <attenuationfactor>2</attenuationfactor>
+        <power>10</power>
+        <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
         <x>5</x>
         <y>5</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>6</x>
@@ -57,15 +57,15 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
-        <attenuationfactor>2r</attenuationfactor>
+        <power>10</power>
+        <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
         <x>7</x>
         <y>5</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
+        <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <x>8</x>
@@ -73,8 +73,8 @@
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
-        <power>100</power>
-        <attenuationfactor>2</attenuationfactor>
+        <power>10</power>
+        <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
         <x>9</x>
         <y>5</y>
