@@ -202,11 +202,14 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	double power = Constants::ANTENNA_POWER;
 	double attFactor = Constants::ATT_FACTOR;
 	int maxConnections = Constants::MAX_CONNECTIONS;
+	double smid = Constants::S_MID;
+	double ssteep = Constants::S_STEEP;
 
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
+				AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -235,7 +238,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 	if (!antennasNode)
 		throw std::runtime_error("Syntax error in the configuration file for antennas ");
 	else {
-		XMLElement* antennaEl = getFirstChildElement(antennasNode, "antenna");
+		XMLElement* antennaEl = utils::getFirstChildElement(antennasNode, "antenna");
 		for (; antennaEl; antennaEl = antennaEl->NextSiblingElement()) {
 			if (antennaEl && strcmp(antennaEl->Name(), "antenna")) {
 				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
@@ -248,43 +251,32 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 	return (result);
 }
 
-XMLNode* World::getNode(XMLElement* el, const char* name) {
-	XMLNode* n = el->FirstChildElement(name)->FirstChild();
-	if (!n)
-		throw std::runtime_error("Syntax error in the configuration file for antennas ");
-	return (n);
-}
-
-XMLElement* World::getFirstChildElement(XMLElement* el, const char* name) {
-	XMLElement* n = el->FirstChildElement(name);
-	if (!n)
-		throw std::runtime_error("Syntax error in the configuration file for antennas ");
-	return (n);
-}
-
 Antenna* World::buildAntenna(XMLElement* antennaEl) noexcept(false) {
 	Antenna* a = nullptr;
 	unsigned id;
-	XMLNode* n = getNode(antennaEl, "maxconnections");
+	XMLNode* n = utils::getNode(antennaEl, "maxconnections");
 	int maxConn = atoi(n->ToText()->Value());
-	n = getNode(antennaEl, "power");
+	n = utils::getNode(antennaEl, "power");
 	double power = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "attenuationfactor");
+	n = utils::getNode(antennaEl, "attenuationfactor");
 	double attentuationFactor = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "type");
+	n = utils::getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	AntennaType type = AntennaType::OMNIDIRECTIONAL;
 	if (strcmp(t, "directional"))
 		type = AntennaType::DIRECTIONAL;
-	n = getNode(antennaEl, "x");
+	n = utils::getNode(antennaEl, "Smid");
+	double smid = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "SSteep");
+	double ssteep = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "x");
 	double x = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "y");
+	n = utils::getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
 	Coordinate c = Coordinate(x, y);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	id = IDGenerator::instance()->next();
-	a = new Antenna(getMap(), id, p, m_clock, attentuationFactor, power, maxConn, type);
-
+	a = new Antenna(getMap(), id, p, m_clock, attentuationFactor, power, maxConn, smid, ssteep, type);
 	return (a);
 }
 

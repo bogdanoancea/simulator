@@ -27,8 +27,7 @@ using namespace geos::geom;
 class Antenna: public ImmovableAgent {
 	public:
 		explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power,
-				unsigned long maxConnections, AntennaType type);
-
+				unsigned long maxConnections, double smid, double ssteep, AntennaType type);
 
 		virtual ~Antenna();
 
@@ -55,10 +54,14 @@ class Antenna: public ImmovableAgent {
 		void dettachDevice(HoldableAgent* device);
 
 		AntennaType getType() const;
-
 		void setType(AntennaType type);
 
 		double S(double dist);
+		double squality(Point p);
+		double getSmid() const;
+		void setSmid(double smid);
+		double getSSteep() const;
+		void setSSteep(double sSteep);
 
 	private:
 
@@ -67,14 +70,20 @@ class Antenna: public ImmovableAgent {
 		unsigned long getNumActiveConections();
 		double S0();
 		double SDist(double dist);
-		double m_power;
+
 		double m_attenuationFactor;
-		Polygon* m_cell;
+		double m_power;
 		unsigned long m_maxConnections;
+		double m_Smid;
+		double m_SSteep;
+
+		Polygon* m_cell;
 		//int m_numActiveConnections;
 		vector<HoldableAgent*> m_devices;
 		AntennaType m_type;
 		ofstream m_file;
+
+
 };
 
 #endif /* ANTENNA_H_ */

@@ -9,13 +9,17 @@
 #include <EventType.h>
 #include <Constants.h>
 #include <string.h>
+#include <tinyxml2.h>
+#include <Utils.h>
 
+using namespace tinyxml2;
 using namespace std;
+using namespace utils;
 
 Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
-		AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_power { power }, m_attenuationFactor { attenuationFactor }, m_maxConnections {
-				maxConnections }, /*m_numActiveConnections { 0 },*/m_type { type } {
+		double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_attenuationFactor { attenuationFactor }, m_power { power }, m_maxConnections {
+				maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type { type } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -28,6 +32,7 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
+
 
 Antenna::~Antenna() {
 	if (m_file.is_open()) {
@@ -190,4 +195,20 @@ double Antenna::SDist(double dist) {
 
 double Antenna::S(double dist) {
 	return (S0() - SDist(dist));
+}
+
+double Antenna::getSmid() const {
+	return m_Smid;
+}
+
+void Antenna::setSmid(double smid) {
+	m_Smid = smid;
+}
+
+double Antenna::getSSteep() const {
+	return m_SSteep;
+}
+
+void Antenna::setSSteep(double sSteep) {
+	m_SSteep = sSteep;
 }

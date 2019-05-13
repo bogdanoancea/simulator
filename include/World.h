@@ -63,10 +63,7 @@ class World {
 		vector<Antenna*> generateAntennas(unsigned long numAntennas);
 		vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
 		vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
-
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
-		XMLNode* getNode(XMLElement* el, const char* name) noexcept(false);
-		XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
 		Antenna* buildAntenna(XMLElement* amtennaEl) noexcept(false);
 };
 

@@ -19,6 +19,8 @@ class Constants {
 		static const double ANTENNA_POWER;
 		static const double ATT_FACTOR;
 		static const int MAX_CONNECTIONS;
+		static const double S_MID;
+		static const double S_STEEP;
 		static const unsigned long NO_PERSONS;
 		static const unsigned long NO_ANTENNAS;
 		static const double MARKET_SHARE;

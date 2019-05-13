@@ -4,6 +4,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>0</x>
         <y>5</y>
     </antenna>
@@ -12,6 +14,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>1</x>
         <y>5</y>
     </antenna>
@@ -20,6 +24,8 @@
         <power>10</power>
         <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>2</x>
         <y>5</y>
     </antenna>
@@ -28,6 +34,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>3</x>
         <y>5</y>
     </antenna>
@@ -36,6 +44,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>4</x>
         <y>5</y>
     </antenna>
@@ -44,6 +54,8 @@
         <power>10</power>
         <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>5</x>
         <y>5</y>
     </antenna>
@@ -52,6 +64,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>6</x>
         <y>5</y>
     </antenna>
@@ -60,6 +74,8 @@
         <power>10</power>
         <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>7</x>
         <y>5</y>
     </antenna>
@@ -68,6 +84,8 @@
         <power>10</power>
         <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>8</x>
         <y>5</y>
     </antenna>
@@ -76,6 +94,8 @@
         <power>10</power>
         <attenuationfactor>4</attenuationfactor>
         <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
         <x>9</x>
         <y>5</y>
     </antenna>

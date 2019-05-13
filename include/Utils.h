@@ -13,12 +13,14 @@
 #include <geos/geom/Point.h>
 #include <cmath>
 #include <vector>
+#include <tinyxml2.h>
 
 class Map;
 
 using namespace geos;
 using namespace geos::geom;
 using namespace std;
+using namespace tinyxml2;
 
 namespace utils {
 
@@ -28,7 +30,8 @@ namespace utils {
 	void printPhoneHeader();
 	const double PI = std::atan(1.0) * 4;
 	const char* getAntennasFile(int argc, char** argv);
-
+	XMLNode* getNode(XMLElement* el, const char* name);
+	XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
 }
 
 #endif

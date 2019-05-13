@@ -61,4 +61,18 @@ namespace utils {
 		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
 				<< endl;
 	}
+
+	XMLNode* getNode(XMLElement* el, const char* name) {
+		XMLNode* n = el->FirstChildElement(name)->FirstChild();
+		if (!n)
+			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+		return (n);
+	}
+
+	XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
+		XMLElement* n = el->FirstChildElement(name);
+		if (!n)
+			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+		return (n);
+	}
 }
