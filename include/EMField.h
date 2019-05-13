@@ -41,6 +41,8 @@ class EMField {
 		 * @return
 		 */
 		pair<Antenna*, double> computeMaxPower(Point* p);
+		double computeSignalQuality(Point* p, Antenna* a);
+		double connectionLikelihood(Antenna* a, Point * p);
 		vector<pair<Antenna*, double>> getInRangeAntennas(Point* p, double powerThreshold = Constants::POWER_THRESHOLD);
 		bool isAntennaInRange(Point* p, Antenna* a, double powerThreshold = Constants::POWER_THRESHOLD);
 		double computePowerOmnidirectional(Antenna* a, Point* p);

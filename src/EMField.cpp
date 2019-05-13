@@ -38,6 +38,22 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	return (result);
 }
 
+double EMField::computeSignalQuality(Point* p, Antenna* a) {
+	return (1.0 / (1 + exp(-a->getSSteep() * (a->S(p->distance(a->getLocation())) - a->getSmid()))));
+}
+
+double EMField::connectionLikelihood(Antenna* a, Point * p) {
+	double s_quality = computeSignalQuality(p, a);
+	double sum = 0.0;
+	unsigned long size = m_antennas.size();
+	if (size > 0) {
+		for (Antenna*& a : m_antennas) {
+			sum += computeSignalQuality(p, a);
+		}
+	}
+	return (s_quality / sum);
+}
+
 void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }

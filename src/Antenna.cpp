@@ -33,7 +33,6 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
-
 Antenna::~Antenna() {
 	if (m_file.is_open()) {
 		try {
@@ -68,7 +67,7 @@ string Antenna::toString() {
 }
 
 double Antenna::getPower() const {
-	return m_power;
+	return (m_power);
 }
 
 void Antenna::setPower(double power) {
@@ -127,7 +126,7 @@ bool Antenna::alreadyRegistered(HoldableAgent * device) {
 }
 
 AntennaType Antenna::getType() const {
-	return m_type;
+	return (m_type);
 }
 
 void Antenna::setType(AntennaType type) {
@@ -194,7 +193,10 @@ double Antenna::SDist(double dist) {
 }
 
 double Antenna::S(double dist) {
-	return (S0() - SDist(dist));
+	if (m_type == AntennaType::OMNIDIRECTIONAL)
+		return (S0() - SDist(dist));
+	else
+		throw std::runtime_error("Unsupported antenna type (yet)! ");
 }
 
 double Antenna::getSmid() const {
