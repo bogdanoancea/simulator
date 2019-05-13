@@ -1,13 +1,14 @@
 #include <Antenna.h>
 #include <HoldableAgent.h>
+#include <EventType.h>
+#include <Constants.h>
 #include <geos/geom/GeometryFactory.h>
 #include <Map.h>
 #include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-#include <EventType.h>
-#include <Constants.h>
+
 #include <string.h>
 #include <tinyxml2.h>
 #include <Utils.h>

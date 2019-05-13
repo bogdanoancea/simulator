@@ -1,28 +1,20 @@
 #include <AgentsCollection.h>
 #include <Antenna.h>
 #include <geos/io/WKTWriter.h>
+#include <InputParser.h>
 #include <Map.h>
 #include <MobilePhone.h>
 #include <Person.h>
 #include <Utils.h>
 #include <World.h>
-#include <algorithm>
 #include <cstdlib>
 #include <iostream>
-#include <iterator>
+#include <stdexcept>
+#include <string>
 #include <typeinfo>
 #include <unordered_map>
-#include <unordered_set>
 #include <utility>
 #include <vector>
-#include <Constants.h>
-#include <InputParser.h>
-#include <exception>
-#include <typeinfo>
-#include <stdexcept>
-
-#include <geos/io/WKTReader.h>
-#include <geos/io/WKTWriter.h>
 
 using namespace std;
 using namespace geos;
@@ -48,8 +40,7 @@ int main(int argc, char** argv) {
 		Map* map;
 		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
-		}
-		else
+		} else
 			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
@@ -131,11 +122,9 @@ int main(int argc, char** argv) {
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");
 		w.runSimulation(persFileName, antennasFileName);
-	}
-	catch (std::runtime_error& e) {
+	} catch (std::runtime_error& e) {
 		cout << e.what() << "\n";
-	}
-	catch (const std::exception &e) {
+	} catch (const std::exception &e) {
 		cout << e.what() << "\n";
 	}
 	return (0);

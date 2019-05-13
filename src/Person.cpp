@@ -5,7 +5,7 @@
  *      Author: Bogdan Oancea
  */
 
-#include <Agent.h>
+
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Polygon.h>
 #include <geos/geom/LineString.h>
@@ -13,17 +13,19 @@
 #include <geos/geom/CoordinateArraySequence.h>
 #include <geos/geom/Point.h>
 
+#include <Agent.h>
 #include <HoldableAgent.h>
 #include <Map.h>
 #include <Person.h>
 #include <RandomNumberGenerator.h>
 #include <Utils.h>
+#include <Constants.h>
+
 #include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <utility>
-#include <Constants.h>
 
 using namespace geos;
 using namespace geos::geom;
