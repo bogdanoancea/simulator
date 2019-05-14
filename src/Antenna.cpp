@@ -34,6 +34,46 @@ Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double atte
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
+Antenna::Antenna(Map* m, Clock* clk, long id, XMLElement* antennaEl) :
+		ImmovableAgent(m, id, nullptr, clk) {
+
+	XMLNode* n = utils::getNode(antennaEl, "maxconnections");
+	m_maxConnections = atoi(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "power");
+	m_power = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "attenuationfactor");
+	m_attenuationFactor = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "type");
+	const char* t = n->ToText()->Value();
+	m_type = AntennaType::OMNIDIRECTIONAL;
+	if (strcmp(t, "directional"))
+		m_type = AntennaType::DIRECTIONAL;
+	n = utils::getNode(antennaEl, "Smid");
+	m_Smid = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "SSteep");
+	m_SSteep = atof(n->ToText()->Value());
+
+	n = utils::getNode(antennaEl, "x");
+	double x = atof(n->ToText()->Value());
+	n = utils::getNode(antennaEl, "y");
+	double y = atof(n->ToText()->Value());
+	Coordinate c = Coordinate(x, y);
+	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+	setLocation(p);
+
+	string fileName = getName() + std::to_string(id) + ".csv";
+	try {
+		m_file.open(fileName, ios::out);
+	}
+	catch (std::ofstream::failure& e) {
+		cerr << "Error opening output files!" << endl;
+		cerr << "Output goes to the console!" << endl;
+	}
+
+	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
+
+}
+
 Antenna::~Antenna() {
 	if (m_file.is_open()) {
 		try {

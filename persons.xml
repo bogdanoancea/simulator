@@ -1,5 +1,5 @@
 <persons>
-        <num_persons>100</num_persons>
+        <num_persons>6</num_persons>
         <min_age>10</min_age>
         <max_age>87</max_age>
         <age_distribution>
@@ -9,6 +9,6 @@
         </age_distribution>
         <male_share>0.48</male_share>
         <prob_mobile_phone>0.3</prob_mobile_phone>
-        <speed_walk>0.1</speed_walk>
-        <speed_car>0.3</speed_car>
+        <speed_walk>0.3</speed_walk>
+        <speed_car>0.9</speed_car>
 </persons>

@@ -23,11 +23,12 @@ using namespace geos::geom;
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold);
+		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold,
+				double qualityThreshold);
 		virtual ~MobilePhone();
 
 		string getName() override {
-			return "MobilePhone";
+			return ("MobilePhone");
 		}
 
 		string toString() override;
@@ -38,17 +39,16 @@ class MobilePhone: public HoldableAgent {
 
 		bool tryConnect() override;
 
-		double getPowerThreshold() const {
-			return m_powerThreshold;
-		}
 
-		void setPowerThreshold(double powerThreshold) {
-			m_powerThreshold = powerThreshold;
-		}
+		double getQualityThreshold() const;
+		void setQualityThreshold(double qualityThreshold);
+		double getPowerThreshold() const;
+		void setPowerThreshold(double powerThreshold);
 
 	private:
 		bool tryConnectNaiveAlgorithm();
 		double m_powerThreshold;
+		double m_qualityThreshold;
 		Antenna* m_connectedTo;
 
 

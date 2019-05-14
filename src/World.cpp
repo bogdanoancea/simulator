@@ -220,7 +220,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	unsigned id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -244,41 +244,14 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
 				continue;
 			}
-			Antenna* a = buildAntenna(antennaEl);
+			unsigned id = IDGenerator::instance()->next();
+			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl);
 			result.push_back(a);
 		}
 	}
 	return (result);
 }
 
-Antenna* World::buildAntenna(XMLElement* antennaEl) noexcept(false) {
-	Antenna* a = nullptr;
-	unsigned id;
-	XMLNode* n = utils::getNode(antennaEl, "maxconnections");
-	int maxConn = atoi(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "power");
-	double power = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "attenuationfactor");
-	double attentuationFactor = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "type");
-	const char* t = n->ToText()->Value();
-	AntennaType type = AntennaType::OMNIDIRECTIONAL;
-	if (strcmp(t, "directional"))
-		type = AntennaType::DIRECTIONAL;
-	n = utils::getNode(antennaEl, "Smid");
-	double smid = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "SSteep");
-	double ssteep = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "x");
-	double x = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "y");
-	double y = atof(n->ToText()->Value());
-	Coordinate c = Coordinate(x, y);
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	id = IDGenerator::instance()->next();
-	a = new Antenna(getMap(), id, p, m_clock, attentuationFactor, power, maxConn, smid, ssteep, type);
-	return (a);
-}
 
 vector<Person*> World::parsePersons(const string& personsFileName) noexcept(false) {
 	vector<Person*> result;

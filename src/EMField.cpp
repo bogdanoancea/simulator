@@ -38,7 +38,6 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	return (result);
 }
 
-
 pair<Antenna*, double> EMField::computeMaxQuality(Point* p) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
@@ -76,15 +75,18 @@ void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennasByPower(Point* p, double powerThreshold) {
+vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double threshold, bool power) {
 	vector<pair<Antenna*, double>> result;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
-			double power = a->computePower(p);
-			if (power > powerThreshold) {
-				result.push_back(make_pair(a, power));
-			}
+			double x;
+			if (power)
+				x = a->computePower(p);
+			else
+				x = a->computeSignalQuality(p);
+			if (x > threshold)
+				result.push_back(make_pair(a, x));
 		}
 	}
 
@@ -95,26 +97,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennasByPower(Point* p, doub
 	return (result);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennasByQuality(Point* p, double qualityThreshold) {
-	vector<pair<Antenna*, double>> result;
-	unsigned long size = m_antennas.size();
-	if (size > 0) {
-		for (Antenna*& a : m_antennas) {
-			double quality = a->computeSignalQuality(p);
-			if (quality > qualityThreshold) {
-				result.push_back(make_pair(a, quality));
-			}
-		}
-	}
-
-	std::sort(result.begin(), result.end(), [](pair<Antenna*, double> &left, pair<Antenna*, double> &right) {
-		return (left.second < right.second);
-	});
-
-	return (result);
-}
-
-bool EMField::isAntennaInRange(Point* p, Antenna* a, bool power, double threshold) {
+bool EMField::isAntennaInRange(Point* p, Antenna* a, double threshold, bool power) {
 	bool result = false;
 	double ps = 0.0;
 	if (power)
@@ -126,6 +109,4 @@ bool EMField::isAntennaInRange(Point* p, Antenna* a, bool power, double threshol
 	}
 	return (result);
 }
-
-
 

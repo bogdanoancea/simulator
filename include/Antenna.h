@@ -17,7 +17,9 @@
 #include <AntennaType.h>
 #include <string>
 #include <fstream>
+#include <tinyxml2.h>
 
+using namespace tinyxml2;
 using namespace geos;
 using namespace geos::geom;
 
@@ -28,6 +30,8 @@ class Antenna: public ImmovableAgent {
 	public:
 		explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power,
 				unsigned long maxConnections, double smid, double ssteep, AntennaType type);
+
+		explicit Antenna(Map* m, Clock* clk, long id, XMLElement* el);
 
 		virtual ~Antenna();
 
