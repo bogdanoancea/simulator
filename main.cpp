@@ -25,13 +25,13 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <perosnsConfigFile.xml>" << endl;
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml>" << endl;
 		exit(0);
 	}
 
 	const std::string &antennasConfigFileName = parser.getCmdOption("-a");
 	const std::string &mapFileName = parser.getCmdOption("-m");
-	const std::string &personsFileName = parser.getCmdOption("-p");
+	const std::string &personsConfigFileName = parser.getCmdOption("-p");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -55,11 +55,11 @@ int main(int argc, char** argv) {
 		if (antennasConfigFileName.empty()) {
 			throw runtime_error("no antenna config file!");
 		}
-		if (personsFileName.empty()) {
+		if (personsConfigFileName.empty()) {
 			throw runtime_error("no persons config file!");
 		}
 
-		World w(map, personsFileName, antennasConfigFileName);
+		World w(map, personsConfigFileName, antennasConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
 
@@ -122,6 +122,7 @@ int main(int argc, char** argv) {
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");
 		w.runSimulation(persFileName, antennasFileName);
+
 	} catch (std::runtime_error& e) {
 		cout << e.what() << "\n";
 	} catch (const std::exception &e) {

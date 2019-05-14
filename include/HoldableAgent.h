@@ -22,6 +22,9 @@ class HoldableAgent: public MovableAgent {
 	public:
 		explicit HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock);
 		HoldableAgent(const HoldableAgent &h);
+		enum CONNECTION_TYPE {
+			USING_POWER, USING_SIGNAL_QUALITY
+		};
 
 		virtual ~HoldableAgent();
 
@@ -29,18 +32,17 @@ class HoldableAgent: public MovableAgent {
 		void setHolder(Agent* holder);
 
 		string getName() override {
-			return "HoldableAgent";
+			return ("HoldableAgent");
 		}
 
 		string toString() override;
-		virtual bool tryConnect() = 0;
+		virtual bool tryConnect(CONNECTION_TYPE type) = 0;
 		virtual bool isConnected() const;
 		vector<Antenna*> getAntennas() const;
-		//virtual void setConnected(bool c);
+
 
 	private:
 		Agent* m_holder;
-		//bool m_isConnected;
 		vector<Antenna*> m_antennas;
 };
 

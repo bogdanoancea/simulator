@@ -21,7 +21,7 @@ class Tablet: public HoldableAgent {
 		virtual ~Tablet();
 
 		string getName() override {
-			return "Tablet";
+			return ("Tablet");
 		}
 
 		string toString() override;
@@ -29,7 +29,7 @@ class Tablet: public HoldableAgent {
 			return getLocation();
 		}
 
-		bool tryConnect() override;
+		bool tryConnect(HoldableAgent::CONNECTION_TYPE type) override;
 
 	private:
 

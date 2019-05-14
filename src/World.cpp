@@ -98,7 +98,7 @@ World::~World() {
 	cout << "End of simulation!" << endl;
 }
 
-void World::runSimulation(string personsFile, string& antennasFile) noexcept(false) {
+void World::runSimulation(string& personsFile, string& antennasFile) noexcept(false) {
 	ofstream pFile, aFile;
 	try {
 		pFile.open(personsFile, ios::out);

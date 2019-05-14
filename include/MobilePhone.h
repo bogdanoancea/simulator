@@ -37,8 +37,7 @@ class MobilePhone: public HoldableAgent {
 			return (this->getLocation());
 		}
 
-		bool tryConnect() override;
-
+		bool tryConnect(HoldableAgent::CONNECTION_TYPE type) override;
 
 		double getQualityThreshold() const;
 		void setQualityThreshold(double qualityThreshold);
@@ -46,11 +45,10 @@ class MobilePhone: public HoldableAgent {
 		void setPowerThreshold(double powerThreshold);
 
 	private:
-		bool tryConnectNaiveAlgorithm();
+		bool tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type);
 		double m_powerThreshold;
 		double m_qualityThreshold;
 		Antenna* m_connectedTo;
-
 
 };
 

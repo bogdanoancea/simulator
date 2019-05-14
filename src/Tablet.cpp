@@ -24,6 +24,6 @@ string Tablet::toString() {
 	return (HoldableAgent::toString());
 }
 
-bool Tablet::tryConnect() {
+bool Tablet::tryConnect(HoldableAgent::CONNECTION_TYPE type) {
 	return false;
 }

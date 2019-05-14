@@ -97,7 +97,7 @@ Point* Person::move() {
 			Agent* a = it->second;
 			HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
 			if (device != nullptr) {
-				device->tryConnect();
+				device->tryConnect(HoldableAgent::CONNECTION_TYPE::USING_POWER);
 			}
 		}
 	}
