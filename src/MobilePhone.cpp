@@ -84,7 +84,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type) 
 }
 
 double MobilePhone::getQualityThreshold() const {
-	return m_qualityThreshold;
+	return (m_qualityThreshold);
 }
 
 void MobilePhone::setQualityThreshold(double qualityThreshold) {
