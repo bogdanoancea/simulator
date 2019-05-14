@@ -201,7 +201,7 @@ double Antenna::S(double dist) {
 }
 
 double Antenna::getSmid() const {
-	return m_Smid;
+	return (m_Smid);
 }
 
 void Antenna::setSmid(double smid) {
@@ -209,9 +209,25 @@ void Antenna::setSmid(double smid) {
 }
 
 double Antenna::getSSteep() const {
-	return m_SSteep;
+	return (m_SSteep);
 }
 
 void Antenna::setSSteep(double sSteep) {
 	m_SSteep = sSteep;
+}
+
+double Antenna::computeSignalQuality(Point* p) {
+	double result = 0.0;
+	if (m_type == AntennaType::OMNIDIRECTIONAL)
+		result = 1.0 / (1 + exp(-m_SSteep * (S(p->distance(getLocation())) - m_Smid)));
+
+	return (result);
+}
+
+double Antenna::computePower(Point* p) {
+	double result = 0.0;
+	if (m_type == AntennaType::OMNIDIRECTIONAL)
+		result = m_power * pow(p->distance(getLocation()), -m_attenuationFactor);
+
+	return (result);
 }

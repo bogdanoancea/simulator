@@ -39,7 +39,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 	Point *p = this->getLocation();
 	if (m_connectedTo != nullptr) {
 		//check if this antenna is still in range, otherwise detach from it
-		bool inRange = EMField::instance()->isAntennaInRange(p, m_connectedTo, m_powerThreshold);
+		bool inRange = EMField::instance()->isAntennaInRange(p, m_connectedTo, true, m_powerThreshold);
 		if (!inRange) {
 			m_connectedTo->dettachDevice(this);
 			m_connectedTo = nullptr;
@@ -62,7 +62,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm() {
 	}
 	else {
 		//try to connect to another antenna in range
-		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p);
+		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennasByPower(p);
 		unsigned long size = antennas.size();
 		for (unsigned long i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);

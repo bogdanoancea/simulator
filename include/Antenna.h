@@ -62,7 +62,8 @@ class Antenna: public ImmovableAgent {
 		void setSmid(double smid);
 		double getSSteep() const;
 		void setSSteep(double sSteep);
-
+		double computeSignalQuality(Point* p);
+		double computePower(Point* p);
 	private:
 
 		bool alreadyRegistered(HoldableAgent * ag);
@@ -70,6 +71,7 @@ class Antenna: public ImmovableAgent {
 		unsigned long getNumActiveConections();
 		double S0();
 		double SDist(double dist);
+
 
 		double m_attenuationFactor;
 		double m_power;

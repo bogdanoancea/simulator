@@ -27,7 +27,7 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 		double max = -1;
 		for (Antenna* a : m_antennas) {
 			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
-				double power = computePowerOmnidirectional(a, p);
+				double power = a->computePower(p);
 				if (power > max) {
 					max = power;
 					result = make_pair(a, power);
@@ -38,32 +38,50 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	return (result);
 }
 
-double EMField::computeSignalQuality(Point* p, Antenna* a) {
-	return (1.0 / (1 + exp(-a->getSSteep() * (a->S(p->distance(a->getLocation())) - a->getSmid()))));
+
+pair<Antenna*, double> EMField::computeMaxQuality(Point* p) {
+	pair<Antenna*, double> result { nullptr, 0.0 };
+	unsigned long size = m_antennas.size();
+	if (size > 0) {
+		double max = -1;
+		for (Antenna* a : m_antennas) {
+			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
+				double quality = a->computeSignalQuality(p);
+				if (quality > max) {
+					max = quality;
+					result = make_pair(a, quality);
+				}
+			}
+		}
+	}
+	return (result);
 }
 
 double EMField::connectionLikelihood(Antenna* a, Point * p) {
-	double s_quality = computeSignalQuality(p, a);
-	double sum = 0.0;
+	double s_quality = a->computeSignalQuality(p);
+	double result = 0.0, sum = 0.0;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
-			sum += computeSignalQuality(p, a);
+			sum += a->computeSignalQuality(p);
 		}
 	}
-	return (s_quality / sum);
+	if (sum)
+		result = s_quality / sum;
+
+	return (result);
 }
 
 void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double powerThreshold) {
+vector<pair<Antenna*, double>> EMField::getInRangeAntennasByPower(Point* p, double powerThreshold) {
 	vector<pair<Antenna*, double>> result;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
-			double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());
+			double power = a->computePower(p);
 			if (power > powerThreshold) {
 				result.push_back(make_pair(a, power));
 			}
@@ -76,16 +94,38 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double powe
 
 	return (result);
 }
-bool EMField::isAntennaInRange(Point* p, Antenna* a, double powerThreshold) {
+
+vector<pair<Antenna*, double>> EMField::getInRangeAntennasByQuality(Point* p, double qualityThreshold) {
+	vector<pair<Antenna*, double>> result;
+	unsigned long size = m_antennas.size();
+	if (size > 0) {
+		for (Antenna*& a : m_antennas) {
+			double quality = a->computeSignalQuality(p);
+			if (quality > qualityThreshold) {
+				result.push_back(make_pair(a, quality));
+			}
+		}
+	}
+
+	std::sort(result.begin(), result.end(), [](pair<Antenna*, double> &left, pair<Antenna*, double> &right) {
+		return (left.second < right.second);
+	});
+
+	return (result);
+}
+
+bool EMField::isAntennaInRange(Point* p, Antenna* a, bool power, double threshold) {
 	bool result = false;
-	double power = a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor());
-	if (power > powerThreshold) {
+	double ps = 0.0;
+	if (power)
+		ps = a->computePower(p);
+	else
+		ps = a->computeSignalQuality(p);
+	if (ps > threshold) {
 		result = true;
 	}
 	return (result);
 }
 
-double EMField::computePowerOmnidirectional(Antenna* a, Point* p){
-	return (a->getPower() * pow(p->distance(a->getLocation()), -a->getAttenuationFactor()));
-}
+
 
