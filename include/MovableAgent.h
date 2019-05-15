@@ -15,6 +15,8 @@
 #include <LocatableAgent.h>
 #include <Clock.h>
 #include <random>
+#include <MovementType.h>
+#include <string>
 
 using namespace geos;
 using namespace geos::geom;
@@ -27,13 +29,13 @@ class MovableAgent: public LocatableAgent {
 		virtual ~MovableAgent();
 
 		string getName() override {
-			return "MovableAgent";
+			return ("MovableAgent");
 		}
 
 		string toString() override;
 
 
-		virtual Point* move() = 0;
+		virtual Point* move(MovementType type) = 0;
 
 		double getSpeed() const;
 		void setSpeed(double speed);

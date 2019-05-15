@@ -19,6 +19,7 @@
 #include <Clock.h>
 #include <MobilePhone.h>
 #include <tinyxml2.h>
+#include <MovementType.h>
 
 
 using namespace std;
@@ -31,7 +32,8 @@ class World {
 
 		World(Map* map, int numPersons, const string& configAntennasFile, int numMobilePhones) noexcept(false);
 
-		World(Map* map, const string& personsFileName, const string& configAntennasFile) noexcept(false);
+		World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName)
+				noexcept(false);
 
 		/** Default destructor */
 		virtual ~World();
@@ -57,6 +59,13 @@ class World {
 
 		AgentsCollection* m_agentsCollection;
 		Clock* m_clock;
+		unsigned long m_startTime;
+		unsigned long m_endTime;
+		unsigned long m_timeIncrement;
+
+		HoldableAgent::CONNECTION_TYPE m_connType;
+		MovementType m_mvType;
+
 		vector<Person*> generatePopulation(unsigned long numPersons);
 		vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
 				double male_share, double prob_mobile_phone, double speed_walk, double speed_car);
@@ -64,7 +73,8 @@ class World {
 		vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
 		vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
 		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
-		//Antenna* buildAntenna(XMLElement* amtennaEl) noexcept(false);
+		void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+
 };
 
 #endif // WORLD_H

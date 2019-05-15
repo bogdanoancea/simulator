@@ -24,37 +24,31 @@ class Clock {
 		Clock();
 
 		/** Constructor */
-		Clock(unsigned int init, unsigned int inc);
+		Clock(unsigned long start, unsigned long end, unsigned long incr);
 
 		/** Default destructor */
 		virtual ~Clock();
 
-		unsigned int tick();
+		unsigned long tick();
 
-		unsigned int getCurrentTime() const;
-		void setCurrentTime(unsigned int currentTime);
+		unsigned long getCurrentTime() const;
+		void setCurrentTime(unsigned long currentTime);
 
-		unsigned int getIncrement() const;
-		void setIncrement(unsigned int increment);
+		unsigned long getIncrement() const;
+		void setIncrement(unsigned long increment);
 
-		unsigned int getInitialTime() const;
-		void setInitialTime(unsigned int initialTime);
+		unsigned long getInitialTime() const;
+		void setInitialTime(unsigned long initialTime);
 
 		time_t realTime();
-
-		unsigned int getFinalTime() const {
-			return m_finalTime;
-		}
-
-		void setFinalTime(unsigned int finalTime) {
-			m_finalTime = finalTime;
-		}
+		unsigned long getFinalTime() const;
+		void setFinalTime(unsigned long finalTime);
 
 	private:
-		unsigned int m_initialTime;
-		unsigned int m_currentTime;
-		unsigned int m_increment;
-		unsigned int m_finalTime;
+		unsigned long m_initialTime;
+		unsigned long m_currentTime;
+		unsigned long m_increment;
+		unsigned long m_finalTime;
 };
 
 #endif // CLOCK_H

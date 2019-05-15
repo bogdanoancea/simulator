@@ -46,7 +46,7 @@ Antenna::Antenna(Map* m, Clock* clk, long id, XMLElement* antennaEl) :
 	n = utils::getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	m_type = AntennaType::OMNIDIRECTIONAL;
-	if (strcmp(t, "directional"))
+	if (!strcmp(t, "directional"))
 		m_type = AntennaType::DIRECTIONAL;
 	n = utils::getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());

@@ -30,7 +30,7 @@ string MobilePhone::toString() {
 }
 
 bool MobilePhone::tryConnect(HoldableAgent::CONNECTION_TYPE type) {
-	return tryConnectNaiveAlgorithm(type);
+	return (tryConnectNaiveAlgorithm(type));
 }
 
 bool MobilePhone::tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type) {
@@ -50,13 +50,14 @@ bool MobilePhone::tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type) 
 			connected = false;
 		}
 	}
+	pair<Antenna*, double> antenna;
+	if (use_power)
+		antenna = EMField::instance()->computeMaxPower(p);
+	else
+		antenna = EMField::instance()->computeMaxQuality(p);
 
-	pair<Antenna*, double> antenna = EMField::instance()->computeMaxPower(p);
-
-	if (antenna.second > m_powerThreshold) {
+	if (antenna.second > threshold) {
 		connected = antenna.first->tryRegisterDevice(this);
-		//cout << "m-am conectat la antena:" << antenna.first->getId() << endl;
-		//cout << "tre sa ma detasez de la antena:" << m_connectedTo->getId() << endl;
 	}
 	if (connected) {
 		if (m_connectedTo != nullptr && antenna.first->getId() != m_connectedTo->getId()) {
@@ -92,7 +93,7 @@ void MobilePhone::setQualityThreshold(double qualityThreshold) {
 }
 
 double MobilePhone::getPowerThreshold() const {
-	return m_powerThreshold;
+	return (m_powerThreshold);
 }
 
 void MobilePhone::setPowerThreshold(double powerThreshold) {

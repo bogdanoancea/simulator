@@ -31,7 +31,7 @@ HoldableAgent::~HoldableAgent() {
 }
 
 Agent* HoldableAgent::getHolder() const {
-	return m_holder;
+	return (m_holder);
 }
 
 void HoldableAgent::setHolder(Agent* holder) {
@@ -48,16 +48,17 @@ void HoldableAgent::setHolder(Agent* holder) {
 }
 
 bool HoldableAgent::isConnected() const {
-	return m_antennas.size() > 0;
+	return (m_antennas.size() > 0);
 }
 
 vector<Antenna*> HoldableAgent::getAntennas() const {
 	return (m_antennas);
 }
 
-//void HoldableAgent::setConnected(bool c) {
-//	m_isConnected = c;
-//}
+void HoldableAgent::setLocation(Point* location) {
+	LocatableAgent::setLocation(location);
+	tryConnect(HoldableAgent::CONNECTION_TYPE::USING_POWER);
+}
 
 string HoldableAgent::toString() {
 	ostringstream result;

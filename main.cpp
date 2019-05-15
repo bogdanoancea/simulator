@@ -25,13 +25,16 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml>" << endl;
+		cout
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile>"
+				<< endl;
 		exit(0);
 	}
 
 	const std::string &antennasConfigFileName = parser.getCmdOption("-a");
 	const std::string &mapFileName = parser.getCmdOption("-m");
 	const std::string &personsConfigFileName = parser.getCmdOption("-p");
+	const std::string &simulationConfigFileName = parser.getCmdOption("-s");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -59,7 +62,11 @@ int main(int argc, char** argv) {
 			throw runtime_error("no persons config file!");
 		}
 
-		World w(map, personsConfigFileName, antennasConfigFileName);
+		if (simulationConfigFileName.empty()) {
+			throw runtime_error("no simulation config file!");
+		}
+
+		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
 

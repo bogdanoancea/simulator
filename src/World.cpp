@@ -26,6 +26,8 @@
 #include <AntennaType.h>
 #include <tinyxml2.h>
 #include <cstring>
+#include <HoldableAgent.h>
+#include <MovementType.h>
 
 using namespace std;
 using namespace utils;
@@ -36,6 +38,9 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
+	m_mvType = MovementType::RANDOM_WALK;
+	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -58,6 +63,9 @@ World::World(Map* map, int numPersons, const string& configAntennasFile, int num
 
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
+	m_mvType = MovementType::RANDOM_WALK;
+	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -73,12 +81,14 @@ World::World(Map* map, int numPersons, const string& configAntennasFile, int num
 	}
 }
 
-World::World(Map* map, const string& personsFileName, const string& configAntennasFile) :
+World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
 
+	parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
-	m_clock = new Clock();
-	vector<Person*> persons = parsePersons(personsFileName);
+	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
+
+	vector<Person*> persons = parsePersons(configPersonsFileName);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
@@ -103,7 +113,8 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 	try {
 		pFile.open(personsFile, ios::out);
 		aFile.open(antennasFile, ios::out);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
@@ -117,9 +128,10 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 
 	time_t tt = getClock()->realTime();
 	pFile << "Simulation started at " << ctime(&tt) << endl;
-	m_clock->setInitialTime(0);
-	m_clock->setIncrement(1);
-	m_clock->setFinalTime(Constants::SIMULATION_TIME);
+
+//	m_clock->setInitialTime(0);
+//	m_clock->setIncrement(1);
+//	m_clock->setFinalTime(Constants::SIMULATION_TIME);
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
 	for (unsigned t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
@@ -127,7 +139,7 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
-			p->move();
+			p->move(m_mvType);
 
 		}
 	}
@@ -142,7 +154,8 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 	try {
 		pFile.close();
 		aFile.close();
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;
 	}
@@ -252,7 +265,6 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 	return (result);
 }
 
-
 vector<Person*> World::parsePersons(const string& personsFileName) noexcept(false) {
 	vector<Person*> result;
 	XMLDocument doc;
@@ -319,6 +331,39 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 	return (result);
 }
 
+void World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
+	XMLDocument doc;
+	XMLError err = doc.LoadFile(configSimulationFileName.c_str());
+	if (err != XML_SUCCESS)
+		throw std::runtime_error("Error opening configuration file for simulation ");
+
+	XMLElement* simEl = doc.FirstChildElement("simulation");
+	if (!simEl)
+		throw std::runtime_error("Syntax error in the configuration file for simulation ");
+	else {
+		XMLNode* sTNode = getNode(simEl, "start_time");
+		m_startTime = atoi(sTNode->ToText()->Value());
+		XMLNode* eTNode = getNode(simEl, "end_time");
+		m_endTime = atoi(eTNode->ToText()->Value());
+		XMLNode* iTNode = getNode(simEl, "time_increment");
+		m_timeIncrement = atoi(iTNode->ToText()->Value());
+
+		XMLNode* mvNode = getNode(simEl, "movement_type");
+		if (!strcmp(mvNode->ToText()->Value(), "random_walk"))
+			m_mvType = MovementType::RANDOM_WALK;
+		else
+			m_mvType = MovementType::UNKNOWN;
+
+		XMLNode* connNode = getNode(simEl, "connection_type");
+		if (!strcmp(connNode->ToText()->Value(), "power"))
+			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+		else if (!strcmp(connNode->ToText()->Value(), "quality"))
+			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+		else
+			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
+	}
+}
+
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
 		double male_share, double probMobilePhone, double speed_walk, double speed_car) {
 
@@ -331,7 +376,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
 	int sum = 0;
 	unsigned long numPhones = 0;
-	for (unsigned long i = 0; i < numPersons; i++){
+	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
 		numPhones += phone[i];
 	}
@@ -364,7 +409,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
-		if(phone[i]) {
+		if (phone[i]) {
 			mobiles[m_index]->setHolder(p);
 			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
 			m_index++;

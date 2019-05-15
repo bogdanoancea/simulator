@@ -37,7 +37,7 @@ class Person: public MovableAgent {
 		virtual ~Person();
 
 		string getName() override {
-			return "Person";
+			return ("Person");
 		}
 
 		string toString() override;
@@ -49,7 +49,7 @@ class Person: public MovableAgent {
 		void setAge(int age);
 
 
-		Point* move() override;
+		Point* move(MovementType mvType) override;
 		virtual void setLocation(Point* pt) override;
 
 		void addDevice(string type, Agent* agent) {
@@ -62,6 +62,7 @@ class Person: public MovableAgent {
 		int m_age;
 		Gender m_gender;
 		unordered_multimap<string, Agent*> m_idDevices;
+		void randomWalk();
 
 };
 

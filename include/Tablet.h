@@ -11,7 +11,7 @@
 #define TABLET_H_
 
 #include <HoldableAgent.h>
-
+#include <MovementType.h>
 /*
  *
  */
@@ -25,7 +25,7 @@ class Tablet: public HoldableAgent {
 		}
 
 		string toString() override;
-		Point* move() override {
+		Point* move(MovementType type) override {
 			return getLocation();
 		}
 

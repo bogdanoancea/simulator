@@ -60,7 +60,27 @@ string Person::toString() {
 	return (ss.str());
 }
 
-Point* Person::move() {
+Point* Person::move(MovementType mvType) {
+	if (mvType == MovementType::RANDOM_WALK)
+		randomWalk();
+	else
+		throw runtime_error("Movement type not yet implemented");
+
+	//get devices and try to connect
+//	if (hasDevices()) {
+//		unordered_multimap<string, Agent*>::iterator it;
+//		for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
+//			Agent* a = it->second;
+//			HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
+//			if (device != nullptr) {
+//				device->tryConnect(HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY);
+//			}
+//		}
+//	}
+	return (getLocation());
+}
+
+void Person::randomWalk() {
 	double theta = 0.0;
 	double x, y, newX, newY;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
@@ -90,19 +110,6 @@ Point* Person::move() {
 			setLocation(ptInt);
 		}
 	}
-	//get devices and set the location for them
-	if (hasDevices()) {
-		unordered_multimap<string, Agent*>::iterator it;
-		for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
-			Agent* a = it->second;
-			HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
-			if (device != nullptr) {
-				device->tryConnect(HoldableAgent::CONNECTION_TYPE::USING_POWER);
-			}
-		}
-	}
-	//}
-	return (getLocation());
 }
 
 bool Person::hasDevices() {
