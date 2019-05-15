@@ -111,24 +111,23 @@ int main(int argc, char** argv) {
 //			p->addDevice(typeid(MobilePhone).name(), m);
 //		}
 
-//		cout << "Again the mobile phones but this time with assigned owners... " << endl;
-//		utils::printPhoneHeader();
-//		for (auto it = itr3.first; it != itr3.second; it++) {
-//			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-//			cout << m->toString() << endl;
-//		}
-//
-//		cout << "Again the persons now with mobile phones... " << endl;
-//		utils::printPersonHeader();
-//		itr = c->getAgentListByType(typeid(Person).name());
-//		for (auto it = itr.first; it != itr.second; it++) {
-//			Person* p = dynamic_cast<Person*>(it->second);
-//			cout << p->toString() << endl;
-//		}
 
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");
 		w.runSimulation(persFileName, antennasFileName);
+
+		//now we compute the probabilities for the positions of the phones
+		// build the grid for the map
+		Geometry* bbox = map->getBoundary()->getEnvelope();
+		Polygon* p = reinterpret_cast<Polygon*>(bbox);
+
+		// read the event connection data
+		// for each time instant
+		//   for each mobile phone
+		//     for each tile
+		//         compute p(tile)
+		//         output t, phone_id, tile, p
+
 
 	} catch (std::runtime_error& e) {
 		cout << e.what() << "\n";

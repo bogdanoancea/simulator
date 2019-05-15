@@ -9,8 +9,9 @@
 
 #include <Grid.h>
 
-Grid::Grid(double xOrig, double yOrig, double xdim, double ydim, unsigned long noTilesX, unsigned long noTilesY) :
-		m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xDim { xdim }, m_yDim { ydim }, m_noTilesX { noTilesX }, m_noTilesY { noTilesY } {
+Grid::Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
+		m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
+				noTilesY } {
 }
 
 Grid::~Grid() {
@@ -25,16 +26,16 @@ unsigned long Grid::getNoTilesY() const {
 	return (m_noTilesY);
 }
 
-double Grid::getXDim() const {
-	return (m_xDim);
+double Grid::getXTileDim() const {
+	return (m_xTileDim);
 }
 
 double Grid::getXOrigin() const {
 	return (m_xOrigin);
 }
 
-double Grid::getYDim() const {
-	return (m_yDim);
+double Grid::getYTileDim() const {
+	return (m_yTileDim);
 }
 
 double Grid::getYOrigin() const {
@@ -48,18 +49,6 @@ unsigned long Grid::getTileIndexX(Point* p) {
 }
 
 unsigned long Grid::getTileIndexY(Point* p) {
-	unsigned long result = -1;
-
-	return (result);
-}
-
-unsigned long Grid::getTileOrigX(Point* p) {
-	unsigned long result = -1;
-
-	return (result);
-}
-
-unsigned long Grid::getTileOrigY(Point* p) {
 	unsigned long result = -1;
 
 	return (result);

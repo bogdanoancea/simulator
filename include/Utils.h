@@ -32,6 +32,7 @@ namespace utils {
 	const char* getAntennasFile(int argc, char** argv);
 	XMLNode* getNode(XMLElement* el, const char* name);
 	XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
+
 }
 
 #endif
