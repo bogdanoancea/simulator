@@ -119,7 +119,9 @@ int main(int argc, char** argv) {
 		//now we compute the probabilities for the positions of the phones
 		// build the grid for the map
 		Geometry* bbox = map->getBoundary()->getEnvelope();
-		Polygon* p = reinterpret_cast<Polygon*>(bbox);
+		//Polygon* p = reinterpret_cast<Polygon*>(bbox);
+		//CoordinateSequence* seq = p->getCoordinates();
+		//seq->minCoordinate()
 
 		// read the event connection data
 		// for each time instant
