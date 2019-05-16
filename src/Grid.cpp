@@ -38,6 +38,13 @@ unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
+double Grid::computeProbability(unsigned long tileIndex, MobilePhone* m, vector<AntennaInfo>& data) {
+	double result = 0.0;
+
+	return result;
+}
+
+
 unsigned long Grid::getNoTilesX() const {
 	return (m_noTilesX);
 }

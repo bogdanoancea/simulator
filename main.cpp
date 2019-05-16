@@ -29,15 +29,16 @@ int main(int argc, char** argv) {
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile>"
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -o <outputFile>"
 				<< endl;
 		exit(0);
 	}
 
-	const std::string &antennasConfigFileName = parser.getCmdOption("-a");
-	const std::string &mapFileName = parser.getCmdOption("-m");
-	const std::string &personsConfigFileName = parser.getCmdOption("-p");
-	const std::string &simulationConfigFileName = parser.getCmdOption("-s");
+	const string &antennasConfigFileName = parser.getCmdOption("-a");
+	const string &mapFileName = parser.getCmdOption("-m");
+	const string &personsConfigFileName = parser.getCmdOption("-p");
+	const string &simulationConfigFileName = parser.getCmdOption("-s");
+	const string &outputFileName = parser.getCmdOption("-o");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -140,9 +141,9 @@ int main(int argc, char** argv) {
 				minY = y;
 
 		}
-		double dimTileX = (maxX - minX) / 1000;
-		double dimTileY = (maxY - minY) / 1000;
-		Grid g(minX, minY, dimTileX, dimTileY, 1000, 1000);
+		double dimTileX = (maxX - minX) / 10;
+		double dimTileY = (maxY - minY) / 10;
+		Grid g(minX, minY, dimTileX, dimTileY, 10, 10);
 		cout << g.toString();
 
 		// read the event connection data
@@ -159,24 +160,28 @@ int main(int argc, char** argv) {
 			}
 		}
 
-		string fileName = "probabilities.csv";
+
 		ofstream p_file;
+		if (outputFileName.empty()) {
+			throw runtime_error("no output file!");
+		}
+
 		try {
-			p_file.open(fileName, ios::out);
+			p_file.open(outputFileName, ios::out);
 		}
 		catch (std::ofstream::failure& e) {
-			cerr << "Error opening output files!" << endl;
-			cerr << "Output goes to the console!" << endl;
+			cerr << "Error opening output file!" << endl;
 		}
-		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
+
 		w.getClock()->reset();
+		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << i << ",";
+					p_file << g.computeProbability(i, m, data) << ",";
 				}
 				p_file << endl;
 			}

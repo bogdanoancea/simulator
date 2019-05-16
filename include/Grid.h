@@ -12,8 +12,10 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 #include <geos/geom/Polygon.h>
-
+#include <MobilePhone.h>
+#include <AntennaInfo.h>
 
 using namespace std;
 using namespace geos;
@@ -43,6 +45,8 @@ class Grid {
 
 
 		unsigned long getNoTiles() const;
+		double computeProbability(unsigned long tileIndex, MobilePhone* m, vector<AntennaInfo>& data);
+
 	private:
 		double m_xOrigin;
 		double m_yOrigin;
