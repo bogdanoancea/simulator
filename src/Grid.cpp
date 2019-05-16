@@ -8,6 +8,13 @@
  */
 
 #include <Grid.h>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+
+
+using namespace std;
 
 Grid::Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
 		m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
@@ -17,6 +24,16 @@ Grid::Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigne
 Grid::~Grid() {
 	// TODO Auto-generated destructor stub
 }
+
+string Grid::toString() const {
+	ostringstream ss;
+	ss << left << setw(15) << "Origin X" << setw(15) << m_xOrigin << setw(15) << "Origin Y" << setw(15) << m_yOrigin << setw(15)
+			<< "x tile dim"
+			<< setw(15) << m_xTileDim << setw(15) << "y tile dim" << setw(15) << m_yTileDim << setw(15) << "no tiles x" << setw(15)
+			<< m_noTilesX << setw(15) << "no tiles y" << setw(15) << m_noTilesY << endl;
+	return (ss.str());
+}
+
 
 unsigned long Grid::getNoTilesX() const {
 	return (m_noTilesX);

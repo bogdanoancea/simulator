@@ -10,8 +10,12 @@
 #ifndef GRID_H_
 #define GRID_H_
 
+#include <string>
+#include <iostream>
 #include <geos/geom/Polygon.h>
 
+
+using namespace std;
 using namespace geos;
 using namespace geos::geom;
 /*
@@ -21,12 +25,16 @@ class Grid {
 	public:
 		Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY);
 		virtual ~Grid();
+
 		unsigned long getNoTilesX() const;
 		unsigned long getNoTilesY() const;
 		double getXTileDim() const;
 		double getXOrigin() const;
 		double getYTileDim() const;
 		double getYOrigin() const;
+
+		string toString() const;
+
 
 		unsigned long getTileIndexX(Point* p);
 		unsigned long getTileIndexY(Point* p);

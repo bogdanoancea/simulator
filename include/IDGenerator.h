@@ -10,19 +10,17 @@
 #ifndef IDGENERATOR_H_
 #define IDGENERATOR_H_
 
-#include <cstdint>
-
 class IDGenerator {
 	public:
 		static IDGenerator* instance() {
 			if (!m_instance) {
 				m_instance = new IDGenerator;
 			}
-			return m_instance;
+			return (m_instance);
 		}
 
-		uint32_t next() {
-			return m_id++;
+		unsigned long next() {
+			return (m_id++);
 		}
 
 	private:
@@ -30,7 +28,7 @@ class IDGenerator {
 				m_id(0) {
 		}
 		static IDGenerator* m_instance;
-		uint32_t m_id;
+		unsigned long m_id;
 
 };
 

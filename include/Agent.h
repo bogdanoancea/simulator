@@ -18,7 +18,7 @@
 class Agent {
 	public:
 
-		Agent(Map* m, long id, Clock* clock);
+		Agent(Map* m, unsigned long id, Clock* clock);
 
 		/** Default destructor */
 		virtual ~Agent();
@@ -33,17 +33,17 @@ class Agent {
 
 		Clock* getClock() const;
 
-		long getId() const {
+		unsigned long getId() const {
 			return m_id;
 		}
 
-		void setId(long id) {
+		void setId(unsigned long id) {
 			m_id = id;
 		}
 
 	private:
 		Map* m_map;
-		long m_id;
+		unsigned long m_id;
 		Clock* m_clock;
 };
 

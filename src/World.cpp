@@ -192,7 +192,7 @@ void World::setMap(Map* map) {
 vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	vector<Person*> result;
 
-	unsigned id;
+	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
 	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
@@ -211,7 +211,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Antenna*> result;
 
-	unsigned id;
+	unsigned long id;
 	double power = Constants::ANTENNA_POWER;
 	double attFactor = Constants::ATT_FACTOR;
 	int maxConnections = Constants::MAX_CONNECTIONS;
@@ -230,7 +230,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 
 vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
 	vector<MobilePhone*> result;
-	unsigned id;
+	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
 		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD);
@@ -257,7 +257,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
 				continue;
 			}
-			unsigned id = IDGenerator::instance()->next();
+			unsigned long id = IDGenerator::instance()->next();
 			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl);
 			result.push_back(a);
 		}
@@ -369,7 +369,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	vector<Person*> result;
 
-	unsigned id;
+	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 
 	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);

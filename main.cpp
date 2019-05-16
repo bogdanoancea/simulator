@@ -15,6 +15,7 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include <Grid.h>
 
 using namespace std;
 using namespace geos;
@@ -117,13 +118,39 @@ int main(int argc, char** argv) {
 		w.runSimulation(persFileName, antennasFileName);
 
 		//now we compute the probabilities for the positions of the phones
+
 		// build the grid for the map
 		Geometry* bbox = map->getBoundary()->getEnvelope();
-		//Polygon* p = reinterpret_cast<Polygon*>(bbox);
-		//CoordinateSequence* seq = p->getCoordinates();
-		//seq->minCoordinate()
+		CoordinateSequence* seq = bbox->getCoordinates();
+		double minX, minY, maxX, maxY;
+		minX = minY = std::numeric_limits<double>::max();
+		maxX = maxY = std::numeric_limits<double>::min();
+		for (size_t i = 0; i < seq->size(); i++) {
+			double x = seq->getX(i);
+			double y = seq->getY(i);
+			if (x > maxX)
+				maxX = x;
+			if (y > maxY)
+				maxY = y;
+			if (x < minX)
+				minX = x;
+			if (y < minY)
+				minY = y;
 
+		}
+		double dimTileX = (maxX - minX) / 1000;
+		double dimTileY = (maxY - minY) / 1000;
+		Grid g(minX, minY, dimTileX, dimTileY, 1000, 1000);
+		cout << g.toString();
+		auto itra = c->getAgentListByType(typeid(Antenna).name());
+		for (auto it = itra.first; it != itra.second; it++) {
+			Antenna* a = dynamic_cast<Antenna*>(it->second);
+			string fileName = a->getName() + std::to_string(a->getId()) + ".csv";
+
+			cout << fileName << endl;
+		}
 		// read the event connection data
+
 		// for each time instant
 		//   for each mobile phone
 		//     for each tile

@@ -10,7 +10,7 @@
 #include <Agent.h>
 
 
-Agent::Agent(Map* m, long id, Clock* clock) :
+Agent::Agent(Map* m, unsigned long id, Clock* clock) :
 		m_id { id } {
 	m_map = m;
 	m_clock = clock;
