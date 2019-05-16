@@ -30,6 +30,10 @@ unsigned long Clock::tick() {
 	return (m_currentTime);
 }
 
+void Clock::reset() {
+	m_currentTime = m_initialTime;
+}
+
 unsigned long Clock::getCurrentTime() const {
 	return (m_currentTime);
 }

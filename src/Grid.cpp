@@ -34,6 +34,9 @@ string Grid::toString() const {
 	return (ss.str());
 }
 
+unsigned long Grid::getNoTiles() const {
+	return (m_noTilesX * m_noTilesY);
+}
 
 unsigned long Grid::getNoTilesX() const {
 	return (m_noTilesX);

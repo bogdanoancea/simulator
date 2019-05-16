@@ -43,6 +43,7 @@ class Clock {
 		time_t realTime();
 		unsigned long getFinalTime() const;
 		void setFinalTime(unsigned long finalTime);
+		void reset();
 
 	private:
 		unsigned long m_initialTime;

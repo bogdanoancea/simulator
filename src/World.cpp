@@ -134,7 +134,7 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 //	m_clock->setFinalTime(Constants::SIMULATION_TIME);
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
-	for (unsigned t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
+	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);

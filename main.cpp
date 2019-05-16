@@ -16,6 +16,8 @@
 #include <utility>
 #include <vector>
 #include <Grid.h>
+#include <CSVparser.hpp>
+#include <AntennaInfo.h>
 
 using namespace std;
 using namespace geos;
@@ -44,7 +46,8 @@ int main(int argc, char** argv) {
 		Map* map;
 		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
-		} else
+		}
+		else
 			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
@@ -112,7 +115,6 @@ int main(int argc, char** argv) {
 //			p->addDevice(typeid(MobilePhone).name(), m);
 //		}
 
-
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");
 		w.runSimulation(persFileName, antennasFileName);
@@ -142,14 +144,44 @@ int main(int argc, char** argv) {
 		double dimTileY = (maxY - minY) / 1000;
 		Grid g(minX, minY, dimTileX, dimTileY, 1000, 1000);
 		cout << g.toString();
+
+		// read the event connection data
+		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = dynamic_cast<Antenna*>(it->second);
 			string fileName = a->getName() + std::to_string(a->getId()) + ".csv";
-
-			cout << fileName << endl;
+			csv::Parser file = csv::Parser(fileName);
+			for (unsigned long i = 0; i < file.rowCount(); i++) {
+				csv::Row s = file[i];
+				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
+				data.push_back(a);
+			}
 		}
-		// read the event connection data
+
+		string fileName = "probabilities.csv";
+		ofstream p_file;
+		try {
+			p_file.open(fileName, ios::out);
+		}
+		catch (std::ofstream::failure& e) {
+			cerr << "Error opening output files!" << endl;
+			cerr << "Output goes to the console!" << endl;
+		}
+		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
+		w.getClock()->reset();
+		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+			//iterate over all devices
+			for (auto it = itrm.first; it != itrm.second; it++) {
+				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+				p_file << t << "," << m->getId() << ",";
+				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
+					p_file << i << ",";
+				}
+				p_file << endl;
+			}
+		}
+		p_file.close();
 
 		// for each time instant
 		//   for each mobile phone
@@ -157,10 +189,11 @@ int main(int argc, char** argv) {
 		//         compute p(tile)
 		//         output t, phone_id, tile, p
 
-
-	} catch (std::runtime_error& e) {
+	}
+	catch (std::runtime_error& e) {
 		cout << e.what() << "\n";
-	} catch (const std::exception &e) {
+	}
+	catch (const std::exception &e) {
 		cout << e.what() << "\n";
 	}
 	return (0);

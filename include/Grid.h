@@ -42,6 +42,7 @@ class Grid {
 		unsigned long getTileCenterY(Point* p);
 
 
+		unsigned long getNoTiles() const;
 	private:
 		double m_xOrigin;
 		double m_yOrigin;
