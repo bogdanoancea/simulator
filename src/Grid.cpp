@@ -49,31 +49,38 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex, Mobile
 	double result = 0.0;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
+	bool found = false;
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
 		if (ai->getTime() == t && ai->getDeviceId() == m->getId() && (ai->getEventCode() == 1 || ai->getEventCode() == 3)) {
-			std::cout << (*i).toString() << std::endl;
+			//std::cout << (*i).toString() << std::endl;
+			found = true;
 			break;
 		}
 	}
-
-	Coordinate c = getTileCenter(tileIndex);
-	unsigned long antennaId = ai->getAntennaId();
-	Antenna* a;
-	for (auto it = itr.first; it != itr.second; it++) {
-		a = dynamic_cast<Antenna*>(it->second);
-		if (a->getId() == antennaId)
+	if (found) {
+		Coordinate c = getTileCenter(tileIndex);
+		unsigned long antennaId = ai->getAntennaId();
+		Antenna* a;
+		for (auto it = itr.first; it != itr.second; it++) {
+			a = dynamic_cast<Antenna*>(it->second);
+			if (a->getId() == antennaId)
 			break;
-	}
+		}
 
-	Point* p = m_map->getGlobalFactory()->createPoint(c);
-	double ce_e_sus = a->computeSignalQuality(p);
-	double sum = 0.0;
-	for (auto it = itr.first; it != itr.second; it++) {
-		a = dynamic_cast<Antenna*>(it->second);
-		sum += a->computeSignalQuality(p);
+		Point* p = m_map->getGlobalFactory()->createPoint(c);
+		double qual = a->computeSignalQuality(p);
+		double sum_qual = 0.0;
+		for (auto it = itr.first; it != itr.second; it++) {
+			a = dynamic_cast<Antenna*>(it->second);
+			sum_qual += a->computeSignalQuality(p);
+		}
+		//cout << p->getCoordinate()->x << "," << p->getCoordinate()->y << "," << qual << "," << sum_qual << endl;
+
+		result = (1.0 / (m_noTilesX * m_noTilesY)) * qual / sum_qual;
 	}
-	result = (1.0 / (m_noTilesX * m_noTilesY)) * ce_e_sus / sum;
+	else
+		result = (1.0 / (m_noTilesX * m_noTilesY));
 	return (result);
 }
 

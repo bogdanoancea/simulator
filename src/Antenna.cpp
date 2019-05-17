@@ -258,9 +258,10 @@ void Antenna::setSSteep(double sSteep) {
 
 double Antenna::computeSignalQuality(Point* p) {
 	double result = 0.0;
-	if (m_type == AntennaType::OMNIDIRECTIONAL)
+	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		result = 1.0 / (1 + exp(-m_SSteep * (S(p->distance(getLocation())) - m_Smid)));
-
+		cout << "distanta:" << p->distance(getLocation()) << "S:" << S(p->distance(getLocation())) << "result:" << result << endl;
+	}
 	return (result);
 }
 

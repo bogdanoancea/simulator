@@ -157,7 +157,7 @@ int main(int argc, char** argv) {
 				csv::Row s = file[i];
 				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
-				cout << a.toString();
+				//cout << a.toString() << endl;
 			}
 		}
 

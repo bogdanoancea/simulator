@@ -22,7 +22,7 @@ namespace csv {
 				if (_originalFile.size() == 0)
 					throw Error(std::string("No Data in ").append(_file));
 
-				parseHeader();
+				//parseHeader();
 				parseContent();
 			}
 			else
@@ -36,7 +36,7 @@ namespace csv {
 			if (_originalFile.size() == 0)
 				throw Error(std::string("No Data in pure content"));
 
-			parseHeader();
+			//parseHeader();
 			parseContent();
 		}
 	}
@@ -60,7 +60,7 @@ namespace csv {
 		std::vector<std::string>::iterator it;
 
 		it = _originalFile.begin();
-		it++; // skip header
+		//it++; // skip header
 
 		for (; it != _originalFile.end(); it++) {
 			bool quoted = false;
@@ -82,8 +82,8 @@ namespace csv {
 			row->push(it->substr(tokenStart, it->length() - tokenStart));
 
 			// if value(s) missing
-			if (row->size() != _header.size())
-				throw Error("corrupted data !");
+//			if (row->size() != _header.size())
+//				throw Error("corrupted data !");
 			_content.push_back(row);
 		}
 	}
