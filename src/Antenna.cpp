@@ -218,8 +218,10 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
 		ss << getClock()->getCurrentTime() << sep << getId() << sep << code << sep << ag->getId() << sep
 				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
 
-		if (m_file.is_open())
+		if (m_file.is_open()) {
 			m_file << ss.str();
+			m_file.flush();
+		}
 		else
 			cout << ss.str();
 	}

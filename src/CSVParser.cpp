@@ -1,19 +1,24 @@
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <iomanip>
 #include "CSVparser.hpp"
 
+using namespace std;
 namespace csv {
 
 	Parser::Parser(const std::string &data, const DataType &type, char sep) :
 			_type(type), _sep(sep) {
-		std::string line;
+		string line;
 		if (type == eFILE) {
 			_file = data;
-			std::ifstream ifile(_file.c_str());
+			fstream ifile(_file.c_str(),ios::in );
 			if (ifile.is_open()) {
+				//ifile.seekg( 0, ios::beg );
 				while (ifile.good()) {
+
 					getline(ifile, line);
+					cout << "intru aici: "<< _file.c_str() << " line:" << line<<endl;
 					if (line != "")
 						_originalFile.push_back(line);
 				}
