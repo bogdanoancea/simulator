@@ -13,9 +13,14 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <geos/geom/Polygon.h>
+#include <geos/geom/Coordinate.h>
 #include <MobilePhone.h>
 #include <AntennaInfo.h>
+#include <Agent.h>
+#include <AgentsCollection.h>
+#include <typeinfo>
+#include <unordered_map>
+#include <utility>
 
 using namespace std;
 using namespace geos;
@@ -25,7 +30,7 @@ using namespace geos::geom;
  */
 class Grid {
 	public:
-		Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY);
+		Grid(Map* map, double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY);
 		virtual ~Grid();
 
 		unsigned long getNoTilesX() const;
@@ -45,7 +50,9 @@ class Grid {
 
 
 		unsigned long getNoTiles() const;
-		double computeProbability(unsigned long tileIndex, MobilePhone* m, vector<AntennaInfo>& data);
+		double computeProbability(unsigned long t, unsigned long tileIndex, MobilePhone* m, vector<AntennaInfo>& data,
+				std::pair<um_iterator, um_iterator>);
+		Coordinate getTileCenter(unsigned long tileIndex);
 
 	private:
 		double m_xOrigin;
@@ -54,6 +61,7 @@ class Grid {
 		double m_yTileDim;
 		unsigned long m_noTilesX;
 		unsigned long m_noTilesY;
+		Map* m_map;
 };
 
 #endif /* GRID_H_ */

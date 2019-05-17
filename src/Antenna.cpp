@@ -8,7 +8,7 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-
+#include <string>
 #include <string.h>
 #include <tinyxml2.h>
 #include <Utils.h>

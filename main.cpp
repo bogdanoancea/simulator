@@ -143,7 +143,7 @@ int main(int argc, char** argv) {
 		}
 		double dimTileX = (maxX - minX) / 10;
 		double dimTileY = (maxY - minY) / 10;
-		Grid g(minX, minY, dimTileX, dimTileY, 10, 10);
+		Grid g(map, minX, minY, dimTileX, dimTileY, 10, 10);
 		cout << g.toString();
 
 		// read the event connection data
@@ -157,6 +157,7 @@ int main(int argc, char** argv) {
 				csv::Row s = file[i];
 				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
+				cout << a.toString();
 			}
 		}
 
@@ -181,7 +182,7 @@ int main(int argc, char** argv) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << g.computeProbability(i, m, data) << ",";
+					p_file << g.computeProbability(t, i, m, data, itra) << ",";
 				}
 				p_file << endl;
 			}

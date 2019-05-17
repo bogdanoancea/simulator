@@ -1,0 +1,12 @@
+<antennas>
+    <antenna>
+        <maxconnections>100</maxconnections>
+        <power>10</power>
+        <attenuationfactor>2</attenuationfactor>
+        <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
+        <x>5</x>
+        <y>5</y>
+    </antenna>
+</antennas>
