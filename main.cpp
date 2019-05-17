@@ -18,6 +18,7 @@
 #include <Grid.h>
 #include <CSVparser.hpp>
 #include <AntennaInfo.h>
+#include <iomanip>
 
 using namespace std;
 using namespace geos;
@@ -182,7 +183,7 @@ int main(int argc, char** argv) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << g.computeProbability(t, i, m, data, itra) << ",";
+					p_file << std::fixed << std::setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
 				}
 				p_file << endl;
 			}

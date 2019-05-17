@@ -56,6 +56,7 @@ bool MobilePhone::tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type) 
 	else
 		antenna = EMField::instance()->computeMaxQuality(p);
 
+
 	if (antenna.second > threshold) {
 		connected = antenna.first->tryRegisterDevice(this);
 	}

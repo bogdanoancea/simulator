@@ -14,11 +14,8 @@ namespace csv {
 			_file = data;
 			fstream ifile(_file.c_str(),ios::in );
 			if (ifile.is_open()) {
-				//ifile.seekg( 0, ios::beg );
 				while (ifile.good()) {
-
 					getline(ifile, line);
-					cout << "intru aici: "<< _file.c_str() << " line:" << line<<endl;
 					if (line != "")
 						_originalFile.push_back(line);
 				}

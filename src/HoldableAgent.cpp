@@ -57,7 +57,7 @@ vector<Antenna*> HoldableAgent::getAntennas() const {
 
 void HoldableAgent::setLocation(Point* location) {
 	LocatableAgent::setLocation(location);
-	tryConnect(HoldableAgent::CONNECTION_TYPE::USING_POWER);
+	tryConnect(HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY);
 }
 
 string HoldableAgent::toString() {

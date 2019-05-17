@@ -18,6 +18,7 @@
 #include <typeinfo>
 #include <utility>
 #include <unordered_map>
+#include <EMField.h>
 
 using namespace std;
 using namespace geos;
@@ -69,15 +70,17 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex, Mobile
 		}
 
 		Point* p = m_map->getGlobalFactory()->createPoint(c);
-		double qual = a->computeSignalQuality(p);
-		double sum_qual = 0.0;
-		for (auto it = itr.first; it != itr.second; it++) {
-			a = dynamic_cast<Antenna*>(it->second);
-			sum_qual += a->computeSignalQuality(p);
-		}
+
+		double lh = EMField::instance()->connectionLikelihood(a,p);
+//		double qual = a->computeSignalQuality(p);
+//		double sum_qual = 0.0;
+//		for (auto it = itr.first; it != itr.second; it++) {
+//			a = dynamic_cast<Antenna*>(it->second);
+//			sum_qual += a->computeSignalQuality(p);
+//		}
 		//cout << p->getCoordinate()->x << "," << p->getCoordinate()->y << "," << qual << "," << sum_qual << endl;
 
-		result = (1.0 / (m_noTilesX * m_noTilesY)) * qual / sum_qual;
+		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;//qual / sum_qual;
 	}
 	else
 		result = (1.0 / (m_noTilesX * m_noTilesY));
