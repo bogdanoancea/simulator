@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = dynamic_cast<Antenna*>(it->second);
 			string fileName = a->getName() + std::to_string(a->getId()) + ".csv";
-			csv::Parser file = csv::Parser(fileName);
+			csv::Parser file = csv::Parser(fileName, csv::DataType::eFILE, ',', false);
 			for (unsigned long i = 0; i < file.rowCount(); i++) {
 				csv::Row s = file[i];
 				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));

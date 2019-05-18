@@ -56,7 +56,7 @@ namespace csv {
 	class Parser {
 
     public:
-			Parser(const std::string &, const DataType &type = eFILE, char sep = ',');
+			Parser(const std::string &, const DataType &type = eFILE, char sep = ',', bool hasHeader = true);
 			~Parser(void);
 
 		public:
@@ -83,6 +83,7 @@ namespace csv {
 			std::vector<std::string> _originalFile;
 			std::vector<std::string> _header;
 			std::vector<Row *> _content;
+			bool m_header;
 
 		public:
 			Row &operator[](unsigned int row) const;

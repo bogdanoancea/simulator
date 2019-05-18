@@ -7,8 +7,8 @@
 using namespace std;
 namespace csv {
 
-	Parser::Parser(const std::string &data, const DataType &type, char sep) :
-			_type(type), _sep(sep) {
+	Parser::Parser(const std::string &data, const DataType &type, char sep, bool hasHeader) :
+			_type(type), _sep(sep), m_header {hasHeader} {
 		string line;
 		if (type == eFILE) {
 			_file = data;
@@ -24,7 +24,8 @@ namespace csv {
 				if (_originalFile.size() == 0)
 					throw Error(std::string("No Data in ").append(_file));
 
-				//parseHeader();
+				if(m_header)
+					parseHeader();
 				parseContent();
 			}
 			else
@@ -38,7 +39,8 @@ namespace csv {
 			if (_originalFile.size() == 0)
 				throw Error(std::string("No Data in pure content"));
 
-			//parseHeader();
+			if(m_header)
+				parseHeader();
 			parseContent();
 		}
 	}
@@ -62,7 +64,8 @@ namespace csv {
 		std::vector<std::string>::iterator it;
 
 		it = _originalFile.begin();
-		//it++; // skip header
+		if(m_header)
+			it++; // skip header
 
 		for (; it != _originalFile.end(); it++) {
 			bool quoted = false;
@@ -84,8 +87,8 @@ namespace csv {
 			row->push(it->substr(tokenStart, it->length() - tokenStart));
 
 			// if value(s) missing
-//			if (row->size() != _header.size())
-//				throw Error("corrupted data !");
+			if (m_header && row->size() != _header.size())
+				throw Error("corrupted data !");
 			_content.push_back(row);
 		}
 	}
