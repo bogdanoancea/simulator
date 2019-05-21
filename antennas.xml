@@ -7,7 +7,7 @@
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>0</x>
-        <y>5</y>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
@@ -16,18 +16,8 @@
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>1</x>
-        <y>5</y>
-    </antenna>
-     <antenna>
-        <maxconnections>100</maxconnections>
-        <power>10</power>
-        <attenuationfactor>4</attenuationfactor>
-        <type>omnidirectional</type>
-        <Smid>-92.5</Smid>
-        <SSteep>0.2</SSteep>
-        <x>2</x>
-        <y>5</y>
+        <x>1000</x>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
@@ -36,8 +26,8 @@
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>3</x>
-        <y>5</y>
+        <x>2000</x>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
@@ -46,18 +36,8 @@
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>4</x>
-        <y>5</y>
-    </antenna>
-     <antenna>
-        <maxconnections>100</maxconnections>
-        <power>10</power>
-        <attenuationfactor>4</attenuationfactor>
-        <type>omnidirectional</type>
-        <Smid>-92.5</Smid>
-        <SSteep>0.2</SSteep>
-        <x>5</x>
-        <y>5</y>
+        <x>3000</x>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
@@ -66,18 +46,8 @@
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>6</x>
-        <y>5</y>
-    </antenna>
-     <antenna>
-        <maxconnections>100</maxconnections>
-        <power>10</power>
-        <attenuationfactor>4</attenuationfactor>
-        <type>omnidirectional</type>
-        <Smid>-92.5</Smid>
-        <SSteep>0.2</SSteep>
-        <x>7</x>
-        <y>5</y>
+        <x>4000</x>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
@@ -86,17 +56,47 @@
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>8</x>
-        <y>5</y>
+        <x>5000</x>
+        <y>5000</y>
     </antenna>
      <antenna>
         <maxconnections>100</maxconnections>
         <power>10</power>
-        <attenuationfactor>4</attenuationfactor>
+        <attenuationfactor>2</attenuationfactor>
         <type>omnidirectional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
-        <x>9</x>
-        <y>5</y>
+        <x>6000</x>
+        <y>5000</y>
+    </antenna>
+     <antenna>
+        <maxconnections>100</maxconnections>
+        <power>10</power>
+        <attenuationfactor>2</attenuationfactor>
+        <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
+        <x>7000</x>
+        <y>5000</y>
+    </antenna>
+     <antenna>
+        <maxconnections>100</maxconnections>
+        <power>10</power>
+        <attenuationfactor>2</attenuationfactor>
+        <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
+        <x>8000</x>
+        <y>5000</y>
+    </antenna>
+     <antenna>
+        <maxconnections>100</maxconnections>
+        <power>10</power>
+        <attenuationfactor>2</attenuationfactor>
+        <type>omnidirectional</type>
+        <Smid>-92.5</Smid>
+        <SSteep>0.2</SSteep>
+        <x>9000</x>
+        <y>5000</y>
     </antenna>
 </antennas>

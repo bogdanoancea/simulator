@@ -23,8 +23,7 @@ using namespace geos::geom;
  */
 class MobilePhone: public HoldableAgent {
 	public:
-		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold,
-				double qualityThreshold);
+		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold, HoldableAgent::CONNECTION_TYPE connType);
 		virtual ~MobilePhone();
 
 		string getName() override {
@@ -49,6 +48,7 @@ class MobilePhone: public HoldableAgent {
 		double m_powerThreshold;
 		double m_qualityThreshold;
 		Antenna* m_connectedTo;
+		HoldableAgent::CONNECTION_TYPE m_connType;
 
 };
 
