@@ -52,7 +52,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		EMField::instance()->addAntenna(antennas[i]);
 	}
 
-	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
+	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones, m_connType);
 	for (unsigned long i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
@@ -75,7 +75,7 @@ World::World(Map* map, int numPersons, const string& configAntennasFile, int num
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
 	}
-	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones);
+	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones, m_connType);
 	for (unsigned long i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
@@ -129,9 +129,6 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 	time_t tt = getClock()->realTime();
 	pFile << "Simulation started at " << ctime(&tt) << endl;
 
-//	m_clock->setInitialTime(0);
-//	m_clock->setIncrement(1);
-//	m_clock->setFinalTime(Constants::SIMULATION_TIME);
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
 	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
@@ -228,12 +225,12 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	return (result);
 }
 
-vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones) {
+vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType) {
 	vector<MobilePhone*> result;
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -397,7 +394,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	unsigned long cars = 0;
 	unsigned long walks = 0;
-	vector<MobilePhone*> mobiles = generateMobilePhones(numPhones);
+	vector<MobilePhone*> mobiles = generateMobilePhones(numPhones, m_connType);
 	unsigned long m_index = 0;
 	Person* p;
 	for (unsigned long i = 0; i < numPersons; i++) {

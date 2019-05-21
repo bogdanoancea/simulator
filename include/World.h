@@ -72,7 +72,7 @@ class World {
 		vector<Antenna*> generateAntennas(unsigned long numAntennas);
 		vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
 		vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
-		vector<MobilePhone*> generateMobilePhones(int numMobilePhones);
+		vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
 		void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 
 };

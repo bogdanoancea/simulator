@@ -158,7 +158,6 @@ int main(int argc, char** argv) {
 				csv::Row s = file[i];
 				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
-				//cout << a.toString() << endl;
 			}
 		}
 
@@ -167,7 +166,6 @@ int main(int argc, char** argv) {
 		if (outputFileName.empty()) {
 			throw runtime_error("no output file!");
 		}
-
 		try {
 			p_file.open(outputFileName, ios::out);
 		}
@@ -183,7 +181,7 @@ int main(int argc, char** argv) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << std::fixed << std::setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
+					p_file << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
 				}
 				p_file << endl;
 			}
