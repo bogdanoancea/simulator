@@ -7,87 +7,87 @@
 # include <list>
 # include <sstream>
 
-namespace csv {
-	class Error: public std::runtime_error {
+using namespace std;
 
-		public:
-			Error(const std::string &msg) :
-					std::runtime_error(std::string("CSVparser : ").append(msg)) {
-			}
-	};
+class Error: public runtime_error {
 
-	class Row {
-		public:
-			Row(const std::vector<std::string> &);
-			~Row(void);
+public:
+	Error(const string &msg) :
+			runtime_error(string("CSVparser : ").append(msg)) {
+	}
+};
 
-		public:
-			unsigned int size(void) const;
-			void push(const std::string &);
-			bool set(const std::string &, const std::string &);
+class Row {
+public:
+	Row(const vector<std::string> &);
+	~Row(void);
 
-		private:
-			const std::vector<std::string> _header;
-			std::vector<std::string> _values;
+public:
+	unsigned int size(void) const;
+	void push(const string &);
+	bool set(const string &, const string &);
 
-		public:
+private:
+	const vector<string> _header;
+	vector<string> _values;
 
-			template<typename T>
-			const T getValue(unsigned int pos) const {
-				if (pos < _values.size()) {
-					T res;
-					std::stringstream ss;
-					ss << _values[pos];
-					ss >> res;
-					return res;
-				}
-				throw Error("can't return this value (doesn't exist)");
-			}
-			const std::string operator[](unsigned int) const;
-			const std::string operator[](const std::string &valueName) const;
-			friend std::ostream& operator<<(std::ostream& os, const Row &row);
-			friend std::ofstream& operator<<(std::ofstream& os, const Row &row);
-	};
+public:
 
-	enum DataType {
-		eFILE = 0, ePURE = 1
-	};
+	template<typename T>
+	const T getValue(unsigned int pos) const {
+		if (pos < _values.size()) {
+			T res;
+			stringstream ss;
+			ss << _values[pos];
+			ss >> res;
+			return res;
+		}
+		throw Error("can't return this value (doesn't exist)");
+	}
+	const string operator[](unsigned int) const;
+	const string operator[](const string &valueName) const;
+	friend ostream& operator<<(ostream& os, const Row &row);
+	friend ofstream& operator<<(ofstream& os, const Row &row);
+};
 
-	class Parser {
+enum DataType {
+	eFILE = 0, ePURE = 1
+};
 
-    public:
-			Parser(const std::string &, const DataType &type = eFILE, char sep = ',', bool hasHeader = true);
-			~Parser(void);
+class Parser {
 
-		public:
-			Row &getRow(unsigned int row) const;
-			unsigned int rowCount(void) const;
-			unsigned int columnCount(void) const;
-			std::vector<std::string> getHeader(void) const;
-			const std::string getHeaderElement(unsigned int pos) const;
-			const std::string &getFileName(void) const;
+public:
+	Parser(const string &, const DataType &type = eFILE, char sep = ',', bool hasHeader = true);
+	~Parser(void);
 
-		public:
-			bool deleteRow(unsigned int row);
-			bool addRow(unsigned int pos, const std::vector<std::string> &);
-			void sync(void) const;
+public:
+	Row &getRow(unsigned int row) const;
+	unsigned int rowCount(void) const;
+	unsigned int columnCount(void) const;
+	vector<string> getHeader(void) const;
+	const string getHeaderElement(unsigned int pos) const;
+	const string &getFileName(void) const;
 
-		protected:
-			void parseHeader(void);
-			void parseContent(void);
+public:
+	bool deleteRow(unsigned int row);
+	bool addRow(unsigned int pos, const vector<string> &);
+	void sync(void) const;
 
-		private:
-			std::string _file;
-			const DataType _type;
-			const char _sep;
-			std::vector<std::string> _originalFile;
-			std::vector<std::string> _header;
-			std::vector<Row *> _content;
-			bool m_header;
+protected:
+	void parseHeader(void);
+	void parseContent(void);
 
-		public:
-			Row &operator[](unsigned int row) const;
-	};
-}
+private:
+	string _file;
+	const DataType _type;
+	const char _sep;
+	vector<string> _originalFile;
+	vector<string> _header;
+	vector<Row *> _content;
+	bool m_header;
+
+public:
+	Row &operator[](unsigned int row) const;
+};
 
 #endif /*!_CSVPARSER_HPP_*/

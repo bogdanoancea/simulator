@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
 //		}
 //
 //		vector<unsigned long> pindices;
-//		std::move(indices.begin(), indices.end(), back_inserter(pindices));
+//		move(indices.begin(), indices.end(), back_inserter(pindices));
 //		unsigned long i = 0;
 //		for (auto it = itr3.first; it != itr3.second; it++) {
 //			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
@@ -127,8 +127,8 @@ int main(int argc, char** argv) {
 		Geometry* bbox = map->getBoundary()->getEnvelope();
 		CoordinateSequence* seq = bbox->getCoordinates();
 		double minX, minY, maxX, maxY;
-		minX = minY = std::numeric_limits<double>::max();
-		maxX = maxY = std::numeric_limits<double>::min();
+		minX = minY = numeric_limits<double>::max();
+		maxX = maxY = numeric_limits<double>::min();
 		for (size_t i = 0; i < seq->size(); i++) {
 			double x = seq->getX(i);
 			double y = seq->getY(i);
@@ -152,10 +152,10 @@ int main(int argc, char** argv) {
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = dynamic_cast<Antenna*>(it->second);
-			string fileName = a->getName() + std::to_string(a->getId()) + ".csv";
-			csv::Parser file = csv::Parser(fileName, csv::DataType::eFILE, ',', false);
+			string fileName = a->getName() + to_string(a->getId()) + ".csv";
+			Parser file = Parser(fileName, DataType::eFILE, ',', false);
 			for (unsigned long i = 0; i < file.rowCount(); i++) {
-				csv::Row s = file[i];
+				Row s = file[i];
 				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
 			}
@@ -169,7 +169,7 @@ int main(int argc, char** argv) {
 		try {
 			p_file.open(outputFileName, ios::out);
 		}
-		catch (std::ofstream::failure& e) {
+		catch (ofstream::failure& e) {
 			cerr << "Error opening output file!" << endl;
 		}
 
@@ -179,11 +179,12 @@ int main(int argc, char** argv) {
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-				p_file << t << "," << m->getId() << ",";
+				//p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
+					//p_file << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
+					p_file << t << "," << m->getId() << "," << i << "," << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << endl;
 				}
-				p_file << endl;
+				//p_file << endl;
 			}
 		}
 		p_file.close();
@@ -195,10 +196,10 @@ int main(int argc, char** argv) {
 		//         output t, phone_id, tile, p
 
 	}
-	catch (std::runtime_error& e) {
+	catch (runtime_error& e) {
 		cout << e.what() << "\n";
 	}
-	catch (const std::exception &e) {
+	catch (const exception &e) {
 		cout << e.what() << "\n";
 	}
 	return (0);
