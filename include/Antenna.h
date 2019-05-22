@@ -185,7 +185,7 @@ public:
 
 	/**
 	 * Sets the value of the Ssteep antenna parameter.
-	 * @param smid the value of the Ssteep antenna parameter.
+	 * @param sSteep the value of the Ssteep antenna parameter.
 	 */
 	void setSSteep(double sSteep);
 
