@@ -1,0 +1,165 @@
+\section{Map Class Reference}
+\label{class_map}\index{Map@{Map}}
+
+
+{\ttfamily \#include $<$Map.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Map} ()
+\item 
+\textbf{ Map} (double llX, double llY, double width, double height)
+\item 
+\textbf{ Map} (string wkt\+File)
+\item 
+virtual \textbf{ $\sim$\+Map} ()
+\item 
+const Geometry\+Factory\+::\+Ptr \& \textbf{ get\+Global\+Factory} () const
+\item 
+Geometry $\ast$ \textbf{ get\+Boundary} () const
+\item 
+void \textbf{ set\+Boundary} (Geometry $\ast$boundary)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Polygon $\ast$ \textbf{ create\+\_\+rectangle} (double llX, double llY, double width, double height)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Geometry\+Factory\+::\+Ptr \textbf{ m\+\_\+global\+Factory}
+\item 
+Geometry $\ast$ \textbf{ m\+\_\+boundary}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 22 of file Map.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_map_a0f5ad0fd4563497b4214038cbca8b582}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor 
+
+Definition at line 28 of file Map.\+cpp.
+
+\mbox{\label{class_map_a4c9545a0252613e2a6808932fe83f9ad}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{double}]{llX,  }\item[{double}]{llY,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file Map.\+cpp.
+
+\mbox{\label{class_map_ab8beab7a7dce782a23db740cd7132552}} 
+\index{Map@{Map}!Map@{Map}}
+\index{Map@{Map}!Map@{Map}}
+\subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{string}]{wkt\+File }\end{DoxyParamCaption})}
+
+
+
+Definition at line 57 of file Map.\+cpp.
+
+\mbox{\label{class_map_aa403fbe09394ccf39747588f5168e3b2}} 
+\index{Map@{Map}!````~Map@{$\sim$Map}}
+\index{````~Map@{$\sim$Map}!Map@{Map}}
+\subsubsection{$\sim$Map()}
+{\footnotesize\ttfamily Map\+::$\sim$\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor 
+
+Definition at line 84 of file Map.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_map_a222f5585368eeb768b63b612207b6965}} 
+\index{Map@{Map}!create\_rectangle@{create\_rectangle}}
+\index{create\_rectangle@{create\_rectangle}!Map@{Map}}
+\subsubsection{create\_rectangle()}
+{\footnotesize\ttfamily Polygon $\ast$ Map\+::create\+\_\+rectangle (\begin{DoxyParamCaption}\item[{double}]{llX,  }\item[{double}]{llY,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 93 of file Map.\+cpp.
+
+\mbox{\label{class_map_a74dd5445ed90bea2a9cc3240bc23f1bc}} 
+\index{Map@{Map}!getBoundary@{getBoundary}}
+\index{getBoundary@{getBoundary}!Map@{Map}}
+\subsubsection{getBoundary()}
+{\footnotesize\ttfamily Geometry$\ast$ Map\+::get\+Boundary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 37 of file Map.\+h.
+
+
+
+Referenced by utils\+::generate\+Points(), and Person\+::random\+Walk().
+
+\mbox{\label{class_map_a6385b465eea96277cde8dc10bf9af014}} 
+\index{Map@{Map}!getGlobalFactory@{getGlobalFactory}}
+\index{getGlobalFactory@{getGlobalFactory}!Map@{Map}}
+\subsubsection{getGlobalFactory()}
+{\footnotesize\ttfamily const Geometry\+Factory\+::\+Ptr \& Map\+::get\+Global\+Factory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 88 of file Map.\+cpp.
+
+
+
+Referenced by Antenna\+::\+Antenna(), Grid\+::compute\+Probability(), utils\+::generate\+Points(), and Person\+::random\+Walk().
+
+\mbox{\label{class_map_acede2ccba9bf0f987f3dde8c332bec17}} 
+\index{Map@{Map}!setBoundary@{setBoundary}}
+\index{setBoundary@{setBoundary}!Map@{Map}}
+\subsubsection{setBoundary()}
+{\footnotesize\ttfamily void Map\+::set\+Boundary (\begin{DoxyParamCaption}\item[{Geometry $\ast$}]{boundary }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 42 of file Map.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_map_af2c95561cb4ff3b9950240351cf4303c}} 
+\index{Map@{Map}!m\_boundary@{m\_boundary}}
+\index{m\_boundary@{m\_boundary}!Map@{Map}}
+\subsubsection{m\_boundary}
+{\footnotesize\ttfamily Geometry$\ast$ Map\+::m\+\_\+boundary\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file Map.\+h.
+
+\mbox{\label{class_map_ac5f30e6c144955a3638192495fd7d843}} 
+\index{Map@{Map}!m\_globalFactory@{m\_globalFactory}}
+\index{m\_globalFactory@{m\_globalFactory}!Map@{Map}}
+\subsubsection{m\_globalFactory}
+{\footnotesize\ttfamily Geometry\+Factory\+::\+Ptr Map\+::m\+\_\+global\+Factory\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Map.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Map.\+h}\item 
+src/\textbf{ Map.\+cpp}\end{DoxyCompactItemize}

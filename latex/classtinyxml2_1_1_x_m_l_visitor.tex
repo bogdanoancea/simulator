@@ -1,0 +1,230 @@
+\section{tinyxml2\+::X\+M\+L\+Visitor Class Reference}
+\label{classtinyxml2_1_1_x_m_l_visitor}\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+Inheritance diagram for tinyxml2\+::X\+M\+L\+Visitor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1_x_m_l_visitor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \textbf{ $\sim$\+X\+M\+L\+Visitor} ()
+\item 
+virtual bool \textbf{ Visit\+Enter} (const \textbf{ X\+M\+L\+Document} \&)
+\begin{DoxyCompactList}\small\item\em Visit a document. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit\+Exit} (const \textbf{ X\+M\+L\+Document} \&)
+\begin{DoxyCompactList}\small\item\em Visit a document. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit\+Enter} (const \textbf{ X\+M\+L\+Element} \&, const \textbf{ X\+M\+L\+Attribute} $\ast$)
+\begin{DoxyCompactList}\small\item\em Visit an element. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit\+Exit} (const \textbf{ X\+M\+L\+Element} \&)
+\begin{DoxyCompactList}\small\item\em Visit an element. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit} (const \textbf{ X\+M\+L\+Declaration} \&)
+\begin{DoxyCompactList}\small\item\em Visit a declaration. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit} (const \textbf{ X\+M\+L\+Text} \&)
+\begin{DoxyCompactList}\small\item\em Visit a text node. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit} (const \textbf{ X\+M\+L\+Comment} \&)
+\begin{DoxyCompactList}\small\item\em Visit a comment node. \end{DoxyCompactList}\item 
+virtual bool \textbf{ Visit} (const \textbf{ X\+M\+L\+Unknown} \&)
+\begin{DoxyCompactList}\small\item\em Visit an unknown node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the interface to the \char`\"{}\+Visitor pattern\char`\"{} (see the Accept() method.) If you call the Accept() method, it requires being passed a \doxyref{X\+M\+L\+Visitor}{p.}{classtinyxml2_1_1_x_m_l_visitor} class to handle callbacks. For nodes that contain other nodes (Document, Element) you will get called with a Visit\+Enter/\+Visit\+Exit pair. Nodes that are always leafs are simply called with \doxyref{Visit()}{p.}{classtinyxml2_1_1_x_m_l_visitor_adc75bd459fc7ba8223b50f0616767f9a}.
+
+If you return \textquotesingle{}true\textquotesingle{} from a Visit method, recursive parsing will continue. If you return false, {\bfseries{no children of this node or its siblings}} will be visited.
+
+All flavors of Visit methods have a default implementation that returns \textquotesingle{}true\textquotesingle{} (continue visiting). You need to only override methods that are interesting to you.
+
+Generally Accept() is called on the \doxyref{X\+M\+L\+Document}{p.}{classtinyxml2_1_1_x_m_l_document}, although all nodes support visiting.
+
+You should never change the document from a callback.
+
+\begin{DoxySeeAlso}{See also}
+\doxyref{X\+M\+L\+Node\+::\+Accept()}{p.}{classtinyxml2_1_1_x_m_l_node_a81e66df0a44c67a7af17f3b77a152785} 
+\end{DoxySeeAlso}
+
+
+Definition at line 480 of file tinyxml2.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_a494e72033d646c47d9c65c502ec62364}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!````~XMLVisitor@{$\sim$XMLVisitor}}
+\index{````~XMLVisitor@{$\sim$XMLVisitor}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{$\sim$XMLVisitor()}
+{\footnotesize\ttfamily virtual tinyxml2\+::\+X\+M\+L\+Visitor\+::$\sim$\+X\+M\+L\+Visitor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 483 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_adc75bd459fc7ba8223b50f0616767f9a}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!Visit@{Visit}}
+\index{Visit@{Visit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{Visit()\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Declaration} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit a declaration. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_acfc625b2549304b9c7eb85ebd5c5eb39}.
+
+
+
+Definition at line 504 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Text\+::\+Accept(), tinyxml2\+::\+X\+M\+L\+Comment\+::\+Accept(), tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Accept(), and tinyxml2\+::\+X\+M\+L\+Unknown\+::\+Accept().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_af30233565856480ea48b6fa0d6dec65b}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!Visit@{Visit}}
+\index{Visit@{Visit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{Visit()\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Text} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit a text node. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_adc0e42b4f6fcb90a95630c79575d030b}.
+
+
+
+Definition at line 508 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_acc8147fb5a85f6c65721654e427752d7}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!Visit@{Visit}}
+\index{Visit@{Visit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{Visit()\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Comment} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit a comment node. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_aa294c5c01af0ebb9114902456e4cb53c}.
+
+
+
+Definition at line 512 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_a14e4748387c34bf53d24e8119bb1f292}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!Visit@{Visit}}
+\index{Visit@{Visit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{Visit()\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Unknown} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit an unknown node. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_ab8af5455bbf9e4be2663e6642fcd7e32}.
+
+
+
+Definition at line 516 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_acb3c22fc5f60eb9db98f533f2761f67d}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!VisitEnter@{VisitEnter}}
+\index{VisitEnter@{VisitEnter}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{VisitEnter()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Enter (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Document} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit a document. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_a9aa1de11a55a07db55a90fde37d7afad}.
+
+
+
+Definition at line 486 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Accept(), and tinyxml2\+::\+X\+M\+L\+Document\+::\+Accept().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_af97980a17dd4e37448b181f5ddfa92b5}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!VisitEnter@{VisitEnter}}
+\index{VisitEnter@{VisitEnter}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{VisitEnter()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Enter (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Element} \&}]{,  }\item[{const \textbf{ X\+M\+L\+Attribute} $\ast$}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit an element. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_a169b2509d8eabb70811b2bb8cfd1f5d1}.
+
+
+
+Definition at line 495 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_a170e9989cd046ba904f302d087e07086}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!VisitExit@{VisitExit}}
+\index{VisitExit@{VisitExit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{VisitExit()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Exit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Document} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit a document. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_a15fc1f2b922f540917dcf52808737b29}.
+
+
+
+Definition at line 490 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Accept(), and tinyxml2\+::\+X\+M\+L\+Document\+::\+Accept().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_visitor_a772f10ddc83f881956d32628faa16eb6}} 
+\index{tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}!VisitExit@{VisitExit}}
+\index{VisitExit@{VisitExit}!tinyxml2::XMLVisitor@{tinyxml2::XMLVisitor}}
+\subsubsection{VisitExit()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Exit (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Element} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Visit an element. 
+
+
+
+Reimplemented in \textbf{ tinyxml2\+::\+X\+M\+L\+Printer} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_printer_a2edd48405971a88951c71c9df86a2f50}.
+
+
+
+Definition at line 499 of file tinyxml2.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ tinyxml2.\+h}\end{DoxyCompactItemize}

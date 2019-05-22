@@ -1,0 +1,1220 @@
+\section{tinyxml2\+::X\+M\+L\+Document Class Reference}
+\label{classtinyxml2_1_1_x_m_l_document}\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+Inheritance diagram for tinyxml2\+::X\+M\+L\+Document\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1_x_m_l_document}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Depth\+Tracker}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ X\+M\+L\+Document} (bool process\+Entities=true, \textbf{ Whitespace} whitespace\+Mode=\textbf{ P\+R\+E\+S\+E\+R\+V\+E\+\_\+\+W\+H\+I\+T\+E\+S\+P\+A\+CE})
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\textbf{ $\sim$\+X\+M\+L\+Document} ()
+\item 
+virtual \textbf{ X\+M\+L\+Document} $\ast$ \textbf{ To\+Document} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to a Document, or null. \end{DoxyCompactList}\item 
+virtual const \textbf{ X\+M\+L\+Document} $\ast$ \textbf{ To\+Document} () const
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Parse} (const char $\ast$xml, size\+\_\+t n\+Bytes=(size\+\_\+t)(-\/1))
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Load\+File} (const char $\ast$filename)
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Load\+File} (F\+I\+LE $\ast$)
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Save\+File} (const char $\ast$filename, bool compact=false)
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Save\+File} (F\+I\+LE $\ast$fp, bool compact=false)
+\item 
+bool \textbf{ Process\+Entities} () const
+\item 
+\textbf{ Whitespace} \textbf{ Whitespace\+Mode} () const
+\item 
+bool \textbf{ Has\+B\+OM} () const
+\item 
+void \textbf{ Set\+B\+OM} (bool use\+B\+OM)
+\item 
+\textbf{ X\+M\+L\+Element} $\ast$ \textbf{ Root\+Element} ()
+\item 
+const \textbf{ X\+M\+L\+Element} $\ast$ \textbf{ Root\+Element} () const
+\item 
+void \textbf{ Print} (\textbf{ X\+M\+L\+Printer} $\ast$streamer=0) const
+\item 
+virtual bool \textbf{ Accept} (\textbf{ X\+M\+L\+Visitor} $\ast$visitor) const
+\item 
+\textbf{ X\+M\+L\+Element} $\ast$ \textbf{ New\+Element} (const char $\ast$name)
+\item 
+\textbf{ X\+M\+L\+Comment} $\ast$ \textbf{ New\+Comment} (const char $\ast$comment)
+\item 
+\textbf{ X\+M\+L\+Text} $\ast$ \textbf{ New\+Text} (const char $\ast$text)
+\item 
+\textbf{ X\+M\+L\+Declaration} $\ast$ \textbf{ New\+Declaration} (const char $\ast$text=0)
+\item 
+\textbf{ X\+M\+L\+Unknown} $\ast$ \textbf{ New\+Unknown} (const char $\ast$text)
+\item 
+void \textbf{ Delete\+Node} (\textbf{ X\+M\+L\+Node} $\ast$node)
+\item 
+void \textbf{ Clear\+Error} ()
+\item 
+bool \textbf{ Error} () const
+\begin{DoxyCompactList}\small\item\em Return true if there was an error parsing the document. \end{DoxyCompactList}\item 
+\textbf{ X\+M\+L\+Error} \textbf{ Error\+ID} () const
+\begin{DoxyCompactList}\small\item\em Return the error\+ID. \end{DoxyCompactList}\item 
+const char $\ast$ \textbf{ Error\+Name} () const
+\item 
+const char $\ast$ \textbf{ Error\+Str} () const
+\item 
+void \textbf{ Print\+Error} () const
+\begin{DoxyCompactList}\small\item\em A (trivial) utility function that prints the \doxyref{Error\+Str()}{p.}{classtinyxml2_1_1_x_m_l_document_ae97fff2402a0d01e0509c430b37996b3} to stdout. \end{DoxyCompactList}\item 
+int \textbf{ Error\+Line\+Num} () const
+\begin{DoxyCompactList}\small\item\em Return the line where the error occurred, or zero if unknown. \end{DoxyCompactList}\item 
+void \textbf{ Clear} ()
+\begin{DoxyCompactList}\small\item\em Clear the document, resetting it to the initial state. \end{DoxyCompactList}\item 
+void \textbf{ Deep\+Copy} (\textbf{ X\+M\+L\+Document} $\ast$target) const
+\item 
+char $\ast$ \textbf{ Identify} (char $\ast$p, \textbf{ X\+M\+L\+Node} $\ast$$\ast$node)
+\item 
+void \textbf{ Mark\+In\+Use} (\textbf{ X\+M\+L\+Node} $\ast$)
+\item 
+virtual \textbf{ X\+M\+L\+Node} $\ast$ \textbf{ Shallow\+Clone} (\textbf{ X\+M\+L\+Document} $\ast$) const
+\item 
+virtual bool \textbf{ Shallow\+Equal} (const \textbf{ X\+M\+L\+Node} $\ast$) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \textbf{ Error\+I\+D\+To\+Name} (\textbf{ X\+M\+L\+Error} error\+ID)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ X\+M\+L\+Document} (const \textbf{ X\+M\+L\+Document} \&)
+\item 
+void \textbf{ operator=} (const \textbf{ X\+M\+L\+Document} \&)
+\item 
+void \textbf{ Parse} ()
+\item 
+void \textbf{ Set\+Error} (\textbf{ X\+M\+L\+Error} error, int line\+Num, const char $\ast$format,...)
+\item 
+void \textbf{ Push\+Depth} ()
+\item 
+void \textbf{ Pop\+Depth} ()
+\item 
+{\footnotesize template$<$class Node\+Type , int Pool\+Element\+Size$>$ }\\Node\+Type $\ast$ \textbf{ Create\+Unlinked\+Node} (\textbf{ Mem\+PoolT}$<$ Pool\+Element\+Size $>$ \&pool)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ \+\_\+write\+B\+OM}
+\item 
+bool \textbf{ \+\_\+process\+Entities}
+\item 
+\textbf{ X\+M\+L\+Error} \textbf{ \+\_\+error\+ID}
+\item 
+\textbf{ Whitespace} \textbf{ \+\_\+whitespace\+Mode}
+\item 
+\textbf{ Str\+Pair} \textbf{ \+\_\+error\+Str}
+\item 
+int \textbf{ \+\_\+error\+Line\+Num}
+\item 
+char $\ast$ \textbf{ \+\_\+char\+Buffer}
+\item 
+int \textbf{ \+\_\+parse\+Cur\+Line\+Num}
+\item 
+int \textbf{ \+\_\+parsing\+Depth}
+\item 
+\textbf{ Dyn\+Array}$<$ \textbf{ X\+M\+L\+Node} $\ast$, 10 $>$ \textbf{ \+\_\+unlinked}
+\item 
+\textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Element}) $>$ \textbf{ \+\_\+element\+Pool}
+\item 
+\textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Attribute}) $>$ \textbf{ \+\_\+attribute\+Pool}
+\item 
+\textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Text}) $>$ \textbf{ \+\_\+text\+Pool}
+\item 
+\textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Comment}) $>$ \textbf{ \+\_\+comment\+Pool}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \textbf{ \+\_\+error\+Names} [\textbf{ X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+U\+NT}]
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ X\+M\+L\+Element}
+\item 
+class \textbf{ X\+M\+L\+Node}
+\item 
+class \textbf{ X\+M\+L\+Text}
+\item 
+class \textbf{ X\+M\+L\+Comment}
+\item 
+class \textbf{ X\+M\+L\+Declaration}
+\item 
+class \textbf{ X\+M\+L\+Unknown}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A Document binds together all the functionality. It can be saved, loaded, and printed to the screen. All Nodes are connected and allocated to a Document. If the Document is deleted, all its Nodes are also deleted. 
+
+Definition at line 1653 of file tinyxml2.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a57ddf17b6e054dda10af98991b1b8f70}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLDocument@{XMLDocument}}
+\index{XMLDocument@{XMLDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLDocument()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily tinyxml2\+::\+X\+M\+L\+Document\+::\+X\+M\+L\+Document (\begin{DoxyParamCaption}\item[{bool}]{process\+Entities = {\ttfamily true},  }\item[{\textbf{ Whitespace}}]{whitespace\+Mode = {\ttfamily \textbf{ P\+R\+E\+S\+E\+R\+V\+E\+\_\+\+W\+H\+I\+T\+E\+S\+P\+A\+CE}} }\end{DoxyParamCaption})}
+
+
+
+constructor 
+
+
+
+Definition at line 2006 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+document.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_af37c47d8e2ba4b2fc81b21a77a32579b}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!````~XMLDocument@{$\sim$XMLDocument}}
+\index{````~XMLDocument@{$\sim$XMLDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{$\sim$XMLDocument()}
+{\footnotesize\ttfamily tinyxml2\+::\+X\+M\+L\+Document\+::$\sim$\+X\+M\+L\+Document (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2028 of file tinyxml2.\+cpp.
+
+
+
+References Clear().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_adcea490db02a099d99440cd14a87d9e4}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLDocument@{XMLDocument}}
+\index{XMLDocument@{XMLDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLDocument()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily tinyxml2\+::\+X\+M\+L\+Document\+::\+X\+M\+L\+Document (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Document} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ab7be651917a35ab1ff0e4e6d4e565cdf}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Accept@{Accept}}
+\index{Accept@{Accept}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Accept()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+Accept (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Visitor} $\ast$}]{visitor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Accept a hierarchical visit of the nodes in the Tiny\+X\+M\+L-\/2 D\+OM. Every node in the X\+ML tree will be conditionally visited and the host will be called back via the \doxyref{X\+M\+L\+Visitor}{p.}{classtinyxml2_1_1_x_m_l_visitor} interface.
+
+This is essentially a S\+AX interface for Tiny\+X\+M\+L-\/2. (Note however it doesn\textquotesingle{}t re-\/parse the X\+ML for the callbacks, so the performance of Tiny\+X\+M\+L-\/2 is unchanged by using this interface versus any other.)
+
+The interface has been based on ideas from\+:
+
+
+\begin{DoxyItemize}
+\item {\texttt{ http\+://www.\+saxproject.\+org/}}
+\item {\texttt{ http\+://c2.\+com/cgi/wiki?\+Hierarchical\+Visitor\+Pattern}}
+\end{DoxyItemize}
+
+Which are both good references for \char`\"{}visiting\char`\"{}.
+
+An example of using \doxyref{Accept()}{p.}{classtinyxml2_1_1_x_m_l_document_ab7be651917a35ab1ff0e4e6d4e565cdf}\+: \begin{DoxyVerb}XMLPrinter printer;
+tinyxmlDoc.Accept( &printer );
+const char* xmlcstr = printer.CStr();
+\end{DoxyVerb}
+ 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a81e66df0a44c67a7af17f3b77a152785}.
+
+
+
+Definition at line 726 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Next\+Sibling(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Enter(), and tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit\+Exit().
+
+
+
+Referenced by Print().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a65656b0b2cbc822708eb351504178aaf}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Clear@{Clear}}
+\index{Clear@{Clear}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Clear()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear the document, resetting it to the initial state. 
+
+
+
+Definition at line 2047 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+attribute\+Pool, \+\_\+char\+Buffer, \+\_\+comment\+Pool, \+\_\+element\+Pool, \+\_\+parsing\+Depth, \+\_\+text\+Pool, \+\_\+unlinked, Clear\+Error(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Delete\+Children(), Delete\+Node(), Error(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by Deep\+Copy(), Load\+File(), Parse(), and $\sim$\+X\+M\+L\+Document().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a4085d9c52f1d93214311459d6d1fcf17}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ClearError@{ClearError}}
+\index{ClearError@{ClearError}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ClearError()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Clear\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 1814 of file tinyxml2.\+h.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
+
+
+
+Referenced by Clear(), and Save\+File().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_acda2123b71a6e6534be9f48e75ea680a}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!CreateUnlinkedNode@{CreateUnlinkedNode}}
+\index{CreateUnlinkedNode@{CreateUnlinkedNode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{CreateUnlinkedNode()}
+{\footnotesize\ttfamily template$<$class Node\+Type , int Pool\+Element\+Size$>$ \\
+Node\+Type $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Create\+Unlinked\+Node (\begin{DoxyParamCaption}\item[{\textbf{ Mem\+PoolT}$<$ Pool\+Element\+Size $>$ \&}]{pool }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line 1923 of file tinyxml2.\+h.
+
+
+
+References \+\_\+unlinked, tinyxml2\+::\+Mem\+Pool\+T$<$ I\+T\+E\+M\+\_\+\+S\+I\+Z\+E $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ I\+T\+E\+M\+\_\+\+S\+I\+Z\+E $>$\+::\+Item\+Size(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_af592ffc91514e25a39664521ac83db45}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!DeepCopy@{DeepCopy}}
+\index{DeepCopy@{DeepCopy}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{DeepCopy()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Deep\+Copy (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Document} $\ast$}]{target }\end{DoxyParamCaption}) const}
+
+Copies this document to a target document. The target will be completely cleared before the copy. If you want to copy a sub-\/tree, see \doxyref{X\+M\+L\+Node\+::\+Deep\+Clone()}{p.}{classtinyxml2_1_1_x_m_l_node_a3bb369fd733f1989b751d99a9417adab}.
+
+N\+O\+TE\+: that the \textquotesingle{}target\textquotesingle{} must be non-\/null. 
+
+Definition at line 2081 of file tinyxml2.\+cpp.
+
+
+
+References Clear(), tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Insert\+End\+Child(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Next\+Sibling(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ac1d6e2c7fcc1a660624ac4f68e96380d}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!DeleteNode@{DeleteNode}}
+\index{DeleteNode@{DeleteNode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{DeleteNode()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Delete\+Node (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Node} $\ast$}]{node }\end{DoxyParamCaption})}
+
+Delete a node associated with this document. It will be unlinked from the D\+OM. 
+
+Definition at line 2149 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+document, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+mem\+Pool, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+parent, tinyxml2\+::\+X\+M\+L\+Node\+::\+Delete\+Child(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Delete\+Node(), tinyxml2\+::\+Mem\+Pool\+::\+Set\+Tracked(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by Clear().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a34e6318e182e40e3cc4f4ba5d59ed9ed}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Error@{Error}}
+\index{Error@{Error}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Error()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return true if there was an error parsing the document. 
+
+
+
+Definition at line 1819 of file tinyxml2.\+h.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
+
+
+
+Referenced by Clear(), Parse(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+Parse\+Deep().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_afa3ed33b3107f920ec2b301f805ac17d}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorID@{ErrorID}}
+\index{ErrorID@{ErrorID}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ErrorID()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Error\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the error\+ID. 
+
+
+
+Definition at line 1823 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a639f7c295c38dc5a4aafeb2fff93da03}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorIDToName@{ErrorIDToName}}
+\index{ErrorIDToName@{ErrorIDToName}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ErrorIDToName()}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Error\+I\+D\+To\+Name (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Error}}]{error\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 2356 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+Names, T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+U\+NT.
+
+
+
+Referenced by Error\+Name(), and Set\+Error().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a57400f816dbe7799ece33615ead9ab76}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorLineNum@{ErrorLineNum}}
+\index{ErrorLineNum@{ErrorLineNum}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ErrorLineNum()}
+{\footnotesize\ttfamily int tinyxml2\+::\+X\+M\+L\+Document\+::\+Error\+Line\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the line where the error occurred, or zero if unknown. 
+
+
+
+Definition at line 1838 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a1a5f2b63427caffd4cde15781d9d11f9}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorName@{ErrorName}}
+\index{ErrorName@{ErrorName}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ErrorName()}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Error\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 2375 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+ID, and Error\+I\+D\+To\+Name().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ae97fff2402a0d01e0509c430b37996b3}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ErrorStr@{ErrorStr}}
+\index{ErrorStr@{ErrorStr}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ErrorStr()}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Error\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns a \char`\"{}long form\char`\"{} error description. A hopefully helpful diagnostic with location, line number, and/or additional info. 
+
+Definition at line 2364 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+Str, tinyxml2\+::\+Str\+Pair\+::\+Empty(), and tinyxml2\+::\+Str\+Pair\+::\+Get\+Str().
+
+
+
+Referenced by Print\+Error().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a33fc5d159db873a179fa26338adb05bd}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!HasBOM@{HasBOM}}
+\index{HasBOM@{HasBOM}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{HasBOM()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+Has\+B\+OM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns true if this document has a leading Byte Order Mark of U\+T\+F8. 
+
+Definition at line 1735 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Visit\+Enter().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a25827d1bec509ad566a107e5853ed040}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Identify@{Identify}}
+\index{Identify@{Identify}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Identify()}
+{\footnotesize\ttfamily char $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Identify (\begin{DoxyParamCaption}\item[{char $\ast$}]{p,  }\item[{\textbf{ X\+M\+L\+Node} $\ast$$\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Definition at line 656 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+comment\+Pool, \+\_\+element\+Pool, \+\_\+parse\+Cur\+Line\+Num, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+parse\+Line\+Num, \+\_\+text\+Pool, tinyxml2\+::\+X\+M\+L\+Text\+::\+Set\+C\+Data(), tinyxml2\+::\+X\+M\+L\+Util\+::\+Skip\+White\+Space(), tinyxml2\+::\+X\+M\+L\+Util\+::\+String\+Equal(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Node\+::\+Parse\+Deep().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a2ebd4647a8af5fc6831b294ac26a150a}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!LoadFile@{LoadFile}}
+\index{LoadFile@{LoadFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{LoadFile()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+Load an X\+ML file from disk. Returns X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS (0) on success, or an error\+ID. 
+
+Definition at line 2167 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+ID, tinyxml2\+::callfopen(), Clear(), Set\+Error(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+C\+O\+U\+L\+D\+\_\+\+N\+O\+T\+\_\+\+B\+E\+\_\+\+O\+P\+E\+N\+ED, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND.
+
+
+
+Referenced by World\+::parse\+Antennas(), World\+::parse\+Persons(), and World\+::parse\+Simulation\+File().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a5f1d330fad44c52f3d265338dd2a6dc2}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!LoadFile@{LoadFile}}
+\index{LoadFile@{LoadFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{LoadFile()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+Load an X\+ML file from disk. You are responsible for providing and closing the F\+I\+L\+E$\ast$.
+
+N\+O\+TE\+: The file should be opened as binary (\char`\"{}rb\char`\"{}) not text in order for Tiny\+X\+M\+L-\/2 to correctly do newline normalization.
+
+Returns X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS (0) on success, or an error\+ID. 
+
+Definition at line 2209 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+char\+Buffer, \+\_\+error\+ID, Clear(), Parse(), Set\+Error(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+M\+P\+T\+Y\+\_\+\+D\+O\+C\+U\+M\+E\+NT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+R\+E\+A\+D\+\_\+\+E\+R\+R\+OR.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a95d28ecb4760a994556b0a51690b21be}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!MarkInUse@{MarkInUse}}
+\index{MarkInUse@{MarkInUse}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{MarkInUse()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Mark\+In\+Use (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Node} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2034 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+parent, \+\_\+unlinked, and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Node\+::\+Delete\+Node(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+Insert\+Child\+Preamble().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a386df0befd06aadb5e0cd21381aa955a}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewComment@{NewComment}}
+\index{NewComment@{NewComment}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{NewComment()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Comment} $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Comment (\begin{DoxyParamCaption}\item[{const char $\ast$}]{comment }\end{DoxyParamCaption})}
+
+Create a new Comment associated with this Document. The memory for the Comment is managed by the Document. 
+
+Definition at line 2102 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+comment\+Pool, and tinyxml2\+::\+X\+M\+L\+Node\+::\+Set\+Value().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Comment\+::\+Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ae519030c0262fa2daff8993681990e16}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewDeclaration@{NewDeclaration}}
+\index{NewDeclaration@{NewDeclaration}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{NewDeclaration()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Declaration} $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Declaration (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Create a new Declaration associated with this Document. The memory for the object is managed by the Document.
+
+If the \textquotesingle{}text\textquotesingle{} param is null, the standard declaration is used.\+: \begin{DoxyVerb}    <?xml version="1.0" encoding="UTF-8"?>
+\end{DoxyVerb}
+ 
+
+Definition at line 2118 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+comment\+Pool, and tinyxml2\+::\+X\+M\+L\+Node\+::\+Set\+Value().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a3c335a700a43d7c363a393142a23f234}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewElement@{NewElement}}
+\index{NewElement@{NewElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{NewElement()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Element} $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Element (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+Create a new Element associated with this Document. The memory for the Element is managed by the Document. 
+
+Definition at line 2094 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+element\+Pool, and tinyxml2\+::\+X\+M\+L\+Element\+::\+Set\+Name().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_acece5de77a0819f2341b08c1e1ed9987}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewText@{NewText}}
+\index{NewText@{NewText}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{NewText()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Text} $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+Create a new Text associated with this Document. The memory for the Text is managed by the Document. 
+
+Definition at line 2110 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+text\+Pool, and tinyxml2\+::\+X\+M\+L\+Node\+::\+Set\+Value().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Set\+Text(), and tinyxml2\+::\+X\+M\+L\+Text\+::\+Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a4954f502c5fd7f49de54c3c0c99bb73d}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!NewUnknown@{NewUnknown}}
+\index{NewUnknown@{NewUnknown}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{NewUnknown()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Unknown} $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Unknown (\begin{DoxyParamCaption}\item[{const char $\ast$}]{text }\end{DoxyParamCaption})}
+
+Create a new Unknown associated with this Document. The memory for the object is managed by the Document. 
+
+Definition at line 2126 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+comment\+Pool, and tinyxml2\+::\+X\+M\+L\+Node\+::\+Set\+Value().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Unknown\+::\+Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_aa542c2cf1276ee4bd778f16d196fe222}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!operator=@{operator=}}
+\index{operator=@{operator=}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{operator=()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Document} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a1819bd34f540a7304c105a6232d25a1f}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Parse@{Parse}}
+\index{Parse@{Parse}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Parse()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Parse (\begin{DoxyParamCaption}\item[{const char $\ast$}]{xml,  }\item[{size\+\_\+t}]{n\+Bytes = {\ttfamily (size\+\_\+t)(-\/1)} }\end{DoxyParamCaption})}
+
+Parse an X\+ML file from a character string. Returns X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS (0) on success, or an error\+ID.
+
+You may optionally pass in the \textquotesingle{}n\+Bytes\textquotesingle{}, which is the number of bytes which will be parsed. If not specified, Tiny\+X\+M\+L-\/2 will assume \textquotesingle{}xml\textquotesingle{} points to a null terminated string. 
+
+Definition at line 2285 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+attribute\+Pool, \+\_\+char\+Buffer, \+\_\+comment\+Pool, \+\_\+element\+Pool, \+\_\+error\+ID, \+\_\+text\+Pool, Clear(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Delete\+Children(), Error(), Parse(), Set\+Error(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+M\+P\+T\+Y\+\_\+\+D\+O\+C\+U\+M\+E\+NT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_aeb556e0e2bed02a73a6c5aaf19759e9a}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Parse@{Parse}}
+\index{Parse@{Parse}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Parse()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2380 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+char\+Buffer, \+\_\+parse\+Cur\+Line\+Num, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+parse\+Line\+Num, \+\_\+write\+B\+OM, tinyxml2\+::\+X\+M\+L\+Node\+::\+No\+Children(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Util\+::\+Read\+B\+O\+M(), Set\+Error(), tinyxml2\+::\+X\+M\+L\+Util\+::\+Skip\+White\+Space(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+E\+M\+P\+T\+Y\+\_\+\+D\+O\+C\+U\+M\+E\+NT.
+
+
+
+Referenced by Load\+File(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a863c45ff542c2b76af0e6c227a743c85}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!PopDepth@{PopDepth}}
+\index{PopDepth@{PopDepth}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{PopDepth()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Pop\+Depth (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2404 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+parsing\+Depth, and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a867cf5fa3e3ff6ae4847a8b7ee8ec083}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!Print@{Print}}
+\index{Print@{Print}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{Print()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Print (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Printer} $\ast$}]{streamer = {\ttfamily 0} }\end{DoxyParamCaption}) const}
+
+Print the Document. If the Printer is not provided, it will print to stdout. If you provide Printer, this can print to a file\+: \begin{DoxyVerb}XMLPrinter printer( fp );
+doc.Print( &printer );
+\end{DoxyVerb}
+
+
+Or you can use a printer to print to memory\+: \begin{DoxyVerb}XMLPrinter printer;
+doc.Print( &printer );
+// printer.CStr() has a const char* to the XML
+\end{DoxyVerb}
+ 
+
+Definition at line 2316 of file tinyxml2.\+cpp.
+
+
+
+References Accept().
+
+
+
+Referenced by Save\+File().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a1d033945b42e125d933d6231e4571552}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!PrintError@{PrintError}}
+\index{PrintError@{PrintError}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{PrintError()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Print\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+A (trivial) utility function that prints the \doxyref{Error\+Str()}{p.}{classtinyxml2_1_1_x_m_l_document_ae97fff2402a0d01e0509c430b37996b3} to stdout. 
+
+
+
+Definition at line 2370 of file tinyxml2.\+cpp.
+
+
+
+References Error\+Str().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a53e6c035b1b539563fef8c817fb30469}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ProcessEntities@{ProcessEntities}}
+\index{ProcessEntities@{ProcessEntities}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ProcessEntities()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+Process\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 1725 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Attributes(), tinyxml2\+::\+X\+M\+L\+Text\+::\+Parse\+Deep(), and tinyxml2\+::\+X\+M\+L\+Printer\+::\+Visit\+Enter().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a4d4aa7ec8e078ee6b449471e187d2d67}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!PushDepth@{PushDepth}}
+\index{PushDepth@{PushDepth}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{PushDepth()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Push\+Depth (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2396 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+parse\+Cur\+Line\+Num, \+\_\+parsing\+Depth, Set\+Error(), T\+I\+N\+Y\+X\+M\+L2\+\_\+\+M\+A\+X\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+D\+E\+P\+TH, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+D\+E\+P\+T\+H\+\_\+\+E\+X\+C\+E\+E\+D\+ED.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Document\+::\+Depth\+Tracker\+::\+Depth\+Tracker().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ad2b70320d3c2a071c2f36928edff3e1c}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!RootElement@{RootElement}}
+\index{RootElement@{RootElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{RootElement()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Element}$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Root\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the root element of D\+OM. Equivalent to \doxyref{First\+Child\+Element()}{p.}{classtinyxml2_1_1_x_m_l_node_a1bec132dcf085284e0a10755f2cf0d57}. To get the first node, use \doxyref{First\+Child()}{p.}{classtinyxml2_1_1_x_m_l_node_a2d6c70c475146b48bc93a7fafdeff5e0}. 
+
+Definition at line 1747 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a2be8ef9d6346bdef34311f91529afae4}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!RootElement@{RootElement}}
+\index{RootElement@{RootElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{RootElement()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \textbf{ X\+M\+L\+Element}$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Root\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 1750 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a73ac416b4a2aa0952e841220eb3da18f}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SaveFile@{SaveFile}}
+\index{SaveFile@{SaveFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{SaveFile()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Save\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{bool}]{compact = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Save the X\+ML file to disk. Returns X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS (0) on success, or an error\+ID. 
+
+Definition at line 2255 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+ID, tinyxml2\+::callfopen(), Set\+Error(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+F\+I\+L\+E\+\_\+\+C\+O\+U\+L\+D\+\_\+\+N\+O\+T\+\_\+\+B\+E\+\_\+\+O\+P\+E\+N\+ED.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a8b95779479a0035acc67b3a61dfe1b74}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SaveFile@{SaveFile}}
+\index{SaveFile@{SaveFile}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{SaveFile()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+Save\+File (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{fp,  }\item[{bool}]{compact = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Save the X\+ML file to disk. You are responsible for providing and closing the F\+I\+L\+E$\ast$.
+
+Returns X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS (0) on success, or an error\+ID. 
+
+Definition at line 2274 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+ID, Clear\+Error(), and Print().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a14419b698f7c4b140df4e80f3f0c93b0}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SetBOM@{SetBOM}}
+\index{SetBOM@{SetBOM}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{SetBOM()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Set\+B\+OM (\begin{DoxyParamCaption}\item[{bool}]{use\+B\+OM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets whether to write the B\+OM when writing the file. 
+
+Definition at line 1740 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_abffeba53b165f55f385ea7063a93bc95}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!SetError@{SetError}}
+\index{SetError@{SetError}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{SetError()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Document\+::\+Set\+Error (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Error}}]{error,  }\item[{int}]{line\+Num,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2328 of file tinyxml2.\+cpp.
+
+
+
+References \+\_\+error\+ID, \+\_\+error\+Line\+Num, \+\_\+error\+Str, Error\+I\+D\+To\+Name(), tinyxml2\+::\+Str\+Pair\+::\+Reset(), tinyxml2\+::\+Str\+Pair\+::\+Set\+Str(), T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF, T\+I\+X\+M\+L\+\_\+\+V\+S\+N\+P\+R\+I\+N\+TF, T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+C\+O\+U\+NT.
+
+
+
+Referenced by Load\+File(), Parse(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Attributes(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Text\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Comment\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Unknown\+::\+Parse\+Deep(), Push\+Depth(), and Save\+File().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_aa37cc1709d7e1e988bc17dcfb24a69b8}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ShallowClone@{ShallowClone}}
+\index{ShallowClone@{ShallowClone}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ShallowClone()}
+{\footnotesize\ttfamily virtual \textbf{ X\+M\+L\+Node}$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+Shallow\+Clone (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Document} $\ast$}]{document }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Make a copy of this node, but not its children. You may pass in a Document pointer that will be the owner of the new Node. If the \textquotesingle{}document\textquotesingle{} is null, then the node returned will be allocated from the current Document. (this-\/$>$\doxyref{Get\+Document()}{p.}{classtinyxml2_1_1_x_m_l_node_af343d1ef0b45c0020e62d784d7e67a68})
+
+Note\+: if called on a \doxyref{X\+M\+L\+Document}{p.}{classtinyxml2_1_1_x_m_l_document}, this will return null. 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a8402cbd3129d20e9e6024bbcc0531283}.
+
+
+
+Definition at line 1861 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a6fe5ef18699091844fcf64b56ffa5bf9}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ShallowEqual@{ShallowEqual}}
+\index{ShallowEqual@{ShallowEqual}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ShallowEqual()}
+{\footnotesize\ttfamily virtual bool tinyxml2\+::\+X\+M\+L\+Document\+::\+Shallow\+Equal (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Node} $\ast$}]{compare }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Test if 2 nodes are the same, but don\textquotesingle{}t test children. The 2 nodes do not need to be in the same Document.
+
+Note\+: if called on a \doxyref{X\+M\+L\+Document}{p.}{classtinyxml2_1_1_x_m_l_document}, this will return false. 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a7ce18b751c3ea09eac292dca264f9226}.
+
+
+
+Definition at line 1864 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a3e185f880882bd978367bb55937735ec}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ToDocument@{ToDocument}}
+\index{ToDocument@{ToDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ToDocument()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \textbf{ X\+M\+L\+Document}$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+To\+Document (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Safely cast to a Document, or null. 
+
+
+
+Reimplemented from \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a836e2966ed736fc3c94f70e12a2a3357}.
+
+
+
+Definition at line 1668 of file tinyxml2.\+h.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a747ab173887d969fe313b4617f968e99}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!ToDocument@{ToDocument}}
+\index{ToDocument@{ToDocument}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{ToDocument()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual const \textbf{ X\+M\+L\+Document}$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+To\+Document (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_ae8a5250331a5f12e10843fcb5ef3ef0b}.
+
+
+
+Definition at line 1672 of file tinyxml2.\+h.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a810ce508e6e0365497c2a9deb83c9ca7}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!WhitespaceMode@{WhitespaceMode}}
+\index{WhitespaceMode@{WhitespaceMode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{WhitespaceMode()}
+{\footnotesize\ttfamily \textbf{ Whitespace} tinyxml2\+::\+X\+M\+L\+Document\+::\+Whitespace\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 1728 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Text\+::\+Parse\+Deep().
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_acee9e261162d4236fb2c30312c54cd4c}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLComment@{XMLComment}}
+\index{XMLComment@{XMLComment}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLComment}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Comment}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1660 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a93d2c2c2db3973083b7d6e7f6f358160}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLDeclaration@{XMLDeclaration}}
+\index{XMLDeclaration@{XMLDeclaration}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLDeclaration}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Declaration}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1661 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ac2fba9b6e452829dd892f7392c24e0eb}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLElement@{XMLElement}}
+\index{XMLElement@{XMLElement}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLElement}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Element}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1655 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a8233f9dc4d61d90e93be2a3647c6d957}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLNode@{XMLNode}}
+\index{XMLNode@{XMLNode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLNode}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Node}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1658 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ae50b59416e98bbe7e4bc87df40092109}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLText@{XMLText}}
+\index{XMLText@{XMLText}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLText}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Text}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1659 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a6946948274f7a02f5e69b5dbeaea9b35}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!XMLUnknown@{XMLUnknown}}
+\index{XMLUnknown@{XMLUnknown}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{XMLUnknown}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Unknown}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 1662 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a0a57ebeba23bc6cfce88f12b4a946aac}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_attributePool@{\_attributePool}}
+\index{\_attributePool@{\_attributePool}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_attributePool}
+{\footnotesize\ttfamily \textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Attribute}) $>$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+attribute\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1890 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Create\+Attribute(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a7913ff24220a40e2e2b49a5137b43d29}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_charBuffer@{\_charBuffer}}
+\index{\_charBuffer@{\_charBuffer}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_charBuffer}
+{\footnotesize\ttfamily char$\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+char\+Buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1878 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Load\+File(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_ac2e73ccbc037dee917c3163158180398}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_commentPool@{\_commentPool}}
+\index{\_commentPool@{\_commentPool}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_commentPool}
+{\footnotesize\ttfamily \textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Comment}) $>$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+comment\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1892 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Identify(), New\+Comment(), New\+Declaration(), New\+Unknown(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a21574fba363a0d23bfc820d1652ab8bc}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_elementPool@{\_elementPool}}
+\index{\_elementPool@{\_elementPool}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_elementPool}
+{\footnotesize\ttfamily \textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Element}) $>$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+element\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1889 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Identify(), New\+Element(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a61270d643f810975656da2054e1e1622}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_errorID@{\_errorID}}
+\index{\_errorID@{\_errorID}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_errorID}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Error} tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+error\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1874 of file tinyxml2.\+h.
+
+
+
+Referenced by Error\+Name(), Load\+File(), Parse(), Save\+File(), and Set\+Error().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a7865f254baf1f615c5250aa31bb262d1}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_errorLineNum@{\_errorLineNum}}
+\index{\_errorLineNum@{\_errorLineNum}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_errorLineNum}
+{\footnotesize\ttfamily int tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+error\+Line\+Num\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1877 of file tinyxml2.\+h.
+
+
+
+Referenced by Set\+Error().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_af006d806fd8e1f6e74933ee9c062de4a}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_errorNames@{\_errorNames}}
+\index{\_errorNames@{\_errorNames}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_errorNames}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+error\+Names\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_SUCCESS"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_NO\_ATTRIBUTE"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_WRONG\_ATTRIBUTE\_TYPE"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_FILE\_NOT\_FOUND"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_FILE\_COULD\_NOT\_BE\_OPENED"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_FILE\_READ\_ERROR"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_ELEMENT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_ATTRIBUTE"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_TEXT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_CDATA"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_COMMENT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_DECLARATION"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING\_UNKNOWN"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_EMPTY\_DOCUMENT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_MISMATCHED\_ELEMENT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ERROR\_PARSING"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_CAN\_NOT\_CONVERT\_TEXT"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_NO\_TEXT\_NODE"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"XML\_ELEMENT\_DEPTH\_EXCEEDED"}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 1894 of file tinyxml2.\+h.
+
+
+
+Referenced by Error\+I\+D\+To\+Name().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a13a35ff680994da3fc2d2b2e62a33f8d}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_errorStr@{\_errorStr}}
+\index{\_errorStr@{\_errorStr}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_errorStr}
+{\footnotesize\ttfamily \textbf{ Str\+Pair} tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+error\+Str\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+
+
+Definition at line 1876 of file tinyxml2.\+h.
+
+
+
+Referenced by Error\+Str(), and Set\+Error().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a802c62efacc325f1acb9cfd331b59ea5}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_parseCurLineNum@{\_parseCurLineNum}}
+\index{\_parseCurLineNum@{\_parseCurLineNum}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_parseCurLineNum}
+{\footnotesize\ttfamily int tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+parse\+Cur\+Line\+Num\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1879 of file tinyxml2.\+h.
+
+
+
+Referenced by Identify(), Parse(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Attributes(), and Push\+Depth().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_adf4da174d246a262137aceb38e37dc77}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_parsingDepth@{\_parsingDepth}}
+\index{\_parsingDepth@{\_parsingDepth}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_parsingDepth}
+{\footnotesize\ttfamily int tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+parsing\+Depth\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1880 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Pop\+Depth(), and Push\+Depth().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a9f768cb74fb5ccbadeffa436916f0194}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_processEntities@{\_processEntities}}
+\index{\_processEntities@{\_processEntities}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_processEntities}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+process\+Entities\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1873 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_afe8ac410aaa53cf1f2142a4c2fd958c7}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_textPool@{\_textPool}}
+\index{\_textPool@{\_textPool}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_textPool}
+{\footnotesize\ttfamily \textbf{ Mem\+PoolT}$<$ sizeof(\textbf{ X\+M\+L\+Text}) $>$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+text\+Pool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1891 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Identify(), New\+Text(), and Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a1d2e0f6b8bf0914058c71f2425edac19}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_unlinked@{\_unlinked}}
+\index{\_unlinked@{\_unlinked}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_unlinked}
+{\footnotesize\ttfamily \textbf{ Dyn\+Array}$<$\textbf{ X\+M\+L\+Node}$\ast$, 10$>$ tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+unlinked\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1887 of file tinyxml2.\+h.
+
+
+
+Referenced by Clear(), Create\+Unlinked\+Node(), and Mark\+In\+Use().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_afec08bf4b1c57b487ba3c6855cfe5478}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_whitespaceMode@{\_whitespaceMode}}
+\index{\_whitespaceMode@{\_whitespaceMode}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_whitespaceMode}
+{\footnotesize\ttfamily \textbf{ Whitespace} tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+whitespace\+Mode\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1875 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_document_a1dbdc7feaa58007403c20243ac5abbd3}} 
+\index{tinyxml2::XMLDocument@{tinyxml2::XMLDocument}!\_writeBOM@{\_writeBOM}}
+\index{\_writeBOM@{\_writeBOM}!tinyxml2::XMLDocument@{tinyxml2::XMLDocument}}
+\subsubsection{\_writeBOM}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Document\+::\+\_\+write\+B\+OM\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1872 of file tinyxml2.\+h.
+
+
+
+Referenced by Parse().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ tinyxml2.\+h}\item 
+src/\textbf{ tinyxml2.\+cpp}\end{DoxyCompactItemize}

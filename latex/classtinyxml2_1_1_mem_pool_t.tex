@@ -1,0 +1,354 @@
+\section{tinyxml2\+::Mem\+PoolT$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$ Class Template Reference}
+\label{classtinyxml2_1_1_mem_pool_t}\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+Inheritance diagram for tinyxml2\+::Mem\+PoolT$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1_mem_pool_t}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ Block}
+\item 
+union \textbf{ Item}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \textbf{ I\+T\+E\+M\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK} = (4 $\ast$ 1024) / I\+T\+E\+M\+\_\+\+S\+I\+ZE
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Mem\+PoolT} ()
+\item 
+\textbf{ $\sim$\+Mem\+PoolT} ()
+\item 
+void \textbf{ Clear} ()
+\item 
+virtual int \textbf{ Item\+Size} () const
+\item 
+int \textbf{ Current\+Allocs} () const
+\item 
+virtual void $\ast$ \textbf{ Alloc} ()
+\item 
+virtual void \textbf{ Free} (void $\ast$mem)
+\item 
+void \textbf{ Trace} (const char $\ast$name)
+\item 
+void \textbf{ Set\+Tracked} ()
+\item 
+int \textbf{ Untracked} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Mem\+PoolT} (const \textbf{ Mem\+PoolT} \&)
+\item 
+void \textbf{ operator=} (const \textbf{ Mem\+PoolT} \&)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Dyn\+Array}$<$ \textbf{ Block} $\ast$, 10 $>$ \textbf{ \+\_\+block\+Ptrs}
+\item 
+\textbf{ Item} $\ast$ \textbf{ \+\_\+root}
+\item 
+int \textbf{ \+\_\+current\+Allocs}
+\item 
+int \textbf{ \+\_\+n\+Allocs}
+\item 
+int \textbf{ \+\_\+max\+Allocs}
+\item 
+int \textbf{ \+\_\+n\+Untracked}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$\newline
+class tinyxml2\+::\+Mem\+Pool\+T$<$ I\+T\+E\+M\+\_\+\+S\+I\+Z\+E $>$}
+
+
+
+Definition at line 346 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a04cf45156e6f913f93972869ff8a1d94}} 
+\subsubsection{anonymous enum}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ITEMS\_PER\_BLOCK@{ITEMS\_PER\_BLOCK}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!ITEMS\_PER\_BLOCK@{ITEMS\_PER\_BLOCK}}}\mbox{\label{classtinyxml2_1_1_mem_pool_t_a04cf45156e6f913f93972869ff8a1d94ab72c1e16d6626854c41feb19e60c54d1}} 
+I\+T\+E\+M\+S\+\_\+\+P\+E\+R\+\_\+\+B\+L\+O\+CK&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 437 of file tinyxml2.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_ac8fa6dbb403f009cf9c8a33c6f2803b3}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!MemPoolT@{MemPoolT}}
+\index{MemPoolT@{MemPoolT}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{MemPoolT()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+\textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\textbf{ Mem\+PoolT} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 349 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a5fa4fee934a3df2b9e74282244d78390}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!````~MemPoolT@{$\sim$MemPoolT}}
+\index{````~MemPoolT@{$\sim$MemPoolT}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{$\sim$MemPoolT()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+\textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::$\sim$\textbf{ Mem\+PoolT} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 350 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_afa8770a0645d28bd849e7e5aefb326ed}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!MemPoolT@{MemPoolT}}
+\index{MemPoolT@{MemPoolT}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{MemPoolT()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+\textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\textbf{ Mem\+PoolT} (\begin{DoxyParamCaption}\item[{const \textbf{ Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a810fd2b0caf56b8b688e55f2768f96c7}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Alloc@{Alloc}}
+\index{Alloc@{Alloc}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{Alloc()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+virtual void$\ast$ \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Alloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ tinyxml2\+::\+Mem\+Pool} \doxyref{}{p.}{classtinyxml2_1_1_mem_pool_a4f977b5fed752c0bbfe5295f469d6449}.
+
+
+
+Definition at line 374 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Document\+::\+Create\+Unlinked\+Node().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a22d595caa0e9d23aa080f49ca6475fdd}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{Clear()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+void \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 354 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::$\sim$\+Mem\+Pool\+T().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a445a6c80151ba6268b24ec62a7c84d74}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!CurrentAllocs@{CurrentAllocs}}
+\index{CurrentAllocs@{CurrentAllocs}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{CurrentAllocs()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Current\+Allocs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 370 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a408ce0918e9d3d5e5e1cc4896944875f}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Free@{Free}}
+\index{Free@{Free}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{Free()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+virtual void \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{mem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ tinyxml2\+::\+Mem\+Pool} \doxyref{}{p.}{classtinyxml2_1_1_mem_pool_a49e3bfac2cba2ebd6776b31e571f64f7}.
+
+
+
+Definition at line 400 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a54e4d9b343459ef1731314a99877ff35}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!ItemSize@{ItemSize}}
+\index{ItemSize@{ItemSize}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{ItemSize()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+virtual int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Item\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ tinyxml2\+::\+Mem\+Pool} \doxyref{}{p.}{classtinyxml2_1_1_mem_pool_a0c518d49e3a94bde566f61e13b7240bb}.
+
+
+
+Definition at line 367 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Document\+::\+Create\+Unlinked\+Node().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a12ba6478e385244beb2ca3947879fd24}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{operator=()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+void \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_aee3c611215ae08cce41a940bf2763027}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!SetTracked@{SetTracked}}
+\index{SetTracked@{SetTracked}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{SetTracked()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+void \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Set\+Tracked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ tinyxml2\+::\+Mem\+Pool} \doxyref{}{p.}{classtinyxml2_1_1_mem_pool_ac5804dd1387b2e4de5eef710076a0db1}.
+
+
+
+Definition at line 418 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a47eefbd934ef70d973ea41d41ab5f239}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Trace@{Trace}}
+\index{Trace@{Trace}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{Trace()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+void \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Trace (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 412 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a3bcdc302ae15d2810e11192321a8f5f1}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Untracked@{Untracked}}
+\index{Untracked@{Untracked}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{Untracked()}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::Untracked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 422 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a028d833de2bf5e6257b4b27a68702a84}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_blockPtrs@{\_blockPtrs}}
+\index{\_blockPtrs@{\_blockPtrs}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_blockPtrs}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+\textbf{ Dyn\+Array}$<$ \textbf{ Block}$\ast$, 10 $>$ \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+block\+Ptrs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 450 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Trace().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_afa908fd62011c6e633d7af196d667e9d}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_currentAllocs@{\_currentAllocs}}
+\index{\_currentAllocs@{\_currentAllocs}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_currentAllocs}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+current\+Allocs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 453 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Current\+Allocs(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Free(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Trace().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_aaf3960c9e30197aeb1c0af271c297db9}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_maxAllocs@{\_maxAllocs}}
+\index{\_maxAllocs@{\_maxAllocs}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_maxAllocs}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+max\+Allocs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 455 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Trace().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_acd5867e06ad91a655f3c9f95ca163e9b}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_nAllocs@{\_nAllocs}}
+\index{\_nAllocs@{\_nAllocs}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_nAllocs}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+n\+Allocs\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 454 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Trace().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_a5048ad99f7350f7224b13cf85fbff151}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_nUntracked@{\_nUntracked}}
+\index{\_nUntracked@{\_nUntracked}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_nUntracked}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+int \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+n\+Untracked\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 456 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Set\+Tracked(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Untracked().
+
+\mbox{\label{classtinyxml2_1_1_mem_pool_t_aff60ad785be00814e442e53fb4462688}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!\_root@{\_root}}
+\index{\_root@{\_root}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\subsubsection{\_root}
+{\footnotesize\ttfamily template$<$int I\+T\+E\+M\+\_\+\+S\+I\+ZE$>$ \\
+\textbf{ Item}$\ast$ \textbf{ tinyxml2\+::\+Mem\+PoolT}$<$ I\+T\+E\+M\+\_\+\+S\+I\+ZE $>$\+::\+\_\+root\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 451 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Alloc(), tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Clear(), and tinyxml2\+::\+Mem\+Pool\+T$<$ sizeof(tinyxml2\+::\+X\+M\+L\+Element) $>$\+::\+Free().
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ tinyxml2.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,131 @@
+\section{I\+D\+Generator Class Reference}
+\label{class_i_d_generator}\index{IDGenerator@{IDGenerator}}
+
+
+{\ttfamily \#include $<$I\+D\+Generator.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \textbf{ next} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ I\+D\+Generator} $\ast$ \textbf{ instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ I\+D\+Generator} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \textbf{ m\+\_\+id}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ I\+D\+Generator} $\ast$ \textbf{ m\+\_\+instance} = nullptr
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 13 of file I\+D\+Generator.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_i_d_generator_a8209b55f50b469c47f977660a769b1da}} 
+\index{IDGenerator@{IDGenerator}!IDGenerator@{IDGenerator}}
+\index{IDGenerator@{IDGenerator}!IDGenerator@{IDGenerator}}
+\subsubsection{IDGenerator()}
+{\footnotesize\ttfamily I\+D\+Generator\+::\+I\+D\+Generator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line 27 of file I\+D\+Generator.\+h.
+
+
+
+Referenced by instance().
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_i_d_generator_ad852c6dadc89e1020e4b3932f5a97bb3}} 
+\index{IDGenerator@{IDGenerator}!instance@{instance}}
+\index{instance@{instance}!IDGenerator@{IDGenerator}}
+\subsubsection{instance()}
+{\footnotesize\ttfamily static \textbf{ I\+D\+Generator}$\ast$ I\+D\+Generator\+::instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 15 of file I\+D\+Generator.\+h.
+
+
+
+References I\+D\+Generator(), and m\+\_\+instance.
+
+
+
+Referenced by World\+::generate\+Antennas(), World\+::generate\+Mobile\+Phones(), World\+::generate\+Population(), and World\+::parse\+Antennas().
+
+\mbox{\label{class_i_d_generator_a99d8cabb2ec6a17888a8ccbe9c85fee0}} 
+\index{IDGenerator@{IDGenerator}!next@{next}}
+\index{next@{next}!IDGenerator@{IDGenerator}}
+\subsubsection{next()}
+{\footnotesize\ttfamily unsigned long I\+D\+Generator\+::next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 22 of file I\+D\+Generator.\+h.
+
+
+
+References m\+\_\+id.
+
+
+
+Referenced by World\+::generate\+Antennas(), World\+::generate\+Mobile\+Phones(), World\+::generate\+Population(), and World\+::parse\+Antennas().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_i_d_generator_ad0400380525f694b23ff675f4f170893}} 
+\index{IDGenerator@{IDGenerator}!m\_id@{m\_id}}
+\index{m\_id@{m\_id}!IDGenerator@{IDGenerator}}
+\subsubsection{m\_id}
+{\footnotesize\ttfamily unsigned long I\+D\+Generator\+::m\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 31 of file I\+D\+Generator.\+h.
+
+
+
+Referenced by next().
+
+\mbox{\label{class_i_d_generator_a8e96b71a6ddef5c9a2919d0338c00b16}} 
+\index{IDGenerator@{IDGenerator}!m\_instance@{m\_instance}}
+\index{m\_instance@{m\_instance}!IDGenerator@{IDGenerator}}
+\subsubsection{m\_instance}
+{\footnotesize\ttfamily \textbf{ I\+D\+Generator} $\ast$ I\+D\+Generator\+::m\+\_\+instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line 30 of file I\+D\+Generator.\+h.
+
+
+
+Referenced by instance().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ I\+D\+Generator.\+h}\item 
+src/\textbf{ I\+D\+Generator.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,228 @@
+\section{src/tinyxml2.cpp File Reference}
+\label{tinyxml2_8cpp}\index{src/tinyxml2.cpp@{src/tinyxml2.cpp}}
+{\ttfamily \#include \char`\"{}tinyxml2.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$new$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdarg$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ tinyxml2\+::\+Entity}
+\item 
+struct \textbf{ tinyxml2\+::\+Long\+Fits\+Into\+Size\+T\+Minus\+One$<$ bool $>$}
+\item 
+struct \textbf{ tinyxml2\+::\+Long\+Fits\+Into\+Size\+T\+Minus\+One$<$ false $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \textbf{ tinyxml2}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF}~snprintf
+\item 
+\#define \textbf{ T\+I\+X\+M\+L\+\_\+\+V\+S\+N\+P\+R\+I\+N\+TF}~vsnprintf
+\item 
+\#define \textbf{ T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF}~sscanf
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \textbf{ T\+I\+X\+M\+L\+\_\+\+V\+S\+C\+P\+R\+I\+N\+TF} (const char $\ast$format, va\+\_\+list va)
+\item 
+static F\+I\+LE $\ast$ \textbf{ tinyxml2\+::callfopen} (const char $\ast$filepath, const char $\ast$mode)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \textbf{ L\+I\+N\+E\+\_\+\+F\+E\+ED} = (char)0x0a
+\item 
+static const char \textbf{ LF} = \textbf{ L\+I\+N\+E\+\_\+\+F\+E\+ED}
+\item 
+static const char \textbf{ C\+A\+R\+R\+I\+A\+G\+E\+\_\+\+R\+E\+T\+U\+RN} = (char)0x0d
+\item 
+static const char \textbf{ CR} = \textbf{ C\+A\+R\+R\+I\+A\+G\+E\+\_\+\+R\+E\+T\+U\+RN}
+\item 
+static const char \textbf{ S\+I\+N\+G\+L\+E\+\_\+\+Q\+U\+O\+TE} = \textquotesingle{}\textbackslash{}\textquotesingle{}\textquotesingle{}
+\item 
+static const char \textbf{ D\+O\+U\+B\+L\+E\+\_\+\+Q\+U\+O\+TE} = \textquotesingle{}\textbackslash{}\char`\"{}\textquotesingle{}
+\item 
+static const unsigned char \textbf{ T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+0} = 0xefU
+\item 
+static const unsigned char \textbf{ T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+1} = 0xbbU
+\item 
+static const unsigned char \textbf{ T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+2} = 0xbfU
+\item 
+static const int \textbf{ tinyxml2\+::\+N\+U\+M\+\_\+\+E\+N\+T\+I\+T\+I\+ES} = 5
+\item 
+static const Entity \textbf{ tinyxml2\+::entities} [N\+U\+M\+\_\+\+E\+N\+T\+I\+T\+I\+ES]
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\label{tinyxml2_8cpp_afc6433f9b56e4f18833089b1df629e0a}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_SNPRINTF@{TIXML\_SNPRINTF}}
+\index{TIXML\_SNPRINTF@{TIXML\_SNPRINTF}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_SNPRINTF}
+{\footnotesize\ttfamily \#define T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF~snprintf}
+
+
+
+Definition at line 92 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_a96f54d7c855ad92e705510904a040393}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_SSCANF@{TIXML\_SSCANF}}
+\index{TIXML\_SSCANF@{TIXML\_SSCANF}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_SSCANF}
+{\footnotesize\ttfamily \#define T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF~sscanf}
+
+
+
+Definition at line 100 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_a924d10d64b020e9dbcd2b8b024768608}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_VSNPRINTF@{TIXML\_VSNPRINTF}}
+\index{TIXML\_VSNPRINTF@{TIXML\_VSNPRINTF}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_VSNPRINTF}
+{\footnotesize\ttfamily \#define T\+I\+X\+M\+L\+\_\+\+V\+S\+N\+P\+R\+I\+N\+TF~vsnprintf}
+
+
+
+Definition at line 93 of file tinyxml2.\+cpp.
+
+
+
+\subsection{Function Documentation}
+\mbox{\label{tinyxml2_8cpp_a7afe6fa96e6614ee5b1109c8ee034942}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_VSCPRINTF@{TIXML\_VSCPRINTF}}
+\index{TIXML\_VSCPRINTF@{TIXML\_VSCPRINTF}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_VSCPRINTF()}
+{\footnotesize\ttfamily static int T\+I\+X\+M\+L\+\_\+\+V\+S\+C\+P\+R\+I\+N\+TF (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{va\+\_\+list}]{va }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 94 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Print().
+
+
+
+\subsection{Variable Documentation}
+\mbox{\label{tinyxml2_8cpp_add686989707d784afa885cbb90910113}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!CARRIAGE\_RETURN@{CARRIAGE\_RETURN}}
+\index{CARRIAGE\_RETURN@{CARRIAGE\_RETURN}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{CARRIAGE\_RETURN}
+{\footnotesize\ttfamily const char C\+A\+R\+R\+I\+A\+G\+E\+\_\+\+R\+E\+T\+U\+RN = (char)0x0d\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 106 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_ad3136d2f1f34e592c66e09ba8a852812}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!CR@{CR}}
+\index{CR@{CR}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{CR}
+{\footnotesize\ttfamily const char CR = \textbf{ C\+A\+R\+R\+I\+A\+G\+E\+\_\+\+R\+E\+T\+U\+RN}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 107 of file tinyxml2.\+cpp.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Get\+Str().
+
+\mbox{\label{tinyxml2_8cpp_a2e3bbd17c0f4134dbd5bd8cfc5d0c3b2}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!DOUBLE\_QUOTE@{DOUBLE\_QUOTE}}
+\index{DOUBLE\_QUOTE@{DOUBLE\_QUOTE}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{DOUBLE\_QUOTE}
+{\footnotesize\ttfamily const char D\+O\+U\+B\+L\+E\+\_\+\+Q\+U\+O\+TE = \textquotesingle{}\textbackslash{}\char`\"{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 109 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_a19b283812883e1dad22bbde25738643a}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!LF@{LF}}
+\index{LF@{LF}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{LF}
+{\footnotesize\ttfamily const char LF = \textbf{ L\+I\+N\+E\+\_\+\+F\+E\+ED}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 105 of file tinyxml2.\+cpp.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Get\+Str().
+
+\mbox{\label{tinyxml2_8cpp_aca0c283d60be29cdf68e753a97ce7ac2}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!LINE\_FEED@{LINE\_FEED}}
+\index{LINE\_FEED@{LINE\_FEED}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{LINE\_FEED}
+{\footnotesize\ttfamily const char L\+I\+N\+E\+\_\+\+F\+E\+ED = (char)0x0a\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 104 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_a65992cb0c2d3fc4eb9d13641f2e6e0f1}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!SINGLE\_QUOTE@{SINGLE\_QUOTE}}
+\index{SINGLE\_QUOTE@{SINGLE\_QUOTE}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{SINGLE\_QUOTE}
+{\footnotesize\ttfamily const char S\+I\+N\+G\+L\+E\+\_\+\+Q\+U\+O\+TE = \textquotesingle{}\textbackslash{}\textquotesingle{}\textquotesingle{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 108 of file tinyxml2.\+cpp.
+
+\mbox{\label{tinyxml2_8cpp_a37999e32163e2a3280bc0b8e1999774e}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_UTF\_LEAD\_0@{TIXML\_UTF\_LEAD\_0}}
+\index{TIXML\_UTF\_LEAD\_0@{TIXML\_UTF\_LEAD\_0}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_UTF\_LEAD\_0}
+{\footnotesize\ttfamily const unsigned char T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+0 = 0xefU\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 115 of file tinyxml2.\+cpp.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Push\+Header(), and tinyxml2\+::\+X\+M\+L\+Util\+::\+Read\+B\+O\+M().
+
+\mbox{\label{tinyxml2_8cpp_a3cda92a178036c812663a7b75c5e04d0}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_UTF\_LEAD\_1@{TIXML\_UTF\_LEAD\_1}}
+\index{TIXML\_UTF\_LEAD\_1@{TIXML\_UTF\_LEAD\_1}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_UTF\_LEAD\_1}
+{\footnotesize\ttfamily const unsigned char T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+1 = 0xbbU\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 116 of file tinyxml2.\+cpp.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Push\+Header(), and tinyxml2\+::\+X\+M\+L\+Util\+::\+Read\+B\+O\+M().
+
+\mbox{\label{tinyxml2_8cpp_a8e36ce25f81f009c066037e937da3a6a}} 
+\index{tinyxml2.cpp@{tinyxml2.cpp}!TIXML\_UTF\_LEAD\_2@{TIXML\_UTF\_LEAD\_2}}
+\index{TIXML\_UTF\_LEAD\_2@{TIXML\_UTF\_LEAD\_2}!tinyxml2.cpp@{tinyxml2.cpp}}
+\subsubsection{TIXML\_UTF\_LEAD\_2}
+{\footnotesize\ttfamily const unsigned char T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+2 = 0xbfU\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 117 of file tinyxml2.\+cpp.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Push\+Header(), and tinyxml2\+::\+X\+M\+L\+Util\+::\+Read\+B\+O\+M().
+

@@ -1,0 +1,307 @@
+\section{Holdable\+Agent Class Reference}
+\label{class_holdable_agent}\index{HoldableAgent@{HoldableAgent}}
+
+
+{\ttfamily \#include $<$Holdable\+Agent.\+h$>$}
+
+Inheritance diagram for Holdable\+Agent\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_holdable_agent}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} \{ \textbf{ U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER}, 
+\textbf{ U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY}, 
+\textbf{ U\+N\+K\+N\+O\+WN}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Holdable\+Agent} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Agent} $\ast$holder, \textbf{ Clock} $\ast$clock)
+\item 
+\textbf{ Holdable\+Agent} (const \textbf{ Holdable\+Agent} \&h)
+\item 
+virtual \textbf{ $\sim$\+Holdable\+Agent} ()
+\item 
+\textbf{ Agent} $\ast$ \textbf{ get\+Holder} () const
+\item 
+void \textbf{ set\+Holder} (\textbf{ Agent} $\ast$holder)
+\item 
+string \textbf{ get\+Name} () override
+\item 
+string \textbf{ to\+String} () override
+\item 
+virtual bool \textbf{ try\+Connect} (\textbf{ C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} type)=0
+\item 
+virtual bool \textbf{ is\+Connected} () const
+\item 
+void \textbf{ set\+Location} (Point $\ast$location) override
+\item 
+vector$<$ \textbf{ Antenna} $\ast$ $>$ \textbf{ get\+Antennas} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Agent} $\ast$ \textbf{ m\+\_\+holder}
+\item 
+vector$<$ \textbf{ Antenna} $\ast$ $>$ \textbf{ m\+\_\+antennas}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 21 of file Holdable\+Agent.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}} 
+\index{HoldableAgent@{HoldableAgent}!CONNECTION\_TYPE@{CONNECTION\_TYPE}}
+\index{CONNECTION\_TYPE@{CONNECTION\_TYPE}!HoldableAgent@{HoldableAgent}}
+\subsubsection{CONNECTION\_TYPE}
+{\footnotesize\ttfamily enum \textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_POWER@{USING\_POWER}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_POWER@{USING\_POWER}}}\mbox{\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ab8f4a3956d88a54e0aad08e89e203fd6}} 
+U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_SIGNAL\_QUALITY@{USING\_SIGNAL\_QUALITY}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_SIGNAL\_QUALITY@{USING\_SIGNAL\_QUALITY}}}\mbox{\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a93c5b260edf949c65b96fec443c33f2b}} 
+U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!UNKNOWN@{UNKNOWN}}}\mbox{\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a6bdb1529a2032a4648226328e179f552}} 
+U\+N\+K\+N\+O\+WN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 25 of file Holdable\+Agent.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_holdable_agent_ab5060ddcd08291c60b49fec22d6bd6f3}} 
+\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
+\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
+\subsubsection{HoldableAgent()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Holdable\+Agent\+::\+Holdable\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Agent} $\ast$}]{holder,  }\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 16 of file Holdable\+Agent.\+cpp.
+
+\mbox{\label{class_holdable_agent_a9b7c1494266c0a807d809461b59ced80}} 
+\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
+\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
+\subsubsection{HoldableAgent()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Holdable\+Agent\+::\+Holdable\+Agent (\begin{DoxyParamCaption}\item[{const \textbf{ Holdable\+Agent} \&}]{h }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file Holdable\+Agent.\+cpp.
+
+
+
+References get\+Antennas(), get\+Holder(), m\+\_\+antennas, and m\+\_\+holder.
+
+\mbox{\label{class_holdable_agent_ab529d1f070a574375a79baadc89e9b78}} 
+\index{HoldableAgent@{HoldableAgent}!````~HoldableAgent@{$\sim$HoldableAgent}}
+\index{````~HoldableAgent@{$\sim$HoldableAgent}!HoldableAgent@{HoldableAgent}}
+\subsubsection{$\sim$HoldableAgent()}
+{\footnotesize\ttfamily Holdable\+Agent\+::$\sim$\+Holdable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 29 of file Holdable\+Agent.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_holdable_agent_af04b66d8148877c40e1fa0a5fef4b546}} 
+\index{HoldableAgent@{HoldableAgent}!getAntennas@{getAntennas}}
+\index{getAntennas@{getAntennas}!HoldableAgent@{HoldableAgent}}
+\subsubsection{getAntennas()}
+{\footnotesize\ttfamily vector$<$ \textbf{ Antenna} $\ast$ $>$ Holdable\+Agent\+::get\+Antennas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 54 of file Holdable\+Agent.\+cpp.
+
+
+
+References m\+\_\+antennas.
+
+
+
+Referenced by Holdable\+Agent().
+
+\mbox{\label{class_holdable_agent_a4fdf36fd8fb79a168360ebf74b9ba61d}} 
+\index{HoldableAgent@{HoldableAgent}!getHolder@{getHolder}}
+\index{getHolder@{getHolder}!HoldableAgent@{HoldableAgent}}
+\subsubsection{getHolder()}
+{\footnotesize\ttfamily \textbf{ Agent} $\ast$ Holdable\+Agent\+::get\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 33 of file Holdable\+Agent.\+cpp.
+
+
+
+References m\+\_\+holder.
+
+
+
+Referenced by Holdable\+Agent().
+
+\mbox{\label{class_holdable_agent_a089a15867a877d3a4cb510169c32d682}} 
+\index{HoldableAgent@{HoldableAgent}!getName@{getName}}
+\index{getName@{getName}!HoldableAgent@{HoldableAgent}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily string Holdable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}.
+
+
+
+Reimplemented in \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_aa4f050bb755994fadfeab94c1f2147f7}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a2cac00cd9efca5b8adeff28ae5827970}.
+
+
+
+Definition at line 34 of file Holdable\+Agent.\+h.
+
+\mbox{\label{class_holdable_agent_a5d7b3db4bf6044736d80de1677afdeec}} 
+\index{HoldableAgent@{HoldableAgent}!isConnected@{isConnected}}
+\index{isConnected@{isConnected}!HoldableAgent@{HoldableAgent}}
+\subsubsection{isConnected()}
+{\footnotesize\ttfamily bool Holdable\+Agent\+::is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 50 of file Holdable\+Agent.\+cpp.
+
+
+
+References m\+\_\+antennas.
+
+\mbox{\label{class_holdable_agent_a39b53c9c6cacca716f38fccc520e9f52}} 
+\index{HoldableAgent@{HoldableAgent}!setHolder@{setHolder}}
+\index{setHolder@{setHolder}!HoldableAgent@{HoldableAgent}}
+\subsubsection{setHolder()}
+{\footnotesize\ttfamily void Holdable\+Agent\+::set\+Holder (\begin{DoxyParamCaption}\item[{\textbf{ Agent} $\ast$}]{holder }\end{DoxyParamCaption})}
+
+
+
+Definition at line 37 of file Holdable\+Agent.\+cpp.
+
+
+
+References Locatable\+Agent\+::get\+Location(), m\+\_\+holder, set\+Location(), and Movable\+Agent\+::set\+Speed().
+
+\mbox{\label{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}} 
+\index{HoldableAgent@{HoldableAgent}!setLocation@{setLocation}}
+\index{setLocation@{setLocation}!HoldableAgent@{HoldableAgent}}
+\subsubsection{setLocation()}
+{\footnotesize\ttfamily void Holdable\+Agent\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a4185a45957d529a7f57d19ea294cae81}.
+
+
+
+Definition at line 58 of file Holdable\+Agent.\+cpp.
+
+
+
+References Locatable\+Agent\+::set\+Location(), and try\+Connect().
+
+
+
+Referenced by set\+Holder(), and Person\+::set\+Location().
+
+\mbox{\label{class_holdable_agent_a3fee3021111198ac01469a715093ab88}} 
+\index{HoldableAgent@{HoldableAgent}!toString@{toString}}
+\index{toString@{toString}!HoldableAgent@{HoldableAgent}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily string Holdable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}.
+
+
+
+Reimplemented in \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_a3e4bf0a37331042084ae703666f8fb7c}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a90880cd8f4a4afd451645e6e1dc86c5b}.
+
+
+
+Definition at line 63 of file Holdable\+Agent.\+cpp.
+
+
+
+References Agent\+::get\+Id(), m\+\_\+holder, and Movable\+Agent\+::to\+String().
+
+
+
+Referenced by Tablet\+::to\+String(), and Mobile\+Phone\+::to\+String().
+
+\mbox{\label{class_holdable_agent_a3f6500c10b054ca06a7800d4b01c5308}} 
+\index{HoldableAgent@{HoldableAgent}!tryConnect@{tryConnect}}
+\index{tryConnect@{tryConnect}!HoldableAgent@{HoldableAgent}}
+\subsubsection{tryConnect()}
+{\footnotesize\ttfamily virtual bool Holdable\+Agent\+::try\+Connect (\begin{DoxyParamCaption}\item[{\textbf{ C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_a384f2a32e076dd34fdd1e814e1a48c11}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a4a08098f3acddd3167fc9633deabb809}.
+
+
+
+Referenced by set\+Location().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_holdable_agent_a5f104212204e4c6761bed1d61fab100b}} 
+\index{HoldableAgent@{HoldableAgent}!m\_antennas@{m\_antennas}}
+\index{m\_antennas@{m\_antennas}!HoldableAgent@{HoldableAgent}}
+\subsubsection{m\_antennas}
+{\footnotesize\ttfamily vector$<$\textbf{ Antenna}$\ast$$>$ Holdable\+Agent\+::m\+\_\+antennas\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 47 of file Holdable\+Agent.\+h.
+
+
+
+Referenced by get\+Antennas(), Holdable\+Agent(), and is\+Connected().
+
+\mbox{\label{class_holdable_agent_ae9c449c1831f933b5b6b6f71e425279b}} 
+\index{HoldableAgent@{HoldableAgent}!m\_holder@{m\_holder}}
+\index{m\_holder@{m\_holder}!HoldableAgent@{HoldableAgent}}
+\subsubsection{m\_holder}
+{\footnotesize\ttfamily \textbf{ Agent}$\ast$ Holdable\+Agent\+::m\+\_\+holder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 46 of file Holdable\+Agent.\+h.
+
+
+
+Referenced by get\+Holder(), Holdable\+Agent(), set\+Holder(), and to\+String().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Holdable\+Agent.\+h}\item 
+src/\textbf{ Holdable\+Agent.\+cpp}\end{DoxyCompactItemize}

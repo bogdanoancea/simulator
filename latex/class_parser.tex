@@ -1,0 +1,373 @@
+\section{Parser Class Reference}
+\label{class_parser}\index{Parser@{Parser}}
+
+
+{\ttfamily \#include $<$C\+S\+Vparser.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Parser} (const string \&, const \textbf{ Data\+Type} \&type=\textbf{ e\+F\+I\+LE}, char sep=\textquotesingle{},\textquotesingle{}, bool has\+Header=true)
+\item 
+\textbf{ $\sim$\+Parser} (void)
+\item 
+\textbf{ Row} \& \textbf{ get\+Row} (unsigned int row) const
+\item 
+unsigned int \textbf{ row\+Count} (void) const
+\item 
+unsigned int \textbf{ column\+Count} (void) const
+\item 
+vector$<$ string $>$ \textbf{ get\+Header} (void) const
+\item 
+const string \textbf{ get\+Header\+Element} (unsigned int pos) const
+\item 
+const string \& \textbf{ get\+File\+Name} (void) const
+\item 
+bool \textbf{ delete\+Row} (unsigned int row)
+\item 
+bool \textbf{ add\+Row} (unsigned int pos, const vector$<$ string $>$ \&)
+\item 
+void \textbf{ sync} (void) const
+\item 
+\textbf{ Row} \& \textbf{ operator[$\,$]} (unsigned int row) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ parse\+Header} (void)
+\item 
+void \textbf{ parse\+Content} (void)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ \+\_\+file}
+\item 
+const \textbf{ Data\+Type} \textbf{ \+\_\+type}
+\item 
+const char \textbf{ \+\_\+sep}
+\item 
+vector$<$ string $>$ \textbf{ \+\_\+original\+File}
+\item 
+vector$<$ string $>$ \textbf{ \+\_\+header}
+\item 
+vector$<$ \textbf{ Row} $\ast$ $>$ \textbf{ \+\_\+content}
+\item 
+bool \textbf{ m\+\_\+header}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 57 of file C\+S\+Vparser.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_parser_acdb936b8a1723b1f342dfffbd6df310a}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\subsubsection{Parser()}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{const string \&}]{,  }\item[{const \textbf{ Data\+Type} \&}]{type = {\ttfamily \textbf{ e\+F\+I\+LE}},  }\item[{char}]{sep = {\ttfamily \textquotesingle{},\textquotesingle{}},  }\item[{bool}]{has\+Header = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file C\+S\+V\+Parser.\+cpp.
+
+\mbox{\label{class_parser_a1e70d9a903c5d2e8166fb571de3d581c}} 
+\index{Parser@{Parser}!````~Parser@{$\sim$Parser}}
+\index{````~Parser@{$\sim$Parser}!Parser@{Parser}}
+\subsubsection{$\sim$Parser()}
+{\footnotesize\ttfamily Parser\+::$\sim$\+Parser (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_parser_afe0f826abe9a149bbe798664cd9022ec}} 
+\index{Parser@{Parser}!addRow@{addRow}}
+\index{addRow@{addRow}!Parser@{Parser}}
+\subsubsection{addRow()}
+{\footnotesize\ttfamily bool Parser\+::add\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{pos,  }\item[{const vector$<$ string $>$ \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Definition at line 130 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content, \+\_\+header, and Row\+::push().
+
+\mbox{\label{class_parser_a5f0dfff7f5168d2ca894319651f102e3}} 
+\index{Parser@{Parser}!columnCount@{columnCount}}
+\index{columnCount@{columnCount}!Parser@{Parser}}
+\subsubsection{columnCount()}
+{\footnotesize\ttfamily unsigned int Parser\+::column\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 107 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header.
+
+\mbox{\label{class_parser_a8f625a8081a5bde560d46d18d04efb2e}} 
+\index{Parser@{Parser}!deleteRow@{deleteRow}}
+\index{deleteRow@{deleteRow}!Parser@{Parser}}
+\subsubsection{deleteRow()}
+{\footnotesize\ttfamily bool Parser\+::delete\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption})}
+
+
+
+Definition at line 121 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content.
+
+\mbox{\label{class_parser_a3201b8253f4ea1c4420f3637c6c8de2b}} 
+\index{Parser@{Parser}!getFileName@{getFileName}}
+\index{getFileName@{getFileName}!Parser@{Parser}}
+\subsubsection{getFileName()}
+{\footnotesize\ttfamily const string \& Parser\+::get\+File\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 165 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+file.
+
+\mbox{\label{class_parser_a0e9fb5d631e2e95685c67d8d59e1ba50}} 
+\index{Parser@{Parser}!getHeader@{getHeader}}
+\index{getHeader@{getHeader}!Parser@{Parser}}
+\subsubsection{getHeader()}
+{\footnotesize\ttfamily vector$<$ string $>$ Parser\+::get\+Header (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 111 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header.
+
+\mbox{\label{class_parser_adff671135239b5031b8eb937eb9cd844}} 
+\index{Parser@{Parser}!getHeaderElement@{getHeaderElement}}
+\index{getHeaderElement@{getHeaderElement}!Parser@{Parser}}
+\subsubsection{getHeaderElement()}
+{\footnotesize\ttfamily const string Parser\+::get\+Header\+Element (\begin{DoxyParamCaption}\item[{unsigned int}]{pos }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 115 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header.
+
+\mbox{\label{class_parser_a4cbc7632e6bb4841275884cbc128e25a}} 
+\index{Parser@{Parser}!getRow@{getRow}}
+\index{getRow@{getRow}!Parser@{Parser}}
+\subsubsection{getRow()}
+{\footnotesize\ttfamily \textbf{ Row} \& Parser\+::get\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 93 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content.
+
+
+
+Referenced by operator[$\,$]().
+
+\mbox{\label{class_parser_a9c29df2f64942cac1dcc1f5d63b4fb36}} 
+\index{Parser@{Parser}!operator[]@{operator[]}}
+\index{operator[]@{operator[]}!Parser@{Parser}}
+\subsubsection{operator[]()}
+{\footnotesize\ttfamily \textbf{ Row} \& Parser\+::operator[$\,$] (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 99 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References get\+Row().
+
+\mbox{\label{class_parser_a7fe27b82f7adf8633d633ee79e608012}} 
+\index{Parser@{Parser}!parseContent@{parseContent}}
+\index{parseContent@{parseContent}!Parser@{Parser}}
+\subsubsection{parseContent()}
+{\footnotesize\ttfamily void Parser\+::parse\+Content (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 60 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content, \+\_\+header, \+\_\+original\+File, m\+\_\+header, Row\+::push(), and Row\+::size().
+
+\mbox{\label{class_parser_adf0f8593adc24b7c2c9318473afcf8e4}} 
+\index{Parser@{Parser}!parseHeader@{parseHeader}}
+\index{parseHeader@{parseHeader}!Parser@{Parser}}
+\subsubsection{parseHeader()}
+{\footnotesize\ttfamily void Parser\+::parse\+Header (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 52 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header, \+\_\+original\+File, and \+\_\+sep.
+
+\mbox{\label{class_parser_a3cf277ff6ffc29b4be24adc8af113cc9}} 
+\index{Parser@{Parser}!rowCount@{rowCount}}
+\index{rowCount@{rowCount}!Parser@{Parser}}
+\subsubsection{rowCount()}
+{\footnotesize\ttfamily unsigned int Parser\+::row\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 103 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content.
+
+\mbox{\label{class_parser_aa92421ad7f5c4bb158b0b2f389458947}} 
+\index{Parser@{Parser}!sync@{sync}}
+\index{sync@{sync}!Parser@{Parser}}
+\subsubsection{sync()}
+{\footnotesize\ttfamily void Parser\+::sync (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 143 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+content, \+\_\+file, \+\_\+header, \+\_\+type, and e\+F\+I\+LE.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_parser_a47c9a793cb0869cb19a60883eebc469d}} 
+\index{Parser@{Parser}!\_content@{\_content}}
+\index{\_content@{\_content}!Parser@{Parser}}
+\subsubsection{\_content}
+{\footnotesize\ttfamily vector$<$\textbf{ Row} $\ast$$>$ Parser\+::\+\_\+content\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 86 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by add\+Row(), delete\+Row(), get\+Row(), parse\+Content(), row\+Count(), sync(), and $\sim$\+Parser().
+
+\mbox{\label{class_parser_af173d4c3df007ee81d42887b4a15060a}} 
+\index{Parser@{Parser}!\_file@{\_file}}
+\index{\_file@{\_file}!Parser@{Parser}}
+\subsubsection{\_file}
+{\footnotesize\ttfamily string Parser\+::\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 81 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by get\+File\+Name(), and sync().
+
+\mbox{\label{class_parser_aa4b3a567bac767923745b4bd2f176c6f}} 
+\index{Parser@{Parser}!\_header@{\_header}}
+\index{\_header@{\_header}!Parser@{Parser}}
+\subsubsection{\_header}
+{\footnotesize\ttfamily vector$<$string$>$ Parser\+::\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 85 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by add\+Row(), column\+Count(), get\+Header(), get\+Header\+Element(), parse\+Content(), parse\+Header(), and sync().
+
+\mbox{\label{class_parser_abecadd4e857d14479da2fa7ec344f21b}} 
+\index{Parser@{Parser}!\_originalFile@{\_originalFile}}
+\index{\_originalFile@{\_originalFile}!Parser@{Parser}}
+\subsubsection{\_originalFile}
+{\footnotesize\ttfamily vector$<$string$>$ Parser\+::\+\_\+original\+File\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 84 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by parse\+Content(), and parse\+Header().
+
+\mbox{\label{class_parser_ae09c229a5f86b536e11fe4f1a3274317}} 
+\index{Parser@{Parser}!\_sep@{\_sep}}
+\index{\_sep@{\_sep}!Parser@{Parser}}
+\subsubsection{\_sep}
+{\footnotesize\ttfamily const char Parser\+::\+\_\+sep\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 83 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by parse\+Header().
+
+\mbox{\label{class_parser_a40e8d80f6539cd6170a25d47b9edb20c}} 
+\index{Parser@{Parser}!\_type@{\_type}}
+\index{\_type@{\_type}!Parser@{Parser}}
+\subsubsection{\_type}
+{\footnotesize\ttfamily const \textbf{ Data\+Type} Parser\+::\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 82 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by sync().
+
+\mbox{\label{class_parser_ab0bd343f86055468eb6cbd298dacdc16}} 
+\index{Parser@{Parser}!m\_header@{m\_header}}
+\index{m\_header@{m\_header}!Parser@{Parser}}
+\subsubsection{m\_header}
+{\footnotesize\ttfamily bool Parser\+::m\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 87 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by parse\+Content().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ C\+S\+Vparser.\+hpp}\item 
+src/\textbf{ C\+S\+V\+Parser.\+cpp}\end{DoxyCompactItemize}

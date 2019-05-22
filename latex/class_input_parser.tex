@@ -1,0 +1,98 @@
+\section{Input\+Parser Class Reference}
+\label{class_input_parser}\index{InputParser@{InputParser}}
+
+
+{\ttfamily \#include $<$Input\+Parser.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Input\+Parser} (int \&argc, char $\ast$$\ast$argv)
+\item 
+const string \& \textbf{ get\+Cmd\+Option} (const string \&option) const
+\item 
+bool \textbf{ cmd\+Option\+Exists} (const string \&option) const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ string $>$ \textbf{ tokens}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 20 of file Input\+Parser.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_input_parser_af9fa5ead1f28b5294a713410df5b9531}} 
+\index{InputParser@{InputParser}!InputParser@{InputParser}}
+\index{InputParser@{InputParser}!InputParser@{InputParser}}
+\subsubsection{InputParser()}
+{\footnotesize\ttfamily Input\+Parser\+::\+Input\+Parser (\begin{DoxyParamCaption}\item[{int \&}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file Input\+Parser.\+cpp.
+
+
+
+References tokens.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_input_parser_ad3d06a9c59e91f425295bdc8408e0544}} 
+\index{InputParser@{InputParser}!cmdOptionExists@{cmdOptionExists}}
+\index{cmdOptionExists@{cmdOptionExists}!InputParser@{InputParser}}
+\subsubsection{cmdOptionExists()}
+{\footnotesize\ttfamily bool Input\+Parser\+::cmd\+Option\+Exists (\begin{DoxyParamCaption}\item[{const string \&}]{option }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 29 of file Input\+Parser.\+cpp.
+
+
+
+References tokens.
+
+\mbox{\label{class_input_parser_a494c1de8c06fbb5a88343686e36fbf50}} 
+\index{InputParser@{InputParser}!getCmdOption@{getCmdOption}}
+\index{getCmdOption@{getCmdOption}!InputParser@{InputParser}}
+\subsubsection{getCmdOption()}
+{\footnotesize\ttfamily const string \& Input\+Parser\+::get\+Cmd\+Option (\begin{DoxyParamCaption}\item[{const string \&}]{option }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 19 of file Input\+Parser.\+cpp.
+
+
+
+References tokens.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_input_parser_a4bd1105d6fc64bd0e825dc2e34515d75}} 
+\index{InputParser@{InputParser}!tokens@{tokens}}
+\index{tokens@{tokens}!InputParser@{InputParser}}
+\subsubsection{tokens}
+{\footnotesize\ttfamily vector$<$string$>$ Input\+Parser\+::tokens\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file Input\+Parser.\+h.
+
+
+
+Referenced by cmd\+Option\+Exists(), get\+Cmd\+Option(), and Input\+Parser().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Input\+Parser.\+h}\item 
+src/\textbf{ Input\+Parser.\+cpp}\end{DoxyCompactItemize}

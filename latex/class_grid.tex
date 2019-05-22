@@ -1,0 +1,382 @@
+\section{Grid Class Reference}
+\label{class_grid}\index{Grid@{Grid}}
+
+
+{\ttfamily \#include $<$Grid.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Grid} (\textbf{ Map} $\ast$map, double x\+Orig, double y\+Orig, double x\+Tiledim, double y\+Tiledim, unsigned long no\+TilesX, unsigned long no\+TilesY)
+\item 
+virtual \textbf{ $\sim$\+Grid} ()
+\item 
+unsigned long \textbf{ get\+No\+TilesX} () const
+\item 
+unsigned long \textbf{ get\+No\+TilesY} () const
+\item 
+double \textbf{ get\+X\+Tile\+Dim} () const
+\item 
+double \textbf{ get\+X\+Origin} () const
+\item 
+double \textbf{ get\+Y\+Tile\+Dim} () const
+\item 
+double \textbf{ get\+Y\+Origin} () const
+\item 
+string \textbf{ to\+String} () const
+\item 
+unsigned long \textbf{ get\+Tile\+IndexX} (Point $\ast$p)
+\item 
+unsigned long \textbf{ get\+Tile\+IndexY} (Point $\ast$p)
+\item 
+unsigned long \textbf{ get\+Tile\+CenterX} (Point $\ast$p)
+\item 
+unsigned long \textbf{ get\+Tile\+CenterY} (Point $\ast$p)
+\item 
+unsigned long \textbf{ get\+No\+Tiles} () const
+\item 
+double \textbf{ compute\+Probability} (unsigned long t, unsigned long tile\+Index, \textbf{ Mobile\+Phone} $\ast$m, vector$<$ \textbf{ Antenna\+Info} $>$ \&data, std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$)
+\item 
+Coordinate \textbf{ get\+Tile\+Center} (unsigned long tile\+Index)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \textbf{ m\+\_\+x\+Origin}
+\item 
+double \textbf{ m\+\_\+y\+Origin}
+\item 
+double \textbf{ m\+\_\+x\+Tile\+Dim}
+\item 
+double \textbf{ m\+\_\+y\+Tile\+Dim}
+\item 
+unsigned long \textbf{ m\+\_\+no\+TilesX}
+\item 
+unsigned long \textbf{ m\+\_\+no\+TilesY}
+\item 
+\textbf{ Map} $\ast$ \textbf{ m\+\_\+map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 31 of file Grid.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_grid_a6d2d20a01e2e0d96d19605d1ddb67064}} 
+\index{Grid@{Grid}!Grid@{Grid}}
+\index{Grid@{Grid}!Grid@{Grid}}
+\subsubsection{Grid()}
+{\footnotesize\ttfamily Grid\+::\+Grid (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{map,  }\item[{double}]{x\+Orig,  }\item[{double}]{y\+Orig,  }\item[{double}]{x\+Tiledim,  }\item[{double}]{y\+Tiledim,  }\item[{unsigned long}]{no\+TilesX,  }\item[{unsigned long}]{no\+TilesY }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file Grid.\+cpp.
+
+\mbox{\label{class_grid_a3661d0a7f998caaaf8627d7a67072116}} 
+\index{Grid@{Grid}!````~Grid@{$\sim$Grid}}
+\index{````~Grid@{$\sim$Grid}!Grid@{Grid}}
+\subsubsection{$\sim$Grid()}
+{\footnotesize\ttfamily Grid\+::$\sim$\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 32 of file Grid.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_grid_addfce41a6f3e3100f10dd2a0577fc35e}} 
+\index{Grid@{Grid}!computeProbability@{computeProbability}}
+\index{computeProbability@{computeProbability}!Grid@{Grid}}
+\subsubsection{computeProbability()}
+{\footnotesize\ttfamily double Grid\+::compute\+Probability (\begin{DoxyParamCaption}\item[{unsigned long}]{t,  }\item[{unsigned long}]{tile\+Index,  }\item[{\textbf{ Mobile\+Phone} $\ast$}]{m,  }\item[{vector$<$ \textbf{ Antenna\+Info} $>$ \&}]{data,  }\item[{std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$}]{itr }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Grid.\+cpp.
+
+
+
+References E\+M\+Field\+::connection\+Likelihood(), Map\+::get\+Global\+Factory(), Agent\+::get\+Id(), get\+Tile\+Center(), E\+M\+Field\+::instance(), m\+\_\+map, m\+\_\+no\+TilesX, and m\+\_\+no\+TilesY.
+
+\mbox{\label{class_grid_a25f914f4b6a8b4cb8af934a37b1e2a04}} 
+\index{Grid@{Grid}!getNoTiles@{getNoTiles}}
+\index{getNoTiles@{getNoTiles}!Grid@{Grid}}
+\subsubsection{getNoTiles()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+No\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 47 of file Grid.\+cpp.
+
+
+
+References m\+\_\+no\+TilesX, and m\+\_\+no\+TilesY.
+
+\mbox{\label{class_grid_af29c0c404a908aa46f83afb17d7609a6}} 
+\index{Grid@{Grid}!getNoTilesX@{getNoTilesX}}
+\index{getNoTilesX@{getNoTilesX}!Grid@{Grid}}
+\subsubsection{getNoTilesX()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+No\+TilesX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 103 of file Grid.\+cpp.
+
+
+
+References m\+\_\+no\+TilesX.
+
+\mbox{\label{class_grid_a783a3153d03154cfd33e6a418bb8d390}} 
+\index{Grid@{Grid}!getNoTilesY@{getNoTilesY}}
+\index{getNoTilesY@{getNoTilesY}!Grid@{Grid}}
+\subsubsection{getNoTilesY()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+No\+TilesY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 107 of file Grid.\+cpp.
+
+
+
+References m\+\_\+no\+TilesY.
+
+\mbox{\label{class_grid_a4ad0db8034762fd6ca0c61df98bcc15f}} 
+\index{Grid@{Grid}!getTileCenter@{getTileCenter}}
+\index{getTileCenter@{getTileCenter}!Grid@{Grid}}
+\subsubsection{getTileCenter()}
+{\footnotesize\ttfamily Coordinate Grid\+::get\+Tile\+Center (\begin{DoxyParamCaption}\item[{unsigned long}]{tile\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 92 of file Grid.\+cpp.
+
+
+
+References m\+\_\+no\+TilesX, m\+\_\+x\+Tile\+Dim, m\+\_\+y\+Tile\+Dim, and Rtnorm\+::x.
+
+
+
+Referenced by compute\+Probability().
+
+\mbox{\label{class_grid_a7ceadaae2d94f814b7e9b69728cdb1be}} 
+\index{Grid@{Grid}!getTileCenterX@{getTileCenterX}}
+\index{getTileCenterX@{getTileCenterX}!Grid@{Grid}}
+\subsubsection{getTileCenterX()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+Tile\+CenterX (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 139 of file Grid.\+cpp.
+
+\mbox{\label{class_grid_a04b2390f9d507fffa738d2ec1c08f9b8}} 
+\index{Grid@{Grid}!getTileCenterY@{getTileCenterY}}
+\index{getTileCenterY@{getTileCenterY}!Grid@{Grid}}
+\subsubsection{getTileCenterY()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+Tile\+CenterY (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 145 of file Grid.\+cpp.
+
+\mbox{\label{class_grid_a960e14ae534b8f868910b410be06352a}} 
+\index{Grid@{Grid}!getTileIndexX@{getTileIndexX}}
+\index{getTileIndexX@{getTileIndexX}!Grid@{Grid}}
+\subsubsection{getTileIndexX()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+Tile\+IndexX (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file Grid.\+cpp.
+
+\mbox{\label{class_grid_adf39c1131c0ca762d284b6a5bf2bb29a}} 
+\index{Grid@{Grid}!getTileIndexY@{getTileIndexY}}
+\index{getTileIndexY@{getTileIndexY}!Grid@{Grid}}
+\subsubsection{getTileIndexY()}
+{\footnotesize\ttfamily unsigned long Grid\+::get\+Tile\+IndexY (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file Grid.\+cpp.
+
+\mbox{\label{class_grid_a08b534c7f8e1099a6903bf08d9727842}} 
+\index{Grid@{Grid}!getXOrigin@{getXOrigin}}
+\index{getXOrigin@{getXOrigin}!Grid@{Grid}}
+\subsubsection{getXOrigin()}
+{\footnotesize\ttfamily double Grid\+::get\+X\+Origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 115 of file Grid.\+cpp.
+
+
+
+References m\+\_\+x\+Origin.
+
+\mbox{\label{class_grid_a1c5b9ad91fac264bcdd67f99bc93f663}} 
+\index{Grid@{Grid}!getXTileDim@{getXTileDim}}
+\index{getXTileDim@{getXTileDim}!Grid@{Grid}}
+\subsubsection{getXTileDim()}
+{\footnotesize\ttfamily double Grid\+::get\+X\+Tile\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 111 of file Grid.\+cpp.
+
+
+
+References m\+\_\+x\+Tile\+Dim.
+
+\mbox{\label{class_grid_a53141770920cf261579cf164a8909af9}} 
+\index{Grid@{Grid}!getYOrigin@{getYOrigin}}
+\index{getYOrigin@{getYOrigin}!Grid@{Grid}}
+\subsubsection{getYOrigin()}
+{\footnotesize\ttfamily double Grid\+::get\+Y\+Origin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 123 of file Grid.\+cpp.
+
+
+
+References m\+\_\+y\+Origin.
+
+\mbox{\label{class_grid_aedfe477f5be79a375bd64a4d21765918}} 
+\index{Grid@{Grid}!getYTileDim@{getYTileDim}}
+\index{getYTileDim@{getYTileDim}!Grid@{Grid}}
+\subsubsection{getYTileDim()}
+{\footnotesize\ttfamily double Grid\+::get\+Y\+Tile\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 119 of file Grid.\+cpp.
+
+
+
+References m\+\_\+y\+Tile\+Dim.
+
+\mbox{\label{class_grid_ad48d195b5e333a94a3a14d6395252b2a}} 
+\index{Grid@{Grid}!toString@{toString}}
+\index{toString@{toString}!Grid@{Grid}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily string Grid\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 36 of file Grid.\+cpp.
+
+
+
+References m\+\_\+no\+TilesX, m\+\_\+no\+TilesY, m\+\_\+x\+Origin, m\+\_\+x\+Tile\+Dim, m\+\_\+y\+Origin, m\+\_\+y\+Tile\+Dim, and Constants\+::sep.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_grid_ac3caf5a02341f2cfb809c90bd5deeee3}} 
+\index{Grid@{Grid}!m\_map@{m\_map}}
+\index{m\_map@{m\_map}!Grid@{Grid}}
+\subsubsection{m\_map}
+{\footnotesize\ttfamily \textbf{ Map}$\ast$ Grid\+::m\+\_\+map\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 64 of file Grid.\+h.
+
+
+
+Referenced by compute\+Probability().
+
+\mbox{\label{class_grid_a177bfdc70436c25a1510d1abe19e34c1}} 
+\index{Grid@{Grid}!m\_noTilesX@{m\_noTilesX}}
+\index{m\_noTilesX@{m\_noTilesX}!Grid@{Grid}}
+\subsubsection{m\_noTilesX}
+{\footnotesize\ttfamily unsigned long Grid\+::m\+\_\+no\+TilesX\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file Grid.\+h.
+
+
+
+Referenced by compute\+Probability(), get\+No\+Tiles(), get\+No\+Tiles\+X(), get\+Tile\+Center(), and to\+String().
+
+\mbox{\label{class_grid_a8fe14c4781dfd5623922fcc1f9c10130}} 
+\index{Grid@{Grid}!m\_noTilesY@{m\_noTilesY}}
+\index{m\_noTilesY@{m\_noTilesY}!Grid@{Grid}}
+\subsubsection{m\_noTilesY}
+{\footnotesize\ttfamily unsigned long Grid\+::m\+\_\+no\+TilesY\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 63 of file Grid.\+h.
+
+
+
+Referenced by compute\+Probability(), get\+No\+Tiles(), get\+No\+Tiles\+Y(), and to\+String().
+
+\mbox{\label{class_grid_ae109d428ac5489815748e92fdde1b91f}} 
+\index{Grid@{Grid}!m\_xOrigin@{m\_xOrigin}}
+\index{m\_xOrigin@{m\_xOrigin}!Grid@{Grid}}
+\subsubsection{m\_xOrigin}
+{\footnotesize\ttfamily double Grid\+::m\+\_\+x\+Origin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Grid.\+h.
+
+
+
+Referenced by get\+X\+Origin(), and to\+String().
+
+\mbox{\label{class_grid_a48c3d1fc34a14bff8b9176558a8b6f4e}} 
+\index{Grid@{Grid}!m\_xTileDim@{m\_xTileDim}}
+\index{m\_xTileDim@{m\_xTileDim}!Grid@{Grid}}
+\subsubsection{m\_xTileDim}
+{\footnotesize\ttfamily double Grid\+::m\+\_\+x\+Tile\+Dim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file Grid.\+h.
+
+
+
+Referenced by get\+Tile\+Center(), get\+X\+Tile\+Dim(), and to\+String().
+
+\mbox{\label{class_grid_a16b2fc5a6e96ad2d59d59b52db83f4aa}} 
+\index{Grid@{Grid}!m\_yOrigin@{m\_yOrigin}}
+\index{m\_yOrigin@{m\_yOrigin}!Grid@{Grid}}
+\subsubsection{m\_yOrigin}
+{\footnotesize\ttfamily double Grid\+::m\+\_\+y\+Origin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 59 of file Grid.\+h.
+
+
+
+Referenced by get\+Y\+Origin(), and to\+String().
+
+\mbox{\label{class_grid_a497eeffc4a16a021e15ecbc130f4f644}} 
+\index{Grid@{Grid}!m\_yTileDim@{m\_yTileDim}}
+\index{m\_yTileDim@{m\_yTileDim}!Grid@{Grid}}
+\subsubsection{m\_yTileDim}
+{\footnotesize\ttfamily double Grid\+::m\+\_\+y\+Tile\+Dim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 61 of file Grid.\+h.
+
+
+
+Referenced by get\+Tile\+Center(), get\+Y\+Tile\+Dim(), and to\+String().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Grid.\+h}\item 
+src/\textbf{ Grid.\+cpp}\end{DoxyCompactItemize}

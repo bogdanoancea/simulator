@@ -35,9 +35,12 @@ Grid::~Grid() {
 
 string Grid::toString() const {
 	ostringstream ss;
-	ss << left << setw(15) << "Origin X" << setw(15) << m_xOrigin << setw(15) << "Origin Y" << setw(15) << m_yOrigin << setw(15)
-			<< "x tile dim" << setw(15) << m_xTileDim << setw(15) << "y tile dim" << setw(15) << m_yTileDim << setw(15) << "no tiles x"
-			<< setw(15) << m_noTilesX << setw(15) << "no tiles y" << setw(15) << m_noTilesY << endl;
+
+	ss << left << "Origin X" << Constants::sep << "Origin Y" << Constants::sep << "X Tile Dim" << Constants::sep << "Y Tile Dim"
+			<< Constants::sep << "No Tiles X" << Constants::sep << "No Tiles Y" << endl;
+
+	ss << left << m_xOrigin << Constants::sep << m_yOrigin << Constants::sep<< m_xTileDim << Constants::sep << m_yTileDim << Constants::sep << m_noTilesX
+			<< Constants::sep << m_noTilesY << endl;
 	return (ss.str());
 }
 
@@ -66,12 +69,12 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex, Mobile
 		for (auto it = itr.first; it != itr.second; it++) {
 			a = dynamic_cast<Antenna*>(it->second);
 			if (a->getId() == antennaId)
-			break;
+				break;
 		}
 
 		Point* p = m_map->getGlobalFactory()->createPoint(c);
 
-		double lh = EMField::instance()->connectionLikelihood(a,p);
+		double lh = EMField::instance()->connectionLikelihood(a, p);
 //		double qual = a->computeSignalQuality(p);
 //		double sum_qual = 0.0;
 //		for (auto it = itr.first; it != itr.second; it++) {
@@ -80,9 +83,8 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex, Mobile
 //		}
 		//cout << p->getCoordinate()->x << "," << p->getCoordinate()->y << "," << qual << "," << sum_qual << endl;
 
-		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;//qual / sum_qual;
-	}
-	else
+		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;		//qual / sum_qual;
+	} else
 		result = (1.0 / (m_noTilesX * m_noTilesY));
 	return (result);
 }

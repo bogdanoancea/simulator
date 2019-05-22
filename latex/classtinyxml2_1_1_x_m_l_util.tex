@@ -1,0 +1,471 @@
+\section{tinyxml2\+::X\+M\+L\+Util Class Reference}
+\label{classtinyxml2_1_1_x_m_l_util}\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \textbf{ Skip\+White\+Space} (const char $\ast$p, int $\ast$cur\+Line\+Num\+Ptr)
+\item 
+static char $\ast$ \textbf{ Skip\+White\+Space} (char $\ast$p, int $\ast$cur\+Line\+Num\+Ptr)
+\item 
+static bool \textbf{ Is\+White\+Space} (char p)
+\item 
+static bool \textbf{ Is\+Name\+Start\+Char} (unsigned char ch)
+\item 
+static bool \textbf{ Is\+Name\+Char} (unsigned char ch)
+\item 
+static bool \textbf{ String\+Equal} (const char $\ast$p, const char $\ast$q, int n\+Char=I\+N\+T\+\_\+\+M\+AX)
+\item 
+static bool \textbf{ Is\+U\+T\+F8\+Continuation} (char p)
+\item 
+static const char $\ast$ \textbf{ Read\+B\+OM} (const char $\ast$p, bool $\ast$has\+B\+OM)
+\item 
+static const char $\ast$ \textbf{ Get\+Character\+Ref} (const char $\ast$p, char $\ast$value, int $\ast$length)
+\item 
+static void \textbf{ Convert\+U\+T\+F32\+To\+U\+T\+F8} (unsigned long input, char $\ast$output, int $\ast$length)
+\item 
+static void \textbf{ To\+Str} (int v, char $\ast$buffer, int buffer\+Size)
+\item 
+static void \textbf{ To\+Str} (unsigned v, char $\ast$buffer, int buffer\+Size)
+\item 
+static void \textbf{ To\+Str} (bool v, char $\ast$buffer, int buffer\+Size)
+\item 
+static void \textbf{ To\+Str} (float v, char $\ast$buffer, int buffer\+Size)
+\item 
+static void \textbf{ To\+Str} (double v, char $\ast$buffer, int buffer\+Size)
+\item 
+static void \textbf{ To\+Str} (int64\+\_\+t v, char $\ast$buffer, int buffer\+Size)
+\item 
+static bool \textbf{ To\+Int} (const char $\ast$str, int $\ast$value)
+\item 
+static bool \textbf{ To\+Unsigned} (const char $\ast$str, unsigned $\ast$value)
+\item 
+static bool \textbf{ To\+Bool} (const char $\ast$str, bool $\ast$value)
+\item 
+static bool \textbf{ To\+Float} (const char $\ast$str, float $\ast$value)
+\item 
+static bool \textbf{ To\+Double} (const char $\ast$str, double $\ast$value)
+\item 
+static bool \textbf{ To\+Int64} (const char $\ast$str, int64\+\_\+t $\ast$value)
+\item 
+static void \textbf{ Set\+Bool\+Serialization} (const char $\ast$write\+True, const char $\ast$write\+False)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \textbf{ write\+Bool\+True} = \char`\"{}true\char`\"{}
+\item 
+static const char $\ast$ \textbf{ write\+Bool\+False} = \char`\"{}false\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 550 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a31c00d5c5dfb38382de1dfcaf4be3595}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ConvertUTF32ToUTF8@{ConvertUTF32ToUTF8}}
+\index{ConvertUTF32ToUTF8@{ConvertUTF32ToUTF8}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ConvertUTF32ToUTF8()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+Convert\+U\+T\+F32\+To\+U\+T\+F8 (\begin{DoxyParamCaption}\item[{unsigned long}]{input,  }\item[{char $\ast$}]{output,  }\item[{int $\ast$}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 403 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by Get\+Character\+Ref().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a5a96e5144a8d693dc4bcd783d9964648}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!GetCharacterRef@{GetCharacterRef}}
+\index{GetCharacterRef@{GetCharacterRef}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{GetCharacterRef()}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::\+Get\+Character\+Ref (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p,  }\item[{char $\ast$}]{value,  }\item[{int $\ast$}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 456 of file tinyxml2.\+cpp.
+
+
+
+References Convert\+U\+T\+F32\+To\+U\+T\+F8(), and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Get\+Str().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a04b17341538fa11752f24b4301d19485}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!IsNameChar@{IsNameChar}}
+\index{IsNameChar@{IsNameChar}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{IsNameChar()}
+{\footnotesize\ttfamily static bool tinyxml2\+::\+X\+M\+L\+Util\+::\+Is\+Name\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 586 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Parse\+Name().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_abe106a69ac4d942a4381a4d9dfd0e0bd}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!IsNameStartChar@{IsNameStartChar}}
+\index{IsNameStartChar@{IsNameStartChar}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{IsNameStartChar()}
+{\footnotesize\ttfamily static bool tinyxml2\+::\+X\+M\+L\+Util\+::\+Is\+Name\+Start\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 575 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Attributes(), and tinyxml2\+::\+Str\+Pair\+::\+Parse\+Name().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ad7fd82e0fe610d73ef7bf9f359f104a3}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!IsUTF8Continuation@{IsUTF8Continuation}}
+\index{IsUTF8Continuation@{IsUTF8Continuation}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{IsUTF8Continuation()}
+{\footnotesize\ttfamily static bool tinyxml2\+::\+X\+M\+L\+Util\+::\+Is\+U\+T\+F8\+Continuation (\begin{DoxyParamCaption}\item[{char}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 603 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a357ec3af8fc433d19023a815f45e8e33}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!IsWhiteSpace@{IsWhiteSpace}}
+\index{IsWhiteSpace@{IsWhiteSpace}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{IsWhiteSpace()}
+{\footnotesize\ttfamily static bool tinyxml2\+::\+X\+M\+L\+Util\+::\+Is\+White\+Space (\begin{DoxyParamCaption}\item[{char}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 571 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Collapse\+Whitespace().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ae9bcb2bc3cd6475fdc644c8c17790555}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ReadBOM@{ReadBOM}}
+\index{ReadBOM@{ReadBOM}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ReadBOM()}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::\+Read\+B\+OM (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p,  }\item[{bool $\ast$}]{has\+B\+OM }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 385 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+0, T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+1, T\+I\+X\+M\+L\+\_\+\+U\+T\+F\+\_\+\+L\+E\+A\+D\+\_\+2, and T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Document\+::\+Parse().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_af98a6a80dbeec4679366c1aba4c5b747}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!SetBoolSerialization@{SetBoolSerialization}}
+\index{SetBoolSerialization@{SetBoolSerialization}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{SetBoolSerialization()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+Set\+Bool\+Serialization (\begin{DoxyParamCaption}\item[{const char $\ast$}]{write\+True,  }\item[{const char $\ast$}]{write\+False }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 375 of file tinyxml2.\+cpp.
+
+
+
+References write\+Bool\+False, and write\+Bool\+True.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ab626a194b3523a5ba8b9dbaa2a165202}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!SkipWhiteSpace@{SkipWhiteSpace}}
+\index{SkipWhiteSpace@{SkipWhiteSpace}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{SkipWhiteSpace()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily static const char$\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::\+Skip\+White\+Space (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p,  }\item[{int $\ast$}]{cur\+Line\+Num\+Ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 553 of file tinyxml2.\+h.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+Str\+Pair\+::\+Collapse\+Whitespace(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Identify(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Parse(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Attributes(), tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Parse\+Deep(), and tinyxml2\+::\+X\+M\+L\+Element\+::\+Parse\+Deep().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_abb6cb3e71f88efca82cb7157367fd91e}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!SkipWhiteSpace@{SkipWhiteSpace}}
+\index{SkipWhiteSpace@{SkipWhiteSpace}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{SkipWhiteSpace()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static char$\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::\+Skip\+White\+Space (\begin{DoxyParamCaption}\item[{char $\ast$}]{p,  }\item[{int $\ast$}]{cur\+Line\+Num\+Ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 565 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_acfcd287cacfd2533e1bc9ea4dfb56602}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!StringEqual@{StringEqual}}
+\index{StringEqual@{StringEqual}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{StringEqual()}
+{\footnotesize\ttfamily static bool tinyxml2\+::\+X\+M\+L\+Util\+::\+String\+Equal (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p,  }\item[{const char $\ast$}]{q,  }\item[{int}]{n\+Char = {\ttfamily INT\+\_\+MAX} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 593 of file tinyxml2.\+h.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Attribute(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Delete\+Attribute(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Find\+Attribute(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Find\+Or\+Create\+Attribute(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Identify(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Parse\+Deep(), tinyxml2\+::\+X\+M\+L\+Text\+::\+Shallow\+Equal(), tinyxml2\+::\+X\+M\+L\+Comment\+::\+Shallow\+Equal(), tinyxml2\+::\+X\+M\+L\+Declaration\+::\+Shallow\+Equal(), tinyxml2\+::\+X\+M\+L\+Unknown\+::\+Shallow\+Equal(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Shallow\+Equal(), To\+Bool(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Element\+With\+Name().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ae5b03e0a1ca5d42052a7ac540f7aa12a}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToBool@{ToBool}}
+\index{ToBool@{ToBool}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToBool()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Bool (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{bool $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 608 of file tinyxml2.\+cpp.
+
+
+
+References String\+Equal(), and To\+Int().
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Bool\+Text(), and tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Bool\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ad8f75ac140fb19c1c6e164a957c4cd53}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToDouble@{ToDouble}}
+\index{ToDouble@{ToDouble}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToDouble()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Double (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{double $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 636 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Double\+Text(), and tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Double\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a399e71edb5f29d61ea81d91ee0332bb9}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToFloat@{ToFloat}}
+\index{ToFloat@{ToFloat}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToFloat()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Float (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{float $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 627 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Float\+Text(), and tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Float\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ad4df4023d11ee3fca9689c49b9707323}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToInt@{ToInt}}
+\index{ToInt@{ToInt}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToInt()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Int (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{int $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 592 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Int\+Text(), tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Int\+Value(), and To\+Bool().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_afe2ea09257431cd2b4b6d440552e4195}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToInt64@{ToInt64}}
+\index{ToInt64@{ToInt64}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToInt64()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Int64 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{int64\+\_\+t $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 645 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Int64\+Text(), and tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Int64\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a3cd6c703d49b9d51bdf0f4ff6aa021c7}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{int}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 552 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Printer\+::\+Push\+Attribute(), tinyxml2\+::\+X\+M\+L\+Printer\+::\+Push\+Text(), tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Set\+Attribute(), and tinyxml2\+::\+X\+M\+L\+Element\+::\+Set\+Text().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ac00c2e52c1c36dab3ff41d86a9bf60f9}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{unsigned}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 558 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_adba0718527ae9e80f663a71ea325cb11}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{bool}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 564 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF, write\+Bool\+False, and write\+Bool\+True.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a8957ad44fee5fa02ba52d73aad4d0a31}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{float}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 573 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a1cd141e50980fcddd6bf9af5de4b1db7}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{double}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 579 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a26a8cb5b833ad587b3af39469c8111de}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToStr@{ToStr}}
+\index{ToStr@{ToStr}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToStr()\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Str (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{v,  }\item[{char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 585 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+N\+P\+R\+I\+N\+TF.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_a210c8637d5eb4ce3d4625294af0efc2f}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!ToUnsigned@{ToUnsigned}}
+\index{ToUnsigned@{ToUnsigned}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{ToUnsigned()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Util\+::\+To\+Unsigned (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{unsigned $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 600 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+\_\+\+S\+S\+C\+A\+NF.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Element\+::\+Query\+Unsigned\+Text(), and tinyxml2\+::\+X\+M\+L\+Attribute\+::\+Query\+Unsigned\+Value().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_ae09aaf302e2ab8c196e14643ef98e3a3}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!writeBoolFalse@{writeBoolFalse}}
+\index{writeBoolFalse@{writeBoolFalse}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{writeBoolFalse}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::write\+Bool\+False = \char`\"{}false\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line 638 of file tinyxml2.\+h.
+
+
+
+Referenced by Set\+Bool\+Serialization(), and To\+Str().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_util_aafa8c6e965f8f95d5bcd9e7646983470}} 
+\index{tinyxml2::XMLUtil@{tinyxml2::XMLUtil}!writeBoolTrue@{writeBoolTrue}}
+\index{writeBoolTrue@{writeBoolTrue}!tinyxml2::XMLUtil@{tinyxml2::XMLUtil}}
+\subsubsection{writeBoolTrue}
+{\footnotesize\ttfamily const char $\ast$ tinyxml2\+::\+X\+M\+L\+Util\+::write\+Bool\+True = \char`\"{}true\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line 637 of file tinyxml2.\+h.
+
+
+
+Referenced by Set\+Bool\+Serialization(), and To\+Str().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ tinyxml2.\+h}\item 
+src/\textbf{ tinyxml2.\+cpp}\end{DoxyCompactItemize}

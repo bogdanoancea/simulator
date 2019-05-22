@@ -1,0 +1,190 @@
+\section{Agents\+Collection Class Reference}
+\label{class_agents_collection}\index{AgentsCollection@{AgentsCollection}}
+
+
+{\ttfamily \#include $<$Agents\+Collection.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Agents\+Collection} ()
+\item 
+virtual \textbf{ $\sim$\+Agents\+Collection} ()
+\item 
+void \textbf{ add\+Agent} (\textbf{ Agent} $\ast$a)
+\item 
+\textbf{ Agent} $\ast$ \textbf{ delete\+Agent} (\textbf{ Agent} $\ast$a)
+\item 
+void \textbf{ perform\+Action} ()
+\item 
+\textbf{ Agent} $\ast$ \textbf{ get\+Agent} (int id)
+\item 
+std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ \textbf{ get\+Agent\+List\+By\+Type} (const string \&agent\+Type)
+\item 
+\textbf{ um\+\_\+iterator} \textbf{ end} ()
+\item 
+\textbf{ um\+\_\+iterator} \textbf{ begin} ()
+\item 
+unsigned long \textbf{ size} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unordered\+\_\+multimap$<$ string, \textbf{ Agent} $\ast$ $>$ \textbf{ m\+\_\+agents2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 21 of file Agents\+Collection.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_agents_collection_a866b0ed56c0109e82bc7c839de0a3267}} 
+\index{AgentsCollection@{AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\index{AgentsCollection@{AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\subsubsection{AgentsCollection()}
+{\footnotesize\ttfamily Agents\+Collection\+::\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor 
+
+Definition at line 15 of file Agents\+Collection.\+cpp.
+
+\mbox{\label{class_agents_collection_a3c7532b5fd174defe41e341c357f47bb}} 
+\index{AgentsCollection@{AgentsCollection}!````~AgentsCollection@{$\sim$AgentsCollection}}
+\index{````~AgentsCollection@{$\sim$AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\subsubsection{$\sim$AgentsCollection()}
+{\footnotesize\ttfamily Agents\+Collection\+::$\sim$\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor 
+
+Definition at line 18 of file Agents\+Collection.\+cpp.
+
+
+
+References m\+\_\+agents2.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_agents_collection_a51d14d0635dedd5971ea90dec4f9e7f3}} 
+\index{AgentsCollection@{AgentsCollection}!addAgent@{addAgent}}
+\index{addAgent@{addAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{addAgent()}
+{\footnotesize\ttfamily void Agents\+Collection\+::add\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Agent} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file Agents\+Collection.\+cpp.
+
+
+
+References m\+\_\+agents2.
+
+
+
+Referenced by World\+::generate\+Mobile\+Phones().
+
+\mbox{\label{class_agents_collection_abc1d6593a3ed1c1c7b2d31b7efec8db8}} 
+\index{AgentsCollection@{AgentsCollection}!begin@{begin}}
+\index{begin@{begin}!AgentsCollection@{AgentsCollection}}
+\subsubsection{begin()}
+{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 43 of file Agents\+Collection.\+h.
+
+\mbox{\label{class_agents_collection_a1bf07bf42e02c317b4b5fe697b9c7dee}} 
+\index{AgentsCollection@{AgentsCollection}!deleteAgent@{deleteAgent}}
+\index{deleteAgent@{deleteAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{deleteAgent()}
+{\footnotesize\ttfamily \textbf{ Agent} $\ast$ Agents\+Collection\+::delete\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Agent} $\ast$}]{a }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file Agents\+Collection.\+cpp.
+
+
+
+References m\+\_\+agents2.
+
+\mbox{\label{class_agents_collection_afc61b751cf3387ab4a1bf0dfbc29cb82}} 
+\index{AgentsCollection@{AgentsCollection}!end@{end}}
+\index{end@{end}!AgentsCollection@{AgentsCollection}}
+\subsubsection{end()}
+{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 39 of file Agents\+Collection.\+h.
+
+\mbox{\label{class_agents_collection_a497e22074302b7fdc101ac98ed840610}} 
+\index{AgentsCollection@{AgentsCollection}!getAgent@{getAgent}}
+\index{getAgent@{getAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{getAgent()}
+{\footnotesize\ttfamily \textbf{ Agent} $\ast$ Agents\+Collection\+::get\+Agent (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file Agents\+Collection.\+cpp.
+
+
+
+References m\+\_\+agents2.
+
+\mbox{\label{class_agents_collection_ae8f3b548e2eefb12ed3d3596a6be4598}} 
+\index{AgentsCollection@{AgentsCollection}!getAgentListByType@{getAgentListByType}}
+\index{getAgentListByType@{getAgentListByType}!AgentsCollection@{AgentsCollection}}
+\subsubsection{getAgentListByType()}
+{\footnotesize\ttfamily std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ Agents\+Collection\+::get\+Agent\+List\+By\+Type (\begin{DoxyParamCaption}\item[{const string \&}]{agent\+Type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 42 of file Agents\+Collection.\+cpp.
+
+
+
+References m\+\_\+agents2.
+
+\mbox{\label{class_agents_collection_a7f1dd7f10d1d5aa646ebd855c3ff5502}} 
+\index{AgentsCollection@{AgentsCollection}!performAction@{performAction}}
+\index{performAction@{performAction}!AgentsCollection@{AgentsCollection}}
+\subsubsection{performAction()}
+{\footnotesize\ttfamily void Agents\+Collection\+::perform\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_agents_collection_a3226f7eb58b11623bdb353d8938f60d3}} 
+\index{AgentsCollection@{AgentsCollection}!size@{size}}
+\index{size@{size}!AgentsCollection@{AgentsCollection}}
+\subsubsection{size()}
+{\footnotesize\ttfamily unsigned long Agents\+Collection\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 47 of file Agents\+Collection.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_agents_collection_a5ef5c11f043247a40554e4fabce6e23a}} 
+\index{AgentsCollection@{AgentsCollection}!m\_agents2@{m\_agents2}}
+\index{m\_agents2@{m\_agents2}!AgentsCollection@{AgentsCollection}}
+\subsubsection{m\_agents2}
+{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \textbf{ Agent}$\ast$$>$ Agents\+Collection\+::m\+\_\+agents2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 52 of file Agents\+Collection.\+h.
+
+
+
+Referenced by add\+Agent(), delete\+Agent(), get\+Agent(), get\+Agent\+List\+By\+Type(), and $\sim$\+Agents\+Collection().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Agents\+Collection.\+h}\item 
+src/\textbf{ Agents\+Collection.\+cpp}\end{DoxyCompactItemize}

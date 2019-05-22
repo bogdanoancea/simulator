@@ -1,0 +1,261 @@
+\section{Agent Class Reference}
+\label{class_agent}\index{Agent@{Agent}}
+
+
+{\ttfamily \#include $<$Agent.\+h$>$}
+
+Inheritance diagram for Agent\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_agent}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Agent} (\textbf{ Map} $\ast$m, unsigned long id, \textbf{ Clock} $\ast$clock)
+\item 
+virtual \textbf{ $\sim$\+Agent} ()
+\item 
+bool \textbf{ operator==} (const \textbf{ Agent} \&a)
+\item 
+virtual string \textbf{ get\+Name} ()=0
+\item 
+virtual string \textbf{ to\+String} ()=0
+\item 
+\textbf{ Map} $\ast$ \textbf{ get\+Map} () const
+\item 
+void \textbf{ set\+Map} (\textbf{ Map} $\ast$map)
+\item 
+\textbf{ Clock} $\ast$ \textbf{ get\+Clock} () const
+\item 
+unsigned long \textbf{ get\+Id} () const
+\item 
+void \textbf{ set\+Id} (unsigned long id)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Map} $\ast$ \textbf{ m\+\_\+map}
+\item 
+unsigned long \textbf{ m\+\_\+id}
+\item 
+\textbf{ Clock} $\ast$ \textbf{ m\+\_\+clock}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 17 of file Agent.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_agent_a8183acb5d48c1836a7f08e2766af05be}} 
+\index{Agent@{Agent}!Agent@{Agent}}
+\index{Agent@{Agent}!Agent@{Agent}}
+\subsubsection{Agent()}
+{\footnotesize\ttfamily Agent\+::\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{unsigned long}]{id,  }\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})}
+
+Constructor of the class. \doxyref{Agent}{p.}{class_agent} is the base class for all agents used in the simulator\+: persons, antennas, devices. \doxyref{Agent}{p.}{class_agent} is an abstract class, the users should build specific subclasses 
+\begin{DoxyParams}{Parameters}
+{\em m} & -\/ the \doxyref{Map}{p.}{class_map} where the simulation take place. \\
+\hline
+{\em id} & -\/ the id of this agent, it uniquely identifies the agent \\
+\hline
+{\em clock} & -\/ the clock used by the simulator, it is the same for all agents \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 13 of file Agent.\+cpp.
+
+\mbox{\label{class_agent_ab8dd8d152605cf1339fed595376e83cb}} 
+\index{Agent@{Agent}!````~Agent@{$\sim$Agent}}
+\index{````~Agent@{$\sim$Agent}!Agent@{Agent}}
+\subsubsection{$\sim$Agent()}
+{\footnotesize\ttfamily Agent\+::$\sim$\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor of the class. 
+
+Definition at line 19 of file Agent.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_agent_ac8d8b1c733230bbf9b86e08285be4c03}} 
+\index{Agent@{Agent}!getClock@{getClock}}
+\index{getClock@{getClock}!Agent@{Agent}}
+\subsubsection{getClock()}
+{\footnotesize\ttfamily \textbf{ Clock} $\ast$ Agent\+::get\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 34 of file Agent.\+cpp.
+
+
+
+References m\+\_\+clock.
+
+
+
+Referenced by Locatable\+Agent\+::dump\+Location(), and Antenna\+::register\+Event().
+
+\mbox{\label{class_agent_a1c0349bb5ca9d971439b9f21dcf726a1}} 
+\index{Agent@{Agent}!getId@{getId}}
+\index{getId@{getId}!Agent@{Agent}}
+\subsubsection{getId()}
+{\footnotesize\ttfamily unsigned long Agent\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 49 of file Agent.\+h.
+
+
+
+References m\+\_\+id.
+
+
+
+Referenced by Grid\+::compute\+Probability(), Person\+::dump\+Devices(), Locatable\+Agent\+::dump\+Location(), operator==(), Antenna\+::register\+Event(), Locatable\+Agent\+::to\+String(), Holdable\+Agent\+::to\+String(), Person\+::to\+String(), and Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
+
+\mbox{\label{class_agent_a16e9d8f26d07938fe68fa2ec6d692b1b}} 
+\index{Agent@{Agent}!getMap@{getMap}}
+\index{getMap@{getMap}!Agent@{Agent}}
+\subsubsection{getMap()}
+{\footnotesize\ttfamily \textbf{ Map} $\ast$ Agent\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 27 of file Agent.\+cpp.
+
+
+
+References m\+\_\+map.
+
+
+
+Referenced by Antenna\+::\+Antenna(), and Person\+::random\+Walk().
+
+\mbox{\label{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}} 
+\index{Agent@{Agent}!getName@{getName}}
+\index{getName@{getName}!Agent@{Agent}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily virtual string Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Person} \doxyref{}{p.}{class_person_a41c6a0cd763dc154841346e69f2d4b3e}, \textbf{ Antenna} \doxyref{}{p.}{class_antenna_ad0d1b2faf930fd0c1c85fa24a7d773fe}, \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a089a15867a877d3a4cb510169c32d682}, \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_af36b0e49e477cfcc60d801c11166a4f0}, \textbf{ Immovable\+Agent} \doxyref{}{p.}{class_immovable_agent_a35b43ab9d6cd845a0ada5b95784994f0}, \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_aa4f050bb755994fadfeab94c1f2147f7}, \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_ae2b9a1bd2e207a9aac95f4d13a17a9f9}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a2cac00cd9efca5b8adeff28ae5827970}.
+
+\mbox{\label{class_agent_afa2b3a408bb0694aea46fb2bb59bacf7}} 
+\index{Agent@{Agent}!operator==@{operator==}}
+\index{operator==@{operator==}!Agent@{Agent}}
+\subsubsection{operator==()}
+{\footnotesize\ttfamily bool Agent\+::operator== (\begin{DoxyParamCaption}\item[{const \textbf{ Agent} \&}]{a }\end{DoxyParamCaption})}
+
+The equal operator for agents. 
+\begin{DoxyParams}{Parameters}
+{\em a} & the object with which we test the equality \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if this object is the equal to a, flase otherwise. Thw objects are considered to be equal if they have the same id. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file Agent.\+cpp.
+
+
+
+References get\+Id(), and m\+\_\+id.
+
+\mbox{\label{class_agent_a7bc951d7f70768e8718a175388000b5c}} 
+\index{Agent@{Agent}!setId@{setId}}
+\index{setId@{setId}!Agent@{Agent}}
+\subsubsection{setId()}
+{\footnotesize\ttfamily void Agent\+::set\+Id (\begin{DoxyParamCaption}\item[{unsigned long}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 53 of file Agent.\+h.
+
+
+
+References m\+\_\+id.
+
+\mbox{\label{class_agent_a8abbc89bc51882d372ab1ac6741a3167}} 
+\index{Agent@{Agent}!setMap@{setMap}}
+\index{setMap@{setMap}!Agent@{Agent}}
+\subsubsection{setMap()}
+{\footnotesize\ttfamily void Agent\+::set\+Map (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file Agent.\+cpp.
+
+
+
+References m\+\_\+map.
+
+\mbox{\label{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}} 
+\index{Agent@{Agent}!toString@{toString}}
+\index{toString@{toString}!Agent@{Agent}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily virtual string Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Person} \doxyref{}{p.}{class_person_ac39b105901a2d4ce38ff5b548b1c349e}, \textbf{ Antenna} \doxyref{}{p.}{class_antenna_a58a2bc92fe68ae619701c143f5ba939c}, \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3fee3021111198ac01469a715093ab88}, \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_aa8a8424a9513e0d57f7d4b94e7a49552}, \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_a3e4bf0a37331042084ae703666f8fb7c}, \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a593b8f4eb5d0a812b725726c35335193}, \textbf{ Immovable\+Agent} \doxyref{}{p.}{class_immovable_agent_a94ec08f8c08ec2b4cecf5ef27b00fa32}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a90880cd8f4a4afd451645e6e1dc86c5b}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_agent_afb0902d5b8a97e0823791e45dc4ebee9}} 
+\index{Agent@{Agent}!m\_clock@{m\_clock}}
+\index{m\_clock@{m\_clock}!Agent@{Agent}}
+\subsubsection{m\_clock}
+{\footnotesize\ttfamily \textbf{ Clock}$\ast$ Agent\+::m\+\_\+clock\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file Agent.\+h.
+
+
+
+Referenced by get\+Clock().
+
+\mbox{\label{class_agent_ad82c23a989211cc2b8a5137978a1ba3a}} 
+\index{Agent@{Agent}!m\_id@{m\_id}}
+\index{m\_id@{m\_id}!Agent@{Agent}}
+\subsubsection{m\_id}
+{\footnotesize\ttfamily unsigned long Agent\+::m\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 59 of file Agent.\+h.
+
+
+
+Referenced by get\+Id(), operator==(), and set\+Id().
+
+\mbox{\label{class_agent_ac5f0f5cb899828a85b9ea0adace2ca6f}} 
+\index{Agent@{Agent}!m\_map@{m\_map}}
+\index{m\_map@{m\_map}!Agent@{Agent}}
+\subsubsection{m\_map}
+{\footnotesize\ttfamily \textbf{ Map}$\ast$ Agent\+::m\+\_\+map\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file Agent.\+h.
+
+
+
+Referenced by get\+Map(), and set\+Map().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Agent.\+h}\item 
+src/\textbf{ Agent.\+cpp}\end{DoxyCompactItemize}

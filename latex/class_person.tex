@@ -1,0 +1,377 @@
+\section{Person Class Reference}
+\label{class_person}\index{Person@{Person}}
+
+
+{\ttfamily \#include $<$Person.\+h$>$}
+
+Inheritance diagram for Person\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_person}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \textbf{ Gender} \{ \textbf{ M\+A\+LE}, 
+\textbf{ F\+E\+M\+A\+LE}
+ \}
+\item 
+enum \textbf{ Age\+Distributions} \{ \textbf{ N\+O\+R\+M\+AL}, 
+\textbf{ U\+N\+I\+F\+O\+RM}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Person} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Clock} $\ast$clock, double init\+Speed, int age, \textbf{ Gender} gender)
+\item 
+virtual \textbf{ $\sim$\+Person} ()
+\item 
+string \textbf{ get\+Name} () override
+\item 
+string \textbf{ to\+String} () override
+\item 
+string \textbf{ dump\+Devices} ()
+\item 
+bool \textbf{ has\+Devices} ()
+\item 
+int \textbf{ get\+Age} () const
+\item 
+void \textbf{ set\+Age} (int age)
+\item 
+Point $\ast$ \textbf{ move} (\textbf{ Movement\+Type} mv\+Type) override
+\item 
+virtual void \textbf{ set\+Location} (Point $\ast$pt) override
+\item 
+void \textbf{ add\+Device} (string type, \textbf{ Agent} $\ast$agent)
+\item 
+\textbf{ Gender} \textbf{ get\+Gender} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ random\+Walk} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ m\+\_\+age}
+\item 
+\textbf{ Gender} \textbf{ m\+\_\+gender}
+\item 
+unordered\+\_\+multimap$<$ string, \textbf{ Agent} $\ast$ $>$ \textbf{ m\+\_\+id\+Devices}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 26 of file Person.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\label{class_person_a53376a9a5852ec7760488a01c37f0b0b}} 
+\index{Person@{Person}!AgeDistributions@{AgeDistributions}}
+\index{AgeDistributions@{AgeDistributions}!Person@{Person}}
+\subsubsection{AgeDistributions}
+{\footnotesize\ttfamily enum \textbf{ Person\+::\+Age\+Distributions}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMAL@{NORMAL}!Person@{Person}}\index{Person@{Person}!NORMAL@{NORMAL}}}\mbox{\label{class_person_a53376a9a5852ec7760488a01c37f0b0ba7e4e1da74c9858476e0149deef9458c4}} 
+N\+O\+R\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNIFORM@{UNIFORM}!Person@{Person}}\index{Person@{Person}!UNIFORM@{UNIFORM}}}\mbox{\label{class_person_a53376a9a5852ec7760488a01c37f0b0ba4cf35976a167c4ac001a3eed2920a9b0}} 
+U\+N\+I\+F\+O\+RM&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 31 of file Person.\+h.
+
+\mbox{\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2}} 
+\index{Person@{Person}!Gender@{Gender}}
+\index{Gender@{Gender}!Person@{Person}}
+\subsubsection{Gender}
+{\footnotesize\ttfamily enum \textbf{ Person\+::\+Gender}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MALE@{MALE}!Person@{Person}}\index{Person@{Person}!MALE@{MALE}}}\mbox{\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}} 
+M\+A\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FEMALE@{FEMALE}!Person@{Person}}\index{Person@{Person}!FEMALE@{FEMALE}}}\mbox{\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}} 
+F\+E\+M\+A\+LE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 28 of file Person.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_person_aaec3c3f18f158751ed0a689619c95335}} 
+\index{Person@{Person}!Person@{Person}}
+\index{Person@{Person}!Person@{Person}}
+\subsubsection{Person()}
+{\footnotesize\ttfamily Person\+::\+Person (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{init\+Speed,  }\item[{int}]{age,  }\item[{\textbf{ Gender}}]{gender }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 33 of file Person.\+cpp.
+
+\mbox{\label{class_person_a700ffd693321c5fe6880262acf43d4da}} 
+\index{Person@{Person}!````~Person@{$\sim$Person}}
+\index{````~Person@{$\sim$Person}!Person@{Person}}
+\subsubsection{$\sim$Person()}
+{\footnotesize\ttfamily Person\+::$\sim$\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 38 of file Person.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_person_a3ce0a72a98c2e723e48dcd7b4d9af599}} 
+\index{Person@{Person}!addDevice@{addDevice}}
+\index{addDevice@{addDevice}!Person@{Person}}
+\subsubsection{addDevice()}
+{\footnotesize\ttfamily void Person\+::add\+Device (\begin{DoxyParamCaption}\item[{string}]{type,  }\item[{\textbf{ Agent} $\ast$}]{agent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 55 of file Person.\+h.
+
+
+
+Referenced by World\+::generate\+Population().
+
+\mbox{\label{class_person_a0bc06f77b3e8a151f8c5cc77459895c9}} 
+\index{Person@{Person}!dumpDevices@{dumpDevices}}
+\index{dumpDevices@{dumpDevices}!Person@{Person}}
+\subsubsection{dumpDevices()}
+{\footnotesize\ttfamily string Person\+::dump\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file Person.\+cpp.
+
+
+
+References Agent\+::get\+Id(), m\+\_\+id\+Devices, and Constants\+::sep.
+
+
+
+Referenced by World\+::run\+Simulation().
+
+\mbox{\label{class_person_a4b66dbee570398920b8fb6aacddd2559}} 
+\index{Person@{Person}!getAge@{getAge}}
+\index{getAge@{getAge}!Person@{Person}}
+\subsubsection{getAge()}
+{\footnotesize\ttfamily int Person\+::get\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 42 of file Person.\+cpp.
+
+
+
+References m\+\_\+age.
+
+\mbox{\label{class_person_a1d3a124d14de9f438d3526fb47e79bac}} 
+\index{Person@{Person}!getGender@{getGender}}
+\index{getGender@{getGender}!Person@{Person}}
+\subsubsection{getGender()}
+{\footnotesize\ttfamily \textbf{ Person\+::\+Gender} Person\+::get\+Gender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 144 of file Person.\+cpp.
+
+
+
+References m\+\_\+gender.
+
+\mbox{\label{class_person_a41c6a0cd763dc154841346e69f2d4b3e}} 
+\index{Person@{Person}!getName@{getName}}
+\index{getName@{getName}!Person@{Person}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily string Person\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_af36b0e49e477cfcc60d801c11166a4f0}.
+
+
+
+Definition at line 39 of file Person.\+h.
+
+\mbox{\label{class_person_a40d6f2c716dd3c9794067817a3fb9165}} 
+\index{Person@{Person}!hasDevices@{hasDevices}}
+\index{hasDevices@{hasDevices}!Person@{Person}}
+\subsubsection{hasDevices()}
+{\footnotesize\ttfamily bool Person\+::has\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 115 of file Person.\+cpp.
+
+
+
+References m\+\_\+id\+Devices.
+
+
+
+Referenced by set\+Location().
+
+\mbox{\label{class_person_a0de9082684a1909c9233a9187ea47b8c}} 
+\index{Person@{Person}!move@{move}}
+\index{move@{move}!Person@{Person}}
+\subsubsection{move()}
+{\footnotesize\ttfamily Point $\ast$ Person\+::move (\begin{DoxyParamCaption}\item[{\textbf{ Movement\+Type}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}.
+
+
+
+Definition at line 63 of file Person.\+cpp.
+
+
+
+References Locatable\+Agent\+::get\+Location(), R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK, and random\+Walk().
+
+
+
+Referenced by World\+::run\+Simulation().
+
+\mbox{\label{class_person_a8f5d6f58884efb57dcd77cc113752b5e}} 
+\index{Person@{Person}!randomWalk@{randomWalk}}
+\index{randomWalk@{randomWalk}!Person@{Person}}
+\subsubsection{randomWalk()}
+{\footnotesize\ttfamily void Person\+::random\+Walk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 83 of file Person.\+cpp.
+
+
+
+References Random\+Number\+Generator\+::generate\+Uniform\+Double(), Map\+::get\+Boundary(), Map\+::get\+Global\+Factory(), Locatable\+Agent\+::get\+Location(), Agent\+::get\+Map(), Movable\+Agent\+::get\+Speed(), Random\+Number\+Generator\+::instance(), utils\+::\+PI, set\+Location(), and Rtnorm\+::x.
+
+
+
+Referenced by move().
+
+\mbox{\label{class_person_ac8ade54c27a0657c987c395ff04a9d46}} 
+\index{Person@{Person}!setAge@{setAge}}
+\index{setAge@{setAge}!Person@{Person}}
+\subsubsection{setAge()}
+{\footnotesize\ttfamily void Person\+::set\+Age (\begin{DoxyParamCaption}\item[{int}]{age }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file Person.\+cpp.
+
+
+
+References m\+\_\+age.
+
+\mbox{\label{class_person_a2b31d3b9e0d9ed3b583d6d8d4c632518}} 
+\index{Person@{Person}!setLocation@{setLocation}}
+\index{setLocation@{setLocation}!Person@{Person}}
+\subsubsection{setLocation()}
+{\footnotesize\ttfamily void Person\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a4185a45957d529a7f57d19ea294cae81}.
+
+
+
+Definition at line 119 of file Person.\+cpp.
+
+
+
+References has\+Devices(), m\+\_\+id\+Devices, Locatable\+Agent\+::set\+Location(), and Holdable\+Agent\+::set\+Location().
+
+
+
+Referenced by random\+Walk().
+
+\mbox{\label{class_person_ac39b105901a2d4ce38ff5b548b1c349e}} 
+\index{Person@{Person}!toString@{toString}}
+\index{toString@{toString}!Person@{Person}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily string Person\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_aa8a8424a9513e0d57f7d4b94e7a49552}.
+
+
+
+Definition at line 50 of file Person.\+cpp.
+
+
+
+References Agent\+::get\+Id(), m\+\_\+age, m\+\_\+gender, m\+\_\+id\+Devices, and Movable\+Agent\+::to\+String().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_person_a743e071da10a5ac9150f61df919cfbb4}} 
+\index{Person@{Person}!m\_age@{m\_age}}
+\index{m\_age@{m\_age}!Person@{Person}}
+\subsubsection{m\_age}
+{\footnotesize\ttfamily int Person\+::m\+\_\+age\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file Person.\+h.
+
+
+
+Referenced by get\+Age(), set\+Age(), and to\+String().
+
+\mbox{\label{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}} 
+\index{Person@{Person}!m\_gender@{m\_gender}}
+\index{m\_gender@{m\_gender}!Person@{Person}}
+\subsubsection{m\_gender}
+{\footnotesize\ttfamily \textbf{ Gender} Person\+::m\+\_\+gender\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 63 of file Person.\+h.
+
+
+
+Referenced by get\+Gender(), and to\+String().
+
+\mbox{\label{class_person_a95b2e60a54b72aea51a7600048e76291}} 
+\index{Person@{Person}!m\_idDevices@{m\_idDevices}}
+\index{m\_idDevices@{m\_idDevices}!Person@{Person}}
+\subsubsection{m\_idDevices}
+{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \textbf{ Agent}$\ast$$>$ Person\+::m\+\_\+id\+Devices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 64 of file Person.\+h.
+
+
+
+Referenced by dump\+Devices(), has\+Devices(), set\+Location(), and to\+String().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Person.\+h}\item 
+src/\textbf{ Person.\+cpp}\end{DoxyCompactItemize}

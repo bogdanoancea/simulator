@@ -1,0 +1,301 @@
+\section{tinyxml2\+::X\+M\+L\+Text Class Reference}
+\label{classtinyxml2_1_1_x_m_l_text}\index{tinyxml2::XMLText@{tinyxml2::XMLText}}
+
+
+{\ttfamily \#include $<$tinyxml2.\+h$>$}
+
+Inheritance diagram for tinyxml2\+::X\+M\+L\+Text\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1_x_m_l_text}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \textbf{ Accept} (\textbf{ X\+M\+L\+Visitor} $\ast$visitor) const
+\item 
+virtual \textbf{ X\+M\+L\+Text} $\ast$ \textbf{ To\+Text} ()
+\begin{DoxyCompactList}\small\item\em Safely cast to Text, or null. \end{DoxyCompactList}\item 
+virtual const \textbf{ X\+M\+L\+Text} $\ast$ \textbf{ To\+Text} () const
+\item 
+void \textbf{ Set\+C\+Data} (bool is\+C\+Data)
+\begin{DoxyCompactList}\small\item\em Declare whether this should be C\+D\+A\+TA or standard text. \end{DoxyCompactList}\item 
+bool \textbf{ C\+Data} () const
+\begin{DoxyCompactList}\small\item\em Returns true if this is a C\+D\+A\+TA text element. \end{DoxyCompactList}\item 
+virtual \textbf{ X\+M\+L\+Node} $\ast$ \textbf{ Shallow\+Clone} (\textbf{ X\+M\+L\+Document} $\ast$document) const
+\item 
+virtual bool \textbf{ Shallow\+Equal} (const \textbf{ X\+M\+L\+Node} $\ast$compare) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ X\+M\+L\+Text} (\textbf{ X\+M\+L\+Document} $\ast$doc)
+\item 
+virtual \textbf{ $\sim$\+X\+M\+L\+Text} ()
+\item 
+char $\ast$ \textbf{ Parse\+Deep} (char $\ast$p, \textbf{ Str\+Pair} $\ast$parent\+End\+Tag, int $\ast$cur\+Line\+Num\+Ptr)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ X\+M\+L\+Text} (const \textbf{ X\+M\+L\+Text} \&)
+\item 
+\textbf{ X\+M\+L\+Text} \& \textbf{ operator=} (const \textbf{ X\+M\+L\+Text} \&)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ \+\_\+is\+C\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ X\+M\+L\+Document}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+X\+ML text.
+
+Note that a text node can have child element nodes, for example\+: \begin{DoxyVerb}<root>This is <b>bold</b></root>
+\end{DoxyVerb}
+
+
+A text node can have 2 ways to output the next. \char`\"{}normal\char`\"{} output and C\+D\+A\+TA. It will default to the mode it was parsed from the X\+ML file and you generally want to leave it alone, but you can change the output mode with \doxyref{Set\+C\+Data()}{p.}{classtinyxml2_1_1_x_m_l_text_ad080357d76ab7cc59d7651249949329d} and query it with \doxyref{C\+Data()}{p.}{classtinyxml2_1_1_x_m_l_text_ac1bb5ea4166c320882d9e0ad16fd385b}. 
+
+Definition at line 984 of file tinyxml2.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ad9f46d70e61e5386ead93728d8b90267}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!XMLText@{XMLText}}
+\index{XMLText@{XMLText}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{XMLText()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily tinyxml2\+::\+X\+M\+L\+Text\+::\+X\+M\+L\+Text (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Document} $\ast$}]{doc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 1010 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ae9b8790d0dc13914394dbd7437c0e59d}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!````~XMLText@{$\sim$XMLText}}
+\index{````~XMLText@{$\sim$XMLText}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{$\sim$XMLText()}
+{\footnotesize\ttfamily virtual tinyxml2\+::\+X\+M\+L\+Text\+::$\sim$\+X\+M\+L\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 1011 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a002156e1f61ee6d48e5368b7cca25582}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!XMLText@{XMLText}}
+\index{XMLText@{XMLText}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{XMLText()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily tinyxml2\+::\+X\+M\+L\+Text\+::\+X\+M\+L\+Text (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Text} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a537c60d7e18fb59c45ac2737a29ac47a}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!Accept@{Accept}}
+\index{Accept@{Accept}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{Accept()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Text\+::\+Accept (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Visitor} $\ast$}]{visitor }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Accept a hierarchical visit of the nodes in the Tiny\+X\+M\+L-\/2 D\+OM. Every node in the X\+ML tree will be conditionally visited and the host will be called back via the \doxyref{X\+M\+L\+Visitor}{p.}{classtinyxml2_1_1_x_m_l_visitor} interface.
+
+This is essentially a S\+AX interface for Tiny\+X\+M\+L-\/2. (Note however it doesn\textquotesingle{}t re-\/parse the X\+ML for the callbacks, so the performance of Tiny\+X\+M\+L-\/2 is unchanged by using this interface versus any other.)
+
+The interface has been based on ideas from\+:
+
+
+\begin{DoxyItemize}
+\item {\texttt{ http\+://www.\+saxproject.\+org/}}
+\item {\texttt{ http\+://c2.\+com/cgi/wiki?\+Hierarchical\+Visitor\+Pattern}}
+\end{DoxyItemize}
+
+Which are both good references for \char`\"{}visiting\char`\"{}.
+
+An example of using \doxyref{Accept()}{p.}{classtinyxml2_1_1_x_m_l_text_a537c60d7e18fb59c45ac2737a29ac47a}\+: \begin{DoxyVerb}XMLPrinter printer;
+tinyxmlDoc.Accept( &printer );
+const char* xmlcstr = printer.CStr();
+\end{DoxyVerb}
+ 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a81e66df0a44c67a7af17f3b77a152785}.
+
+
+
+Definition at line 1193 of file tinyxml2.\+cpp.
+
+
+
+References T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, and tinyxml2\+::\+X\+M\+L\+Visitor\+::\+Visit().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ac1bb5ea4166c320882d9e0ad16fd385b}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!CData@{CData}}
+\index{CData@{CData}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{CData()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Text\+::\+C\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if this is a C\+D\+A\+TA text element. 
+
+
+
+Definition at line 1002 of file tinyxml2.\+h.
+
+
+
+Referenced by Parse\+Deep(), Shallow\+Clone(), and tinyxml2\+::\+X\+M\+L\+Printer\+::\+Visit().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ad8c9f398d92fa472e213b89d8483ae8f}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!operator=@{operator=}}
+\index{operator=@{operator=}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{operator=()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Text}\& tinyxml2\+::\+X\+M\+L\+Text\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Text} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_af3b93344f1183482e1683f5922ac9c68}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!ParseDeep@{ParseDeep}}
+\index{ParseDeep@{ParseDeep}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{ParseDeep()}
+{\footnotesize\ttfamily char $\ast$ tinyxml2\+::\+X\+M\+L\+Text\+::\+Parse\+Deep (\begin{DoxyParamCaption}\item[{char $\ast$}]{p,  }\item[{\textbf{ Str\+Pair} $\ast$}]{parent\+End\+Tag,  }\item[{int $\ast$}]{cur\+Line\+Num\+Ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a916e498914baecbc9a1f012352ef7c69}.
+
+
+
+Definition at line 1147 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+document, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+parse\+Line\+Num, tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+value, C\+Data(), tinyxml2\+::\+C\+O\+L\+L\+A\+P\+S\+E\+\_\+\+W\+H\+I\+T\+E\+S\+P\+A\+CE, tinyxml2\+::\+Str\+Pair\+::\+N\+E\+E\+D\+S\+\_\+\+N\+E\+W\+L\+I\+N\+E\+\_\+\+N\+O\+R\+M\+A\+L\+I\+Z\+A\+T\+I\+ON, tinyxml2\+::\+Str\+Pair\+::\+N\+E\+E\+D\+S\+\_\+\+W\+H\+I\+T\+E\+S\+P\+A\+C\+E\+\_\+\+C\+O\+L\+L\+A\+P\+S\+I\+NG, tinyxml2\+::\+Str\+Pair\+::\+Parse\+Text(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Process\+Entities(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Set\+Error(), tinyxml2\+::\+Str\+Pair\+::\+T\+E\+X\+T\+\_\+\+E\+L\+E\+M\+E\+NT, tinyxml2\+::\+Str\+Pair\+::\+T\+E\+X\+T\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+\+L\+E\+A\+V\+E\+\_\+\+E\+N\+T\+I\+T\+I\+ES, tinyxml2\+::\+X\+M\+L\+Document\+::\+Whitespace\+Mode(), tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+S\+I\+N\+G\+\_\+\+C\+D\+A\+TA, and tinyxml2\+::\+X\+M\+L\+\_\+\+E\+R\+R\+O\+R\+\_\+\+P\+A\+R\+S\+I\+N\+G\+\_\+\+T\+E\+XT.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ad080357d76ab7cc59d7651249949329d}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!SetCData@{SetCData}}
+\index{SetCData@{SetCData}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{SetCData()}
+{\footnotesize\ttfamily void tinyxml2\+::\+X\+M\+L\+Text\+::\+Set\+C\+Data (\begin{DoxyParamCaption}\item[{bool}]{is\+C\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Declare whether this should be C\+D\+A\+TA or standard text. 
+
+
+
+Definition at line 998 of file tinyxml2.\+h.
+
+
+
+Referenced by tinyxml2\+::\+X\+M\+L\+Document\+::\+Identify(), and Shallow\+Clone().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a86d265c93152726c8c6831e9594840e6}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!ShallowClone@{ShallowClone}}
+\index{ShallowClone@{ShallowClone}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{ShallowClone()}
+{\footnotesize\ttfamily \textbf{ X\+M\+L\+Node} $\ast$ tinyxml2\+::\+X\+M\+L\+Text\+::\+Shallow\+Clone (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Document} $\ast$}]{document }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Make a copy of this node, but not its children. You may pass in a Document pointer that will be the owner of the new Node. If the \textquotesingle{}document\textquotesingle{} is null, then the node returned will be allocated from the current Document. (this-\/$>$\doxyref{Get\+Document()}{p.}{classtinyxml2_1_1_x_m_l_node_af343d1ef0b45c0020e62d784d7e67a68})
+
+Note\+: if called on a \doxyref{X\+M\+L\+Document}{p.}{classtinyxml2_1_1_x_m_l_document}, this will return null. 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a8402cbd3129d20e9e6024bbcc0531283}.
+
+
+
+Definition at line 1174 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+\_\+document, C\+Data(), tinyxml2\+::\+X\+M\+L\+Document\+::\+New\+Text(), Set\+C\+Data(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a99d8bce4dc01df889126e047f358cdfc}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!ShallowEqual@{ShallowEqual}}
+\index{ShallowEqual@{ShallowEqual}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{ShallowEqual()}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Text\+::\+Shallow\+Equal (\begin{DoxyParamCaption}\item[{const \textbf{ X\+M\+L\+Node} $\ast$}]{compare }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Test if 2 nodes are the same, but don\textquotesingle{}t test children. The 2 nodes do not need to be in the same Document.
+
+Note\+: if called on a \doxyref{X\+M\+L\+Document}{p.}{classtinyxml2_1_1_x_m_l_document}, this will return false. 
+
+Implements \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a7ce18b751c3ea09eac292dca264f9226}.
+
+
+
+Definition at line 1185 of file tinyxml2.\+cpp.
+
+
+
+References tinyxml2\+::\+X\+M\+L\+Util\+::\+String\+Equal(), T\+I\+X\+M\+L\+A\+S\+S\+E\+RT, tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+Value().
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_ab1213b4ddebe9b17ec7e7040e9f1caf7}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!ToText@{ToText}}
+\index{ToText@{ToText}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{ToText()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \textbf{ X\+M\+L\+Text}$\ast$ tinyxml2\+::\+X\+M\+L\+Text\+::\+To\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Safely cast to Text, or null. 
+
+
+
+Reimplemented from \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_a41c55dab9162d1eb62db2008430e376b}.
+
+
+
+Definition at line 990 of file tinyxml2.\+h.
+
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a671ce22c7c5ef378f1ce31e6f827b9e2}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!ToText@{ToText}}
+\index{ToText@{ToText}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{ToText()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual const \textbf{ X\+M\+L\+Text}$\ast$ tinyxml2\+::\+X\+M\+L\+Text\+::\+To\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ tinyxml2\+::\+X\+M\+L\+Node} \doxyref{}{p.}{classtinyxml2_1_1_x_m_l_node_acb9ccc1beda27c0efcb0545683c3e7f4}.
+
+
+
+Definition at line 993 of file tinyxml2.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_a4eee3bda60c60a30e4e8cd4ea91c4c6e}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!XMLDocument@{XMLDocument}}
+\index{XMLDocument@{XMLDocument}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{XMLDocument}
+{\footnotesize\ttfamily friend class \textbf{ X\+M\+L\+Document}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 986 of file tinyxml2.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{classtinyxml2_1_1_x_m_l_text_aae1a8b4117e8c8bb107900a0560d5ab5}} 
+\index{tinyxml2::XMLText@{tinyxml2::XMLText}!\_isCData@{\_isCData}}
+\index{\_isCData@{\_isCData}!tinyxml2::XMLText@{tinyxml2::XMLText}}
+\subsubsection{\_isCData}
+{\footnotesize\ttfamily bool tinyxml2\+::\+X\+M\+L\+Text\+::\+\_\+is\+C\+Data\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 1016 of file tinyxml2.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ tinyxml2.\+h}\item 
+src/\textbf{ tinyxml2.\+cpp}\end{DoxyCompactItemize}

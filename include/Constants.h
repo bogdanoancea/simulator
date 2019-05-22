@@ -28,6 +28,7 @@ class Constants {
 		static const unsigned long NO_MOBILE_PHONES;
 		static const unsigned int SIMULATION_TIME;
 		static const char sep;
+		static const char* GRID_FILE_NAME;
 };
 
 #endif /* CONSTANTS_H_ */

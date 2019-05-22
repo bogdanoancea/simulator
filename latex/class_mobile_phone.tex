@@ -1,0 +1,288 @@
+\section{Mobile\+Phone Class Reference}
+\label{class_mobile_phone}\index{MobilePhone@{MobilePhone}}
+
+
+{\ttfamily \#include $<$Mobile\+Phone.\+h$>$}
+
+Inheritance diagram for Mobile\+Phone\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_mobile_phone}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Mobile\+Phone} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Agent} $\ast$holder, \textbf{ Clock} $\ast$clock, double power\+Threshold, double quality\+Threshold, \textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} conn\+Type)
+\item 
+virtual \textbf{ $\sim$\+Mobile\+Phone} ()
+\item 
+string \textbf{ get\+Name} () override
+\item 
+string \textbf{ to\+String} () override
+\item 
+Point $\ast$ \textbf{ move} (\textbf{ Movement\+Type} mv\+Type) override
+\item 
+bool \textbf{ try\+Connect} (\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} type) override
+\item 
+double \textbf{ get\+Quality\+Threshold} () const
+\item 
+void \textbf{ set\+Quality\+Threshold} (double quality\+Threshold)
+\item 
+double \textbf{ get\+Power\+Threshold} () const
+\item 
+void \textbf{ set\+Power\+Threshold} (double power\+Threshold)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ try\+Connect\+Naive\+Algorithm} (\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} type)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \textbf{ m\+\_\+power\+Threshold}
+\item 
+double \textbf{ m\+\_\+quality\+Threshold}
+\item 
+\textbf{ Antenna} $\ast$ \textbf{ m\+\_\+connected\+To}
+\item 
+\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} \textbf{ m\+\_\+conn\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file Mobile\+Phone.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_mobile_phone_ac052e39457f2340f334ea3dbdf9c1d65}} 
+\index{MobilePhone@{MobilePhone}!MobilePhone@{MobilePhone}}
+\index{MobilePhone@{MobilePhone}!MobilePhone@{MobilePhone}}
+\subsubsection{MobilePhone()}
+{\footnotesize\ttfamily Mobile\+Phone\+::\+Mobile\+Phone (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Agent} $\ast$}]{holder,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{power\+Threshold,  }\item[{double}]{quality\+Threshold,  }\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{conn\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 18 of file Mobile\+Phone.\+cpp.
+
+
+
+References Constants\+::\+P\+O\+W\+E\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD.
+
+\mbox{\label{class_mobile_phone_a51a486168f16455c0e93670d02877baa}} 
+\index{MobilePhone@{MobilePhone}!````~MobilePhone@{$\sim$MobilePhone}}
+\index{````~MobilePhone@{$\sim$MobilePhone}!MobilePhone@{MobilePhone}}
+\subsubsection{$\sim$MobilePhone()}
+{\footnotesize\ttfamily Mobile\+Phone\+::$\sim$\+Mobile\+Phone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 24 of file Mobile\+Phone.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_mobile_phone_aa4f050bb755994fadfeab94c1f2147f7}} 
+\index{MobilePhone@{MobilePhone}!getName@{getName}}
+\index{getName@{getName}!MobilePhone@{MobilePhone}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily string Mobile\+Phone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a089a15867a877d3a4cb510169c32d682}.
+
+
+
+Definition at line 29 of file Mobile\+Phone.\+h.
+
+\mbox{\label{class_mobile_phone_a163ba16c66b7bb4e8c608458d5adc6c1}} 
+\index{MobilePhone@{MobilePhone}!getPowerThreshold@{getPowerThreshold}}
+\index{getPowerThreshold@{getPowerThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{getPowerThreshold()}
+{\footnotesize\ttfamily double Mobile\+Phone\+::get\+Power\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 96 of file Mobile\+Phone.\+cpp.
+
+
+
+References m\+\_\+power\+Threshold.
+
+\mbox{\label{class_mobile_phone_a0d136c093f2ef02f3ceabc4d7cc8bbfc}} 
+\index{MobilePhone@{MobilePhone}!getQualityThreshold@{getQualityThreshold}}
+\index{getQualityThreshold@{getQualityThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{getQualityThreshold()}
+{\footnotesize\ttfamily double Mobile\+Phone\+::get\+Quality\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 88 of file Mobile\+Phone.\+cpp.
+
+
+
+References m\+\_\+quality\+Threshold.
+
+\mbox{\label{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}} 
+\index{MobilePhone@{MobilePhone}!move@{move}}
+\index{move@{move}!MobilePhone@{MobilePhone}}
+\subsubsection{move()}
+{\footnotesize\ttfamily Point$\ast$ Mobile\+Phone\+::move (\begin{DoxyParamCaption}\item[{\textbf{ Movement\+Type}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}.
+
+
+
+Definition at line 35 of file Mobile\+Phone.\+h.
+
+\mbox{\label{class_mobile_phone_a4e3780f4eb4d8bc490837e747add6c8b}} 
+\index{MobilePhone@{MobilePhone}!setPowerThreshold@{setPowerThreshold}}
+\index{setPowerThreshold@{setPowerThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{setPowerThreshold()}
+{\footnotesize\ttfamily void Mobile\+Phone\+::set\+Power\+Threshold (\begin{DoxyParamCaption}\item[{double}]{power\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file Mobile\+Phone.\+cpp.
+
+
+
+References m\+\_\+power\+Threshold.
+
+\mbox{\label{class_mobile_phone_a630446650819ebd21710745e510bf190}} 
+\index{MobilePhone@{MobilePhone}!setQualityThreshold@{setQualityThreshold}}
+\index{setQualityThreshold@{setQualityThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{setQualityThreshold()}
+{\footnotesize\ttfamily void Mobile\+Phone\+::set\+Quality\+Threshold (\begin{DoxyParamCaption}\item[{double}]{quality\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Definition at line 92 of file Mobile\+Phone.\+cpp.
+
+
+
+References m\+\_\+quality\+Threshold.
+
+\mbox{\label{class_mobile_phone_a3e4bf0a37331042084ae703666f8fb7c}} 
+\index{MobilePhone@{MobilePhone}!toString@{toString}}
+\index{toString@{toString}!MobilePhone@{MobilePhone}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily string Mobile\+Phone\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3fee3021111198ac01469a715093ab88}.
+
+
+
+Definition at line 28 of file Mobile\+Phone.\+cpp.
+
+
+
+References Holdable\+Agent\+::to\+String().
+
+\mbox{\label{class_mobile_phone_a384f2a32e076dd34fdd1e814e1a48c11}} 
+\index{MobilePhone@{MobilePhone}!tryConnect@{tryConnect}}
+\index{tryConnect@{tryConnect}!MobilePhone@{MobilePhone}}
+\subsubsection{tryConnect()}
+{\footnotesize\ttfamily bool Mobile\+Phone\+::try\+Connect (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3f6500c10b054ca06a7800d4b01c5308}.
+
+
+
+Definition at line 32 of file Mobile\+Phone.\+cpp.
+
+
+
+References try\+Connect\+Naive\+Algorithm().
+
+\mbox{\label{class_mobile_phone_a00935e9e1c0a1b97f2ee59877fa5357e}} 
+\index{MobilePhone@{MobilePhone}!tryConnectNaiveAlgorithm@{tryConnectNaiveAlgorithm}}
+\index{tryConnectNaiveAlgorithm@{tryConnectNaiveAlgorithm}!MobilePhone@{MobilePhone}}
+\subsubsection{tryConnectNaiveAlgorithm()}
+{\footnotesize\ttfamily bool Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 36 of file Mobile\+Phone.\+cpp.
+
+
+
+References E\+M\+Field\+::compute\+Max\+Power(), E\+M\+Field\+::compute\+Max\+Quality(), Antenna\+::dettach\+Device(), Agent\+::get\+Id(), E\+M\+Field\+::get\+In\+Range\+Antennas(), Locatable\+Agent\+::get\+Location(), E\+M\+Field\+::instance(), E\+M\+Field\+::is\+Antenna\+In\+Range(), m\+\_\+connected\+To, m\+\_\+power\+Threshold, and Constants\+::\+Q\+U\+A\+L\+I\+T\+Y\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD.
+
+
+
+Referenced by try\+Connect().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_mobile_phone_aa143b94346485788c3563228f6043721}} 
+\index{MobilePhone@{MobilePhone}!m\_connectedTo@{m\_connectedTo}}
+\index{m\_connectedTo@{m\_connectedTo}!MobilePhone@{MobilePhone}}
+\subsubsection{m\_connectedTo}
+{\footnotesize\ttfamily \textbf{ Antenna}$\ast$ Mobile\+Phone\+::m\+\_\+connected\+To\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 50 of file Mobile\+Phone.\+h.
+
+
+
+Referenced by try\+Connect\+Naive\+Algorithm().
+
+\mbox{\label{class_mobile_phone_a39f69fef45f380e3922dfe78b904372d}} 
+\index{MobilePhone@{MobilePhone}!m\_connType@{m\_connType}}
+\index{m\_connType@{m\_connType}!MobilePhone@{MobilePhone}}
+\subsubsection{m\_connType}
+{\footnotesize\ttfamily \textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} Mobile\+Phone\+::m\+\_\+conn\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file Mobile\+Phone.\+h.
+
+\mbox{\label{class_mobile_phone_a4717df42efbe316021d7a85181b295b7}} 
+\index{MobilePhone@{MobilePhone}!m\_powerThreshold@{m\_powerThreshold}}
+\index{m\_powerThreshold@{m\_powerThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{m\_powerThreshold}
+{\footnotesize\ttfamily double Mobile\+Phone\+::m\+\_\+power\+Threshold\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file Mobile\+Phone.\+h.
+
+
+
+Referenced by get\+Power\+Threshold(), set\+Power\+Threshold(), and try\+Connect\+Naive\+Algorithm().
+
+\mbox{\label{class_mobile_phone_a286ae19e2a81c516889ecf482af0b69b}} 
+\index{MobilePhone@{MobilePhone}!m\_qualityThreshold@{m\_qualityThreshold}}
+\index{m\_qualityThreshold@{m\_qualityThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{m\_qualityThreshold}
+{\footnotesize\ttfamily double Mobile\+Phone\+::m\+\_\+quality\+Threshold\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 49 of file Mobile\+Phone.\+h.
+
+
+
+Referenced by get\+Quality\+Threshold(), and set\+Quality\+Threshold().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Mobile\+Phone.\+h}\item 
+src/\textbf{ Mobile\+Phone.\+cpp}\end{DoxyCompactItemize}

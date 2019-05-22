@@ -19,6 +19,7 @@
 #include <CSVparser.hpp>
 #include <AntennaInfo.h>
 #include <iomanip>
+#include <Constants.h>
 
 using namespace std;
 using namespace geos;
@@ -48,8 +49,7 @@ int main(int argc, char** argv) {
 		Map* map;
 		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
-		}
-		else
+		} else
 			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
@@ -145,7 +145,8 @@ int main(int argc, char** argv) {
 		double dimTileX = (maxX - minX) / 10;
 		double dimTileY = (maxY - minY) / 10;
 		Grid g(map, minX, minY, dimTileX, dimTileY, 10, 10);
-		cout << g.toString();
+
+		//cout << g.toString();
 
 		// read the event connection data
 		vector<AntennaInfo> data;
@@ -161,16 +162,22 @@ int main(int argc, char** argv) {
 			}
 		}
 
-
-		ofstream p_file;
+		string gridFileName = string(Constants::GRID_FILE_NAME);
+		ofstream p_file, g_File;
 		if (outputFileName.empty()) {
 			throw runtime_error("no output file!");
 		}
 		try {
 			p_file.open(outputFileName, ios::out);
-		}
-		catch (ofstream::failure& e) {
+			g_File.open(gridFileName, ios::out);
+		} catch (ofstream::failure& e) {
 			cerr << "Error opening output file!" << endl;
+		}
+		g_File << g.toString();
+		try {
+			g_File.close();
+		} catch (ofstream::failure& e) {
+			cerr << "Error closing grid file!" << endl;
 		}
 
 		w.getClock()->reset();
@@ -179,27 +186,23 @@ int main(int argc, char** argv) {
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-				//p_file << t << "," << m->getId() << ",";
+				p_file << t << "," << m->getId() << ",";
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					//p_file << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << ",";
-					p_file << t << "," << m->getId() << "," << i << "," << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << endl;
+					p_file << fixed << setprecision(15) << g.computeProbability(t, i, m, data, itra) << ",";
+					//p_file << t << "," << m->getId() << "," << i << "," << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << endl;
 				}
-				//p_file << endl;
+				p_file << endl;
 			}
 		}
-		p_file.close();
+		try {
+			p_file.close();
+		} catch (ofstream::failure& e) {
+			cerr << "Error closing grid file!" << endl;
+		}
 
-		// for each time instant
-		//   for each mobile phone
-		//     for each tile
-		//         compute p(tile)
-		//         output t, phone_id, tile, p
-
-	}
-	catch (runtime_error& e) {
+	} catch (runtime_error& e) {
 		cout << e.what() << "\n";
-	}
-	catch (const exception &e) {
+	} catch (const exception &e) {
 		cout << e.what() << "\n";
 	}
 	return (0);

@@ -1,0 +1,715 @@
+\section{Antenna Class Reference}
+\label{class_antenna}\index{Antenna@{Antenna}}
+
+
+{\ttfamily \#include $<$Antenna.\+h$>$}
+
+Inheritance diagram for Antenna\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_antenna}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Antenna} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Clock} $\ast$clock, double attenuation\+Factor, double power, unsigned long max\+Connections, double smid, double ssteep, \textbf{ Antenna\+Type} type)
+\item 
+\textbf{ Antenna} (\textbf{ Map} $\ast$m, \textbf{ Clock} $\ast$clk, long id, \textbf{ X\+M\+L\+Element} $\ast$el)
+\item 
+virtual \textbf{ $\sim$\+Antenna} ()
+\item 
+string \textbf{ get\+Name} () override
+\item 
+string \textbf{ to\+String} () override
+\item 
+double \textbf{ get\+Attenuation\+Factor} () const
+\item 
+void \textbf{ set\+Attenuation\+Factor} (double attenuation\+Factor)
+\item 
+Polygon $\ast$ \textbf{ get\+Cell} () const
+\item 
+void \textbf{ set\+Cell} (const Polygon \&cell)
+\item 
+double \textbf{ get\+Power} () const
+\item 
+void \textbf{ set\+Power} (double power)
+\item 
+unsigned long \textbf{ get\+Max\+Connections} () const
+\item 
+void \textbf{ set\+Max\+Connections} (int max\+Connections)
+\item 
+bool \textbf{ try\+Register\+Device} (\textbf{ Holdable\+Agent} $\ast$device)
+\item 
+void \textbf{ attach\+Device} (\textbf{ Holdable\+Agent} $\ast$device)
+\item 
+void \textbf{ dettach\+Device} (\textbf{ Holdable\+Agent} $\ast$device)
+\item 
+\textbf{ Antenna\+Type} \textbf{ get\+Type} () const
+\item 
+void \textbf{ set\+Type} (\textbf{ Antenna\+Type} type)
+\item 
+double \textbf{ S} (double dist)
+\item 
+double \textbf{ squality} (Point p)
+\item 
+double \textbf{ get\+Smid} () const
+\item 
+void \textbf{ set\+Smid} (double smid)
+\item 
+double \textbf{ get\+S\+Steep} () const
+\item 
+void \textbf{ set\+S\+Steep} (double s\+Steep)
+\item 
+double \textbf{ compute\+Signal\+Quality} (Point $\ast$p)
+\item 
+double \textbf{ compute\+Power} (Point $\ast$p)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ already\+Registered} (\textbf{ Holdable\+Agent} $\ast$ag)
+\item 
+void \textbf{ register\+Event} (\textbf{ Holdable\+Agent} $\ast$ag, \textbf{ Event\+Type} event, bool verbose)
+\item 
+unsigned long \textbf{ get\+Num\+Active\+Conections} ()
+\item 
+double \textbf{ S0} ()
+\item 
+double \textbf{ S\+Dist} (double dist)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \textbf{ m\+\_\+attenuation\+Factor}
+\item 
+double \textbf{ m\+\_\+power}
+\item 
+unsigned long \textbf{ m\+\_\+max\+Connections}
+\item 
+double \textbf{ m\+\_\+\+Smid}
+\item 
+double \textbf{ m\+\_\+\+S\+Steep}
+\item 
+Polygon $\ast$ \textbf{ m\+\_\+cell}
+\item 
+vector$<$ \textbf{ Holdable\+Agent} $\ast$ $>$ \textbf{ m\+\_\+devices}
+\item 
+\textbf{ Antenna\+Type} \textbf{ m\+\_\+type}
+\item 
+ofstream \textbf{ m\+\_\+file}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 29 of file Antenna.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_antenna_aa728c39aa78517576c6f8abe0844a914}} 
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\subsubsection{Antenna()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{attenuation\+Factor,  }\item[{double}]{power,  }\item[{unsigned long}]{max\+Connections,  }\item[{double}]{smid,  }\item[{double}]{ssteep,  }\item[{\textbf{ Antenna\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 20 of file Antenna.\+cpp.
+
+\mbox{\label{class_antenna_a6e78188d317783042e0ac196aab75c82}} 
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\subsubsection{Antenna()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{\textbf{ Clock} $\ast$}]{clk,  }\item[{long}]{id,  }\item[{\textbf{ X\+M\+L\+Element} $\ast$}]{el }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 37 of file Antenna.\+cpp.
+
+
+
+References D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, Map\+::get\+Global\+Factory(), Agent\+::get\+Map(), get\+Name(), utils\+::get\+Node(), m\+\_\+attenuation\+Factor, m\+\_\+cell, m\+\_\+file, m\+\_\+max\+Connections, m\+\_\+power, m\+\_\+\+Smid, m\+\_\+\+S\+Steep, m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, Locatable\+Agent\+::set\+Location(), tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Value(), and Rtnorm\+::x.
+
+\mbox{\label{class_antenna_ae6a6826efb7f66a9608e732a6f37c4b5}} 
+\index{Antenna@{Antenna}!````~Antenna@{$\sim$Antenna}}
+\index{````~Antenna@{$\sim$Antenna}!Antenna@{Antenna}}
+\subsubsection{$\sim$Antenna()}
+{\footnotesize\ttfamily Antenna\+::$\sim$\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 77 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+file.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_antenna_af4fb83843393bf36bdcaefae5b5dd0dd}} 
+\index{Antenna@{Antenna}!alreadyRegistered@{alreadyRegistered}}
+\index{alreadyRegistered@{alreadyRegistered}!Antenna@{Antenna}}
+\subsubsection{alreadyRegistered()}
+{\footnotesize\ttfamily bool Antenna\+::already\+Registered (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{ag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 161 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+devices.
+
+
+
+Referenced by try\+Register\+Device().
+
+\mbox{\label{class_antenna_a9c804d991a545157feb066761b6a69ef}} 
+\index{Antenna@{Antenna}!attachDevice@{attachDevice}}
+\index{attachDevice@{attachDevice}!Antenna@{Antenna}}
+\subsubsection{attachDevice()}
+{\footnotesize\ttfamily void Antenna\+::attach\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
+
+
+
+Definition at line 146 of file Antenna.\+cpp.
+
+
+
+References A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+devices, and register\+Event().
+
+
+
+Referenced by try\+Register\+Device().
+
+\mbox{\label{class_antenna_acbf3a5b977dba1331474baccc8c35a2c}} 
+\index{Antenna@{Antenna}!computePower@{computePower}}
+\index{computePower@{computePower}!Antenna@{Antenna}}
+\subsubsection{computePower()}
+{\footnotesize\ttfamily double Antenna\+::compute\+Power (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 270 of file Antenna.\+cpp.
+
+
+
+References Locatable\+Agent\+::get\+Location(), m\+\_\+attenuation\+Factor, m\+\_\+power, m\+\_\+type, and O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL.
+
+
+
+Referenced by E\+M\+Field\+::is\+Antenna\+In\+Range().
+
+\mbox{\label{class_antenna_ac0014f15253d10cbef71358d9d6fdbe3}} 
+\index{Antenna@{Antenna}!computeSignalQuality@{computeSignalQuality}}
+\index{computeSignalQuality@{computeSignalQuality}!Antenna@{Antenna}}
+\subsubsection{computeSignalQuality()}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 261 of file Antenna.\+cpp.
+
+
+
+References Locatable\+Agent\+::get\+Location(), m\+\_\+\+Smid, m\+\_\+\+S\+Steep, m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, and S().
+
+
+
+Referenced by E\+M\+Field\+::connection\+Likelihood(), and E\+M\+Field\+::is\+Antenna\+In\+Range().
+
+\mbox{\label{class_antenna_a983a0784315567c2ab6ac1820cf558c5}} 
+\index{Antenna@{Antenna}!dettachDevice@{dettachDevice}}
+\index{dettachDevice@{dettachDevice}!Antenna@{Antenna}}
+\subsubsection{dettachDevice()}
+{\footnotesize\ttfamily void Antenna\+::dettach\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
+
+
+
+Definition at line 152 of file Antenna.\+cpp.
+
+
+
+References D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+devices, and register\+Event().
+
+
+
+Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
+
+\mbox{\label{class_antenna_a9551ed22d25c51210913de4a3074d9eb}} 
+\index{Antenna@{Antenna}!getAttenuationFactor@{getAttenuationFactor}}
+\index{getAttenuationFactor@{getAttenuationFactor}!Antenna@{Antenna}}
+\subsubsection{getAttenuationFactor()}
+{\footnotesize\ttfamily double Antenna\+::get\+Attenuation\+Factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 88 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+attenuation\+Factor.
+
+\mbox{\label{class_antenna_a84bf7816be1f2b3963e91d77df0deca6}} 
+\index{Antenna@{Antenna}!getCell@{getCell}}
+\index{getCell@{getCell}!Antenna@{Antenna}}
+\subsubsection{getCell()}
+{\footnotesize\ttfamily Polygon $\ast$ Antenna\+::get\+Cell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 96 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+cell.
+
+\mbox{\label{class_antenna_ac7d42215283cd7d4dc16d449f61af91d}} 
+\index{Antenna@{Antenna}!getMaxConnections@{getMaxConnections}}
+\index{getMaxConnections@{getMaxConnections}!Antenna@{Antenna}}
+\subsubsection{getMaxConnections()}
+{\footnotesize\ttfamily unsigned long Antenna\+::get\+Max\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 118 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+max\+Connections.
+
+\mbox{\label{class_antenna_ad0d1b2faf930fd0c1c85fa24a7d773fe}} 
+\index{Antenna@{Antenna}!getName@{getName}}
+\index{getName@{getName}!Antenna@{Antenna}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily string Antenna\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}.
+
+
+
+Definition at line 38 of file Antenna.\+h.
+
+
+
+Referenced by Antenna().
+
+\mbox{\label{class_antenna_a86c5c094ab6ea432609afa00f3a8080a}} 
+\index{Antenna@{Antenna}!getNumActiveConections@{getNumActiveConections}}
+\index{getNumActiveConections@{getNumActiveConections}!Antenna@{Antenna}}
+\subsubsection{getNumActiveConections()}
+{\footnotesize\ttfamily unsigned long Antenna\+::get\+Num\+Active\+Conections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 177 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+devices.
+
+
+
+Referenced by try\+Register\+Device().
+
+\mbox{\label{class_antenna_afca01d00c8e393ee911f1e9240b51d2e}} 
+\index{Antenna@{Antenna}!getPower@{getPower}}
+\index{getPower@{getPower}!Antenna@{Antenna}}
+\subsubsection{getPower()}
+{\footnotesize\ttfamily double Antenna\+::get\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 110 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+power.
+
+\mbox{\label{class_antenna_acfaf47d35cc742e76522ea31a8b01578}} 
+\index{Antenna@{Antenna}!getSmid@{getSmid}}
+\index{getSmid@{getSmid}!Antenna@{Antenna}}
+\subsubsection{getSmid()}
+{\footnotesize\ttfamily double Antenna\+::get\+Smid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 245 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+\+Smid.
+
+\mbox{\label{class_antenna_a096deca0fe8497c0fe53539ae80f2db5}} 
+\index{Antenna@{Antenna}!getSSteep@{getSSteep}}
+\index{getSSteep@{getSSteep}!Antenna@{Antenna}}
+\subsubsection{getSSteep()}
+{\footnotesize\ttfamily double Antenna\+::get\+S\+Steep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 253 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+\+S\+Steep.
+
+\mbox{\label{class_antenna_adf45a8b339956741bf8dcb5361f5f249}} 
+\index{Antenna@{Antenna}!getType@{getType}}
+\index{getType@{getType}!Antenna@{Antenna}}
+\subsubsection{getType()}
+{\footnotesize\ttfamily \textbf{ Antenna\+Type} Antenna\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 169 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+type.
+
+\mbox{\label{class_antenna_a06b97a19707a27e33e47ec90d3bac7da}} 
+\index{Antenna@{Antenna}!registerEvent@{registerEvent}}
+\index{registerEvent@{registerEvent}!Antenna@{Antenna}}
+\subsubsection{registerEvent()}
+{\footnotesize\ttfamily void Antenna\+::register\+Event (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{ag,  }\item[{\textbf{ Event\+Type}}]{event,  }\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 181 of file Antenna.\+cpp.
+
+
+
+References A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, Agent\+::get\+Clock(), Clock\+::get\+Current\+Time(), Agent\+::get\+Id(), Locatable\+Agent\+::get\+Location(), I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+file, and Constants\+::sep.
+
+
+
+Referenced by attach\+Device(), dettach\+Device(), and try\+Register\+Device().
+
+\mbox{\label{class_antenna_a1bae017bbb7e1e30e77ba4e99e889e28}} 
+\index{Antenna@{Antenna}!S@{S}}
+\index{S@{S}!Antenna@{Antenna}}
+\subsubsection{S()}
+{\footnotesize\ttfamily double Antenna\+::S (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption})}
+
+
+
+Definition at line 238 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, S0(), and S\+Dist().
+
+
+
+Referenced by compute\+Signal\+Quality().
+
+\mbox{\label{class_antenna_a5a2b88c5d63bc0696faf551df59add4f}} 
+\index{Antenna@{Antenna}!S0@{S0}}
+\index{S0@{S0}!Antenna@{Antenna}}
+\subsubsection{S0()}
+{\footnotesize\ttfamily double Antenna\+::\+S0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 230 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+power.
+
+
+
+Referenced by S().
+
+\mbox{\label{class_antenna_a4d34c290b47874e796b0d7b089390944}} 
+\index{Antenna@{Antenna}!SDist@{SDist}}
+\index{SDist@{SDist}!Antenna@{Antenna}}
+\subsubsection{SDist()}
+{\footnotesize\ttfamily double Antenna\+::\+S\+Dist (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 234 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+attenuation\+Factor.
+
+
+
+Referenced by S().
+
+\mbox{\label{class_antenna_a8697756860ff821a92e9404e00a55f89}} 
+\index{Antenna@{Antenna}!setAttenuationFactor@{setAttenuationFactor}}
+\index{setAttenuationFactor@{setAttenuationFactor}!Antenna@{Antenna}}
+\subsubsection{setAttenuationFactor()}
+{\footnotesize\ttfamily void Antenna\+::set\+Attenuation\+Factor (\begin{DoxyParamCaption}\item[{double}]{attenuation\+Factor }\end{DoxyParamCaption})}
+
+
+
+Definition at line 92 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+attenuation\+Factor.
+
+\mbox{\label{class_antenna_a9df527f8cd0df03da2d1e2507ca81d0e}} 
+\index{Antenna@{Antenna}!setCell@{setCell}}
+\index{setCell@{setCell}!Antenna@{Antenna}}
+\subsubsection{setCell()}
+{\footnotesize\ttfamily void Antenna\+::set\+Cell (\begin{DoxyParamCaption}\item[{const Polygon \&}]{cell }\end{DoxyParamCaption})}
+
+
+
+Definition at line 100 of file Antenna.\+cpp.
+
+\mbox{\label{class_antenna_ad844ed8507afb83b74b804c2434a4e50}} 
+\index{Antenna@{Antenna}!setMaxConnections@{setMaxConnections}}
+\index{setMaxConnections@{setMaxConnections}!Antenna@{Antenna}}
+\subsubsection{setMaxConnections()}
+{\footnotesize\ttfamily void Antenna\+::set\+Max\+Connections (\begin{DoxyParamCaption}\item[{int}]{max\+Connections }\end{DoxyParamCaption})}
+
+
+
+Definition at line 122 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+max\+Connections.
+
+\mbox{\label{class_antenna_a172a4c7765dea045d6504f6e2cbe0f59}} 
+\index{Antenna@{Antenna}!setPower@{setPower}}
+\index{setPower@{setPower}!Antenna@{Antenna}}
+\subsubsection{setPower()}
+{\footnotesize\ttfamily void Antenna\+::set\+Power (\begin{DoxyParamCaption}\item[{double}]{power }\end{DoxyParamCaption})}
+
+
+
+Definition at line 114 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+power.
+
+\mbox{\label{class_antenna_a67e5ae0106189d18e4f114d8e0e14a09}} 
+\index{Antenna@{Antenna}!setSmid@{setSmid}}
+\index{setSmid@{setSmid}!Antenna@{Antenna}}
+\subsubsection{setSmid()}
+{\footnotesize\ttfamily void Antenna\+::set\+Smid (\begin{DoxyParamCaption}\item[{double}]{smid }\end{DoxyParamCaption})}
+
+
+
+Definition at line 249 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+\+Smid.
+
+\mbox{\label{class_antenna_a92357bee36ba7dcfd08c4d2ce2280e3c}} 
+\index{Antenna@{Antenna}!setSSteep@{setSSteep}}
+\index{setSSteep@{setSSteep}!Antenna@{Antenna}}
+\subsubsection{setSSteep()}
+{\footnotesize\ttfamily void Antenna\+::set\+S\+Steep (\begin{DoxyParamCaption}\item[{double}]{s\+Steep }\end{DoxyParamCaption})}
+
+
+
+Definition at line 257 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+\+S\+Steep.
+
+\mbox{\label{class_antenna_aa9a8414c469e6dd49eed7a7cc58725c1}} 
+\index{Antenna@{Antenna}!setType@{setType}}
+\index{setType@{setType}!Antenna@{Antenna}}
+\subsubsection{setType()}
+{\footnotesize\ttfamily void Antenna\+::set\+Type (\begin{DoxyParamCaption}\item[{\textbf{ Antenna\+Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+type.
+
+\mbox{\label{class_antenna_a499cc5f675451c2964382ff029f53442}} 
+\index{Antenna@{Antenna}!squality@{squality}}
+\index{squality@{squality}!Antenna@{Antenna}}
+\subsubsection{squality()}
+{\footnotesize\ttfamily double Antenna\+::squality (\begin{DoxyParamCaption}\item[{Point}]{p }\end{DoxyParamCaption})}
+
+\mbox{\label{class_antenna_a58a2bc92fe68ae619701c143f5ba939c}} 
+\index{Antenna@{Antenna}!toString@{toString}}
+\index{toString@{toString}!Antenna@{Antenna}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily string Antenna\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}.
+
+
+
+Definition at line 104 of file Antenna.\+cpp.
+
+
+
+References m\+\_\+attenuation\+Factor, m\+\_\+max\+Connections, m\+\_\+power, and Immovable\+Agent\+::to\+String().
+
+\mbox{\label{class_antenna_a4455f5c804e1ea520dd849dc9fd7b0b4}} 
+\index{Antenna@{Antenna}!tryRegisterDevice@{tryRegisterDevice}}
+\index{tryRegisterDevice@{tryRegisterDevice}!Antenna@{Antenna}}
+\subsubsection{tryRegisterDevice()}
+{\footnotesize\ttfamily bool Antenna\+::try\+Register\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
+
+
+
+Definition at line 126 of file Antenna.\+cpp.
+
+
+
+References A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, already\+Registered(), attach\+Device(), get\+Num\+Active\+Conections(), I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+max\+Connections, and register\+Event().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_antenna_a77728d7c2315dda0ebc42235ae0bdf0a}} 
+\index{Antenna@{Antenna}!m\_attenuationFactor@{m\_attenuationFactor}}
+\index{m\_attenuationFactor@{m\_attenuationFactor}!Antenna@{Antenna}}
+\subsubsection{m\_attenuationFactor}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+attenuation\+Factor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 80 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), compute\+Power(), get\+Attenuation\+Factor(), S\+Dist(), set\+Attenuation\+Factor(), and to\+String().
+
+\mbox{\label{class_antenna_a185c9c47cb6d528622510af50c5ff62a}} 
+\index{Antenna@{Antenna}!m\_cell@{m\_cell}}
+\index{m\_cell@{m\_cell}!Antenna@{Antenna}}
+\subsubsection{m\_cell}
+{\footnotesize\ttfamily Polygon$\ast$ Antenna\+::m\+\_\+cell\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 86 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), and get\+Cell().
+
+\mbox{\label{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}} 
+\index{Antenna@{Antenna}!m\_devices@{m\_devices}}
+\index{m\_devices@{m\_devices}!Antenna@{Antenna}}
+\subsubsection{m\_devices}
+{\footnotesize\ttfamily vector$<$\textbf{ Holdable\+Agent}$\ast$$>$ Antenna\+::m\+\_\+devices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 88 of file Antenna.\+h.
+
+
+
+Referenced by already\+Registered(), attach\+Device(), dettach\+Device(), and get\+Num\+Active\+Conections().
+
+\mbox{\label{class_antenna_a06824840191e96b19eb224d53e08d3ec}} 
+\index{Antenna@{Antenna}!m\_file@{m\_file}}
+\index{m\_file@{m\_file}!Antenna@{Antenna}}
+\subsubsection{m\_file}
+{\footnotesize\ttfamily ofstream Antenna\+::m\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 90 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), register\+Event(), and $\sim$\+Antenna().
+
+\mbox{\label{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}} 
+\index{Antenna@{Antenna}!m\_maxConnections@{m\_maxConnections}}
+\index{m\_maxConnections@{m\_maxConnections}!Antenna@{Antenna}}
+\subsubsection{m\_maxConnections}
+{\footnotesize\ttfamily unsigned long Antenna\+::m\+\_\+max\+Connections\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 82 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), get\+Max\+Connections(), set\+Max\+Connections(), to\+String(), and try\+Register\+Device().
+
+\mbox{\label{class_antenna_a89874a2fbd083c99f780482bf4642b07}} 
+\index{Antenna@{Antenna}!m\_power@{m\_power}}
+\index{m\_power@{m\_power}!Antenna@{Antenna}}
+\subsubsection{m\_power}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+power\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 81 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), compute\+Power(), get\+Power(), S0(), set\+Power(), and to\+String().
+
+\mbox{\label{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}} 
+\index{Antenna@{Antenna}!m\_Smid@{m\_Smid}}
+\index{m\_Smid@{m\_Smid}!Antenna@{Antenna}}
+\subsubsection{m\_Smid}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Smid\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 83 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), compute\+Signal\+Quality(), get\+Smid(), and set\+Smid().
+
+\mbox{\label{class_antenna_a48117d47d70c758f5a09c54fa323feed}} 
+\index{Antenna@{Antenna}!m\_SSteep@{m\_SSteep}}
+\index{m\_SSteep@{m\_SSteep}!Antenna@{Antenna}}
+\subsubsection{m\_SSteep}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+S\+Steep\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 84 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), compute\+Signal\+Quality(), get\+S\+Steep(), and set\+S\+Steep().
+
+\mbox{\label{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}} 
+\index{Antenna@{Antenna}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!Antenna@{Antenna}}
+\subsubsection{m\_type}
+{\footnotesize\ttfamily \textbf{ Antenna\+Type} Antenna\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 89 of file Antenna.\+h.
+
+
+
+Referenced by Antenna(), compute\+Power(), compute\+Signal\+Quality(), get\+Type(), S(), and set\+Type().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ Antenna.\+h}\item 
+src/\textbf{ Antenna.\+cpp}\end{DoxyCompactItemize}

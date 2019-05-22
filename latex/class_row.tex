@@ -1,0 +1,221 @@
+\section{Row Class Reference}
+\label{class_row}\index{Row@{Row}}
+
+
+{\ttfamily \#include $<$C\+S\+Vparser.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Row} (const vector$<$ std\+::string $>$ \&)
+\item 
+\textbf{ $\sim$\+Row} (void)
+\item 
+unsigned int \textbf{ size} (void) const
+\item 
+void \textbf{ push} (const string \&)
+\item 
+bool \textbf{ set} (const string \&, const string \&)
+\item 
+{\footnotesize template$<$typename T $>$ }\\const T \textbf{ get\+Value} (unsigned int pos) const
+\item 
+const string \textbf{ operator[$\,$]} (unsigned int) const
+\item 
+const string \textbf{ operator[$\,$]} (const string \&value\+Name) const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const vector$<$ string $>$ \textbf{ \+\_\+header}
+\item 
+vector$<$ string $>$ \textbf{ \+\_\+values}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \textbf{ operator$<$$<$} (ostream \&os, const \textbf{ Row} \&row)
+\item 
+ofstream \& \textbf{ operator$<$$<$} (ofstream \&os, const \textbf{ Row} \&row)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 20 of file C\+S\+Vparser.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_row_a86c5a552052b35938a825ff0d0b66c70}} 
+\index{Row@{Row}!Row@{Row}}
+\index{Row@{Row}!Row@{Row}}
+\subsubsection{Row()}
+{\footnotesize\ttfamily Row\+::\+Row (\begin{DoxyParamCaption}\item[{const vector$<$ std\+::string $>$ \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file C\+S\+V\+Parser.\+cpp.
+
+\mbox{\label{class_row_a671be9f718722eccb2d3121f1579733e}} 
+\index{Row@{Row}!````~Row@{$\sim$Row}}
+\index{````~Row@{$\sim$Row}!Row@{Row}}
+\subsubsection{$\sim$Row()}
+{\footnotesize\ttfamily Row\+::$\sim$\+Row (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 177 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{class_row_a06931bff452df5a451da2268423bb6ea}} 
+\index{Row@{Row}!getValue@{getValue}}
+\index{getValue@{getValue}!Row@{Row}}
+\subsubsection{getValue()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T Row\+::get\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 37 of file C\+S\+Vparser.\+hpp.
+
+\mbox{\label{class_row_ab52c9571957f0278f13bb5bcc21dccda}} 
+\index{Row@{Row}!operator[]@{operator[]}}
+\index{operator[]@{operator[]}!Row@{Row}}
+\subsubsection{operator[]()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const string Row\+::operator[$\,$] (\begin{DoxyParamCaption}\item[{unsigned int}]{value\+Position }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 202 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+values.
+
+\mbox{\label{class_row_a42f23dd69d591da253b7428647f16ff8}} 
+\index{Row@{Row}!operator[]@{operator[]}}
+\index{operator[]@{operator[]}!Row@{Row}}
+\subsubsection{operator[]()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const string Row\+::operator[$\,$] (\begin{DoxyParamCaption}\item[{const string \&}]{value\+Name }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 208 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header, and \+\_\+values.
+
+\mbox{\label{class_row_a1d205d3f3f1e1a11a36f5bacae6632db}} 
+\index{Row@{Row}!push@{push}}
+\index{push@{push}!Row@{Row}}
+\subsubsection{push()}
+{\footnotesize\ttfamily void Row\+::push (\begin{DoxyParamCaption}\item[{const string \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 184 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+values.
+
+
+
+Referenced by Parser\+::add\+Row(), and Parser\+::parse\+Content().
+
+\mbox{\label{class_row_aadef50bd86334cecb389253c0561a442}} 
+\index{Row@{Row}!set@{set}}
+\index{set@{set}!Row@{Row}}
+\subsubsection{set()}
+{\footnotesize\ttfamily bool Row\+::set (\begin{DoxyParamCaption}\item[{const string \&}]{key,  }\item[{const string \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line 188 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+header, and \+\_\+values.
+
+\mbox{\label{class_row_ac3dce6d0bd64e944a932a5a26c3ebcef}} 
+\index{Row@{Row}!size@{size}}
+\index{size@{size}!Row@{Row}}
+\subsubsection{size()}
+{\footnotesize\ttfamily unsigned int Row\+::size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 180 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+References \+\_\+values.
+
+
+
+Referenced by Parser\+::parse\+Content().
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\label{class_row_a8962fdc6373687757234a811e803a1da}} 
+\index{Row@{Row}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Row@{Row}}
+\subsubsection{operator$<$$<$\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{const \textbf{ Row} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 221 of file C\+S\+V\+Parser.\+cpp.
+
+\mbox{\label{class_row_ad4e8b6c4b0238a50bde8e99ec8a0dcb0}} 
+\index{Row@{Row}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Row@{Row}}
+\subsubsection{operator$<$$<$\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ofstream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ofstream \&}]{os,  }\item[{const \textbf{ Row} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 228 of file C\+S\+V\+Parser.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\label{class_row_a98603a15923aa97e15198393ef3080c0}} 
+\index{Row@{Row}!\_header@{\_header}}
+\index{\_header@{\_header}!Row@{Row}}
+\subsubsection{\_header}
+{\footnotesize\ttfamily const vector$<$string$>$ Row\+::\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 31 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by operator[$\,$](), and set().
+
+\mbox{\label{class_row_ab064db33f941055c8d99a6f47eae733c}} 
+\index{Row@{Row}!\_values@{\_values}}
+\index{\_values@{\_values}!Row@{Row}}
+\subsubsection{\_values}
+{\footnotesize\ttfamily vector$<$string$>$ Row\+::\+\_\+values\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 32 of file C\+S\+Vparser.\+hpp.
+
+
+
+Referenced by operator$<$$<$(), operator[$\,$](), push(), set(), and size().
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\textbf{ C\+S\+Vparser.\+hpp}\item 
+src/\textbf{ C\+S\+V\+Parser.\+cpp}\end{DoxyCompactItemize}
