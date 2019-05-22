@@ -38,21 +38,43 @@ public:
 	 */
 	bool operator==(const Agent& a);
 
+	/**
+	 * This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class.
+	 * @return the name of the class.
+	 */
 	virtual string getName() = 0;
+
+	/**
+	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents.
+	 * @return a string representation of the class content. The values of the members are written in this string.
+	 */
 	virtual string toString() = 0;
 
+	/**
+	 * Getter that returns a pointer to the map passed to the constructor when the an object was build.
+	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
+	 */
 	Map* getMap() const;
+
+	/**
+	 * Sets the Map to be used by this agent during the simulation. It is not advisable to change the map during a simulation.
+	 * @param map pointer to a Map object.
+	 */
 	void setMap(Map* map);
 
+	/**
+	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
+	 * @return
+	 */
 	Clock* getClock() const;
 
-	unsigned long getId() const {
-		return m_id;
-	}
 
-	void setId(unsigned long id) {
-		m_id = id;
-	}
+	/**
+	 * Returns the id of the object.
+	 * @return the id of the object.
+	 */
+	unsigned long getId() const ;
+
 
 private:
 	Map* m_map;

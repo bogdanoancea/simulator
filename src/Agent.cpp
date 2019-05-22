@@ -9,7 +9,6 @@
 
 #include <Agent.h>
 
-
 Agent::Agent(Map* m, unsigned long id, Clock* clock) :
 		m_id { id } {
 	m_map = m;
@@ -19,7 +18,6 @@ Agent::Agent(Map* m, unsigned long id, Clock* clock) :
 Agent::~Agent() {
 }
 
-
 bool Agent::operator==(const Agent& a) {
 	return this->m_id == a.getId();
 }
@@ -27,10 +25,15 @@ bool Agent::operator==(const Agent& a) {
 Map* Agent::getMap() const {
 	return m_map;
 }
+
 void Agent::setMap(Map* map) {
 	m_map = map;
 }
 
 Clock* Agent::getClock() const {
 	return m_clock;
+}
+
+unsigned long Agent::getId() const {
+	return m_id;
 }
