@@ -15,7 +15,7 @@ var searchData=
   ['alloc',['Alloc',['../classtinyxml2_1_1_mem_pool.html#a4f977b5fed752c0bbfe5295f469d6449',1,'tinyxml2::MemPool::Alloc()'],['../classtinyxml2_1_1_mem_pool_t.html#a810fd2b0caf56b8b688e55f2768f96c7',1,'tinyxml2::MemPoolT::Alloc()']]],
   ['already_5fattached_5fdevice',['ALREADY_ATTACHED_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faaea76d50440d9cdc0ad1cac6ab9ac4f27',1,'EventType.h']]],
   ['alreadyregistered',['alreadyRegistered',['../class_antenna.html#af4fb83843393bf36bdcaefae5b5dd0dd',1,'Antenna']]],
-  ['antenna',['Antenna',['../class_antenna.html',1,'Antenna'],['../class_antenna.html#aa728c39aa78517576c6f8abe0844a914',1,'Antenna::Antenna(Map *m, long id, Point *initPosition, Clock *clock, double attenuationFactor, double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type)'],['../class_antenna.html#a6e78188d317783042e0ac196aab75c82',1,'Antenna::Antenna(Map *m, Clock *clk, long id, XMLElement *el)']]],
+  ['antenna',['Antenna',['../class_antenna.html',1,'Antenna'],['../class_antenna.html#aa728c39aa78517576c6f8abe0844a914',1,'Antenna::Antenna(Map *m, long id, Point *initPosition, Clock *clock, double attenuationFactor, double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type)'],['../class_antenna.html#a1bdfb5bcc5dea6a82828c5026e319281',1,'Antenna::Antenna(Map *m, Clock *clock, long id, XMLElement *el)']]],
   ['antenna_2ecpp',['Antenna.cpp',['../_antenna_8cpp.html',1,'']]],
   ['antenna_2eh',['Antenna.h',['../_antenna_8h.html',1,'']]],
   ['antenna_5fpower',['ANTENNA_POWER',['../class_constants.html#a3f6f3825098d8eb1dc8081158c46c48a',1,'Constants']]],

@@ -15,11 +15,9 @@ void \textbf{ add\+Agent} (\textbf{ Agent} $\ast$a)
 \item 
 \textbf{ Agent} $\ast$ \textbf{ delete\+Agent} (\textbf{ Agent} $\ast$a)
 \item 
-void \textbf{ perform\+Action} ()
+\textbf{ Agent} $\ast$ \textbf{ get\+Agent} (unsigned long id) const
 \item 
-\textbf{ Agent} $\ast$ \textbf{ get\+Agent} (int id)
-\item 
-std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ \textbf{ get\+Agent\+List\+By\+Type} (const string \&agent\+Type)
+pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ \textbf{ get\+Agent\+List\+By\+Type} (const string \&agent\+Type) const
 \item 
 \textbf{ um\+\_\+iterator} \textbf{ end} ()
 \item 
@@ -30,14 +28,14 @@ unsigned long \textbf{ size} ()
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-unordered\+\_\+multimap$<$ string, \textbf{ Agent} $\ast$ $>$ \textbf{ m\+\_\+agents2}
+unordered\+\_\+multimap$<$ string, \textbf{ Agent} $\ast$ $>$ \textbf{ m\+\_\+agents}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+This is actually a container for all the agents used for simulation. An agent could be an object of one the the derived classes of \doxyref{Agent}{p.}{class_agent}. The Agents are kept in an unordered\+\_\+multimap as pairs $<$string, Agent$\ast$$>$ where the first element of the pair is the name of the concrete agent (a person, a mobile device, an antenna etc) and the second element is a pointer to the actual object (agent). 
 
-
-Definition at line 21 of file Agents\+Collection.\+h.
+Definition at line 28 of file Agents\+Collection.\+h.
 
 
 
@@ -48,7 +46,7 @@ Definition at line 21 of file Agents\+Collection.\+h.
 \subsubsection{AgentsCollection()}
 {\footnotesize\ttfamily Agents\+Collection\+::\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Default constructor 
+The default constructor of the class. 
 
 Definition at line 15 of file Agents\+Collection.\+cpp.
 
@@ -58,13 +56,13 @@ Definition at line 15 of file Agents\+Collection.\+cpp.
 \subsubsection{$\sim$AgentsCollection()}
 {\footnotesize\ttfamily Agents\+Collection\+::$\sim$\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Default destructor 
+Default destructor\+: it iterates through the collection of agents and frees the memory allocated for each agent in the collection. 
 
 Definition at line 18 of file Agents\+Collection.\+cpp.
 
 
 
-References m\+\_\+agents2.
+References m\+\_\+agents.
 
 
 
@@ -75,13 +73,18 @@ References m\+\_\+agents2.
 \subsubsection{addAgent()}
 {\footnotesize\ttfamily void Agents\+Collection\+::add\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Agent} $\ast$}]{a }\end{DoxyParamCaption})}
 
+Adds a new \doxyref{Agent}{p.}{class_agent} to the collection. For performance reasons the \doxyref{Agents\+Collection}{p.}{class_agents_collection} class keep only pointer to actual agents (objects). 
+\begin{DoxyParams}{Parameters}
+{\em a} & a pointer to the object (one of the derived classes of the \doxyref{Agent}{p.}{class_agent}) to be added to the collection. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 24 of file Agents\+Collection.\+cpp.
 
 
 
-References m\+\_\+agents2.
+References m\+\_\+agents.
 
 
 
@@ -91,11 +94,18 @@ Referenced by World\+::generate\+Mobile\+Phones().
 \index{AgentsCollection@{AgentsCollection}!begin@{begin}}
 \index{begin@{begin}!AgentsCollection@{AgentsCollection}}
 \subsubsection{begin()}
-{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Iterator to the first agent of the container. \begin{DoxyReturn}{Returns}
+a random access iterator pointing to the first element (agent) in the container. If the container is empty, the returned iterator value shall not be dereferenced. 
+\end{DoxyReturn}
+
+
+Definition at line 55 of file Agents\+Collection.\+cpp.
 
 
 
-Definition at line 43 of file Agents\+Collection.\+h.
+References m\+\_\+agents.
 
 \mbox{\label{class_agents_collection_a1bf07bf42e02c317b4b5fe697b9c7dee}} 
 \index{AgentsCollection@{AgentsCollection}!deleteAgent@{deleteAgent}}
@@ -103,84 +113,123 @@ Definition at line 43 of file Agents\+Collection.\+h.
 \subsubsection{deleteAgent()}
 {\footnotesize\ttfamily \textbf{ Agent} $\ast$ Agents\+Collection\+::delete\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Agent} $\ast$}]{a }\end{DoxyParamCaption})}
 
+Removes an object from the collection. 
+\begin{DoxyParams}{Parameters}
+{\em a} & a pointer to the object to be removed from the collection. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 Definition at line 29 of file Agents\+Collection.\+cpp.
 
 
 
-References m\+\_\+agents2.
+References m\+\_\+agents.
 
 \mbox{\label{class_agents_collection_afc61b751cf3387ab4a1bf0dfbc29cb82}} 
 \index{AgentsCollection@{AgentsCollection}!end@{end}}
 \index{end@{end}!AgentsCollection@{AgentsCollection}}
 \subsubsection{end()}
-{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \textbf{ um\+\_\+iterator} Agents\+Collection\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Iterator to the past-\/the-\/end of the collection. It does not point to any agent, and thus shall not be dereferenced. \begin{DoxyReturn}{Returns}
+an iterator referring to the past-\/the-\/end element in the agents container. If the container is empty, this function returns the same as Agents\+Colletion\+::begin(). 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file Agents\+Collection.\+cpp.
 
 
 
-Definition at line 39 of file Agents\+Collection.\+h.
+References m\+\_\+agents.
 
-\mbox{\label{class_agents_collection_a497e22074302b7fdc101ac98ed840610}} 
+\mbox{\label{class_agents_collection_a5da5c893eb09761f25a9594537ee6740}} 
 \index{AgentsCollection@{AgentsCollection}!getAgent@{getAgent}}
 \index{getAgent@{getAgent}!AgentsCollection@{AgentsCollection}}
 \subsubsection{getAgent()}
-{\footnotesize\ttfamily \textbf{ Agent} $\ast$ Agents\+Collection\+::get\+Agent (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \textbf{ Agent} $\ast$ Agents\+Collection\+::get\+Agent (\begin{DoxyParamCaption}\item[{unsigned long}]{id }\end{DoxyParamCaption}) const}
 
+Returns a pointer to an agent from the collection. The agent/object is identified by its id. 
+\begin{DoxyParams}{Parameters}
+{\em id} & of the agent to be returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the agent with the id equal to the
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em id.} & If there is no agent with the provided id, this method returns nullptr. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 46 of file Agents\+Collection.\+cpp.
 
 
 
-References m\+\_\+agents2.
+References m\+\_\+agents.
 
-\mbox{\label{class_agents_collection_ae8f3b548e2eefb12ed3d3596a6be4598}} 
+\mbox{\label{class_agents_collection_a9780e544cba9d98ed2759ba6c727e199}} 
 \index{AgentsCollection@{AgentsCollection}!getAgentListByType@{getAgentListByType}}
 \index{getAgentListByType@{getAgentListByType}!AgentsCollection@{AgentsCollection}}
 \subsubsection{getAgentListByType()}
-{\footnotesize\ttfamily std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ Agents\+Collection\+::get\+Agent\+List\+By\+Type (\begin{DoxyParamCaption}\item[{const string \&}]{agent\+Type }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::pair$<$ \textbf{ um\+\_\+iterator}, \textbf{ um\+\_\+iterator} $>$ Agents\+Collection\+::get\+Agent\+List\+By\+Type (\begin{DoxyParamCaption}\item[{const string \&}]{agent\+Type }\end{DoxyParamCaption}) const}
 
+This method is used to get a subset with a certain type of agents\+: persons, mobile phone etc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em agent\+Type} & is the name of the class of agents that the user wants to retrieve from the collection of all agents. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a std\+::pair of iterators of type unordered\+\_\+multimap$<$string, Agent$\ast$$>$\+::iterator that can be used to iterate through to subset of the agents. 
+\end{DoxyReturn}
 
 
 Definition at line 42 of file Agents\+Collection.\+cpp.
 
 
 
-References m\+\_\+agents2.
-
-\mbox{\label{class_agents_collection_a7f1dd7f10d1d5aa646ebd855c3ff5502}} 
-\index{AgentsCollection@{AgentsCollection}!performAction@{performAction}}
-\index{performAction@{performAction}!AgentsCollection@{AgentsCollection}}
-\subsubsection{performAction()}
-{\footnotesize\ttfamily void Agents\+Collection\+::perform\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+References m\+\_\+agents.
 
 \mbox{\label{class_agents_collection_a3226f7eb58b11623bdb353d8938f60d3}} 
 \index{AgentsCollection@{AgentsCollection}!size@{size}}
 \index{size@{size}!AgentsCollection@{AgentsCollection}}
 \subsubsection{size()}
-{\footnotesize\ttfamily unsigned long Agents\+Collection\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily unsigned long Agents\+Collection\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the number of elements in the container. This is the number of actual objects held in the container, which is not necessarily equal to its storage capacity. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file Agents\+Collection.\+cpp.
 
 
 
-Definition at line 47 of file Agents\+Collection.\+h.
+References m\+\_\+agents.
 
 
 
 \subsection{Member Data Documentation}
-\mbox{\label{class_agents_collection_a5ef5c11f043247a40554e4fabce6e23a}} 
-\index{AgentsCollection@{AgentsCollection}!m\_agents2@{m\_agents2}}
-\index{m\_agents2@{m\_agents2}!AgentsCollection@{AgentsCollection}}
-\subsubsection{m\_agents2}
-{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \textbf{ Agent}$\ast$$>$ Agents\+Collection\+::m\+\_\+agents2\hspace{0.3cm}{\ttfamily [private]}}
+\mbox{\label{class_agents_collection_a35a5728b0e0108c2f37897720c904dd1}} 
+\index{AgentsCollection@{AgentsCollection}!m\_agents@{m\_agents}}
+\index{m\_agents@{m\_agents}!AgentsCollection@{AgentsCollection}}
+\subsubsection{m\_agents}
+{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \textbf{ Agent}$\ast$$>$ Agents\+Collection\+::m\+\_\+agents\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line 52 of file Agents\+Collection.\+h.
+Definition at line 92 of file Agents\+Collection.\+h.
 
 
 
-Referenced by add\+Agent(), delete\+Agent(), get\+Agent(), get\+Agent\+List\+By\+Type(), and $\sim$\+Agents\+Collection().
+Referenced by add\+Agent(), begin(), delete\+Agent(), end(), get\+Agent(), get\+Agent\+List\+By\+Type(), size(), and $\sim$\+Agents\+Collection().
 
 
 

@@ -71,6 +71,9 @@ Definition at line 21 of file Movable\+Agent.\+cpp.
 \subsubsection{getName()}
 {\footnotesize\ttfamily string Movable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
+This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
+the name of the class. 
+\end{DoxyReturn}
 
 
 Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_ae2b9a1bd2e207a9aac95f4d13a17a9f9}.
@@ -135,6 +138,9 @@ Referenced by Holdable\+Agent\+::set\+Holder().
 \subsubsection{toString()}
 {\footnotesize\ttfamily string Movable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
+a string representation of the class content. The values of the members are written in this string. 
+\end{DoxyReturn}
 
 
 Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a593b8f4eb5d0a812b725726c35335193}.

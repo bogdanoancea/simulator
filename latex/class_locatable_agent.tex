@@ -111,6 +111,9 @@ Referenced by Antenna\+::compute\+Power(), Antenna\+::compute\+Signal\+Quality()
 \subsubsection{getName()}
 {\footnotesize\ttfamily string Locatable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
+This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
+the name of the class. 
+\end{DoxyReturn}
 
 
 Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}.
@@ -151,6 +154,9 @@ Referenced by Antenna\+::\+Antenna(), Holdable\+Agent\+::set\+Location(), and Pe
 \subsubsection{toString()}
 {\footnotesize\ttfamily string Locatable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
+a string representation of the class content. The values of the members are written in this string. 
+\end{DoxyReturn}
 
 
 Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}.

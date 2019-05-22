@@ -1,7 +1,7 @@
 var searchData=
 [
   ['m_5fage',['m_age',['../class_person.html#a743e071da10a5ac9150f61df919cfbb4',1,'Person']]],
-  ['m_5fagents2',['m_agents2',['../class_agents_collection.html#a5ef5c11f043247a40554e4fabce6e23a',1,'AgentsCollection']]],
+  ['m_5fagents',['m_agents',['../class_agents_collection.html#a35a5728b0e0108c2f37897720c904dd1',1,'AgentsCollection']]],
   ['m_5fagentscollection',['m_agentsCollection',['../class_world.html#ae1262689381f00828c0a639b7cbb52a3',1,'World']]],
   ['m_5fantennaid',['m_antennaId',['../class_antenna_info.html#a7776748da0e4d9f4b39683066806a897',1,'AntennaInfo']]],
   ['m_5fantennas',['m_antennas',['../class_e_m_field.html#ab74a3bde70b66fd033bde6c25345a755',1,'EMField::m_antennas()'],['../class_holdable_agent.html#a5f104212204e4c6761bed1d61fab100b',1,'HoldableAgent::m_antennas()']]],
