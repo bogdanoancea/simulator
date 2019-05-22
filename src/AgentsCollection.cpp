@@ -39,7 +39,7 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 	return (result);
 }
 
-std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const string& agentType) {
+std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const string& agentType) const {
 	return (m_agents.equal_range(agentType));
 }
 
