@@ -82,12 +82,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a51d14d0635dedd5971ea90dec4f9e7f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf07bf42e02c317b4b5fe697b9c7dee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_agent.html">Agent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a1bf07bf42e02c317b4b5fe697b9c7dee">deleteAgent</a> (<a class="el" href="class_agent.html">Agent</a> *a)</td></tr>
 <tr class="separator:a1bf07bf42e02c317b4b5fe697b9c7dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f1dd7f10d1d5aa646ebd855c3ff5502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a7f1dd7f10d1d5aa646ebd855c3ff5502">performAction</a> ()</td></tr>
-<tr class="separator:a7f1dd7f10d1d5aa646ebd855c3ff5502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a497e22074302b7fdc101ac98ed840610"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_agent.html">Agent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a497e22074302b7fdc101ac98ed840610">getAgent</a> (int id)</td></tr>
-<tr class="separator:a497e22074302b7fdc101ac98ed840610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8f3b548e2eefb12ed3d3596a6be4598"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a>, <a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#ae8f3b548e2eefb12ed3d3596a6be4598">getAgentListByType</a> (const string &amp;agentType)</td></tr>
-<tr class="separator:ae8f3b548e2eefb12ed3d3596a6be4598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5da5c893eb09761f25a9594537ee6740"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_agent.html">Agent</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a5da5c893eb09761f25a9594537ee6740">getAgent</a> (unsigned long id) const</td></tr>
+<tr class="separator:a5da5c893eb09761f25a9594537ee6740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9780e544cba9d98ed2759ba6c727e199"><td class="memItemLeft" align="right" valign="top">pair&lt; <a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a>, <a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a9780e544cba9d98ed2759ba6c727e199">getAgentListByType</a> (const string &amp;agentType) const</td></tr>
+<tr class="separator:a9780e544cba9d98ed2759ba6c727e199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc61b751cf3387ab4a1bf0dfbc29cb82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#afc61b751cf3387ab4a1bf0dfbc29cb82">end</a> ()</td></tr>
 <tr class="separator:afc61b751cf3387ab4a1bf0dfbc29cb82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc1d6593a3ed1c1c7b2d31b7efec8db8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#abc1d6593a3ed1c1c7b2d31b7efec8db8">begin</a> ()</td></tr>
@@ -97,12 +95,13 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a5ef5c11f043247a40554e4fabce6e23a"><td class="memItemLeft" align="right" valign="top">unordered_multimap&lt; string, <a class="el" href="class_agent.html">Agent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a5ef5c11f043247a40554e4fabce6e23a">m_agents2</a></td></tr>
-<tr class="separator:a5ef5c11f043247a40554e4fabce6e23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35a5728b0e0108c2f37897720c904dd1"><td class="memItemLeft" align="right" valign="top">unordered_multimap&lt; string, <a class="el" href="class_agent.html">Agent</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agents_collection.html#a35a5728b0e0108c2f37897720c904dd1">m_agents</a></td></tr>
+<tr class="separator:a35a5728b0e0108c2f37897720c904dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00021">21</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
+<div class="textblock"><p>This is actually a container for all the agents used for simulation. An agent could be an object of one the the derived classes of <a class="el" href="class_agent.html">Agent</a>. The Agents are kept in an unordered_multimap as pairs &lt;string, Agent*&gt; where the first element of the pair is the name of the concrete agent (a person, a mobile device, an antenna etc) and the second element is a pointer to the actual object (agent). </p>
+
+<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00028">28</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a866b0ed56c0109e82bc7c839de0a3267"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a866b0ed56c0109e82bc7c839de0a3267">&#9670;&nbsp;</a></span>AgentsCollection()</h2>
@@ -118,7 +117,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Default constructor </p>
+<p>The default constructor of the class. </p>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00015">15</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
@@ -146,11 +145,11 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Default destructor </p>
+<p>Default destructor: it iterates through the collection of agents and frees the memory allocated for each agent in the collection. </p>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00018">18</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00052">m_agents2</a>.</p>
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
@@ -170,10 +169,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds a new <a class="el" href="class_agent.html">Agent</a> to the collection. For performance reasons the <a class="el" href="class_agents_collection.html">AgentsCollection</a> class keep only pointer to actual agents (objects). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a pointer to the object (one of the derived classes of the <a class="el" href="class_agent.html">Agent</a>) to be added to the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00024">24</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00052">m_agents2</a>.</p>
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_world_8cpp_source.html#l00228">World::generateMobilePhones()</a>.</p>
 
@@ -184,9 +189,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a> AgentsCollection::begin </td>
@@ -195,14 +197,12 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Iterator to the first agent of the container. </p><dl class="section return"><dt>Returns</dt><dd>a random access iterator pointing to the first element (agent) in the container. If the container is empty, the returned iterator value shall not be dereferenced. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00043">43</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00055">55</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
@@ -221,10 +221,17 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Removes an object from the collection. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a pointer to the object to be removed from the collection. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00029">29</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00052">m_agents2</a>.</p>
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
@@ -233,9 +240,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="_agents_collection_8h.html#afde47bc45d604b8b8c72755072376679">um_iterator</a> AgentsCollection::end </td>
@@ -244,19 +248,17 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Iterator to the past-the-end of the collection. It does not point to any agent, and thus shall not be dereferenced. </p><dl class="section return"><dt>Returns</dt><dd>an iterator referring to the past-the-end element in the agents container. If the container is empty, this function returns the same as AgentsColletion::begin(). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00039">39</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00059">59</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
-<a id="a497e22074302b7fdc101ac98ed840610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a497e22074302b7fdc101ac98ed840610">&#9670;&nbsp;</a></span>getAgent()</h2>
+<a id="a5da5c893eb09761f25a9594537ee6740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5da5c893eb09761f25a9594537ee6740">&#9670;&nbsp;</a></span>getAgent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,21 +266,34 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="class_agent.html">Agent</a> * AgentsCollection::getAgent </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned long&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns a pointer to an agent from the collection. The agent/object is identified by its id. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>of the agent to be returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the agent with the id equal to the</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id.</td><td>If there is no agent with the provided id, this method returns nullptr. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00046">46</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00052">m_agents2</a>.</p>
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
-<a id="ae8f3b548e2eefb12ed3d3596a6be4598"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8f3b548e2eefb12ed3d3596a6be4598">&#9670;&nbsp;</a></span>getAgentListByType()</h2>
+<a id="a9780e544cba9d98ed2759ba6c727e199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9780e544cba9d98ed2759ba6c727e199">&#9670;&nbsp;</a></span>getAgentListByType()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,31 +303,22 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const string &amp;&#160;</td>
           <td class="paramname"><em>agentType</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This method is used to get a subset with a certain type of agents: persons, mobile phone etc.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">agentType</td><td>is the name of the class of agents that the user wants to retrieve from the collection of all agents. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a std::pair of iterators of type unordered_multimap&lt;string, Agent*&gt;::iterator that can be used to iterate through to subset of the agents. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00042">42</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00052">m_agents2</a>.</p>
-
-</div>
-</div>
-<a id="a7f1dd7f10d1d5aa646ebd855c3ff5502"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f1dd7f10d1d5aa646ebd855c3ff5502">&#9670;&nbsp;</a></span>performAction()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void AgentsCollection::performAction </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
@@ -321,9 +327,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">unsigned long AgentsCollection::size </td>
@@ -332,20 +335,18 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>the number of elements in the container. This is the number of actual objects held in the container, which is not necessarily equal to its storage capacity. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00047">47</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agents_collection_8cpp_source.html#l00063">63</a> of file <a class="el" href="_agents_collection_8cpp_source.html">AgentsCollection.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_agents_collection_8h_source.html#l00092">m_agents</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5ef5c11f043247a40554e4fabce6e23a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ef5c11f043247a40554e4fabce6e23a">&#9670;&nbsp;</a></span>m_agents2</h2>
+<a id="a35a5728b0e0108c2f37897720c904dd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35a5728b0e0108c2f37897720c904dd1">&#9670;&nbsp;</a></span>m_agents</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -354,7 +355,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unordered_multimap&lt;string, <a class="el" href="class_agent.html">Agent</a>*&gt; AgentsCollection::m_agents2</td>
+          <td class="memname">unordered_multimap&lt;string, <a class="el" href="class_agent.html">Agent</a>*&gt; AgentsCollection::m_agents</td>
         </tr>
       </table>
   </td>
@@ -364,9 +365,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00052">52</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agents_collection_8h_source.html#l00092">92</a> of file <a class="el" href="_agents_collection_8h_source.html">AgentsCollection.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_agents_collection_8cpp_source.html#l00024">addAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00029">deleteAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00046">getAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00042">getAgentListByType()</a>, and <a class="el" href="_agents_collection_8cpp_source.html#l00018">~AgentsCollection()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_agents_collection_8cpp_source.html#l00024">addAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00055">begin()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00029">deleteAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00059">end()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00046">getAgent()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00042">getAgentListByType()</a>, <a class="el" href="_agents_collection_8cpp_source.html#l00063">size()</a>, and <a class="el" href="_agents_collection_8cpp_source.html#l00018">~AgentsCollection()</a>.</p>
 
 </div>
 </div>

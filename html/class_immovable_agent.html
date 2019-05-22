@@ -122,8 +122,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8d8b1c733230bbf9b86e08285be4c03 inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c0349bb5ca9d971439b9f21dcf726a1 inherit pub_methods_class_agent"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a1c0349bb5ca9d971439b9f21dcf726a1">getId</a> () const</td></tr>
 <tr class="separator:a1c0349bb5ca9d971439b9f21dcf726a1 inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bc951d7f70768e8718a175388000b5c inherit pub_methods_class_agent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a7bc951d7f70768e8718a175388000b5c">setId</a> (unsigned long id)</td></tr>
-<tr class="separator:a7bc951d7f70768e8718a175388000b5c inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -229,6 +227,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. </p><dl class="section return"><dt>Returns</dt><dd>the name of the class. </dd></dl>
 
 <p>Implements <a class="el" href="class_agent.html#aa24682b2e0c8031d0637c156f6bee0e0">Agent</a>.</p>
 
@@ -258,6 +257,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. </p><dl class="section return"><dt>Returns</dt><dd>a string representation of the class content. The values of the members are written in this string. </dd></dl>
 
 <p>Implements <a class="el" href="class_agent.html#a530b76f9163b2b8c19e7cdf8065888ac">Agent</a>.</p>
 
@@ -265,7 +265,7 @@ Public Member Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="_locatable_agent_8cpp_source.html#l00039">LocatableAgent::toString()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_antenna_8cpp_source.html#l00104">Antenna::toString()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_antenna_8cpp_source.html#l00096">Antenna::toString()</a>.</p>
 
 </div>
 </div>

@@ -155,8 +155,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8d8b1c733230bbf9b86e08285be4c03 inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c0349bb5ca9d971439b9f21dcf726a1 inherit pub_methods_class_agent"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a1c0349bb5ca9d971439b9f21dcf726a1">getId</a> () const</td></tr>
 <tr class="separator:a1c0349bb5ca9d971439b9f21dcf726a1 inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bc951d7f70768e8718a175388000b5c inherit pub_methods_class_agent"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a7bc951d7f70768e8718a175388000b5c">setId</a> (unsigned long id)</td></tr>
-<tr class="separator:a7bc951d7f70768e8718a175388000b5c inherit pub_methods_class_agent"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -370,7 +368,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_person_8cpp_source.html#l00133">133</a> of file <a class="el" href="_person_8cpp_source.html">Person.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00049">Agent::getId()</a>, <a class="el" href="_person_8h_source.html#l00064">m_idDevices</a>, and <a class="el" href="_constants_8h_source.html#l00030">Constants::sep</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8cpp_source.html#l00037">Agent::getId()</a>, <a class="el" href="_person_8h_source.html#l00064">m_idDevices</a>, and <a class="el" href="_constants_8h_source.html#l00030">Constants::sep</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_world_8cpp_source.html#l00111">World::runSimulation()</a>.</p>
 
@@ -440,6 +438,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. </p><dl class="section return"><dt>Returns</dt><dd>the name of the class. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_movable_agent.html#af36b0e49e477cfcc60d801c11166a4f0">MovableAgent</a>.</p>
 
@@ -529,7 +528,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="_person_8cpp_source.html#l00083">83</a> of file <a class="el" href="_person_8cpp_source.html">Person.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_random_number_generator_8cpp_source.html#l00043">RandomNumberGenerator::generateUniformDouble()</a>, <a class="el" href="_map_8h_source.html#l00037">Map::getBoundary()</a>, <a class="el" href="_map_8cpp_source.html#l00088">Map::getGlobalFactory()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00031">LocatableAgent::getLocation()</a>, <a class="el" href="_agent_8cpp_source.html#l00027">Agent::getMap()</a>, <a class="el" href="_movable_agent_8cpp_source.html#l00025">MovableAgent::getSpeed()</a>, <a class="el" href="_random_number_generator_8h_source.html#l00020">RandomNumberGenerator::instance()</a>, <a class="el" href="_utils_8h_source.html#l00031">utils::PI</a>, <a class="el" href="_person_8cpp_source.html#l00119">setLocation()</a>, and <a class="el" href="_t_norm_8h_source.html#l00015">Rtnorm::x</a>.</p>
+<p class="reference">References <a class="el" href="_random_number_generator_8cpp_source.html#l00043">RandomNumberGenerator::generateUniformDouble()</a>, <a class="el" href="_map_8h_source.html#l00037">Map::getBoundary()</a>, <a class="el" href="_map_8cpp_source.html#l00088">Map::getGlobalFactory()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00031">LocatableAgent::getLocation()</a>, <a class="el" href="_agent_8cpp_source.html#l00025">Agent::getMap()</a>, <a class="el" href="_movable_agent_8cpp_source.html#l00025">MovableAgent::getSpeed()</a>, <a class="el" href="_random_number_generator_8h_source.html#l00020">RandomNumberGenerator::instance()</a>, <a class="el" href="_utils_8h_source.html#l00031">utils::PI</a>, <a class="el" href="_person_8cpp_source.html#l00119">setLocation()</a>, and <a class="el" href="_t_norm_8h_source.html#l00015">Rtnorm::x</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_person_8cpp_source.html#l00063">move()</a>.</p>
 
@@ -613,12 +612,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. </p><dl class="section return"><dt>Returns</dt><dd>a string representation of the class content. The values of the members are written in this string. </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_movable_agent.html#aa8a8424a9513e0d57f7d4b94e7a49552">MovableAgent</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="_person_8cpp_source.html#l00050">50</a> of file <a class="el" href="_person_8cpp_source.html">Person.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00049">Agent::getId()</a>, <a class="el" href="_person_8h_source.html#l00062">m_age</a>, <a class="el" href="_person_8h_source.html#l00063">m_gender</a>, <a class="el" href="_person_8h_source.html#l00064">m_idDevices</a>, and <a class="el" href="_movable_agent_8cpp_source.html#l00033">MovableAgent::toString()</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8cpp_source.html#l00037">Agent::getId()</a>, <a class="el" href="_person_8h_source.html#l00062">m_age</a>, <a class="el" href="_person_8h_source.html#l00063">m_gender</a>, <a class="el" href="_person_8h_source.html#l00064">m_idDevices</a>, and <a class="el" href="_movable_agent_8cpp_source.html#l00033">MovableAgent::toString()</a>.</p>
 
 </div>
 </div>

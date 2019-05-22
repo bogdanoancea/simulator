@@ -108,8 +108,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac8d8b1c733230bbf9b86e08285be4c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c0349bb5ca9d971439b9f21dcf726a1"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a1c0349bb5ca9d971439b9f21dcf726a1">getId</a> () const</td></tr>
 <tr class="separator:a1c0349bb5ca9d971439b9f21dcf726a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bc951d7f70768e8718a175388000b5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_agent.html#a7bc951d7f70768e8718a175388000b5c">setId</a> (unsigned long id)</td></tr>
-<tr class="separator:a7bc951d7f70768e8718a175388000b5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -164,7 +162,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00013">13</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00012">12</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -192,7 +190,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Default destructor of the class. </p>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00019">19</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00018">18</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
 </div>
 </div>
@@ -211,12 +209,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns a pointer to the <a class="el" href="class_clock.html">Clock</a> object used for simulation. All Agents use the same <a class="el" href="class_clock.html">Clock</a> object for a simulation. </p><dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00034">34</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00033">33</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00060">m_clock</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8h_source.html#l00082">m_clock</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_locatable_agent_8cpp_source.html#l00049">LocatableAgent::dumpLocation()</a>, and <a class="el" href="_antenna_8cpp_source.html#l00181">Antenna::registerEvent()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_locatable_agent_8cpp_source.html#l00049">LocatableAgent::dumpLocation()</a>, and <a class="el" href="_antenna_8cpp_source.html#l00173">Antenna::registerEvent()</a>.</p>
 
 </div>
 </div>
@@ -225,9 +224,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">unsigned long Agent::getId </td>
@@ -236,18 +232,14 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+<p>Returns the id of the object. </p><dl class="section return"><dt>Returns</dt><dd>the id of the object. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00049">49</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00037">37</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00059">m_id</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8h_source.html#l00081">m_id</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_grid_8cpp_source.html#l00051">Grid::computeProbability()</a>, <a class="el" href="_person_8cpp_source.html#l00133">Person::dumpDevices()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00049">LocatableAgent::dumpLocation()</a>, <a class="el" href="_agent_8cpp_source.html#l00023">operator==()</a>, <a class="el" href="_antenna_8cpp_source.html#l00181">Antenna::registerEvent()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00039">LocatableAgent::toString()</a>, <a class="el" href="_holdable_agent_8cpp_source.html#l00063">HoldableAgent::toString()</a>, <a class="el" href="_person_8cpp_source.html#l00050">Person::toString()</a>, and <a class="el" href="_mobile_phone_8cpp_source.html#l00036">MobilePhone::tryConnectNaiveAlgorithm()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_grid_8cpp_source.html#l00051">Grid::computeProbability()</a>, <a class="el" href="_person_8cpp_source.html#l00133">Person::dumpDevices()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00049">LocatableAgent::dumpLocation()</a>, <a class="el" href="_agent_8cpp_source.html#l00021">operator==()</a>, <a class="el" href="_antenna_8cpp_source.html#l00173">Antenna::registerEvent()</a>, <a class="el" href="_locatable_agent_8cpp_source.html#l00039">LocatableAgent::toString()</a>, <a class="el" href="_holdable_agent_8cpp_source.html#l00063">HoldableAgent::toString()</a>, <a class="el" href="_person_8cpp_source.html#l00050">Person::toString()</a>, and <a class="el" href="_mobile_phone_8cpp_source.html#l00036">MobilePhone::tryConnectNaiveAlgorithm()</a>.</p>
 
 </div>
 </div>
@@ -265,10 +257,11 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Getter that returns a pointer to the map passed to the constructor when the an object was build. </p><dl class="section return"><dt>Returns</dt><dd>a pointer to the <a class="el" href="class_map.html">Map</a> object that was passed to the constructor. All agents use the same map for a simulation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00027">27</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00025">25</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00058">m_map</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8h_source.html#l00080">m_map</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="_antenna_8cpp_source.html#l00037">Antenna::Antenna()</a>, and <a class="el" href="_person_8cpp_source.html#l00083">Person::randomWalk()</a>.</p>
 
@@ -296,8 +289,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. </p><dl class="section return"><dt>Returns</dt><dd>the name of the class. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_person.html#a41c6a0cd763dc154841346e69f2d4b3e">Person</a>, <a class="el" href="class_antenna.html#ad0d1b2faf930fd0c1c85fa24a7d773fe">Antenna</a>, <a class="el" href="class_holdable_agent.html#a089a15867a877d3a4cb510169c32d682">HoldableAgent</a>, <a class="el" href="class_movable_agent.html#af36b0e49e477cfcc60d801c11166a4f0">MovableAgent</a>, <a class="el" href="class_immovable_agent.html#a35b43ab9d6cd845a0ada5b95784994f0">ImmovableAgent</a>, <a class="el" href="class_mobile_phone.html#aa4f050bb755994fadfeab94c1f2147f7">MobilePhone</a>, <a class="el" href="class_locatable_agent.html#ae2b9a1bd2e207a9aac95f4d13a17a9f9">LocatableAgent</a>, and <a class="el" href="class_tablet.html#a2cac00cd9efca5b8adeff28ae5827970">Tablet</a>.</p>
+<p>Implemented in <a class="el" href="class_antenna.html#ad0d1b2faf930fd0c1c85fa24a7d773fe">Antenna</a>, <a class="el" href="class_person.html#a41c6a0cd763dc154841346e69f2d4b3e">Person</a>, <a class="el" href="class_holdable_agent.html#a089a15867a877d3a4cb510169c32d682">HoldableAgent</a>, <a class="el" href="class_movable_agent.html#af36b0e49e477cfcc60d801c11166a4f0">MovableAgent</a>, <a class="el" href="class_immovable_agent.html#a35b43ab9d6cd845a0ada5b95784994f0">ImmovableAgent</a>, <a class="el" href="class_mobile_phone.html#aa4f050bb755994fadfeab94c1f2147f7">MobilePhone</a>, <a class="el" href="class_locatable_agent.html#ae2b9a1bd2e207a9aac95f4d13a17a9f9">LocatableAgent</a>, and <a class="el" href="class_tablet.html#a2cac00cd9efca5b8adeff28ae5827970">Tablet</a>.</p>
 
 </div>
 </div>
@@ -324,39 +318,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if this object is the equal to a, flase otherwise. Thw objects are considered to be equal if they have the same id. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00023">23</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00021">21</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00049">getId()</a>, and <a class="el" href="_agent_8h_source.html#l00059">m_id</a>.</p>
-
-</div>
-</div>
-<a id="a7bc951d7f70768e8718a175388000b5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bc951d7f70768e8718a175388000b5c">&#9670;&nbsp;</a></span>setId()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Agent::setId </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00053">53</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
-
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00059">m_id</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8cpp_source.html#l00037">getId()</a>, and <a class="el" href="_agent_8h_source.html#l00081">m_id</a>.</p>
 
 </div>
 </div>
@@ -375,10 +339,16 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the <a class="el" href="class_map.html">Map</a> to be used by this agent during the simulation. It is not advisable to change the map during a simulation. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td>pointer to a <a class="el" href="class_map.html">Map</a> object. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00030">30</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8cpp_source.html#l00029">29</a> of file <a class="el" href="_agent_8cpp_source.html">Agent.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_agent_8h_source.html#l00058">m_map</a>.</p>
+<p class="reference">References <a class="el" href="_agent_8h_source.html#l00080">m_map</a>.</p>
 
 </div>
 </div>
@@ -404,8 +374,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. </p><dl class="section return"><dt>Returns</dt><dd>a string representation of the class content. The values of the members are written in this string. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_person.html#ac39b105901a2d4ce38ff5b548b1c349e">Person</a>, <a class="el" href="class_antenna.html#a58a2bc92fe68ae619701c143f5ba939c">Antenna</a>, <a class="el" href="class_holdable_agent.html#a3fee3021111198ac01469a715093ab88">HoldableAgent</a>, <a class="el" href="class_movable_agent.html#aa8a8424a9513e0d57f7d4b94e7a49552">MovableAgent</a>, <a class="el" href="class_mobile_phone.html#a3e4bf0a37331042084ae703666f8fb7c">MobilePhone</a>, <a class="el" href="class_locatable_agent.html#a593b8f4eb5d0a812b725726c35335193">LocatableAgent</a>, <a class="el" href="class_immovable_agent.html#a94ec08f8c08ec2b4cecf5ef27b00fa32">ImmovableAgent</a>, and <a class="el" href="class_tablet.html#a90880cd8f4a4afd451645e6e1dc86c5b">Tablet</a>.</p>
+<p>Implemented in <a class="el" href="class_antenna.html#a58a2bc92fe68ae619701c143f5ba939c">Antenna</a>, <a class="el" href="class_person.html#ac39b105901a2d4ce38ff5b548b1c349e">Person</a>, <a class="el" href="class_holdable_agent.html#a3fee3021111198ac01469a715093ab88">HoldableAgent</a>, <a class="el" href="class_movable_agent.html#aa8a8424a9513e0d57f7d4b94e7a49552">MovableAgent</a>, <a class="el" href="class_mobile_phone.html#a3e4bf0a37331042084ae703666f8fb7c">MobilePhone</a>, <a class="el" href="class_locatable_agent.html#a593b8f4eb5d0a812b725726c35335193">LocatableAgent</a>, <a class="el" href="class_immovable_agent.html#a94ec08f8c08ec2b4cecf5ef27b00fa32">ImmovableAgent</a>, and <a class="el" href="class_tablet.html#a90880cd8f4a4afd451645e6e1dc86c5b">Tablet</a>.</p>
 
 </div>
 </div>
@@ -430,9 +401,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00060">60</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00082">82</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_agent_8cpp_source.html#l00034">getClock()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_agent_8cpp_source.html#l00033">getClock()</a>.</p>
 
 </div>
 </div>
@@ -456,9 +427,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00059">59</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00081">81</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_agent_8h_source.html#l00049">getId()</a>, <a class="el" href="_agent_8cpp_source.html#l00023">operator==()</a>, and <a class="el" href="_agent_8h_source.html#l00053">setId()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_agent_8cpp_source.html#l00037">getId()</a>, and <a class="el" href="_agent_8cpp_source.html#l00021">operator==()</a>.</p>
 
 </div>
 </div>
@@ -482,9 +453,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00058">58</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_agent_8h_source.html#l00080">80</a> of file <a class="el" href="_agent_8h_source.html">Agent.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_agent_8cpp_source.html#l00027">getMap()</a>, and <a class="el" href="_agent_8cpp_source.html#l00030">setMap()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_agent_8cpp_source.html#l00025">getMap()</a>, and <a class="el" href="_agent_8cpp_source.html#l00029">setMap()</a>.</p>
 
 </div>
 </div>

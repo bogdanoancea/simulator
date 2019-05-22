@@ -93,14 +93,6 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 	m_attenuationFactor = attenuationFactor;
 }
 
-Polygon * Antenna::getCell() const {
-	return (m_cell);
-}
-
-void Antenna::setCell(const Polygon& cell) {
-//m_cell = cell;
-}
-
 string Antenna::toString() {
 	ostringstream result;
 	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_attenuationFactor;
@@ -235,7 +227,7 @@ double Antenna::SDist(double dist) {
 	return (10 * m_attenuationFactor * log10(dist));
 }
 
-double Antenna::S(double dist) {
+double Antenna::S(double dist) const {
 	if (m_type == AntennaType::OMNIDIRECTIONAL)
 		return (S0() - SDist(dist));
 	else
@@ -258,7 +250,7 @@ void Antenna::setSSteep(double sSteep) {
 	m_SSteep = sSteep;
 }
 
-double Antenna::computeSignalQuality(Point* p) {
+double Antenna::computeSignalQuality(Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		result = 1.0 / (1 + exp(-m_SSteep * (S(p->distance(getLocation())) - m_Smid)));
