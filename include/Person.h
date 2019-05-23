@@ -36,7 +36,7 @@ class Person: public MovableAgent {
 
 		virtual ~Person();
 
-		string getName() override {
+		const string getName() override {
 			return ("Person");
 		}
 

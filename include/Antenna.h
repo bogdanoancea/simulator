@@ -68,7 +68,7 @@ public:
 	 * Overrides the same method from the superclass.
 	 * @return the name of the class, i.e. "Antenna"
 	 */
-	string getName() override {
+	const string getName() override {
 		return ("Antenna");
 	}
 

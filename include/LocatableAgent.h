@@ -24,7 +24,7 @@ public:
 
 	virtual ~LocatableAgent();
 
-	string getName() override {
+	const string getName() override {
 		return "LocatableAgent";
 	}
 

@@ -20,7 +20,7 @@ class Tablet: public HoldableAgent {
 		explicit Tablet(Map* m, long id, Point* initPosition, Clock* clock);
 		virtual ~Tablet();
 
-		string getName() override {
+		const string getName() override {
 			return ("Tablet");
 		}
 

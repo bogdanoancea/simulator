@@ -17,17 +17,41 @@
 using namespace geos;
 using namespace geos::geom;
 
-
+/**
+ * This is a class that represents an agent that can have a localion on map but it cannot move. The only subclass of it is Antenna.
+ */
 class ImmovableAgent: public LocatableAgent {
-	public:
-		explicit ImmovableAgent(Map* m, long id, Point* initialPosition, Clock* clock);
-		virtual ~ImmovableAgent();
+public:
 
-		string toString() override;
+	/**
+	 * Constructor of the class. Build an object of ImmovableAgent type with the parameters provided by the user.
+	 * @param m a pointer to a map object used in this simulation.
+	 * @param id the id of this object
+	 * @param initialPosition the initial location on map
+	 * @param clock a pointer to a Clock object used in this simulation
+	 */
+	explicit ImmovableAgent(Map* m, long id, Point* initialPosition,
+			Clock* clock);
 
-		string getName() override {
-			return "ImovableAgent";
-		}
+	/**
+	 * Destructor
+	 */
+	virtual ~ImmovableAgent();
+
+	/**
+	 * Builds a string representation of this class
+	 * @return a string representation of this class
+	 */
+	string toString() override;
+
+
+	/**
+	 * Returns the name of this class
+	 * @return the name of this class
+	 */
+	const string getName() override {
+		return "ImovableAgent";
+	}
 };
 
 #endif /* IMMOVABLEAGENT_H_ */

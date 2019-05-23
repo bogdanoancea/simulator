@@ -28,7 +28,7 @@ class MovableAgent: public LocatableAgent {
 
 		virtual ~MovableAgent();
 
-		string getName() override {
+		const string getName() override {
 			return ("MovableAgent");
 		}
 

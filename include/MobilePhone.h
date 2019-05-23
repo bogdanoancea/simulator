@@ -26,7 +26,7 @@ class MobilePhone: public HoldableAgent {
 		explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold, HoldableAgent::CONNECTION_TYPE connType);
 		virtual ~MobilePhone();
 
-		string getName() override {
+		const string getName() override {
 			return ("MobilePhone");
 		}
 

@@ -42,7 +42,7 @@ public:
 	 * This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class.
 	 * @return the name of the class.
 	 */
-	virtual string getName() = 0;
+	virtual const string getName() = 0;
 
 	/**
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents.

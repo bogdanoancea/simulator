@@ -69,7 +69,7 @@ public:
 	 * Returns the name of the class
 	 * @return the name of the class
 	 */
-	string getName() override {
+	const string getName() override {
 		return ("HoldableAgent");
 	}
 
