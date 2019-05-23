@@ -203,8 +203,8 @@ private:
 	bool alreadyRegistered(HoldableAgent * ag);
 	void registerEvent(HoldableAgent * ag, EventType event, bool verbose);
 	unsigned long getNumActiveConections();
-	double S0();
-	double SDist(double dist);
+	double S0()const;
+	double SDist(double dist) const;
 
 	double m_attenuationFactor;
 	double m_power;

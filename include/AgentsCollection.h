@@ -66,7 +66,7 @@ public:
 	 * @return a std::pair of iterators of type unordered_multimap<string, Agent*>::iterator
 	 * that can be used to iterate through to subset of the agents.
 	 */
-	pair<um_iterator, um_iterator> getAgentListByType(const string& agentType) const;
+	pair<um_iterator, um_iterator> getAgentListByType(const string& agentType);
 
 	/**
 	 * Iterator to the past-the-end of the collection. It does not point to any agent, and thus shall not be dereferenced.

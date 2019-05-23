@@ -17,9 +17,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-/*
- *
- */
+
 class ImmovableAgent: public LocatableAgent {
 	public:
 		explicit ImmovableAgent(Map* m, long id, Point* initialPosition, Clock* clock);

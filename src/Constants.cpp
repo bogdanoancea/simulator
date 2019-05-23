@@ -9,6 +9,7 @@
 
 #include <Constants.h>
 
+
 const double Constants::POWER_THRESHOLD = 2;
 const double Constants::QUALITY_THRESHOLD = 0.5;
 const double Constants::ATT_FACTOR = 2;

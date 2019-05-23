@@ -10,6 +10,9 @@
 #ifndef ANTENNATYPE_H_
 #define ANTENNATYPE_H_
 
+/**
+ * An enum class that is used to represent the type of an antenna.
+ */
 enum class AntennaType {
 	OMNIDIRECTIONAL, DIRECTIONAL
 };

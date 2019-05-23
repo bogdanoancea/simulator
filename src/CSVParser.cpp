@@ -2,7 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
-#include "CSVparser.hpp"
+#include <CSVparser.hpp>
 
 using namespace std;
 
@@ -152,12 +152,12 @@ void Parser::sync(void) const {
 			if (i < _header.size() - 1)
 				f << ",";
 			else
-				f << std::endl;
+				f << endl;
 			i++;
 		}
 
 		for (auto it = _content.begin(); it != _content.end(); it++)
-			f << **it << std::endl;
+			f << **it << endl;
 		f.close();
 	}
 }

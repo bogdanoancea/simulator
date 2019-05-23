@@ -219,11 +219,11 @@ void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
 	}
 }
 
-double Antenna::S0() {
+double Antenna::S0() const{
 	return (30 + 10 * log10(m_power));
 }
 
-double Antenna::SDist(double dist) {
+double Antenna::SDist(double dist) const {
 	return (10 * m_attenuationFactor * log10(dist));
 }
 
@@ -259,7 +259,7 @@ double Antenna::computeSignalQuality(Point* p) const {
 	return (result);
 }
 
-double Antenna::computePower(Point* p) {
+double Antenna::computePower(Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL)
 		result = m_power * pow(p->distance(getLocation()), -m_attenuationFactor);
