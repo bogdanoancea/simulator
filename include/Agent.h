@@ -48,7 +48,7 @@ public:
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents.
 	 * @return a string representation of the class content. The values of the members are written in this string.
 	 */
-	virtual string toString() = 0;
+	virtual string toString() const = 0;
 
 	/**
 	 * Getter that returns a pointer to the map passed to the constructor when the an object was build.

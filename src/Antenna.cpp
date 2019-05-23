@@ -93,7 +93,7 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 	m_attenuationFactor = attenuationFactor;
 }
 
-string Antenna::toString() {
+string Antenna::toString() const {
 	ostringstream result;
 	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_attenuationFactor;
 	return (result.str());

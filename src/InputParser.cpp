@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <string>
 
+using namespace std;
+
 InputParser::InputParser(int &argc, char **argv) {
 	for (int i = 1; i < argc; ++i)
 		tokens.push_back(string(argv[i]));
@@ -18,7 +20,7 @@ InputParser::InputParser(int &argc, char **argv) {
 
 const string& InputParser::getCmdOption(const string &option) const {
 	vector<string>::const_iterator itr;
-	itr = std::find(tokens.begin(), tokens.end(), option);
+	itr = find(tokens.begin(), tokens.end(), option);
 	if (itr != tokens.end() && ++itr != tokens.end()) {
 		return *itr;
 	}

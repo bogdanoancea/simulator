@@ -40,7 +40,7 @@ class Person: public MovableAgent {
 			return ("Person");
 		}
 
-		string toString() override;
+		string toString() const override;
 
 		string dumpDevices();
 		bool hasDevices();

@@ -22,6 +22,6 @@ ImmovableAgent::~ImmovableAgent() {
 
 }
 
-string ImmovableAgent::toString() {
+string ImmovableAgent::toString() const {
 	return (LocatableAgent::toString());
 }

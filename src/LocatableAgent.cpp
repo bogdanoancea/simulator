@@ -36,7 +36,7 @@ void LocatableAgent::setLocation(Point* location) {
 	m_location = location;
 }
 
-string LocatableAgent::toString() {
+string LocatableAgent::toString() const {
 	ostringstream ss;
 	if (m_location != nullptr)
 		ss << left << setw(15) << getId() << setw(15) << getLocation()->getCoordinate()->x << setw(15) << getLocation()->getCoordinate()->y;
@@ -46,7 +46,7 @@ string LocatableAgent::toString() {
 
 }
 
-string LocatableAgent::dumpLocation() {
+const string LocatableAgent::dumpLocation() {
 	ostringstream ss;
 	char sep = ',';
 	if (getClock() != nullptr)

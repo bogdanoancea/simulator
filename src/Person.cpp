@@ -47,7 +47,7 @@ void Person::setAge(int age) {
 	m_age = age;
 }
 
-string Person::toString() {
+string Person::toString() const {
 	ostringstream ss;
 	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE? "Male" : "Female");
 

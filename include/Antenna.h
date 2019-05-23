@@ -76,7 +76,7 @@ public:
 	 * Overrides the same method from the superclass. It is used to write the characteristics of the Antenna in a file or console.
 	 * @return a string that describes the parameters of the Antenna.
 	 */
-	string toString() override;
+	string toString() const override;
 
 	/**
 	 * Returns the surrounding environment' attenuation factor of the signal.

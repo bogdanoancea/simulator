@@ -25,7 +25,7 @@ MobilePhone::~MobilePhone() {
 	// TODO Auto-generated destructor stub
 }
 
-string MobilePhone::toString() {
+string MobilePhone::toString() const {
 	return (HoldableAgent::toString());
 }
 

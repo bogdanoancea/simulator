@@ -32,7 +32,7 @@ class MovableAgent: public LocatableAgent {
 			return ("MovableAgent");
 		}
 
-		string toString() override;
+		string toString() const override;
 
 
 		virtual Point* move(MovementType type) = 0;

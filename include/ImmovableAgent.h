@@ -42,7 +42,7 @@ public:
 	 * Builds a string representation of this class
 	 * @return a string representation of this class
 	 */
-	string toString() override;
+	string toString() const override;
 
 
 	/**

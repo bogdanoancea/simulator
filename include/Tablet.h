@@ -24,7 +24,8 @@ class Tablet: public HoldableAgent {
 			return ("Tablet");
 		}
 
-		string toString() override;
+		string toString() const override;
+
 		Point* move(MovementType type) override {
 			return getLocation();
 		}
