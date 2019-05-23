@@ -30,7 +30,7 @@ class Tablet: public HoldableAgent {
 			return getLocation();
 		}
 
-		bool tryConnect(HoldableAgent::CONNECTION_TYPE type) override;
+		bool tryConnect() override;
 
 	private:
 

@@ -25,7 +25,7 @@ class LocatableAgent: public Agent {
 public:
 
 	/**
-	 * Constructor of the class. Build an object htat has a location on the map of the simulation
+	 * Constructor of the class. Builds an object that has a location on the map of the simulation
 	 * @param m a pointer to a Map object used in this simulation.
 	 * @param id the id of the object.
 	 * @param initLocation the initial location of the object.
@@ -47,7 +47,7 @@ public:
 	}
 
 	/**
-	 *
+	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.
 	 * @return a string representation of this class
 	 */
 	string toString() const override;
@@ -59,8 +59,8 @@ public:
 	virtual Point* getLocation() const;
 
 	/**
-	 * Sets the location on the map
-	 * @param location the location on the map
+	 * Sets the location of the agent on the map
+	 * @param location the location of the agent on the map
 	 */
 	virtual void setLocation(Point* location);
 

@@ -22,24 +22,19 @@ MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Cl
 }
 
 MobilePhone::~MobilePhone() {
-	// TODO Auto-generated destructor stub
 }
 
 string MobilePhone::toString() const {
 	return (HoldableAgent::toString());
 }
 
-bool MobilePhone::tryConnect(HoldableAgent::CONNECTION_TYPE type) {
-	return (tryConnectNaiveAlgorithm(type));
-}
-
-bool MobilePhone::tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type) {
+bool MobilePhone::tryConnect() {
 	bool connected = false;
 
 	//select the most powerful antenna
 	Point *p = this->getLocation();
-	bool use_power = (type == HoldableAgent::CONNECTION_TYPE::USING_POWER);
-	double threshold = (use_power ? m_powerThreshold : Constants::QUALITY_THRESHOLD);
+	bool use_power = (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER);
+	double threshold = (use_power ? m_powerThreshold : m_qualityThreshold);
 
 	if (m_connectedTo != nullptr) {
 		//check if this antenna is still in range, otherwise detach from it

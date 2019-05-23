@@ -19,7 +19,6 @@
 #include <fstream>
 #include <sstream>
 
-
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
@@ -53,7 +52,6 @@ Map::Map(double llx, double llY, double width, double height) {
 	m_boundary = (Geometry*) create_rectangle(0, 0, 10, 10);
 }
 
-
 Map::Map(string wktFileName) {
 	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
 	m_globalFactory = GeometryFactory::create(pm, -1);
@@ -63,8 +61,7 @@ Map::Map(string wktFileName) {
 	ifstream wktFile;
 	try {
 		wktFile.open(wktFileName, ios::in);
-	}
-	catch (ofstream::failure& e) {
+	} catch (ofstream::failure& e) {
 		cerr << "Error opening map file!" << endl;
 		throw e;
 	}
@@ -74,14 +71,14 @@ Map::Map(string wktFileName) {
 	m_boundary = reader.read(buffer.str());
 	try {
 		wktFile.close();
-	}
-	catch (ofstream::failure& e) {
+	} catch (ofstream::failure& e) {
 		cerr << "Error closing map file!" << endl;
 		throw e;
 	}
 }
 
 Map::~Map() {
+	if(m_boundary != nullptr)
 	delete m_boundary;
 }
 

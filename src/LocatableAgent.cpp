@@ -29,7 +29,7 @@ LocatableAgent::~LocatableAgent() {
 }
 
 Point* LocatableAgent::getLocation() const {
-	return m_location;
+	return (m_location);
 }
 
 void LocatableAgent::setLocation(Point* location) {

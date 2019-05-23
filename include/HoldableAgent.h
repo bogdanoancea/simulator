@@ -81,10 +81,9 @@ public:
 
 	/**
 	 * Called when a device wants to connect to an antenna
-	 * @param type indicates what method should be used for connection: the power of the signal or the quality of the signal
-	 * @return true if the conection succeeds, false otherwise.
+	 * @return true if the connection succeeds, false otherwise.
 	 */
-	virtual bool tryConnect(CONNECTION_TYPE type) = 0;
+	virtual bool tryConnect() = 0;
 
 	/**
 	 * check if this device is connected to an antenna
