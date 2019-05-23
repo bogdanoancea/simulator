@@ -22,7 +22,7 @@ RandomNumberGenerator::RandomNumberGenerator() {
 	m_generator.seed(device());
 }
 
-double* RandomNumberGenerator::generateNormal2Double(double m1, double sd1, double m2, double sd2, int n) {
+double* RandomNumberGenerator::generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, const int n) {
 	double* result = new double[n];
 	normal_distribution<double>::param_type p1(m1, sd1);
 	normal_distribution<double>::param_type p2(m2, sd2);
@@ -40,7 +40,7 @@ double* RandomNumberGenerator::generateNormal2Double(double m1, double sd1, doub
 	return (result);
 }
 
-double RandomNumberGenerator::generateUniformDouble(double min, double max) {
+double RandomNumberGenerator::generateUniformDouble(const double min, const double max) {
 	double result = 0.0;
 	uniform_real_distribution<double>::param_type p(min, max);
 	m_unif_double_distribution.param(p);
@@ -49,7 +49,7 @@ double RandomNumberGenerator::generateUniformDouble(double min, double max) {
 	return (result);
 }
 
-double* RandomNumberGenerator::generateUniformDouble(double min, double max, int n) {
+double* RandomNumberGenerator::generateUniformDouble(const double min, const double max, const int n) {
 	double* result = new double[n];
 	uniform_real_distribution<double>::param_type p(min, max);
 	m_unif_double_distribution.param(p);
@@ -59,7 +59,7 @@ double* RandomNumberGenerator::generateUniformDouble(double min, double max, int
 	return (result);
 }
 
-int RandomNumberGenerator::generateUniformInt(int min, int max) {
+int RandomNumberGenerator::generateUniformInt(const int min, const int max) {
 	int result = 0;
 	uniform_int_distribution<int>::param_type p(min, max);
 	m_unif_int_distribution.param(p);
@@ -67,7 +67,7 @@ int RandomNumberGenerator::generateUniformInt(int min, int max) {
 	return (result);
 }
 
-int* RandomNumberGenerator::generateUniformInt(int min, int max, int n) {
+int* RandomNumberGenerator::generateUniformInt(const int min, const int max, const int n) {
 	int* result = new int[n];
 	uniform_int_distribution<int>::param_type p(min, max);
 	m_unif_int_distribution.param(p);
@@ -77,7 +77,7 @@ int* RandomNumberGenerator::generateUniformInt(int min, int max, int n) {
 	return (result);
 }
 
-int RandomNumberGenerator::generateBinomialInt(int max, double p) {
+int RandomNumberGenerator::generateBinomialInt(const int max, const double p) {
 	int result = 0;
 	binomial_distribution<int>::param_type par(max, p);
 	m_binomial_distribution.param(par);
@@ -85,7 +85,7 @@ int RandomNumberGenerator::generateBinomialInt(int max, double p) {
 	return (result);
 }
 
-int* RandomNumberGenerator::generateBinomialInt(int max, double p, int n) {
+int* RandomNumberGenerator::generateBinomialInt(const int max, const double p, int n) {
 	int* result = new int[n];
 	binomial_distribution<int>::param_type par(max, p);
 	m_binomial_distribution.param(par);
@@ -95,7 +95,7 @@ int* RandomNumberGenerator::generateBinomialInt(int max, double p, int n) {
 	return (result);
 }
 
-double* RandomNumberGenerator::generateNormalDouble(double m, double sd, int n) {
+double* RandomNumberGenerator::generateNormalDouble(const double m, const double sd, const int n) {
 	double* result = new double[n];
 	normal_distribution<double>::param_type p1(m, sd);
 	m_normal_double_distribution.param(p1);
@@ -119,7 +119,7 @@ double* RandomNumberGenerator::generateTruncatedNormalDouble(const double a, con
 	return (result);
 }
 
-double RandomNumberGenerator::generateNormalDouble(double m, double sd) {
+double RandomNumberGenerator::generateNormalDouble(const double m, const double sd) {
 	double result;
 	normal_distribution<double>::param_type p1(m, sd);
 	m_normal_double_distribution.param(p1);
