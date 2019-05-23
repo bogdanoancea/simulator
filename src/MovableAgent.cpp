@@ -15,11 +15,9 @@
 
 MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, Clock* clock, double initialSpeed) :
 		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
-	// TODO Auto-generated constructor stub
 }
 
 MovableAgent::~MovableAgent() {
-	// TODO Auto-generated destructor stub
 }
 
 double MovableAgent::getSpeed() const {

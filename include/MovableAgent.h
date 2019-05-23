@@ -61,7 +61,16 @@ public:
 	 */
 	virtual Point* move(MovementType type) = 0;
 
+	/**
+	 * Returns the speed of this agent
+	 * @return the speed of this agent
+	 */
 	double getSpeed() const;
+
+	/**
+	 * Sets the speed of this agent
+	 * @param speed the speed of this agent
+	 */
 	void setSpeed(double speed);
 
 private:

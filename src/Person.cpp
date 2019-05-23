@@ -32,11 +32,9 @@ using namespace geos::geom;
 
 Person::Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gen) :
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
-	// TODO Auto-generated constructor stub
 }
 
 Person::~Person() {
-	// TODO Auto-generated destructor stub
 }
 
 int Person::getAge() const {
