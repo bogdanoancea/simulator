@@ -66,6 +66,10 @@ Default constructor
 
 Definition at line 17 of file Clock.\+cpp.
 
+
+
+References m\+\_\+current\+Time, m\+\_\+final\+Time, and m\+\_\+increment.
+
 \mbox{\label{class_clock_a89a798e152f8eba2f6eb80ec92b26ece}} 
 \index{Clock@{Clock}!Clock@{Clock}}
 \index{Clock@{Clock}!Clock@{Clock}}
@@ -76,10 +80,14 @@ Constructor
 
 Definition at line 21 of file Clock.\+cpp.
 
+
+
+References m\+\_\+current\+Time, m\+\_\+final\+Time, and m\+\_\+increment.
+
 \mbox{\label{class_clock_afc976ce68fa85e15cc06f9ed47bddb7c}} 
-\index{Clock@{Clock}!````~Clock@{$\sim$Clock}}
-\index{````~Clock@{$\sim$Clock}!Clock@{Clock}}
-\subsubsection{$\sim$Clock()}
+\index{Clock@{Clock}!````~Clock@{$\sim$\+Clock}}
+\index{````~Clock@{$\sim$\+Clock}!Clock@{Clock}}
+\subsubsection{$\sim$\+Clock()}
 {\footnotesize\ttfamily Clock\+::$\sim$\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Default destructor 
@@ -90,9 +98,9 @@ Definition at line 25 of file Clock.\+cpp.
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_clock_a17b19c062d1f0344f37b57cc2dfdaa14}} 
-\index{Clock@{Clock}!getCurrentTime@{getCurrentTime}}
-\index{getCurrentTime@{getCurrentTime}!Clock@{Clock}}
-\subsubsection{getCurrentTime()}
+\index{Clock@{Clock}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!Clock@{Clock}}
+\subsubsection{get\+Current\+Time()}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -108,9 +116,9 @@ References m\+\_\+current\+Time.
 Referenced by Locatable\+Agent\+::dump\+Location(), World\+::get\+Current\+Time(), and Antenna\+::register\+Event().
 
 \mbox{\label{class_clock_a0b9ef0b9272d6555bb0fdca4978c705d}} 
-\index{Clock@{Clock}!getFinalTime@{getFinalTime}}
-\index{getFinalTime@{getFinalTime}!Clock@{Clock}}
-\subsubsection{getFinalTime()}
+\index{Clock@{Clock}!get\+Final\+Time@{get\+Final\+Time}}
+\index{get\+Final\+Time@{get\+Final\+Time}!Clock@{Clock}}
+\subsubsection{get\+Final\+Time()}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Final\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -121,10 +129,14 @@ Definition at line 67 of file Clock.\+cpp.
 
 References m\+\_\+final\+Time.
 
+
+
+Referenced by World\+::run\+Simulation().
+
 \mbox{\label{class_clock_a804626d5455f4a2a73321f84ed7a9819}} 
-\index{Clock@{Clock}!getIncrement@{getIncrement}}
-\index{getIncrement@{getIncrement}!Clock@{Clock}}
-\subsubsection{getIncrement()}
+\index{Clock@{Clock}!get\+Increment@{get\+Increment}}
+\index{get\+Increment@{get\+Increment}!Clock@{Clock}}
+\subsubsection{get\+Increment()}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -136,9 +148,9 @@ Definition at line 45 of file Clock.\+cpp.
 References m\+\_\+increment.
 
 \mbox{\label{class_clock_a9792f62fed3c320abecc5c455b13a804}} 
-\index{Clock@{Clock}!getInitialTime@{getInitialTime}}
-\index{getInitialTime@{getInitialTime}!Clock@{Clock}}
-\subsubsection{getInitialTime()}
+\index{Clock@{Clock}!get\+Initial\+Time@{get\+Initial\+Time}}
+\index{get\+Initial\+Time@{get\+Initial\+Time}!Clock@{Clock}}
+\subsubsection{get\+Initial\+Time()}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Initial\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -149,15 +161,23 @@ Definition at line 53 of file Clock.\+cpp.
 
 References m\+\_\+initial\+Time.
 
+
+
+Referenced by World\+::run\+Simulation().
+
 \mbox{\label{class_clock_a29512d39298cafed334d0c01da70ea7b}} 
-\index{Clock@{Clock}!realTime@{realTime}}
-\index{realTime@{realTime}!Clock@{Clock}}
-\subsubsection{realTime()}
+\index{Clock@{Clock}!real\+Time@{real\+Time}}
+\index{real\+Time@{real\+Time}!Clock@{Clock}}
+\subsubsection{real\+Time()}
 {\footnotesize\ttfamily time\+\_\+t Clock\+::real\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Definition at line 61 of file Clock.\+cpp.
+
+
+
+Referenced by World\+::run\+Simulation().
 
 \mbox{\label{class_clock_a0ab5423b0a997aa13d7b6131c46d1358}} 
 \index{Clock@{Clock}!reset@{reset}}
@@ -174,9 +194,9 @@ Definition at line 33 of file Clock.\+cpp.
 References m\+\_\+current\+Time, and m\+\_\+initial\+Time.
 
 \mbox{\label{class_clock_a7046e8733ab749d3c24b3c61bd108d6c}} 
-\index{Clock@{Clock}!setCurrentTime@{setCurrentTime}}
-\index{setCurrentTime@{setCurrentTime}!Clock@{Clock}}
-\subsubsection{setCurrentTime()}
+\index{Clock@{Clock}!set\+Current\+Time@{set\+Current\+Time}}
+\index{set\+Current\+Time@{set\+Current\+Time}!Clock@{Clock}}
+\subsubsection{set\+Current\+Time()}
 {\footnotesize\ttfamily void Clock\+::set\+Current\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{current\+Time }\end{DoxyParamCaption})}
 
 
@@ -188,9 +208,9 @@ Definition at line 41 of file Clock.\+cpp.
 References m\+\_\+current\+Time.
 
 \mbox{\label{class_clock_a4780f83b55bc2539cd7069cfc4f06d99}} 
-\index{Clock@{Clock}!setFinalTime@{setFinalTime}}
-\index{setFinalTime@{setFinalTime}!Clock@{Clock}}
-\subsubsection{setFinalTime()}
+\index{Clock@{Clock}!set\+Final\+Time@{set\+Final\+Time}}
+\index{set\+Final\+Time@{set\+Final\+Time}!Clock@{Clock}}
+\subsubsection{set\+Final\+Time()}
 {\footnotesize\ttfamily void Clock\+::set\+Final\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{final\+Time }\end{DoxyParamCaption})}
 
 
@@ -202,9 +222,9 @@ Definition at line 71 of file Clock.\+cpp.
 References m\+\_\+final\+Time.
 
 \mbox{\label{class_clock_a1ae60dca4e41f6e27d6104ec618c02f1}} 
-\index{Clock@{Clock}!setIncrement@{setIncrement}}
-\index{setIncrement@{setIncrement}!Clock@{Clock}}
-\subsubsection{setIncrement()}
+\index{Clock@{Clock}!set\+Increment@{set\+Increment}}
+\index{set\+Increment@{set\+Increment}!Clock@{Clock}}
+\subsubsection{set\+Increment()}
 {\footnotesize\ttfamily void Clock\+::set\+Increment (\begin{DoxyParamCaption}\item[{unsigned long}]{increment }\end{DoxyParamCaption})}
 
 
@@ -216,9 +236,9 @@ Definition at line 49 of file Clock.\+cpp.
 References m\+\_\+increment.
 
 \mbox{\label{class_clock_abe7fb8f715d0dcae08e52b2b7aed7db2}} 
-\index{Clock@{Clock}!setInitialTime@{setInitialTime}}
-\index{setInitialTime@{setInitialTime}!Clock@{Clock}}
-\subsubsection{setInitialTime()}
+\index{Clock@{Clock}!set\+Initial\+Time@{set\+Initial\+Time}}
+\index{set\+Initial\+Time@{set\+Initial\+Time}!Clock@{Clock}}
+\subsubsection{set\+Initial\+Time()}
 {\footnotesize\ttfamily void Clock\+::set\+Initial\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{initial\+Time }\end{DoxyParamCaption})}
 
 
@@ -245,11 +265,15 @@ References m\+\_\+current\+Time, and m\+\_\+increment.
 
 
 
+Referenced by World\+::run\+Simulation().
+
+
+
 \subsection{Member Data Documentation}
 \mbox{\label{class_clock_a73bf4edfc8f0fe2548ef6956f68b678e}} 
-\index{Clock@{Clock}!m\_currentTime@{m\_currentTime}}
-\index{m\_currentTime@{m\_currentTime}!Clock@{Clock}}
-\subsubsection{m\_currentTime}
+\index{Clock@{Clock}!m\+\_\+current\+Time@{m\+\_\+current\+Time}}
+\index{m\+\_\+current\+Time@{m\+\_\+current\+Time}!Clock@{Clock}}
+\subsubsection{m\+\_\+current\+Time}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+current\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -258,12 +282,12 @@ Definition at line 50 of file Clock.\+h.
 
 
 
-Referenced by get\+Current\+Time(), reset(), set\+Current\+Time(), and tick().
+Referenced by Clock(), get\+Current\+Time(), reset(), set\+Current\+Time(), and tick().
 
 \mbox{\label{class_clock_a5c473d84c1051d946ab5565060902840}} 
-\index{Clock@{Clock}!m\_finalTime@{m\_finalTime}}
-\index{m\_finalTime@{m\_finalTime}!Clock@{Clock}}
-\subsubsection{m\_finalTime}
+\index{Clock@{Clock}!m\+\_\+final\+Time@{m\+\_\+final\+Time}}
+\index{m\+\_\+final\+Time@{m\+\_\+final\+Time}!Clock@{Clock}}
+\subsubsection{m\+\_\+final\+Time}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+final\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -272,12 +296,12 @@ Definition at line 52 of file Clock.\+h.
 
 
 
-Referenced by get\+Final\+Time(), and set\+Final\+Time().
+Referenced by Clock(), get\+Final\+Time(), and set\+Final\+Time().
 
 \mbox{\label{class_clock_a2f940f0a30d58d1f7f36d0296463b9aa}} 
-\index{Clock@{Clock}!m\_increment@{m\_increment}}
-\index{m\_increment@{m\_increment}!Clock@{Clock}}
-\subsubsection{m\_increment}
+\index{Clock@{Clock}!m\+\_\+increment@{m\+\_\+increment}}
+\index{m\+\_\+increment@{m\+\_\+increment}!Clock@{Clock}}
+\subsubsection{m\+\_\+increment}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+increment\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -286,12 +310,12 @@ Definition at line 51 of file Clock.\+h.
 
 
 
-Referenced by get\+Increment(), set\+Increment(), and tick().
+Referenced by Clock(), get\+Increment(), set\+Increment(), and tick().
 
 \mbox{\label{class_clock_a71afbea0f41f612e36d45ee2bb79ff0e}} 
-\index{Clock@{Clock}!m\_initialTime@{m\_initialTime}}
-\index{m\_initialTime@{m\_initialTime}!Clock@{Clock}}
-\subsubsection{m\_initialTime}
+\index{Clock@{Clock}!m\+\_\+initial\+Time@{m\+\_\+initial\+Time}}
+\index{m\+\_\+initial\+Time@{m\+\_\+initial\+Time}!Clock@{Clock}}
+\subsubsection{m\+\_\+initial\+Time}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+initial\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 

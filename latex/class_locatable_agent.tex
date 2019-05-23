@@ -1,15 +1,17 @@
 \section{Locatable\+Agent Class Reference}
-\label{class_locatable_agent}\index{LocatableAgent@{LocatableAgent}}
+\label{class_locatable_agent}\index{Locatable\+Agent@{Locatable\+Agent}}
 
 
 {\ttfamily \#include $<$Locatable\+Agent.\+h$>$}
 
-Inheritance diagram for Locatable\+Agent\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=5.000000cm]{class_locatable_agent}
-\end{center}
-\end{figure}
+
+
+Inheritance diagram for Locatable\+Agent\+:
+% FIG 0
+
+
+Collaboration diagram for Locatable\+Agent\+:
+% FIG 1
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -43,9 +45,9 @@ Definition at line 21 of file Locatable\+Agent.\+h.
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\label{class_locatable_agent_ac499b75f07ffa4daf3da16488953533e}} 
-\index{LocatableAgent@{LocatableAgent}!LocatableAgent@{LocatableAgent}}
-\index{LocatableAgent@{LocatableAgent}!LocatableAgent@{LocatableAgent}}
-\subsubsection{LocatableAgent()}
+\index{Locatable\+Agent@{Locatable\+Agent}!Locatable\+Agent@{Locatable\+Agent}}
+\index{Locatable\+Agent@{Locatable\+Agent}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{Locatable\+Agent()}
 {\footnotesize\ttfamily Locatable\+Agent\+::\+Locatable\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Location,  }\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
 
@@ -57,9 +59,9 @@ Definition at line 20 of file Locatable\+Agent.\+cpp.
 References m\+\_\+location.
 
 \mbox{\label{class_locatable_agent_a6a088f1e2c16a0b52e4a630868d4eae6}} 
-\index{LocatableAgent@{LocatableAgent}!````~LocatableAgent@{$\sim$LocatableAgent}}
-\index{````~LocatableAgent@{$\sim$LocatableAgent}!LocatableAgent@{LocatableAgent}}
-\subsubsection{$\sim$LocatableAgent()}
+\index{Locatable\+Agent@{Locatable\+Agent}!````~Locatable\+Agent@{$\sim$\+Locatable\+Agent}}
+\index{````~Locatable\+Agent@{$\sim$\+Locatable\+Agent}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{$\sim$\+Locatable\+Agent()}
 {\footnotesize\ttfamily Locatable\+Agent\+::$\sim$\+Locatable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -70,9 +72,9 @@ Definition at line 26 of file Locatable\+Agent.\+cpp.
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_locatable_agent_ab4436577328ce536ccba55d3068b2cf4}} 
-\index{LocatableAgent@{LocatableAgent}!dumpLocation@{dumpLocation}}
-\index{dumpLocation@{dumpLocation}!LocatableAgent@{LocatableAgent}}
-\subsubsection{dumpLocation()}
+\index{Locatable\+Agent@{Locatable\+Agent}!dump\+Location@{dump\+Location}}
+\index{dump\+Location@{dump\+Location}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{dump\+Location()}
 {\footnotesize\ttfamily string Locatable\+Agent\+::dump\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -87,10 +89,12 @@ References Agent\+::get\+Clock(), Clock\+::get\+Current\+Time(), Agent\+::get\+I
 
 Referenced by World\+::run\+Simulation().
 
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\label{class_locatable_agent_a2392d365653e71cc35029fdebbfe18d9}} 
-\index{LocatableAgent@{LocatableAgent}!getLocation@{getLocation}}
-\index{getLocation@{getLocation}!LocatableAgent@{LocatableAgent}}
-\subsubsection{getLocation()}
+\index{Locatable\+Agent@{Locatable\+Agent}!get\+Location@{get\+Location}}
+\index{get\+Location@{get\+Location}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{get\+Location()}
 {\footnotesize\ttfamily Point $\ast$ Locatable\+Agent\+::get\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -103,12 +107,12 @@ References m\+\_\+location.
 
 
 
-Referenced by Antenna\+::compute\+Power(), Antenna\+::compute\+Signal\+Quality(), dump\+Location(), Tablet\+::move(), Person\+::move(), Person\+::random\+Walk(), Antenna\+::register\+Event(), Holdable\+Agent\+::set\+Holder(), to\+String(), and Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
+Referenced by Antenna\+::compute\+Power(), Antenna\+::compute\+Signal\+Quality(), dump\+Location(), Tablet\+::move(), Person\+::move(), Antenna\+::register\+Event(), Holdable\+Agent\+::set\+Holder(), to\+String(), and Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
 
 \mbox{\label{class_locatable_agent_ae2b9a1bd2e207a9aac95f4d13a17a9f9}} 
-\index{LocatableAgent@{LocatableAgent}!getName@{getName}}
-\index{getName@{getName}!LocatableAgent@{LocatableAgent}}
-\subsubsection{getName()}
+\index{Locatable\+Agent@{Locatable\+Agent}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{get\+Name()}
 {\footnotesize\ttfamily string Locatable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
@@ -127,9 +131,9 @@ Reimplemented in \textbf{ Person} \doxyref{}{p.}{class_person_a41c6a0cd763dc1548
 Definition at line 27 of file Locatable\+Agent.\+h.
 
 \mbox{\label{class_locatable_agent_a4185a45957d529a7f57d19ea294cae81}} 
-\index{LocatableAgent@{LocatableAgent}!setLocation@{setLocation}}
-\index{setLocation@{setLocation}!LocatableAgent@{LocatableAgent}}
-\subsubsection{setLocation()}
+\index{Locatable\+Agent@{Locatable\+Agent}!set\+Location@{set\+Location}}
+\index{set\+Location@{set\+Location}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{set\+Location()}
 {\footnotesize\ttfamily void Locatable\+Agent\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -146,12 +150,12 @@ References m\+\_\+location.
 
 
 
-Referenced by Antenna\+::\+Antenna(), Holdable\+Agent\+::set\+Location(), and Person\+::set\+Location().
+Referenced by Holdable\+Agent\+::set\+Location(), and Person\+::set\+Location().
 
 \mbox{\label{class_locatable_agent_a593b8f4eb5d0a812b725726c35335193}} 
-\index{LocatableAgent@{LocatableAgent}!toString@{toString}}
-\index{toString@{toString}!LocatableAgent@{LocatableAgent}}
-\subsubsection{toString()}
+\index{Locatable\+Agent@{Locatable\+Agent}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{to\+String()}
 {\footnotesize\ttfamily string Locatable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
@@ -177,13 +181,15 @@ References Agent\+::get\+Id(), get\+Location(), and m\+\_\+location.
 
 Referenced by Immovable\+Agent\+::to\+String(), and Movable\+Agent\+::to\+String().
 
+Here is the call graph for this function\+:
+% FIG 3
 
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_locatable_agent_a2a76ba315733ab26f19229a71071704d}} 
-\index{LocatableAgent@{LocatableAgent}!m\_location@{m\_location}}
-\index{m\_location@{m\_location}!LocatableAgent@{LocatableAgent}}
-\subsubsection{m\_location}
+\index{Locatable\+Agent@{Locatable\+Agent}!m\+\_\+location@{m\+\_\+location}}
+\index{m\+\_\+location@{m\+\_\+location}!Locatable\+Agent@{Locatable\+Agent}}
+\subsubsection{m\+\_\+location}
 {\footnotesize\ttfamily Point$\ast$ Locatable\+Agent\+::m\+\_\+location\hspace{0.3cm}{\ttfamily [private]}}
 
 

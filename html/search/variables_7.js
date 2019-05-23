@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['length',['length',['../structtinyxml2_1_1_entity.html#a25e2b57cb59cb4fa68f283d7cb570f21',1,'tinyxml2::Entity']]],
-  ['lf',['LF',['../tinyxml2_8cpp.html#a19b283812883e1dad22bbde25738643a',1,'tinyxml2.cpp']]],
-  ['line_5ffeed',['LINE_FEED',['../tinyxml2_8cpp.html#aca0c283d60be29cdf68e753a97ce7ac2',1,'tinyxml2.cpp']]]
+  ['pattern',['pattern',['../structtinyxml2_1_1_entity.html#ab330f5d665d29bfc811ecfa76315894b',1,'tinyxml2::Entity']]],
+  ['pi',['PI',['../namespaceutils.html#a92ce7d254229929886551de7417e1912',1,'utils']]],
+  ['power_5fthreshold',['POWER_THRESHOLD',['../class_constants.html#a472cc73dedd39ce07b18a15b150af418',1,'Constants']]]
 ];

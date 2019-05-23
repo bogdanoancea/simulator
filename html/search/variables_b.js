@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quality_5fthreshold',['QUALITY_THRESHOLD',['../class_constants.html#ac1fe084cae6ef71dce35c42a0e36a10a',1,'Constants']]]
+  ['value',['value',['../structtinyxml2_1_1_entity.html#a7334e81e33b4615655a403711b24f3ed',1,'tinyxml2::Entity']]]
 ];

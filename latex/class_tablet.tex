@@ -4,12 +4,14 @@
 
 {\ttfamily \#include $<$Tablet.\+h$>$}
 
-Inheritance diagram for Tablet\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=5.000000cm]{class_tablet}
-\end{center}
-\end{figure}
+
+
+Inheritance diagram for Tablet\+:
+% FIG 0
+
+
+Collaboration diagram for Tablet\+:
+% FIG 1
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,9 +49,9 @@ Definition at line 18 of file Tablet.\+h.
 Definition at line 13 of file Tablet.\+cpp.
 
 \mbox{\label{class_tablet_ac1708c29981f805e5fd60ebf03acb924}} 
-\index{Tablet@{Tablet}!````~Tablet@{$\sim$Tablet}}
-\index{````~Tablet@{$\sim$Tablet}!Tablet@{Tablet}}
-\subsubsection{$\sim$Tablet()}
+\index{Tablet@{Tablet}!````~Tablet@{$\sim$\+Tablet}}
+\index{````~Tablet@{$\sim$\+Tablet}!Tablet@{Tablet}}
+\subsubsection{$\sim$\+Tablet()}
 {\footnotesize\ttfamily Tablet\+::$\sim$\+Tablet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
@@ -60,9 +62,9 @@ Definition at line 19 of file Tablet.\+cpp.
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_tablet_a2cac00cd9efca5b8adeff28ae5827970}} 
-\index{Tablet@{Tablet}!getName@{getName}}
-\index{getName@{getName}!Tablet@{Tablet}}
-\subsubsection{getName()}
+\index{Tablet@{Tablet}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Tablet@{Tablet}}
+\subsubsection{get\+Name()}
 {\footnotesize\ttfamily string Tablet\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
@@ -76,6 +78,12 @@ Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent
 
 Definition at line 23 of file Tablet.\+h.
 
+
+
+References to\+String().
+
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\label{class_tablet_a0021a8d61f496d84540f675b1cb7d080}} 
 \index{Tablet@{Tablet}!move@{move}}
 \index{move@{move}!Tablet@{Tablet}}
@@ -92,12 +100,14 @@ Definition at line 28 of file Tablet.\+h.
 
 
 
-References Locatable\+Agent\+::get\+Location().
+References Locatable\+Agent\+::get\+Location(), and try\+Connect().
 
+Here is the call graph for this function\+:
+% FIG 3
 \mbox{\label{class_tablet_a90880cd8f4a4afd451645e6e1dc86c5b}} 
-\index{Tablet@{Tablet}!toString@{toString}}
-\index{toString@{toString}!Tablet@{Tablet}}
-\subsubsection{toString()}
+\index{Tablet@{Tablet}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Tablet@{Tablet}}
+\subsubsection{to\+String()}
 {\footnotesize\ttfamily string Tablet\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
@@ -115,10 +125,16 @@ Definition at line 23 of file Tablet.\+cpp.
 
 References Holdable\+Agent\+::to\+String().
 
+
+
+Referenced by get\+Name().
+
+Here is the call graph for this function\+:
+% FIG 4
 \mbox{\label{class_tablet_a4a08098f3acddd3167fc9633deabb809}} 
-\index{Tablet@{Tablet}!tryConnect@{tryConnect}}
-\index{tryConnect@{tryConnect}!Tablet@{Tablet}}
-\subsubsection{tryConnect()}
+\index{Tablet@{Tablet}!try\+Connect@{try\+Connect}}
+\index{try\+Connect@{try\+Connect}!Tablet@{Tablet}}
+\subsubsection{try\+Connect()}
 {\footnotesize\ttfamily bool Tablet\+::try\+Connect (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
@@ -128,6 +144,10 @@ Implements \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3f6500
 
 
 Definition at line 27 of file Tablet.\+cpp.
+
+
+
+Referenced by move().
 
 
 

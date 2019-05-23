@@ -4,6 +4,10 @@
 
 {\ttfamily \#include $<$World.\+h$>$}
 
+
+
+Collaboration diagram for World\+:
+% FIG 0
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -89,6 +93,12 @@ Default constructor
 
 Definition at line 37 of file World.\+cpp.
 
+
+
+References Agents\+Collection\+::add\+Agent(), E\+M\+Field\+::add\+Antenna(), generate\+Antennas(), generate\+Mobile\+Phones(), generate\+Population(), E\+M\+Field\+::instance(), m\+\_\+agents\+Collection, m\+\_\+clock, m\+\_\+conn\+Type, m\+\_\+mv\+Type, and R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK.
+
+Here is the call graph for this function\+:
+% FIG 1
 \mbox{\label{class_world_a5a02572c10d750037a8c604a7d806550}} 
 \index{World@{World}!World@{World}}
 \index{World@{World}!World@{World}}
@@ -99,6 +109,12 @@ Definition at line 37 of file World.\+cpp.
 
 Definition at line 61 of file World.\+cpp.
 
+
+
+References Agents\+Collection\+::add\+Agent(), E\+M\+Field\+::add\+Antenna(), generate\+Mobile\+Phones(), generate\+Population(), E\+M\+Field\+::instance(), m\+\_\+agents\+Collection, m\+\_\+clock, m\+\_\+conn\+Type, m\+\_\+mv\+Type, parse\+Antennas(), and R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK.
+
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\label{class_world_a6376bd8ac7c88b8e01e7cca06d9bb18a}} 
 \index{World@{World}!World@{World}}
 \index{World@{World}!World@{World}}
@@ -109,10 +125,16 @@ Definition at line 61 of file World.\+cpp.
 
 Definition at line 84 of file World.\+cpp.
 
+
+
+References Agents\+Collection\+::add\+Agent(), E\+M\+Field\+::add\+Antenna(), E\+M\+Field\+::instance(), m\+\_\+agents\+Collection, m\+\_\+clock, m\+\_\+end\+Time, m\+\_\+start\+Time, m\+\_\+time\+Increment, parse\+Antennas(), parse\+Persons(), and parse\+Simulation\+File().
+
+Here is the call graph for this function\+:
+% FIG 3
 \mbox{\label{class_world_a8c73fba541a5817fff65147ba47cd827}} 
-\index{World@{World}!````~World@{$\sim$World}}
-\index{````~World@{$\sim$World}!World@{World}}
-\subsubsection{$\sim$World()}
+\index{World@{World}!````~World@{$\sim$\+World}}
+\index{````~World@{$\sim$\+World}!World@{World}}
+\subsubsection{$\sim$\+World()}
 {\footnotesize\ttfamily World\+::$\sim$\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Default destructor 
@@ -127,15 +149,15 @@ References m\+\_\+agents\+Collection, and m\+\_\+clock.
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_world_abb6faf5385d3960dca29ee9390460eea}} 
-\index{World@{World}!dumpState@{dumpState}}
-\index{dumpState@{dumpState}!World@{World}}
-\subsubsection{dumpState()}
+\index{World@{World}!dump\+State@{dump\+State}}
+\index{dump\+State@{dump\+State}!World@{World}}
+\subsubsection{dump\+State()}
 {\footnotesize\ttfamily void World\+::dump\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\label{class_world_a6cb3aa7d814b3d6302ea984889179eac}} 
-\index{World@{World}!generateAntennas@{generateAntennas}}
-\index{generateAntennas@{generateAntennas}!World@{World}}
-\subsubsection{generateAntennas()}
+\index{World@{World}!generate\+Antennas@{generate\+Antennas}}
+\index{generate\+Antennas@{generate\+Antennas}!World@{World}}
+\subsubsection{generate\+Antennas()}
 {\footnotesize\ttfamily vector$<$ \textbf{ Antenna} $\ast$ $>$ World\+::generate\+Antennas (\begin{DoxyParamCaption}\item[{unsigned long}]{num\+Antennas }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -146,10 +168,16 @@ Definition at line 208 of file World.\+cpp.
 
 References Constants\+::\+A\+N\+T\+E\+N\+N\+A\+\_\+\+P\+O\+W\+ER, Constants\+::\+A\+T\+T\+\_\+\+F\+A\+C\+T\+OR, utils\+::generate\+Points(), get\+Map(), I\+D\+Generator\+::instance(), m\+\_\+clock, Constants\+::\+M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS, I\+D\+Generator\+::next(), O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, Constants\+::\+S\+\_\+\+M\+ID, and Constants\+::\+S\+\_\+\+S\+T\+E\+EP.
 
+
+
+Referenced by World().
+
+Here is the call graph for this function\+:
+% FIG 4
 \mbox{\label{class_world_a478f62a296d9a7b6587c116aab6563c6}} 
-\index{World@{World}!generateMobilePhones@{generateMobilePhones}}
-\index{generateMobilePhones@{generateMobilePhones}!World@{World}}
-\subsubsection{generateMobilePhones()}
+\index{World@{World}!generate\+Mobile\+Phones@{generate\+Mobile\+Phones}}
+\index{generate\+Mobile\+Phones@{generate\+Mobile\+Phones}!World@{World}}
+\subsubsection{generate\+Mobile\+Phones()}
 {\footnotesize\ttfamily vector$<$ \textbf{ Mobile\+Phone} $\ast$ $>$ World\+::generate\+Mobile\+Phones (\begin{DoxyParamCaption}\item[{int}]{num\+Mobile\+Phones,  }\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{conn\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -162,12 +190,14 @@ References Agents\+Collection\+::add\+Agent(), get\+Map(), I\+D\+Generator\+::in
 
 
 
-Referenced by generate\+Population().
+Referenced by generate\+Population(), and World().
 
+Here is the call graph for this function\+:
+% FIG 5
 \mbox{\label{class_world_a76bc2ffba54afefbb84b2f6fc781b629}} 
-\index{World@{World}!generatePopulation@{generatePopulation}}
-\index{generatePopulation@{generatePopulation}!World@{World}}
-\subsubsection{generatePopulation()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\index{World@{World}!generate\+Population@{generate\+Population}}
+\index{generate\+Population@{generate\+Population}!World@{World}}
+\subsubsection{generate\+Population()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily vector$<$ \textbf{ Person} $\ast$ $>$ World\+::generate\+Population (\begin{DoxyParamCaption}\item[{unsigned long}]{num\+Persons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -178,10 +208,16 @@ Definition at line 189 of file World.\+cpp.
 
 References Random\+Number\+Generator\+::generate\+Normal2\+Double(), utils\+::generate\+Points(), Random\+Number\+Generator\+::generate\+Uniform\+Int(), get\+Map(), I\+D\+Generator\+::instance(), Random\+Number\+Generator\+::instance(), m\+\_\+clock, and I\+D\+Generator\+::next().
 
+
+
+Referenced by parse\+Persons(), and World().
+
+Here is the call graph for this function\+:
+% FIG 6
 \mbox{\label{class_world_ac6bb92d77d6be53323a24b0fd825f986}} 
-\index{World@{World}!generatePopulation@{generatePopulation}}
-\index{generatePopulation@{generatePopulation}!World@{World}}
-\subsubsection{generatePopulation()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\index{World@{World}!generate\+Population@{generate\+Population}}
+\index{generate\+Population@{generate\+Population}!World@{World}}
+\subsubsection{generate\+Population()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily vector$<$ \textbf{ Person} $\ast$ $>$ World\+::generate\+Population (\begin{DoxyParamCaption}\item[{unsigned long}]{num\+Persons,  }\item[{vector$<$ double $>$}]{params,  }\item[{\textbf{ Person\+::\+Age\+Distributions}}]{age\+\_\+distribution,  }\item[{double}]{male\+\_\+share,  }\item[{double}]{prob\+\_\+mobile\+\_\+phone,  }\item[{double}]{speed\+\_\+walk,  }\item[{double}]{speed\+\_\+car }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -192,10 +228,12 @@ Definition at line 364 of file World.\+cpp.
 
 References Person\+::add\+Device(), Random\+Number\+Generator\+::generate\+Binomial\+Int(), generate\+Mobile\+Phones(), Random\+Number\+Generator\+::generate\+Normal\+Double(), utils\+::generate\+Points(), Random\+Number\+Generator\+::generate\+Truncated\+Normal\+Double(), Random\+Number\+Generator\+::generate\+Uniform\+Double(), get\+Map(), I\+D\+Generator\+::instance(), Random\+Number\+Generator\+::instance(), m\+\_\+clock, m\+\_\+conn\+Type, and I\+D\+Generator\+::next().
 
+Here is the call graph for this function\+:
+% FIG 7
 \mbox{\label{class_world_a365cced3803fd8390a781619b61e2818}} 
-\index{World@{World}!getAgents@{getAgents}}
-\index{getAgents@{getAgents}!World@{World}}
-\subsubsection{getAgents()}
+\index{World@{World}!get\+Agents@{get\+Agents}}
+\index{get\+Agents@{get\+Agents}!World@{World}}
+\subsubsection{get\+Agents()}
 {\footnotesize\ttfamily \textbf{ Agents\+Collection} $\ast$ World\+::get\+Agents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -207,9 +245,9 @@ Definition at line 165 of file World.\+cpp.
 References m\+\_\+agents\+Collection.
 
 \mbox{\label{class_world_a521915088db371c5730093331a74b080}} 
-\index{World@{World}!getClock@{getClock}}
-\index{getClock@{getClock}!World@{World}}
-\subsubsection{getClock()}
+\index{World@{World}!get\+Clock@{get\+Clock}}
+\index{get\+Clock@{get\+Clock}!World@{World}}
+\subsubsection{get\+Clock()}
 {\footnotesize\ttfamily \textbf{ Clock} $\ast$ World\+::get\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -220,10 +258,14 @@ Definition at line 173 of file World.\+cpp.
 
 References m\+\_\+clock.
 
+
+
+Referenced by run\+Simulation().
+
 \mbox{\label{class_world_af33b51dff9edc6770890ef579700d959}} 
-\index{World@{World}!getCurrentTime@{getCurrentTime}}
-\index{getCurrentTime@{getCurrentTime}!World@{World}}
-\subsubsection{getCurrentTime()}
+\index{World@{World}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!World@{World}}
+\subsubsection{get\+Current\+Time()}
 {\footnotesize\ttfamily unsigned int World\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -234,10 +276,12 @@ Definition at line 161 of file World.\+cpp.
 
 References Clock\+::get\+Current\+Time(), and m\+\_\+clock.
 
+Here is the call graph for this function\+:
+% FIG 8
 \mbox{\label{class_world_a5b82e6105d8f4b3d757eb7da6d65205a}} 
-\index{World@{World}!getMap@{getMap}}
-\index{getMap@{getMap}!World@{World}}
-\subsubsection{getMap()}
+\index{World@{World}!get\+Map@{get\+Map}}
+\index{get\+Map@{get\+Map}!World@{World}}
+\subsubsection{get\+Map()}
 {\footnotesize\ttfamily \textbf{ Map} $\ast$ World\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -250,12 +294,12 @@ References m\+\_\+map.
 
 
 
-Referenced by generate\+Antennas(), generate\+Mobile\+Phones(), and generate\+Population().
+Referenced by generate\+Antennas(), generate\+Mobile\+Phones(), generate\+Population(), and parse\+Antennas().
 
 \mbox{\label{class_world_aaf31e06b9b5a40a4338164e0f641f7d0}} 
-\index{World@{World}!parseAntennas@{parseAntennas}}
-\index{parseAntennas@{parseAntennas}!World@{World}}
-\subsubsection{parseAntennas()}
+\index{World@{World}!parse\+Antennas@{parse\+Antennas}}
+\index{parse\+Antennas@{parse\+Antennas}!World@{World}}
+\subsubsection{parse\+Antennas()}
 {\footnotesize\ttfamily vector$<$ \textbf{ Antenna} $\ast$ $>$ World\+::parse\+Antennas (\begin{DoxyParamCaption}\item[{const string \&}]{config\+Antennas\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [noexcept]}}
 
 
@@ -264,12 +308,18 @@ Definition at line 240 of file World.\+cpp.
 
 
 
-References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), utils\+::get\+First\+Child\+Element(), I\+D\+Generator\+::instance(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), tinyxml2\+::\+X\+M\+L\+Element\+::\+Name(), I\+D\+Generator\+::next(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Next\+Sibling\+Element(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), utils\+::get\+First\+Child\+Element(), get\+Map(), I\+D\+Generator\+::instance(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), m\+\_\+clock, tinyxml2\+::\+X\+M\+L\+Element\+::\+Name(), I\+D\+Generator\+::next(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Next\+Sibling\+Element(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
 
+
+
+Referenced by World().
+
+Here is the call graph for this function\+:
+% FIG 9
 \mbox{\label{class_world_a8bdce1dbc8d7a653d63a59674e283622}} 
-\index{World@{World}!parsePersons@{parsePersons}}
-\index{parsePersons@{parsePersons}!World@{World}}
-\subsubsection{parsePersons()}
+\index{World@{World}!parse\+Persons@{parse\+Persons}}
+\index{parse\+Persons@{parse\+Persons}!World@{World}}
+\subsubsection{parse\+Persons()}
 {\footnotesize\ttfamily vector$<$ \textbf{ Person} $\ast$ $>$ World\+::parse\+Persons (\begin{DoxyParamCaption}\item[{const string \&}]{persons\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [noexcept]}}
 
 
@@ -278,12 +328,18 @@ Definition at line 265 of file World.\+cpp.
 
 
 
-References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), utils\+::get\+First\+Child\+Element(), utils\+::get\+Node(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Value(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), generate\+Population(), utils\+::get\+First\+Child\+Element(), utils\+::get\+Node(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), tinyxml2\+::\+X\+M\+L\+Node\+::\+Value(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
 
+
+
+Referenced by World().
+
+Here is the call graph for this function\+:
+% FIG 10
 \mbox{\label{class_world_a7f00dc79cc98281dbf7c51fb2c83e8d6}} 
-\index{World@{World}!parseSimulationFile@{parseSimulationFile}}
-\index{parseSimulationFile@{parseSimulationFile}!World@{World}}
-\subsubsection{parseSimulationFile()}
+\index{World@{World}!parse\+Simulation\+File@{parse\+Simulation\+File}}
+\index{parse\+Simulation\+File@{parse\+Simulation\+File}!World@{World}}
+\subsubsection{parse\+Simulation\+File()}
 {\footnotesize\ttfamily void World\+::parse\+Simulation\+File (\begin{DoxyParamCaption}\item[{const string \&}]{config\+Simulation\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [noexcept]}}
 
 
@@ -292,12 +348,18 @@ Definition at line 331 of file World.\+cpp.
 
 
 
-References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), utils\+::get\+Node(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK, tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), U\+N\+K\+N\+O\+WN, tinyxml2\+::\+X\+M\+L\+Node\+::\+Value(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
+References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element(), utils\+::get\+Node(), tinyxml2\+::\+X\+M\+L\+Document\+::\+Load\+File(), m\+\_\+conn\+Type, m\+\_\+end\+Time, m\+\_\+mv\+Type, m\+\_\+start\+Time, m\+\_\+time\+Increment, R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK, tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), U\+N\+K\+N\+O\+WN, tinyxml2\+::\+X\+M\+L\+Node\+::\+Value(), and tinyxml2\+::\+X\+M\+L\+\_\+\+S\+U\+C\+C\+E\+SS.
 
+
+
+Referenced by World().
+
+Here is the call graph for this function\+:
+% FIG 11
 \mbox{\label{class_world_af8d69e177beec5a9cf3c200f292db7db}} 
-\index{World@{World}!runSimulation@{runSimulation}}
-\index{runSimulation@{runSimulation}!World@{World}}
-\subsubsection{runSimulation()}
+\index{World@{World}!run\+Simulation@{run\+Simulation}}
+\index{run\+Simulation@{run\+Simulation}!World@{World}}
+\subsubsection{run\+Simulation()}
 {\footnotesize\ttfamily void World\+::run\+Simulation (\begin{DoxyParamCaption}\item[{string \&}]{persons\+File,  }\item[{string \&}]{antennas\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
@@ -306,12 +368,14 @@ Definition at line 111 of file World.\+cpp.
 
 
 
-References Person\+::dump\+Devices(), Locatable\+Agent\+::dump\+Location(), and Person\+::move().
+References Person\+::dump\+Devices(), Locatable\+Agent\+::dump\+Location(), Agents\+Collection\+::get\+Agent\+List\+By\+Type(), get\+Clock(), Clock\+::get\+Final\+Time(), Clock\+::get\+Initial\+Time(), m\+\_\+agents\+Collection, m\+\_\+clock, m\+\_\+mv\+Type, Person\+::move(), Clock\+::real\+Time(), and Clock\+::tick().
 
+Here is the call graph for this function\+:
+% FIG 12
 \mbox{\label{class_world_afa8e5c2943c72aa664590abbb024896b}} 
-\index{World@{World}!setAgents@{setAgents}}
-\index{setAgents@{setAgents}!World@{World}}
-\subsubsection{setAgents()}
+\index{World@{World}!set\+Agents@{set\+Agents}}
+\index{set\+Agents@{set\+Agents}!World@{World}}
+\subsubsection{set\+Agents()}
 {\footnotesize\ttfamily void World\+::set\+Agents (\begin{DoxyParamCaption}\item[{\textbf{ Agents\+Collection} $\ast$}]{agents }\end{DoxyParamCaption})}
 
 
@@ -323,9 +387,9 @@ Definition at line 169 of file World.\+cpp.
 References m\+\_\+agents\+Collection.
 
 \mbox{\label{class_world_a52ebe3eed240fe4dd37915a1dad02efd}} 
-\index{World@{World}!setClock@{setClock}}
-\index{setClock@{setClock}!World@{World}}
-\subsubsection{setClock()}
+\index{World@{World}!set\+Clock@{set\+Clock}}
+\index{set\+Clock@{set\+Clock}!World@{World}}
+\subsubsection{set\+Clock()}
 {\footnotesize\ttfamily void World\+::set\+Clock (\begin{DoxyParamCaption}\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})}
 
 
@@ -337,9 +401,9 @@ Definition at line 177 of file World.\+cpp.
 References m\+\_\+clock.
 
 \mbox{\label{class_world_a9dc80487d5c2d1d4f2af0c1d7f015204}} 
-\index{World@{World}!setMap@{setMap}}
-\index{setMap@{setMap}!World@{World}}
-\subsubsection{setMap()}
+\index{World@{World}!set\+Map@{set\+Map}}
+\index{set\+Map@{set\+Map}!World@{World}}
+\subsubsection{set\+Map()}
 {\footnotesize\ttfamily void World\+::set\+Map (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{map }\end{DoxyParamCaption})}
 
 
@@ -354,9 +418,9 @@ References m\+\_\+map.
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_world_ae1262689381f00828c0a639b7cbb52a3}} 
-\index{World@{World}!m\_agentsCollection@{m\_agentsCollection}}
-\index{m\_agentsCollection@{m\_agentsCollection}!World@{World}}
-\subsubsection{m\_agentsCollection}
+\index{World@{World}!m\+\_\+agents\+Collection@{m\+\_\+agents\+Collection}}
+\index{m\+\_\+agents\+Collection@{m\+\_\+agents\+Collection}!World@{World}}
+\subsubsection{m\+\_\+agents\+Collection}
 {\footnotesize\ttfamily \textbf{ Agents\+Collection}$\ast$ World\+::m\+\_\+agents\+Collection\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -365,12 +429,12 @@ Definition at line 60 of file World.\+h.
 
 
 
-Referenced by generate\+Mobile\+Phones(), get\+Agents(), set\+Agents(), and $\sim$\+World().
+Referenced by generate\+Mobile\+Phones(), get\+Agents(), run\+Simulation(), set\+Agents(), World(), and $\sim$\+World().
 
 \mbox{\label{class_world_a8359eb424f01e41703faa0885a4414bf}} 
-\index{World@{World}!m\_clock@{m\_clock}}
-\index{m\_clock@{m\_clock}!World@{World}}
-\subsubsection{m\_clock}
+\index{World@{World}!m\+\_\+clock@{m\+\_\+clock}}
+\index{m\+\_\+clock@{m\+\_\+clock}!World@{World}}
+\subsubsection{m\+\_\+clock}
 {\footnotesize\ttfamily \textbf{ Clock}$\ast$ World\+::m\+\_\+clock\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -379,12 +443,12 @@ Definition at line 61 of file World.\+h.
 
 
 
-Referenced by generate\+Antennas(), generate\+Mobile\+Phones(), generate\+Population(), get\+Clock(), get\+Current\+Time(), set\+Clock(), and $\sim$\+World().
+Referenced by generate\+Antennas(), generate\+Mobile\+Phones(), generate\+Population(), get\+Clock(), get\+Current\+Time(), parse\+Antennas(), run\+Simulation(), set\+Clock(), World(), and $\sim$\+World().
 
 \mbox{\label{class_world_afeac65cddcd1e1c4fa14a17efa35be06}} 
-\index{World@{World}!m\_connType@{m\_connType}}
-\index{m\_connType@{m\_connType}!World@{World}}
-\subsubsection{m\_connType}
+\index{World@{World}!m\+\_\+conn\+Type@{m\+\_\+conn\+Type}}
+\index{m\+\_\+conn\+Type@{m\+\_\+conn\+Type}!World@{World}}
+\subsubsection{m\+\_\+conn\+Type}
 {\footnotesize\ttfamily \textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} World\+::m\+\_\+conn\+Type\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -393,22 +457,26 @@ Definition at line 66 of file World.\+h.
 
 
 
-Referenced by generate\+Population().
+Referenced by generate\+Population(), parse\+Simulation\+File(), and World().
 
 \mbox{\label{class_world_ab6b8ad11e4031f3072a78f00a66e9ec5}} 
-\index{World@{World}!m\_endTime@{m\_endTime}}
-\index{m\_endTime@{m\_endTime}!World@{World}}
-\subsubsection{m\_endTime}
+\index{World@{World}!m\+\_\+end\+Time@{m\+\_\+end\+Time}}
+\index{m\+\_\+end\+Time@{m\+\_\+end\+Time}!World@{World}}
+\subsubsection{m\+\_\+end\+Time}
 {\footnotesize\ttfamily unsigned long World\+::m\+\_\+end\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 Definition at line 63 of file World.\+h.
 
+
+
+Referenced by parse\+Simulation\+File(), and World().
+
 \mbox{\label{class_world_ae1e6f62c5b282e94ffdcaab58fcb3fb4}} 
-\index{World@{World}!m\_map@{m\_map}}
-\index{m\_map@{m\_map}!World@{World}}
-\subsubsection{m\_map}
+\index{World@{World}!m\+\_\+map@{m\+\_\+map}}
+\index{m\+\_\+map@{m\+\_\+map}!World@{World}}
+\subsubsection{m\+\_\+map}
 {\footnotesize\ttfamily \textbf{ Map}$\ast$ World\+::m\+\_\+map\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -420,34 +488,46 @@ Definition at line 58 of file World.\+h.
 Referenced by get\+Map(), and set\+Map().
 
 \mbox{\label{class_world_a9fcf012ce7262edf5646f0720ffd7666}} 
-\index{World@{World}!m\_mvType@{m\_mvType}}
-\index{m\_mvType@{m\_mvType}!World@{World}}
-\subsubsection{m\_mvType}
+\index{World@{World}!m\+\_\+mv\+Type@{m\+\_\+mv\+Type}}
+\index{m\+\_\+mv\+Type@{m\+\_\+mv\+Type}!World@{World}}
+\subsubsection{m\+\_\+mv\+Type}
 {\footnotesize\ttfamily \textbf{ Movement\+Type} World\+::m\+\_\+mv\+Type\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 Definition at line 67 of file World.\+h.
 
+
+
+Referenced by parse\+Simulation\+File(), run\+Simulation(), and World().
+
 \mbox{\label{class_world_a5b46814e7da7222730be62154bf10008}} 
-\index{World@{World}!m\_startTime@{m\_startTime}}
-\index{m\_startTime@{m\_startTime}!World@{World}}
-\subsubsection{m\_startTime}
+\index{World@{World}!m\+\_\+start\+Time@{m\+\_\+start\+Time}}
+\index{m\+\_\+start\+Time@{m\+\_\+start\+Time}!World@{World}}
+\subsubsection{m\+\_\+start\+Time}
 {\footnotesize\ttfamily unsigned long World\+::m\+\_\+start\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 Definition at line 62 of file World.\+h.
 
+
+
+Referenced by parse\+Simulation\+File(), and World().
+
 \mbox{\label{class_world_a97f773548fef49eb408115c097aa995d}} 
-\index{World@{World}!m\_timeIncrement@{m\_timeIncrement}}
-\index{m\_timeIncrement@{m\_timeIncrement}!World@{World}}
-\subsubsection{m\_timeIncrement}
+\index{World@{World}!m\+\_\+time\+Increment@{m\+\_\+time\+Increment}}
+\index{m\+\_\+time\+Increment@{m\+\_\+time\+Increment}!World@{World}}
+\subsubsection{m\+\_\+time\+Increment}
 {\footnotesize\ttfamily unsigned long World\+::m\+\_\+time\+Increment\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 Definition at line 64 of file World.\+h.
+
+
+
+Referenced by parse\+Simulation\+File(), and World().
 
 
 

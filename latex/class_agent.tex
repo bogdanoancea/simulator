@@ -4,12 +4,14 @@
 
 {\ttfamily \#include $<$Agent.\+h$>$}
 
-Inheritance diagram for Agent\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=5.000000cm]{class_agent}
-\end{center}
-\end{figure}
+
+
+Inheritance diagram for Agent\+:
+% FIG 0
+
+
+Collaboration diagram for Agent\+:
+% FIG 1
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -69,10 +71,14 @@ Constructor of the class. \doxyref{Agent}{p.}{class_agent} is the base class for
 
 Definition at line 12 of file Agent.\+cpp.
 
+
+
+References m\+\_\+clock, and m\+\_\+map.
+
 \mbox{\label{class_agent_ab8dd8d152605cf1339fed595376e83cb}} 
-\index{Agent@{Agent}!````~Agent@{$\sim$Agent}}
-\index{````~Agent@{$\sim$Agent}!Agent@{Agent}}
-\subsubsection{$\sim$Agent()}
+\index{Agent@{Agent}!````~Agent@{$\sim$\+Agent}}
+\index{````~Agent@{$\sim$\+Agent}!Agent@{Agent}}
+\subsubsection{$\sim$\+Agent()}
 {\footnotesize\ttfamily Agent\+::$\sim$\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Default destructor of the class. 
@@ -83,9 +89,9 @@ Definition at line 18 of file Agent.\+cpp.
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_agent_ac8d8b1c733230bbf9b86e08285be4c03}} 
-\index{Agent@{Agent}!getClock@{getClock}}
-\index{getClock@{getClock}!Agent@{Agent}}
-\subsubsection{getClock()}
+\index{Agent@{Agent}!get\+Clock@{get\+Clock}}
+\index{get\+Clock@{get\+Clock}!Agent@{Agent}}
+\subsubsection{get\+Clock()}
 {\footnotesize\ttfamily \textbf{ Clock} $\ast$ Agent\+::get\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns a pointer to the \doxyref{Clock}{p.}{class_clock} object used for simulation. All Agents use the same \doxyref{Clock}{p.}{class_clock} object for a simulation. \begin{DoxyReturn}{Returns}
@@ -104,9 +110,9 @@ References m\+\_\+clock.
 Referenced by Locatable\+Agent\+::dump\+Location(), and Antenna\+::register\+Event().
 
 \mbox{\label{class_agent_a1c0349bb5ca9d971439b9f21dcf726a1}} 
-\index{Agent@{Agent}!getId@{getId}}
-\index{getId@{getId}!Agent@{Agent}}
-\subsubsection{getId()}
+\index{Agent@{Agent}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Agent@{Agent}}
+\subsubsection{get\+Id()}
 {\footnotesize\ttfamily unsigned long Agent\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the id of the object. \begin{DoxyReturn}{Returns}
@@ -125,9 +131,9 @@ References m\+\_\+id.
 Referenced by Grid\+::compute\+Probability(), Person\+::dump\+Devices(), Locatable\+Agent\+::dump\+Location(), operator==(), Antenna\+::register\+Event(), Locatable\+Agent\+::to\+String(), Holdable\+Agent\+::to\+String(), Person\+::to\+String(), and Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
 
 \mbox{\label{class_agent_a16e9d8f26d07938fe68fa2ec6d692b1b}} 
-\index{Agent@{Agent}!getMap@{getMap}}
-\index{getMap@{getMap}!Agent@{Agent}}
-\subsubsection{getMap()}
+\index{Agent@{Agent}!get\+Map@{get\+Map}}
+\index{get\+Map@{get\+Map}!Agent@{Agent}}
+\subsubsection{get\+Map()}
 {\footnotesize\ttfamily \textbf{ Map} $\ast$ Agent\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Getter that returns a pointer to the map passed to the constructor when the an object was build. \begin{DoxyReturn}{Returns}
@@ -143,12 +149,12 @@ References m\+\_\+map.
 
 
 
-Referenced by Antenna\+::\+Antenna(), and Person\+::random\+Walk().
+Referenced by Antenna\+::\+Antenna().
 
 \mbox{\label{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}} 
-\index{Agent@{Agent}!getName@{getName}}
-\index{getName@{getName}!Agent@{Agent}}
-\subsubsection{getName()}
+\index{Agent@{Agent}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Agent@{Agent}}
+\subsubsection{get\+Name()}
 {\footnotesize\ttfamily virtual string Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
@@ -180,10 +186,12 @@ Definition at line 21 of file Agent.\+cpp.
 
 References get\+Id(), and m\+\_\+id.
 
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\label{class_agent_a8abbc89bc51882d372ab1ac6741a3167}} 
-\index{Agent@{Agent}!setMap@{setMap}}
-\index{setMap@{setMap}!Agent@{Agent}}
-\subsubsection{setMap()}
+\index{Agent@{Agent}!set\+Map@{set\+Map}}
+\index{set\+Map@{set\+Map}!Agent@{Agent}}
+\subsubsection{set\+Map()}
 {\footnotesize\ttfamily void Agent\+::set\+Map (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{map }\end{DoxyParamCaption})}
 
 Sets the \doxyref{Map}{p.}{class_map} to be used by this agent during the simulation. It is not advisable to change the map during a simulation. 
@@ -200,9 +208,9 @@ Definition at line 29 of file Agent.\+cpp.
 References m\+\_\+map.
 
 \mbox{\label{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}} 
-\index{Agent@{Agent}!toString@{toString}}
-\index{toString@{toString}!Agent@{Agent}}
-\subsubsection{toString()}
+\index{Agent@{Agent}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Agent@{Agent}}
+\subsubsection{to\+String()}
 {\footnotesize\ttfamily virtual string Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
@@ -216,9 +224,9 @@ Implemented in \textbf{ Antenna} \doxyref{}{p.}{class_antenna_a58a2bc92fe68ae619
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_agent_afb0902d5b8a97e0823791e45dc4ebee9}} 
-\index{Agent@{Agent}!m\_clock@{m\_clock}}
-\index{m\_clock@{m\_clock}!Agent@{Agent}}
-\subsubsection{m\_clock}
+\index{Agent@{Agent}!m\+\_\+clock@{m\+\_\+clock}}
+\index{m\+\_\+clock@{m\+\_\+clock}!Agent@{Agent}}
+\subsubsection{m\+\_\+clock}
 {\footnotesize\ttfamily \textbf{ Clock}$\ast$ Agent\+::m\+\_\+clock\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -227,12 +235,12 @@ Definition at line 82 of file Agent.\+h.
 
 
 
-Referenced by get\+Clock().
+Referenced by Agent(), and get\+Clock().
 
 \mbox{\label{class_agent_ad82c23a989211cc2b8a5137978a1ba3a}} 
-\index{Agent@{Agent}!m\_id@{m\_id}}
-\index{m\_id@{m\_id}!Agent@{Agent}}
-\subsubsection{m\_id}
+\index{Agent@{Agent}!m\+\_\+id@{m\+\_\+id}}
+\index{m\+\_\+id@{m\+\_\+id}!Agent@{Agent}}
+\subsubsection{m\+\_\+id}
 {\footnotesize\ttfamily unsigned long Agent\+::m\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -244,9 +252,9 @@ Definition at line 81 of file Agent.\+h.
 Referenced by get\+Id(), and operator==().
 
 \mbox{\label{class_agent_ac5f0f5cb899828a85b9ea0adace2ca6f}} 
-\index{Agent@{Agent}!m\_map@{m\_map}}
-\index{m\_map@{m\_map}!Agent@{Agent}}
-\subsubsection{m\_map}
+\index{Agent@{Agent}!m\+\_\+map@{m\+\_\+map}}
+\index{m\+\_\+map@{m\+\_\+map}!Agent@{Agent}}
+\subsubsection{m\+\_\+map}
 {\footnotesize\ttfamily \textbf{ Map}$\ast$ Agent\+::m\+\_\+map\hspace{0.3cm}{\ttfamily [private]}}
 
 
@@ -255,7 +263,7 @@ Definition at line 80 of file Agent.\+h.
 
 
 
-Referenced by get\+Map(), and set\+Map().
+Referenced by Agent(), get\+Map(), and set\+Map().
 
 
 

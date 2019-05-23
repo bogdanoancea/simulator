@@ -1,7 +1,6 @@
 var searchData=
 [
   ['name',['Name',['../classtinyxml2_1_1_x_m_l_attribute.html#a5a5c135d24cce7abda6f17301c6274d8',1,'tinyxml2::XMLAttribute::Name()'],['../classtinyxml2_1_1_x_m_l_element.html#a63e057fb5baee1dd29f323cb85907b35',1,'tinyxml2::XMLElement::Name()']]],
-  ['ncell',['ncell',['../namespace_rtnorm.html#a1ab729acd3e8c1cdcc4d46e8d5fbeabe',1,'Rtnorm']]],
   ['needs_5fdelete',['NEEDS_DELETE',['../classtinyxml2_1_1_str_pair.html#a476a92d76f24486c3ae4731916b12aaeab9a3152ce5df9e7f4bbf3774fe862c75',1,'tinyxml2::StrPair']]],
   ['needs_5fentity_5fprocessing',['NEEDS_ENTITY_PROCESSING',['../classtinyxml2_1_1_str_pair.html#a0301ef962e15dd94574431f1c61266c5a4f1e01a55f8efe4ca72c32d454060237',1,'tinyxml2::StrPair']]],
   ['needs_5fflush',['NEEDS_FLUSH',['../classtinyxml2_1_1_str_pair.html#a476a92d76f24486c3ae4731916b12aaea2d8841daedc3955ed20ec9f760318434',1,'tinyxml2::StrPair']]],
@@ -19,6 +18,5 @@ var searchData=
   ['no_5fmobile_5fphones',['NO_MOBILE_PHONES',['../class_constants.html#a19c72b30528616a8b10ecf9ceb51a3fe',1,'Constants']]],
   ['no_5fpersons',['NO_PERSONS',['../class_constants.html#a6dc8cec5cb8a376e136190e445892592',1,'Constants']]],
   ['nochildren',['NoChildren',['../classtinyxml2_1_1_x_m_l_node.html#ac3ab489e6e202a3cd1762d3b332e89d4',1,'tinyxml2::XMLNode']]],
-  ['normal',['NORMAL',['../class_person.html#a53376a9a5852ec7760488a01c37f0b0ba7e4e1da74c9858476e0149deef9458c4',1,'Person']]],
-  ['num_5fentities',['NUM_ENTITIES',['../namespacetinyxml2.html#aef74bfad4850ed3181f00f86b03c7b45',1,'tinyxml2']]]
+  ['normal',['NORMAL',['../class_person.html#a53376a9a5852ec7760488a01c37f0b0ba7e4e1da74c9858476e0149deef9458c4',1,'Person']]]
 ];

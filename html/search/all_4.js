@@ -13,7 +13,6 @@ var searchData=
   ['detach_5fdevice',['DETACH_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faad4d5a45ac3a7a538879a9525fed18ddf',1,'EventType.h']]],
   ['dettachdevice',['dettachDevice',['../class_antenna.html#a983a0784315567c2ab6ac1820cf558c5',1,'Antenna']]],
   ['directional',['DIRECTIONAL',['../_antenna_type_8h.html#a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9',1,'AntennaType.h']]],
-  ['double_5fquote',['DOUBLE_QUOTE',['../tinyxml2_8cpp.html#a2e3bbd17c0f4134dbd5bd8cfc5d0c3b2',1,'tinyxml2.cpp']]],
   ['doubleattribute',['DoubleAttribute',['../classtinyxml2_1_1_x_m_l_element.html#a10a90c505aea716bf073eea1c97f33b5',1,'tinyxml2::XMLElement']]],
   ['doubletext',['DoubleText',['../classtinyxml2_1_1_x_m_l_element.html#a81b1ff0cf2f2cd09be8badc08b39a2b7',1,'tinyxml2::XMLElement']]],
   ['doublevalue',['DoubleValue',['../classtinyxml2_1_1_x_m_l_attribute.html#a4aa73513f54ff0087d3e804f0f54e30f',1,'tinyxml2::XMLAttribute']]],

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['x',['x',['../namespace_rtnorm.html#ab3c44df945a22123e3f6d0817c7ee986',1,'Rtnorm']]],
   ['xml_5fcan_5fnot_5fconvert_5ftext',['XML_CAN_NOT_CONVERT_TEXT',['../namespacetinyxml2.html#a1fbf88509c3ac88c09117b1947414e08afdb8840395a7c13dfe6a3e104401c095',1,'tinyxml2']]],
   ['xml_5felement_5fdepth_5fexceeded',['XML_ELEMENT_DEPTH_EXCEEDED',['../namespacetinyxml2.html#a1fbf88509c3ac88c09117b1947414e08a0e0d5f9b6c5add26e910d206f469dd21',1,'tinyxml2']]],
   ['xml_5ferror_5fcount',['XML_ERROR_COUNT',['../namespacetinyxml2.html#a1fbf88509c3ac88c09117b1947414e08a9ebb2775c56387353f5b2de94f6ab71d',1,'tinyxml2']]],

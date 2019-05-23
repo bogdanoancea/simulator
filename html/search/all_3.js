@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['callfopen',['callfopen',['../namespacetinyxml2.html#a3634a81ca725ead6204f08cbaa5ad58f',1,'tinyxml2']]],
   ['capacity',['Capacity',['../classtinyxml2_1_1_dyn_array.html#a8e101fdf5b4248ac119d7dca6d0f5421',1,'tinyxml2::DynArray']]],
-  ['carriage_5freturn',['CARRIAGE_RETURN',['../tinyxml2_8cpp.html#add686989707d784afa885cbb90910113',1,'tinyxml2.cpp']]],
   ['cdata',['CData',['../classtinyxml2_1_1_x_m_l_text.html#ac1bb5ea4166c320882d9e0ad16fd385b',1,'tinyxml2::XMLText']]],
   ['clear',['Clear',['../classtinyxml2_1_1_dyn_array.html#af87a804cd831226d069274b44b74b8bc',1,'tinyxml2::DynArray::Clear()'],['../classtinyxml2_1_1_mem_pool_t.html#a22d595caa0e9d23aa080f49ca6475fdd',1,'tinyxml2::MemPoolT::Clear()'],['../classtinyxml2_1_1_x_m_l_document.html#a65656b0b2cbc822708eb351504178aaf',1,'tinyxml2::XMLDocument::Clear()']]],
   ['clearbuffer',['ClearBuffer',['../classtinyxml2_1_1_x_m_l_printer.html#a216157765b7267bf389975b1cbf9a909',1,'tinyxml2::XMLPrinter']]],
@@ -31,7 +29,6 @@ var searchData=
   ['constants_2ecpp',['Constants.cpp',['../_constants_8cpp.html',1,'']]],
   ['constants_2eh',['Constants.h',['../_constants_8h.html',1,'']]],
   ['convertutf32toutf8',['ConvertUTF32ToUTF8',['../classtinyxml2_1_1_x_m_l_util.html#a31c00d5c5dfb38382de1dfcaf4be3595',1,'tinyxml2::XMLUtil']]],
-  ['cr',['CR',['../tinyxml2_8cpp.html#ad3136d2f1f34e592c66e09ba8a852812',1,'tinyxml2.cpp']]],
   ['create_5frectangle',['create_rectangle',['../class_map.html#a222f5585368eeb768b63b612207b6965',1,'Map']]],
   ['createattribute',['CreateAttribute',['../classtinyxml2_1_1_x_m_l_element.html#a10e25b09c308a8658d2d6b464745bdc3',1,'tinyxml2::XMLElement']]],
   ['createunlinkednode',['CreateUnlinkedNode',['../classtinyxml2_1_1_x_m_l_document.html#acda2123b71a6e6534be9f48e75ea680a',1,'tinyxml2::XMLDocument']]],

@@ -48,8 +48,8 @@ public:
 			unsigned long maxConnections, double smid, double ssteep, AntennaType type);
 
 	/**
-	 * Constructor of the class. It builds an object taking the value of the parameters from an XML Element, usually when an Antenna object
-	 * is built reading the xml configuration file.
+	 * Constructor of the class. It builds an object taking the value of the antenna' parameters from an XML Element,
+	 * usually when an Antenna object is built reading the xml configuration file.
 	 * @param m a pointer to the Map object used for the simulation
 	 * @param clock a pointer to the Clock object used for the simulation
 	 * @param id the id of the Antenna
@@ -118,7 +118,7 @@ public:
 	/**
 	 * Tries to register a mobile device as being connected to this antenna.
 	 * @param device a pointer to the object that represents a mobile device.
-	 * @return true if the connection is succesful, false otherwise.
+	 * @return true if the connection is successful, false otherwise.
 	 */
 	bool tryRegisterDevice(HoldableAgent* device);
 
@@ -157,12 +157,6 @@ public:
 	 */
 	double S(double dist) const;
 
-	/**
-	 * Computes the signal quality of the signal given by an antenna in a certain location.
-	 * @param p the location where we want to compute the signal quality.
-	 * @return
-	 */
-	double squality(Point p) const;
 
 	/**
 	 * Returns the value of the Smid antenna parameter.
