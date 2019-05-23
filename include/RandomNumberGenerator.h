@@ -146,6 +146,8 @@ public:
 	//std::pair<double, double> generateTruncatedNormal(double a, double b, const double mu = 0, const double sigma = 1);
 	//int N = 4001;
 
+
+
 private:
 	RandomNumberGenerator();
 	RandomNumberGenerator(const RandomNumberGenerator&);
