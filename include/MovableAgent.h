@@ -50,7 +50,7 @@ public:
 	 * Builds a human readable string representation of the agent
 	 * @return a human readable string representation of the agent
 	 */
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * A pure virtual method that moves the agent to a new location on the map
