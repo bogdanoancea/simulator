@@ -17,7 +17,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation, Clock* clock) :
+LocatableAgent::LocatableAgent(const Map* m, long id, Point* initLocation, Clock* clock) :
 		Agent(m, id, clock) {
 	m_location = initLocation;
 
@@ -53,4 +53,8 @@ const string LocatableAgent::dumpLocation() {
 		ss << left << getClock()->getCurrentTime() << sep;
 	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
 	return (ss.str());
+}
+
+const string LocatableAgent::getName() const {
+	return ("LocatableAgent");
 }

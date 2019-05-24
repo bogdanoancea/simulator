@@ -151,13 +151,14 @@ public:
 	Coordinate getTileCenter(unsigned long tileIndex);
 
 private:
+	Map* m_map;
 	double m_xOrigin;
 	double m_yOrigin;
 	double m_xTileDim;
 	double m_yTileDim;
 	unsigned long m_noTilesX;
 	unsigned long m_noTilesY;
-	Map* m_map;
+
 };
 
 #endif /* GRID_H_ */

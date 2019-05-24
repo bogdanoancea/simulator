@@ -7,7 +7,6 @@
  *      Author: Bogdan Oancea
  */
 
-
 #ifndef WORLD_H
 #define WORLD_H
 
@@ -18,62 +17,119 @@
 #include <AgentsCollection.h>
 #include <Clock.h>
 #include <MobilePhone.h>
-#include <tinyxml2.h>
 #include <MovementType.h>
-
+#include <TinyXML2.h>
 
 using namespace std;
 using namespace tinyxml2;
 
+/**
+ * This is the class where all the simulation process takes place. A World object has a map, a clock, a set of agents
+ * than can be persons, mobile phones, antennas etc. After generating all the required objects for simulation the runSimulation()
+ * method is called to perform the actual simulation. The output of the simulation process is written in several files.
+ * Each antenna objects output their registered events in a csv file and after the simulation ends, these files are merged
+ * in a single file that is used to computed the posterior localization probabilities for each mobile device. These probabilities
+ * are computed using a grid that is overlapped on the map, i.e. we compute the probability of a mobile phone to be in a tile
+ * of the grid. A finer the grid mean more accurate localization.
+ */
 class World {
-	public:
-		/** Default constructor */
-		World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
+public:
 
-		World(Map* map, int numPersons, const string& configAntennasFile, int numMobilePhones) noexcept(false);
+	/**
+	 * Builds a new World object, randomly generating a set of persons, antenna and mobile devices with the default parameters
+	 * @param map a pointer to a Map object where the simulation takes place
+	 * @param numPersons the number of persons to be generated
+	 * @param numAntennas the number of antennas to be generated
+	 * @param numMobilePhones the number of mobile phones to be generated. These phones are randomly given to persons.
+	 */
+	World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
-		World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName)
-				noexcept(false);
+	/**
+	 * Builds a new World object, reading the parameters for the Persons, Antennas and Mobile phone from configuration files.
+	 * The configuration files are in XML format and they should be provided as command line parameters. The general parameters
+	 * of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas etc are also
+	 * read from a configuration file
+	 * @param map a pointer to a Map object where the simulation takes place
+	 * @param configPersonsFileName the configuration file name for the persons object
+	 * @param configAntennasFileName the configuration file name for antenna objects
+	 * @param configSimulationFileName the general configuration file for simulation
+	 */
+	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName)
+			noexcept(false);
 
-		/** Default destructor */
-		virtual ~World();
+	/**
+	 * Destructor
+	 * It releases the memory allocated for the agents collection and the the Clock object.
+	 */
+	virtual ~World();
 
-		void runSimulation(string& personsFile, string& antennasFile) noexcept(false);
+	/**
+	 * This method is called to perform the actual simulation. During the simulation it outputs the exact positions
+	 * of all persons in a csv file and the positions of antennas at the starting time of the simulation. A simulation
+	 * means a number of time steps, at each step every person move to another position and after arriving at their new
+	 * position the mobile phones that they carry try to connect to one of the available antennas.
+	 * @param personsFile the name of the file where the exact positions of the persons are saved
+	 * @param antennasFile the name of the file where the exact positions of antennas are saved
+	 */
+	void runSimulation(string& personsFile, string& antennasFile) noexcept(false);
 
-		void dumpState();
+	/**
+	 * Returns the AgentsCollection used in simulation
+	 * @return a pointer to AgentsCollection object
+	 */
+	AgentsCollection* getAgents() const;
 
-		unsigned int getCurrentTime();
+	/**
+	 * Sets the AgentsCollection to be used for simulation
+	 * @param agents a pointer to AgentsCollection object
+	 */
+	void setAgents(AgentsCollection* agents);
 
-		AgentsCollection* getAgents() const;
-		void setAgents(AgentsCollection* agents);
+	/**
+	 * Returns a pointer to a Clock object used for simulation
+	 * @return a pointer to a Clock object used for simulation
+	 */
+	Clock* getClock() const;
 
-		Clock* getClock() const;
-		void setClock(Clock* clock);
+	/**
+	 * Sets the Clock of the simulation
+	 * @param clock a pointer to a Clock object used for simulation
+	 */
+	void setClock(Clock* clock);
 
-		Map* getMap() const;
-		void setMap(Map* map);
+	/**
+	 * Returns a pointer to a Map object where the simulation takes place
+	 * @return a pointer to a Map object where the simulation takes place
+	 */
+	Map* getMap() const;
 
-	private:
+	/**
+	 * Sets the map where the simulation takes place
+	 * @param map a pointer to a Map object where the simulation takes place
+	 */
+	void setMap(Map* map);
 
-		Map* m_map;
+private:
 
-		AgentsCollection* m_agentsCollection;
-		Clock* m_clock;
-		unsigned long m_startTime;
-		unsigned long m_endTime;
-		unsigned long m_timeIncrement;
+	Map* m_map;
 
-		HoldableAgent::CONNECTION_TYPE m_connType;
-		MovementType m_mvType;
+	AgentsCollection* m_agentsCollection;
+	Clock* m_clock;
+	unsigned long m_startTime;
+	unsigned long m_endTime;
+	unsigned long m_timeIncrement;
 
-		vector<Person*> generatePopulation(unsigned long numPersons);
-		vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
-				double male_share, double prob_mobile_phone, double speed_walk, double speed_car);
-		vector<Antenna*> generateAntennas(unsigned long numAntennas);
-		vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
-		vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
-		vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
-		void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+	HoldableAgent::CONNECTION_TYPE m_connType;
+	MovementType m_mvType;
+
+	vector<Person*> generatePopulation(unsigned long numPersons);
+	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+			double male_share, double prob_mobile_phone, double speed_walk, double speed_car);
+	vector<Antenna*> generateAntennas(unsigned long numAntennas);
+	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
+	vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
+	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
+	void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 
 };
 

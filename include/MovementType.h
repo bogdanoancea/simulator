@@ -11,7 +11,7 @@
 #define MOVEMENTTYPE_H_
 
 /**
- * An enum class that enumerates the type of the methods used to move the people on the map.
+ * An enum class that enumerates the types of the methods used to move the people on the map.
  */
 enum class MovementType {
 	RANDOM_WALK, RANDOM_WALK_WITH_DRIFT, UNKNOWN

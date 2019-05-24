@@ -29,7 +29,7 @@ public:
 	 * @param holder a pointer to an Agent that owns this device
 	 * @param clock a pointer to a Clock object used by this simulation
 	 */
-	explicit HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder,
+	explicit HoldableAgent(const Map* m, long id, Point* initPosition, Agent* holder,
 			Clock* clock);
 
 	/**
@@ -69,9 +69,7 @@ public:
 	 * Returns the name of the class
 	 * @return the name of the class
 	 */
-	const string getName() override {
-		return ("HoldableAgent");
-	}
+	const string getName() const override;
 
 	/**
 	 * Returns a string representation of this class, useful to print it to the console or in a file.

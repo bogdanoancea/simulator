@@ -1,3 +1,13 @@
+
+/*
+ * Data simulator for mobile phone network events
+ *
+ * RandomNumberGenerator.h
+ *
+ *  Created on: Apr 18, 2019
+ *      Author: Bogdan Oancea
+ */
+
 /*
 Original code by Lee Thomason (www.grinninglizard.com)
 

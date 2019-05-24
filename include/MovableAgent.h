@@ -33,7 +33,7 @@ public:
 	 * @param clock a pointer to the Clock object used by this simulation
 	 * @param initSpeed the initial speed of the agent
 	 */
-	explicit MovableAgent(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed);
+	explicit MovableAgent(const Map* m, long id, Point* initPosition, Clock* clock, double initSpeed);
 
 	/**
 	 * Destructor
@@ -44,9 +44,7 @@ public:
 	 * Returns the name of the class
 	 * @return the name of the class
 	 */
-	const string getName() override {
-		return ("MovableAgent");
-	}
+	const string getName() const override;
 
 	/**
 	 * Builds a human readable string representation of the agent

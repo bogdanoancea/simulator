@@ -13,7 +13,7 @@
 #include <sstream>
 
 
-MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, Clock* clock, double initialSpeed) :
+MovableAgent::MovableAgent(const Map* m, long id, Point* initialPosition, Clock* clock, double initialSpeed) :
 		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
 }
 
@@ -34,3 +34,6 @@ string MovableAgent::toString() const {
 	return (ss.str());
 }
 
+const string MovableAgent::getName() const {
+	return ("MovableAgent");
+}

@@ -10,14 +10,14 @@
 #include <algorithm>
 #include <string>
 #include <string.h>
-#include <tinyxml2.h>
+#include <TinyXML2.h>
 #include <Utils.h>
 
 using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
+Antenna::Antenna(const Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
 		double smid, double ssteep, AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_attenuationFactor { attenuationFactor }, m_power { power }, m_maxConnections {
 				maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type { type } {
@@ -266,3 +266,9 @@ double Antenna::computePower(Point* p) const {
 
 	return (result);
 }
+
+
+const string Antenna::getName() const {
+	return ("Antenna");
+}
+

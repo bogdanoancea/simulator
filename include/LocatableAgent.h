@@ -31,7 +31,7 @@ public:
 	 * @param initLocation the initial location of the object.
 	 * @param clock a pointer to a Clock object used in this simulation.
 	 */
-	explicit LocatableAgent(Map* m, long id, Point* initLocation, Clock* clock);
+	explicit LocatableAgent(const Map* m, long id, Point* initLocation, Clock* clock);
 
 	/**
 	 * Destructor
@@ -42,9 +42,7 @@ public:
 	 *  Returns the name of this class
 	 * @return the name of this class
 	 */
-	const string getName() override {
-		return "LocatableAgent";
-	}
+	const string getName() const override;
 
 	/**
 	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.

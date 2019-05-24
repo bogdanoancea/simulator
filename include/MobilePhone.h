@@ -36,7 +36,7 @@ public:
 	 * take two values: HoldableAgent::CONNECTION_TYPE::USING_POWER or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY
 	 *
 	 */
-	explicit MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold,
+	explicit MobilePhone(const Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold,
 			HoldableAgent::CONNECTION_TYPE connType);
 
 	/**
@@ -48,10 +48,7 @@ public:
 	 * Returns the name of this class
 	 * @return the name of this class
 	 */
-	const string getName() override {
-		return ("MobilePhone");
-	}
-
+	const string getName() const override;
 	/**
 	 * Returns a human readable string representation of this class useful to output it to a file or console
 	 * @return a human readable string representation of this class

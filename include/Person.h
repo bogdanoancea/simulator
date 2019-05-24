@@ -40,7 +40,7 @@ public:
 	 * @param age the age of the person. The age is generated using a uniform or a normal distribution.
 	 * @param gender the gender of the person.
 	 */
-	explicit Person(Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gender);
+	explicit Person(const Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gender);
 
 	/**
 	 * Destructor
@@ -51,9 +51,7 @@ public:
 	 * Returns the name of this class
 	 * @return the name of this class
 	 */
-	const string getName() override {
-		return ("Person");
-	}
+	const string getName() const override;
 
 	/**
 	 * Builds a human readable string representation of the person

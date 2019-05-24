@@ -24,7 +24,7 @@ public:
 	 * @param id - the id of this agent, it uniquely identifies the agent
 	 * @param clock - the clock used by the simulator, it is the same for all agents
 	 */
-	Agent(Map* m, unsigned long id, Clock* clock);
+	Agent(const Map* m, unsigned long id, Clock* clock);
 
 	/**
 	 * Default destructor of the class.
@@ -42,7 +42,7 @@ public:
 	 * This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class.
 	 * @return the name of the class.
 	 */
-	virtual const string getName() = 0;
+	virtual const string getName() const = 0;
 
 	/**
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents.
@@ -54,20 +54,19 @@ public:
 	 * Getter that returns a pointer to the map passed to the constructor when the an object was build.
 	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
-	Map* getMap() const;
+	const Map* getMap() const;
 
 	/**
 	 * Sets the Map to be used by this agent during the simulation. It is not advisable to change the map during a simulation.
 	 * @param map pointer to a Map object.
 	 */
-	void setMap(Map* map);
+	void setMap(const Map* map);
 
 	/**
 	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
 	 * @return
 	 */
 	Clock* getClock() const;
-
 
 	/**
 	 * Returns the id of the object.
@@ -77,7 +76,7 @@ public:
 
 
 private:
-	Map* m_map;
+	const Map* m_map;
 	unsigned long m_id;
 	Clock* m_clock;
 };

@@ -30,7 +30,7 @@ public:
 	 * @param initialPosition the initial location on map
 	 * @param clock a pointer to a Clock object used in this simulation
 	 */
-	explicit ImmovableAgent(Map* m, long id, Point* initialPosition,
+	explicit ImmovableAgent(const Map* m, long id, Point* initialPosition,
 			Clock* clock);
 
 	/**
@@ -49,9 +49,7 @@ public:
 	 * Returns the name of this class
 	 * @return the name of this class
 	 */
-	const string getName() override {
-		return "ImovableAgent";
-	}
+	const string getName() const override;
 };
 
 #endif /* IMMOVABLEAGENT_H_ */

@@ -14,7 +14,7 @@ using namespace geos;
 using namespace geos::geom;
 
 
-ImmovableAgent::ImmovableAgent(Map* m, long id, Point* initialPosition, Clock* clock) :
+ImmovableAgent::ImmovableAgent(const Map* m, long id, Point* initialPosition, Clock* clock) :
 		LocatableAgent(m, id, initialPosition, clock) {
 }
 
@@ -24,4 +24,8 @@ ImmovableAgent::~ImmovableAgent() {
 
 string ImmovableAgent::toString() const {
 	return (LocatableAgent::toString());
+}
+
+const string ImmovableAgent::getName() const {
+	return ("ImovableAgent");
 }

@@ -15,9 +15,9 @@
 #include <geos/geom/Polygon.h>
 #include <EventType.h>
 #include <AntennaType.h>
+#include <TinyXML2.h>
 #include <string>
 #include <fstream>
-#include <tinyxml2.h>
 
 using namespace tinyxml2;
 using namespace geos;
@@ -44,7 +44,7 @@ public:
 	 * @param type it could have two values AntennaType::OMNIDIRECTIONAL for omnidirectional antennas
 	 * and AntennaType::DIRECTIONAL for directional antennas.
 	 */
-	explicit Antenna(Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power,
+	explicit Antenna(const Map* m, long id, Point* initPosition, Clock* clock, double attenuationFactor, double power,
 			unsigned long maxConnections, double smid, double ssteep, AntennaType type);
 
 	/**
@@ -68,9 +68,7 @@ public:
 	 * Overrides the same method from the superclass.
 	 * @return the name of the class, i.e. "Antenna"
 	 */
-	const string getName() override {
-		return ("Antenna");
-	}
+	const string getName() const override;
 
 	/**
 	 * Overrides the same method from the superclass. It is used to write the characteristics of the Antenna in a file or console.

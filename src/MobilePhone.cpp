@@ -15,7 +15,7 @@
 
 using namespace std;
 
-MobilePhone::MobilePhone(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold, HoldableAgent::CONNECTION_TYPE connType) :
+MobilePhone::MobilePhone(const Map* m, long id, Point* initPosition, Agent* holder, Clock* clock, double powerThreshold, double qualityThreshold, HoldableAgent::CONNECTION_TYPE connType) :
 		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD }, m_qualityThreshold {
 				Constants::QUALITY_THRESHOLD }, m_connType {connType} {
 	m_connectedTo = nullptr;
@@ -95,3 +95,8 @@ double MobilePhone::getPowerThreshold() const {
 void MobilePhone::setPowerThreshold(double powerThreshold) {
 	m_powerThreshold = powerThreshold;
 }
+
+const string MobilePhone::getName() const {
+	return ("MobilePhone");
+}
+
