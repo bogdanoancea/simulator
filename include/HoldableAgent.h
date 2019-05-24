@@ -75,7 +75,7 @@ public:
 	 * Returns a string representation of this class, useful to print it to the console or in a file.
 	 * @return a string representation of this class, useful to print it to the console or in a file.
 	 */
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * Called when a device wants to connect to an antenna
