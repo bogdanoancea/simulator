@@ -22,7 +22,7 @@ ImmovableAgent::~ImmovableAgent() {
 
 }
 
-string ImmovableAgent::toString() const {
+const string ImmovableAgent::toString() const {
 	return (LocatableAgent::toString());
 }
 
