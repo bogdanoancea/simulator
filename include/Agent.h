@@ -24,7 +24,7 @@ public:
 	 * @param id - the id of this agent, it uniquely identifies the agent
 	 * @param clock - the clock used by the simulator, it is the same for all agents
 	 */
-	Agent(const Map* m, unsigned long id, const Clock* clock);
+	Agent(const Map* m, const unsigned long id, const Clock* clock);
 
 	/**
 	 * Default destructor of the class.
@@ -76,7 +76,7 @@ public:
 
 private:
 	const Map* m_map;
-	unsigned long m_id;
+	const unsigned long m_id;
 	const Clock* m_clock;
 };
 

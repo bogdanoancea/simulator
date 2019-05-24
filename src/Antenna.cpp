@@ -17,7 +17,7 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, long id, Point* initPosition, const  Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const  Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
 		double smid, double ssteep, AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_attenuationFactor { attenuationFactor }, m_power { power }, m_maxConnections {
 				maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type { type } {
@@ -34,7 +34,7 @@ Antenna::Antenna(const Map* m, long id, Point* initPosition, const  Clock* clock
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, long id, XMLElement* antennaEl) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
 	XMLNode* n = utils::getNode(antennaEl, "maxconnections");

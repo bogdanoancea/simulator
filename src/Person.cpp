@@ -30,7 +30,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
 }
 

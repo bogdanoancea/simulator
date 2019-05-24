@@ -29,7 +29,7 @@ public:
 	 * @param holder a pointer to an Agent that owns this device
 	 * @param clock a pointer to a Clock object used by this simulation
 	 */
-	explicit HoldableAgent(const Map* m, long id, Point* initPosition, Agent* holder,
+	explicit HoldableAgent(const Map* m, const unsigned long id, Point* initPosition, Agent* holder,
 			const Clock* clock);
 
 	/**

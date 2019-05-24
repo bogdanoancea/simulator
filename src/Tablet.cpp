@@ -10,7 +10,7 @@
 #include <Tablet.h>
 #include <iostream>
 
-Tablet::Tablet(const Map* m, long id, Point* initPosition, const Clock* clock) :
+Tablet::Tablet(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock) :
 		HoldableAgent(m, id, initPosition, nullptr, clock) {
 // TODO Auto-generated constructor stub
 

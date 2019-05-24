@@ -30,7 +30,7 @@ public:
 	 * @param initialPosition the initial location on map
 	 * @param clock a pointer to a Clock object used in this simulation
 	 */
-	explicit ImmovableAgent(const Map* m, long id, Point* initialPosition,
+	explicit ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition,
 			const Clock* clock);
 
 	/**

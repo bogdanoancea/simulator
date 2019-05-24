@@ -36,7 +36,7 @@ public:
 	 * take two values: HoldableAgent::CONNECTION_TYPE::USING_POWER or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY
 	 *
 	 */
-	explicit MobilePhone(const Map* m, long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
+	explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
 			HoldableAgent::CONNECTION_TYPE connType);
 
 	/**

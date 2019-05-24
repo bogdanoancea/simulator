@@ -14,7 +14,7 @@ using namespace geos;
 using namespace geos::geom;
 
 
-ImmovableAgent::ImmovableAgent(const Map* m, long id, Point* initialPosition, const Clock* clock) :
+ImmovableAgent::ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock) :
 		LocatableAgent(m, id, initialPosition, clock) {
 }
 

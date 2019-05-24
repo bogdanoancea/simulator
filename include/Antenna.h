@@ -44,7 +44,7 @@ public:
 	 * @param type it could have two values AntennaType::OMNIDIRECTIONAL for omnidirectional antennas
 	 * and AntennaType::DIRECTIONAL for directional antennas.
 	 */
-	explicit Antenna(const Map* m, long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+	explicit Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
 			unsigned long maxConnections, double smid, double ssteep, AntennaType type);
 
 	/**
@@ -55,7 +55,7 @@ public:
 	 * @param id the id of the Antenna
 	 * @param el the XML Element containing the parameters of the Antenna.
 	 */
-	explicit Antenna(const Map* m, const Clock* clock, long id, XMLElement* el);
+	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el);
 
 
 	/**

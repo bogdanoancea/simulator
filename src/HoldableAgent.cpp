@@ -13,7 +13,7 @@
 #include <sstream>
 #include <algorithm>
 
-HoldableAgent::HoldableAgent(const Map* m, long id, Point* initPosition, Agent* holder, const Clock* clock) :
+HoldableAgent::HoldableAgent(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock) :
 		MovableAgent(m, id, initPosition, clock, 0.0), m_holder { holder } {
 }
 
