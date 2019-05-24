@@ -34,7 +34,7 @@ Antenna::Antenna(const Map* m, long id, Point* initPosition, Clock* clock, doubl
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
-Antenna::Antenna(Map* m, Clock* clk, long id, XMLElement* antennaEl) :
+Antenna::Antenna(const Map* m, Clock* clk, long id, XMLElement* antennaEl) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
 	XMLNode* n = utils::getNode(antennaEl, "maxconnections");
@@ -93,7 +93,7 @@ void Antenna::setAttenuationFactor(double attenuationFactor) {
 	m_attenuationFactor = attenuationFactor;
 }
 
-string Antenna::toString() const {
+const string Antenna::toString() const {
 	ostringstream result;
 	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_attenuationFactor;
 	return (result.str());

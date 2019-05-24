@@ -55,7 +55,7 @@ public:
 	 * @param id the id of the Antenna
 	 * @param el the XML Element containing the parameters of the Antenna.
 	 */
-	explicit Antenna(Map* m, Clock* clock, long id, XMLElement* el);
+	explicit Antenna(const Map* m, Clock* clock, long id, XMLElement* el);
 
 
 	/**
@@ -74,7 +74,7 @@ public:
 	 * Overrides the same method from the superclass. It is used to write the characteristics of the Antenna in a file or console.
 	 * @return a string that describes the parameters of the Antenna.
 	 */
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * Returns the surrounding environment' attenuation factor of the signal.
