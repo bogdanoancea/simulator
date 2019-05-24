@@ -38,13 +38,7 @@ public:
 	 * Returns the name of this class
 	 * @return the name of this class
 	 */
-<<<<<<< HEAD
 	const string getName() const override;
-=======
-	const string getName() override {
-		return ("Tablet");
-	}
->>>>>>> 6786c2fb6975c46da99603584eb4672a8ce4fdb7
 
 	string toString() const override;
 
