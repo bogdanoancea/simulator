@@ -21,20 +21,20 @@ Parser::Parser(const std::string &data, const DataType &type, char sep, bool has
 			ifile.close();
 
 			if (_originalFile.size() == 0)
-				throw Error(string("No Data in ").append(_file));
+				throw runtime_error(string("No Data in ").append(_file));
 
 			if (m_header)
 				parseHeader();
 			parseContent();
 		} else
-			throw Error(string("Failed to open ").append(_file));
+			throw runtime_error(string("Failed to open ").append(_file));
 	} else {
 		istringstream stream(data);
 		while (getline(stream, line))
 			if (line != "")
 				_originalFile.push_back(line);
 		if (_originalFile.size() == 0)
-			throw Error(string("No Data in pure content"));
+			throw runtime_error(string("No Data in pure content"));
 
 		if (m_header)
 			parseHeader();
@@ -85,7 +85,7 @@ void Parser::parseContent(void) {
 
 		// if value(s) missing
 		if (m_header && row->size() != _header.size())
-			throw Error("corrupted data !");
+			throw runtime_error("corrupted data !");
 		_content.push_back(row);
 	}
 }
@@ -93,7 +93,7 @@ void Parser::parseContent(void) {
 Row &Parser::getRow(unsigned int rowPosition) const {
 	if (rowPosition < _content.size())
 		return *(_content[rowPosition]);
-	throw Error("can't return this row (doesn't exist)");
+	throw runtime_error("can't return this row (doesn't exist)");
 }
 
 Row &Parser::operator[](unsigned int rowPosition) const {
@@ -114,7 +114,7 @@ vector<string> Parser::getHeader(void) const {
 
 const string Parser::getHeaderElement(unsigned int pos) const {
 	if (pos >= _header.size())
-		throw Error("can't return this header (doesn't exist)");
+		throw runtime_error("can't return this header (doesn't exist)");
 	return _header[pos];
 }
 
@@ -202,7 +202,7 @@ bool Row::set(const string &key, const string &value) {
 const string Row::operator[](unsigned int valuePosition) const {
 	if (valuePosition < _values.size())
 		return _values[valuePosition];
-	throw Error("can't return this value (doesn't exist)");
+	throw runtime_error("can't return this value (doesn't exist)");
 }
 
 const string Row::operator[](const string &key) const {
@@ -215,7 +215,7 @@ const string Row::operator[](const string &key) const {
 		pos++;
 	}
 
-	throw Error("can't return this value (doesn't exist)");
+	throw runtime_error("can't return this value (doesn't exist)");
 }
 
 ostream &operator<<(ostream &os, const Row &row) {
