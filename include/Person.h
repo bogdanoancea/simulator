@@ -57,7 +57,7 @@ public:
 	 * Builds a human readable string representation of the person
 	 * @return a human readable string representation of the person
 	 */
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * Builds a string containing a list with the ids of the mobile devices the this person owns
