@@ -40,7 +40,7 @@ public:
 	 */
 	const string getName() const override;
 
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * This method is called to move the tablet (actually the person who own this tablet move) to another location on the map.
