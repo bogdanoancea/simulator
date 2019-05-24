@@ -53,7 +53,7 @@ public:
 	 * Returns a human readable string representation of this class useful to output it to a file or console
 	 * @return a human readable string representation of this class
 	 */
-	string toString() const override;
+	const string toString() const override;
 
 	/**
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the

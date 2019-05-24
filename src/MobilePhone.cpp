@@ -24,7 +24,7 @@ MobilePhone::MobilePhone(const Map* m, long id, Point* initPosition, Agent* hold
 MobilePhone::~MobilePhone() {
 }
 
-string MobilePhone::toString() const {
+const string MobilePhone::toString() const {
 	return (HoldableAgent::toString());
 }
 
