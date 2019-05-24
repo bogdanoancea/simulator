@@ -47,7 +47,7 @@ public:
 	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides an electromagnetic field with the
 	 * highest power in p
 	 */
-	pair<Antenna*, double> computeMaxPower(Point* p);
+	pair<Antenna*, double> computeMaxPower(const Point* p);
 
 	/**
 	 * Returns a pair made of an Antenna object and its signal quality with the property that in the location specified by Point p,
@@ -57,9 +57,7 @@ public:
 	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides a signal with the
 	 * highest quality in p.
 	 */
-	pair<Antenna*, double> computeMaxQuality(Point* p);
-	//vector<pair<Antenna*, double>> getInRangeAntennasByPower(Point* p, double powerThreshold = Constants::POWER_THRESHOLD);
-	//vector<pair<Antenna*, double>> getInRangeAntennasByQuality(Point* p, double qualityThreshold);
+	pair<Antenna*, double> computeMaxQuality(const Point* p);
 
 	/**
 	 * Returns a vector of pairs made up of an Antenna object and its power or signal quality. All the antennas in this vector
@@ -72,8 +70,8 @@ public:
 	 * @return a vector of pairs made up of an Antenna object and its power or signal quality. All the antennas in this vector
 	 * provides a signal with a power or signal quality greater than the threshold provided as a parameter
 	 */
-	vector<pair<Antenna*, double>> getInRangeAntennas(Point* p,
-			double threshold, bool power);
+	vector<pair<Antenna*, double>> getInRangeAntennas(const Point* p,
+			const double threshold, const bool power);
 
 	/**
 	 * Checks is the power or the signal quality given by an antenna in a specific point in space is above the limit
@@ -84,7 +82,7 @@ public:
 	 * @param power if true the computations are done considering the power of the antenna, otherwise the signal quality
 	 * @return true is the provided Antenna object provide enough power or signal quality in the location given as a paramater.
 	 */
-	bool isAntennaInRange(Point* p, Antenna* a, double threshold, bool power);
+	bool isAntennaInRange(const Point* p, Antenna* a, const double threshold, const bool power);
 
 	/**
 	 * Computes the connection likelihood. For a definition of this measure please consult the paper "Deriving geographic location of
@@ -93,7 +91,7 @@ public:
 	 * @param p a location in space.
 	 * @return the connection likelihood.
 	 */
-	double connectionLikelihood(Antenna* a, Point * p);
+	double connectionLikelihood(Antenna* a, const Point * p);
 
 private:
 	EMField();

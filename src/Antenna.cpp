@@ -170,7 +170,7 @@ unsigned long Antenna::getNumActiveConections() {
 	return (m_devices.size());
 }
 
-void Antenna::registerEvent(HoldableAgent * ag, EventType event, bool verbose) {
+void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
 		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
@@ -250,7 +250,7 @@ void Antenna::setSSteep(double sSteep) {
 	m_SSteep = sSteep;
 }
 
-double Antenna::computeSignalQuality(Point* p) const {
+double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		result = 1.0 / (1 + exp(-m_SSteep * (S(p->distance(getLocation())) - m_Smid)));
@@ -259,7 +259,7 @@ double Antenna::computeSignalQuality(Point* p) const {
 	return (result);
 }
 
-double Antenna::computePower(Point* p) const {
+double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL)
 		result = m_power * pow(p->distance(getLocation()), -m_attenuationFactor);

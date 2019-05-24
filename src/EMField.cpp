@@ -20,7 +20,7 @@ EMField::EMField() {
 	// TODO Auto-generated constructor stub
 }
 
-pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
+pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -38,7 +38,7 @@ pair<Antenna*, double> EMField::computeMaxPower(Point* p) {
 	return (result);
 }
 
-pair<Antenna*, double> EMField::computeMaxQuality(Point* p) {
+pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -56,7 +56,7 @@ pair<Antenna*, double> EMField::computeMaxQuality(Point* p) {
 	return (result);
 }
 
-double EMField::connectionLikelihood(Antenna* a, Point * p) {
+double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	double s_quality = a->computeSignalQuality(p);
 	double result = 0.0, sum = 0.0;
 	unsigned long size = m_antennas.size();
@@ -75,7 +75,7 @@ void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double threshold, bool power) {
+vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const double threshold, const bool power) {
 	vector<pair<Antenna*, double>> result;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -97,7 +97,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(Point* p, double thre
 	return (result);
 }
 
-bool EMField::isAntennaInRange(Point* p, Antenna* a, double threshold, bool power) {
+bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshold, const bool power) {
 	bool result = false;
 	double ps = 0.0;
 	if (power)

@@ -57,7 +57,7 @@ public:
 	 * @return a pointer to the agent with the id equal to the @param id. If there is no agent with the provided id,
 	 * this method returns nullptr.
 	 */
-	Agent* getAgent(unsigned long id) const;
+	Agent* getAgent(const unsigned long id) const;
 
 	/**
 	 * This method is used to get a subset with a certain type of agents: persons, mobile phone etc.

@@ -186,20 +186,20 @@ public:
 	 * @param p the location where we want to compute the signal quality.
 	 * @return the signal quality.
 	 */
-	double computeSignalQuality(Point* p) const;
+	double computeSignalQuality(const Point* p) const;
 
 	/**
 	 * Computes the power of the signal given by an antenna in a certain location.
 	 * @param p the location where we want to compute the power of the signal.
 	 * @return the power of the signal in the location given by Point p.
 	 */
-	double computePower(Point* p) const;
+	double computePower(const Point* p) const;
 
 
 private:
 
 	bool alreadyRegistered(HoldableAgent * ag);
-	void registerEvent(HoldableAgent * ag, EventType event, bool verbose);
+	void registerEvent(HoldableAgent * ag, const EventType event, const bool verbose);
 	unsigned long getNumActiveConections();
 	double S0()const;
 	double SDist(double dist) const;

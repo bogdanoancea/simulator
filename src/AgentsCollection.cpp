@@ -43,7 +43,7 @@ std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const s
 	return (m_agents.equal_range(agentType));
 }
 
-Agent* AgentsCollection::getAgent(unsigned long id) const {
+Agent* AgentsCollection::getAgent(const unsigned long id) const {
 	Agent* result = nullptr;
 	for (auto& a : m_agents) {
 		if (a.second->getId() == id)

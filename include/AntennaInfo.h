@@ -29,54 +29,54 @@ public:
 	 * @param x x coordinate of the device when the event was generated
 	 * @param y y coordinate of the device when the event was generated
 	 */
-	AntennaInfo(unsigned long time, unsigned long antennaId,
-			unsigned long event, unsigned long deviceId, double x, double y);
+	AntennaInfo(const unsigned long time, const unsigned long antennaId,
+			const unsigned long event, const unsigned long deviceId, const double x, const double y);
 	/**
 	 * @return the id of the antenna that registered an event.
 	 */
-	unsigned long getAntennaId() const;
+	const unsigned long getAntennaId() const;
 
 
 	/**
 	 *@return the id of the device that generated the event
 	 */
-	unsigned long getDeviceId() const;
+	const unsigned long getDeviceId() const;
 
 	/**
 	 * @return the event code
 	 */
-	unsigned long getEventCode() const;
+	const unsigned long getEventCode() const;
 
 	/**
 	 * @return the timestamp of the event
 	 */
-	unsigned long getTime() const;
+	const unsigned long getTime() const;
 
 	/**
 	 *
 	 * @return x coordinate of the device that generated the event
 	 */
-	double getX() const;
+	const double getX() const;
 
 	/**
 	 *
 	 * @return y coordinate of the device that generated the event
 	 */
-	double getY() const;
+	const double getY() const;
 
 	/**
 	 *
 	 * @return a string representation of on object of this class
 	 */
-	string toString() const;
+	const string toString() const;
 
 private:
-	unsigned long m_time;
-	unsigned long m_antennaId;
-	unsigned long m_eventCode;
-	unsigned long m_deviceId;
-	double m_x;
-	double m_y;
+	const unsigned long m_time;
+	const unsigned long m_antennaId;
+	const unsigned long m_eventCode;
+	const unsigned long m_deviceId;
+	const double m_x;
+	const double m_y;
 };
 
 #endif /* ANTENNAINFO_H_ */
