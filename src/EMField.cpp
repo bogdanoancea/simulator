@@ -17,7 +17,6 @@
 EMField* EMField::m_instance = nullptr;
 
 EMField::EMField() {
-	// TODO Auto-generated constructor stub
 }
 
 pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {

@@ -61,7 +61,7 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
 		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode() == 1 || ai->getEventCode() == 3)) {
+				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
 			break;
 		}

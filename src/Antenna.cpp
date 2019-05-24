@@ -192,22 +192,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	}
 	else {
-		int code = -1;
-		switch (event) {
-			case EventType::ATTACH_DEVICE:
-				code = 1;
-				break;
-			case EventType::DETACH_DEVICE:
-				code = 2;
-				break;
-			case EventType::ALREADY_ATTACHED_DEVICE:
-				code = 3;
-				break;
-			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-				code = 4;
-		}
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << code << sep << ag->getId() << sep
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
 				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
