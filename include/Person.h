@@ -40,7 +40,7 @@ public:
 	 * @param age the age of the person. The age is generated using a uniform or a normal distribution.
 	 * @param gender the gender of the person.
 	 */
-	explicit Person(const Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gender);
+	explicit Person(const Map* m, long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender);
 
 	/**
 	 * Destructor

@@ -31,7 +31,7 @@ public:
 	 * @param clock a pointer to a Clock object used in this simulation
 	 */
 	explicit ImmovableAgent(const Map* m, long id, Point* initialPosition,
-			Clock* clock);
+			const Clock* clock);
 
 	/**
 	 * Destructor

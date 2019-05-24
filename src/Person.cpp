@@ -30,7 +30,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, long id, Point* initPosition, Clock* clock, double initSpeed, int age, Gender gen) :
+Person::Person(const Map* m, long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
 }
 
@@ -45,7 +45,7 @@ void Person::setAge(int age) {
 	m_age = age;
 }
 
-string string Person::toString() const {
+const string Person::toString() const {
 	ostringstream ss;
 	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE? "Male" : "Female");
 

@@ -30,7 +30,7 @@ public:
 	 * @param clock a pointer to a Clock object used by this simulation
 	 */
 	explicit HoldableAgent(const Map* m, long id, Point* initPosition, Agent* holder,
-			Clock* clock);
+			const Clock* clock);
 
 	/**
 	 * Copy constructor.

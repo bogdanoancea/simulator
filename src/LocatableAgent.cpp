@@ -17,7 +17,7 @@
 using namespace geos;
 using namespace geos::geom;
 
-LocatableAgent::LocatableAgent(const Map* m, long id, Point* initLocation, Clock* clock) :
+LocatableAgent::LocatableAgent(const Map* m, long id, Point* initLocation, const Clock* clock) :
 		Agent(m, id, clock) {
 	m_location = initLocation;
 

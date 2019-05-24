@@ -33,7 +33,7 @@ public:
 	 * @param clock a pointer to the Clock object used by this simulation
 	 * @param initSpeed the initial speed of the agent
 	 */
-	explicit MovableAgent(const Map* m, long id, Point* initPosition, Clock* clock, double initSpeed);
+	explicit MovableAgent(const Map* m, long id, Point* initPosition, const Clock* clock, double initSpeed);
 
 	/**
 	 * Destructor

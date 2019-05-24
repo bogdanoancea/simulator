@@ -26,7 +26,7 @@ public:
 	 * @param initPosition the initial location on map
 	 * @param clock a pointer to a Clock object used for simulation.
 	 */
-	explicit Tablet(const Map* m, long id, Point* initPosition, Clock* clock);
+	explicit Tablet(const Map* m, long id, Point* initPosition, const Clock* clock);
 
 	/**
 	 * Destructor
