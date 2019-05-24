@@ -15,9 +15,9 @@
 #include <geos/geom/Polygon.h>
 #include <EventType.h>
 #include <AntennaType.h>
+#include <TinyXML2.h>
 #include <string>
 #include <fstream>
-#include <tinyxml2.h>
 
 using namespace tinyxml2;
 using namespace geos;

@@ -24,10 +24,10 @@
 #include <utility>
 #include <sstream>
 #include <AntennaType.h>
-#include <tinyxml2.h>
 #include <cstring>
 #include <HoldableAgent.h>
 #include <MovementType.h>
+#include <TinyXML2.h>
 
 using namespace std;
 using namespace utils;
@@ -58,28 +58,6 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, int numPersons, const string& configAntennasFile, int numMobilePhones) :
-		m_map { map } {
-
-	m_agentsCollection = new AgentsCollection();
-	m_clock = new Clock();
-	m_mvType = MovementType::RANDOM_WALK;
-	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
-
-	vector<Person*> persons = generatePopulation(numPersons);
-	for (unsigned long i = 0; i < persons.size(); i++) {
-		m_agentsCollection->addAgent(persons[i]);
-	}
-	vector<Antenna*> antennas = parseAntennas(configAntennasFile);
-	for (unsigned long i = 0; i < antennas.size(); i++) {
-		m_agentsCollection->addAgent(antennas[i]);
-		EMField::instance()->addAntenna(antennas[i]);
-	}
-	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones, m_connType);
-	for (unsigned long i = 0; i < phones.size(); i++) {
-		m_agentsCollection->addAgent(phones[i]);
-	}
-}
 
 World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
@@ -156,10 +134,6 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 		cerr << "Error closing output files!" << endl;
 		throw e;
 	}
-}
-
-unsigned int World::getCurrentTime() {
-	return (m_clock->getCurrentTime());
 }
 
 AgentsCollection* World::getAgents() const {

@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <string>
 #include <string.h>
-#include <tinyxml2.h>
+#include <TinyXML2.h>
 #include <Utils.h>
 
 using namespace tinyxml2;
