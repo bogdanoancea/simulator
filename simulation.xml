@@ -6,4 +6,6 @@
 		<connection_type>quality</connection_type>
 		<grid_file>grid.csv</grid_file>
 		<prob_file>prob.csv</prob_file>
+		<persons_file>persons.csv</persons_file>
+		<antennas_file>antennas.csv</antennas_file>
 </simulation>

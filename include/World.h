@@ -68,10 +68,8 @@ public:
 	 * of all persons in a csv file and the positions of antennas at the starting time of the simulation. A simulation
 	 * means a number of time steps, at each step every person move to another position and after arriving at their new
 	 * position the mobile phones that they carry try to connect to one of the available antennas.
-	 * @param personsFile the name of the file where the exact positions of the persons are saved
-	 * @param antennasFile the name of the file where the exact positions of antennas are saved
 	 */
-	void runSimulation(string& personsFile, string& antennasFile) noexcept(false);
+	void runSimulation() noexcept(false);
 
 	/**
 	 * Returns the AgentsCollection used in simulation
@@ -123,6 +121,18 @@ public:
 		return m_probFilename;
 	}
 
+	/**
+	 * Returns the name of the file where the antennas exact locations are saved for later analysis
+	 * @return the name of the file where the antennas exact locations are saved for later analysis
+	 */
+	const string& getAntennasFilename() const;
+
+	/**
+	 * Returns the name of the file where the persons exact locations are saved for later analysis
+	 * @return the name of the file where the persons exact locations are saved for later analysis
+	 */
+	const string& getPersonsFilename() const;
+
 private:
 
 	Map* m_map;
@@ -137,6 +147,9 @@ private:
 	MovementType m_mvType;
 	string m_gridFilename;
 	string m_probFilename;
+	string m_personsFilename;
+	string m_antennasFilename;
+
 
 	vector<Person*> generatePopulation(unsigned long numPersons);
 	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,

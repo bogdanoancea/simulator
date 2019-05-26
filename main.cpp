@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -o <outputFile>"
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile>"
 				<< endl;
 		exit(0);
 	}
@@ -40,7 +40,6 @@ int main(int argc, char** argv) {
 	const string &mapFileName = parser.getCmdOption("-m");
 	const string &personsConfigFileName = parser.getCmdOption("-p");
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
-	const string &outputFileName = parser.getCmdOption("-o");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -54,12 +53,6 @@ int main(int argc, char** argv) {
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
-
-		//unsigned long numPersons = Constants::NO_PERSONS;
-		//unsigned long numMobilePhones = Constants::NO_MOBILE_PHONES;
-
-		//cout << "... and it has " << numPersons << " persons and " << numMobilePhones
-		//		<< " mobile phones!" << endl;
 
 		if (antennasConfigFileName.empty()) {
 			throw runtime_error("no antenna config file!");
@@ -119,7 +112,7 @@ int main(int argc, char** argv) {
 
 		string persFileName("persons.csv");
 		string antennasFileName("antennas.csv");
-		w.runSimulation(persFileName, antennasFileName);
+		w.runSimulation();
 
 		//now we compute the probabilities for the positions of the phones
 

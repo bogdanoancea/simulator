@@ -92,6 +92,15 @@ public:
 	 */
 	static const char* PROB_FILE_NAME;
 
+	/**
+	 * The name of the file where the exact positions of the persons are saved during simulation. They are needed for later analysis.
+	 */
+	static const char* PERSONS_FILE_NAME;
+
+	/**
+	 * The name of the file where the exact positions of the antennas are saved during simulation. They are needed for later analysis.
+	 */
+	static const char* ANTENNAS_FILE_NAME;
 };
 
 #endif /* CONSTANTS_H_ */

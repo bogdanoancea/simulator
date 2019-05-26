@@ -41,6 +41,9 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_mvType = MovementType::RANDOM_WALK;
 	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 	m_gridFilename = Constants::GRID_FILE_NAME;
+	m_personsFilename = Constants::PERSONS_FILE_NAME;
+	m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
+	m_probFilename = Constants::PROB_FILE_NAME;
 
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
@@ -86,11 +89,11 @@ World::~World() {
 	cout << "End of simulation!" << endl;
 }
 
-void World::runSimulation(string& personsFile, string& antennasFile) noexcept(false) {
+void World::runSimulation() noexcept(false) {
 	ofstream pFile, aFile;
 	try {
-		pFile.open(personsFile, ios::out);
-		aFile.open(antennasFile, ios::out);
+		pFile.open(m_personsFilename, ios::out);
+		aFile.open(m_antennasFilename, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
@@ -114,10 +117,8 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
 			p->move(m_mvType);
-
 		}
 	}
-
 	//test EMField
 //	Coordinate c = Coordinate(0.533584, 10);
 //	Point* p = getMap()->getGlobalFactory()->createPoint(c);
@@ -339,6 +340,11 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		XMLNode* probNode = getNode(simEl, "prob_file");
 		m_probFilename = probNode->ToText()->Value();
 
+		XMLNode* persNode = getNode(simEl, "persons_file");
+		m_personsFilename = persNode->ToText()->Value();
+		XMLNode* antennasNode = getNode(simEl, "antennas_file");
+		m_antennasFilename = antennasNode->ToText()->Value();
+
 	}
 }
 
@@ -398,4 +404,12 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	delete[] ages;
 	delete[] gender;
 	return (result);
+}
+
+const string& World::getAntennasFilename() const {
+	return m_antennasFilename;
+}
+
+const string& World::getPersonsFilename() const {
+	return m_personsFilename;
 }
