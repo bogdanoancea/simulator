@@ -86,6 +86,12 @@ public:
 	 * The name of the file where the description of the grid is saved
 	 */
 	static const char* GRID_FILE_NAME;
+
+	/**
+	 * The name of the file where the probabilities of mobile phones locations are saved
+	 */
+	static const char* PROB_FILE_NAME;
+
 };
 
 #endif /* CONSTANTS_H_ */

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rtnorm',['Rtnorm',['../namespace_rtnorm.html',1,'']]]
+  ['utils',['utils',['../namespaceutils.html',1,'']]]
 ];

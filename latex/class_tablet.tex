@@ -4,28 +4,26 @@
 
 {\ttfamily \#include $<$Tablet.\+h$>$}
 
-
-
-Inheritance diagram for Tablet\+:
-% FIG 0
-
-
-Collaboration diagram for Tablet\+:
-% FIG 1
+Inheritance diagram for Tablet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_tablet}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\textbf{ Tablet} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Clock} $\ast$clock)
+\textbf{ Tablet} (const \textbf{ Map} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \textbf{ Clock} $\ast$clock)
 \item 
 virtual \textbf{ $\sim$\+Tablet} ()
 \item 
-string \textbf{ get\+Name} () override
+const string \textbf{ get\+Name} () const override
 \item 
-string \textbf{ to\+String} () override
+const string \textbf{ to\+String} () const override
 \item 
 Point $\ast$ \textbf{ move} (\textbf{ Movement\+Type} type) override
 \item 
-bool \textbf{ try\+Connect} (\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} type) override
+bool \textbf{ try\+Connect} () override
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -33,125 +31,104 @@ bool \textbf{ try\+Connect} (\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+
 \subsection{Detailed Description}
 
 
-Definition at line 18 of file Tablet.\+h.
+Definition at line 20 of file Tablet.\+h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\label{class_tablet_a054c47c849166f5eb14863832582a7e2}} 
+\mbox{\label{class_tablet_af457c0988b7a768659a284e16be58dc6}} 
 \index{Tablet@{Tablet}!Tablet@{Tablet}}
 \index{Tablet@{Tablet}!Tablet@{Tablet}}
 \subsubsection{Tablet()}
-{\footnotesize\ttfamily Tablet\+::\+Tablet (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily Tablet\+::\+Tablet (\begin{DoxyParamCaption}\item[{const \textbf{ Map} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
+Builds a new object with the parameters provided by the user 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to a \doxyref{Map}{p.}{class_map} object used for simulation. \\
+\hline
+{\em id} & the id of the tablet \\
+\hline
+{\em init\+Position} & the initial location on map \\
+\hline
+{\em clock} & a pointer to a \doxyref{Clock}{p.}{class_clock} object used for simulation. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_tablet_ac18d46eafd643e66dde81a3fefadab89}} 
+\index{Tablet@{Tablet}!````~Tablet@{$\sim$Tablet}}
+\index{````~Tablet@{$\sim$Tablet}!Tablet@{Tablet}}
+\subsubsection{$\sim$Tablet()}
+{\footnotesize\ttfamily virtual Tablet\+::$\sim$\+Tablet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
-Definition at line 13 of file Tablet.\+cpp.
-
-\mbox{\label{class_tablet_ac1708c29981f805e5fd60ebf03acb924}} 
-\index{Tablet@{Tablet}!````~Tablet@{$\sim$\+Tablet}}
-\index{````~Tablet@{$\sim$\+Tablet}!Tablet@{Tablet}}
-\subsubsection{$\sim$\+Tablet()}
-{\footnotesize\ttfamily Tablet\+::$\sim$\+Tablet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Definition at line 19 of file Tablet.\+cpp.
-
-
+Destructor 
 
 \subsection{Member Function Documentation}
-\mbox{\label{class_tablet_a2cac00cd9efca5b8adeff28ae5827970}} 
-\index{Tablet@{Tablet}!get\+Name@{get\+Name}}
-\index{get\+Name@{get\+Name}!Tablet@{Tablet}}
-\subsubsection{get\+Name()}
-{\footnotesize\ttfamily string Tablet\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\label{class_tablet_adc7196aaee1e9714236b7cd8825d5826}} 
+\index{Tablet@{Tablet}!getName@{getName}}
+\index{getName@{getName}!Tablet@{Tablet}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily const string Tablet\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
-the name of the class. 
+Returns the name of this class \begin{DoxyReturn}{Returns}
+the name of this class 
 \end{DoxyReturn}
 
 
-Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a089a15867a877d3a4cb510169c32d682}.
+Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_ab330bb40de51a957ef8826af629f94a2}.
 
-
-
-Definition at line 23 of file Tablet.\+h.
-
-
-
-References to\+String().
-
-Here is the call graph for this function\+:
-% FIG 2
 \mbox{\label{class_tablet_a0021a8d61f496d84540f675b1cb7d080}} 
 \index{Tablet@{Tablet}!move@{move}}
 \index{move@{move}!Tablet@{Tablet}}
 \subsubsection{move()}
 {\footnotesize\ttfamily Point$\ast$ Tablet\+::move (\begin{DoxyParamCaption}\item[{\textbf{ Movement\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
+This method is called to move the tablet (actually the person who own this tablet move) to another location on the map. 
+\begin{DoxyParams}{Parameters}
+{\em type} & the method used to compute the new location. Could take the following values\+: \doxyref{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+LK}{p.}{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493aaecf4952eec2bd3f2f466be174f92b9b}, \doxyref{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT}{p.}{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493afe3e6ccf706c472da354925e9a402e0e} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
 
 
 Implements \textbf{ Movable\+Agent} \doxyref{}{p.}{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}.
 
 
 
-Definition at line 28 of file Tablet.\+h.
+Definition at line 51 of file Tablet.\+h.
 
 
 
-References Locatable\+Agent\+::get\+Location(), and try\+Connect().
+References Locatable\+Agent\+::get\+Location().
 
-Here is the call graph for this function\+:
-% FIG 3
-\mbox{\label{class_tablet_a90880cd8f4a4afd451645e6e1dc86c5b}} 
-\index{Tablet@{Tablet}!to\+String@{to\+String}}
-\index{to\+String@{to\+String}!Tablet@{Tablet}}
-\subsubsection{to\+String()}
-{\footnotesize\ttfamily string Tablet\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\label{class_tablet_a3fae01e7d526699476221c6a686a4fba}} 
+\index{Tablet@{Tablet}!toString@{toString}}
+\index{toString@{toString}!Tablet@{Tablet}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily const string Tablet\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
-a string representation of the class content. The values of the members are written in this string. 
+Returns a string representation of this class, useful to print it to the console or in a file. \begin{DoxyReturn}{Returns}
+a string representation of this class, useful to print it to the console or in a file. 
 \end{DoxyReturn}
 
 
-Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3fee3021111198ac01469a715093ab88}.
+Reimplemented from \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a2c581226b8994f24b6b2306ae17dbb52}.
+
+\mbox{\label{class_tablet_a2328422e1706dfeb2b51a6960e6879f0}} 
+\index{Tablet@{Tablet}!tryConnect@{tryConnect}}
+\index{tryConnect@{tryConnect}!Tablet@{Tablet}}
+\subsubsection{tryConnect()}
+{\footnotesize\ttfamily bool Tablet\+::try\+Connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Called after the tablet changes location on the map, try to connect to an antenna \begin{DoxyReturn}{Returns}
+true if the connection succeeds, false otherwise 
+\end{DoxyReturn}
+
+
+Implements \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}.
 
 
 
-Definition at line 23 of file Tablet.\+cpp.
-
-
-
-References Holdable\+Agent\+::to\+String().
-
-
-
-Referenced by get\+Name().
-
-Here is the call graph for this function\+:
-% FIG 4
-\mbox{\label{class_tablet_a4a08098f3acddd3167fc9633deabb809}} 
-\index{Tablet@{Tablet}!try\+Connect@{try\+Connect}}
-\index{try\+Connect@{try\+Connect}!Tablet@{Tablet}}
-\subsubsection{try\+Connect()}
-{\footnotesize\ttfamily bool Tablet\+::try\+Connect (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-
-
-Implements \textbf{ Holdable\+Agent} \doxyref{}{p.}{class_holdable_agent_a3f6500c10b054ca06a7800d4b01c5308}.
-
-
-
-Definition at line 27 of file Tablet.\+cpp.
-
-
-
-Referenced by move().
-
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ Tablet.\+h}\item 
-src/\textbf{ Tablet.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ Tablet.\+h}\end{DoxyCompactItemize}

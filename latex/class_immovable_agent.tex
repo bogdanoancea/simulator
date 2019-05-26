@@ -1,108 +1,90 @@
 \section{Immovable\+Agent Class Reference}
-\label{class_immovable_agent}\index{Immovable\+Agent@{Immovable\+Agent}}
+\label{class_immovable_agent}\index{ImmovableAgent@{ImmovableAgent}}
 
 
 {\ttfamily \#include $<$Immovable\+Agent.\+h$>$}
 
-
-
-Inheritance diagram for Immovable\+Agent\+:
-% FIG 0
-
-
-Collaboration diagram for Immovable\+Agent\+:
-% FIG 1
+Inheritance diagram for Immovable\+Agent\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_immovable_agent}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\textbf{ Immovable\+Agent} (\textbf{ Map} $\ast$m, long id, Point $\ast$initial\+Position, \textbf{ Clock} $\ast$clock)
+\textbf{ Immovable\+Agent} (const \textbf{ Map} $\ast$m, const unsigned long id, Point $\ast$initial\+Position, const \textbf{ Clock} $\ast$clock)
 \item 
 virtual \textbf{ $\sim$\+Immovable\+Agent} ()
 \item 
-string \textbf{ to\+String} () override
+const string \textbf{ to\+String} () const override
 \item 
-string \textbf{ get\+Name} () override
+const string \textbf{ get\+Name} () const override
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
+This is a class that represents an agent that can have a localion on map but it cannot move. The only subclass of it is \doxyref{Antenna}{p.}{class_antenna}. 
 
 Definition at line 23 of file Immovable\+Agent.\+h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\label{class_immovable_agent_aca3d3a6d6608a1e639a57e84c94e336e}} 
-\index{Immovable\+Agent@{Immovable\+Agent}!Immovable\+Agent@{Immovable\+Agent}}
-\index{Immovable\+Agent@{Immovable\+Agent}!Immovable\+Agent@{Immovable\+Agent}}
-\subsubsection{Immovable\+Agent()}
-{\footnotesize\ttfamily Immovable\+Agent\+::\+Immovable\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{initial\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+\mbox{\label{class_immovable_agent_a0b4253828510a7212b77c5921a057900}} 
+\index{ImmovableAgent@{ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\index{ImmovableAgent@{ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\subsubsection{ImmovableAgent()}
+{\footnotesize\ttfamily Immovable\+Agent\+::\+Immovable\+Agent (\begin{DoxyParamCaption}\item[{const \textbf{ Map} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{initial\+Position,  }\item[{const \textbf{ Clock} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
+Constructor of the class. Build an object of \doxyref{Immovable\+Agent}{p.}{class_immovable_agent} type with the parameters provided by the user. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to a map object used in this simulation. \\
+\hline
+{\em id} & the id of this object \\
+\hline
+{\em initial\+Position} & the initial location on map \\
+\hline
+{\em clock} & a pointer to a \doxyref{Clock}{p.}{class_clock} object used in this simulation \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_immovable_agent_aa2dfb26891059da00ff897a7c6e6a47c}} 
+\index{ImmovableAgent@{ImmovableAgent}!````~ImmovableAgent@{$\sim$ImmovableAgent}}
+\index{````~ImmovableAgent@{$\sim$ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\subsubsection{$\sim$ImmovableAgent()}
+{\footnotesize\ttfamily virtual Immovable\+Agent\+::$\sim$\+Immovable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
-Definition at line 17 of file Immovable\+Agent.\+cpp.
-
-\mbox{\label{class_immovable_agent_af8bf8c3a8a322decc4ced38cb1296fee}} 
-\index{Immovable\+Agent@{Immovable\+Agent}!````~Immovable\+Agent@{$\sim$\+Immovable\+Agent}}
-\index{````~Immovable\+Agent@{$\sim$\+Immovable\+Agent}!Immovable\+Agent@{Immovable\+Agent}}
-\subsubsection{$\sim$\+Immovable\+Agent()}
-{\footnotesize\ttfamily Immovable\+Agent\+::$\sim$\+Immovable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Definition at line 22 of file Immovable\+Agent.\+cpp.
-
-
+Destructor 
 
 \subsection{Member Function Documentation}
-\mbox{\label{class_immovable_agent_a35b43ab9d6cd845a0ada5b95784994f0}} 
-\index{Immovable\+Agent@{Immovable\+Agent}!get\+Name@{get\+Name}}
-\index{get\+Name@{get\+Name}!Immovable\+Agent@{Immovable\+Agent}}
-\subsubsection{get\+Name()}
-{\footnotesize\ttfamily string Immovable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\label{class_immovable_agent_ae8fbccc744f6f806e47dfd242fa67a1c}} 
+\index{ImmovableAgent@{ImmovableAgent}!getName@{getName}}
+\index{getName@{getName}!ImmovableAgent@{ImmovableAgent}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily const string Immovable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
-the name of the class. 
+Returns the name of this class \begin{DoxyReturn}{Returns}
+the name of this class 
 \end{DoxyReturn}
 
 
-Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}.
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_afe6c72d91baf9ee4fe77ea1ed7fef3ba}.
 
+\mbox{\label{class_immovable_agent_a805b0d18035550d902d617a8c7ccc062}} 
+\index{ImmovableAgent@{ImmovableAgent}!toString@{toString}}
+\index{toString@{toString}!ImmovableAgent@{ImmovableAgent}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily const string Immovable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-
-Definition at line 30 of file Immovable\+Agent.\+h.
-
-\mbox{\label{class_immovable_agent_a94ec08f8c08ec2b4cecf5ef27b00fa32}} 
-\index{Immovable\+Agent@{Immovable\+Agent}!to\+String@{to\+String}}
-\index{to\+String@{to\+String}!Immovable\+Agent@{Immovable\+Agent}}
-\subsubsection{to\+String()}
-{\footnotesize\ttfamily string Immovable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
-a string representation of the class content. The values of the members are written in this string. 
+Builds a string representation of this class \begin{DoxyReturn}{Returns}
+a string representation of this class 
 \end{DoxyReturn}
 
 
-Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}.
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a44f291596d10c7878b0641d6ec156328}.
 
 
 
-Definition at line 26 of file Immovable\+Agent.\+cpp.
-
-
-
-References Locatable\+Agent\+::to\+String().
-
-
-
-Referenced by Antenna\+::to\+String().
-
-Here is the call graph for this function\+:
-% FIG 2
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ Immovable\+Agent.\+h}\item 
-src/\textbf{ Immovable\+Agent.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ Immovable\+Agent.\+h}\end{DoxyCompactItemize}

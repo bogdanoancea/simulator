@@ -4,4 +4,6 @@
 		<time_increment>1</time_increment>
 		<movement_type>random_walk</movement_type>
 		<connection_type>quality</connection_type>
+		<grid_file>grid.csv</grid_file>
+		<prob_file>prob.csv</prob_file>
 </simulation>

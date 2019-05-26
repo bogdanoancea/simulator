@@ -36,9 +36,9 @@ Geometry $\ast$ \textbf{ m\+\_\+boundary}
 
 
 \subsection{Detailed Description}
+This is the map where the simulation takes place. It could be a simple rectangle or any kind of geometry object(s) read from a wkt file. The map has a boundary that is implemented as a Geometry object, a factory object of Geometry\+Factory type used to create other objects. All geometric and geographic features of the simulator uses the G\+E\+OS library. G\+E\+OS is an open source C++ library which is just a port to C++ of the well know Java Topology Suite. 
 
-
-Definition at line 22 of file Map.\+h.
+Definition at line 26 of file Map.\+h.
 
 
 
@@ -49,117 +49,111 @@ Definition at line 22 of file Map.\+h.
 \subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Default constructor 
-
-Definition at line 28 of file Map.\+cpp.
-
-\mbox{\label{class_map_a4c9545a0252613e2a6808932fe83f9ad}} 
+Creates a map with a null boundary. The user may set the boundary later, using \doxyref{set\+Boundary()}{p.}{class_map_acede2ccba9bf0f987f3dde8c332bec17} method \mbox{\label{class_map_a4c9545a0252613e2a6808932fe83f9ad}} 
 \index{Map@{Map}!Map@{Map}}
 \index{Map@{Map}!Map@{Map}}
 \subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{double}]{llX,  }\item[{double}]{llY,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})}
 
-
-
-Definition at line 43 of file Map.\+cpp.
-
+Build a simple map of a rectangular shape 
+\begin{DoxyParams}{Parameters}
+{\em llX} & X coordinate of the bottom left corner of the rectangle \\
+\hline
+{\em llY} & Y coordinate of the bottom left corner of the rectangle \\
+\hline
+{\em width} & the width of the rectangle \\
+\hline
+{\em height} & the height of the rectangle \\
+\hline
+\end{DoxyParams}
 \mbox{\label{class_map_ab8beab7a7dce782a23db740cd7132552}} 
 \index{Map@{Map}!Map@{Map}}
 \index{Map@{Map}!Map@{Map}}
 \subsubsection{Map()\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily Map\+::\+Map (\begin{DoxyParamCaption}\item[{string}]{wkt\+File }\end{DoxyParamCaption})}
 
-
-
-Definition at line 57 of file Map.\+cpp.
-
-\mbox{\label{class_map_aa403fbe09394ccf39747588f5168e3b2}} 
-\index{Map@{Map}!````~Map@{$\sim$\+Map}}
-\index{````~Map@{$\sim$\+Map}!Map@{Map}}
-\subsubsection{$\sim$\+Map()}
-{\footnotesize\ttfamily Map\+::$\sim$\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+Builds a map reading it from a .wkt file 
+\begin{DoxyParams}{Parameters}
+{\em wkt\+File} & the name of the .wkt file that contains the description of the map. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_map_ac1ab46138aa61acd0a58b1fd21e0df37}} 
+\index{Map@{Map}!````~Map@{$\sim$Map}}
+\index{````~Map@{$\sim$Map}!Map@{Map}}
+\subsubsection{$\sim$Map()}
+{\footnotesize\ttfamily virtual Map\+::$\sim$\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Default destructor 
 
-Definition at line 84 of file Map.\+cpp.
-
-
-
 \subsection{Member Function Documentation}
-\mbox{\label{class_map_a222f5585368eeb768b63b612207b6965}} 
-\index{Map@{Map}!create\+\_\+rectangle@{create\+\_\+rectangle}}
-\index{create\+\_\+rectangle@{create\+\_\+rectangle}!Map@{Map}}
-\subsubsection{create\+\_\+rectangle()}
-{\footnotesize\ttfamily Polygon $\ast$ Map\+::create\+\_\+rectangle (\begin{DoxyParamCaption}\item[{double}]{llX,  }\item[{double}]{llY,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 93 of file Map.\+cpp.
+\mbox{\label{class_map_a36539152d451138361d82469218b4661}} 
+\index{Map@{Map}!create\_rectangle@{create\_rectangle}}
+\index{create\_rectangle@{create\_rectangle}!Map@{Map}}
+\subsubsection{create\_rectangle()}
+{\footnotesize\ttfamily Polygon$\ast$ Map\+::create\+\_\+rectangle (\begin{DoxyParamCaption}\item[{double}]{llX,  }\item[{double}]{llY,  }\item[{double}]{width,  }\item[{double}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\label{class_map_a74dd5445ed90bea2a9cc3240bc23f1bc}} 
-\index{Map@{Map}!get\+Boundary@{get\+Boundary}}
-\index{get\+Boundary@{get\+Boundary}!Map@{Map}}
-\subsubsection{get\+Boundary()}
+\index{Map@{Map}!getBoundary@{getBoundary}}
+\index{getBoundary@{getBoundary}!Map@{Map}}
+\subsubsection{getBoundary()}
 {\footnotesize\ttfamily Geometry$\ast$ Map\+::get\+Boundary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+Returns a pointer to the Geometry object that represents the boundary of the map \begin{DoxyReturn}{Returns}
+a pointer to the Geometry object that represents the boundary of the map 
+\end{DoxyReturn}
 
 
-Definition at line 37 of file Map.\+h.
+Definition at line 65 of file Map.\+h.
 
+\mbox{\label{class_map_a69bd639b05daa393b051c76f0dc4af7c}} 
+\index{Map@{Map}!getGlobalFactory@{getGlobalFactory}}
+\index{getGlobalFactory@{getGlobalFactory}!Map@{Map}}
+\subsubsection{getGlobalFactory()}
+{\footnotesize\ttfamily const Geometry\+Factory\+::\+Ptr\& Map\+::get\+Global\+Factory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-
-Referenced by utils\+::generate\+Points().
-
-\mbox{\label{class_map_a6385b465eea96277cde8dc10bf9af014}} 
-\index{Map@{Map}!get\+Global\+Factory@{get\+Global\+Factory}}
-\index{get\+Global\+Factory@{get\+Global\+Factory}!Map@{Map}}
-\subsubsection{get\+Global\+Factory()}
-{\footnotesize\ttfamily const Geometry\+Factory\+::\+Ptr \& Map\+::get\+Global\+Factory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Definition at line 88 of file Map.\+cpp.
-
-
-
-Referenced by Antenna\+::\+Antenna(), and Grid\+::compute\+Probability().
-
+Returns a pointer to the Geometry\+Factory which is a factory object used to create other geometric objects. The G\+E\+OS library allows users to create geometric objects only using this factory, all the constructors are made private. \begin{DoxyReturn}{Returns}
+a pointer to the Geometry\+Factory, a factory object used to create other geometric objects. 
+\end{DoxyReturn}
 \mbox{\label{class_map_acede2ccba9bf0f987f3dde8c332bec17}} 
-\index{Map@{Map}!set\+Boundary@{set\+Boundary}}
-\index{set\+Boundary@{set\+Boundary}!Map@{Map}}
-\subsubsection{set\+Boundary()}
+\index{Map@{Map}!setBoundary@{setBoundary}}
+\index{setBoundary@{setBoundary}!Map@{Map}}
+\subsubsection{setBoundary()}
 {\footnotesize\ttfamily void Map\+::set\+Boundary (\begin{DoxyParamCaption}\item[{Geometry $\ast$}]{boundary }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+Sets the boundary of the map object 
+\begin{DoxyParams}{Parameters}
+{\em boundary} & the boundary of the map object \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 42 of file Map.\+h.
+Definition at line 73 of file Map.\+h.
 
 
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_map_af2c95561cb4ff3b9950240351cf4303c}} 
-\index{Map@{Map}!m\+\_\+boundary@{m\+\_\+boundary}}
-\index{m\+\_\+boundary@{m\+\_\+boundary}!Map@{Map}}
-\subsubsection{m\+\_\+boundary}
+\index{Map@{Map}!m\_boundary@{m\_boundary}}
+\index{m\_boundary@{m\_boundary}!Map@{Map}}
+\subsubsection{m\_boundary}
 {\footnotesize\ttfamily Geometry$\ast$ Map\+::m\+\_\+boundary\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line 53 of file Map.\+h.
+Definition at line 82 of file Map.\+h.
 
 \mbox{\label{class_map_ac5f30e6c144955a3638192495fd7d843}} 
-\index{Map@{Map}!m\+\_\+global\+Factory@{m\+\_\+global\+Factory}}
-\index{m\+\_\+global\+Factory@{m\+\_\+global\+Factory}!Map@{Map}}
-\subsubsection{m\+\_\+global\+Factory}
+\index{Map@{Map}!m\_globalFactory@{m\_globalFactory}}
+\index{m\_globalFactory@{m\_globalFactory}!Map@{Map}}
+\subsubsection{m\_globalFactory}
 {\footnotesize\ttfamily Geometry\+Factory\+::\+Ptr Map\+::m\+\_\+global\+Factory\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line 51 of file Map.\+h.
+Definition at line 80 of file Map.\+h.
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ Map.\+h}\item 
-src/\textbf{ Map.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ Map.\+h}\end{DoxyCompactItemize}

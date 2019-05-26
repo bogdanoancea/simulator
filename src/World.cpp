@@ -40,6 +40,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_clock = new Clock();
 	m_mvType = MovementType::RANDOM_WALK;
 	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+	m_gridFilename = Constants::GRID_FILE_NAME;
 
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
@@ -57,7 +58,6 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_agentsCollection->addAgent(phones[i]);
 	}
 }
-
 
 World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
@@ -91,8 +91,7 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 	try {
 		pFile.open(personsFile, ios::out);
 		aFile.open(antennasFile, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
@@ -129,8 +128,7 @@ void World::runSimulation(string& personsFile, string& antennasFile) noexcept(fa
 	try {
 		pFile.close();
 		aFile.close();
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;
 	}
@@ -158,6 +156,10 @@ Map* World::getMap() const {
 
 void World::setMap(Map* map) {
 	m_map = map;
+}
+
+const string& World::getGridFilename() const {
+	return m_gridFilename;
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons) {
@@ -204,7 +206,8 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
+				connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -273,13 +276,11 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 			params.push_back(sd);
 			params.push_back(min_age);
 			params.push_back(max_age);
-		}
-		else if (!strcmp(distrib, "uniform")) {
+		} else if (!strcmp(distrib, "uniform")) {
 			d = Person::AgeDistributions::UNIFORM;
 			params.push_back(min_age);
 			params.push_back(max_age);
-		}
-		else {
+		} else {
 			d = Person::AgeDistributions::UNIFORM;
 			params.push_back(min_age);
 			params.push_back(max_age);
@@ -332,6 +333,12 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
 		else
 			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
+
+		XMLNode* gridNode = getNode(simEl, "grid_file");
+		m_gridFilename = gridNode->ToText()->Value();
+		XMLNode* probNode = getNode(simEl, "prob_file");
+		m_probFilename = probNode->ToText()->Value();
+
 	}
 }
 
@@ -361,8 +368,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	else if (age_distribution == Person::AgeDistributions::NORMAL) {
 		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
-	}
-	else {
+	} else {
 		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	}
 

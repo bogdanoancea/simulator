@@ -4,26 +4,24 @@
 
 {\ttfamily \#include $<$Antenna.\+h$>$}
 
-
-
-Inheritance diagram for Antenna\+:
-% FIG 0
-
-
-Collaboration diagram for Antenna\+:
-% FIG 1
+Inheritance diagram for Antenna\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_antenna}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\textbf{ Antenna} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Clock} $\ast$clock, double attenuation\+Factor, double power, unsigned long max\+Connections, double smid, double ssteep, \textbf{ Antenna\+Type} type)
+\textbf{ Antenna} (const \textbf{ Map} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \textbf{ Clock} $\ast$clock, double attenuation\+Factor, double power, unsigned long max\+Connections, double smid, double ssteep, \textbf{ Antenna\+Type} type)
 \item 
-\textbf{ Antenna} (\textbf{ Map} $\ast$m, \textbf{ Clock} $\ast$clock, long id, \textbf{ X\+M\+L\+Element} $\ast$el)
+\textbf{ Antenna} (const \textbf{ Map} $\ast$m, const \textbf{ Clock} $\ast$clock, const unsigned long id, X\+M\+L\+Element $\ast$el)
 \item 
 virtual \textbf{ $\sim$\+Antenna} ()
 \item 
-string \textbf{ get\+Name} () override
+const string \textbf{ get\+Name} () const override
 \item 
-string \textbf{ to\+String} () override
+const string \textbf{ to\+String} () const override
 \item 
 double \textbf{ get\+Attenuation\+Factor} () const
 \item 
@@ -49,8 +47,6 @@ void \textbf{ set\+Type} (\textbf{ Antenna\+Type} type)
 \item 
 double \textbf{ S} (double dist) const
 \item 
-double \textbf{ squality} (Point p) const
-\item 
 double \textbf{ get\+Smid} () const
 \item 
 void \textbf{ set\+Smid} (double smid)
@@ -59,22 +55,22 @@ double \textbf{ get\+S\+Steep} () const
 \item 
 void \textbf{ set\+S\+Steep} (double s\+Steep)
 \item 
-double \textbf{ compute\+Signal\+Quality} (Point $\ast$p) const
+double \textbf{ compute\+Signal\+Quality} (const Point $\ast$p) const
 \item 
-double \textbf{ compute\+Power} (Point $\ast$p) const
+double \textbf{ compute\+Power} (const Point $\ast$p) const
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 bool \textbf{ already\+Registered} (\textbf{ Holdable\+Agent} $\ast$ag)
 \item 
-void \textbf{ register\+Event} (\textbf{ Holdable\+Agent} $\ast$ag, \textbf{ Event\+Type} event, bool verbose)
+void \textbf{ register\+Event} (\textbf{ Holdable\+Agent} $\ast$ag, const \textbf{ Event\+Type} event, const bool verbose)
 \item 
 unsigned long \textbf{ get\+Num\+Active\+Conections} ()
 \item 
-double \textbf{ S0} ()
+double \textbf{ S0} () const
 \item 
-double \textbf{ S\+Dist} (double dist)
+double \textbf{ S\+Dist} (double dist) const
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -107,11 +103,11 @@ Definition at line 29 of file Antenna.\+h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\label{class_antenna_aa728c39aa78517576c6f8abe0844a914}} 
+\mbox{\label{class_antenna_a39c505109145908a5b032a16a2fe53c4}} 
 \index{Antenna@{Antenna}!Antenna@{Antenna}}
 \index{Antenna@{Antenna}!Antenna@{Antenna}}
 \subsubsection{Antenna()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{attenuation\+Factor,  }\item[{double}]{power,  }\item[{unsigned long}]{max\+Connections,  }\item[{double}]{smid,  }\item[{double}]{ssteep,  }\item[{\textbf{ Antenna\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{const \textbf{ Map} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{attenuation\+Factor,  }\item[{double}]{power,  }\item[{unsigned long}]{max\+Connections,  }\item[{double}]{smid,  }\item[{double}]{ssteep,  }\item[{\textbf{ Antenna\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
 Constructor of the class. It builds an object providing directly the values for each parameter of the antenna. 
 \begin{DoxyParams}{Parameters}
@@ -136,23 +132,13 @@ Constructor of the class. It builds an object providing directly the values for 
 {\em type} & it could have two values \doxyref{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de} for omnidirectional antennas and \doxyref{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9} for directional antennas. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 20 of file Antenna.\+cpp.
-
-
-
-References Map\+::get\+Global\+Factory(), Agent\+::get\+Map(), get\+Name(), m\+\_\+cell, m\+\_\+file, m\+\_\+max\+Connections, m\+\_\+power, m\+\_\+\+Smid, m\+\_\+\+S\+Steep, and m\+\_\+type.
-
-Here is the call graph for this function\+:
-% FIG 2
-\mbox{\label{class_antenna_a1bdfb5bcc5dea6a82828c5026e319281}} 
+\mbox{\label{class_antenna_a86c73cfb78910fbaedd6ceb4e226dc9b}} 
 \index{Antenna@{Antenna}!Antenna@{Antenna}}
 \index{Antenna@{Antenna}!Antenna@{Antenna}}
 \subsubsection{Antenna()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{long}]{id,  }\item[{\textbf{ X\+M\+L\+Element} $\ast$}]{el }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{const \textbf{ Map} $\ast$}]{m,  }\item[{const \textbf{ Clock} $\ast$}]{clock,  }\item[{const unsigned long}]{id,  }\item[{X\+M\+L\+Element $\ast$}]{el }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
-Constructor of the class. It builds an object taking the value of the parameters from an X\+ML Element, usually when an \doxyref{Antenna}{p.}{class_antenna} object is built reading the xml configuration file. 
+Constructor of the class. It builds an object taking the value of the antenna\textquotesingle{} parameters from an X\+ML Element, usually when an \doxyref{Antenna}{p.}{class_antenna} object is built reading the xml configuration file. 
 \begin{DoxyParams}{Parameters}
 {\em m} & a pointer to the \doxyref{Map}{p.}{class_map} object used for the simulation \\
 \hline
@@ -163,55 +149,25 @@ Constructor of the class. It builds an object taking the value of the parameters
 {\em el} & the X\+ML Element containing the parameters of the \doxyref{Antenna}{p.}{class_antenna}. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 37 of file Antenna.\+cpp.
-
-
-
-References D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, utils\+::get\+Node(), m\+\_\+attenuation\+Factor, m\+\_\+max\+Connections, m\+\_\+power, m\+\_\+\+Smid, m\+\_\+\+S\+Steep, m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, tinyxml2\+::\+X\+M\+L\+Node\+::\+To\+Text(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+Value().
-
-Here is the call graph for this function\+:
-% FIG 3
-\mbox{\label{class_antenna_ae6a6826efb7f66a9608e732a6f37c4b5}} 
-\index{Antenna@{Antenna}!````~Antenna@{$\sim$\+Antenna}}
-\index{````~Antenna@{$\sim$\+Antenna}!Antenna@{Antenna}}
-\subsubsection{$\sim$\+Antenna()}
-{\footnotesize\ttfamily Antenna\+::$\sim$\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+\mbox{\label{class_antenna_ad7b98073b970db5d6bc83c5c5961fe44}} 
+\index{Antenna@{Antenna}!````~Antenna@{$\sim$Antenna}}
+\index{````~Antenna@{$\sim$Antenna}!Antenna@{Antenna}}
+\subsubsection{$\sim$Antenna()}
+{\footnotesize\ttfamily virtual Antenna\+::$\sim$\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Destructor of the class. It closes the file where the \doxyref{Antenna}{p.}{class_antenna} dumps the registered events during the simulation. 
 
-Definition at line 77 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+file.
-
-
-
 \subsection{Member Function Documentation}
 \mbox{\label{class_antenna_af4fb83843393bf36bdcaefae5b5dd0dd}} 
-\index{Antenna@{Antenna}!already\+Registered@{already\+Registered}}
-\index{already\+Registered@{already\+Registered}!Antenna@{Antenna}}
-\subsubsection{already\+Registered()}
+\index{Antenna@{Antenna}!alreadyRegistered@{alreadyRegistered}}
+\index{alreadyRegistered@{alreadyRegistered}!Antenna@{Antenna}}
+\subsubsection{alreadyRegistered()}
 {\footnotesize\ttfamily bool Antenna\+::already\+Registered (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{ag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-
-
-Definition at line 153 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+devices.
-
-
-
-Referenced by try\+Register\+Device().
-
 \mbox{\label{class_antenna_a9c804d991a545157feb066761b6a69ef}} 
-\index{Antenna@{Antenna}!attach\+Device@{attach\+Device}}
-\index{attach\+Device@{attach\+Device}!Antenna@{Antenna}}
-\subsubsection{attach\+Device()}
+\index{Antenna@{Antenna}!attachDevice@{attachDevice}}
+\index{attachDevice@{attachDevice}!Antenna@{Antenna}}
+\subsubsection{attachDevice()}
 {\footnotesize\ttfamily void Antenna\+::attach\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
 
 Connects a new mobile device and outputs an event \doxyref{Event\+Type\+::\+A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}{p.}{_event_type_8h_a2628ea8d12e8b2563c32f05dc7fff6faa9893a3a649e7100d87b1560bd8202ec2} in the output file. Internally, the antenna keeps a vector with all connected mobile devices. devices. When a new mobile device is connected it is added to this vector. 
@@ -219,25 +175,11 @@ Connects a new mobile device and outputs an event \doxyref{Event\+Type\+::\+A\+T
 {\em device} & a pointer to the object that represents the mobile device connected to this antenna. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 138 of file Antenna.\+cpp.
-
-
-
-References A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+devices, and register\+Event().
-
-
-
-Referenced by try\+Register\+Device().
-
-Here is the call graph for this function\+:
-% FIG 4
-\mbox{\label{class_antenna_a8a37f107873fccc0587c314ac99ad547}} 
-\index{Antenna@{Antenna}!compute\+Power@{compute\+Power}}
-\index{compute\+Power@{compute\+Power}!Antenna@{Antenna}}
-\subsubsection{compute\+Power()}
-{\footnotesize\ttfamily double Antenna\+::compute\+Power (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption}) const}
+\mbox{\label{class_antenna_a7caa8004be14f97db64fdf7ae46d6c97}} 
+\index{Antenna@{Antenna}!computePower@{computePower}}
+\index{computePower@{computePower}!Antenna@{Antenna}}
+\subsubsection{computePower()}
+{\footnotesize\ttfamily double Antenna\+::compute\+Power (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption}) const}
 
 Computes the power of the signal given by an antenna in a certain location. 
 \begin{DoxyParams}{Parameters}
@@ -247,25 +189,11 @@ Computes the power of the signal given by an antenna in a certain location.
 \begin{DoxyReturn}{Returns}
 the power of the signal in the location given by Point p. 
 \end{DoxyReturn}
-
-
-Definition at line 262 of file Antenna.\+cpp.
-
-
-
-References Locatable\+Agent\+::get\+Location(), m\+\_\+attenuation\+Factor, m\+\_\+power, m\+\_\+type, and O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL.
-
-
-
-Referenced by E\+M\+Field\+::is\+Antenna\+In\+Range().
-
-Here is the call graph for this function\+:
-% FIG 5
-\mbox{\label{class_antenna_a0c33c9ffe3f9d599e57ea6ff8641ba0f}} 
-\index{Antenna@{Antenna}!compute\+Signal\+Quality@{compute\+Signal\+Quality}}
-\index{compute\+Signal\+Quality@{compute\+Signal\+Quality}!Antenna@{Antenna}}
-\subsubsection{compute\+Signal\+Quality()}
-{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption}) const}
+\mbox{\label{class_antenna_afb03d417efec2423a1b67df16d6ebcb6}} 
+\index{Antenna@{Antenna}!computeSignalQuality@{computeSignalQuality}}
+\index{computeSignalQuality@{computeSignalQuality}!Antenna@{Antenna}}
+\subsubsection{computeSignalQuality()}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption}) const}
 
 Computes the signal quality given by an antenna in a certain location. 
 \begin{DoxyParams}{Parameters}
@@ -275,24 +203,10 @@ Computes the signal quality given by an antenna in a certain location.
 \begin{DoxyReturn}{Returns}
 the signal quality. 
 \end{DoxyReturn}
-
-
-Definition at line 253 of file Antenna.\+cpp.
-
-
-
-References Locatable\+Agent\+::get\+Location(), m\+\_\+\+Smid, m\+\_\+\+S\+Steep, m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, and S().
-
-
-
-Referenced by E\+M\+Field\+::connection\+Likelihood(), and E\+M\+Field\+::is\+Antenna\+In\+Range().
-
-Here is the call graph for this function\+:
-% FIG 6
 \mbox{\label{class_antenna_a983a0784315567c2ab6ac1820cf558c5}} 
-\index{Antenna@{Antenna}!dettach\+Device@{dettach\+Device}}
-\index{dettach\+Device@{dettach\+Device}!Antenna@{Antenna}}
-\subsubsection{dettach\+Device()}
+\index{Antenna@{Antenna}!dettachDevice@{dettachDevice}}
+\index{dettachDevice@{dettachDevice}!Antenna@{Antenna}}
+\subsubsection{dettachDevice()}
 {\footnotesize\ttfamily void Antenna\+::dettach\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
 
 Disconnects a mobile device from the antenna and outputs an event Event\+Type\+::\+D\+E\+A\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE in the output file. Internally, the mobile device is removed from the vector of the connected mobile devices. 
@@ -300,178 +214,82 @@ Disconnects a mobile device from the antenna and outputs an event Event\+Type\+:
 {\em device} & \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 144 of file Antenna.\+cpp.
-
-
-
-References D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+devices, and register\+Event().
-
-
-
-Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
-
-Here is the call graph for this function\+:
-% FIG 7
 \mbox{\label{class_antenna_a9551ed22d25c51210913de4a3074d9eb}} 
-\index{Antenna@{Antenna}!get\+Attenuation\+Factor@{get\+Attenuation\+Factor}}
-\index{get\+Attenuation\+Factor@{get\+Attenuation\+Factor}!Antenna@{Antenna}}
-\subsubsection{get\+Attenuation\+Factor()}
+\index{Antenna@{Antenna}!getAttenuationFactor@{getAttenuationFactor}}
+\index{getAttenuationFactor@{getAttenuationFactor}!Antenna@{Antenna}}
+\subsubsection{getAttenuationFactor()}
 {\footnotesize\ttfamily double Antenna\+::get\+Attenuation\+Factor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the surrounding environment\textquotesingle{} attenuation factor of the signal. \begin{DoxyReturn}{Returns}
 the signals\textquotesingle{} attenuation factor of the surrounding environment. In real life, it takes values between 2 (in open field) and 6 (inside buildings). 
 \end{DoxyReturn}
-
-
-Definition at line 88 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+attenuation\+Factor.
-
 \mbox{\label{class_antenna_ac7d42215283cd7d4dc16d449f61af91d}} 
-\index{Antenna@{Antenna}!get\+Max\+Connections@{get\+Max\+Connections}}
-\index{get\+Max\+Connections@{get\+Max\+Connections}!Antenna@{Antenna}}
-\subsubsection{get\+Max\+Connections()}
+\index{Antenna@{Antenna}!getMaxConnections@{getMaxConnections}}
+\index{getMaxConnections@{getMaxConnections}!Antenna@{Antenna}}
+\subsubsection{getMaxConnections()}
 {\footnotesize\ttfamily unsigned long Antenna\+::get\+Max\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Returns the maximum number of mobile devices that an antenna can connect. 
-
-Definition at line 110 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+max\+Connections.
-
-\mbox{\label{class_antenna_ad0d1b2faf930fd0c1c85fa24a7d773fe}} 
-\index{Antenna@{Antenna}!get\+Name@{get\+Name}}
-\index{get\+Name@{get\+Name}!Antenna@{Antenna}}
-\subsubsection{get\+Name()}
-{\footnotesize\ttfamily string Antenna\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+Returns the maximum number of mobile devices that an antenna can connect. \mbox{\label{class_antenna_a4ad9da1ca9d79f20b331c22b94c57a02}} 
+\index{Antenna@{Antenna}!getName@{getName}}
+\index{getName@{getName}!Antenna@{Antenna}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily const string Antenna\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Overrides the same method from the superclass. \begin{DoxyReturn}{Returns}
 the name of the class, i.\+e. \char`\"{}\+Antenna\char`\"{} 
 \end{DoxyReturn}
 
 
-Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_aa24682b2e0c8031d0637c156f6bee0e0}.
-
-
-
-Definition at line 71 of file Antenna.\+h.
-
-
-
-Referenced by Antenna().
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_afe6c72d91baf9ee4fe77ea1ed7fef3ba}.
 
 \mbox{\label{class_antenna_a86c5c094ab6ea432609afa00f3a8080a}} 
-\index{Antenna@{Antenna}!get\+Num\+Active\+Conections@{get\+Num\+Active\+Conections}}
-\index{get\+Num\+Active\+Conections@{get\+Num\+Active\+Conections}!Antenna@{Antenna}}
-\subsubsection{get\+Num\+Active\+Conections()}
+\index{Antenna@{Antenna}!getNumActiveConections@{getNumActiveConections}}
+\index{getNumActiveConections@{getNumActiveConections}!Antenna@{Antenna}}
+\subsubsection{getNumActiveConections()}
 {\footnotesize\ttfamily unsigned long Antenna\+::get\+Num\+Active\+Conections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-
-
-Definition at line 169 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+devices.
-
-
-
-Referenced by try\+Register\+Device().
-
 \mbox{\label{class_antenna_afca01d00c8e393ee911f1e9240b51d2e}} 
-\index{Antenna@{Antenna}!get\+Power@{get\+Power}}
-\index{get\+Power@{get\+Power}!Antenna@{Antenna}}
-\subsubsection{get\+Power()}
+\index{Antenna@{Antenna}!getPower@{getPower}}
+\index{getPower@{getPower}!Antenna@{Antenna}}
+\subsubsection{getPower()}
 {\footnotesize\ttfamily double Antenna\+::get\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the power of an antenna in Watts at the location of antenna. This power decreases with a power of the distance from antenna. \begin{DoxyReturn}{Returns}
 the power of an antenna in Watts. 
 \end{DoxyReturn}
-
-
-Definition at line 102 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+power.
-
 \mbox{\label{class_antenna_acfaf47d35cc742e76522ea31a8b01578}} 
-\index{Antenna@{Antenna}!get\+Smid@{get\+Smid}}
-\index{get\+Smid@{get\+Smid}!Antenna@{Antenna}}
-\subsubsection{get\+Smid()}
+\index{Antenna@{Antenna}!getSmid@{getSmid}}
+\index{getSmid@{getSmid}!Antenna@{Antenna}}
+\subsubsection{getSmid()}
 {\footnotesize\ttfamily double Antenna\+::get\+Smid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the value of the Smid antenna parameter. \begin{DoxyReturn}{Returns}
 the value of the Smid antenna parameter. 
 \end{DoxyReturn}
-
-
-Definition at line 237 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+\+Smid.
-
 \mbox{\label{class_antenna_a096deca0fe8497c0fe53539ae80f2db5}} 
-\index{Antenna@{Antenna}!get\+S\+Steep@{get\+S\+Steep}}
-\index{get\+S\+Steep@{get\+S\+Steep}!Antenna@{Antenna}}
-\subsubsection{get\+S\+Steep()}
+\index{Antenna@{Antenna}!getSSteep@{getSSteep}}
+\index{getSSteep@{getSSteep}!Antenna@{Antenna}}
+\subsubsection{getSSteep()}
 {\footnotesize\ttfamily double Antenna\+::get\+S\+Steep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the value of the Ssteep antenna parameter. \begin{DoxyReturn}{Returns}
 the value of the Ssteep antenna parameter. 
 \end{DoxyReturn}
-
-
-Definition at line 245 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+\+S\+Steep.
-
 \mbox{\label{class_antenna_adf45a8b339956741bf8dcb5361f5f249}} 
-\index{Antenna@{Antenna}!get\+Type@{get\+Type}}
-\index{get\+Type@{get\+Type}!Antenna@{Antenna}}
-\subsubsection{get\+Type()}
+\index{Antenna@{Antenna}!getType@{getType}}
+\index{getType@{getType}!Antenna@{Antenna}}
+\subsubsection{getType()}
 {\footnotesize\ttfamily \textbf{ Antenna\+Type} Antenna\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the antenna type\+: omnidirectional or directional \begin{DoxyReturn}{Returns}
 the antenna type \+: \doxyref{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de} or \doxyref{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9}. 
 \end{DoxyReturn}
+\mbox{\label{class_antenna_aa21a4c0d581c59c36480d932584c0ef5}} 
+\index{Antenna@{Antenna}!registerEvent@{registerEvent}}
+\index{registerEvent@{registerEvent}!Antenna@{Antenna}}
+\subsubsection{registerEvent()}
+{\footnotesize\ttfamily void Antenna\+::register\+Event (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{ag,  }\item[{const \textbf{ Event\+Type}}]{event,  }\item[{const bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-
-Definition at line 161 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+type.
-
-\mbox{\label{class_antenna_a06b97a19707a27e33e47ec90d3bac7da}} 
-\index{Antenna@{Antenna}!register\+Event@{register\+Event}}
-\index{register\+Event@{register\+Event}!Antenna@{Antenna}}
-\subsubsection{register\+Event()}
-{\footnotesize\ttfamily void Antenna\+::register\+Event (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{ag,  }\item[{\textbf{ Event\+Type}}]{event,  }\item[{bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 173 of file Antenna.\+cpp.
-
-
-
-References A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE, Agent\+::get\+Clock(), Clock\+::get\+Current\+Time(), Agent\+::get\+Id(), Locatable\+Agent\+::get\+Location(), I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+file, and Constants\+::sep.
-
-
-
-Referenced by attach\+Device(), dettach\+Device(), and try\+Register\+Device().
-
-Here is the call graph for this function\+:
-% FIG 8
 \mbox{\label{class_antenna_a5715c4100035c58d63b7c9a0195748fe}} 
 \index{Antenna@{Antenna}!S@{S}}
 \index{S@{S}!Antenna@{Antenna}}
@@ -486,60 +304,22 @@ Computes the signal strength at the distance dist from antenna location.
 \begin{DoxyReturn}{Returns}
 the signal strength. 
 \end{DoxyReturn}
-
-
-Definition at line 230 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+type, O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL, S0(), and S\+Dist().
-
-
-
-Referenced by compute\+Signal\+Quality().
-
-Here is the call graph for this function\+:
-% FIG 9
-\mbox{\label{class_antenna_a5a2b88c5d63bc0696faf551df59add4f}} 
+\mbox{\label{class_antenna_a033246c50bec80123860154a949620c7}} 
 \index{Antenna@{Antenna}!S0@{S0}}
 \index{S0@{S0}!Antenna@{Antenna}}
 \subsubsection{S0()}
-{\footnotesize\ttfamily double Antenna\+::\+S0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily double Antenna\+::\+S0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
-
-
-Definition at line 222 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+power.
-
-
-
-Referenced by S().
-
-\mbox{\label{class_antenna_a4d34c290b47874e796b0d7b089390944}} 
-\index{Antenna@{Antenna}!S\+Dist@{S\+Dist}}
-\index{S\+Dist@{S\+Dist}!Antenna@{Antenna}}
-\subsubsection{S\+Dist()}
-{\footnotesize\ttfamily double Antenna\+::\+S\+Dist (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 226 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+attenuation\+Factor.
-
-
-
-Referenced by S().
+\mbox{\label{class_antenna_ae60ab40ded94be407c3b7455f4e886fe}} 
+\index{Antenna@{Antenna}!SDist@{SDist}}
+\index{SDist@{SDist}!Antenna@{Antenna}}
+\subsubsection{SDist()}
+{\footnotesize\ttfamily double Antenna\+::\+S\+Dist (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\label{class_antenna_a8697756860ff821a92e9404e00a55f89}} 
-\index{Antenna@{Antenna}!set\+Attenuation\+Factor@{set\+Attenuation\+Factor}}
-\index{set\+Attenuation\+Factor@{set\+Attenuation\+Factor}!Antenna@{Antenna}}
-\subsubsection{set\+Attenuation\+Factor()}
+\index{Antenna@{Antenna}!setAttenuationFactor@{setAttenuationFactor}}
+\index{setAttenuationFactor@{setAttenuationFactor}!Antenna@{Antenna}}
+\subsubsection{setAttenuationFactor()}
 {\footnotesize\ttfamily void Antenna\+::set\+Attenuation\+Factor (\begin{DoxyParamCaption}\item[{double}]{attenuation\+Factor }\end{DoxyParamCaption})}
 
 Sets the surrounding environment\textquotesingle{} attenuation factor of the signal for an antenna. 
@@ -547,18 +327,10 @@ Sets the surrounding environment\textquotesingle{} attenuation factor of the sig
 {\em attenuation\+Factor} & the value of the surrounding environment\textquotesingle{} attenuation factor of the signal. In real life, it takes values between 2 (in open field) and 6 (inside buildings). \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 92 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+attenuation\+Factor.
-
 \mbox{\label{class_antenna_ad844ed8507afb83b74b804c2434a4e50}} 
-\index{Antenna@{Antenna}!set\+Max\+Connections@{set\+Max\+Connections}}
-\index{set\+Max\+Connections@{set\+Max\+Connections}!Antenna@{Antenna}}
-\subsubsection{set\+Max\+Connections()}
+\index{Antenna@{Antenna}!setMaxConnections@{setMaxConnections}}
+\index{setMaxConnections@{setMaxConnections}!Antenna@{Antenna}}
+\subsubsection{setMaxConnections()}
 {\footnotesize\ttfamily void Antenna\+::set\+Max\+Connections (\begin{DoxyParamCaption}\item[{int}]{max\+Connections }\end{DoxyParamCaption})}
 
 Sets the number of mobile devices that an antenna can connect. 
@@ -566,18 +338,10 @@ Sets the number of mobile devices that an antenna can connect.
 {\em max\+Connections} & the number of mobile devices that an antenna can connect. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 114 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+max\+Connections.
-
 \mbox{\label{class_antenna_a172a4c7765dea045d6504f6e2cbe0f59}} 
-\index{Antenna@{Antenna}!set\+Power@{set\+Power}}
-\index{set\+Power@{set\+Power}!Antenna@{Antenna}}
-\subsubsection{set\+Power()}
+\index{Antenna@{Antenna}!setPower@{setPower}}
+\index{setPower@{setPower}!Antenna@{Antenna}}
+\subsubsection{setPower()}
 {\footnotesize\ttfamily void Antenna\+::set\+Power (\begin{DoxyParamCaption}\item[{double}]{power }\end{DoxyParamCaption})}
 
 Sets the power of an antenna. 
@@ -585,18 +349,10 @@ Sets the power of an antenna.
 {\em power} & the value of the antenna\textquotesingle{}s power. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 106 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+power.
-
 \mbox{\label{class_antenna_a67e5ae0106189d18e4f114d8e0e14a09}} 
-\index{Antenna@{Antenna}!set\+Smid@{set\+Smid}}
-\index{set\+Smid@{set\+Smid}!Antenna@{Antenna}}
-\subsubsection{set\+Smid()}
+\index{Antenna@{Antenna}!setSmid@{setSmid}}
+\index{setSmid@{setSmid}!Antenna@{Antenna}}
+\subsubsection{setSmid()}
 {\footnotesize\ttfamily void Antenna\+::set\+Smid (\begin{DoxyParamCaption}\item[{double}]{smid }\end{DoxyParamCaption})}
 
 Sets the value of the Smid antenna parameter. 
@@ -604,18 +360,10 @@ Sets the value of the Smid antenna parameter.
 {\em smid} & the value of the Smid antenna parameter. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 241 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+\+Smid.
-
 \mbox{\label{class_antenna_a92357bee36ba7dcfd08c4d2ce2280e3c}} 
-\index{Antenna@{Antenna}!set\+S\+Steep@{set\+S\+Steep}}
-\index{set\+S\+Steep@{set\+S\+Steep}!Antenna@{Antenna}}
-\subsubsection{set\+S\+Steep()}
+\index{Antenna@{Antenna}!setSSteep@{setSSteep}}
+\index{setSSteep@{setSSteep}!Antenna@{Antenna}}
+\subsubsection{setSSteep()}
 {\footnotesize\ttfamily void Antenna\+::set\+S\+Steep (\begin{DoxyParamCaption}\item[{double}]{s\+Steep }\end{DoxyParamCaption})}
 
 Sets the value of the Ssteep antenna parameter. 
@@ -623,18 +371,10 @@ Sets the value of the Ssteep antenna parameter.
 {\em s\+Steep} & the value of the Ssteep antenna parameter. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 249 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+\+S\+Steep.
-
 \mbox{\label{class_antenna_aa9a8414c469e6dd49eed7a7cc58725c1}} 
-\index{Antenna@{Antenna}!set\+Type@{set\+Type}}
-\index{set\+Type@{set\+Type}!Antenna@{Antenna}}
-\subsubsection{set\+Type()}
+\index{Antenna@{Antenna}!setType@{setType}}
+\index{setType@{setType}!Antenna@{Antenna}}
+\subsubsection{setType()}
 {\footnotesize\ttfamily void Antenna\+::set\+Type (\begin{DoxyParamCaption}\item[{\textbf{ Antenna\+Type}}]{type }\end{DoxyParamCaption})}
 
 Sets the antenna type. 
@@ -642,55 +382,23 @@ Sets the antenna type.
 {\em type} & the antenna type. It could take the following two values\+: \doxyref{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de} or \doxyref{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}{p.}{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9}. \\
 \hline
 \end{DoxyParams}
-
-
-Definition at line 165 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+type.
-
-\mbox{\label{class_antenna_a9982df1da5fb04037d08298dd8505247}} 
-\index{Antenna@{Antenna}!squality@{squality}}
-\index{squality@{squality}!Antenna@{Antenna}}
-\subsubsection{squality()}
-{\footnotesize\ttfamily double Antenna\+::squality (\begin{DoxyParamCaption}\item[{Point}]{p }\end{DoxyParamCaption}) const}
-
-Computes the signal quality of the signal given by an antenna in a certain location. 
-\begin{DoxyParams}{Parameters}
-{\em p} & the location where we want to compute the signal quality. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-
-\end{DoxyReturn}
-\mbox{\label{class_antenna_a58a2bc92fe68ae619701c143f5ba939c}} 
-\index{Antenna@{Antenna}!to\+String@{to\+String}}
-\index{to\+String@{to\+String}!Antenna@{Antenna}}
-\subsubsection{to\+String()}
-{\footnotesize\ttfamily string Antenna\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\label{class_antenna_a7fea30e065f49a3cbcee02f60bd033c8}} 
+\index{Antenna@{Antenna}!toString@{toString}}
+\index{toString@{toString}!Antenna@{Antenna}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily const string Antenna\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Overrides the same method from the superclass. It is used to write the characteristics of the \doxyref{Antenna}{p.}{class_antenna} in a file or console. \begin{DoxyReturn}{Returns}
 a string that describes the parameters of the \doxyref{Antenna}{p.}{class_antenna}. 
 \end{DoxyReturn}
 
 
-Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a530b76f9163b2b8c19e7cdf8065888ac}.
+Implements \textbf{ Agent} \doxyref{}{p.}{class_agent_a44f291596d10c7878b0641d6ec156328}.
 
-
-
-Definition at line 96 of file Antenna.\+cpp.
-
-
-
-References m\+\_\+attenuation\+Factor, m\+\_\+max\+Connections, m\+\_\+power, and Immovable\+Agent\+::to\+String().
-
-Here is the call graph for this function\+:
-% FIG 10
 \mbox{\label{class_antenna_a4455f5c804e1ea520dd849dc9fd7b0b4}} 
-\index{Antenna@{Antenna}!try\+Register\+Device@{try\+Register\+Device}}
-\index{try\+Register\+Device@{try\+Register\+Device}!Antenna@{Antenna}}
-\subsubsection{try\+Register\+Device()}
+\index{Antenna@{Antenna}!tryRegisterDevice@{tryRegisterDevice}}
+\index{tryRegisterDevice@{tryRegisterDevice}!Antenna@{Antenna}}
+\subsubsection{tryRegisterDevice()}
 {\footnotesize\ttfamily bool Antenna\+::try\+Register\+Device (\begin{DoxyParamCaption}\item[{\textbf{ Holdable\+Agent} $\ast$}]{device }\end{DoxyParamCaption})}
 
 Tries to register a mobile device as being connected to this antenna. 
@@ -699,26 +407,96 @@ Tries to register a mobile device as being connected to this antenna.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true if the connection is succesful, false otherwise. 
+true if the connection is successful, false otherwise. 
 \end{DoxyReturn}
-
-
-Definition at line 118 of file Antenna.\+cpp.
-
-
-
-References A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, already\+Registered(), attach\+Device(), get\+Num\+Active\+Conections(), I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE, m\+\_\+max\+Connections, and register\+Event().
-
-Here is the call graph for this function\+:
-% FIG 11
 
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_antenna_a77728d7c2315dda0ebc42235ae0bdf0a}} 
-\index{Antenna@{Antenna}!m\+\_\+attenuation\+Factor@{m\+\_\+attenuation\+Factor}}
-\index{m\+\_\+attenuation\+Factor@{m\+\_\+attenuation\+Factor}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+attenuation\+Factor}
+\index{Antenna@{Antenna}!m\_attenuationFactor@{m\_attenuationFactor}}
+\index{m\_attenuationFactor@{m\_attenuationFactor}!Antenna@{Antenna}}
+\subsubsection{m\_attenuationFactor}
 {\footnotesize\ttfamily double Antenna\+::m\+\_\+attenuation\+Factor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 207 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a185c9c47cb6d528622510af50c5ff62a}} 
+\index{Antenna@{Antenna}!m\_cell@{m\_cell}}
+\index{m\_cell@{m\_cell}!Antenna@{Antenna}}
+\subsubsection{m\_cell}
+{\footnotesize\ttfamily Polygon$\ast$ Antenna\+::m\+\_\+cell\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 213 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}} 
+\index{Antenna@{Antenna}!m\_devices@{m\_devices}}
+\index{m\_devices@{m\_devices}!Antenna@{Antenna}}
+\subsubsection{m\_devices}
+{\footnotesize\ttfamily vector$<$\textbf{ Holdable\+Agent}$\ast$$>$ Antenna\+::m\+\_\+devices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 214 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a06824840191e96b19eb224d53e08d3ec}} 
+\index{Antenna@{Antenna}!m\_file@{m\_file}}
+\index{m\_file@{m\_file}!Antenna@{Antenna}}
+\subsubsection{m\_file}
+{\footnotesize\ttfamily ofstream Antenna\+::m\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 216 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}} 
+\index{Antenna@{Antenna}!m\_maxConnections@{m\_maxConnections}}
+\index{m\_maxConnections@{m\_maxConnections}!Antenna@{Antenna}}
+\subsubsection{m\_maxConnections}
+{\footnotesize\ttfamily unsigned long Antenna\+::m\+\_\+max\+Connections\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 209 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a89874a2fbd083c99f780482bf4642b07}} 
+\index{Antenna@{Antenna}!m\_power@{m\_power}}
+\index{m\_power@{m\_power}!Antenna@{Antenna}}
+\subsubsection{m\_power}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+power\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 208 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}} 
+\index{Antenna@{Antenna}!m\_Smid@{m\_Smid}}
+\index{m\_Smid@{m\_Smid}!Antenna@{Antenna}}
+\subsubsection{m\_Smid}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Smid\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 210 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a48117d47d70c758f5a09c54fa323feed}} 
+\index{Antenna@{Antenna}!m\_SSteep@{m\_SSteep}}
+\index{m\_SSteep@{m\_SSteep}!Antenna@{Antenna}}
+\subsubsection{m\_SSteep}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+S\+Steep\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 211 of file Antenna.\+h.
+
+\mbox{\label{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}} 
+\index{Antenna@{Antenna}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!Antenna@{Antenna}}
+\subsubsection{m\_type}
+{\footnotesize\ttfamily \textbf{ Antenna\+Type} Antenna\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -726,123 +504,6 @@ Definition at line 215 of file Antenna.\+h.
 
 
 
-Referenced by Antenna(), compute\+Power(), get\+Attenuation\+Factor(), S\+Dist(), set\+Attenuation\+Factor(), and to\+String().
-
-\mbox{\label{class_antenna_a185c9c47cb6d528622510af50c5ff62a}} 
-\index{Antenna@{Antenna}!m\+\_\+cell@{m\+\_\+cell}}
-\index{m\+\_\+cell@{m\+\_\+cell}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+cell}
-{\footnotesize\ttfamily Polygon$\ast$ Antenna\+::m\+\_\+cell\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 221 of file Antenna.\+h.
-
-
-
-Referenced by Antenna().
-
-\mbox{\label{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}} 
-\index{Antenna@{Antenna}!m\+\_\+devices@{m\+\_\+devices}}
-\index{m\+\_\+devices@{m\+\_\+devices}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+devices}
-{\footnotesize\ttfamily vector$<$\textbf{ Holdable\+Agent}$\ast$$>$ Antenna\+::m\+\_\+devices\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 222 of file Antenna.\+h.
-
-
-
-Referenced by already\+Registered(), attach\+Device(), dettach\+Device(), and get\+Num\+Active\+Conections().
-
-\mbox{\label{class_antenna_a06824840191e96b19eb224d53e08d3ec}} 
-\index{Antenna@{Antenna}!m\+\_\+file@{m\+\_\+file}}
-\index{m\+\_\+file@{m\+\_\+file}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+file}
-{\footnotesize\ttfamily ofstream Antenna\+::m\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 224 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), register\+Event(), and $\sim$\+Antenna().
-
-\mbox{\label{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}} 
-\index{Antenna@{Antenna}!m\+\_\+max\+Connections@{m\+\_\+max\+Connections}}
-\index{m\+\_\+max\+Connections@{m\+\_\+max\+Connections}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+max\+Connections}
-{\footnotesize\ttfamily unsigned long Antenna\+::m\+\_\+max\+Connections\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 217 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), get\+Max\+Connections(), set\+Max\+Connections(), to\+String(), and try\+Register\+Device().
-
-\mbox{\label{class_antenna_a89874a2fbd083c99f780482bf4642b07}} 
-\index{Antenna@{Antenna}!m\+\_\+power@{m\+\_\+power}}
-\index{m\+\_\+power@{m\+\_\+power}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+power}
-{\footnotesize\ttfamily double Antenna\+::m\+\_\+power\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 216 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), compute\+Power(), get\+Power(), S0(), set\+Power(), and to\+String().
-
-\mbox{\label{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}} 
-\index{Antenna@{Antenna}!m\+\_\+\+Smid@{m\+\_\+\+Smid}}
-\index{m\+\_\+\+Smid@{m\+\_\+\+Smid}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+\+Smid}
-{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Smid\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 218 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), compute\+Signal\+Quality(), get\+Smid(), and set\+Smid().
-
-\mbox{\label{class_antenna_a48117d47d70c758f5a09c54fa323feed}} 
-\index{Antenna@{Antenna}!m\+\_\+\+S\+Steep@{m\+\_\+\+S\+Steep}}
-\index{m\+\_\+\+S\+Steep@{m\+\_\+\+S\+Steep}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+\+S\+Steep}
-{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+S\+Steep\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 219 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), compute\+Signal\+Quality(), get\+S\+Steep(), and set\+S\+Steep().
-
-\mbox{\label{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}} 
-\index{Antenna@{Antenna}!m\+\_\+type@{m\+\_\+type}}
-\index{m\+\_\+type@{m\+\_\+type}!Antenna@{Antenna}}
-\subsubsection{m\+\_\+type}
-{\footnotesize\ttfamily \textbf{ Antenna\+Type} Antenna\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Definition at line 223 of file Antenna.\+h.
-
-
-
-Referenced by Antenna(), compute\+Power(), compute\+Signal\+Quality(), get\+Type(), S(), and set\+Type().
-
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ Antenna.\+h}\item 
-src/\textbf{ Antenna.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ Antenna.\+h}\end{DoxyCompactItemize}

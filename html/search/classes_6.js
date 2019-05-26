@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['holdableagent',['HoldableAgent',['../class_holdable_agent.html',1,'']]]
+  ['locatableagent',['LocatableAgent',['../class_locatable_agent.html',1,'']]]
 ];

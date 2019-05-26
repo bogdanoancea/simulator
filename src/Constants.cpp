@@ -24,3 +24,4 @@ const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Consta
 const unsigned int Constants::SIMULATION_TIME = 220;
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";
+const char* Constants::PROB_FILE_NAME = "prob.csv";

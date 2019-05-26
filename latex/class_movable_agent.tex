@@ -1,27 +1,25 @@
 \section{Movable\+Agent Class Reference}
-\label{class_movable_agent}\index{Movable\+Agent@{Movable\+Agent}}
+\label{class_movable_agent}\index{MovableAgent@{MovableAgent}}
 
 
 {\ttfamily \#include $<$Movable\+Agent.\+h$>$}
 
-
-
-Inheritance diagram for Movable\+Agent\+:
-% FIG 0
-
-
-Collaboration diagram for Movable\+Agent\+:
-% FIG 1
+Inheritance diagram for Movable\+Agent\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_movable_agent}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\textbf{ Movable\+Agent} (\textbf{ Map} $\ast$m, long id, Point $\ast$init\+Position, \textbf{ Clock} $\ast$clock, double init\+Speed)
+\textbf{ Movable\+Agent} (const \textbf{ Map} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \textbf{ Clock} $\ast$clock, double init\+Speed)
 \item 
 virtual \textbf{ $\sim$\+Movable\+Agent} ()
 \item 
-string \textbf{ get\+Name} () override
+const string \textbf{ get\+Name} () const override
 \item 
-string \textbf{ to\+String} () override
+const string \textbf{ to\+String} () const override
 \item 
 virtual Point $\ast$ \textbf{ move} (\textbf{ Movement\+Type} type)=0
 \item 
@@ -37,150 +35,128 @@ double \textbf{ m\+\_\+speed}
 
 
 \subsection{Detailed Description}
+This class represents an agent that can move inside the map 
 
-
-Definition at line 24 of file Movable\+Agent.\+h.
+Definition at line 25 of file Movable\+Agent.\+h.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\label{class_movable_agent_a5b18253590944ef7a9415284770978d9}} 
-\index{Movable\+Agent@{Movable\+Agent}!Movable\+Agent@{Movable\+Agent}}
-\index{Movable\+Agent@{Movable\+Agent}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{Movable\+Agent()}
-{\footnotesize\ttfamily Movable\+Agent\+::\+Movable\+Agent (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{init\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+\mbox{\label{class_movable_agent_ad76b14a044181a57ade71f1267a2ccbd}} 
+\index{MovableAgent@{MovableAgent}!MovableAgent@{MovableAgent}}
+\index{MovableAgent@{MovableAgent}!MovableAgent@{MovableAgent}}
+\subsubsection{MovableAgent()}
+{\footnotesize\ttfamily Movable\+Agent\+::\+Movable\+Agent (\begin{DoxyParamCaption}\item[{const \textbf{ Map} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \textbf{ Clock} $\ast$}]{clock,  }\item[{double}]{init\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
+Builds a new object with the parameters provided by user 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the map used by the simulation \\
+\hline
+{\em id} & the id of the object \\
+\hline
+{\em init\+Position} & the initial location on map \\
+\hline
+{\em clock} & a pointer to the \doxyref{Clock}{p.}{class_clock} object used by this simulation \\
+\hline
+{\em init\+Speed} & the initial speed of the agent \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_movable_agent_a20eb9ddcc953137e63e035837918206c}} 
+\index{MovableAgent@{MovableAgent}!````~MovableAgent@{$\sim$MovableAgent}}
+\index{````~MovableAgent@{$\sim$MovableAgent}!MovableAgent@{MovableAgent}}
+\subsubsection{$\sim$MovableAgent()}
+{\footnotesize\ttfamily virtual Movable\+Agent\+::$\sim$\+Movable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
-Definition at line 16 of file Movable\+Agent.\+cpp.
-
-\mbox{\label{class_movable_agent_a7392d0c5eb27c2463208e51e57682645}} 
-\index{Movable\+Agent@{Movable\+Agent}!````~Movable\+Agent@{$\sim$\+Movable\+Agent}}
-\index{````~Movable\+Agent@{$\sim$\+Movable\+Agent}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{$\sim$\+Movable\+Agent()}
-{\footnotesize\ttfamily Movable\+Agent\+::$\sim$\+Movable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Definition at line 21 of file Movable\+Agent.\+cpp.
-
-
+Destructor 
 
 \subsection{Member Function Documentation}
-\mbox{\label{class_movable_agent_af36b0e49e477cfcc60d801c11166a4f0}} 
-\index{Movable\+Agent@{Movable\+Agent}!get\+Name@{get\+Name}}
-\index{get\+Name@{get\+Name}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{get\+Name()}
-{\footnotesize\ttfamily string Movable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+\mbox{\label{class_movable_agent_abcc1218876c39c996f2cb1eba2b96379}} 
+\index{MovableAgent@{MovableAgent}!getName@{getName}}
+\index{getName@{getName}!MovableAgent@{MovableAgent}}
+\subsubsection{getName()}
+{\footnotesize\ttfamily const string Movable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-This function is used to get the name of the class. It is a pure virtual function, all subclasses implment it and return the actual name of the class. \begin{DoxyReturn}{Returns}
-the name of the class. 
+Returns the name of the class \begin{DoxyReturn}{Returns}
+the name of the class 
 \end{DoxyReturn}
 
 
-Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_ae2b9a1bd2e207a9aac95f4d13a17a9f9}.
+Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a754105958bb672744b525538f1584a7b}.
 
 
 
-Reimplemented in \textbf{ Person} \doxyref{}{p.}{class_person_a41c6a0cd763dc154841346e69f2d4b3e}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a2cac00cd9efca5b8adeff28ae5827970}.
-
-
-
-Definition at line 31 of file Movable\+Agent.\+h.
+Reimplemented in \textbf{ Person} \doxyref{}{p.}{class_person_aa2a6f8d7f1d94045a03ca578f2ed272c}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_adc7196aaee1e9714236b7cd8825d5826}.
 
 \mbox{\label{class_movable_agent_a12fcdaee60f5bb29f15fe113a7dacaac}} 
-\index{Movable\+Agent@{Movable\+Agent}!get\+Speed@{get\+Speed}}
-\index{get\+Speed@{get\+Speed}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{get\+Speed()}
+\index{MovableAgent@{MovableAgent}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!MovableAgent@{MovableAgent}}
+\subsubsection{getSpeed()}
 {\footnotesize\ttfamily double Movable\+Agent\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-
-
-Definition at line 25 of file Movable\+Agent.\+cpp.
-
-
-
-References m\+\_\+speed.
-
+Returns the speed of this agent \begin{DoxyReturn}{Returns}
+the speed of this agent 
+\end{DoxyReturn}
 \mbox{\label{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}} 
-\index{Movable\+Agent@{Movable\+Agent}!move@{move}}
-\index{move@{move}!Movable\+Agent@{Movable\+Agent}}
+\index{MovableAgent@{MovableAgent}!move@{move}}
+\index{move@{move}!MovableAgent@{MovableAgent}}
 \subsubsection{move()}
 {\footnotesize\ttfamily virtual Point$\ast$ Movable\+Agent\+::move (\begin{DoxyParamCaption}\item[{\textbf{ Movement\+Type}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+A pure virtual method that moves the agent to a new location on the map 
+\begin{DoxyParams}{Parameters}
+{\em type} & the type of the movement. At this moment only \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
 
-
-Implemented in \textbf{ Person} \doxyref{}{p.}{class_person_a0de9082684a1909c9233a9187ea47b8c}, \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a0021a8d61f496d84540f675b1cb7d080}.
-
-\mbox{\label{class_movable_agent_ae2ef452e81789a4370e7dee32a9cc67e}} 
-\index{Movable\+Agent@{Movable\+Agent}!set\+Speed@{set\+Speed}}
-\index{set\+Speed@{set\+Speed}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{set\+Speed()}
-{\footnotesize\ttfamily void Movable\+Agent\+::set\+Speed (\begin{DoxyParamCaption}\item[{double}]{speed }\end{DoxyParamCaption})}
-
-
-
-Definition at line 29 of file Movable\+Agent.\+cpp.
-
-
-
-References m\+\_\+speed.
-
-
-
-Referenced by Holdable\+Agent\+::set\+Holder().
-
-\mbox{\label{class_movable_agent_aa8a8424a9513e0d57f7d4b94e7a49552}} 
-\index{Movable\+Agent@{Movable\+Agent}!to\+String@{to\+String}}
-\index{to\+String@{to\+String}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{to\+String()}
-{\footnotesize\ttfamily string Movable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-Builds a string with of the relevant information of the class. It is useful to output on the console or in a file the description of concrete agents. \begin{DoxyReturn}{Returns}
-a string representation of the class content. The values of the members are written in this string. 
 \end{DoxyReturn}
 
 
-Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a593b8f4eb5d0a812b725726c35335193}.
+Implemented in \textbf{ Person} \doxyref{}{p.}{class_person_a89843e85f14abc08422273c20252ae23}, \textbf{ Mobile\+Phone} \doxyref{}{p.}{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a0021a8d61f496d84540f675b1cb7d080}.
+
+\mbox{\label{class_movable_agent_ae2ef452e81789a4370e7dee32a9cc67e}} 
+\index{MovableAgent@{MovableAgent}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!MovableAgent@{MovableAgent}}
+\subsubsection{setSpeed()}
+{\footnotesize\ttfamily void Movable\+Agent\+::set\+Speed (\begin{DoxyParamCaption}\item[{double}]{speed }\end{DoxyParamCaption})}
+
+Sets the speed of this agent 
+\begin{DoxyParams}{Parameters}
+{\em speed} & the speed of this agent \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_movable_agent_a1dee2a6bf93f01006fadfb6fba6c9a59}} 
+\index{MovableAgent@{MovableAgent}!toString@{toString}}
+\index{toString@{toString}!MovableAgent@{MovableAgent}}
+\subsubsection{toString()}
+{\footnotesize\ttfamily const string Movable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Builds a human readable string representation of the agent \begin{DoxyReturn}{Returns}
+a human readable string representation of the agent 
+\end{DoxyReturn}
+
+
+Reimplemented from \textbf{ Locatable\+Agent} \doxyref{}{p.}{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}.
 
 
 
-Reimplemented in \textbf{ Person} \doxyref{}{p.}{class_person_ac39b105901a2d4ce38ff5b548b1c349e}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a90880cd8f4a4afd451645e6e1dc86c5b}.
+Reimplemented in \textbf{ Person} \doxyref{}{p.}{class_person_a68872538da519d0a04297f43376db27c}, and \textbf{ Tablet} \doxyref{}{p.}{class_tablet_a3fae01e7d526699476221c6a686a4fba}.
 
-
-
-Definition at line 33 of file Movable\+Agent.\+cpp.
-
-
-
-References m\+\_\+speed, and Locatable\+Agent\+::to\+String().
-
-
-
-Referenced by Holdable\+Agent\+::to\+String(), and Person\+::to\+String().
-
-Here is the call graph for this function\+:
-% FIG 2
 
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_movable_agent_ac725b42e7b968740a59c3e1033d69ac5}} 
-\index{Movable\+Agent@{Movable\+Agent}!m\+\_\+speed@{m\+\_\+speed}}
-\index{m\+\_\+speed@{m\+\_\+speed}!Movable\+Agent@{Movable\+Agent}}
-\subsubsection{m\+\_\+speed}
+\index{MovableAgent@{MovableAgent}!m\_speed@{m\_speed}}
+\index{m\_speed@{m\_speed}!MovableAgent@{MovableAgent}}
+\subsubsection{m\_speed}
 {\footnotesize\ttfamily double Movable\+Agent\+::m\+\_\+speed\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line 44 of file Movable\+Agent.\+h.
+Definition at line 75 of file Movable\+Agent.\+h.
 
 
 
-Referenced by get\+Speed(), set\+Speed(), and to\+String().
-
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ Movable\+Agent.\+h}\item 
-src/\textbf{ Movable\+Agent.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ Movable\+Agent.\+h}\end{DoxyCompactItemize}

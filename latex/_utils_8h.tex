@@ -1,13 +1,9 @@
 \section{include/\+Utils.h File Reference}
-\label{_utils_8h}\index{include/\+Utils.\+h@{include/\+Utils.\+h}}
+\label{_utils_8h}\index{include/Utils.h@{include/Utils.h}}
 {\ttfamily \#include $<$geos/geom/\+Point.\+h$>$}\newline
+{\ttfamily \#include $<$Tiny\+X\+M\+L2.\+h$>$}\newline
 {\ttfamily \#include $<$cmath$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
-{\ttfamily \#include $<$tinyxml2.\+h$>$}\newline
-Include dependency graph for Utils.\+h\+:
-% FIG 0
-This graph shows which files directly or indirectly include this file\+:
-% FIG 1
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -24,11 +20,9 @@ void \textbf{ utils\+::print\+Antenna\+Header} ()
 \item 
 void \textbf{ utils\+::print\+Phone\+Header} ()
 \item 
-const char $\ast$ \textbf{ utils\+::get\+Antennas\+File} (int argc, char $\ast$$\ast$argv)
+X\+M\+L\+Node $\ast$ \textbf{ utils\+::get\+Node} (X\+M\+L\+Element $\ast$el, const char $\ast$name)
 \item 
-\textbf{ X\+M\+L\+Node} $\ast$ \textbf{ utils\+::get\+Node} (\textbf{ X\+M\+L\+Element} $\ast$el, const char $\ast$name)
-\item 
-\textbf{ X\+M\+L\+Element} $\ast$ \textbf{ utils\+::get\+First\+Child\+Element} (\textbf{ X\+M\+L\+Element} $\ast$el, const char $\ast$name) noexcept(false)
+X\+M\+L\+Element $\ast$ \textbf{ utils\+::get\+First\+Child\+Element} (X\+M\+L\+Element $\ast$el, const char $\ast$name) noexcept(false)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}

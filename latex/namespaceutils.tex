@@ -11,11 +11,9 @@ void \textbf{ print\+Antenna\+Header} ()
 \item 
 void \textbf{ print\+Phone\+Header} ()
 \item 
-const char $\ast$ \textbf{ get\+Antennas\+File} (int argc, char $\ast$$\ast$argv)
+X\+M\+L\+Node $\ast$ \textbf{ get\+Node} (X\+M\+L\+Element $\ast$el, const char $\ast$name)
 \item 
-\textbf{ X\+M\+L\+Node} $\ast$ \textbf{ get\+Node} (\textbf{ X\+M\+L\+Element} $\ast$el, const char $\ast$name)
-\item 
-\textbf{ X\+M\+L\+Element} $\ast$ \textbf{ get\+First\+Child\+Element} (\textbf{ X\+M\+L\+Element} $\ast$el, const char $\ast$name) noexcept(false)
+X\+M\+L\+Element $\ast$ \textbf{ get\+First\+Child\+Element} (X\+M\+L\+Element $\ast$el, const char $\ast$name) noexcept(false)
 \end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -24,104 +22,77 @@ const double \textbf{ PI} = std\+::atan(1.\+0) $\ast$ 4
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+This namespace contains utility functions that don\textquotesingle{}t belong to any class 
+
 \subsection{Function Documentation}
-\mbox{\label{namespaceutils_a6b3f4ddb6d0aeaf5a9f0125130af14bb}} 
-\index{utils@{utils}!generate\+Points@{generate\+Points}}
-\index{generate\+Points@{generate\+Points}!utils@{utils}}
-\subsubsection{generate\+Points()}
-{\footnotesize\ttfamily vector$<$ Point $\ast$ $>$ utils\+::generate\+Points (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{int}]{n }\end{DoxyParamCaption})}
+\mbox{\label{namespaceutils_a30515197dfb9b72bba08e31b3a99f908}} 
+\index{utils@{utils}!generatePoints@{generatePoints}}
+\index{generatePoints@{generatePoints}!utils@{utils}}
+\subsubsection{generatePoints()}
+{\footnotesize\ttfamily vector$<$Point$\ast$$>$ utils\+::generate\+Points (\begin{DoxyParamCaption}\item[{\textbf{ Map} $\ast$}]{m,  }\item[{int}]{n }\end{DoxyParamCaption})}
 
+Generates n random points on a map 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the map where the points have to be located \\
+\hline
+{\em n} & the number of points to generate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of pointers to Point objects 
+\end{DoxyReturn}
+\mbox{\label{namespaceutils_a929f9a6daaf5e504356ea4af5918c34b}} 
+\index{utils@{utils}!getFirstChildElement@{getFirstChildElement}}
+\index{getFirstChildElement@{getFirstChildElement}!utils@{utils}}
+\subsubsection{getFirstChildElement()}
+{\footnotesize\ttfamily X\+M\+L\+Element$\ast$ utils\+::get\+First\+Child\+Element (\begin{DoxyParamCaption}\item[{X\+M\+L\+Element $\ast$}]{el,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
+Retunrs a pointer to an X\+M\+L\+Element which is the first child of another X\+M\+L\+Element. This function is used to parse the content of the configuration files. 
+\begin{DoxyParams}{Parameters}
+{\em el} & the parent X\+M\+L\+Element \\
+\hline
+{\em name} & the name of the child X\+M\+L\+Element \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to an X\+M\+L\+Element which is the first child of another X\+M\+L\+Element 
+\end{DoxyReturn}
+\mbox{\label{namespaceutils_a707d0fc1b0346b7da16a6f7714a7f24d}} 
+\index{utils@{utils}!getNode@{getNode}}
+\index{getNode@{getNode}!utils@{utils}}
+\subsubsection{getNode()}
+{\footnotesize\ttfamily X\+M\+L\+Node$\ast$ utils\+::get\+Node (\begin{DoxyParamCaption}\item[{X\+M\+L\+Element $\ast$}]{el,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
 
-Definition at line 26 of file Utils.\+cpp.
-
-
-
-References Map\+::get\+Boundary().
-
-
-
-Referenced by World\+::generate\+Antennas(), and World\+::generate\+Population().
-
-Here is the call graph for this function\+:
-% FIG 0
-\mbox{\label{namespaceutils_a20d2148f668eec93d623536d18c7dd62}} 
-\index{utils@{utils}!get\+Antennas\+File@{get\+Antennas\+File}}
-\index{get\+Antennas\+File@{get\+Antennas\+File}!utils@{utils}}
-\subsubsection{get\+Antennas\+File()}
-{\footnotesize\ttfamily const char$\ast$ utils\+::get\+Antennas\+File (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
-
-\mbox{\label{namespaceutils_a6d3da5ad06700408fa8e41f3115e4c40}} 
-\index{utils@{utils}!get\+First\+Child\+Element@{get\+First\+Child\+Element}}
-\index{get\+First\+Child\+Element@{get\+First\+Child\+Element}!utils@{utils}}
-\subsubsection{get\+First\+Child\+Element()}
-{\footnotesize\ttfamily \textbf{ X\+M\+L\+Element} $\ast$ utils\+::get\+First\+Child\+Element (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Element} $\ast$}]{el,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
-
-
-
-Definition at line 72 of file Utils.\+cpp.
-
-
-
-References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element().
-
-
-
-Referenced by World\+::parse\+Antennas(), and World\+::parse\+Persons().
-
-Here is the call graph for this function\+:
-% FIG 1
-\mbox{\label{namespaceutils_a7fb4a9700e2a1e31cca50ef090bf4b05}} 
-\index{utils@{utils}!get\+Node@{get\+Node}}
-\index{get\+Node@{get\+Node}!utils@{utils}}
-\subsubsection{get\+Node()}
-{\footnotesize\ttfamily \textbf{ X\+M\+L\+Node} $\ast$ utils\+::get\+Node (\begin{DoxyParamCaption}\item[{\textbf{ X\+M\+L\+Element} $\ast$}]{el,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
-
-
-
-Definition at line 65 of file Utils.\+cpp.
-
-
-
-References tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child(), and tinyxml2\+::\+X\+M\+L\+Node\+::\+First\+Child\+Element().
-
-
-
-Referenced by Antenna\+::\+Antenna(), World\+::parse\+Persons(), and World\+::parse\+Simulation\+File().
-
-Here is the call graph for this function\+:
-% FIG 2
+Returns a pointer to an X\+M\+L\+Node with a specific name that belongs to an X\+M\+L\+Element. This function is used to parse the content of the configuration files. 
+\begin{DoxyParams}{Parameters}
+{\em el} & the X\+M\+L\+Element where to search the X\+M\+L\+Node \\
+\hline
+{\em name} & the name of the node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to an X\+M\+L\+Node with a specific name that belongs to an X\+M\+L\+Element 
+\end{DoxyReturn}
 \mbox{\label{namespaceutils_a2080e7db5afc5bb1b4c9ef5336f78ccb}} 
-\index{utils@{utils}!print\+Antenna\+Header@{print\+Antenna\+Header}}
-\index{print\+Antenna\+Header@{print\+Antenna\+Header}!utils@{utils}}
-\subsubsection{print\+Antenna\+Header()}
+\index{utils@{utils}!printAntennaHeader@{printAntennaHeader}}
+\index{printAntennaHeader@{printAntennaHeader}!utils@{utils}}
+\subsubsection{printAntennaHeader()}
 {\footnotesize\ttfamily void utils\+::print\+Antenna\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
-
-Definition at line 55 of file Utils.\+cpp.
-
-\mbox{\label{namespaceutils_a1978a6ccb2360773215aba027d8b6f08}} 
-\index{utils@{utils}!print\+Person\+Header@{print\+Person\+Header}}
-\index{print\+Person\+Header@{print\+Person\+Header}!utils@{utils}}
-\subsubsection{print\+Person\+Header()}
+Prints out a header containing the names of the member variables from the \doxyref{Antenna}{p.}{class_antenna} class in a human readable format It is used together with \doxyref{Antenna\+::to\+String()}{p.}{class_antenna_a7fea30e065f49a3cbcee02f60bd033c8} to output the antennas set on console \mbox{\label{namespaceutils_a1978a6ccb2360773215aba027d8b6f08}} 
+\index{utils@{utils}!printPersonHeader@{printPersonHeader}}
+\index{printPersonHeader@{printPersonHeader}!utils@{utils}}
+\subsubsection{printPersonHeader()}
 {\footnotesize\ttfamily void utils\+::print\+Person\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
-
-Definition at line 50 of file Utils.\+cpp.
-
-\mbox{\label{namespaceutils_a7633a4dfe509a009f4e02850b03ba1e4}} 
-\index{utils@{utils}!print\+Phone\+Header@{print\+Phone\+Header}}
-\index{print\+Phone\+Header@{print\+Phone\+Header}!utils@{utils}}
-\subsubsection{print\+Phone\+Header()}
+Prints out a header containing the names of the member variables from the \doxyref{Person}{p.}{class_person} class in a human readable format. It is used together with \doxyref{Person\+::to\+String()}{p.}{class_person_a68872538da519d0a04297f43376db27c} to output the Persons set on console \mbox{\label{namespaceutils_a7633a4dfe509a009f4e02850b03ba1e4}} 
+\index{utils@{utils}!printPhoneHeader@{printPhoneHeader}}
+\index{printPhoneHeader@{printPhoneHeader}!utils@{utils}}
+\subsubsection{printPhoneHeader()}
 {\footnotesize\ttfamily void utils\+::print\+Phone\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
-
-Definition at line 60 of file Utils.\+cpp.
-
-
+Prints out a header containing the names of the member variables from the \doxyref{Mobile\+Phone}{p.}{class_mobile_phone} class in a human readable format It is used together with \doxyref{Mobile\+Phone\+::to\+String()}{p.}{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04} to output the mobile phones set on console 
 
 \subsection{Variable Documentation}
 \mbox{\label{namespaceutils_a92ce7d254229929886551de7417e1912}} 
@@ -130,7 +101,7 @@ Definition at line 60 of file Utils.\+cpp.
 \subsubsection{PI}
 {\footnotesize\ttfamily const double utils\+::\+PI = std\+::atan(1.\+0) $\ast$ 4}
 
+Number pi 
 
-
-Definition at line 31 of file Utils.\+h.
+Definition at line 59 of file Utils.\+h.
 

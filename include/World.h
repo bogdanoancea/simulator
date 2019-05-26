@@ -109,6 +109,20 @@ public:
 	 */
 	void setMap(Map* map);
 
+	/**
+	 * Returns the file name where the grid parameters are saved. They are needed for the visualization software.
+	 * @return the file name where the grid parameters are saved.
+	 */
+	const string& getGridFilename() const;
+
+	/**
+	 * Returns the name of the file where the probabilities of mobile phones location are saved
+	 * @return the name of the file where the probabilities of mobile phones location are saved
+	 */
+	const string& getProbFilename() const {
+		return m_probFilename;
+	}
+
 private:
 
 	Map* m_map;
@@ -121,6 +135,8 @@ private:
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
+	string m_gridFilename;
+	string m_probFilename;
 
 	vector<Person*> generatePopulation(unsigned long numPersons);
 	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,

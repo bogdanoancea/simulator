@@ -162,14 +162,13 @@ int main(int argc, char** argv) {
 			}
 		}
 
-		string gridFileName = string(Constants::GRID_FILE_NAME);
 		ofstream p_file, g_File;
-		if (outputFileName.empty()) {
+		if (w.getProbFilename().empty()) {
 			throw runtime_error("no output file!");
 		}
 		try {
-			p_file.open(outputFileName, ios::out);
-			g_File.open(gridFileName, ios::out);
+			p_file.open(w.getProbFilename(), ios::out);
+			g_File.open(w.getGridFilename(), ios::out);
 		} catch (ofstream::failure& e) {
 			cerr << "Error opening output file!" << endl;
 		}

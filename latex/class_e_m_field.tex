@@ -1,27 +1,23 @@
 \section{E\+M\+Field Class Reference}
-\label{class_e_m_field}\index{E\+M\+Field@{E\+M\+Field}}
+\label{class_e_m_field}\index{EMField@{EMField}}
 
 
 {\ttfamily \#include $<$E\+M\+Field.\+h$>$}
 
-
-
-Collaboration diagram for E\+M\+Field\+:
-% FIG 0
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \textbf{ add\+Antenna} (\textbf{ Antenna} $\ast$a)
 \item 
-pair$<$ \textbf{ Antenna} $\ast$, double $>$ \textbf{ compute\+Max\+Power} (Point $\ast$p)
+pair$<$ \textbf{ Antenna} $\ast$, double $>$ \textbf{ compute\+Max\+Power} (const Point $\ast$p)
 \item 
-pair$<$ \textbf{ Antenna} $\ast$, double $>$ \textbf{ compute\+Max\+Quality} (Point $\ast$p)
+pair$<$ \textbf{ Antenna} $\ast$, double $>$ \textbf{ compute\+Max\+Quality} (const Point $\ast$p)
 \item 
-vector$<$ pair$<$ \textbf{ Antenna} $\ast$, double $>$ $>$ \textbf{ get\+In\+Range\+Antennas} (Point $\ast$p, double threshold, bool power)
+vector$<$ pair$<$ \textbf{ Antenna} $\ast$, double $>$ $>$ \textbf{ get\+In\+Range\+Antennas} (const Point $\ast$p, const double threshold, const bool power)
 \item 
-bool \textbf{ is\+Antenna\+In\+Range} (Point $\ast$p, \textbf{ Antenna} $\ast$a, double threshold, bool power)
+bool \textbf{ is\+Antenna\+In\+Range} (const Point $\ast$p, \textbf{ Antenna} $\ast$a, const double threshold, const bool power)
 \item 
-double \textbf{ connection\+Likelihood} (\textbf{ Antenna} $\ast$a, Point $\ast$p)
+double \textbf{ connection\+Likelihood} (\textbf{ Antenna} $\ast$a, const Point $\ast$p)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -45,12 +41,12 @@ vector$<$ \textbf{ Antenna} $\ast$ $>$ \textbf{ m\+\_\+antennas}
 \subsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static \textbf{ E\+M\+Field} $\ast$ \textbf{ m\+\_\+instance} = nullptr
+static \textbf{ E\+M\+Field} $\ast$ \textbf{ m\+\_\+instance}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
+This singleton class is used to compute the power of the electromagnetic field or the quality of the signal given by all antennas used in a simulation in a given Point 
 
 Definition at line 23 of file E\+M\+Field.\+h.
 
@@ -58,166 +54,130 @@ Definition at line 23 of file E\+M\+Field.\+h.
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\label{class_e_m_field_a054f389cfa853008f32c02d874aa4d58}} 
-\index{E\+M\+Field@{E\+M\+Field}!E\+M\+Field@{E\+M\+Field}}
-\index{E\+M\+Field@{E\+M\+Field}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{E\+M\+Field()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\index{EMField@{EMField}!EMField@{EMField}}
+\index{EMField@{EMField}!EMField@{EMField}}
+\subsubsection{EMField()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily E\+M\+Field\+::\+E\+M\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-
-
-Definition at line 19 of file E\+M\+Field.\+cpp.
-
 \mbox{\label{class_e_m_field_a7760631ded36ba2c5a918c97a1cc93e9}} 
-\index{E\+M\+Field@{E\+M\+Field}!E\+M\+Field@{E\+M\+Field}}
-\index{E\+M\+Field@{E\+M\+Field}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{E\+M\+Field()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\index{EMField@{EMField}!EMField@{EMField}}
+\index{EMField@{EMField}!EMField@{EMField}}
+\subsubsection{EMField()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily E\+M\+Field\+::\+E\+M\+Field (\begin{DoxyParamCaption}\item[{const \textbf{ E\+M\+Field} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 \subsection{Member Function Documentation}
 \mbox{\label{class_e_m_field_ac531ecbce4c81aa5da19fe3c734a585c}} 
-\index{E\+M\+Field@{E\+M\+Field}!add\+Antenna@{add\+Antenna}}
-\index{add\+Antenna@{add\+Antenna}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{add\+Antenna()}
+\index{EMField@{EMField}!addAntenna@{addAntenna}}
+\index{addAntenna@{addAntenna}!EMField@{EMField}}
+\subsubsection{addAntenna()}
 {\footnotesize\ttfamily void E\+M\+Field\+::add\+Antenna (\begin{DoxyParamCaption}\item[{\textbf{ Antenna} $\ast$}]{a }\end{DoxyParamCaption})}
 
 Add an antenna that will contribute to the generation of the electromagnetic field 
 \begin{DoxyParams}{Parameters}
-{\em a} & \\
+{\em a} & a pointer to the \doxyref{Antenna}{p.}{class_antenna} object \\
 \hline
 \end{DoxyParams}
+\mbox{\label{class_e_m_field_a3e740e4d62b39da43821504ada399ffe}} 
+\index{EMField@{EMField}!computeMaxPower@{computeMaxPower}}
+\index{computeMaxPower@{computeMaxPower}!EMField@{EMField}}
+\subsubsection{computeMaxPower()}
+{\footnotesize\ttfamily pair$<$\textbf{ Antenna}$\ast$, double$>$ E\+M\+Field\+::compute\+Max\+Power (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption})}
 
-
-Definition at line 74 of file E\+M\+Field.\+cpp.
-
-
-
-References m\+\_\+antennas.
-
-
-
-Referenced by World\+::\+World().
-
-\mbox{\label{class_e_m_field_adeed63c6ce6d5cf922a884abf731e601}} 
-\index{E\+M\+Field@{E\+M\+Field}!compute\+Max\+Power@{compute\+Max\+Power}}
-\index{compute\+Max\+Power@{compute\+Max\+Power}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{compute\+Max\+Power()}
-{\footnotesize\ttfamily pair$<$ \textbf{ Antenna} $\ast$, double $>$ E\+M\+Field\+::compute\+Max\+Power (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
-
-compute the power of the signal given by all antennas in location p 
+Returns a pair made of an \doxyref{Antenna}{p.}{class_antenna} object and its power with the property that in the location specified by Point p, among all Antennas that provide an electromagnetic field, the one given by the \doxyref{Antenna}{p.}{class_antenna} returned by this method has the highest power. The power in this pair is the power computed in location p. 
 \begin{DoxyParams}{Parameters}
-{\em p} & \\
+{\em p} & the location where we want to find which is the \doxyref{Antenna}{p.}{class_antenna} with the highest power of electromagnetic field. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-
+a pair$<$\+Antenna$\ast$, double$>$ containing a pointer to the \doxyref{Antenna}{p.}{class_antenna} object that provides an electromagnetic field with the highest power in p 
 \end{DoxyReturn}
+\mbox{\label{class_e_m_field_a17f3b02830ce89bb1111e4f29c898e03}} 
+\index{EMField@{EMField}!computeMaxQuality@{computeMaxQuality}}
+\index{computeMaxQuality@{computeMaxQuality}!EMField@{EMField}}
+\subsubsection{computeMaxQuality()}
+{\footnotesize\ttfamily pair$<$\textbf{ Antenna}$\ast$, double$>$ E\+M\+Field\+::compute\+Max\+Quality (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption})}
 
+Returns a pair made of an \doxyref{Antenna}{p.}{class_antenna} object and its signal quality with the property that in the location specified by Point p, among all Antennas that provide an electromagnetic field, the one given by the \doxyref{Antenna}{p.}{class_antenna} returned by this method has the highest quality of the signal. The signal quality in this pair is the computed in location p. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location where we want to find which is the \doxyref{Antenna}{p.}{class_antenna} with the highest quality of the signal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pair$<$\+Antenna$\ast$, double$>$ containing a pointer to the \doxyref{Antenna}{p.}{class_antenna} object that provides a signal with the highest quality in p. 
+\end{DoxyReturn}
+\mbox{\label{class_e_m_field_a710da64db53718cdeed7b8c8dc11bba3}} 
+\index{EMField@{EMField}!connectionLikelihood@{connectionLikelihood}}
+\index{connectionLikelihood@{connectionLikelihood}!EMField@{EMField}}
+\subsubsection{connectionLikelihood()}
+{\footnotesize\ttfamily double E\+M\+Field\+::connection\+Likelihood (\begin{DoxyParamCaption}\item[{\textbf{ Antenna} $\ast$}]{a,  }\item[{const Point $\ast$}]{p }\end{DoxyParamCaption})}
 
-Definition at line 23 of file E\+M\+Field.\+cpp.
+Computes the connection likelihood. For a definition of this measure please consult the paper \char`\"{}\+Deriving geographic location of
+mobile devices from network data\char`\"{} by Martijn Tennekes, Yvonne A.\+P.\+M. Gootzen, Shan H. Shah. 
+\begin{DoxyParams}{Parameters}
+{\em a} & a pointer to an \doxyref{Antenna}{p.}{class_antenna} object. \\
+\hline
+{\em p} & a location in space. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the connection likelihood. 
+\end{DoxyReturn}
+\mbox{\label{class_e_m_field_a19af5f57fe1eef5c42640c2155ea51c7}} 
+\index{EMField@{EMField}!getInRangeAntennas@{getInRangeAntennas}}
+\index{getInRangeAntennas@{getInRangeAntennas}!EMField@{EMField}}
+\subsubsection{getInRangeAntennas()}
+{\footnotesize\ttfamily vector$<$pair$<$\textbf{ Antenna}$\ast$, double$>$ $>$ E\+M\+Field\+::get\+In\+Range\+Antennas (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p,  }\item[{const double}]{threshold,  }\item[{const bool}]{power }\end{DoxyParamCaption})}
 
-
-
-References m\+\_\+antennas, and O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL.
-
-
-
-Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
-
-\mbox{\label{class_e_m_field_ae51a157793b6d59c314b14f3c0b1795c}} 
-\index{E\+M\+Field@{E\+M\+Field}!compute\+Max\+Quality@{compute\+Max\+Quality}}
-\index{compute\+Max\+Quality@{compute\+Max\+Quality}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{compute\+Max\+Quality()}
-{\footnotesize\ttfamily pair$<$ \textbf{ Antenna} $\ast$, double $>$ E\+M\+Field\+::compute\+Max\+Quality (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
-
-
-
-Definition at line 41 of file E\+M\+Field.\+cpp.
-
-
-
-References m\+\_\+antennas, and O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL.
-
-
-
-Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
-
-\mbox{\label{class_e_m_field_abe54bab01ef42cc8b32d6f76b4ccf7a2}} 
-\index{E\+M\+Field@{E\+M\+Field}!connection\+Likelihood@{connection\+Likelihood}}
-\index{connection\+Likelihood@{connection\+Likelihood}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{connection\+Likelihood()}
-{\footnotesize\ttfamily double E\+M\+Field\+::connection\+Likelihood (\begin{DoxyParamCaption}\item[{\textbf{ Antenna} $\ast$}]{a,  }\item[{Point $\ast$}]{p }\end{DoxyParamCaption})}
-
-
-
-Definition at line 59 of file E\+M\+Field.\+cpp.
-
-
-
-References Antenna\+::compute\+Signal\+Quality(), and m\+\_\+antennas.
-
-
-
-Referenced by Grid\+::compute\+Probability().
-
-Here is the call graph for this function\+:
-% FIG 1
-\mbox{\label{class_e_m_field_a929d0adcb4e69d088209644665a15644}} 
-\index{E\+M\+Field@{E\+M\+Field}!get\+In\+Range\+Antennas@{get\+In\+Range\+Antennas}}
-\index{get\+In\+Range\+Antennas@{get\+In\+Range\+Antennas}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{get\+In\+Range\+Antennas()}
-{\footnotesize\ttfamily vector$<$ pair$<$ \textbf{ Antenna} $\ast$, double $>$ $>$ E\+M\+Field\+::get\+In\+Range\+Antennas (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p,  }\item[{double}]{threshold,  }\item[{bool}]{power }\end{DoxyParamCaption})}
-
-
-
-Definition at line 78 of file E\+M\+Field.\+cpp.
-
-
-
-References m\+\_\+antennas.
-
-
-
-Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
-
+Returns a vector of pairs made up of an \doxyref{Antenna}{p.}{class_antenna} object and its power or signal quality. All the antennas in this vector provides a signal with a power or signal quality greater than the threshold provided as a parameter 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location where we want to have the list with the antennas \\
+\hline
+{\em threshold} & the lowest limit of the power or signal quality below which the signal is considered to be only noise \\
+\hline
+{\em power} & if true, the vector of antennas is build according to the power of the electromagnetic field and the second element of the pair object represents the power of the antenna, otherwise it is build according to the signal quality and the second element of the pair is the signal quality of the antenna. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a vector of pairs made up of an \doxyref{Antenna}{p.}{class_antenna} object and its power or signal quality. All the antennas in this vector provides a signal with a power or signal quality greater than the threshold provided as a parameter 
+\end{DoxyReturn}
 \mbox{\label{class_e_m_field_acbadbede116ac320398cbfcd19e90ec7}} 
-\index{E\+M\+Field@{E\+M\+Field}!instance@{instance}}
-\index{instance@{instance}!E\+M\+Field@{E\+M\+Field}}
+\index{EMField@{EMField}!instance@{instance}}
+\index{instance@{instance}!EMField@{EMField}}
 \subsubsection{instance()}
 {\footnotesize\ttfamily static \textbf{ E\+M\+Field}$\ast$ E\+M\+Field\+::instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
+Returns an instance of this class \begin{DoxyReturn}{Returns}
+an instance of this class 
+\end{DoxyReturn}
 
 
-Definition at line 25 of file E\+M\+Field.\+h.
+Definition at line 29 of file E\+M\+Field.\+h.
 
+\mbox{\label{class_e_m_field_a5f28d4732dd986efe9fa102f45600b16}} 
+\index{EMField@{EMField}!isAntennaInRange@{isAntennaInRange}}
+\index{isAntennaInRange@{isAntennaInRange}!EMField@{EMField}}
+\subsubsection{isAntennaInRange()}
+{\footnotesize\ttfamily bool E\+M\+Field\+::is\+Antenna\+In\+Range (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p,  }\item[{\textbf{ Antenna} $\ast$}]{a,  }\item[{const double}]{threshold,  }\item[{const bool}]{power }\end{DoxyParamCaption})}
 
-
-Referenced by Grid\+::compute\+Probability(), Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm(), and World\+::\+World().
-
-\mbox{\label{class_e_m_field_a724a0875311def27abe0e7ec7932ca41}} 
-\index{E\+M\+Field@{E\+M\+Field}!is\+Antenna\+In\+Range@{is\+Antenna\+In\+Range}}
-\index{is\+Antenna\+In\+Range@{is\+Antenna\+In\+Range}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{is\+Antenna\+In\+Range()}
-{\footnotesize\ttfamily bool E\+M\+Field\+::is\+Antenna\+In\+Range (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p,  }\item[{\textbf{ Antenna} $\ast$}]{a,  }\item[{double}]{threshold,  }\item[{bool}]{power }\end{DoxyParamCaption})}
-
-
-
-Definition at line 100 of file E\+M\+Field.\+cpp.
-
-
-
-References Antenna\+::compute\+Power(), and Antenna\+::compute\+Signal\+Quality().
-
-
-
-Referenced by Mobile\+Phone\+::try\+Connect\+Naive\+Algorithm().
-
-Here is the call graph for this function\+:
-% FIG 2
+Checks is the power or the signal quality given by an antenna in a specific point in space is above the limit where it is considered only noise 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location in space where we want to check the power or the quality of the signal \\
+\hline
+{\em a} & a pointer to an \doxyref{Antenna}{p.}{class_antenna} object that we want to check if it provides enough power or signal quality in a point. \\
+\hline
+{\em threshold} & the lower limit of the power or signal quality below which the signal is considered only noise. \\
+\hline
+{\em power} & if true the computations are done considering the power of the antenna, otherwise the signal quality \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true is the provided \doxyref{Antenna}{p.}{class_antenna} object provide enough power or signal quality in the location given as a paramater. 
+\end{DoxyReturn}
 \mbox{\label{class_e_m_field_ad35e4754cad2016d7df1b8ac45540b35}} 
-\index{E\+M\+Field@{E\+M\+Field}!operator=@{operator=}}
-\index{operator=@{operator=}!E\+M\+Field@{E\+M\+Field}}
+\index{EMField@{EMField}!operator=@{operator=}}
+\index{operator=@{operator=}!EMField@{EMField}}
 \subsubsection{operator=()}
 {\footnotesize\ttfamily \textbf{ E\+M\+Field}\& E\+M\+Field\+::operator= (\begin{DoxyParamCaption}\item[{const \textbf{ E\+M\+Field} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
@@ -225,32 +185,27 @@ Here is the call graph for this function\+:
 
 \subsection{Member Data Documentation}
 \mbox{\label{class_e_m_field_ab74a3bde70b66fd033bde6c25345a755}} 
-\index{E\+M\+Field@{E\+M\+Field}!m\+\_\+antennas@{m\+\_\+antennas}}
-\index{m\+\_\+antennas@{m\+\_\+antennas}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{m\+\_\+antennas}
+\index{EMField@{EMField}!m\_antennas@{m\_antennas}}
+\index{m\_antennas@{m\_antennas}!EMField@{EMField}}
+\subsubsection{m\_antennas}
 {\footnotesize\ttfamily vector$<$\textbf{ Antenna}$\ast$$>$ E\+M\+Field\+::m\+\_\+antennas\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-Definition at line 58 of file E\+M\+Field.\+h.
+Definition at line 103 of file E\+M\+Field.\+h.
+
+\mbox{\label{class_e_m_field_a3a75e412fa15cfab78ce64dfbb8af52d}} 
+\index{EMField@{EMField}!m\_instance@{m\_instance}}
+\index{m\_instance@{m\_instance}!EMField@{EMField}}
+\subsubsection{m\_instance}
+{\footnotesize\ttfamily \textbf{ E\+M\+Field}$\ast$ E\+M\+Field\+::m\+\_\+instance\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 
 
-Referenced by add\+Antenna(), compute\+Max\+Power(), compute\+Max\+Quality(), connection\+Likelihood(), and get\+In\+Range\+Antennas().
-
-\mbox{\label{class_e_m_field_a7aa23feedf709c3d8a0bfc3702a8d5d8}} 
-\index{E\+M\+Field@{E\+M\+Field}!m\+\_\+instance@{m\+\_\+instance}}
-\index{m\+\_\+instance@{m\+\_\+instance}!E\+M\+Field@{E\+M\+Field}}
-\subsubsection{m\+\_\+instance}
-{\footnotesize\ttfamily \textbf{ E\+M\+Field} $\ast$ E\+M\+Field\+::m\+\_\+instance = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+Definition at line 102 of file E\+M\+Field.\+h.
 
 
 
-Definition at line 57 of file E\+M\+Field.\+h.
-
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\textbf{ E\+M\+Field.\+h}\item 
-src/\textbf{ E\+M\+Field.\+cpp}\end{DoxyCompactItemize}
+include/\textbf{ E\+M\+Field.\+h}\end{DoxyCompactItemize}

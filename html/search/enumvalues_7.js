@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['male',['MALE',['../class_person.html#aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4',1,'Person']]]
+  ['omnidirectional',['OMNIDIRECTIONAL',['../_antenna_type_8h.html#a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de',1,'AntennaType.h']]]
 ];
