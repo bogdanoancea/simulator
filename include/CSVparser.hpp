@@ -19,21 +19,6 @@
 using namespace std;
 
 /**
- * This class extends the runtime_error class adding an error message
- */
-class Error: public runtime_error {
-
-public:
-	/**
-	 * Constructor of the class.
-	 * @param msg the error message
-	 */
-	Error(const string &msg) :
-			runtime_error(string("CSVparser : ").append(msg)) {
-	}
-};
-
-/**
  * This class is used to represent a line from a .csv file. It is a container of the values from a line of text.
  */
 class Row {
@@ -90,7 +75,7 @@ public:
 			ss >> res;
 			return res;
 		}
-		throw Error("can't return this value (doesn't exist)");
+		throw runtime_error("can't return this value (doesn't exist)");
 	}
 
 	/**
