@@ -46,8 +46,8 @@ Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the fol
 <p>Build and run the simulation
 <p>Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator
 Suppose tha you want to download the source code in D:\data-simulator folder. Open a Git shell in this folder, and then type:
-<br>git clone https://github.com/bogdanoancea/simulator.git
-After the source code was downloaded, open <I>makefile.inc</I> with any text editor and change the values of the following 3 variables:
+<br>$git clone https://github.com/bogdanoancea/simulator.git
+<br>After the source code was downloaded, open <I>makefile.inc</I> with any text editor and change the values of the following 3 variables:
 <br>PROJ_HOME
 <br>GEOS_HOME
 <br>MSYS_HOME
