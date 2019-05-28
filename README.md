@@ -19,7 +19,7 @@ Th code is written in C++. To build the application you will need a C++ comppile
  
 </p>
 
-<b>How to build the application under Windows operating system><b>
+<b>How to build the application under Windows operating system<b>
 <p>
 <p>Prerequisites
 1. MSYS2 environment. MSYS2 is a software distro and building platform for Windows and 
