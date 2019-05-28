@@ -25,20 +25,22 @@ The code is written in C++. To build the application you need a C++ compiler com
 <p>1. MSYS2 environment. MSYS2 is a software distro and building platform for Windows and 
 it can be downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
 are provided on the project's web page mentioned above.
-<p>After downloading the MSYS2 the path to the C++ compiler and make utility have to be added to your PATH variable. It is advisable to add these
-paths in front of your current content of the PATH variable. Supossing that we installed MSYS2 in C:\msys64 folder, if you intend to use the
-standard command promt application provided by Windowd your PATH should be updated like this: PATH = C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
-Instead, you can use the sheel provided by MSYS2 by running C:\msys64\mingw64.exe which has al required environment variables already set.
+<p>After downloading the MSYS2 the path to the C++ compiler and <I>make</I> utility has to be added to your PATH variable. 
+It is advisable to add these paths in front of your current content of the PATH variable. 
+<p>Supossing that we installed MSYS2 in C:\msys64 folder, if you intend to use the
+standard command prompt application provided by Windows, your PATH should be updated like this: PATH = C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
+Instead, you can use the shell provided by MSYS2 by running C:\msys64\mingw64.exe which has al required environment variables already set.
 
 <p>2.GEOS C++ library. GEOS is a C++ port of JTS - Java Topology Suite. JTS 
 is an open-source library that provides an object model for Euclidean planar linear geometry 
 and is intended to be used as a core component of vector-based geographical information systems. GEOS contains a subset of
-functions from JTS. The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
+functions from JTS. 
+<p>The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
 https://trac.osgeo.org/geos. Instructions how to build the GEOS C++ library are provided here: https://trac.osgeo.org/geos/wiki/BuildingOnUnixWithAutotools
-Mainly, you have to open a shell by running C:\msys64\mingw64.exe then type
-$ ./autogen.sh
-$ ./configure
-$ make
-$ make install
+Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the folder where your source code is located and then type
+<br>$ ./autogen.sh
+<br>$ ./configure
+<br>$ make
+<br>$ make install
 
  
