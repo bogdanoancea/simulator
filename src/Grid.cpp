@@ -54,6 +54,7 @@ unsigned long Grid::getNoTiles() const {
 double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
 		MobilePhone* m, vector<AntennaInfo>& data,
 		std::pair<um_iterator, um_iterator> itr) {
+
 	double result = 0.0;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;

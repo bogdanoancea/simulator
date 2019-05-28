@@ -1,6 +1,8 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = D:/data-simulator/simulator/
+PROJ_HOME = D:/data-simulator/simulator
+GEOS_HOME = D:/data-simulator/geos-3.7.1
+MSYS_HOME = C:/msys64/
 DEBUG     = 0
 
 
@@ -10,8 +12,8 @@ CXX    = g++.exe
 
 #-------[ include path ]------------
 
-INCS   = -I"D:/data-simulator/simulator/include" 
-INCS  += -I"D:/data-simulator/geos-3.7.1/include"
+INCS   = -I$(PROJ_HOME)/include
+INCS  += -I$(GEOS_HOME)/include
 
 #-------[ compiler flags ]----------
 
@@ -24,7 +26,7 @@ endif
 
 #------- linker flags ]------------
 
-LDFLAGS  = -L"D:/data-simulator/geos-3.7.1/src/.libs" -L"C:/msys64/mingw64/lib" 
-LIBS = D:/data-simulator/geos-3.7.1/src/.libs/libgeos.dll.a 
+LDFLAGS  = -L$(GEOS_HOME)/src/.libs -L$(MSYS_HOME)/mingw64/lib
+LIBS = $(GEOS_HOME)/src/.libs/libgeos.dll.a 
 
 
