@@ -43,7 +43,8 @@ Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the fol
 <br>$ make
 <br>$ make install
 
- 3. Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator
+<p>Build and run the simulation
+Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator
  <br>Open <I>makefile.inc<I> with any text editor and change the values of the following 3 variables:
 <br>PROJ_HOME
 <br>GEOS_HOME
