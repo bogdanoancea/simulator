@@ -19,10 +19,10 @@ Th code is written in C++. To build the application you will need a C++ comppile
  
 </p>
 
-<b>How to build the application under Windows operating system<b>
+<b>How to build the application under Windows operating system</b>
 <p>
 <p>Prerequisites
-1. MSYS2 environment. MSYS2 is a software distro and building platform for Windows and 
+<p>1. MSYS2 environment. MSYS2 is a software distro and building platform for Windows and 
 it can be downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
 are provided on the project's web page mentoned above.
 After downloading the MSYS2 the path to the C++ compiler and make utility have to be added to your PATH variable. It is advisable to add these
@@ -30,7 +30,7 @@ paths in front of your current content of the PATH variable. Supossing that we i
 standard command promt application provided by Windowd your PATH should be updated like this: PATH = C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
 Instead, you can use the sheel provided by MSYS2 by running C:\msys64\mingw64.exe which has al required environment variables already set.
 
-2.GEOS C++ library. GEOS is a C++ port of JTS - Java Topology Suite. JTS 
+<p>2.GEOS C++ library. GEOS is a C++ port of JTS - Java Topology Suite. JTS 
 is an open-source library that provides an object model for Euclidean planar linear geometry 
 and is intended to be used as a core component of vector-based geographical information systems. GEOS contains a subset of
 functions from JTS. The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
