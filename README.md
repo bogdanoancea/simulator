@@ -29,7 +29,7 @@ are provided on the project's web page mentioned above.
 It is advisable to add these paths in front of your current content of the PATH variable. 
 <p>Supossing that we installed MSYS2 in C:\msys64 folder, if you intend to use the
 standard command prompt application provided by Windows, your PATH should be updated like this: PATH = C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
-Instead, you can use the shell provided by MSYS2 by running C:\msys64\mingw64.exe which has al required environment variables already set.
+Instead, you can use the shell provided by MSYS2 by running C:\msys64\mingw64.exe which has all required environment variables already set.
 
 <p>2. GEOS C++ library. GEOS is a C++ port of JTS - Java Topology Suite. JTS 
 is an open-source library that provides an object model for Euclidean planar linear geometry 
@@ -52,15 +52,15 @@ Suppose tha you want to download the source code in D:\data-simulator folder. Op
 <br>GEOS_HOME
 <br>MSYS_HOME
 
-<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulatorm, GEOS_HOMe should point to
-the folder where is your GEOS source code and MSYS_HOME shoulkd idicate the folder where is your MSYS2 development enviroment.
-After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the directory where is your micro-simulator 
+<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator, GEOS_HOME should point to
+the folder where is your GEOS source code and MSYS_HOME should indicate the folder where is your MSYS2 development enviroment.
+After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the folder where is your micro-simulator 
 source code and type:
 <br>$ make
 <br>$ make install
 
-<p> The executable is copied under the Release folder. To run a simulation type the following:
-<br>simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -o prob.csv
+<p> The executable is copied under the <I>Release folder</I>. To run a simulation type the following:
+<br>$simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -o prob.csv
 
 <p> We provide sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the root folder of the simulator source code. 
 The output file is prob.csv.
