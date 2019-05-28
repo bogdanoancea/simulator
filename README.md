@@ -15,17 +15,17 @@ there is really no reason to expect that a model would perform worse for synthet
 On the contrary, dealing with real data would be expected to be even more problematic, 
 so a good performance for simulated data should be demanded anyway." <a href = "https://webgate.ec.europa.eu/fpfis/mwikis/essnetbigdata/images/5/56/WPI_A_framework_for_mobile_network_data_micro-simulation_2019_02_14.pdf">(Salgado, D. et al. 2018)</a>
 
-Th code is written in C++. To build the application you will need a C++ comppiler compliant with C++11.
+The code is written in C++. To build the application you need a C++ compiler compliant with C++11.
  
 </p>
 
-<b>How to build the application under Windows operating system</b>
+<b>How to build the application under <I>Windows</I> operating system</b>
 <p>
 <p>Prerequisites
 <p>1. MSYS2 environment. MSYS2 is a software distro and building platform for Windows and 
 it can be downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
-are provided on the project's web page mentoned above.
-After downloading the MSYS2 the path to the C++ compiler and make utility have to be added to your PATH variable. It is advisable to add these
+are provided on the project's web page mentioned above.
+<p>After downloading the MSYS2 the path to the C++ compiler and make utility have to be added to your PATH variable. It is advisable to add these
 paths in front of your current content of the PATH variable. Supossing that we installed MSYS2 in C:\msys64 folder, if you intend to use the
 standard command promt application provided by Windowd your PATH should be updated like this: PATH = C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%
 Instead, you can use the sheel provided by MSYS2 by running C:\msys64\mingw64.exe which has al required environment variables already set.
