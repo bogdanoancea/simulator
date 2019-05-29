@@ -20,6 +20,7 @@
 #include <AntennaInfo.h>
 #include <iomanip>
 #include <Constants.h>
+#include<algorithm>
 
 using namespace std;
 using namespace geos;
@@ -113,10 +114,10 @@ int main(int argc, char** argv) {
 //			p->addDevice(typeid(MobilePhone).name(), m);
 //		}
 
-		string persFileName("persons.csv");
-		string antennasFileName("antennas.csv");
 		w.runSimulation();
 
+		time_t tt = w.getClock()->realTime();
+		cout << "Computing probabilities started at " << ctime(&tt) << endl;
 		//now we compute the probabilities for the positions of the phones
 
 		// build the grid for the map
@@ -142,8 +143,6 @@ int main(int argc, char** argv) {
 		double dimTileY = (maxY - minY) / 10;
 		Grid g(map, minX, minY, dimTileX, dimTileY, 10, 10);
 
-		//cout << g.toString();
-
 		// read the event connection data
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
@@ -158,6 +157,10 @@ int main(int argc, char** argv) {
 				data.push_back(a);
 			}
 		}
+		sort(data.begin(), data.end(), [](const AntennaInfo& lhs, const AntennaInfo& rhs) {
+		      return (lhs.getTime() < rhs.getTime() && lhs.getDeviceId() < rhs.getDeviceId());
+		   });
+//		sort(data.begin(), data.end());
 
 		ofstream p_file, g_File;
 		if (w.getProbFilename().empty()) {
@@ -172,7 +175,7 @@ int main(int argc, char** argv) {
 		g_File << g.toString();
 		try {
 			g_File.close();
-		} catch (ofstream::failure& e) {
+		} catch (const ofstream::failure& e) {
 			cerr << "Error closing grid file!" << endl;
 		}
 
@@ -184,11 +187,11 @@ int main(int argc, char** argv) {
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
+				//ostringstream probs;
 				for (unsigned long i = 0; i < g.getNoTiles(); i++) {
-					p_file << fixed << setprecision(15)
-							<< g.computeProbability(t, i, m, data, itra) << ",";
-					//p_file << t << "," << m->getId() << "," << i << "," << fixed << setprecision(15)<<g.computeProbability(t, i, m, data, itra) << endl;
+					p_file << fixed << setprecision(15) << g.computeProbability(t, i, m, data, itra) << ",";
 				}
+				//p_file << probs.str();
 				p_file << endl;
 			}
 		}
@@ -197,11 +200,12 @@ int main(int argc, char** argv) {
 		} catch (ofstream::failure& e) {
 			cerr << "Error closing grid file!" << endl;
 		}
-
-	} catch (runtime_error& e) {
-		cout << e.what() << "\n";
+		tt = w.getClock()->realTime();
+		cout << "Computing probabilities ended at " << ctime(&tt) << endl;
+	} catch (const runtime_error& e) {
+		cout << e.what() << endl;
 	} catch (const exception &e) {
-		cout << e.what() << "\n";
+		cout << e.what() << endl;
 	}
 	return (0);
 }

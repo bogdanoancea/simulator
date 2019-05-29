@@ -85,6 +85,7 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
 		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;	//qual / sum_qual;
 	} else
 		result = (1.0 / (m_noTilesX * m_noTilesY));
+
 	return (result);
 }
 
