@@ -34,35 +34,35 @@ public:
 	/**
 	 * @return the id of the antenna that registered an event.
 	 */
-	const unsigned long getAntennaId() const;
+	unsigned long getAntennaId() const;
 
 
 	/**
 	 *@return the id of the device that generated the event
 	 */
-	const unsigned long getDeviceId() const;
+	unsigned long getDeviceId() const;
 
 	/**
 	 * @return the event code
 	 */
-	const unsigned long getEventCode() const;
+	unsigned long getEventCode() const;
 
 	/**
 	 * @return the timestamp of the event
 	 */
-	const unsigned long getTime() const;
+	unsigned long getTime() const;
 
 	/**
 	 *
 	 * @return x coordinate of the device that generated the event
 	 */
-	const double getX() const;
+	double getX() const;
 
 	/**
 	 *
 	 * @return y coordinate of the device that generated the event
 	 */
-	const double getY() const;
+	double getY() const;
 
 	/**
 	 *
@@ -70,13 +70,20 @@ public:
 	 */
 	const string toString() const;
 
+	/**
+	 * Overloaded operator to compare to objects
+	 * @param ai the other object to compare to
+	 * @return true if this object is less than ai, flase otherwise
+	 */
+	bool operator < (const AntennaInfo& ai) const;
+
 private:
-	const unsigned long m_time;
-	const unsigned long m_antennaId;
-	const unsigned long m_eventCode;
-	const unsigned long m_deviceId;
-	const double m_x;
-	const double m_y;
+	unsigned long m_time;
+	unsigned long m_antennaId;
+	unsigned long m_eventCode;
+	unsigned long m_deviceId;
+	double m_x;
+	double m_y;
 };
 
 #endif /* ANTENNAINFO_H_ */

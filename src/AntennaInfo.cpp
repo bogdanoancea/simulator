@@ -17,27 +17,27 @@ AntennaInfo::AntennaInfo(const unsigned long time, const unsigned long antennaId
 m_time {time}, m_antennaId {antennaId}, m_eventCode {event}, m_deviceId {deviceId}, m_x {x}, m_y {y} {
 }
 
-const unsigned long AntennaInfo::getAntennaId() const {
+unsigned long AntennaInfo::getAntennaId() const {
 	return (m_antennaId);
 }
 
-const unsigned long AntennaInfo::getDeviceId() const {
+unsigned long AntennaInfo::getDeviceId() const {
 	return m_deviceId;
 }
 
-const unsigned long AntennaInfo::getEventCode() const {
+unsigned long AntennaInfo::getEventCode() const {
 	return m_eventCode;
 }
 
-const unsigned long AntennaInfo::getTime() const {
+unsigned long AntennaInfo::getTime() const {
 	return m_time;
 }
 
-const double AntennaInfo::getX() const {
+double AntennaInfo::getX() const {
 	return m_x;
 }
 
-const double AntennaInfo::getY() const {
+double AntennaInfo::getY() const {
 	return m_y;
 }
 
@@ -47,3 +47,7 @@ const string AntennaInfo::toString() const {
 			<< m_deviceId << "," << m_x << "," << m_y;
 	return (result.str());
 }
+
+bool AntennaInfo::operator <(const AntennaInfo& ai) const {
+        return (m_time < ai.getTime());
+    }

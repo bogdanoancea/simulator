@@ -107,7 +107,7 @@ void World::runSimulation() noexcept(false) {
 	}
 
 	time_t tt = getClock()->realTime();
-	pFile << "Simulation started at " << ctime(&tt) << endl;
+	cout << "Simulation started at " << ctime(&tt) << endl;
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
@@ -125,6 +125,9 @@ void World::runSimulation() noexcept(false) {
 //	pair<Antenna*, double> x = EMField::instance()->computeMaxPower(p);
 //	int id = x.first->getId();
 //	cout << "most powerful antenna in " << p->toText() << " is: " << id << " with power : " << x.second << endl;
+
+	tt = getClock()->realTime();
+	cout << "Simulation ended at " << ctime(&tt) << endl;
 
 	try {
 		pFile.close();
