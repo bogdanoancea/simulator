@@ -69,15 +69,15 @@ Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the fol
 
 <B>Build and run the simulation software</B>
 <p>Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator
-Suppose tha you want to download the source code in D:\data-simulator folder. Open a Git shell in this folder, and then type:
+Assuming that you want to download the source code in D:\data-simulator folder, open a Git shell in this folder, and then type:
 <br>$git clone https://github.com/bogdanoancea/simulator.git
 <br>After the source code was downloaded, open <I>makefile.inc</I> with any text editor and change the values of the following 3 variables:
 <br>PROJ_HOME
 <br>GEOS_HOME
 <br>MSYS_HOME
 
-<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator, GEOS_HOME should point to
-the folder where is your GEOS source code and MSYS_HOME should indicate the folder where is your MSYS2 development enviroment.
+<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator (for example D:\data-simulator\simulator), GEOS_HOME should point to
+the folder where is your GEOS source code and MSYS_HOME should indicate the folder where is your MSYS2 development environment.
 After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the folder where is your micro-simulator 
 source code and type:
 <br>$ make
