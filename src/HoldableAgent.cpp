@@ -13,25 +13,21 @@
 #include <sstream>
 #include <algorithm>
 
-HoldableAgent::HoldableAgent(Map* m, long id, Point* initPosition, Agent* holder, Clock* clock) :
+HoldableAgent::HoldableAgent(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock) :
 		MovableAgent(m, id, initPosition, clock, 0.0), m_holder { holder } {
-	// TODO Auto-generated constructor stub
-
 }
 
 HoldableAgent::HoldableAgent(const HoldableAgent &h):
-		MovableAgent(h.getMap(), h.getId(), h.getLocation(), h.getClock(), 0.0) {
+	MovableAgent(h.getMap(), h.getId(), h.getLocation(), h.getClock(), 0.0) {
 	m_holder = h.getHolder();
 	std::copy(h.getAntennas().begin(), h.getAntennas().end(), m_antennas.begin());
 }
 
-
 HoldableAgent::~HoldableAgent() {
-	// TODO Auto-generated destructor stub
 }
 
 Agent* HoldableAgent::getHolder() const {
-	return m_holder;
+	return (m_holder);
 }
 
 void HoldableAgent::setHolder(Agent* holder) {
@@ -48,22 +44,27 @@ void HoldableAgent::setHolder(Agent* holder) {
 }
 
 bool HoldableAgent::isConnected() const {
-	return m_antennas.size() > 0;
+	return (m_antennas.size() > 0);
 }
 
 vector<Antenna*> HoldableAgent::getAntennas() const {
 	return (m_antennas);
 }
 
-//void HoldableAgent::setConnected(bool c) {
-//	m_isConnected = c;
-//}
+void HoldableAgent::setLocation(Point* location) {
+	LocatableAgent::setLocation(location);
+	tryConnect();
+}
 
-string HoldableAgent::toString() {
+const string HoldableAgent::toString() const{
 	ostringstream result;
 	if (m_holder != nullptr)
 		result << MovableAgent::toString() << left << setw(15) << m_holder->getId();
 	else
 		result << MovableAgent::toString() << left << setw(15) << "null";
 	return (result.str());
+}
+
+const string HoldableAgent::getName() const {
+	return ("HoldableAgent");
 }

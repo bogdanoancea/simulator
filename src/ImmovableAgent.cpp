@@ -14,15 +14,18 @@ using namespace geos;
 using namespace geos::geom;
 
 
-ImmovableAgent::ImmovableAgent(Map* m, long id, Point* initialPosition, Clock* clock) :
+ImmovableAgent::ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock) :
 		LocatableAgent(m, id, initialPosition, clock) {
-	// TODO Auto-generated constructor stub
 }
 
 ImmovableAgent::~ImmovableAgent() {
-	// TODO Auto-generated destructor stub
+
 }
 
-string ImmovableAgent::toString() {
+const string ImmovableAgent::toString() const {
 	return (LocatableAgent::toString());
+}
+
+const string ImmovableAgent::getName() const {
+	return ("ImovableAgent");
 }

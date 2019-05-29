@@ -18,13 +18,11 @@
 
 #include <geos/geom/Polygon.h>
 
-
-
-
 namespace utils {
-using namespace geos;
-using namespace geos::geom;
-using namespace std;
+	using namespace geos;
+	using namespace geos::geom;
+	using namespace std;
+
 	vector<Point*> generatePoints(Map* m, int n) {
 		vector<Point*> result;
 
@@ -37,10 +35,8 @@ using namespace std;
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
-			double* x = new double[n];
-			double *y = new double[n];
-			x = RandomNumberGenerator::instance()->generateDouble(xmin, xmax, n);
-			y = RandomNumberGenerator::instance()->generateDouble(ymin, ymax, n);
+			double* x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n);
+			double* y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n);
 			for (int i = 0; i < n; i++) {
 				Coordinate c = Coordinate(x[i], y[i]);
 				result.push_back(m->getGlobalFactory()->createPoint(c));
@@ -52,8 +48,8 @@ using namespace std;
 	}
 
 	void printPersonHeader() {
-		std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
-				<< endl;
+		std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15)
+				<< " Age" << setw(15)<< "Gender" << endl;
 	}
 
 	void printAntennaHeader() {
@@ -66,5 +62,17 @@ using namespace std;
 				<< endl;
 	}
 
+	XMLNode* getNode(XMLElement* el, const char* name) {
+		XMLNode* n = el->FirstChildElement(name)->FirstChild();
+		if (!n)
+			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+		return (n);
+	}
 
+	XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
+		XMLElement* n = el->FirstChildElement(name);
+		if (!n)
+			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+		return (n);
+	}
 }

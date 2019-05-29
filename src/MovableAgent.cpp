@@ -13,13 +13,11 @@
 #include <sstream>
 
 
-MovableAgent::MovableAgent(Map* m, long id, Point* initialPosition, Clock* clock, double initialSpeed) :
+MovableAgent::MovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock, double initialSpeed) :
 		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
-	// TODO Auto-generated constructor stub
 }
 
 MovableAgent::~MovableAgent() {
-	// TODO Auto-generated destructor stub
 }
 
 double MovableAgent::getSpeed() const {
@@ -30,9 +28,12 @@ void MovableAgent::setSpeed(double val) {
 	m_speed = val;
 }
 
-string MovableAgent::toString() {
+const string MovableAgent::toString() const {
 	ostringstream ss;
 	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
 	return (ss.str());
 }
 
+const string MovableAgent::getName() const {
+	return ("MovableAgent");
+}

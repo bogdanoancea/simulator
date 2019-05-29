@@ -17,30 +17,26 @@
 using namespace geos;
 using namespace geos::geom;
 
-LocatableAgent::LocatableAgent(Map* m, long id, Point* initLocation, Clock* clock) :
+LocatableAgent::LocatableAgent(const Map* m, const unsigned long id, Point* initLocation, const Clock* clock) :
 		Agent(m, id, clock) {
-	if (initLocation != nullptr) {
-		const Coordinate *c = initLocation->getCoordinate();
-		m_location = this->getMap()->getGlobalFactory()->createPoint(*c);
-	}
-	else
-		m_location = nullptr;
+	m_location = initLocation;
 
 }
 
 LocatableAgent::~LocatableAgent() {
+//		if (m_location != nullptr)
+//			this->getMap()->getGlobalFactory()->destroyGeometry(m_location);
 }
 
 Point* LocatableAgent::getLocation() const {
-	return m_location;
+	return (m_location);
 }
 
 void LocatableAgent::setLocation(Point* location) {
-	//const Coordinate *c = location.getCoordinate();
-	m_location = location;//this->getMap()->getGlobalFactory()->createPoint(*c);
+	m_location = location;
 }
 
-string LocatableAgent::toString() {
+const string LocatableAgent::toString() const {
 	ostringstream ss;
 	if (m_location != nullptr)
 		ss << left << setw(15) << getId() << setw(15) << getLocation()->getCoordinate()->x << setw(15) << getLocation()->getCoordinate()->y;
@@ -50,12 +46,15 @@ string LocatableAgent::toString() {
 
 }
 
-string LocatableAgent::dumpLocation(Clock* clock) {
+const string LocatableAgent::dumpLocation() {
 	ostringstream ss;
 	char sep = ',';
-	if (clock != nullptr)
-		ss << left << clock->getCurrentTime() << sep;
+	if (getClock() != nullptr)
+		ss << left << getClock()->getCurrentTime() << sep;
 	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
 	return (ss.str());
+}
 
+const string LocatableAgent::getName() const {
+	return ("LocatableAgent");
 }

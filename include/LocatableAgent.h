@@ -16,26 +16,61 @@
 
 using namespace geos;
 using namespace geos::geom;
+using namespace std;
 
+/**
+ * his class extends the Agent class and defines an object with a location on a map.
+ */
 class LocatableAgent: public Agent {
-	public:
-		explicit LocatableAgent(Map* m, long id, Point* initLocation, Clock* clock);
+public:
 
-		virtual ~LocatableAgent();
+	/**
+	 * Constructor of the class. Builds an object that has a location on the map of the simulation
+	 * @param m a pointer to a Map object used in this simulation.
+	 * @param id the id of the object.
+	 * @param initLocation the initial location of the object.
+	 * @param clock a pointer to a Clock object used in this simulation.
+	 */
+	explicit LocatableAgent(const Map* m, const unsigned long id, Point* initLocation, const Clock* clock);
 
-		string getName() override {
-			return "LocatableAgent";
-		}
+	/**
+	 * Destructor
+	 */
+	virtual ~LocatableAgent();
 
-		string toString() override;
+	/**
+	 *  Returns the name of this class
+	 * @return the name of this class
+	 */
+	const string getName() const override;
 
-		Point* getLocation() const;
-		void setLocation(Point* location);
+	/**
+	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.
+	 * @return a string representation of this class
+	 */
+	const string toString() const override;
 
-		string dumpLocation(Clock* clock);
+	/**
+	 *
+	 * @return the location on the map
+	 */
+	virtual Point* getLocation() const;
 
-	private:
-		Point* m_location;
+	/**
+	 * Sets the location of the agent on the map
+	 * @param location the location of the agent on the map
+	 */
+	virtual void setLocation(Point* location);
+
+	/**
+	 * Builds a human readable string representation of the location
+	 * @return a human readable string representation of the location
+	 */
+	const string dumpLocation();
+
+private:
+
+	Point* m_location;
 };
 
 #endif /* LOCATABLEAGENT_H_ */
