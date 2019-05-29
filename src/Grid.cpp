@@ -70,7 +70,7 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
 	if (found) {
 		Coordinate c = getTileCenter(tileIndex);
 		unsigned long antennaId = ai->getAntennaId();
-		Antenna* a;
+		Antenna* a = nullptr;
 		for (auto it = itr.first; it != itr.second; it++) {
 			a = dynamic_cast<Antenna*>(it->second);
 			if (a->getId() == antennaId)
@@ -78,8 +78,10 @@ double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
 		}
 
 		Point* p = m_map->getGlobalFactory()->createPoint(c);
+		double lh = 1.0;
+		if(a != nullptr)
+			lh = EMField::instance()->connectionLikelihood(a, p);
 
-		double lh = EMField::instance()->connectionLikelihood(a, p);
 		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;	//qual / sum_qual;
 	} else
 		result = (1.0 / (m_noTilesX * m_noTilesY));
