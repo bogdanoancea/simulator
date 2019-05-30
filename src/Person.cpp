@@ -96,6 +96,7 @@ void Person::randomWalk() {
 		setLocation(pt);
 	}
 	else {
+
 		CoordinateSequence* cl = new CoordinateArraySequence();
 		cl->add(Coordinate(x, y));
 		cl->add(Coordinate(newX, newY));
@@ -107,6 +108,8 @@ void Person::randomWalk() {
 			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
 			setLocation(ptInt);
 		}
+		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
+		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
 	}
 }
 
