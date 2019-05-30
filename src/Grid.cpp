@@ -90,7 +90,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 
 			result.push_back((1.0 / (m_noTilesX * m_noTilesY)) * lh); //qual / sum_qual;
 		} else
-			result.push_back ( (1.0 / (m_noTilesX * m_noTilesY)));
+			result.push_back((1.0 / (m_noTilesX * m_noTilesY)));
 	}
 
 	return (result);
