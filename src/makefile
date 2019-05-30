@@ -1,6 +1,6 @@
 include ../makefile.inc
 
-TARGET  = simulator.exe
+#TARGET  = simulator.exe
 
 OBJECTS = Agent.o\
 AgentsCollection.o\

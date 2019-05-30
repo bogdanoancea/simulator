@@ -1,7 +1,7 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = /Users/bogdanoancea/c-projects/simulator
-GEOS_HOME = /Users/bogdanoancea/c-projects/geos-3.7.1
+PROJ_HOME = D:\data-simulator\simulator
+GEOS_HOME = D:\data-simulator\geos-3.7.1
 MSYS_HOME = C:/msys64/
 DEBUG     = 0
 
