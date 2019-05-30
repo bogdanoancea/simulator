@@ -28,7 +28,7 @@ else
 		CXX		= g++
 		TARGET	= simulator
 		LDFLAGS  = -L$(GEOS_HOME)/src/.libs -L$(MSYS_HOME)/mingw64/lib
-		LIBS = $(GEOS_HOME)/src/.libs/libgeos.dll.a
+		LIBS = $(GEOS_HOME)/src/.libs/libgeos.a
     endif
 endif
 
