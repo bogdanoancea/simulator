@@ -20,8 +20,8 @@ Parser::Parser(const std::string &data, const DataType &type, char sep, bool has
 			}
 			ifile.close();
 
-			if (_originalFile.size() == 0)
-				throw runtime_error(string("No Data in ").append(_file));
+//			if (_originalFile.size() == 0)
+//				throw runtime_error(string("No Data in ").append(_file));
 
 			if (m_header)
 				parseHeader();

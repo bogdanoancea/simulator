@@ -47,6 +47,9 @@ namespace utils {
 					result.push_back(p);
 					k++;
 				}
+				else
+					m->getGlobalFactory()->destroyGeometry(p);
+
 				// we used all the numbers, generate others
 				if (i == n) {
 					delete[] x;

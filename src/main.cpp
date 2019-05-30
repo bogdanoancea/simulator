@@ -96,23 +96,6 @@ int main(int argc, char** argv) {
 				cout << m->toString() << endl;
 			}
 		}
-//		cout << "... now we give mobile phones to persons... " << endl;
-		// randomly select numMobilePhones people
-//		unordered_set<int> indices;
-//		while (indices.size() < numMobilePhones) {
-//			int num = rand() % persons.size();
-//			indices.insert(num);
-//		}
-//
-//		vector<unsigned long> pindices;
-//		move(indices.begin(), indices.end(), back_inserter(pindices));
-//		unsigned long i = 0;
-//		for (auto it = itr3.first; it != itr3.second; it++) {
-//			MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-//			Person* p = persons[pindices[i++]];
-//			m->setHolder(p);
-//			p->addDevice(typeid(MobilePhone).name(), m);
-//		}
 
 		w.runSimulation();
 
@@ -139,9 +122,9 @@ int main(int argc, char** argv) {
 				minY = y;
 
 		}
-		double dimTileX = (maxX - minX) / 10;
-		double dimTileY = (maxY - minY) / 10;
-		Grid g(map, minX, minY, dimTileX, dimTileY, 10, 10);
+		double dimTileX = (maxX - minX) / w.getGridTilesX();
+		double dimTileY = (maxY - minY) / w.getGridTilesY();
+		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 
 		// read the event connection data
 		vector<AntennaInfo> data;
@@ -181,8 +164,9 @@ int main(int argc, char** argv) {
 
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-		for (unsigned long t = w.getClock()->getInitialTime();
-				t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+
+		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
@@ -192,7 +176,7 @@ int main(int argc, char** argv) {
 				for (unsigned long i = 0; i < g.getNoTiles()-1; i++) {
 					probs << fixed << setprecision(15) << p[i] << ",";
 				}
-				probs << fixed << setprecision(15) << p[g.getNoTiles()];
+				probs << fixed << setprecision(15) << p[g.getNoTiles()-1];
 				p_file << probs.str() << endl;
 			}
 		}
