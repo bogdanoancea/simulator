@@ -28,18 +28,33 @@ namespace utils {
 
 		Geometry* g = m->getBoundary();
 		if (dynamic_cast<Polygon*>(g) != nullptr) {
-			Polygon* p = dynamic_cast<Polygon*>(g);
-			const Envelope* env = p->getEnvelopeInternal();
+			Polygon* pol = dynamic_cast<Polygon*>(g);
+			const Envelope* env = pol->getEnvelopeInternal();
 			double xmin = env->getMinX();
 			double xmax = env->getMaxX();
 			double ymin = env->getMinY();
 			double ymax = env->getMaxX();
 
+			//generate a pool of numbers to choose from
 			double* x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n);
 			double* y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n);
-			for (int i = 0; i < n; i++) {
+			int i = 0, k = 0;
+			while (k < n) {
 				Coordinate c = Coordinate(x[i], y[i]);
-				result.push_back(m->getGlobalFactory()->createPoint(c));
+				i++;
+				Point* p = m->getGlobalFactory()->createPoint(c);
+				if(pol->contains(p)) {
+					result.push_back(p);
+					k++;
+				}
+				// we used all the numbers, generate others
+				if (i == n) {
+					delete[] x;
+					delete[] y;
+					x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n-k+10);
+					y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n-k+10);
+					i = 0;
+				}
 			}
 			delete[] x;
 			delete[] y;

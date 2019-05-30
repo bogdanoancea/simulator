@@ -33,4 +33,3 @@ dos2unix:
 .PHONY: unix2dos
 unix2dos:
 	cd src; $(MAKE) unix2dos
-
