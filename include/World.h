@@ -133,6 +133,18 @@ public:
 	 */
 	const string& getPersonsFilename() const;
 
+	/**
+	 * Returns the number of tiles on OX this number is read from simulation.xml config file
+	 * @return the number of tiles on OX, this number is read from simulation.xml config file
+	 */
+	unsigned long getGridTilesX() const;
+
+	/**
+	 * Returns the number of tiles on OY this number is read from simulation.xml config file
+	 * @return the number of tiles on OY, this number is read from simulation.xml config file
+	 */
+	unsigned long getGridTilesY() const;
+
 private:
 
 	Map* m_map;
@@ -142,6 +154,9 @@ private:
 	unsigned long m_startTime;
 	unsigned long m_endTime;
 	unsigned long m_timeIncrement;
+	unsigned long m_GridTilesX;
+	unsigned long m_GridTilesY;
+
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;

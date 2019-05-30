@@ -28,6 +28,7 @@
 #include <HoldableAgent.h>
 #include <MovementType.h>
 #include <TinyXML2.h>
+#include <stdlib.h>
 
 using namespace std;
 using namespace utils;
@@ -307,6 +308,14 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 	return (result);
 }
 
+unsigned long World::getGridTilesX() const {
+	return m_GridTilesX;
+}
+
+unsigned long World::getGridTilesY() const {
+	return m_GridTilesY;
+}
+
 void World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configSimulationFileName.c_str());
@@ -318,11 +327,11 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
 		XMLNode* sTNode = getNode(simEl, "start_time");
-		m_startTime = atoi(sTNode->ToText()->Value());
+		m_startTime = atol(sTNode->ToText()->Value());
 		XMLNode* eTNode = getNode(simEl, "end_time");
-		m_endTime = atoi(eTNode->ToText()->Value());
+		m_endTime = atol(eTNode->ToText()->Value());
 		XMLNode* iTNode = getNode(simEl, "time_increment");
-		m_timeIncrement = atoi(iTNode->ToText()->Value());
+		m_timeIncrement = atol(iTNode->ToText()->Value());
 
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (!strcmp(mvNode->ToText()->Value(), "random_walk"))
@@ -348,6 +357,10 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		XMLNode* antennasNode = getNode(simEl, "antennas_file");
 		m_antennasFilename = antennasNode->ToText()->Value();
 
+		XMLNode* xTilesNode = getNode(simEl, "grid_no_tiles_x");
+		m_GridTilesX = atol(xTilesNode->ToText()->Value());
+		XMLNode* yTilesNode = getNode(simEl, "grid_no_tiles_y");
+		m_GridTilesY = atol(yTilesNode->ToText()->Value());
 	}
 }
 
