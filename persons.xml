@@ -9,6 +9,6 @@
         </age_distribution>
         <male_share>0.48</male_share>
         <prob_mobile_phone>0.35</prob_mobile_phone>
-        <speed_walk>500</speed_walk>
-        <speed_car>4500</speed_car>
+        <speed_walk>150</speed_walk>
+        <speed_car>450</speed_car>
 </persons>

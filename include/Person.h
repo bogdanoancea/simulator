@@ -118,7 +118,8 @@ private:
 	int m_age;
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
-	void randomWalk();
+	void randomWalkClosedMap();
+	void randomWalkClosedMapDrift();
 
 };
 

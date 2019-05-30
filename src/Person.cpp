@@ -59,8 +59,10 @@ const string Person::toString() const {
 }
 
 Point* Person::move(MovementType mvType) {
-	if (mvType == MovementType::RANDOM_WALK)
-		randomWalk();
+	if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
+		randomWalkClosedMap();
+	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
+		randomWalkClosedMapDrift();
 	else
 		throw runtime_error("Movement type not yet implemented");
 
@@ -78,7 +80,7 @@ Point* Person::move(MovementType mvType) {
 	return (getLocation());
 }
 
-void Person::randomWalk() {
+void Person::randomWalkClosedMap() {
 	double theta = 0.0;
 	double x, y, newX, newY;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
@@ -112,6 +114,49 @@ void Person::randomWalk() {
 		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
 	}
 }
+
+
+void Person::randomWalkClosedMapDrift() {
+	double theta = 0.0;
+	double x, y, newX, newY;
+	theta = RandomNumberGenerator::instance()->generateNormalDouble(utils::PI, 0.5);
+	x = getLocation()->getCoordinate()->x;
+	y = getLocation()->getCoordinate()->y;
+	newX = x + getSpeed() * cos(theta);
+	newY = y + getSpeed() * sin(theta);
+	Geometry* g = getMap()->getBoundary();
+
+	Coordinate c = Coordinate(newX, newY);
+	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
+
+	if (pt->within(g)) {
+		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+		setLocation(pt);
+	}
+	else {
+
+		CoordinateSequence* cl = new CoordinateArraySequence();
+		cl->add(Coordinate(x, y));
+		cl->add(Coordinate(newX, newY));
+
+		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
+		Geometry* intersect = ls->intersection(g);
+		Point* ptInt = dynamic_cast<Point*>(intersect);
+		if (ptInt) {
+			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+			setLocation(ptInt);
+		}
+		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
+		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
+	}
+}
+
+
+
+
+
+
+
 
 bool Person::hasDevices() {
 	return (m_idDevices.size() > 0);
