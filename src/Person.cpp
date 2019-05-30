@@ -31,7 +31,7 @@ using namespace geos;
 using namespace geos::geom;
 
 Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}{
 }
 
 Person::~Person() {
@@ -119,7 +119,11 @@ void Person::randomWalkClosedMap() {
 void Person::randomWalkClosedMapDrift() {
 	double theta = 0.0;
 	double x, y, newX, newY;
-	theta = RandomNumberGenerator::instance()->generateNormalDouble(utils::PI, 0.5);
+	theta = RandomNumberGenerator::instance()->generateNormalDouble(3 * utils::PI/4, 0.1);
+	if(m_changeDirection) {
+		theta =  theta + utils::PI;
+		//m_changeDirection = !m_changeDirection;
+	}
 	x = getLocation()->getCoordinate()->x;
 	y = getLocation()->getCoordinate()->y;
 	newX = x + getSpeed() * cos(theta);
@@ -134,7 +138,7 @@ void Person::randomWalkClosedMapDrift() {
 		setLocation(pt);
 	}
 	else {
-
+		m_changeDirection = !m_changeDirection;
 		CoordinateSequence* cl = new CoordinateArraySequence();
 		cl->add(Coordinate(x, y));
 		cl->add(Coordinate(newX, newY));
