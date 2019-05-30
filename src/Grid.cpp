@@ -29,9 +29,15 @@ Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim,
 		m_map { map }, m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim {
 				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
 				noTilesY } {
+	m_tileCenters = new Coordinate[getNoTiles()];
+	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+		Coordinate c = computeTileCenter(tileIndex);
+		m_tileCenters[tileIndex] = c;
+	}
 }
 
 Grid::~Grid() {
+	delete[] m_tileCenters;
 }
 
 string Grid::toString() const {
@@ -62,23 +68,18 @@ MobilePhone* m, vector<AntennaInfo>& data,
 	bool found = false;
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
-		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode()
-						== static_cast<int>(EventType::ATTACH_DEVICE)
-						|| ai->getEventCode()
-								== static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
+		if (ai->getTime() == t && ai->getDeviceId() == m->getId() && (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE)
+						|| ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
 			break;
 		}
 	}
-
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
 		if (found) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
-			for (auto it = antennas_iterator.first;
-					it != antennas_iterator.second; it++) {
+			for (auto it = antennas_iterator.first;	it != antennas_iterator.second; it++) {
 				a = dynamic_cast<Antenna*>(it->second);
 				if (a->getId() == antennaId)
 					break;
@@ -97,7 +98,12 @@ MobilePhone* m, vector<AntennaInfo>& data,
 	return (result);
 }
 
+
 Coordinate Grid::getTileCenter(unsigned long tileIndex) {
+	return (m_tileCenters[tileIndex]);
+}
+
+Coordinate Grid::computeTileCenter(unsigned long tileIndex) {
 	Coordinate result;
 	unsigned long nrow = tileIndex / m_noTilesX;
 	unsigned long ncol = tileIndex - nrow * m_noTilesX;

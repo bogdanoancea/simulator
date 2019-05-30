@@ -158,7 +158,9 @@ private:
 	double m_yTileDim;
 	unsigned long m_noTilesX;
 	unsigned long m_noTilesY;
+	Coordinate* m_tileCenters;
 
+	Coordinate computeTileCenter(unsigned long tileIndex);
 };
 
 #endif /* GRID_H_ */

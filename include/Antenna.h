@@ -214,6 +214,7 @@ private:
 	vector<HoldableAgent*> m_devices;
 	AntennaType m_type;
 	ofstream m_file;
+	double m_S0;
 
 };
 

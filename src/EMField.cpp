@@ -58,12 +58,12 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
 double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	double s_quality = a->computeSignalQuality(p);
 	double result = 0.0, sum = 0.0;
-	unsigned long size = m_antennas.size();
-	if (size > 0) {
+	//unsigned long size = m_antennas.size();
+	//if (size > 0) {
 		for (Antenna*& a : m_antennas) {
 			sum += a->computeSignalQuality(p);
 		}
-	}
+	//}
 	if (sum)
 		result = s_quality / sum;
 
