@@ -27,7 +27,7 @@ else
         CCFLAGS += -D OSX
 		CXX		= g++
 		TARGET	= simulator
-		LDFLAGS  = -L$(GEOS_HOME)/src/.libs -L$(MSYS_HOME)/mingw64/lib
+		LDFLAGS  = -L$(GEOS_HOME)/src/.libs
 		LIBS = $(GEOS_HOME)/src/.libs/libgeos.a
     endif
 endif
@@ -47,9 +47,5 @@ ifeq ($(DEBUG),1)
 endif
 
 
-#------- linker flags ]------------
-
-LDFLAGS  = -L$(GEOS_HOME)/src/.libs -L$(MSYS_HOME)/mingw64/lib
-LIBS = $(GEOS_HOME)/src/.libs/libgeos.dll.a 
 
 
