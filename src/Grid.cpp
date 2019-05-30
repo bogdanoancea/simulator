@@ -89,6 +89,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 				lh = EMField::instance()->connectionLikelihood(a, p);
 
 			result.push_back((1.0 / (m_noTilesX * m_noTilesY)) * lh); //qual / sum_qual;
+			m_map->getGlobalFactory()->destroyGeometry(p);
 		} else
 			result.push_back((1.0 / (m_noTilesX * m_noTilesY)));
 	}
