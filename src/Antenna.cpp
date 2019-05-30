@@ -30,7 +30,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		cerr << "Error opening output files!" << endl;
 		cerr << "Output goes to the console!" << endl;
 	}
-
+	m_S0 = 30 + 10 * log10(m_power);
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
@@ -69,7 +69,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		cerr << "Error opening output files!" << endl;
 		cerr << "Output goes to the console!" << endl;
 	}
-
+	m_S0 = 30 + 10 * log10(m_power);
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 
 }
@@ -206,7 +206,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 }
 
 double Antenna::S0() const{
-	return (30 + 10 * log10(m_power));
+	return m_S0;
+	//return (30 + 10 * log10(m_power));
 }
 
 double Antenna::SDist(double dist) const {
