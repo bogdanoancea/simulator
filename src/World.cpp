@@ -334,8 +334,8 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		m_timeIncrement = atol(iTNode->ToText()->Value());
 
 		XMLNode* mvNode = getNode(simEl, "movement_type");
-		if (!strcmp(mvNode->ToText()->Value(), "random_walk"))
-			m_mvType = MovementType::RANDOM_WALK;
+		if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map"))
+			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
 		else
 			m_mvType = MovementType::UNKNOWN;
 
