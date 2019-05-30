@@ -76,7 +76,8 @@ Assuming that you want to download the source code in D:\data-simulator folder, 
 <br>GEOS_HOME
 <br>MSYS_HOME
 
-<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator (for example D:\data-simulator\simulator), GEOS_HOME should point to
+<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator (for example D:\data-simulator\simulator), 
+GEOS_HOME should point to
 the folder where is your GEOS source code and MSYS_HOME should indicate the folder where is your MSYS2 development environment.
 After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the folder where is your micro-simulator 
 source code and type:
@@ -88,4 +89,27 @@ source code and type:
 
 <p> We provide sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the root folder of the simulator source code. 
 The output file is prob.csv.
-   
+
+<p>
+<b>How to build the application under <I>Linux</I> or <I>Mac OS X</I> operating systems</b>
+<p>1. Download GEOS C++ library from https://trac.osgeo.org/geos. Build the library by typing:
+<br>$ ./autogen.sh
+<br>$ ./configure
+<br>$ make
+<br>$ make install
+
+<p>2. Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator :
+<br>$git clone https://github.com/bogdanoancea/simulator.git
+
+<br>After the source code was downloaded, open <I>makefile.inc</I> with any text editor and change the values of 
+the following 2 variables:
+<br>PROJ_HOME
+<br>GEOS_HOME
+
+<p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator 
+and GEOS_HOME should point to
+the folder where is your GEOS source code. 
+After changing these values, go to the directory where your micro-simulator source code is located and type the following commands in
+a shell:
+<br>$ make
+<br>$ make install
