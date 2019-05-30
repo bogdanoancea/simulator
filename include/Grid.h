@@ -133,13 +133,13 @@ public:
 	 * described in he paper "Deriving geographic location of mobile devices from network data"
 	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.
 	 * @param t the time instant when we want to compute the posterior localization probability.
-	 * @param tileIndex the index of the tile for which we want to compute the posterior localization probability.
 	 * @param m a pointer to a MobilePhone object for which we want to compute the posterior localization probability.
 	 * @param data a vector of AntennaInfo objects generated and recorder by each antenna during the simulation.
-	 * @param it an iterator to asccess all agents of type Antenna from the AgentsCollection container
-	 * @return the posterior probability of the mobile phone m to be localized in the tile specified by tileindex.
+	 * @param it an iterator to access all agents of type Antenna from the AgentsCollection container
+	 * @return a vector with the posterior probability of the mobile phone m to be localized in the tile. Probabilities are
+	 * placed in vector according to their tile index.
 	 */
-	double computeProbability(unsigned long t, unsigned long tileIndex,
+	vector<double> computeProbability(unsigned long t, /*unsigned long tileIndex*,*/
 			MobilePhone* m, vector<AntennaInfo>& data,
 			pair<um_iterator, um_iterator> it);
 

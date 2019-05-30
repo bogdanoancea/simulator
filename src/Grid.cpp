@@ -51,40 +51,47 @@ unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
-double Grid::computeProbability(unsigned long t, unsigned long tileIndex,
-		MobilePhone* m, vector<AntennaInfo>& data,
-		std::pair<um_iterator, um_iterator> itr) {
+vector<double> Grid::computeProbability(unsigned long t, /*unsigned long tileIndex,*/
+MobilePhone* m, vector<AntennaInfo>& data,
+		std::pair<um_iterator, um_iterator> antennas_iterator) {
 
-	double result = 0.0;
+	vector<double> result;
+
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
 	bool found = false;
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
 		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
+				&& (ai->getEventCode()
+						== static_cast<int>(EventType::ATTACH_DEVICE)
+						|| ai->getEventCode()
+								== static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
 			break;
 		}
 	}
-	if (found) {
-		Coordinate c = getTileCenter(tileIndex);
-		unsigned long antennaId = ai->getAntennaId();
-		Antenna* a = nullptr;
-		for (auto it = itr.first; it != itr.second; it++) {
-			a = dynamic_cast<Antenna*>(it->second);
-			if (a->getId() == antennaId)
-				break;
-		}
 
-		Point* p = m_map->getGlobalFactory()->createPoint(c);
-		double lh = 1.0;
-		if(a != nullptr)
-			lh = EMField::instance()->connectionLikelihood(a, p);
+	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+		if (found) {
+			Coordinate c = getTileCenter(tileIndex);
+			unsigned long antennaId = ai->getAntennaId();
+			Antenna* a = nullptr;
+			for (auto it = antennas_iterator.first;
+					it != antennas_iterator.second; it++) {
+				a = dynamic_cast<Antenna*>(it->second);
+				if (a->getId() == antennaId)
+					break;
+			}
+			Point* p = m_map->getGlobalFactory()->createPoint(c);
+			double lh = 1.0;
+			if (a != nullptr)
+				lh = EMField::instance()->connectionLikelihood(a, p);
 
-		result = (1.0 / (m_noTilesX * m_noTilesY)) * lh;	//qual / sum_qual;
-	} else
-		result = (1.0 / (m_noTilesX * m_noTilesY));
+			result.push_back((1.0 / (m_noTilesX * m_noTilesY)) * lh); //qual / sum_qual;
+		} else
+			result.push_back((1.0 / (m_noTilesX * m_noTilesY)));
+	}
 
 	return (result);
 }
