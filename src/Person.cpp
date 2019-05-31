@@ -92,7 +92,6 @@ void Person::randomWalkClosedMapDrift() {
 	double trendAngle = 3 * utils::PI/4;
 	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
 		trendAngle = 5 * utils::PI/4;
-		cout << "schimb directia" << endl;
 	}
 	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
 	if(m_changeDirection) {
