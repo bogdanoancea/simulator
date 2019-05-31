@@ -31,7 +31,7 @@ using namespace geos;
 using namespace geos::geom;
 
 Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } {
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}{
 }
 
 Person::~Person() {
@@ -59,8 +59,10 @@ const string Person::toString() const {
 }
 
 Point* Person::move(MovementType mvType) {
-	if (mvType == MovementType::RANDOM_WALK)
-		randomWalk();
+	if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
+		randomWalkClosedMap();
+	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
+		randomWalkClosedMapDrift();
 	else
 		throw runtime_error("Movement type not yet implemented");
 
@@ -78,28 +80,49 @@ Point* Person::move(MovementType mvType) {
 	return (getLocation());
 }
 
-void Person::randomWalk() {
+void Person::randomWalkClosedMap() {
 	double theta = 0.0;
-	double x, y, newX, newY;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
-	x = getLocation()->getCoordinate()->x;
-	y = getLocation()->getCoordinate()->y;
-	newX = x + getSpeed() * cos(theta);
-	newY = y + getSpeed() * sin(theta);
-	Geometry* g = getMap()->getBoundary();
+	Point* pt = generateNewLocation(theta);
+	setNewLocation(pt, false);
+}
 
+void Person::randomWalkClosedMapDrift() {
+	double theta = 0.0;
+	double trendAngle = 3 * utils::PI/4;
+	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
+		trendAngle = 5 * utils::PI/4;
+	}
+	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
+	if(m_changeDirection) {
+		theta =  theta + utils::PI/RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
+	}
+	Point* pt = generateNewLocation(theta);
+	setNewLocation(pt, true);
+}
+
+
+Point* Person::generateNewLocation(double theta) {
+	double x = getLocation()->getCoordinate()->x;
+	double y = getLocation()->getCoordinate()->y;
+	double newX = x + getSpeed() * cos(theta);
+	double newY = y + getSpeed() * sin(theta);
 	Coordinate c = Coordinate(newX, newY);
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-
-	if (pt->within(g)) {
+	return pt;
+}
+void Person::setNewLocation(Point* p, bool changeDirection) {
+	Geometry* g = getMap()->getBoundary();
+	if (p->within(g)) {
 		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-		setLocation(pt);
+		setLocation(p);
 	}
 	else {
-
+		if(changeDirection)
+			m_changeDirection = !m_changeDirection;
 		CoordinateSequence* cl = new CoordinateArraySequence();
-		cl->add(Coordinate(x, y));
-		cl->add(Coordinate(newX, newY));
+		cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
+		cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->x));
 
 		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
 		Geometry* intersect = ls->intersection(g);
@@ -109,9 +132,14 @@ void Person::randomWalk() {
 			setLocation(ptInt);
 		}
 		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
-		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
+		this->getMap()->getGlobalFactory()->destroyGeometry(p);
 	}
+
 }
+
+
+
+
 
 bool Person::hasDevices() {
 	return (m_idDevices.size() > 0);

@@ -39,7 +39,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		m_map { map } {
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock();
-	m_mvType = MovementType::RANDOM_WALK;
+	m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
 	m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 	m_gridFilename = Constants::GRID_FILE_NAME;
 	m_personsFilename = Constants::PERSONS_FILE_NAME;
@@ -336,6 +336,8 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map"))
 			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
+		else if(!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map_drift"))
+			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
 		else
 			m_mvType = MovementType::UNKNOWN;
 

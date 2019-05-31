@@ -14,7 +14,7 @@
  * An enum class that enumerates the types of the methods used to move the people on the map.
  */
 enum class MovementType {
-	RANDOM_WALK_CLOSED_MAP, RANDOM_WALK_WITH_DRIFT, UNKNOWN
+	RANDOM_WALK_CLOSED_MAP, RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, UNKNOWN
 };
 
 

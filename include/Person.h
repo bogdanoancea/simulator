@@ -118,8 +118,11 @@ private:
 	int m_age;
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
-	void randomWalk();
-
+	bool m_changeDirection;
+	void randomWalkClosedMap();
+	void randomWalkClosedMapDrift();
+	Point* generateNewLocation(double theta);
+	void setNewLocation(Point* p, bool changeDirection);
 };
 
 #endif /* PERSON_H_ */
