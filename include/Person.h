@@ -121,7 +121,8 @@ private:
 	bool m_changeDirection;
 	void randomWalkClosedMap();
 	void randomWalkClosedMapDrift();
-
+	Point* generateNewLocation(double theta);
+	void setNewLocation(Point* p, bool changeDirection);
 };
 
 #endif /* PERSON_H_ */

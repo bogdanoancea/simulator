@@ -82,63 +82,48 @@ Point* Person::move(MovementType mvType) {
 
 void Person::randomWalkClosedMap() {
 	double theta = 0.0;
-	double x, y, newX, newY;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
-	x = getLocation()->getCoordinate()->x;
-	y = getLocation()->getCoordinate()->y;
-	newX = x + getSpeed() * cos(theta);
-	newY = y + getSpeed() * sin(theta);
-	Coordinate c = Coordinate(newX, newY);
-	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-
-	Geometry* g = getMap()->getBoundary();
-	if (pt->within(g)) {
-		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-		setLocation(pt);
-	}
-	else {
-		CoordinateSequence* cl = new CoordinateArraySequence();
-		cl->add(Coordinate(x, y));
-		cl->add(Coordinate(newX, newY));
-
-		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
-		Geometry* intersect = ls->intersection(g);
-		Point* ptInt = dynamic_cast<Point*>(intersect);
-		if (ptInt) {
-			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-			setLocation(ptInt);
-		}
-		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
-		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
-	}
+	Point* pt = generateNewLocation(theta);
+	setNewLocation(pt, false);
 }
-
 
 void Person::randomWalkClosedMapDrift() {
 	double theta = 0.0;
-	double x, y, newX, newY;
-	theta = RandomNumberGenerator::instance()->generateNormalDouble(3 * utils::PI/4, 0.1);
+	double trendAngle = 3 * utils::PI/4;
+	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
+		trendAngle = 5 * utils::PI/4;
+		cout << "schimb directia" << endl;
+	}
+	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
 	if(m_changeDirection) {
 		theta =  theta + utils::PI/RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
-		//m_changeDirection = !m_changeDirection;
 	}
-	x = getLocation()->getCoordinate()->x;
-	y = getLocation()->getCoordinate()->y;
-	newX = x + getSpeed() * cos(theta);
-	newY = y + getSpeed() * sin(theta);
+	Point* pt = generateNewLocation(theta);
+	setNewLocation(pt, true);
+}
+
+
+Point* Person::generateNewLocation(double theta) {
+	double x = getLocation()->getCoordinate()->x;
+	double y = getLocation()->getCoordinate()->y;
+	double newX = x + getSpeed() * cos(theta);
+	double newY = y + getSpeed() * sin(theta);
 	Coordinate c = Coordinate(newX, newY);
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-
+	return pt;
+}
+void Person::setNewLocation(Point* p, bool changeDirection) {
 	Geometry* g = getMap()->getBoundary();
-	if (pt->within(g)) {
+	if (p->within(g)) {
 		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-		setLocation(pt);
+		setLocation(p);
 	}
 	else {
-		m_changeDirection = !m_changeDirection;
+		if(changeDirection)
+			m_changeDirection = !m_changeDirection;
 		CoordinateSequence* cl = new CoordinateArraySequence();
-		cl->add(Coordinate(x, y));
-		cl->add(Coordinate(newX, newY));
+		cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
+		cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->x));
 
 		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
 		Geometry* intersect = ls->intersection(g);
@@ -148,12 +133,10 @@ void Person::randomWalkClosedMapDrift() {
 			setLocation(ptInt);
 		}
 		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
-		this->getMap()->getGlobalFactory()->destroyGeometry(pt);
+		this->getMap()->getGlobalFactory()->destroyGeometry(p);
 	}
+
 }
-
-
-
 
 
 
