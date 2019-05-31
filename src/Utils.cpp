@@ -83,14 +83,14 @@ namespace utils {
 	XMLNode* getNode(XMLElement* el, const char* name) {
 		XMLNode* n = el->FirstChildElement(name)->FirstChild();
 		if (!n)
-			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+			throw std::runtime_error("Syntax error in the configuration file ");
 		return (n);
 	}
 
 	XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
 		XMLElement* n = el->FirstChildElement(name);
 		if (!n)
-			throw std::runtime_error("Syntax error in the configuration file for antennas ");
+			throw std::runtime_error("Syntax error in the configuration file ");
 		return (n);
 	}
 }
