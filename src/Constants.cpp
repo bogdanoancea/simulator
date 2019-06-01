@@ -21,9 +21,16 @@ const unsigned long Constants::NO_PERSONS = 100;
 const unsigned long Constants::NO_ANTENNAS = 10;
 const double Constants::MARKET_SHARE = 0.3;
 const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::MARKET_SHARE;
-const unsigned int Constants::SIMULATION_TIME = 220;
+
+const unsigned long Constants::START_TIME = 0;
+const unsigned long Constants::END_TIME = 200;
+const unsigned long Constants::INCREMENT_TIME = 1;
+
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";
 const char* Constants::PROB_FILE_NAME = "prob.csv";
 const char* Constants::PERSONS_FILE_NAME = "persons.csv";
 const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
+
+const unsigned long Constants::GRID_NO_TILES_X = 10;
+const unsigned long Constants::GRID_NO_TILES_Y = 10;

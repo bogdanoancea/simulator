@@ -73,9 +73,20 @@ public:
 	static const unsigned long NO_MOBILE_PHONES;
 
 	/**
-	 * The total number of time steps for a simulation
+	 * Default starting time of a simulation
 	 */
-	static const unsigned int SIMULATION_TIME;
+	static const unsigned long START_TIME;
+
+	/**
+	 * Default ending time of a simulation
+	 */
+	static const unsigned long END_TIME;
+
+	/**
+	 * Default time increment for a simulation
+	 */
+	static const unsigned long INCREMENT_TIME;
+
 
 	/**
 	 * The separator used when information is saved in output files
@@ -86,6 +97,17 @@ public:
 	 * The name of the file where the description of the grid is saved
 	 */
 	static const char* GRID_FILE_NAME;
+
+	/**
+	 * Default number of tiles on OX in the grid
+	 */
+	static const unsigned long GRID_NO_TILES_X;
+
+	/**
+	 * Default number of tiles on OY in the grid
+	 */
+	static const unsigned long GRID_NO_TILES_Y;
+
 
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
