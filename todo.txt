@@ -7,7 +7,7 @@ todo.txt
      
      este oare neccesar ca setLocation sa fie publica? deocamdata ea este chemata din move() .
      
-     de analizat unde se poate pune const
+     de analizat unde se poate pune const - DONE
      
      de optimizat computeProbabilities -PARTIAL
      
