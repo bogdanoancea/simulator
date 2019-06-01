@@ -1,0 +1,23 @@
+todo.txt
+ Created on: May 23, 2019
+     Author: bogdanoancea
+
+     mobilephone:
+     primeste pe constructor connectionType, dar il mai dau ca parametru si pe tryConnect - solved! only pe constructor
+     
+     este oare neccesar ca setLocation sa fie publica? deocamdata ea este chemata din move() .
+     
+     de analizat unde se poate pune const
+     
+     de optimizat computeProbabilities -PARTIAL
+     
+     de generat persoanele numai inside map - DONE
+     
+     de adaugat open_pop_random_walk
+     
+     de adaugat closed_pop_random_walk_drift -PARTIAL
+     
+     de adaugat open_pop_random_walk_drift
+     
+     de adaugat antene directionale
+     
