@@ -27,13 +27,9 @@ using namespace geos::geom;
 Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim,
 		double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
 		m_map { map }, m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim {
-				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
-				noTilesY } {
-	m_tileCenters = new Coordinate[getNoTiles()];
-	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
-		Coordinate c = computeTileCenter(tileIndex);
-		m_tileCenters[tileIndex] = c;
-	}
+				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY { noTilesY}
+				{
+	m_tileCenters = computeTileCenters();
 }
 
 Grid::~Grid() {
@@ -103,15 +99,21 @@ Coordinate Grid::getTileCenter(unsigned long tileIndex) {
 	return (m_tileCenters[tileIndex]);
 }
 
-Coordinate Grid::computeTileCenter(unsigned long tileIndex) {
-	Coordinate result;
-	unsigned long nrow = tileIndex / m_noTilesX;
-	unsigned long ncol = tileIndex - nrow * m_noTilesX;
-	double x = ncol * m_xTileDim + m_xTileDim / 2.0;
-	double y = nrow * m_yTileDim + m_yTileDim / 2.0;
-	result.x = x;
-	result.y = y;
-	return (result);
+Coordinate* Grid::computeTileCenters() {
+
+	Coordinate* tileCenters = new Coordinate[getNoTiles()];
+
+	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+		Coordinate result;
+		unsigned long nrow = tileIndex / m_noTilesX;
+		unsigned long ncol = tileIndex - nrow * m_noTilesX;
+		double x = ncol * m_xTileDim + m_xTileDim / 2.0;
+		double y = nrow * m_yTileDim + m_yTileDim / 2.0;
+		result.x = x;
+		result.y = y;
+		tileCenters[tileIndex] = result;
+	}
+	return tileCenters;
 }
 
 unsigned long Grid::getNoTilesX() const {

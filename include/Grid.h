@@ -160,7 +160,7 @@ private:
 	unsigned long m_noTilesY;
 	Coordinate* m_tileCenters;
 
-	Coordinate computeTileCenter(unsigned long tileIndex);
+	Coordinate* computeTileCenters();
 };
 
 #endif /* GRID_H_ */
