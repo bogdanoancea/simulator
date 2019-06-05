@@ -140,10 +140,20 @@ int main(int argc, char** argv) {
 				data.push_back(a);
 			}
 		}
-		sort(data.begin(), data.end(), [](const AntennaInfo& lhs, const AntennaInfo& rhs) {
-		      return (lhs.getTime() < rhs.getTime() && lhs.getDeviceId() < rhs.getDeviceId());
-		   });
-//		sort(data.begin(), data.end());
+//		sort(data.begin(), data.end(), [](const AntennaInfo& lhs, const AntennaInfo& rhs) {
+//		      return (lhs.getTime() < rhs.getTime() && lhs.getDeviceId() < rhs.getDeviceId());
+//		   });
+		sort(data.begin(), data.end());
+
+		ofstream antennaInfoFile;
+		antennaInfoFile.open("AntennaInfo.csv", ios::out);
+		antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
+		for(AntennaInfo& ai : data) {
+			antennaInfoFile << ai.toString() << endl;
+		}
+		antennaInfoFile.close();
+
+
 
 		ofstream p_file, g_File;
 		if (w.getProbFilename().empty()) {

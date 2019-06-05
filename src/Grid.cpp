@@ -71,6 +71,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 		}
 	}
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+//		cout << "tileIndex " << tileIndex << "tile center " << getTileCenter(tileIndex) << endl;
 		if (found) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
