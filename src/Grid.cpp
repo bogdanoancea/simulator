@@ -19,6 +19,7 @@
 #include <utility>
 #include <unordered_map>
 #include <EMField.h>
+#include <algorithm>
 
 using namespace std;
 using namespace geos;
@@ -58,7 +59,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 		std::pair<um_iterator, um_iterator> antennas_iterator) {
 
 	vector<double> result;
-
+	vector<double> sumQuality = EMField::instance()->sumSignalQuality(this);
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
 	bool found = false;
@@ -70,8 +71,9 @@ MobilePhone* m, vector<AntennaInfo>& data,
 			break;
 		}
 	}
+
+	double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
-//		cout << "tileIndex " << tileIndex << "tile center " << getTileCenter(tileIndex) << endl;
 		if (found) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
@@ -83,14 +85,21 @@ MobilePhone* m, vector<AntennaInfo>& data,
 			}
 			Point* p = m_map->getGlobalFactory()->createPoint(c);
 			double lh = 1.0;
-			if (a != nullptr)
-				lh = EMField::instance()->connectionLikelihood(a, p);
-
-			result.push_back((1.0 / (m_noTilesX * m_noTilesY)) * lh); //qual / sum_qual;
+			if (a != nullptr) {
+				lh = a->computeSignalQuality(p);
+				//lh = EMField::instance()->connectionLikelihood(a, p);
+				sum += lh;
+			}
+			cout << " time " << ai->getTime() << " tileIndex " << tileIndex << " tile center " << getTileCenter(tileIndex) << " connection likelihood " << lh << " antenna id " << a->getId() <<endl;
+			result.push_back( lh);
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		} else
-			result.push_back((1.0 / (m_noTilesX * m_noTilesY)));
+			result.push_back(0.0);
 	}
+
+	for( auto& i: result )
+	    //i /= (this->m_noTilesX * this->m_noTilesY);
+		i /= sum;
 
 	return (result);
 }

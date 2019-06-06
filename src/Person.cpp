@@ -120,21 +120,28 @@ void Person::setNewLocation(Point* p, bool changeDirection) {
 	else {
 		if(changeDirection)
 			m_changeDirection = !m_changeDirection;
+		setLocation(getLocation());
+/*
 		CoordinateSequence* cl = new CoordinateArraySequence();
 		cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
-		cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->x));
+		cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y));
 
 		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
 		Geometry* intersect = ls->intersection(g);
-		Point* ptInt = dynamic_cast<Point*>(intersect);
+		LineString* intersect2 = dynamic_cast<LineString*>(intersect);
+		Point* ptInt = intersect2->getEndPoint();
+		//cout << ptInt->toString()  << endl;
 		if (ptInt) {
+			cout << ptInt->toString()  << endl;
+			if(this->getClock()->getCurrentTime() == 2)
+					cout << "la momentul 2 setez locatia2" << endl;
 			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
 			setLocation(ptInt);
 		}
 		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
 		this->getMap()->getGlobalFactory()->destroyGeometry(p);
+*/
 	}
-
 }
 
 

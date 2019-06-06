@@ -239,8 +239,12 @@ void Antenna::setSSteep(double sSteep) {
 
 double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
+	double signalStrength = S(p->distance(getLocation()));
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
-		result = 1.0 / (1 + exp(-m_SSteep * (S(p->distance(getLocation())) - m_Smid)));
+		if (signalStrength > -100)
+			result = 1.0 / (1 + exp(-m_SSteep * ( signalStrength - m_Smid)));
+		else
+			result = 0;
 		//cout << "distanta:" << p->distance(getLocation()) << " S:" << S(p->distance(getLocation())) << " result:" << result << endl;
 	}
 	return (result);
@@ -259,3 +263,10 @@ const string Antenna::getName() const {
 	return ("Antenna");
 }
 
+double Antenna::computeSignalQuality(const Coordinate c) const {
+	double result;
+	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+	result = computeSignalQuality(p);
+	getMap()->getGlobalFactory()->destroyGeometry(p);
+	return result;
+}

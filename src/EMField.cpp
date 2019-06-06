@@ -13,6 +13,8 @@
 #include <algorithm>
 #include <vector>
 #include <AntennaType.h>
+#include <iomanip>
+
 
 EMField* EMField::m_instance = nullptr;
 
@@ -64,7 +66,6 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 			sum += a->computeSignalQuality(p);
 		}
 	//}
-	cout << " field quality " << sum << endl;
 	if (sum)
 		result = s_quality / sum;
 
@@ -113,7 +114,19 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 vector<double> EMField::sumSignalQuality(Grid* grid){
 	vector<double> result;
 
-
+	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
+		double sum = 0.0;
+		if(!(tileIndex %10))
+			cout << endl;
+		Coordinate c = grid->getTileCenter(tileIndex);
+		for(Antenna* a : m_antennas) {
+			sum += a->computeSignalQuality(c);
+		}
+		//cout << "tileIndex " << tileIndex << " tile center " << grid->getTileCenter(tileIndex) << " sum signal quality " << sum  << endl;
+		cout << fixed << setw(15) << sum  << " ";
+		result.push_back(sum);
+	}
+	cout << endl;
 	return result;
 
 }

@@ -189,6 +189,13 @@ public:
 	double computeSignalQuality(const Point* p) const;
 
 	/**
+	 * Computes the signal quality given by an antenna in a certain location.
+	 * @param c coordinates of the location where we want to compute the signal quality.
+	 * @return the signal quality.
+	 */
+	double computeSignalQuality(const Coordinate c) const;
+
+	/**
 	 * Computes the power of the signal given by an antenna in a certain location.
 	 * @param p the location where we want to compute the power of the signal.
 	 * @return the power of the signal in the location given by Point p.

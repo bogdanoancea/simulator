@@ -21,6 +21,7 @@
 #include <iomanip>
 #include <Constants.h>
 #include<algorithm>
+#include <EMField.h>
 
 using namespace std;
 using namespace geos;
@@ -140,9 +141,6 @@ int main(int argc, char** argv) {
 				data.push_back(a);
 			}
 		}
-//		sort(data.begin(), data.end(), [](const AntennaInfo& lhs, const AntennaInfo& rhs) {
-//		      return (lhs.getTime() < rhs.getTime() && lhs.getDeviceId() < rhs.getDeviceId());
-//		   });
 		sort(data.begin(), data.end());
 
 		ofstream antennaInfoFile;
@@ -175,6 +173,7 @@ int main(int argc, char** argv) {
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 
+		EMField::instance()->sumSignalQuality(&g);
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 
 			//iterate over all devices
