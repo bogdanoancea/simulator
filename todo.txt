@@ -15,10 +15,12 @@ todo.txt
      
      de adaugat open_pop_random_walk
      
-     de adaugat closed_pop_random_walk_drift -PARTIAL
+     de adaugat closed_pop_random_walk_drift - DONE
      
      de adaugat open_pop_random_walk_drift
      
      de adaugat antene directionale
      
      vizualizare - https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/
+     
+     de salvat intr-un fisier  AntennaInfo dupa sortare.

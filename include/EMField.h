@@ -12,6 +12,7 @@
 
 #include <Antenna.h>
 #include <Constants.h>
+#include <Grid.h>
 #include <utility>
 #include <vector>
 
@@ -92,6 +93,17 @@ public:
 	 * @return the connection likelihood.
 	 */
 	double connectionLikelihood(Antenna* a, const Point * p);
+
+
+	/**
+	 * Computes the sum of the signal quality given by all antennas for all tiles in the reference grid
+	 * @param grid the grid of tiles where this method coputes the sum of the signal quality
+	 * @return a vector containing the sum ofthe signal quality given by all antennas,
+	 *  for all tiles in the reference grid. An element of the vector corresponds to a tile in the grid. The tiles
+	 *  are linearized in row-major order.
+	 */
+	vector<double> sumSignalQuality(Grid* grid);
+
 
 private:
 	EMField();

@@ -64,6 +64,7 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 			sum += a->computeSignalQuality(p);
 		}
 	//}
+	cout << " field quality " << sum << endl;
 	if (sum)
 		result = s_quality / sum;
 
@@ -109,3 +110,10 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	return (result);
 }
 
+vector<double> EMField::sumSignalQuality(Grid* grid){
+	vector<double> result;
+
+
+	return result;
+
+}
