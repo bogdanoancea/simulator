@@ -31,6 +31,7 @@ Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim,
 				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY { noTilesY}
 				{
 	m_tileCenters = computeTileCenters();
+	m_sumQuality = EMField::instance()->sumSignalQuality(this);
 }
 
 Grid::~Grid() {
@@ -59,7 +60,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 		std::pair<um_iterator, um_iterator> antennas_iterator) {
 
 	vector<double> result;
-	vector<double> sumQuality = EMField::instance()->sumSignalQuality(this);
+
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
 	bool found = false;

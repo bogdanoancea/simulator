@@ -173,7 +173,7 @@ int main(int argc, char** argv) {
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 
-		EMField::instance()->sumSignalQuality(&g);
+		//EMField::instance()->sumSignalQuality(&g);
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 
 			//iterate over all devices
