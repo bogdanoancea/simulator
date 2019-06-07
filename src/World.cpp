@@ -57,16 +57,13 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 		EMField::instance()->addAntenna(antennas[i]);
 	}
 
-	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones,
-			m_connType);
+	vector<MobilePhone*> phones = generateMobilePhones(numMobilePhones, m_connType);
 	for (unsigned long i = 0; i < phones.size(); i++) {
 		m_agentsCollection->addAgent(phones[i]);
 	}
 }
 
-World::World(Map* map, const string& configPersonsFileName,
-		const string& configAntennasFile,
-		const string& configSimulationFileName) :
+World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
 
 	parseSimulationFile(configSimulationFileName);
@@ -115,8 +112,7 @@ void World::runSimulation() noexcept(false) {
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
-	for (unsigned long t = m_clock->getInitialTime();
-			t < m_clock->getFinalTime(); t = m_clock->tick()) {
+	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
@@ -177,14 +173,11 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 	// temporary
-	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(
-			0.3, 0.1, 1.5, 0.1, numPersons);
-	int* ages = RandomNumberGenerator::instance()->generateUniformInt(1, 100,
-			numPersons);
+	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
+	int* ages = RandomNumberGenerator::instance()->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i],
-				ages[i], Person::Gender::MALE);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -206,49 +199,41 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor,
-				power, maxConnections, smid, ssteep,
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
 				AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
 }
 
-vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones,
-		HoldableAgent::CONNECTION_TYPE connType) {
+vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType) {
 	vector<MobilePhone*> result;
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr,
-				m_clock, Constants::POWER_THRESHOLD,
-				Constants::QUALITY_THRESHOLD, connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
+				connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
 	return (result);
 }
 
-vector<Antenna*> World::parseAntennas(const string& configAntennasFile)
-		noexcept(false) {
+vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept(false) {
 	vector<Antenna*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configAntennasFile.c_str());
 	if (err != XML_SUCCESS)
-		throw std::runtime_error(
-				"Error opening configuration file for antennas ");
+		throw std::runtime_error("Error opening configuration file for antennas ");
 
 	XMLElement* antennasNode = doc.FirstChildElement("antennas");
 	if (!antennasNode)
-		throw std::runtime_error(
-				"Syntax error in the configuration file for antennas ");
+		throw std::runtime_error("Syntax error in the configuration file for antennas ");
 	else {
-		XMLElement* antennaEl = utils::getFirstChildElement(antennasNode,
-				"antenna");
+		XMLElement* antennaEl = utils::getFirstChildElement(antennasNode, "antenna");
 		for (; antennaEl; antennaEl = antennaEl->NextSiblingElement()) {
 			if (antennaEl && strcmp(antennaEl->Name(), "antenna")) {
-				cout << "unknown element: " << antennaEl->Name()
-						<< " ignoring it" << endl;
+				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
 				continue;
 			}
 			unsigned long id = IDGenerator::instance()->next();
@@ -259,19 +244,16 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile)
 	return (result);
 }
 
-vector<Person*> World::parsePersons(const string& personsFileName)
-		noexcept(false) {
+vector<Person*> World::parsePersons(const string& personsFileName) noexcept(false) {
 	vector<Person*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(personsFileName.c_str());
 	if (err != XML_SUCCESS)
-		throw std::runtime_error(
-				"Error opening configuration file for persons ");
+		throw std::runtime_error("Error opening configuration file for persons ");
 
 	XMLElement* personsEl = doc.FirstChildElement("persons");
 	if (!personsEl)
-		throw std::runtime_error(
-				"Syntax error in the configuration file for persons ");
+		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
 		XMLNode* numNode = getNode(personsEl, "num_persons");
 		int numPersons = atoi(numNode->ToText()->Value());
@@ -280,14 +262,12 @@ vector<Person*> World::parsePersons(const string& personsFileName)
 		XMLNode* maxAgeNode = getNode(personsEl, "max_age");
 		unsigned int max_age = atoi(maxAgeNode->ToText()->Value());
 
-		XMLElement* ageDistribEl = getFirstChildElement(personsEl,
-				"age_distribution");
+		XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
 		XMLNode* distribTypeNode = getNode(ageDistribEl, "type");
 		const char* distrib = distribTypeNode->ToText()->Value();
 
 		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
-			throw std::runtime_error(
-					"Unknown age distribution for population!");
+			throw std::runtime_error("Unknown age distribution for population!");
 
 		Person::AgeDistributions d;
 		vector<double> params;
@@ -323,8 +303,7 @@ vector<Person*> World::parsePersons(const string& personsFileName)
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share,
-				probMobilePhone, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, probMobilePhone, speed_walk, speed_car);
 	}
 	return (result);
 }
@@ -337,18 +316,19 @@ unsigned long World::getGridTilesY() const {
 	return m_GridTilesY;
 }
 
-void World::parseSimulationFile(const string& configSimulationFileName)
-		noexcept(false) {
+PriorType World::getPrior() const {
+	return m_prior;
+}
+
+void World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configSimulationFileName.c_str());
 	if (err != XML_SUCCESS)
-		throw std::runtime_error(
-				"Error opening configuration file for simulation ");
+		throw std::runtime_error("Error opening configuration file for simulation ");
 
 	XMLElement* simEl = doc.FirstChildElement("simulation");
 	if (!simEl)
-		throw std::runtime_error(
-				"Syntax error in the configuration file for simulation ");
+		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
 		XMLNode* sTNode = getNode(simEl, "start_time");
 		if (sTNode)
@@ -372,79 +352,78 @@ void World::parseSimulationFile(const string& configSimulationFileName)
 		if (mvNode) {
 			if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map"))
 				m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
-			else if (!strcmp(mvNode->ToText()->Value(),
-					"random_walk_closed_map_drift"))
+			else if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map_drift")) {
 				m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
-			else
+			} else
 				m_mvType = MovementType::UNKNOWN;
-		} else
+		} else {
 			m_mvType = MovementType::UNKNOWN;
-
+		}
 		XMLNode* connNode = getNode(simEl, "connection_type");
 		if (connNode) {
 			if (!strcmp(connNode->ToText()->Value(), "power"))
 				m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 			else if (!strcmp(connNode->ToText()->Value(), "quality"))
-				m_connType =
-						HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+				m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
 			else
 				m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
 		} else
 			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
 
 		XMLNode* gridNode = getNode(simEl, "grid_file");
-		if(gridNode)
+		if (gridNode)
 			m_gridFilename = gridNode->ToText()->Value();
 		else
 			m_gridFilename = Constants::GRID_FILE_NAME;
 
 		XMLNode* probNode = getNode(simEl, "prob_file");
-		if(probNode)
+		if (probNode)
 			m_probFilename = probNode->ToText()->Value();
 		else
 			m_probFilename = Constants::PROB_FILE_NAME;
 
 		XMLNode* persNode = getNode(simEl, "persons_file");
-		if(persNode)
+		if (persNode)
 			m_personsFilename = persNode->ToText()->Value();
 		else
 			m_personsFilename = Constants::PERSONS_FILE_NAME;
 
-
 		XMLNode* antennasNode = getNode(simEl, "antennas_file");
-		if(antennasNode)
+		if (antennasNode)
 			m_antennasFilename = antennasNode->ToText()->Value();
 		else
 			m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
 
 		XMLNode* xTilesNode = getNode(simEl, "grid_no_tiles_x");
-		if(xTilesNode)
+		if (xTilesNode)
 			m_GridTilesX = atol(xTilesNode->ToText()->Value());
 		else
 			m_GridTilesX = Constants::GRID_NO_TILES_X;
 
 		XMLNode* yTilesNode = getNode(simEl, "grid_no_tiles_y");
-		if(yTilesNode)
+		if (yTilesNode)
 			m_GridTilesY = atol(yTilesNode->ToText()->Value());
 		else
 			m_GridTilesY = Constants::GRID_NO_TILES_Y;
+
+		XMLNode* priorNode = getNode(simEl, "prior");
+		if (priorNode)
+			m_prior = priorNode->ToText()->Value();
+		else
+			m_prior = Constants::PRIOR_PROBABILITY;
 	}
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons,
-		vector<double> params, Person::AgeDistributions age_distribution,
-		double male_share, double probMobilePhone, double speed_walk,
-		double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+		double male_share, double probMobilePhone, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 
-	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1,
-			0.5, numPersons);
-	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1,
-			probMobilePhone, numPersons);
+	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
+	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
 	int sum = 0;
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
@@ -452,25 +431,17 @@ vector<Person*> World::generatePopulation(unsigned long numPersons,
 		numPhones += phone[i];
 	}
 
-	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1,
-			male_share, numPersons);
-	double* speeds_walk =
-			RandomNumberGenerator::instance()->generateNormalDouble(speed_walk,
-					0.1 * speed_walk, numPersons - sum);
-	double* speeds_car =
-			RandomNumberGenerator::instance()->generateNormalDouble(speed_car,
-					0.1 * speed_car, sum);
+	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
+	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
+	double* speeds_car = RandomNumberGenerator::instance()->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 
 	double* ages;
 	if (age_distribution == Person::AgeDistributions::UNIFORM)
-		ages = RandomNumberGenerator::instance()->generateUniformDouble(
-				params[0], params[1], numPersons);
+		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	else if (age_distribution == Person::AgeDistributions::NORMAL) {
-		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(
-				params[2], params[3], params[0], params[1], numPersons);
+		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
 	} else {
-		ages = RandomNumberGenerator::instance()->generateUniformDouble(
-				params[0], params[1], numPersons);
+		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
 	}
 
 	unsigned long cars = 0;
@@ -481,12 +452,10 @@ vector<Person*> World::generatePopulation(unsigned long numPersons,
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock,
-					speeds_car[cars++], ages[i],
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock,
-					speeds_walk[walks++], ages[i],
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
 		if (phone[i]) {

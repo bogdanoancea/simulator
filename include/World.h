@@ -19,6 +19,7 @@
 #include <MobilePhone.h>
 #include <MovementType.h>
 #include <TinyXML2.h>
+#include <PriorType.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -145,6 +146,12 @@ public:
 	 */
 	unsigned long getGridTilesY() const;
 
+	/**
+	 * Returns the type of the prior probability used to compute the posterior localization probability
+	 * @return the type of the prior probability used to compute the posterior localization probability
+	 */
+	PriorType getPrior() const;
+
 private:
 
 	Map* m_map;
@@ -156,6 +163,7 @@ private:
 	unsigned long m_timeIncrement;
 	unsigned long m_GridTilesX;
 	unsigned long m_GridTilesY;
+	PriorType m_prior;
 
 
 	HoldableAgent::CONNECTION_TYPE m_connType;

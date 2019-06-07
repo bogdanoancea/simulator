@@ -123,6 +123,11 @@ public:
 	 * The name of the file where the exact positions of the antennas are saved during simulation. They are needed for later analysis.
 	 */
 	static const char* ANTENNAS_FILE_NAME;
+
+	/**
+	 * Indicates how the prior probability is computed: uniform, register, network
+	 */
+	static const char* PRIOR_PROBABILITY;
 };
 
 #endif /* CONSTANTS_H_ */
