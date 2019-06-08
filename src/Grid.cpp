@@ -91,7 +91,7 @@ MobilePhone* m, vector<AntennaInfo>& data,
 				//lh = EMField::instance()->connectionLikelihood(a, p);
 				sum += lh;
 			}
-			cout << " time " << ai->getTime() << " tileIndex " << tileIndex << " tile center " << getTileCenter(tileIndex) << " signal quality" << lh << " antenna id " << a->getId() <<endl;
+			cout << " time " << ai->getTime() << " tileIndex " << tileIndex << " tile center " << getTileCenter(tileIndex) << " signal quality " << lh << " antenna id " << a->getId() <<endl;
 			result.push_back( lh);
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		} else

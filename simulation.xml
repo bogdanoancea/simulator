@@ -10,4 +10,5 @@
 		<prob_file>prob.csv</prob_file>
 		<persons_file>persons.csv</persons_file>
 		<antennas_file>antennas.csv</antennas_file>
+		<prior>network</prior>
 </simulation>
