@@ -407,8 +407,14 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 			m_GridTilesY = Constants::GRID_NO_TILES_Y;
 
 		XMLNode* priorNode = getNode(simEl, "prior");
-		if (priorNode)
-			m_prior = priorNode->ToText()->Value();
+		if (priorNode) {
+			if (!strcmp(priorNode->ToText()->Value(), "network"))
+				m_prior = PriorType::NETWORK;
+			else if (!strcmp(priorNode->ToText()->Value(), "uniform"))
+				m_prior = PriorType::UNIFORM;
+			else if (!strcmp(priorNode->ToText()->Value(), "register"))
+				m_prior = PriorType::REGISTER;
+		}
 		else
 			m_prior = Constants::PRIOR_PROBABILITY;
 	}

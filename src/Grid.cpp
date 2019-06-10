@@ -28,8 +28,8 @@ using namespace geos::geom;
 Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim,
 		double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
 		m_map { map }, m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim {
-				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY { noTilesY}
-				{
+				xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
+				noTilesY } {
 	m_tileCenters = computeTileCenters();
 	m_sumQuality = EMField::instance()->sumSignalQuality(this);
 }
@@ -55,31 +55,41 @@ unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
-vector<double> Grid::computeProbability(unsigned long t, /*unsigned long tileIndex,*/
-MobilePhone* m, vector<AntennaInfo>& data,
-		std::pair<um_iterator, um_iterator> antennas_iterator) {
+vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m,
+		vector<AntennaInfo>& data,
+		pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) {
 
 	vector<double> result;
-
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
 	bool found = false;
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
-		if (ai->getTime() == t && ai->getDeviceId() == m->getId() && (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE)
-						|| ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
+		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
+				&& (ai->getEventCode()
+						== static_cast<int>(EventType::ATTACH_DEVICE)
+						|| ai->getEventCode()
+								== static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
 			break;
 		}
 	}
 
+	if (prior == PriorType::NETWORK)
+		 result = useNetworkPrior(t, found, ai, antennas_iterator);
+	return (result);
+}
+
+vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) {
+	vector<double> result;
 	double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
-		if (found) {
+		if (connected) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
-			for (auto it = antennas_iterator.first;	it != antennas_iterator.second; it++) {
+			for (auto it = antennas_iterator.first;
+					it != antennas_iterator.second; it++) {
 				a = dynamic_cast<Antenna*>(it->second);
 				if (a->getId() == antennaId)
 					break;
@@ -88,23 +98,23 @@ MobilePhone* m, vector<AntennaInfo>& data,
 			double lh = 1.0;
 			if (a != nullptr) {
 				lh = a->computeSignalQuality(p);
-				//lh = EMField::instance()->connectionLikelihood(a, p);
 				sum += lh;
 			}
-			cout << " time " << ai->getTime() << " tileIndex " << tileIndex << " tile center " << getTileCenter(tileIndex) << " signal quality " << lh << " antenna id " << a->getId() <<endl;
-			result.push_back( lh);
+			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+					<< " tile center " << getTileCenter(tileIndex)
+					<< " signal quality " << lh << " antenna id " << a->getId()
+					<< endl;
+			result.push_back(lh);
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		} else
 			result.push_back(0.0);
 	}
 
-	for( auto& i: result )
-	    //i /= (this->m_noTilesX * this->m_noTilesY);
+	for (auto& i : result)
 		i /= sum;
 
-	return (result);
+	return result;
 }
-
 
 Coordinate Grid::getTileCenter(unsigned long tileIndex) {
 	return (m_tileCenters[tileIndex]);

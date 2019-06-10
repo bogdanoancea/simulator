@@ -10,6 +10,8 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#include <PriorType.h>
+
 /**
  * These are some constants used in the process of the simulation, most of them are only used for testing and rapid development
  * of some methods, the real values of the parameters being read from the configuration files.
@@ -127,7 +129,7 @@ public:
 	/**
 	 * Indicates how the prior probability is computed: uniform, register, network
 	 */
-	static const char* PRIOR_PROBABILITY;
+	static PriorType PRIOR_PROBABILITY;
 };
 
 #endif /* CONSTANTS_H_ */

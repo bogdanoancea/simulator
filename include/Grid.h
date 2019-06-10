@@ -21,6 +21,7 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
+#include <PriorType.h>
 
 using namespace std;
 using namespace geos;
@@ -71,12 +72,10 @@ public:
 	 */
 	double getXTileDim() const;
 
-
 	/**
 	 * @return the dimension of a tile on Y axis direction
 	 */
 	double getYTileDim() const;
-
 
 	/**
 	 * @return the x coordinate of the origin of the grid (i.e. the x coordinate of the bottom left corner of the grid)
@@ -136,12 +135,13 @@ public:
 	 * @param m a pointer to a MobilePhone object for which we want to compute the posterior localization probability.
 	 * @param data a vector of AntennaInfo objects generated and recorder by each antenna during the simulation.
 	 * @param it an iterator to access all agents of type Antenna from the AgentsCollection container
+	 * @param prior set the way prior probabilities are computed: uniform or network based
 	 * @return a vector with the posterior probability of the mobile phone m to be localized in the tile. Probabilities are
 	 * placed in vector according to their tile index.
 	 */
-	vector<double> computeProbability(unsigned long t, /*unsigned long tileIndex*,*/
-			MobilePhone* m, vector<AntennaInfo>& data,
-			pair<um_iterator, um_iterator> it);
+	vector<double> computeProbability(unsigned long t, MobilePhone* m,
+			vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it,
+			PriorType prior);
 
 	/**
 	 * Computes the coordinates of the tile center given by its index in the grid
@@ -162,6 +162,9 @@ private:
 	vector<double> m_sumQuality;
 
 	Coordinate* computeTileCenters();
+	vector<double> useNetworkPrior(unsigned long t, bool connected,
+			vector<AntennaInfo>::iterator ai,
+			pair<um_iterator, um_iterator> antennas_iterator);
 };
 
 #endif /* GRID_H_ */

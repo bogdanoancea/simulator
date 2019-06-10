@@ -181,7 +181,7 @@ int main(int argc, char** argv) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				ostringstream probs;
-				vector<double> p = g.computeProbability(t, m, data, itra);
+				vector<double> p = g.computeProbability(t, m, data, itra, w.getPrior());
 				for (unsigned long i = 0; i < g.getNoTiles()-1; i++) {
 					probs << fixed << setprecision(15) << p[i] << ",";
 				}
