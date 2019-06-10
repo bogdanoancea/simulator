@@ -414,6 +414,8 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 				m_prior = PriorType::UNIFORM;
 			else if (!strcmp(priorNode->ToText()->Value(), "register"))
 				m_prior = PriorType::REGISTER;
+			else
+				m_prior = PriorType::UNIFORM;
 		}
 		else
 			m_prior = Constants::PRIOR_PROBABILITY;
