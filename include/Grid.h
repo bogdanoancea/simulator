@@ -165,6 +165,10 @@ private:
 	vector<double> useNetworkPrior(unsigned long t, bool connected,
 			vector<AntennaInfo>::iterator ai,
 			pair<um_iterator, um_iterator> antennas_iterator);
+	vector<double> useUniformPrior(unsigned long t, bool connected,
+			vector<AntennaInfo>::iterator ai,
+			pair<um_iterator, um_iterator> antennas_iterator);
+
 };
 
 #endif /* GRID_H_ */
