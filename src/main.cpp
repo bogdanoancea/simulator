@@ -151,8 +151,6 @@ int main(int argc, char** argv) {
 		}
 		antennaInfoFile.close();
 
-
-
 		ofstream p_file, g_File;
 		if (w.getProbFilename().empty()) {
 			throw runtime_error("no output file!");
@@ -175,7 +173,6 @@ int main(int argc, char** argv) {
 
 		//EMField::instance()->sumSignalQuality(&g);
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
-
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);

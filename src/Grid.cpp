@@ -118,11 +118,9 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 	return result;
 }
 
-
-
 vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) {
 	vector<double> result;
-	double sum = 0.0;
+	//double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
 		if (connected) {
 			Coordinate c = getTileCenter(tileIndex);
@@ -137,12 +135,14 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 			double lh = 0.0;
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihood(a, p);
-				sum += lh;
+				//sum += lh;
 			}
-			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+			if(t ==157 ) {
+				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
 					<< " tile center " << getTileCenter(tileIndex)
-					<< " signal quality " << lh << " antenna id " << a->getId()
+					<< " signal quality " << lh << " antenna id " << a->getId() << " "<< m_sumQuality[tileIndex] << " , " << a->computeSignalQuality(p) << "distanta " << p->distance(a->getLocation())
 					<< endl;
+			}
 			result.push_back(lh);
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		} else
