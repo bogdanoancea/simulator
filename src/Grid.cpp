@@ -64,7 +64,6 @@ vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<
 			break;
 		}
 	}
-
 	if (prior == PriorType::NETWORK)
 		result = useNetworkPrior(t, found, ai, antennas_iterator);
 	else if (prior == PriorType::UNIFORM)
@@ -91,18 +90,20 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 				lh = a->computeSignalQuality(p);
 				sum += lh;
 			}
-//			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-//					<< " tile center " << getTileCenter(tileIndex)
-//					<< " signal quality " << lh << " antenna id " << a->getId()
-//					<< endl;
+			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+					<< " tile center " << getTileCenter(tileIndex)
+					<< " signal quality " << lh << " antenna id " << a->getId()
+					<< endl;
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);
 	}
 
-	for (auto& i : result)
-		i /= sum;
-
+	for (auto& i : result) {
+		if(sum != 0.0) {
+			i /= sum;
+		}
+	}
 	return result;
 }
 
@@ -125,10 +126,10 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);
 			}
 //			if(t ==157 ) {
-//				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-//					<< " tile center " << getTileCenter(tileIndex)
-//					<< " connection likelihood " << lh << " antenna id " << a->getId() << " "<< m_sumQuality[tileIndex] << " , " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
-//					<< endl;
+				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+					<< " tile center " << getTileCenter(tileIndex)
+					<< " connection likelihood " << lh << " antenna id " << a->getId() << " " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
+					<< endl;
 //			}
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		}
