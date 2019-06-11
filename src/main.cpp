@@ -126,7 +126,6 @@ int main(int argc, char** argv) {
 		double dimTileX = (maxX - minX) / w.getGridTilesX();
 		double dimTileY = (maxY - minY) / w.getGridTilesY();
 		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
-
 		// read the event connection data
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());

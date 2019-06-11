@@ -120,12 +120,6 @@ void World::runSimulation() noexcept(false) {
 			p->move(m_mvType);
 		}
 	}
-	//test EMField
-//	Coordinate c = Coordinate(0.533584, 10);
-//	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-//	pair<Antenna*, double> x = EMField::instance()->computeMaxPower(p);
-//	int id = x.first->getId();
-//	cout << "most powerful antenna in " << p->toText() << " is: " << id << " with power : " << x.second << endl;
 
 	tt = getClock()->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
@@ -199,8 +193,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
-				AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep, AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -211,8 +204,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
-				connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -416,14 +408,13 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 				m_prior = PriorType::REGISTER;
 			else
 				m_prior = PriorType::UNIFORM;
-		}
-		else
+		} else
 			m_prior = Constants::PRIOR_PROBABILITY;
 	}
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
-		double male_share, double probMobilePhone, double speed_walk, double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,
+		double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
@@ -460,11 +451,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
 		if (phone[i]) {
 			mobiles[m_index]->setHolder(p);

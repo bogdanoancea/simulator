@@ -159,7 +159,7 @@ private:
 	unsigned long m_noTilesX;
 	unsigned long m_noTilesY;
 	Coordinate* m_tileCenters;
-	vector<double> m_sumQuality;
+
 
 	Coordinate* computeTileCenters();
 	vector<double> useNetworkPrior(unsigned long t, bool connected,

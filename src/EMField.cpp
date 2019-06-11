@@ -15,7 +15,6 @@
 #include <AntennaType.h>
 #include <iomanip>
 
-
 EMField* EMField::m_instance = nullptr;
 
 EMField::EMField() {
@@ -25,7 +24,8 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
-		double max = numeric_limits<double>::min();;
+		double max = numeric_limits<double>::min();
+		;
 		for (Antenna* a : m_antennas) {
 			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
 				double power = a->computePower(p);
@@ -60,17 +60,24 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
 double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	double s_quality = a->computeSignalQuality(p);
 	double result = 0.0, sum = 0.0;
-	//unsigned long size = m_antennas.size();
-	//if (size > 0) {
-		for (Antenna*& a : m_antennas) {
-			sum += a->computeSignalQuality(p);
-		}
-	//}
+	for (Antenna*& a : m_antennas) {
+		sum += a->computeSignalQuality(p);
+	}
 	if (sum)
 		result = s_quality / sum;
 
 	return (result);
 }
+
+double EMField::connectionLikelihoodGrid(Antenna* a, Grid* g, unsigned long tileIndex) {
+	Coordinate c = g->getTileCenter(tileIndex);
+	double s_quality = a->computeSignalQuality(c);
+	double result = 0.0;
+	result = s_quality / m_sumQuality[tileIndex];
+
+	return (result);
+}
+
 
 void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
@@ -111,22 +118,21 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	return (result);
 }
 
-vector<double> EMField::sumSignalQuality(Grid* grid){
-	vector<double> result;
-
+vector<double>& EMField::sumSignalQuality(Grid* grid) {
+	cout << "ma apelez" << endl;
 	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
 		double sum = 0.0;
-		if(!(tileIndex %10))
+		if (!(tileIndex % 10))
 			cout << endl;
 		Coordinate c = grid->getTileCenter(tileIndex);
-		for(Antenna* a : m_antennas) {
+		for (Antenna* a : m_antennas) {
 			sum += a->computeSignalQuality(c);
 		}
 		//cout << "tileIndex " << tileIndex << " tile center " << grid->getTileCenter(tileIndex) << " sum signal quality " << sum  << endl;
-		cout << fixed << setw(15) << sum  << " ";
-		result.push_back(sum);
+		cout << fixed << setw(15) << sum << " ";
+		m_sumQuality.push_back(sum);
 	}
 	cout << endl;
-	return result;
+	return m_sumQuality;
 
 }
