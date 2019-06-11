@@ -86,6 +86,7 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 	vector<double> result;
 	double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+		double lh = 0.0;
 		if (connected) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
@@ -97,19 +98,17 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 					break;
 			}
 			Point* p = m_map->getGlobalFactory()->createPoint(c);
-			double lh = 1.0;
 			if (a != nullptr) {
 				lh = a->computeSignalQuality(p);
 				sum += lh;
 			}
-			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-					<< " tile center " << getTileCenter(tileIndex)
-					<< " signal quality " << lh << " antenna id " << a->getId()
-					<< endl;
-			result.push_back(lh);
+//			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+//					<< " tile center " << getTileCenter(tileIndex)
+//					<< " signal quality " << lh << " antenna id " << a->getId()
+//					<< endl;
 			m_map->getGlobalFactory()->destroyGeometry(p);
-		} else
-			result.push_back(0.0);
+		}
+		result.push_back(lh);
 	}
 
 	for (auto& i : result)
@@ -120,8 +119,9 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 
 vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) {
 	vector<double> result;
-	//double sum = 0.0;
+
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
+		double lh = 0.0;
 		if (connected) {
 			Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
@@ -132,23 +132,19 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 					break;
 			}
 			Point* p = m_map->getGlobalFactory()->createPoint(c);
-			double lh = 0.0;
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihood(a, p);
-				//sum += lh;
 			}
-			if(t ==157 ) {
-				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-					<< " tile center " << getTileCenter(tileIndex)
-					<< " signal quality " << lh << " antenna id " << a->getId() << " "<< m_sumQuality[tileIndex] << " , " << a->computeSignalQuality(p) << "distanta " << p->distance(a->getLocation())
-					<< endl;
-			}
-			result.push_back(lh);
+//			if(t ==157 ) {
+//				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+//					<< " tile center " << getTileCenter(tileIndex)
+//					<< " connection likelihood " << lh << " antenna id " << a->getId() << " "<< m_sumQuality[tileIndex] << " , " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
+//					<< endl;
+//			}
 			m_map->getGlobalFactory()->destroyGeometry(p);
-		} else
-			result.push_back(0.0);
+		}
+		result.push_back(lh);
 	}
-
 	for (auto& i : result)
 		i /= (m_noTilesX * m_noTilesY);
 
