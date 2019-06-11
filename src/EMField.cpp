@@ -119,7 +119,6 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 }
 
 vector<double>& EMField::sumSignalQuality(Grid* grid) {
-	cout << "ma apelez" << endl;
 	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
 		double sum = 0.0;
 		if (!(tileIndex % 10))
