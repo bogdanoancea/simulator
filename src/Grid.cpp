@@ -124,12 +124,10 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);
 			}
-//			if(t ==157 ) {
-				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-					<< " tile center " << getTileCenter(tileIndex)
-					<< " connection likelihood " << lh << " antenna id " << a->getId() << " " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
-					<< endl;
-//			}
+//				cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+//					<< " tile center " << getTileCenter(tileIndex)
+//					<< " connection likelihood " << lh << " antenna id " << a->getId() << " " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
+//					<< endl;
 			m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);
