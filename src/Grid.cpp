@@ -99,7 +99,7 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 	}
 
 	for (auto& i : result) {
-		if(sum != 0.0) {
+		if (sum != 0.0) {
 			i /= sum;
 		}
 	}
@@ -132,9 +132,12 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 		}
 		result.push_back(lh);
 	}
-	for (auto& i : result)
-		i /= (m_noTilesX * m_noTilesY);
-
+	for (auto& i : result) {
+		if (i > 0.0)
+			i /= (m_noTilesX * m_noTilesY);
+		else
+			i = 1.0 / (m_noTilesX * m_noTilesY);
+	}
 	return result;
 }
 
