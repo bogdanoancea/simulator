@@ -59,39 +59,39 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	Coordinate c = Coordinate(x, y);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
-	n = getNode(antennaEl, "height")
+	n = getNode(antennaEl, "height");
 	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
 	else
 		m_height = Constants::ANTENNA_HEIGHT;
 
-	n = getNode(antennaEl, "tilt")
+	n = getNode(antennaEl, "tilt");
 	if (n != nullptr)
 		m_tilt = atof(n->ToText()->Value());
 	else
 		m_tilt = Constants::ANTENNA_HEIGHT;
 
-	n = getNode(antennaEl, "azim_dB_back")
+	n = getNode(antennaEl, "azim_dB_back");
 	if (n != nullptr)
 		m_azim_dB_Back = atof(n->ToText()->Value());
 	else
 		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
 
-	n = getNode(antennaEl, "elev_dB_back")
+	n = getNode(antennaEl, "elev_dB_back");
 	if (n != nullptr)
 		m_elev_dB_Back = atof(n->ToText()->Value());
 	else
 		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
 
-	n = getNode(antennaEl, "beam_h)
+	n = getNode(antennaEl, "beam_h");
 	if (n != nullptr)
 		m_beam_H = atof(n->ToText()->Value());
 	else
 		m_beam_H = Constants::ANTENNA_BEAM_H;
 
-	n = getNode(antennaEl, "beam_v)
+	n = getNode(antennaEl, "beam_v");
 	if (n != nullptr)
-		m_bean_V = atof(n->ToText()->Value());
+		m_beam_V = atof(n->ToText()->Value());
 	else
 		m_beam_V = Constants::ANTENNA_BEAM_V;
 

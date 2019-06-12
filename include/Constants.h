@@ -129,24 +129,24 @@ public:
 	/**
 	 * Indicates how the prior probability is computed: uniform, register, network
 	 */
-	static PriorType PRIOR_PROBABILITY;
+	static const PriorType PRIOR_PROBABILITY;
 
 	/**
 	 * the antenna height
 	 */
-	static double ANTENNA_HEIGHT;
+	static const double ANTENNA_HEIGHT;
 
 
-	static double ANTENNA_TILT;
+	static const double ANTENNA_TILT;
 
 
-	static double ANTENNA_AZIM_DB_BACK;
+	static const double ANTENNA_AZIM_DB_BACK;
 
-	static double ANTENNA_ELEV_DB_BACK;
+	static const double ANTENNA_ELEV_DB_BACK;
 
-	static double ANTENNA_BEAM_H;
+	static const double ANTENNA_BEAM_H;
 
-	static double ANTENNA_BEAM_V;
+	static const double ANTENNA_BEAM_V;
 
 };
 
