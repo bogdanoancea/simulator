@@ -17,16 +17,15 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const  Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
-		double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections {
-				maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type { type } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+				smid }, m_SSteep { ssteep }, m_type { type } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
 		m_file.open(fileName, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		cerr << "Output goes to the console!" << endl;
 	}
@@ -61,29 +60,39 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
 	n = getNode(antennaEl, "height")
-	if(n != nullptr)
+	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
 	else
 		m_height = Constants::ANTENNA_HEIGHT;
 
 	n = getNode(antennaEl, "tilt")
-		if(n != nullptr)
-			m_tilt = atof(n->ToText()->Value());
-		else
-			m_tilt = Constants::ANTENNA_HEIGHT;
+	if (n != nullptr)
+		m_tilt = atof(n->ToText()->Value());
+	else
+		m_tilt = Constants::ANTENNA_HEIGHT;
+
+	n = getNode(antennaEl, "azim_dB_back")
+	if (n != nullptr)
+		m_azim_dB_Back = atof(n->ToText()->Value());
+	else
+		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
+
+	n = getNode(antennaEl, "elev_dB_back")
+	if (n != nullptr)
+		m_elev_dB_Back = atof(n->ToText()->Value());
+	else
+		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
 
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
 		m_file.open(fileName, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
+	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		cerr << "Output goes to the console!" << endl;
 	}
 	m_S0 = 30 + 10 * log10(m_power);
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
-
 
 }
 
@@ -91,8 +100,7 @@ Antenna::~Antenna() {
 	if (m_file.is_open()) {
 		try {
 			m_file.close();
-		}
-		catch (std::ofstream::failure& e) {
+		} catch (std::ofstream::failure& e) {
 			cerr << "Error closing output files!" << endl;
 		}
 	}
@@ -135,13 +143,11 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
 			result = true;
-		}
-		else {
+		} else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE, false);
 			result = true;
 		}
-	}
-	else {
+	} else {
 		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE, false);
 	}
 
@@ -189,22 +195,21 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
 				<< ag->getId() << sep;
 		switch (event) {
-			case EventType::ATTACH_DEVICE:
-				cout << " Attached ";
-				break;
-			case EventType::DETACH_DEVICE:
-				cout << " Detached ";
-				break;
-			case EventType::ALREADY_ATTACHED_DEVICE:
-				cout << " In range, already attached ";
-				break;
-			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-				cout << " In range, not attached ";
+		case EventType::ATTACH_DEVICE:
+			cout << " Attached ";
+			break;
+		case EventType::DETACH_DEVICE:
+			cout << " Detached ";
+			break;
+		case EventType::ALREADY_ATTACHED_DEVICE:
+			cout << " In range, already attached ";
+			break;
+		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+			cout << " In range, not attached ";
 		}
 		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y;
 		cout << endl;
-	}
-	else {
+	} else {
 		stringstream ss;
 		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
 				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
@@ -212,13 +217,12 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		if (m_file.is_open()) {
 			m_file << ss.str();
 			m_file.flush();
-		}
-		else
+		} else
 			cout << ss.str();
 	}
 }
 
-double Antenna::S0() const{
+double Antenna::S0() const {
 	return m_S0;
 	//return (30 + 10 * log10(m_power));
 }
@@ -255,7 +259,7 @@ double Antenna::computeSignalQuality(const Point* p) const {
 	double signalStrength = S(p->distance(getLocation()));
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		if (signalStrength > -100)
-			result = 1.0 / (1 + exp(-m_SSteep * ( signalStrength - m_Smid)));
+			result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 		else
 			result = 0;
 		//cout << "distanta:" << p->distance(getLocation()) << " S:" << S(p->distance(getLocation())) << " result:" << result << endl;
@@ -270,7 +274,6 @@ double Antenna::computePower(const Point* p) const {
 
 	return (result);
 }
-
 
 const string Antenna::getName() const {
 	return ("Antenna");

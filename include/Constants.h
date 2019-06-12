@@ -138,6 +138,11 @@ public:
 
 
 	static double ANTENNA_TILT;
+
+
+	static double ANTENNA_AZIM_DB_BACK;
+
+	static double ANTENNA_ELEV_DB_BACK;
 };
 
 #endif /* CONSTANTS_H_ */
