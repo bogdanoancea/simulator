@@ -130,6 +130,11 @@ public:
 	 * Indicates how the prior probability is computed: uniform, register, network
 	 */
 	static PriorType PRIOR_PROBABILITY;
+
+	/**
+	 * the antenna height
+	 */
+	static double ANTENNA_HEIGHT;
 };
 
 #endif /* CONSTANTS_H_ */

@@ -37,29 +37,36 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
-	XMLNode* n = utils::getNode(antennaEl, "maxconnections");
+	XMLNode* n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "power");
+	n = getNode(antennaEl, "power");
 	m_power = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "attenuationfactor");
+	n = getNode(antennaEl, "attenuationfactor");
 	m_ple = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "type");
+	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	m_type = AntennaType::OMNIDIRECTIONAL;
 	if (!strcmp(t, "directional"))
 		m_type = AntennaType::DIRECTIONAL;
-	n = utils::getNode(antennaEl, "Smid");
+	n = getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "SSteep");
+	n = getNode(antennaEl, "SSteep");
 	m_SSteep = atof(n->ToText()->Value());
 
-	n = utils::getNode(antennaEl, "x");
+	n = getNode(antennaEl, "x");
 	double x = atof(n->ToText()->Value());
-	n = utils::getNode(antennaEl, "y");
+	n = getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
 	Coordinate c = Coordinate(x, y);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
+	n = getNode(antennaEl, "height")
+	if(n != nullptr)
+		m_height = atof(n->ToText()->Value());
+	else
+		m_height = Constants::ANTENNA_HEIGHT;
+
+
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -71,6 +78,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	}
 	m_S0 = 30 + 10 * log10(m_power);
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
+
 
 }
 

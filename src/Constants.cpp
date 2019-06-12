@@ -35,4 +35,7 @@ const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
 const unsigned long Constants::GRID_NO_TILES_X = 10;
 const unsigned long Constants::GRID_NO_TILES_Y = 10;
 
-PriorType Constants::PRIOR_PROBABILITY = PriorType::UNIFORM;
+const PriorType Constants::PRIOR_PROBABILITY = PriorType::UNIFORM;
+const double Constants::ANTENNA_HEIGHT = 0.0;
+
+
