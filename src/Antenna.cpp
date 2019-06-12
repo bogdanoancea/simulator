@@ -19,7 +19,7 @@ using namespace utils;
 
 Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const  Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
 		double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_attenuationFactor { attenuationFactor }, m_power { power }, m_maxConnections {
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections {
 				maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type { type } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
@@ -42,7 +42,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	n = utils::getNode(antennaEl, "power");
 	m_power = atof(n->ToText()->Value());
 	n = utils::getNode(antennaEl, "attenuationfactor");
-	m_attenuationFactor = atof(n->ToText()->Value());
+	m_ple = atof(n->ToText()->Value());
 	n = utils::getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	m_type = AntennaType::OMNIDIRECTIONAL;
@@ -85,17 +85,17 @@ Antenna::~Antenna() {
 	}
 }
 
-double Antenna::getAttenuationFactor() const {
-	return (m_attenuationFactor);
+double Antenna::getPLE() const {
+	return (m_ple);
 }
 
-void Antenna::setAttenuationFactor(double attenuationFactor) {
-	m_attenuationFactor = attenuationFactor;
+void Antenna::setPLE(double ple) {
+	m_ple = ple;
 }
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_attenuationFactor;
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple;
 	return (result.str());
 }
 
@@ -211,7 +211,7 @@ double Antenna::S0() const{
 }
 
 double Antenna::SDist(double dist) const {
-	return (10 * m_attenuationFactor * log10(dist));
+	return (10 * m_ple * log10(dist));
 }
 
 double Antenna::S(double dist) const {
@@ -253,7 +253,7 @@ double Antenna::computeSignalQuality(const Point* p) const {
 double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL)
-		result = m_power * pow(p->distance(getLocation()), -m_attenuationFactor);
+		result = m_power * pow(p->distance(getLocation()), -m_ple);
 
 	return (result);
 }

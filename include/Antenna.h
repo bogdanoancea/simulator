@@ -77,18 +77,18 @@ public:
 	const string toString() const override;
 
 	/**
-	 * Returns the surrounding environment' attenuation factor of the signal.
-	 * @return the signals' attenuation factor of the surrounding environment. In real life, it takes
+	 * Returns the surrounding environment' path loss exponent of the signal.
+	 * @return the signals' path loss exponent of the surrounding environment. In real life, it takes
 	 * values between 2 (in open field) and 6 (inside buildings).
 	 */
-	double getAttenuationFactor() const;
+	double getPLE() const;
 
 	/**
-	 * Sets the surrounding environment' attenuation factor of the signal for an antenna.
-	 * @param attenuationFactor the value of the surrounding environment' attenuation factor of the signal. In real life, it takes
+	 * Sets the surrounding environment' path loss exponent of the signal for an antenna.
+	 * @param ple the value of the surrounding environment' path loss exponent of the signal. In real life, it takes
 	 * values between 2 (in open field) and 6 (inside buildings).
 	 */
-	void setAttenuationFactor(double attenuationFactor);
+	void setPLE(double ple);
 
 	/**
 	 * Returns the power of an antenna in Watts at the location of antenna. This power decreases with a power of the distance from antenna.
@@ -224,7 +224,7 @@ private:
 	double S0()const;
 	double SDist(double dist) const;
 
-	double m_attenuationFactor;
+	double m_ple;
 	double m_power;
 	unsigned long m_maxConnections;
 	double m_Smid;
