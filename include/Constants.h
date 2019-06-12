@@ -143,6 +143,11 @@ public:
 	static double ANTENNA_AZIM_DB_BACK;
 
 	static double ANTENNA_ELEV_DB_BACK;
+
+	static double ANTENNA_BEAM_H;
+
+	static double ANTENNA_BEAM_V;
+
 };
 
 #endif /* CONSTANTS_H_ */

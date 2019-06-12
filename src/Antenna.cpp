@@ -83,6 +83,18 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	else
 		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
 
+	n = getNode(antennaEl, "beam_h)
+	if (n != nullptr)
+		m_beam_H = atof(n->ToText()->Value());
+	else
+		m_beam_H = Constants::ANTENNA_BEAM_H;
+
+	n = getNode(antennaEl, "beam_v)
+	if (n != nullptr)
+		m_bean_V = atof(n->ToText()->Value());
+	else
+		m_beam_V = Constants::ANTENNA_BEAM_V;
+
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
