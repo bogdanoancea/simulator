@@ -270,3 +270,51 @@ double Antenna::computeSignalQuality(const Coordinate c) const {
 	getMap()->getGlobalFactory()->destroyGeometry(p);
 	return result;
 }
+
+double Antenna::getAzimDBBack() const {
+	return m_azim_dB_Back;
+}
+
+void Antenna::setAzimDBBack(double azimDBBack) {
+	m_azim_dB_Back = azimDBBack;
+}
+
+double Antenna::getBeamH() const {
+	return m_beam_H;
+}
+
+void Antenna::setBeamH(double beamH) {
+	m_beam_H = beamH;
+}
+
+double Antenna::getBeamV() const {
+	return m_beam_V;
+}
+
+void Antenna::setBeamV(double beamV) {
+	m_beam_V = beamV;
+}
+
+double Antenna::getElevDBBack() const {
+	return m_elev_dB_Back;
+}
+
+void Antenna::setElevDBBack(double elevDBBack) {
+	m_elev_dB_Back = elevDBBack;
+}
+
+double Antenna::getHeight() const {
+	return m_height;
+}
+
+void Antenna::setHeight(double height) {
+	m_height = height;
+}
+
+double Antenna::getTilt() const {
+	return m_tilt;
+}
+
+void Antenna::setTilt(double tilt) {
+	m_tilt = tilt;
+}

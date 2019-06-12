@@ -203,6 +203,19 @@ public:
 	double computePower(const Point* p) const;
 
 
+	double getAzimDBBack() const;
+	void setAzimDBBack(double azimDBBack);
+	double getBeamH() const;
+	void setBeamH(double beamH);
+	double getBeamV() const;
+	void setBeamV(double beamV);
+	double getElevDBBack() const;
+	void setElevDBBack(double elevDBBack);
+	double getHeight() const;
+	void setHeight(double height);
+	double getTilt() const;
+	void setTilt(double tilt);
+
 private:
 
 	bool alreadyRegistered(HoldableAgent * ag);
@@ -222,6 +235,13 @@ private:
 	AntennaType m_type;
 	ofstream m_file;
 	double m_S0;
+
+	double m_height;
+	double m_tilt;
+	double m_beam_V;
+	double m_beam_H;
+	double m_azim_dB_Back;
+	double m_elev_dB_Back;
 
 };
 
