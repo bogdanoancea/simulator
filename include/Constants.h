@@ -135,6 +135,9 @@ public:
 	 * the antenna height
 	 */
 	static double ANTENNA_HEIGHT;
+
+
+	static double ANTENNA_TILT;
 };
 
 #endif /* CONSTANTS_H_ */

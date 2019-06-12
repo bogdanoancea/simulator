@@ -66,6 +66,11 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	else
 		m_height = Constants::ANTENNA_HEIGHT;
 
+	n = getNode(antennaEl, "tilt")
+		if(n != nullptr)
+			m_tilt = atof(n->ToText()->Value());
+		else
+			m_tilt = Constants::ANTENNA_HEIGHT;
 
 
 	string fileName = getName() + std::to_string(id) + ".csv";
