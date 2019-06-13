@@ -17,10 +17,10 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
+		double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
+				type } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -71,31 +71,31 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	else
 		m_tilt = Constants::ANTENNA_HEIGHT;
 
-	n = getNode(antennaEl, "azim_dB_back");
-	if (n != nullptr)
-		m_azim_dB_Back = atof(n->ToText()->Value());
-	else
-		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
+	if (m_type == AntennaType::DIRECTIONAL) {
+		n = getNode(antennaEl, "azim_dB_back");
+		if (n != nullptr)
+			m_azim_dB_Back = atof(n->ToText()->Value());
+		else
+			m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
 
-	n = getNode(antennaEl, "elev_dB_back");
-	if (n != nullptr)
-		m_elev_dB_Back = atof(n->ToText()->Value());
-	else
-		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
+		n = getNode(antennaEl, "elev_dB_back");
+		if (n != nullptr)
+			m_elev_dB_Back = atof(n->ToText()->Value());
+		else
+			m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
 
-	n = getNode(antennaEl, "beam_h");
-	if (n != nullptr)
-		m_beam_H = atof(n->ToText()->Value());
-	else
-		m_beam_H = Constants::ANTENNA_BEAM_H;
+		n = getNode(antennaEl, "beam_h");
+		if (n != nullptr)
+			m_beam_H = atof(n->ToText()->Value());
+		else
+			m_beam_H = Constants::ANTENNA_BEAM_H;
 
-	n = getNode(antennaEl, "beam_v");
-	if (n != nullptr)
-		m_beam_V = atof(n->ToText()->Value());
-	else
-		m_beam_V = Constants::ANTENNA_BEAM_V;
-
-
+		n = getNode(antennaEl, "beam_v");
+		if (n != nullptr)
+			m_beam_V = atof(n->ToText()->Value());
+		else
+			m_beam_V = Constants::ANTENNA_BEAM_V;
+	}
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
 		m_file.open(fileName, ios::out);
@@ -204,8 +204,7 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -223,8 +222,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
-				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+				<< ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
