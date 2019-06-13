@@ -150,6 +150,9 @@ public:
 
 	static const double ANTENNA_DIRECTION;
 
+	static const unsigned int ANTENNA_MAPPING_N;
+
+	static const unsigned int ANTENNA_MIN_3_DB;
 };
 
 #endif /* CONSTANTS_H_ */

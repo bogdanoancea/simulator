@@ -18,6 +18,8 @@
 #include <TinyXML2.h>
 #include <string>
 #include <fstream>
+#include <utility>
+
 
 using namespace tinyxml2;
 using namespace geos;
@@ -228,6 +230,9 @@ private:
 	double computeSignalQualityOmnidirectional(const Point* p) const;
 	double computeSignalQualityDirectional(const Point* p) const;
 	void setLocationWithElevation();
+	double projectToEPlane(double b, double c, double beta) const;
+	vector<pair<double, double>> createMapping(double dbBack) const;
+	double getMmin3db(double sd, double dbBack) const;
 
 	double m_ple;
 	double m_power;

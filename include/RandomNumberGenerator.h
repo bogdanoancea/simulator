@@ -147,6 +147,7 @@ public:
 	//int N = 4001;
 
 
+	template <typename T> T normal_pdf(T x, T m, T s);
 
 private:
 	RandomNumberGenerator();

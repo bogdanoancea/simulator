@@ -127,6 +127,13 @@ double RandomNumberGenerator::generateNormalDouble(const double m, const double 
 	return (result);
 }
 
+template <typename T> T RandomNumberGenerator::normal_pdf(T x, T m, T s) {
+    static const T inv_sqrt_2pi = 0.3989422804014327;
+    T a = (x - m) / s;
+
+    return inv_sqrt_2pi / s * std::exp(-T(0.5) * a * a);
+}
+
 
 ////------------------------------------------------------------
 //// Compute y_l from y_k

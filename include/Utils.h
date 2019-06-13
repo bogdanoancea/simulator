@@ -59,6 +59,19 @@ namespace utils {
 	const double PI = std::atan(1.0) * 4;
 
 	/**
+	 * transforms a number from radians to degrees
+	 * @param x the angle to be transformed from radians to degrees
+	 * @return the value of x in degrees
+	 */
+	double r2d(double x);
+
+	/**
+	 * transforms a number from degrees to radians
+	 * @param x the angle to be transformed from degrees to radians
+	 * @return the value of x in radians
+	 */
+	double d2r(double x);
+	/**
 	 * Returns a pointer to an XMLNode with a specific name that belongs to an XMLElement. This function is used
 	 * to parse the content of the configuration files.
 	 * @param el the XMLElement where to search the XMLNode

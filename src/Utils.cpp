@@ -98,4 +98,13 @@ namespace utils {
 			throw std::runtime_error("Syntax error in the configuration file ");
 		return (n);
 	}
+
+	double r2d(double x) {
+		return (x / 180.0) * PI;
+	}
+
+	double d2r(double x) {
+		return (PI / 180.0) * x;
+	}
+
 }
