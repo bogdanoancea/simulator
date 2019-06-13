@@ -32,9 +32,7 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v"
-				<< endl;
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v" << endl;
 		exit(0);
 	}
 
@@ -55,8 +53,7 @@ int main(int argc, char** argv) {
 			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
-		cout << "Our world has a map:" << endl
-				<< writter.write(map->getBoundary()) << endl;
+		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
 		if (antennasConfigFileName.empty()) {
 			throw runtime_error("no antenna config file!");
@@ -69,8 +66,7 @@ int main(int argc, char** argv) {
 			throw runtime_error("no simulation config file!");
 		}
 
-		World w(map, personsConfigFileName, antennasConfigFileName,
-				simulationConfigFileName);
+		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
@@ -135,8 +131,7 @@ int main(int argc, char** argv) {
 			Parser file = Parser(fileName, DataType::eFILE, ',', false);
 			for (unsigned long i = 0; i < file.rowCount(); i++) {
 				Row s = file[i];
-				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]),
-						stoul(s[3]), stod(s[4]), stod(s[5]));
+				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
 			}
 		}
@@ -145,7 +140,7 @@ int main(int argc, char** argv) {
 		ofstream antennaInfoFile;
 		antennaInfoFile.open("AntennaInfo.csv", ios::out);
 		antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-		for(AntennaInfo& ai : data) {
+		for (AntennaInfo& ai : data) {
 			antennaInfoFile << ai.toString() << endl;
 		}
 		antennaInfoFile.close();
@@ -178,10 +173,10 @@ int main(int argc, char** argv) {
 				p_file << t << "," << m->getId() << ",";
 				ostringstream probs;
 				vector<double> p = g.computeProbability(t, m, data, itra, w.getPrior());
-				for (unsigned long i = 0; i < g.getNoTiles()-1; i++) {
+				for (unsigned long i = 0; i < g.getNoTiles() - 1; i++) {
 					probs << fixed << setprecision(15) << p[i] << ",";
 				}
-				probs << fixed << setprecision(15) << p[g.getNoTiles()-1];
+				probs << fixed << setprecision(15) << p[g.getNoTiles() - 1];
 				p_file << probs.str() << endl;
 			}
 		}

@@ -215,6 +215,8 @@ public:
 	void setHeight(double height);
 	double getTilt() const;
 	void setTilt(double tilt);
+	double getDirection() const;
+	void setDirection(double direction);
 
 private:
 
@@ -224,7 +226,8 @@ private:
 	double S0()const;
 	double SDist(double dist) const;
 	double computeSignalQualityOmnidirectional(const Point* p) const;
-	void setLocationElevation();
+	double computeSignalQualityDirectional(const Point* p) const;
+	void setLocationWithElevation();
 
 	double m_ple;
 	double m_power;
@@ -244,6 +247,7 @@ private:
 	double m_beam_H;
 	double m_azim_dB_Back;
 	double m_elev_dB_Back;
+	double m_direction;
 
 };
 

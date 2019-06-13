@@ -35,8 +35,9 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		m_beam_H = Constants::ANTENNA_BEAM_H;
 		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
 		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
+		m_direction = Constants::ANTENNA_DIRECTION;
 	}
-	setLocationElevation();
+	setLocationWithElevation();
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
@@ -65,7 +66,6 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	double y = atof(n->ToText()->Value());
 
 	n = getNode(antennaEl, "height");
-	cout << "aici" << n << endl;
 	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
 	else
@@ -105,6 +105,13 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_beam_V = atof(n->ToText()->Value());
 		else
 			m_beam_V = Constants::ANTENNA_BEAM_V;
+
+		n = getNode(antennaEl, "direction");
+		if (n != nullptr)
+			m_direction = atof(n->ToText()->Value());
+		else
+			m_direction = Constants::ANTENNA_DIRECTION;
+
 	}
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -309,6 +316,30 @@ double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 	return result;
 }
 
+
+double Antenna::computeSignalQualityDirectional(const Point* p) const {
+	double result = 0.0;
+//	double x = p->getCoordinate()->x;
+//	double y = p->getCoordinate()->y;
+//    double antennaX = getLocation()->getCoordinate()->x;
+//    double antennaY = getLocation()->getCoordinate()->y;
+//    double dist = p->distance(getLocation());
+//    double distXY = sqrt( pow(x-antennaX, 2) + pow(y-antennaY, 2));
+//
+//
+//
+//
+//    double signalStrength = S(dist);
+//
+//
+//
+//
+//    result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	return result;
+}
+
+
+
 double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL)
@@ -370,9 +401,17 @@ void Antenna::setTilt(double tilt) {
 	m_tilt = tilt;
 }
 
-void Antenna::setLocationElevation() {
+void Antenna::setLocationWithElevation() {
 	Point* p  = getLocation();
 	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y, m_height ));
 	setLocation(newP);
 	getMap()->getGlobalFactory()->destroyGeometry(p);
+}
+
+double Antenna::getDirection() const {
+	return m_direction;
+}
+
+void Antenna::setDirection(double direction) {
+	m_direction = direction;
 }

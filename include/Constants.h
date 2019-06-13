@@ -148,6 +148,8 @@ public:
 
 	static const double ANTENNA_BEAM_V;
 
+	static const double ANTENNA_DIRECTION;
+
 };
 
 #endif /* CONSTANTS_H_ */

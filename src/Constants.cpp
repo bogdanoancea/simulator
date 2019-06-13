@@ -43,4 +43,5 @@ const double Constants::ANTENNA_AZIM_DB_BACK = -30;
 const double Constants::ANTENNA_ELEV_DB_BACK = -30;
 const double Constants::ANTENNA_BEAM_H = 65;
 const double Constants::ANTENNA_BEAM_V = 9;
+const double Constants::ANTENNA_DIRECTION = 0;
 
