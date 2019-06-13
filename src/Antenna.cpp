@@ -20,7 +20,7 @@ using namespace utils;
 Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
 		double ssteep, AntennaType type) :
 		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
-				type } {
+				type } , m_height {Constants::ANTENNA_HEIGHT}, m_tilt {Constants::ANTENNA_TILT}{
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -30,6 +30,12 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		cerr << "Output goes to the console!" << endl;
 	}
 	m_S0 = 30 + 10 * log10(m_power);
+	if(type == AntennaType::DIRECTIONAL) {
+		m_beam_V = Constants::ANTENNA_BEAM_V;
+		m_beam_H = Constants::ANTENNA_BEAM_H;
+		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
+		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
+	}
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
