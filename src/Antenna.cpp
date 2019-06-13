@@ -36,6 +36,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
 		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
 	}
+	setLocationElevation();
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
@@ -62,20 +63,23 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	double x = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
-	Coordinate c = Coordinate(x, y);
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	setLocation(p);
+
 	n = getNode(antennaEl, "height");
+	cout << "aici" << n << endl;
 	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
 	else
 		m_height = Constants::ANTENNA_HEIGHT;
 
+	Coordinate c = Coordinate(x, y, m_height);
+	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+	setLocation(p);
+
 	n = getNode(antennaEl, "tilt");
 	if (n != nullptr)
 		m_tilt = atof(n->ToText()->Value());
 	else
-		m_tilt = Constants::ANTENNA_HEIGHT;
+		m_tilt = Constants::ANTENNA_TILT;
 
 	if (m_type == AntennaType::DIRECTIONAL) {
 		n = getNode(antennaEl, "azim_dB_back");
@@ -111,7 +115,6 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	}
 	m_S0 = 30 + 10 * log10(m_power);
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
-
 }
 
 Antenna::~Antenna() {
@@ -275,13 +278,35 @@ double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
 	double signalStrength = S(p->distance(getLocation()));
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
-		if (signalStrength > -100)
-			result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
-		else
-			result = 0;
-		//cout << "distanta:" << p->distance(getLocation()) << " S:" << S(p->distance(getLocation())) << " result:" << result << endl;
+		result = computeSignalQualityOmnidirectional(p);
+//		if (signalStrength > -100)
+//			result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+//		else
+//			result = 0.0;
 	}
 	return (result);
+}
+
+double Antenna::computeSignalQuality(const Coordinate c) const {
+	double result;
+	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+	result = computeSignalQuality(p);
+	getMap()->getGlobalFactory()->destroyGeometry(p);
+	return result;
+}
+
+
+double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
+	double result = 0.0;
+//	double x = p->getCoordinate()->x;
+//	double y = p->getCoordinate()->y;
+//    double antennaX = getLocation()->getCoordinate()->x;
+//    double antennaY = getLocation()->getCoordinate()->y;
+    double dist = p->distance(getLocation());
+    //double distXY = sqrt( pow(x-antennaX, 2) + pow(y-antennaY, 2));
+    double signalStrength = S(dist);
+    result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	return result;
 }
 
 double Antenna::computePower(const Point* p) const {
@@ -296,13 +321,6 @@ const string Antenna::getName() const {
 	return ("Antenna");
 }
 
-double Antenna::computeSignalQuality(const Coordinate c) const {
-	double result;
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	result = computeSignalQuality(p);
-	getMap()->getGlobalFactory()->destroyGeometry(p);
-	return result;
-}
 
 double Antenna::getAzimDBBack() const {
 	return m_azim_dB_Back;
@@ -350,4 +368,11 @@ double Antenna::getTilt() const {
 
 void Antenna::setTilt(double tilt) {
 	m_tilt = tilt;
+}
+
+void Antenna::setLocationElevation() {
+	Point* p  = getLocation();
+	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y, m_height ));
+	setLocation(newP);
+	getMap()->getGlobalFactory()->destroyGeometry(p);
 }

@@ -76,14 +76,19 @@ namespace utils {
 	}
 
 	void printPhoneHeader() {
-		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
+		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
 				<< endl;
 	}
 
 	XMLNode* getNode(XMLElement* el, const char* name) {
-		XMLNode* n = el->FirstChildElement(name)->FirstChild();
-		if (!n)
-			throw std::runtime_error("Syntax error in the configuration file ");
+		XMLNode* n = nullptr;
+		cout << "aici" << endl;
+		XMLElement* element = el->FirstChildElement(name);
+		if(element) {
+			n = element->FirstChild();
+			if (!n)
+				throw std::runtime_error("Syntax error in the configuration file ");
+		}
 		return (n);
 	}
 

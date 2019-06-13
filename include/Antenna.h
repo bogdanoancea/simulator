@@ -223,6 +223,8 @@ private:
 	unsigned long getNumActiveConections();
 	double S0()const;
 	double SDist(double dist) const;
+	double computeSignalQualityOmnidirectional(const Point* p) const;
+	void setLocationElevation();
 
 	double m_ple;
 	double m_power;
