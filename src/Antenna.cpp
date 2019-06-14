@@ -67,7 +67,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	n = getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
 
-	n = getNode(antennaEl, "height");
+	n = getNode(antennaEl, "z");
 	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
 	else
@@ -261,10 +261,10 @@ double Antenna::SDist(double dist) const {
 }
 
 double Antenna::S(double dist) const {
-	if (m_type == AntennaType::OMNIDIRECTIONAL)
+	//if (m_type == AntennaType::OMNIDIRECTIONAL)
 		return (S0() - SDist(dist));
-	else
-		throw std::runtime_error("Unsupported antenna type (yet)! ");
+	//else
+	//	throw std::runtime_error("Unsupported antenna type (yet)! ");
 }
 
 double Antenna::getSmid() const {
@@ -345,7 +345,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
-	double elevation = (gamma_elevation - m_tilt) %360;
+	double elevation = static_cast<int>(gamma_elevation - m_tilt) %360;
 	if(elevation > 180)
 		elevation -= 360;
 	if (elevation < -180)

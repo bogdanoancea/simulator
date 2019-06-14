@@ -214,10 +214,17 @@
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
-        <type>omnidirectional</type>
+        <type>directional</type>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>0</x>
         <y>5000</y>
+        <z>10</z>
+        <tilt>5</tilt>
+        <azim_dB_back>-30</azim_dB_back>
+        <elev_dB_back>-30</elev_dB_back>
+        <beam_h>65</beam_h>
+        <beam_v>9</beam_v>
+        <direction>90</direction>
     </antenna>
 </antennas>
