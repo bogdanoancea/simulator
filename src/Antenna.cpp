@@ -285,13 +285,11 @@ void Antenna::setSSteep(double sSteep) {
 
 double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
-	double signalStrength = S(p->distance(getLocation()));
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		result = computeSignalQualityOmnidirectional(p);
-//		if (signalStrength > -100)
-//			result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
-//		else
-//			result = 0.0;
+	}
+	if(m_type == AntennaType::DIRECTIONAL) {
+		result = computeSignalQualityDirectional(p);
 	}
 	return (result);
 }
@@ -314,16 +312,18 @@ double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 
 double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double result = 0.0;
+	double signalStrength = 0.0;
 	double x = p->getCoordinate()->x;
 	double y = p->getCoordinate()->y;
 	double z = p->getCoordinate()->z;
 
 	double antennaX = getLocation()->getCoordinate()->x;
 	double antennaY = getLocation()->getCoordinate()->y;
+	double antennaZ = getLocation()->getCoordinate()->z;
 
 	double dist = p->distance(getLocation());
 	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
-	double signalStrengthDistanceComp = S(dist);
+	signalStrength += S(dist);
 
 	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
 	if (theta_azim < 0)
@@ -341,16 +341,21 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double azim2 = r2d(atan2(a, e));
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
-	double horizontalComponent = norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
-	result = signalStrengthDistanceComp + horizontalComponent;
-	//result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
+//vertical component
+	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
+	double elevation = (gamma_elevation - m_tilt) %360;
+	if(elevation > 180)
+		elevation -= 360;
+	if (elevation < -180)
+		elevation += 360;
+
+	sd = findSD(m_beam_V, m_elev_dB_Back, mapping);  //? oare e acelasi mapping?
+	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
+
+	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
-
-//////////////////
-
-//    sd <- find_sd(beam_width = beam_h, db_back = param$azim_dB_back, mapping = param$azim_mapping) #param$azim_min3dB
-//    dBm <- dBm + norm_dBloss(azim2, db_back = param$azim_dB_back, sd = sd)
 }
 
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
