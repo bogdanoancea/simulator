@@ -69,7 +69,6 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 	parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
-	cout << " parsez persoanele" << endl;
 	vector<Person*> persons = parsePersons(configPersonsFileName);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -247,7 +246,6 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 	if (!personsEl)
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
-		cout << "citesc num persons" << endl;
 		XMLNode* numNode = getNode(personsEl, "num_persons");
 		int numPersons = atoi(numNode->ToText()->Value());
 		XMLNode* minAgeNode = getNode(personsEl, "min_age");

@@ -82,7 +82,6 @@ namespace utils {
 
 	XMLNode* getNode(XMLElement* el, const char* name) {
 		XMLNode* n = nullptr;
-		cout << "aici" << endl;
 		XMLElement* element = el->FirstChildElement(name);
 		if(element) {
 			n = element->FirstChild();

@@ -333,6 +333,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 		azim -= 360;
 	if (azim < -180)
 		azim += 360;
+
 //project azim to elevation plane -> azim2
 	double a = sin(d2r(azim)) * distXY;
 	double b = cos(d2r(azim)) * distXY;
@@ -345,7 +346,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
-	double elevation = static_cast<int>(gamma_elevation - m_tilt) %360;
+	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
 	if(elevation > 180)
 		elevation -= 360;
 	if (elevation < -180)
@@ -355,6 +356,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
 
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	cout << "directional " << signalStrength << result << endl;
 	return result;
 }
 
