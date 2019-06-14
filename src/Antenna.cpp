@@ -19,10 +19,10 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
-		double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
-				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -222,7 +222,8 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
+				<< ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -240,8 +241,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
-				<< ag->getLocation()->getCoordinate()->y << endl;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
+				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -338,8 +339,8 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
 	double azim2 = r2d(atan2(a, e));
-	vector<pair<double,double>> mapping = createMapping(m_azim_dB_Back);
-	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping );
+	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
+	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 	double horizontalComponent = norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
 	result = signalStrengthDistanceComp + horizontalComponent;
@@ -355,11 +356,8 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 
-
 	return result;
 }
-
-
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -379,34 +377,20 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	return result;
 }
 
-bool Antenna::comp(pair<double, double>& a, pair<double, double>& b) {
-	return (a.second < b.second);
-}
 
 double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
-	for( pair<double, double>& i : _3dBDegrees) {
+	for (pair<double, double>& i : _3dBDegrees) {
 		i.second -= 3;
 	}
 	//int minElementIndex = std::min_element(_3dBDegrees.begin(), _3dBDegrees.end(), comp) - _3dBDegrees.begin();
 
-	int minElementIndex =std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
-	                                    [](const pair<double, double>& a, const pair<double, double>& b){
-	        return a.second < b.second;
-	    }) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
+			[](const pair<double, double>& a, const pair<double, double>& b) {
+				return a.second < b.second;
+			}) - begin(_3dBDegrees);
+
 	return _3dBDegrees[minElementIndex].first;
 }
-
-//create_mapping <- function(db_back) {
-//  idf <- data.frame(sd = seq(180/1000, 180, by = 180/1000))
-//  idf$deg <- sapply(idf$sd, get_min3db, db_back = db_back)
-//
-//  df <- data.frame(deg = 1:180)
-//
-//  df$sd <- sapply(df$deg, function(dg) {
-//    idf$sd[which.min(abs(idf$deg - dg))]
-//  })
-//  df
-//}
 
 double Antenna::getMin3db(double sd, double dbBack) const {
 	vector<double> v;
@@ -425,7 +409,6 @@ double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
 	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
 }
-
 
 double Antenna::normalizeAngle(double angle) const {
 	double a = (static_cast<int>(abs(angle))) % 360;

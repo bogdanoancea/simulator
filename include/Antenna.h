@@ -236,7 +236,6 @@ private:
 	double norm_dBLoss(double angle, double dbBack, double sd) const;
 	double normalizeAngle(double angle) const;
 	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
-	bool comp(pair<double, double>& a, pair<double, double>& b) ;
 	double findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const;
 
 	double m_ple;
