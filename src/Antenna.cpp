@@ -13,6 +13,7 @@
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <utility>
+#include <RandomNumberGenerator.h>
 
 using namespace tinyxml2;
 using namespace std;
@@ -348,17 +349,33 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 }
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
+	vector<pair<double, double>> v;
 	vector<pair<double, double>> result;
 
 	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
-		double p1 = 180/Constants::ANTENNA_MAPPING_N + i * 180/Constants::ANTENNA_MAPPING_N;
-		double p2 = 0.0;
-		pair<double, double> p = make_pair(p1, p2);
+		double sd = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
+		double deg = getMin3db(sd, dbBack);
+		pair<double, double> p = make_pair(sd, deg);
+		v.push_back(p);
+	}
+	for (unsigned int i = 1; i <= 180; i++) {
+		double sd = searchMin(i, v);
+		pair<double, double> p = make_pair(i, sd);
 		result.push_back(p);
 	}
-
-
 	return result;
+}
+
+bool comp(pair<double, double> a, pair<double, double> b) {
+	return (a.second < b.second);
+}
+
+double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
+	for( pair<double, double>& i : _3dBDegrees) {
+		i.second -= 3;
+	}
+	int minElementIndex = std::min_element(_3dBDegrees.begin(), _3dBDegrees.end(), comp) - _3dBDegrees.begin();
+	return _3dBDegrees[minElementIndex].first;
 }
 
 //create_mapping <- function(db_back) {
@@ -373,22 +390,30 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 //  df
 //}
 
-double getMin3db(double sd, double dbBack) {
-	vector<pair<double, double>> result;
+double Antenna::getMin3db(double sd, double dbBack) const {
+	vector<double> v;
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
-		double p1 =  i * 180/Constants::ANTENNA_MIN_3_DB;
-		double p2 = 0.0;
-		pair<double, double> p = make_pair(p1, p2);
-		result.push_back(p);
+		double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1);
+		double p2 = -3 - norm_dBLoss(p1, dbBack, sd);
+		v.push_back(p2);
 	}
-
+	int minElementIndex = std::min_element(v.begin(), v.end()) - v.begin();
+	return (minElementIndex * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1));
 }
 
-//get_min3db <- function(sd, db_back) {
-//  df <- data.frame(a = seq(0, 180, length.out = 720))
-//  df$dbLoss <- norm_dBloss(df$a, db_back = db_back, sd = sd)
-//  df$a[which.min(abs(-3 - df$dbLoss))]
-//}
+double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
+	double a = normalizeAngle(angle);
+	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
+	double inflate = -dbBack / (rand->normal_pdf<double>(0.0, 0.0, sd) - rand->normal_pdf<double>(180.0, 0.0, sd));
+	return ((rand->normal_pdf<double>(a, 0.0, sd) - rand->normal_pdf<double>(0.0, 0.0, sd)) * inflate);
+}
+
+double Antenna::normalizeAngle(double angle) const {
+	double a = (static_cast<int>(abs(a))) % 360;
+	if (a > 180)
+		a = 360 - a;
+	return a;
+}
 
 double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double result;

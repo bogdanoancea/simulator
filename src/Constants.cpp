@@ -44,6 +44,6 @@ const double Constants::ANTENNA_ELEV_DB_BACK = -30;
 const double Constants::ANTENNA_BEAM_H = 65;
 const double Constants::ANTENNA_BEAM_V = 9;
 const double Constants::ANTENNA_DIRECTION = 0;
-const unsigned int Constants::ANTENNA_MAPPING_N = 0;
+const unsigned int Constants::ANTENNA_MAPPING_N = 1000;
 const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 

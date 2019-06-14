@@ -232,7 +232,10 @@ private:
 	void setLocationWithElevation();
 	double projectToEPlane(double b, double c, double beta) const;
 	vector<pair<double, double>> createMapping(double dbBack) const;
-	double getMmin3db(double sd, double dbBack) const;
+	double getMin3db(double sd, double dbBack) const;
+	double norm_dBLoss(double angle, double dbBack, double sd) const;
+	double normalizeAngle(double angle) const;
+	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
 
 	double m_ple;
 	double m_power;
