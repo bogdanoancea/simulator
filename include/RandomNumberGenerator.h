@@ -146,8 +146,13 @@ public:
 	//std::pair<double, double> generateTruncatedNormal(double a, double b, const double mu = 0, const double sigma = 1);
 	//int N = 4001;
 
+	//template<typename T> T normal_pdf(T x, T m, T s);
+	template<typename T> inline T normal_pdf(T x, T m, T s) {
+	    const T inv_sqrt_2pi = 0.3989422804014327;
+	    T a = (x - m) / s;
 
-	template <typename T> T normal_pdf(T x, T m, T s);
+	    return inv_sqrt_2pi / s * std::exp(-T(0.5) * a * a);
+	}
 
 private:
 	RandomNumberGenerator();

@@ -338,7 +338,11 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
 	double azim2 = r2d(atan2(a, e));
+	vector<pair<double,double>> mapping = createMapping(m_azim_dB_Back);
+	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping );
+	double horizontalComponent = norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
+	result = signalStrengthDistanceComp + horizontalComponent;
 	//result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 
@@ -347,6 +351,15 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 //    sd <- find_sd(beam_width = beam_h, db_back = param$azim_dB_back, mapping = param$azim_mapping) #param$azim_min3dB
 //    dBm <- dBm + norm_dBloss(azim2, db_back = param$azim_dB_back, sd = sd)
 }
+
+double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
+	double result = 0.0;
+
+
+	return result;
+}
+
+
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -366,7 +379,7 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	return result;
 }
 
-bool comp(pair<double, double> a, pair<double, double> b) {
+bool Antenna::comp(pair<double, double>& a, pair<double, double>& b) {
 	return (a.second < b.second);
 }
 
@@ -374,7 +387,12 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 	for( pair<double, double>& i : _3dBDegrees) {
 		i.second -= 3;
 	}
-	int minElementIndex = std::min_element(_3dBDegrees.begin(), _3dBDegrees.end(), comp) - _3dBDegrees.begin();
+	//int minElementIndex = std::min_element(_3dBDegrees.begin(), _3dBDegrees.end(), comp) - _3dBDegrees.begin();
+
+	int minElementIndex =std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
+	                                    [](const pair<double, double>& a, const pair<double, double>& b){
+	        return a.second < b.second;
+	    }) - begin(_3dBDegrees);
 	return _3dBDegrees[minElementIndex].first;
 }
 
@@ -404,12 +422,13 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
 	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
-	double inflate = -dbBack / (rand->normal_pdf<double>(0.0, 0.0, sd) - rand->normal_pdf<double>(180.0, 0.0, sd));
-	return ((rand->normal_pdf<double>(a, 0.0, sd) - rand->normal_pdf<double>(0.0, 0.0, sd)) * inflate);
+	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
+	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
 }
 
+
 double Antenna::normalizeAngle(double angle) const {
-	double a = (static_cast<int>(abs(a))) % 360;
+	double a = (static_cast<int>(abs(angle))) % 360;
 	if (a > 180)
 		a = 360 - a;
 	return a;
