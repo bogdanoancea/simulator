@@ -24,3 +24,6 @@ todo.txt
      vizualizare - https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/
      
      de salvat intr-un fisier  AntennaInfo dupa sortare.
+     
+     eroare la antenna directionala vine de la faptul ca punctele nu au elevatie. Trebuie introdusa elevatia in Map sau in grid. De fapt cred ca gridul trebuie introdus in map
+     

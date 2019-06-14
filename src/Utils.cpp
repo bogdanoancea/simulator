@@ -99,7 +99,7 @@ namespace utils {
 	}
 
 	double r2d(double x) {
-		return (x / 180.0) * PI;
+		return (x * 180.0) / PI;
 	}
 
 	double d2r(double x) {

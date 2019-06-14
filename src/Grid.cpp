@@ -84,6 +84,7 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 				if (a->getId() == antennaId)
 					break;
 			}
+			c.z = 0; //TODO tile elevation!
 			Point* p = m_map->getGlobalFactory()->createPoint(c);
 			if (a != nullptr) {
 				lh = a->computeSignalQuality(p);

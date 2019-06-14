@@ -328,22 +328,31 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
 	if (theta_azim < 0)
 		theta_azim += 360;
+
 	double azim = (static_cast<int>(theta_azim - m_direction)) % 360;
 	if (azim > 180)
 		azim -= 360;
 	if (azim < -180)
 		azim += 360;
 
+
 //project azim to elevation plane -> azim2
 	double a = sin(d2r(azim)) * distXY;
 	double b = cos(d2r(azim)) * distXY;
 
+	cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
+	//aici e greseala
 	double e = projectToEPlane(b, m_height - z, m_tilt);
+
+	//aici e greseala
 	double azim2 = r2d(atan2(a, e));
+
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
+
+	cout << "directional " << signalStrength << result << endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
@@ -356,7 +365,6 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
 
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
-	cout << "directional " << signalStrength << result << endl;
 	return result;
 }
 
@@ -428,6 +436,8 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double result;
 	double d = sqrt(b * b + c * c);
 	double lambda = r2d(atan2(c, abs(b)));
+
+	cout << " lambda " << c << " " << b << " "<< atan2(c, abs(b)) << endl;
 	int cc;
 	if (b > 0)
 		if (beta < lambda)
@@ -454,6 +464,23 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	}
 	return result;
 }
+
+//d <- sqrt(b^2+c^2)
+//lambda <- ATAN2(c, abs(b))
+//d <- sqrt(b^2 + c^2)
+//
+//cases <- ifelse(b > 0, # in front of antenna?
+//                ifelse(beta < lambda, 1, 2), # below elevation plane?
+//                ifelse(lambda + beta < 90, 3, 4)) # projected point in front of antenna (=rare case)
+//
+//e <- rep(0, length.out = length(b))
+//
+//e[cases == 1] <- COS(lambda[cases==1] - beta[cases==1]) * d[cases==1]
+//e[cases == 2] <- COS(beta[cases == 2] - lambda[cases == 2]) * d[cases == 2]
+//e[cases == 3] <- -COS(lambda[cases==3] + beta[cases==3]) * d[cases==3]
+//e[cases == 4] <- COS(180 - lambda[cases == 4] - beta[cases == 4]) * d[cases == 4]
+
+
 
 double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
