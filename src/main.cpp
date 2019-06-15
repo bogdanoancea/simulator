@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
 		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
 		} else
-			map = new Map(mapFileName, Constants::GRID_DIM_TILE_X, Constants::GRID_DIM_TILE_Y);
+			map = new Map(mapFileName);
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
@@ -123,6 +123,7 @@ int main(int argc, char** argv) {
 //		double dimTileY = (maxY - minY) / w.getGridTilesY();
 //		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 		// read the event connection data
+		map->addGrid(Constants::GRID_DIM_TILE_X,Constants::GRID_DIM_TILE_X );
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
@@ -155,7 +156,7 @@ int main(int argc, char** argv) {
 		} catch (ofstream::failure& e) {
 			cerr << "Error opening output file!" << endl;
 		}
-		g_File << g.toString();
+		g_File << map->getGrid()->toString();
 		try {
 			g_File.close();
 		} catch (const ofstream::failure& e) {
@@ -172,11 +173,11 @@ int main(int argc, char** argv) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				ostringstream probs;
-				vector<double> p = g.computeProbability(t, m, data, itra, w.getPrior());
-				for (unsigned long i = 0; i < g.getNoTiles() - 1; i++) {
+				vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
+				for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
 					probs << fixed << setprecision(15) << p[i] << ",";
 				}
-				probs << fixed << setprecision(15) << p[g.getNoTiles() - 1];
+				probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
 				p_file << probs.str() << endl;
 			}
 		}

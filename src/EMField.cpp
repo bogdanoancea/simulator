@@ -69,7 +69,7 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	return (result);
 }
 
-double EMField::connectionLikelihoodGrid(Antenna* a, Grid* g, unsigned long tileIndex) {
+double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const {
 	Coordinate c = g->getTileCenter(tileIndex);
 	c.z = 0;//TODO z = tile elevation
 	double s_quality = a->computeSignalQuality(c);

@@ -104,7 +104,7 @@ public:
 	 */
 	vector<double>& sumSignalQuality(Grid* grid);
 
-	double connectionLikelihoodGrid(Antenna* a, Grid* g, unsigned long tileIndex);
+	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
 
 private:
 	EMField();

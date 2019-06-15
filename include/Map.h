@@ -11,7 +11,8 @@
 #define MAP_H
 
 #include <geos/geom/GeometryFactory.h>
-#include <Grid.h>
+
+class Grid;
 
 using namespace std;
 using namespace geos;
@@ -44,7 +45,7 @@ public:
 	 * Builds a map reading it from a .wkt file with the default parameters for the grid.
 	 * @param wktFile the name of the .wkt file that contains the description of the map.
 	 */
-	Map(string wktFile, double dimTileX, double dimTileY);
+	Map(string wktFile);
 
 	/**
 	 * Default destructor
@@ -75,8 +76,10 @@ public:
 		m_boundary = boundary;
 	}
 
-	const Grid& getGrid() const;
-	void setGrid(const Grid& grid);
+	const Grid* getGrid() const;
+
+	void addGrid(double dimTileX, double dimTileY);
+	//void setGrid(const Grid* grid);
 
 private:
 	Polygon* create_rectangle(double llX, double llY, double width, double height);
@@ -85,7 +88,7 @@ private:
 
 	Geometry* m_boundary;
 
-	Grid m_grid;
+	Grid* m_grid;
 };
 
 #endif // MAP_H

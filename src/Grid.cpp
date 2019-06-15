@@ -21,12 +21,21 @@
 #include <EMField.h>
 #include <algorithm>
 
+
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
 
-Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
-		m_map { map }, m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY { noTilesY } {
+//Grid::Grid(Map* map, double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
+//		m_map { map }, m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
+//				noTilesY } {
+//	m_tileCenters = computeTileCenters();
+//	EMField::instance()->sumSignalQuality(this);
+//}
+
+Grid::Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY) :
+		m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
+				noTilesY } {
 	m_tileCenters = computeTileCenters();
 	EMField::instance()->sumSignalQuality(this);
 }
@@ -38,11 +47,11 @@ Grid::~Grid() {
 string Grid::toString() const {
 	ostringstream ss;
 
-	ss << left << "Origin X" << Constants::sep << "Origin Y" << Constants::sep << "X Tile Dim" << Constants::sep << "Y Tile Dim" << Constants::sep << "No Tiles X" << Constants::sep
-			<< "No Tiles Y" << endl;
+	ss << left << "Origin X" << Constants::sep << "Origin Y" << Constants::sep << "X Tile Dim" << Constants::sep << "Y Tile Dim"
+			<< Constants::sep << "No Tiles X" << Constants::sep << "No Tiles Y" << endl;
 
-	ss << left << m_xOrigin << Constants::sep << m_yOrigin << Constants::sep << m_xTileDim << Constants::sep << m_yTileDim << Constants::sep << m_noTilesX << Constants::sep
-			<< m_noTilesY << endl;
+	ss << left << m_xOrigin << Constants::sep << m_yOrigin << Constants::sep << m_xTileDim << Constants::sep << m_yTileDim << Constants::sep
+			<< m_noTilesX << Constants::sep << m_noTilesY << endl;
 	return (ss.str());
 }
 
@@ -50,7 +59,8 @@ unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
-vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) {
+vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data,
+		pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) const {
 	vector<double> result;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
@@ -58,7 +68,8 @@ vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
 		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
+				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE)
+						|| ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
 			break;
 		}
@@ -70,7 +81,8 @@ vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<
 	return (result);
 }
 
-vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) {
+vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai,
+		pair<um_iterator, um_iterator> antennas_iterator) const {
 	vector<double> result;
 	double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
@@ -85,16 +97,16 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 					break;
 			}
 			c.z = 0; //TODO tile elevation!
-			Point* p = m_map->getGlobalFactory()->createPoint(c);
+			//Point* p = m_map->getGlobalFactory()->createPoint(c);
 			if (a != nullptr) {
-				lh = a->computeSignalQuality(p);
+				lh = a->computeSignalQuality(c);
 				sum += lh;
 			}
 //			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
 //					<< " tile center " << getTileCenter(tileIndex)
 //					<< " signal quality " << lh << " antenna id " << a->getId()
 //					<< endl;
-			m_map->getGlobalFactory()->destroyGeometry(p);
+			//m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);
 	}
@@ -107,7 +119,8 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 	return result;
 }
 
-vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) {
+vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai,
+		pair<um_iterator, um_iterator> antennas_iterator) const {
 	vector<double> result;
 
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
@@ -121,7 +134,8 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 				if (a->getId() == antennaId)
 					break;
 			}
-			Point* p = m_map->getGlobalFactory()->createPoint(c);
+			c.z = 0; //TODO elevation to be set
+			//Point* p = m_map->getGlobalFactory()->createPoint(c);
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);
 			}
@@ -129,7 +143,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 //					<< " tile center " << getTileCenter(tileIndex)
 //					<< " connection likelihood " << lh << " antenna id " << a->getId() << " " << a->computeSignalQuality(p) << " distanta: " << p->distance(a->getLocation())
 //					<< endl;
-			m_map->getGlobalFactory()->destroyGeometry(p);
+			//m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);
 	}
@@ -142,7 +156,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 	return result;
 }
 
-Coordinate Grid::getTileCenter(unsigned long tileIndex) {
+Coordinate Grid::getTileCenter(unsigned long tileIndex) const{
 	return (m_tileCenters[tileIndex]);
 }
 

@@ -49,8 +49,12 @@ public:
 	 * @param noTilesX the number of tiles on X axis
 	 * @param noTilesY the number of tiles on Y axis
 	 */
-	Grid(Map* map, double xOrig, double yOrig, double xTiledim, double yTiledim,
-			unsigned long noTilesX, unsigned long noTilesY);
+//	Grid(Map* map, double xOrig, double yOrig, double xTiledim, double yTiledim,
+//			unsigned long noTilesX, unsigned long noTilesY);
+
+	Grid(){};
+	Grid(double xOrig, double yOrig, double xTiledim, double yTiledim,
+				unsigned long noTilesX, unsigned long noTilesY);
 
 	/**
 	 * Destructor
@@ -141,17 +145,17 @@ public:
 	 */
 	vector<double> computeProbability(unsigned long t, MobilePhone* m,
 			vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it,
-			PriorType prior);
+			PriorType prior) const;
 
 	/**
 	 * Computes the coordinates of the tile center given by its index in the grid
 	 * @param tileIndex the tile index
 	 * @return the coordinates of the center of the tile.
 	 */
-	Coordinate getTileCenter(unsigned long tileIndex);
+	Coordinate getTileCenter(unsigned long tileIndex)const ;
 
 private:
-	Map* m_map;
+	//Map* m_map;
 	double m_xOrigin;
 	double m_yOrigin;
 	double m_xTileDim;
@@ -164,10 +168,11 @@ private:
 	Coordinate* computeTileCenters();
 	vector<double> useNetworkPrior(unsigned long t, bool connected,
 			vector<AntennaInfo>::iterator ai,
-			pair<um_iterator, um_iterator> antennas_iterator);
+			pair<um_iterator, um_iterator> antennas_iterator) const;
+
 	vector<double> useUniformPrior(unsigned long t, bool connected,
 			vector<AntennaInfo>::iterator ai,
-			pair<um_iterator, um_iterator> antennas_iterator);
+			pair<um_iterator, um_iterator> antennas_iterator) const;
 
 };
 

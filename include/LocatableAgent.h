@@ -12,6 +12,7 @@
 
 #include <Agent.h>
 #include <Clock.h>
+#include <Map.h>
 #include <geos/geom/Point.h>
 
 using namespace geos;
