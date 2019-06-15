@@ -110,7 +110,13 @@ public:
 	 */
 	static const unsigned long GRID_NO_TILES_Y;
 
+	static const unsigned long GRID_X_ORIG;
 
+	static const unsigned long GRID_Y_ORIG;
+
+	static const double GRID_DIM_TILE_X;
+
+	static const double GRID_DIM_TILE_Y;
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
 	 */

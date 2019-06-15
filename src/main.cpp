@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
 		if (mapFileName.empty()) {
 			throw runtime_error("no map file!");
 		} else
-			map = new Map(mapFileName);
+			map = new Map(mapFileName, Constants::GRID_DIM_TILE_X, Constants::GRID_DIM_TILE_Y);
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
@@ -101,27 +101,27 @@ int main(int argc, char** argv) {
 		//now we compute the probabilities for the positions of the phones
 
 		// build the grid for the map
-		Geometry* bbox = map->getBoundary()->getEnvelope();
-		CoordinateSequence* seq = bbox->getCoordinates();
-		double minX, minY, maxX, maxY;
-		minX = minY = numeric_limits<double>::max();
-		maxX = maxY = numeric_limits<double>::min();
-		for (size_t i = 0; i < seq->size(); i++) {
-			double x = seq->getX(i);
-			double y = seq->getY(i);
-			if (x > maxX)
-				maxX = x;
-			if (y > maxY)
-				maxY = y;
-			if (x < minX)
-				minX = x;
-			if (y < minY)
-				minY = y;
-
-		}
-		double dimTileX = (maxX - minX) / w.getGridTilesX();
-		double dimTileY = (maxY - minY) / w.getGridTilesY();
-		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
+//		Geometry* bbox = map->getBoundary()->getEnvelope();
+//		CoordinateSequence* seq = bbox->getCoordinates();
+//		double minX, minY, maxX, maxY;
+//		minX = minY = numeric_limits<double>::max();
+//		maxX = maxY = numeric_limits<double>::min();
+//		for (size_t i = 0; i < seq->size(); i++) {
+//			double x = seq->getX(i);
+//			double y = seq->getY(i);
+//			if (x > maxX)
+//				maxX = x;
+//			if (y > maxY)
+//				maxY = y;
+//			if (x < minX)
+//				minX = x;
+//			if (y < minY)
+//				minY = y;
+//
+//		}
+//		double dimTileX = (maxX - minX) / w.getGridTilesX();
+//		double dimTileY = (maxY - minY) / w.getGridTilesY();
+//		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 		// read the event connection data
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
