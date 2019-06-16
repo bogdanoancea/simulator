@@ -102,7 +102,7 @@ public:
 	 *  for all tiles in the reference grid. An element of the vector corresponds to a tile in the grid. The tiles
 	 *  are linearized in row-major order.
 	 */
-	vector<double>& sumSignalQuality(Grid* grid);
+	vector<double>& sumSignalQuality(const Grid* grid);
 
 	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
 

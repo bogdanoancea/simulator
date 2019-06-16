@@ -146,7 +146,8 @@ int main(int argc, char** argv) {
 
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-
+		cout << "sum signal quality" << endl;
+		EMField::instance()->sumSignalQuality(map->getGrid());
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
