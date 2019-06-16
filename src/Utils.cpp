@@ -41,6 +41,7 @@ namespace utils {
 			int i = 0, k = 0;
 			while (k < n) {
 				Coordinate c = Coordinate(x[i], y[i]);
+				c.z = 0;
 				i++;
 				Point* p = m->getGlobalFactory()->createPoint(c);
 				if(pol->contains(p)) {
