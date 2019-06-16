@@ -329,7 +329,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	if (theta_azim < 0)
 		theta_azim += 360;
 
-	double azim = (static_cast<int>(theta_azim - m_direction)) % 360;
+	double azim = fmod(theta_azim - m_direction ,360);
 	if (azim > 180)
 		azim -= 360;
 	if (azim < -180)
@@ -341,7 +341,6 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double b = cos(d2r(azim)) * distXY;
 
 	//cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
-	//cout << " z " << z << endl;
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
 
@@ -354,10 +353,8 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	}
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 
-	//cout << "directional 0 " << signalStrength << " azim2 " << azim2<< endl;
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
-	//cout << "directional 1 " << signalStrength << " azim2 " << azim2<< endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
@@ -372,12 +369,21 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
-
+//TODO
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 
 	return result;
 }
+
+//find_sd <- function(beam_width, db_back = NULL, mapping = NULL) {
+//  if (is.null(mapping)) {
+//    stopifnot(!is.null(db_back))
+//    mapping <- create_mapping(db_back)
+//  }
+//  mapping$sd[which.min(abs(mapping$deg - beam_width/2))]
+//}
+
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -403,8 +409,6 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 	for (pair<double, double>& i : _3dBDegrees) {
 		i.second -= 3;
 	}
-	//int minElementIndex = std::min_element(_3dBDegrees.begin(), _3dBDegrees.end(), comp) - _3dBDegrees.begin();
-
 	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
 			[](const pair<double, double>& a, const pair<double, double>& b) {
 				return a.second < b.second;
