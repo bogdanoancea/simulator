@@ -32,7 +32,9 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v" << endl;
+		cout
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v"
+				<< endl;
 		exit(0);
 	}
 
@@ -47,10 +49,12 @@ int main(int argc, char** argv) {
 
 	try {
 		Map* map;
-		if (mapFileName.empty()) {
+		if (mapFileName.empty())
 			throw runtime_error("no map file!");
-		} else
+		else
 			map = new Map(mapFileName);
+
+		map->addGrid(Constants::GRID_DIM_TILE_X, Constants::GRID_DIM_TILE_X);
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
@@ -99,31 +103,8 @@ int main(int argc, char** argv) {
 		time_t tt = w.getClock()->realTime();
 		cout << "Computing probabilities started at " << ctime(&tt) << endl;
 		//now we compute the probabilities for the positions of the phones
-
-		// build the grid for the map
-//		Geometry* bbox = map->getBoundary()->getEnvelope();
-//		CoordinateSequence* seq = bbox->getCoordinates();
-//		double minX, minY, maxX, maxY;
-//		minX = minY = numeric_limits<double>::max();
-//		maxX = maxY = numeric_limits<double>::min();
-//		for (size_t i = 0; i < seq->size(); i++) {
-//			double x = seq->getX(i);
-//			double y = seq->getY(i);
-//			if (x > maxX)
-//				maxX = x;
-//			if (y > maxY)
-//				maxY = y;
-//			if (x < minX)
-//				minX = x;
-//			if (y < minY)
-//				minY = y;
-//
-//		}
-//		double dimTileX = (maxX - minX) / w.getGridTilesX();
-//		double dimTileY = (maxY - minY) / w.getGridTilesY();
-//		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 		// read the event connection data
-		map->addGrid(Constants::GRID_DIM_TILE_X,Constants::GRID_DIM_TILE_X );
+
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
@@ -166,7 +147,6 @@ int main(int argc, char** argv) {
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 
-		//EMField::instance()->sumSignalQuality(&g);
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {

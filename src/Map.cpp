@@ -39,6 +39,7 @@ Map::Map() {
 	// been copied to global_factory private storage
 	delete pm;
 	m_boundary = nullptr;
+	m_grid = nullptr;
 }
 
 Map::Map(double llx, double llY, double width, double height) {
@@ -77,7 +78,7 @@ Map::Map(string wktFileName) {
 		cerr << "Error closing map file!" << endl;
 		throw e;
 	}
-
+	m_grid = nullptr;
 //	Geometry* bbox = m_boundary->getEnvelope();
 //	CoordinateSequence* seq = bbox->getCoordinates();
 //	double minX, minY, maxX, maxY;
@@ -106,6 +107,8 @@ Map::Map(string wktFileName) {
 Map::~Map() {
 	if (m_boundary != nullptr)
 		delete m_boundary;
+	if(m_grid != nullptr)
+		delete m_grid;
 }
 
 const GeometryFactory::Ptr& Map::getGlobalFactory() const {
@@ -152,9 +155,6 @@ void Map::addGrid(double dimTileX, double dimTileY) {
 
 	//Grid g(minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 	m_grid = new Grid(minX, minY, dimTileX, dimTileY, noTilesX, noTilesY);
-	//m_grid = grid;
+
 }
-//
-//void Map::setGrid(const Grid*& grid) {
-//	m_grid = grid;
-//}
+
