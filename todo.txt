@@ -28,3 +28,5 @@ todo.txt
      eroare la antenna directionala vine de la faptul ca punctele nu au elevatie. Trebuie introdusa elevatia in Map sau in grid. De fapt cred ca gridul trebuie introdus in map
      am introdus gridul in mapo. trebuie verificat daca da erori runtime, deocamdata se compileza, dar urit, cu un forward declaration.
      
+     de implementat Antenna::findSD
+     

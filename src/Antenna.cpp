@@ -262,7 +262,7 @@ double Antenna::SDist(double dist) const {
 
 double Antenna::S(double dist) const {
 	//if (m_type == AntennaType::OMNIDIRECTIONAL)
-		return (S0() - SDist(dist));
+	return (S0() - SDist(dist));
 	//else
 	//	throw std::runtime_error("Unsupported antenna type (yet)! ");
 }
@@ -288,7 +288,7 @@ double Antenna::computeSignalQuality(const Point* p) const {
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		result = computeSignalQualityOmnidirectional(p);
 	}
-	if(m_type == AntennaType::DIRECTIONAL) {
+	if (m_type == AntennaType::DIRECTIONAL) {
 		result = computeSignalQualityDirectional(p);
 	}
 	return (result);
@@ -329,12 +329,11 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	if (theta_azim < 0)
 		theta_azim += 360;
 
-	double azim = fmod(theta_azim - m_direction ,360);
+	double azim = fmod(theta_azim - m_direction, 360);
 	if (azim > 180)
 		azim -= 360;
 	if (azim < -180)
 		azim += 360;
-
 
 //project azim to elevation plane -> azim2
 	double a = sin(d2r(azim)) * distXY;
@@ -348,7 +347,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 
 	//aici e greseala
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
-	for(int i =0; i <  mapping.size();i++) {
+	for (int i = 0; i < mapping.size(); i++) {
 		cout << mapping[i].first << "," << mapping[i].second << endl;
 	}
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
@@ -358,7 +357,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
-	if(elevation > 180)
+	if (elevation > 180)
 		elevation -= 360;
 	if (elevation < -180)
 		elevation += 360;
@@ -369,21 +368,24 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
+
 //TODO
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 
+	vector<double> tmp;
+	for (auto& i : mapping) {
+		tmp.push_back(i.second - beamWidth / 2.0);
+	}
+	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
+	result = mapping[indexMin].first;
 	return result;
 }
 
 //find_sd <- function(beam_width, db_back = NULL, mapping = NULL) {
-//  if (is.null(mapping)) {
-//    stopifnot(!is.null(db_back))
-//    mapping <- create_mapping(db_back)
-//  }
+
 //  mapping$sd[which.min(abs(mapping$deg - beam_width/2))]
 //}
-
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -403,7 +405,6 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	}
 	return result;
 }
-
 
 double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
 	for (pair<double, double>& i : _3dBDegrees) {
@@ -451,7 +452,7 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double d = sqrt(b * b + c * c);
 	double lambda = r2d(atan2(c, fabs(b)));
 
-	cout << " lambda " << c << " " << b << " "<< atan2(c, fabs(b)) << endl;
+	cout << " lambda " << c << " " << b << " " << atan2(c, fabs(b)) << endl;
 	int cc;
 	if (b > 0)
 		if (beta < lambda)
@@ -478,8 +479,6 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	}
 	return result;
 }
-
-
 
 double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
