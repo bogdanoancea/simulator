@@ -407,7 +407,8 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 
 double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
 	for (pair<double, double>& i : _3dBDegrees) {
-		i.second -= 3;
+		i.second -= dg;
+		i.second = fabs(i.second);
 	}
 	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
 			[](const pair<double, double>& a, const pair<double, double>& b) {
