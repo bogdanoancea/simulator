@@ -37,7 +37,7 @@ Grid::Grid(double xOrig, double yOrig, double xTiledim, double yTiledim, unsigne
 		m_xOrigin { xOrig }, m_yOrigin { yOrig }, m_xTileDim { xTiledim }, m_yTileDim { yTiledim }, m_noTilesX { noTilesX }, m_noTilesY {
 				noTilesY } {
 	m_tileCenters = computeTileCenters();
-	EMField::instance()->sumSignalQuality(this);
+	//EMField::instance()->sumSignalQuality(this);
 }
 
 Grid::~Grid() {
