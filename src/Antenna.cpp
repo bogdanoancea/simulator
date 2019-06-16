@@ -341,10 +341,9 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double b = cos(d2r(azim)) * distXY;
 
 	//cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
-	cout << " z " << z << endl;
+	//cout << " z " << z << endl;
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
-
 
 	double azim2 = r2d(atan2(a, e));
 
@@ -358,7 +357,7 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	//cout << "directional 0 " << signalStrength << " azim2 " << azim2<< endl;
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
-	cout << "directional 1 " << signalStrength << " azim2 " << azim2<< endl;
+	//cout << "directional 1 " << signalStrength << " azim2 " << azim2<< endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
@@ -389,7 +388,7 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 		double deg = getMin3db(sd, dbBack);
 		pair<double, double> p = make_pair(sd, deg);
 		v.push_back(p);
-		cout << " sd " << sd << " deg " << deg << endl;
+		//cout << " sd " << sd << " deg " << deg << endl;
 	}
 	for (unsigned int i = 1; i <= 180; i++) {
 		double sd = searchMin(i, v);
@@ -417,11 +416,13 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 double Antenna::getMin3db(double sd, double dbBack) const {
 	vector<double> v;
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
-		double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1);
-		double p2 = abs(-3 - norm_dBLoss(p1, dbBack, sd));
+		double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
+		double p2 = fabs(-3.0 - norm_dBLoss(p1, dbBack, sd));
+		//cout << " ce bag in vector: " << p1 <<" , "<<p2<<endl;
 		v.push_back(p2);
 	}
 	int minElementIndex = std::min_element(v.begin(), v.end()) - v.begin();
+	//cout << "getMin3db " << sd << "," << (minElementIndex * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0)) << endl;
 	return (minElementIndex * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1));
 }
 
@@ -433,18 +434,19 @@ double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 }
 
 double Antenna::normalizeAngle(double angle) const {
-	double a = (static_cast<int>(abs(angle))) % 360;
+	double a = fmod(angle, 360);
 	if (a > 180)
 		a = 360 - a;
+	//cout << "a=" << a << endl; //nu merge ca in R!!!
 	return a;
 }
 
 double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double result;
 	double d = sqrt(b * b + c * c);
-	double lambda = r2d(atan2(c, abs(b)));
+	double lambda = r2d(atan2(c, fabs(b)));
 
-	cout << " lambda " << c << " " << b << " "<< atan2(c, abs(b)) << endl;
+	cout << " lambda " << c << " " << b << " "<< atan2(c, fabs(b)) << endl;
 	int cc;
 	if (b > 0)
 		if (beta < lambda)
@@ -471,21 +473,6 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	}
 	return result;
 }
-
-//d <- sqrt(b^2+c^2)
-//lambda <- ATAN2(c, abs(b))
-//d <- sqrt(b^2 + c^2)
-//
-//cases <- ifelse(b > 0, # in front of antenna?
-//                ifelse(beta < lambda, 1, 2), # below elevation plane?
-//                ifelse(lambda + beta < 90, 3, 4)) # projected point in front of antenna (=rare case)
-//
-//e <- rep(0, length.out = length(b))
-//
-//e[cases == 1] <- COS(lambda[cases==1] - beta[cases==1]) * d[cases==1]
-//e[cases == 2] <- COS(beta[cases == 2] - lambda[cases == 2]) * d[cases == 2]
-//e[cases == 3] <- -COS(lambda[cases==3] + beta[cases==3]) * d[cases==3]
-//e[cases == 4] <- COS(180 - lambda[cases == 4] - beta[cases == 4]) * d[cases == 4]
 
 
 
