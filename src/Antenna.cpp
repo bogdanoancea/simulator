@@ -340,19 +340,25 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	double a = sin(d2r(azim)) * distXY;
 	double b = cos(d2r(azim)) * distXY;
 
-	cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
-	//aici e greseala
+	//cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
+	cout << " z " << z << endl;
+
 	double e = projectToEPlane(b, m_height - z, m_tilt);
 
-	//aici e greseala
+
 	double azim2 = r2d(atan2(a, e));
 
+	//aici e greseala
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
+	for(int i =0; i <  mapping.size();i++) {
+		cout << mapping[i].first << "," << mapping[i].second << endl;
+	}
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 
+	//cout << "directional 0 " << signalStrength << " azim2 " << azim2<< endl;
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
 
-	cout << "directional " << signalStrength << result << endl;
+	cout << "directional 1 " << signalStrength << " azim2 " << azim2<< endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
@@ -383,6 +389,7 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 		double deg = getMin3db(sd, dbBack);
 		pair<double, double> p = make_pair(sd, deg);
 		v.push_back(p);
+		cout << " sd " << sd << " deg " << deg << endl;
 	}
 	for (unsigned int i = 1; i <= 180; i++) {
 		double sd = searchMin(i, v);
@@ -411,7 +418,7 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 	vector<double> v;
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
 		double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1);
-		double p2 = -3 - norm_dBLoss(p1, dbBack, sd);
+		double p2 = abs(-3 - norm_dBLoss(p1, dbBack, sd));
 		v.push_back(p2);
 	}
 	int minElementIndex = std::min_element(v.begin(), v.end()) - v.begin();
