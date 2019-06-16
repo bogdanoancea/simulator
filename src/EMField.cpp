@@ -45,13 +45,13 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
 	if (size > 0) {
 		double max = numeric_limits<double>::min();
 		for (Antenna* a : m_antennas) {
-			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
+			//if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
 				double quality = a->computeSignalQuality(p);
 				if (quality > max) {
 					max = quality;
 					result = make_pair(a, quality);
 				}
-			}
+			//}
 		}
 	}
 	return (result);
@@ -125,6 +125,7 @@ vector<double>& EMField::sumSignalQuality(const Grid* grid) {
 		if (!(tileIndex % 10))
 			cout << endl;
 		Coordinate c = grid->getTileCenter(tileIndex);
+		c.z = 0; //TODO z should be the elevation
 		for (Antenna* a : m_antennas) {
 			sum += a->computeSignalQuality(c);
 		}

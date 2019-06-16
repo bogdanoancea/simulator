@@ -72,7 +72,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_height = atof(n->ToText()->Value());
 	else
 		m_height = Constants::ANTENNA_HEIGHT;
-
+//TODO get elevation from Grid
 	Coordinate c = Coordinate(x, y, m_height);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);

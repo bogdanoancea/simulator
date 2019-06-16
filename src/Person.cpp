@@ -107,7 +107,7 @@ Point* Person::generateNewLocation(double theta) {
 	double y = getLocation()->getCoordinate()->y;
 	double newX = x + getSpeed() * cos(theta);
 	double newY = y + getSpeed() * sin(theta);
-	Coordinate c = Coordinate(newX, newY);
+	Coordinate c = Coordinate(newX, newY, 0);
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 	return pt;
 }
