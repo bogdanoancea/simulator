@@ -347,9 +347,9 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 
 	//aici e greseala
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
-	for (int i = 0; i < mapping.size(); i++) {
-		cout << mapping[i].first << "," << mapping[i].second << endl;
-	}
+//	for (int i = 0; i < mapping.size(); i++) {
+//		cout << mapping[i].first << "," << mapping[i].second << endl;
+//	}
 	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
@@ -382,10 +382,6 @@ double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, doub
 	return result;
 }
 
-//find_sd <- function(beam_width, db_back = NULL, mapping = NULL) {
-
-//  mapping$sd[which.min(abs(mapping$deg - beam_width/2))]
-//}
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -452,7 +448,7 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double d = sqrt(b * b + c * c);
 	double lambda = r2d(atan2(c, fabs(b)));
 
-	cout << " lambda " << c << " " << b << " " << atan2(c, fabs(b)) << endl;
+	//cout << " lambda " << c << " " << b << " " << atan2(c, fabs(b)) << endl;
 	int cc;
 	if (b > 0)
 		if (beta < lambda)

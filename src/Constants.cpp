@@ -39,7 +39,7 @@ const double Constants::GRID_DIM_TILE_Y = 1000;
 
 const PriorType Constants::PRIOR_PROBABILITY = PriorType::UNIFORM;
 
-const double Constants::ANTENNA_HEIGHT = 0.0;
+const double Constants::ANTENNA_HEIGHT = 1000.0;
 const double Constants::ANTENNA_TILT = 0.0;
 const double Constants::ANTENNA_AZIM_DB_BACK = -30;
 const double Constants::ANTENNA_ELEV_DB_BACK = -30;
