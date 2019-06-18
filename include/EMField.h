@@ -107,6 +107,7 @@ public:
 
 	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
 	const double* getAntennaMin3DbArray() const;
+	double* getSd() const;
 
 private:
 	EMField();
@@ -118,7 +119,8 @@ private:
 	vector<Antenna*> m_antennas;
 	vector<double> m_sumQuality;
 
-	double* ANTENNA_MIN_3_DB_ARRAY;
+	double* m_antennaMin3DbArray;
+	double* m_sd;
 };
 
 #endif /* EMFIELD_H_ */

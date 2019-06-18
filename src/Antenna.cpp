@@ -388,11 +388,10 @@ double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, doub
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
 	vector<pair<double, double>> result;
-
+	double* sd = EMField::instance()->getSd();
 	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
-		double sd = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
-		double deg = getMin3db(sd, dbBack);
-		pair<double, double> p = make_pair(sd, deg);
+		double deg = getMin3db(sd[i], dbBack);
+		pair<double, double> p = make_pair(sd[i], deg);
 		v.push_back(p);
 		//cout << " sd " << sd << " deg " << deg << endl;
 	}
