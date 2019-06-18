@@ -18,6 +18,8 @@
 #include <TinyXML2.h>
 #include <string>
 #include <fstream>
+#include <utility>
+
 
 using namespace tinyxml2;
 using namespace geos;
@@ -77,18 +79,18 @@ public:
 	const string toString() const override;
 
 	/**
-	 * Returns the surrounding environment' attenuation factor of the signal.
-	 * @return the signals' attenuation factor of the surrounding environment. In real life, it takes
+	 * Returns the surrounding environment' path loss exponent of the signal.
+	 * @return the signals' path loss exponent of the surrounding environment. In real life, it takes
 	 * values between 2 (in open field) and 6 (inside buildings).
 	 */
-	double getAttenuationFactor() const;
+	double getPLE() const;
 
 	/**
-	 * Sets the surrounding environment' attenuation factor of the signal for an antenna.
-	 * @param attenuationFactor the value of the surrounding environment' attenuation factor of the signal. In real life, it takes
+	 * Sets the surrounding environment' path loss exponent of the signal for an antenna.
+	 * @param ple the value of the surrounding environment' path loss exponent of the signal. In real life, it takes
 	 * values between 2 (in open field) and 6 (inside buildings).
 	 */
-	void setAttenuationFactor(double attenuationFactor);
+	void setPLE(double ple);
 
 	/**
 	 * Returns the power of an antenna in Watts at the location of antenna. This power decreases with a power of the distance from antenna.
@@ -189,12 +191,34 @@ public:
 	double computeSignalQuality(const Point* p) const;
 
 	/**
+	 * Computes the signal quality given by an antenna in a certain location.
+	 * @param c coordinates of the location where we want to compute the signal quality.
+	 * @return the signal quality.
+	 */
+	double computeSignalQuality(const Coordinate c) const;
+
+	/**
 	 * Computes the power of the signal given by an antenna in a certain location.
 	 * @param p the location where we want to compute the power of the signal.
 	 * @return the power of the signal in the location given by Point p.
 	 */
 	double computePower(const Point* p) const;
 
+
+	double getAzimDBBack() const;
+	void setAzimDBBack(double azimDBBack);
+	double getBeamH() const;
+	void setBeamH(double beamH);
+	double getBeamV() const;
+	void setBeamV(double beamV);
+	double getElevDBBack() const;
+	void setElevDBBack(double elevDBBack);
+	double getHeight() const;
+	void setHeight(double height);
+	double getTilt() const;
+	void setTilt(double tilt);
+	double getDirection() const;
+	void setDirection(double direction);
 
 private:
 
@@ -203,8 +227,18 @@ private:
 	unsigned long getNumActiveConections();
 	double S0()const;
 	double SDist(double dist) const;
+	double computeSignalQualityOmnidirectional(const Point* p) const;
+	double computeSignalQualityDirectional(const Point* p) const;
+	void setLocationWithElevation();
+	double projectToEPlane(double b, double c, double beta) const;
+	vector<pair<double, double>> createMapping(double dbBack) const;
+	double getMin3db(double sd, double dbBack) const;
+	double norm_dBLoss(double angle, double dbBack, double sd) const;
+	double normalizeAngle(double angle) const;
+	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
+	double findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const;
 
-	double m_attenuationFactor;
+	double m_ple;
 	double m_power;
 	unsigned long m_maxConnections;
 	double m_Smid;
@@ -215,6 +249,14 @@ private:
 	AntennaType m_type;
 	ofstream m_file;
 	double m_S0;
+
+	double m_height;
+	double m_tilt;
+	double m_beam_V;
+	double m_beam_H;
+	double m_azim_dB_Back;
+	double m_elev_dB_Back;
+	double m_direction;
 
 };
 

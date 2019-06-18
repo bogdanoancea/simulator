@@ -21,6 +21,7 @@
 #include <iomanip>
 #include <Constants.h>
 #include<algorithm>
+#include <EMField.h>
 
 using namespace std;
 using namespace geos;
@@ -48,14 +49,15 @@ int main(int argc, char** argv) {
 
 	try {
 		Map* map;
-		if (mapFileName.empty()) {
+		if (mapFileName.empty())
 			throw runtime_error("no map file!");
-		} else
+		else
 			map = new Map(mapFileName);
 
+		map->addGrid(Constants::GRID_DIM_TILE_X, Constants::GRID_DIM_TILE_X);
+
 		geos::io::WKTWriter writter;
-		cout << "Our world has a map:" << endl
-				<< writter.write(map->getBoundary()) << endl;
+		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
 		if (antennasConfigFileName.empty()) {
 			throw runtime_error("no antenna config file!");
@@ -68,8 +70,7 @@ int main(int argc, char** argv) {
 			throw runtime_error("no simulation config file!");
 		}
 
-		World w(map, personsConfigFileName, antennasConfigFileName,
-				simulationConfigFileName);
+		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
@@ -102,31 +103,8 @@ int main(int argc, char** argv) {
 		time_t tt = w.getClock()->realTime();
 		cout << "Computing probabilities started at " << ctime(&tt) << endl;
 		//now we compute the probabilities for the positions of the phones
-
-		// build the grid for the map
-		Geometry* bbox = map->getBoundary()->getEnvelope();
-		CoordinateSequence* seq = bbox->getCoordinates();
-		double minX, minY, maxX, maxY;
-		minX = minY = numeric_limits<double>::max();
-		maxX = maxY = numeric_limits<double>::min();
-		for (size_t i = 0; i < seq->size(); i++) {
-			double x = seq->getX(i);
-			double y = seq->getY(i);
-			if (x > maxX)
-				maxX = x;
-			if (y > maxY)
-				maxY = y;
-			if (x < minX)
-				minX = x;
-			if (y < minY)
-				minY = y;
-
-		}
-		double dimTileX = (maxX - minX) / w.getGridTilesX();
-		double dimTileY = (maxY - minY) / w.getGridTilesY();
-		Grid g(map, minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
-
 		// read the event connection data
+
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
@@ -135,15 +113,19 @@ int main(int argc, char** argv) {
 			Parser file = Parser(fileName, DataType::eFILE, ',', false);
 			for (unsigned long i = 0; i < file.rowCount(); i++) {
 				Row s = file[i];
-				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]),
-						stoul(s[3]), stod(s[4]), stod(s[5]));
+				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
 				data.push_back(a);
 			}
 		}
-		sort(data.begin(), data.end(), [](const AntennaInfo& lhs, const AntennaInfo& rhs) {
-		      return (lhs.getTime() < rhs.getTime() && lhs.getDeviceId() < rhs.getDeviceId());
-		   });
-//		sort(data.begin(), data.end());
+		sort(data.begin(), data.end());
+
+		ofstream antennaInfoFile;
+		antennaInfoFile.open("AntennaInfo.csv", ios::out);
+		antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
+		for (AntennaInfo& ai : data) {
+			antennaInfoFile << ai.toString() << endl;
+		}
+		antennaInfoFile.close();
 
 		ofstream p_file, g_File;
 		if (w.getProbFilename().empty()) {
@@ -155,7 +137,7 @@ int main(int argc, char** argv) {
 		} catch (ofstream::failure& e) {
 			cerr << "Error opening output file!" << endl;
 		}
-		g_File << g.toString();
+		g_File << map->getGrid()->toString();
 		try {
 			g_File.close();
 		} catch (const ofstream::failure& e) {
@@ -164,26 +146,26 @@ int main(int argc, char** argv) {
 
 		w.getClock()->reset();
 		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-
+		cout << "sum signal quality" << endl;
+		EMField::instance()->sumSignalQuality(map->getGrid());
 		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
-
 			//iterate over all devices
 			for (auto it = itrm.first; it != itrm.second; it++) {
 				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 				p_file << t << "," << m->getId() << ",";
 				ostringstream probs;
-				vector<double> p = g.computeProbability(t, m, data, itra);
-				for (unsigned long i = 0; i < g.getNoTiles()-1; i++) {
+				vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
+				for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
 					probs << fixed << setprecision(15) << p[i] << ",";
 				}
-				probs << fixed << setprecision(15) << p[g.getNoTiles()-1];
+				probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
 				p_file << probs.str() << endl;
 			}
 		}
 		try {
 			p_file.close();
 		} catch (ofstream::failure& e) {
-			cerr << "Error closing grid file!" << endl;
+			cerr << "Error closing probs file!" << endl;
 		}
 		tt = w.getClock()->realTime();
 		cout << "Computing probabilities ended at " << ctime(&tt) << endl;

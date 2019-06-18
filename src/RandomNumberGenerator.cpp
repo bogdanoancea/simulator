@@ -128,6 +128,8 @@ double RandomNumberGenerator::generateNormalDouble(const double m, const double 
 }
 
 
+
+
 ////------------------------------------------------------------
 //// Compute y_l from y_k
 //double RandomNumberGenerator::yl(int k) {

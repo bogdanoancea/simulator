@@ -41,6 +41,7 @@ namespace utils {
 			int i = 0, k = 0;
 			while (k < n) {
 				Coordinate c = Coordinate(x[i], y[i]);
+				c.z = 0;
 				i++;
 				Point* p = m->getGlobalFactory()->createPoint(c);
 				if(pol->contains(p)) {
@@ -76,14 +77,18 @@ namespace utils {
 	}
 
 	void printPhoneHeader() {
-		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Owner id "
+		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
 				<< endl;
 	}
 
 	XMLNode* getNode(XMLElement* el, const char* name) {
-		XMLNode* n = el->FirstChildElement(name)->FirstChild();
-		if (!n)
-			throw std::runtime_error("Syntax error in the configuration file ");
+		XMLNode* n = nullptr;
+		XMLElement* element = el->FirstChildElement(name);
+		if(element) {
+			n = element->FirstChild();
+			if (!n)
+				throw std::runtime_error("Syntax error in the configuration file ");
+		}
 		return (n);
 	}
 
@@ -93,4 +98,13 @@ namespace utils {
 			throw std::runtime_error("Syntax error in the configuration file ");
 		return (n);
 	}
+
+	double r2d(double x) {
+		return (x * 180.0) / PI;
+	}
+
+	double d2r(double x) {
+		return (PI / 180.0) * x;
+	}
+
 }

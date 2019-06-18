@@ -10,6 +10,8 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#include <PriorType.h>
+
 /**
  * These are some constants used in the process of the simulation, most of them are only used for testing and rapid development
  * of some methods, the real values of the parameters being read from the configuration files.
@@ -108,7 +110,13 @@ public:
 	 */
 	static const unsigned long GRID_NO_TILES_Y;
 
+	static const unsigned long GRID_X_ORIG;
 
+	static const unsigned long GRID_Y_ORIG;
+
+	static const double GRID_DIM_TILE_X;
+
+	static const double GRID_DIM_TILE_Y;
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
 	 */
@@ -123,6 +131,35 @@ public:
 	 * The name of the file where the exact positions of the antennas are saved during simulation. They are needed for later analysis.
 	 */
 	static const char* ANTENNAS_FILE_NAME;
+
+	/**
+	 * Indicates how the prior probability is computed: uniform, register, network
+	 */
+	static const PriorType PRIOR_PROBABILITY;
+
+	/**
+	 * the antenna height
+	 */
+	static const double ANTENNA_HEIGHT;
+
+
+	static const double ANTENNA_TILT;
+
+
+	static const double ANTENNA_AZIM_DB_BACK;
+
+	static const double ANTENNA_ELEV_DB_BACK;
+
+	static const double ANTENNA_BEAM_H;
+
+	static const double ANTENNA_BEAM_V;
+
+	static const double ANTENNA_DIRECTION;
+
+	static const unsigned int ANTENNA_MAPPING_N;
+
+	static const unsigned int ANTENNA_MIN_3_DB;
+
 };
 
 #endif /* CONSTANTS_H_ */

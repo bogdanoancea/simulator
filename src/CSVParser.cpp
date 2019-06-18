@@ -58,7 +58,7 @@ void Parser::parseHeader(void) {
 }
 
 void Parser::parseContent(void) {
-	vector<std::string>::iterator it;
+	vector<string>::iterator it;
 
 	it = _originalFile.begin();
 	if (m_header)

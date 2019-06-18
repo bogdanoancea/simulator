@@ -12,6 +12,7 @@
 
 #include <Antenna.h>
 #include <Constants.h>
+#include <Grid.h>
 #include <utility>
 #include <vector>
 
@@ -33,6 +34,7 @@ public:
 		return (m_instance);
 	}
 
+	virtual ~EMField();
 	/**
 	 * Add an antenna that will contribute to the generation of the electromagnetic field
 	 * @param a a pointer to the Antenna object
@@ -93,6 +95,19 @@ public:
 	 */
 	double connectionLikelihood(Antenna* a, const Point * p);
 
+
+	/**
+	 * Computes the sum of the signal quality given by all antennas for all tiles in the reference grid
+	 * @param grid the grid of tiles where this method coputes the sum of the signal quality
+	 * @return a vector containing the sum ofthe signal quality given by all antennas,
+	 *  for all tiles in the reference grid. An element of the vector corresponds to a tile in the grid. The tiles
+	 *  are linearized in row-major order.
+	 */
+	vector<double>& sumSignalQuality(const Grid* grid);
+
+	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
+	const double* getAntennaMin3DbArray() const;
+
 private:
 	EMField();
 
@@ -101,6 +116,9 @@ private:
 
 	static EMField* m_instance;
 	vector<Antenna*> m_antennas;
+	vector<double> m_sumQuality;
+
+	double* ANTENNA_MIN_3_DB_ARRAY;
 };
 
 #endif /* EMFIELD_H_ */

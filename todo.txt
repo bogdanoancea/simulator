@@ -15,9 +15,18 @@ todo.txt
      
      de adaugat open_pop_random_walk
      
-     de adaugat closed_pop_random_walk_drift -PARTIAL
+     de adaugat closed_pop_random_walk_drift - DONE
      
      de adaugat open_pop_random_walk_drift
      
      de adaugat antene directionale
+     
+     vizualizare - https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/
+     
+     de salvat intr-un fisier  AntennaInfo dupa sortare.
+     
+     eroare la antenna directionala vine de la faptul ca punctele nu au elevatie. Trebuie introdusa elevatia in Map sau in grid. De fapt cred ca gridul trebuie introdus in map
+     am introdus gridul in mapo. trebuie verificat daca da erori runtime, deocamdata se compileza, dar urit, cu un forward declaration.
+     
+     de implementat Antenna::findSD
      
