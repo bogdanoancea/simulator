@@ -34,6 +34,7 @@ public:
 		return (m_instance);
 	}
 
+	virtual ~EMField();
 	/**
 	 * Add an antenna that will contribute to the generation of the electromagnetic field
 	 * @param a a pointer to the Antenna object
@@ -105,6 +106,7 @@ public:
 	vector<double>& sumSignalQuality(const Grid* grid);
 
 	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
+	const double* getAntennaMin3DbArray() const;
 
 private:
 	EMField();
@@ -115,6 +117,8 @@ private:
 	static EMField* m_instance;
 	vector<Antenna*> m_antennas;
 	vector<double> m_sumQuality;
+
+	double* ANTENNA_MIN_3_DB_ARRAY;
 };
 
 #endif /* EMFIELD_H_ */

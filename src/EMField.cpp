@@ -18,6 +18,14 @@
 EMField* EMField::m_instance = nullptr;
 
 EMField::EMField() {
+	ANTENNA_MIN_3_DB_ARRAY = new double[Constants::ANTENNA_MIN_3_DB];
+	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
+		ANTENNA_MIN_3_DB_ARRAY[i] = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
+	}
+}
+
+EMField::~EMField() {
+	delete[] ANTENNA_MIN_3_DB_ARRAY;
 }
 
 pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
@@ -46,11 +54,11 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
 		double max = numeric_limits<double>::min();
 		for (Antenna* a : m_antennas) {
 			//if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
-				double quality = a->computeSignalQuality(p);
-				if (quality > max) {
-					max = quality;
-					result = make_pair(a, quality);
-				}
+			double quality = a->computeSignalQuality(p);
+			if (quality > max) {
+				max = quality;
+				result = make_pair(a, quality);
+			}
 			//}
 		}
 	}
@@ -71,14 +79,13 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 
 double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const {
 	Coordinate c = g->getTileCenter(tileIndex);
-	c.z = 0;//TODO z = tile elevation
+	c.z = 0; //TODO z = tile elevation
 	double s_quality = a->computeSignalQuality(c);
 	double result = 0.0;
 	result = s_quality / m_sumQuality[tileIndex];
 
 	return (result);
 }
-
 
 void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
@@ -136,4 +143,8 @@ vector<double>& EMField::sumSignalQuality(const Grid* grid) {
 	cout << endl;
 	return m_sumQuality;
 
+}
+
+const double* EMField::getAntennaMin3DbArray() const {
+	return ANTENNA_MIN_3_DB_ARRAY;
 }

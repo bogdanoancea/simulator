@@ -49,3 +49,4 @@ const double Constants::ANTENNA_DIRECTION = 0;
 const unsigned int Constants::ANTENNA_MAPPING_N = 1000;
 const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 
+

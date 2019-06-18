@@ -14,6 +14,7 @@
 #include <Utils.h>
 #include <utility>
 #include <RandomNumberGenerator.h>
+#include <EMField.h>
 
 using namespace tinyxml2;
 using namespace std;
@@ -377,6 +378,7 @@ double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, doub
 	for (auto& i : mapping) {
 		tmp.push_back(i.second - beamWidth / 2.0);
 	}
+
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
 	result = mapping[indexMin].first;
 	return result;
@@ -417,14 +419,13 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 
 double Antenna::getMin3db(double sd, double dbBack) const {
 	vector<double> v;
+	const double* p1 = EMField::instance()->getAntennaMin3DbArray();
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
-		double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
-		double p2 = fabs(-3.0 - norm_dBLoss(p1, dbBack, sd));
-		//cout << " ce bag in vector: " << p1 <<" , "<<p2<<endl;
+		//double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
+		double p2 = fabs(-3.0 - norm_dBLoss(p1[i], dbBack, sd));
 		v.push_back(p2);
 	}
 	int minElementIndex = std::min_element(v.begin(), v.end()) - v.begin();
-	//cout << "getMin3db " << sd << "," << (minElementIndex * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0)) << endl;
 	return (minElementIndex * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1));
 }
 
@@ -439,7 +440,6 @@ double Antenna::normalizeAngle(double angle) const {
 	double a = fmod(angle, 360);
 	if (a > 180)
 		a = 360 - a;
-	//cout << "a=" << a << endl; //nu merge ca in R!!!
 	return a;
 }
 
@@ -448,7 +448,6 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 	double d = sqrt(b * b + c * c);
 	double lambda = r2d(atan2(c, fabs(b)));
 
-	//cout << " lambda " << c << " " << b << " " << atan2(c, fabs(b)) << endl;
 	int cc;
 	if (b > 0)
 		if (beta < lambda)
