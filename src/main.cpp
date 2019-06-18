@@ -165,7 +165,7 @@ int main(int argc, char** argv) {
 		try {
 			p_file.close();
 		} catch (ofstream::failure& e) {
-			cerr << "Error closing grid file!" << endl;
+			cerr << "Error closing probs file!" << endl;
 		}
 		tt = w.getClock()->realTime();
 		cout << "Computing probabilities ended at " << ctime(&tt) << endl;
