@@ -288,13 +288,16 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 		XMLNode* prob_mobilePhoneNode = getNode(personsEl, "prob_mobile_phone");
 		double probMobilePhone = atof(prob_mobilePhoneNode->ToText()->Value());
 
+		XMLNode* prob_sec_mobilePhoneNode = getNode(personsEl, "prob_sec_mobile_phone");
+		double probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
+
 		XMLNode* speed_walkNode = getNode(personsEl, "speed_walk");
 		double speed_walk = atof(speed_walkNode->ToText()->Value());
 
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, probMobilePhone, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, probMobilePhone, probSecMobilePhone, speed_walk, speed_car);
 	}
 	return (result);
 }
@@ -413,7 +416,7 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,
-		double speed_walk, double speed_car) {
+		double probSecMobilePhone, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
@@ -422,11 +425,12 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
 	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
+	int* phone2 = RandomNumberGenerator::instance()->generateBinomialInt(1, probSecMobilePhone, numPersons);
 	int sum = 0;
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
-		numPhones += phone[i];
+		numPhones += (phone[i] + phone2[i]);
 	}
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
@@ -459,8 +463,16 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
 			m_index++;
 		}
+		if (phone2[i]) {
+			mobiles[m_index]->setHolder(p);
+			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
+			m_index++;
+		}
 		result.push_back(p);
 	}
+	delete [] walk_car;
+	delete [] phone;
+	delete [] phone2;
 	delete[] speeds_walk;
 	delete[] speeds_car;
 	delete[] ages;
