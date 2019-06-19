@@ -18,14 +18,19 @@
 EMField* EMField::m_instance = nullptr;
 
 EMField::EMField() {
-	ANTENNA_MIN_3_DB_ARRAY = new double[Constants::ANTENNA_MIN_3_DB];
+	m_antennaMin3DbArray = new double[Constants::ANTENNA_MIN_3_DB];
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
-		ANTENNA_MIN_3_DB_ARRAY[i] = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
+		m_antennaMin3DbArray[i] = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
+	}
+	m_sd = new double[Constants::ANTENNA_MAPPING_N];
+	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
+			m_sd[i] = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
 	}
 }
 
 EMField::~EMField() {
-	delete[] ANTENNA_MIN_3_DB_ARRAY;
+	delete[] m_antennaMin3DbArray;
+	delete[] m_sd;
 }
 
 pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
@@ -146,5 +151,9 @@ vector<double>& EMField::sumSignalQuality(const Grid* grid) {
 }
 
 const double* EMField::getAntennaMin3DbArray() const {
-	return ANTENNA_MIN_3_DB_ARRAY;
+	return m_antennaMin3DbArray;
+}
+
+double* EMField::getSd() const {
+	return m_sd;
 }
