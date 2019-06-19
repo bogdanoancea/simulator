@@ -134,7 +134,7 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 vector<double>& EMField::sumSignalQuality(const Grid* grid) {
 	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
 		double sum = 0.0;
-		if (!(tileIndex % 10))
+		if (!(tileIndex % grid->getNoTilesY()))
 			cout << endl;
 		Coordinate c = grid->getTileCenter(tileIndex);
 		c.z = 0; //TODO z should be the elevation

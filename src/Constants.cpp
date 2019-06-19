@@ -32,8 +32,8 @@ const char* Constants::PROB_FILE_NAME = "prob.csv";
 const char* Constants::PERSONS_FILE_NAME = "persons.csv";
 const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
 
-const unsigned long Constants::GRID_NO_TILES_X = 10;
-const unsigned long Constants::GRID_NO_TILES_Y = 10;
+//const unsigned long Constants::GRID_NO_TILES_X = 10;
+//const unsigned long Constants::GRID_NO_TILES_Y = 10;
 const double Constants::GRID_DIM_TILE_X = 1000;
 const double Constants::GRID_DIM_TILE_Y = 1000;
 

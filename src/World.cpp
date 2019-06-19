@@ -299,12 +299,12 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 	return (result);
 }
 
-unsigned long World::getGridTilesX() const {
-	return m_GridTilesX;
+unsigned long World::getGridDimTileX() const {
+	return m_GridDimTileX;
 }
 
-unsigned long World::getGridTilesY() const {
-	return m_GridTilesY;
+unsigned long World::getGridDimTileY() const {
+	return m_GridDimTileY;
 }
 
 PriorType World::getPrior() const {
@@ -385,17 +385,17 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		else
 			m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
 
-		XMLNode* xTilesNode = getNode(simEl, "grid_no_tiles_x");
+		XMLNode* xTilesNode = getNode(simEl, "grid_dim_tile_x");
 		if (xTilesNode)
-			m_GridTilesX = atol(xTilesNode->ToText()->Value());
+			m_GridDimTileX = atol(xTilesNode->ToText()->Value());
 		else
-			m_GridTilesX = Constants::GRID_NO_TILES_X;
+			m_GridDimTileX = Constants::GRID_DIM_TILE_X;
 
-		XMLNode* yTilesNode = getNode(simEl, "grid_no_tiles_y");
+		XMLNode* yTilesNode = getNode(simEl, "grid_dim_tile_y");
 		if (yTilesNode)
-			m_GridTilesY = atol(yTilesNode->ToText()->Value());
+			m_GridDimTileY = atol(yTilesNode->ToText()->Value());
 		else
-			m_GridTilesY = Constants::GRID_NO_TILES_Y;
+			m_GridDimTileY = Constants::GRID_DIM_TILE_Y;
 
 		XMLNode* priorNode = getNode(simEl, "prior");
 		if (priorNode) {
