@@ -54,8 +54,8 @@ int main(int argc, char** argv) {
 		else
 			map = new Map(mapFileName);
 
-		map->addGrid(Constants::GRID_DIM_TILE_X, Constants::GRID_DIM_TILE_X);
 
+		//map->addGrid(100, 100);
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
@@ -71,6 +71,7 @@ int main(int argc, char** argv) {
 		}
 
 		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
+		map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {

@@ -103,12 +103,12 @@ public:
 	/**
 	 * Default number of tiles on OX in the grid
 	 */
-	static const unsigned long GRID_NO_TILES_X;
+	//static const unsigned long GRID_NO_TILES_X;
 
 	/**
 	 * Default number of tiles on OY in the grid
 	 */
-	static const unsigned long GRID_NO_TILES_Y;
+	//static const unsigned long GRID_NO_TILES_Y;
 
 	static const unsigned long GRID_X_ORIG;
 

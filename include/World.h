@@ -135,16 +135,16 @@ public:
 	const string& getPersonsFilename() const;
 
 	/**
-	 * Returns the number of tiles on OX this number is read from simulation.xml config file
-	 * @return the number of tiles on OX, this number is read from simulation.xml config file
+	 * Returns the dimension of tiles on OX, this number is read from simulation.xml config file
+	 * @return the dimension of tiles on OX, this number is read from simulation.xml config file
 	 */
-	unsigned long getGridTilesX() const;
+	unsigned long getGridDimTileX() const;
 
 	/**
-	 * Returns the number of tiles on OY this number is read from simulation.xml config file
-	 * @return the number of tiles on OY, this number is read from simulation.xml config file
+	 * Returns the dimension of tiles on OY, this number is read from simulation.xml config file
+	 * @return the dimension of tiles on OY, this number is read from simulation.xml config file
 	 */
-	unsigned long getGridTilesY() const;
+	unsigned long getGridDimTileY() const;
 
 	/**
 	 * Returns the type of the prior probability used to compute the posterior localization probability
@@ -161,8 +161,8 @@ private:
 	unsigned long m_startTime;
 	unsigned long m_endTime;
 	unsigned long m_timeIncrement;
-	unsigned long m_GridTilesX;
-	unsigned long m_GridTilesY;
+	unsigned long m_GridDimTileX;
+	unsigned long m_GridDimTileY;
 	PriorType m_prior;
 
 

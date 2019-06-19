@@ -373,12 +373,10 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 //TODO
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
-
 	vector<double> tmp;
-	for (auto& i : mapping) {
+		for (auto& i : mapping) {
 		tmp.push_back(i.second - beamWidth / 2.0);
 	}
-
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
 	result = mapping[indexMin].first;
 	return result;
