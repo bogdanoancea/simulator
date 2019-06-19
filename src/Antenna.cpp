@@ -20,10 +20,10 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
+		double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
+				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getName() + std::to_string(id) + ".csv";
 	try {
@@ -223,8 +223,7 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -242,8 +241,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
-				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+				<< ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -286,28 +285,41 @@ void Antenna::setSSteep(double sSteep) {
 
 double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
+	const Coordinate* c = p->getCoordinate();
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
-		result = computeSignalQualityOmnidirectional(p);
+		result = computeSignalQualityOmnidirectional(*c);
 	}
 	if (m_type == AntennaType::DIRECTIONAL) {
-		result = computeSignalQualityDirectional(p);
+		result = computeSignalQualityDirectional(*c);
 	}
 	return (result);
 }
 
 double Antenna::computeSignalQuality(const Coordinate c) const {
-	double result;
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	result = computeSignalQuality(p);
-	getMap()->getGlobalFactory()->destroyGeometry(p);
+	double result = 0.0;
+	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+		result = computeSignalQualityOmnidirectional(c);
+	}
+	if (m_type == AntennaType::DIRECTIONAL) {
+		result = computeSignalQualityDirectional(c);
+	}
+	return (result);
+}
+
+double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
+	double result = 0.0;
+	Point *p = getLocation();
+	const Coordinate* cc = p->getCoordinate();
+	double dist = sqrt((c.z - cc->z) * (c.z - cc->z) + (c.y - cc->y) * (c.y - cc->y) + (c.x - cc->x) * (c.x - cc->x));
+	double signalStrength = S(dist);
+	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
 
 double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 	double result = 0.0;
-	double dist = p->distance(getLocation());
-	double signalStrength = S(dist);
-	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	const Coordinate* c = p->getCoordinate();
+	result = computeSignalQualityOmnidirectional(*c);
 	return result;
 }
 
@@ -337,16 +349,12 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 		azim += 360;
 
 //project azim to elevation plane -> azim2
-	double a = sin(d2r(azim)) * distXY;
-	double b = cos(d2r(azim)) * distXY;
-
-	//cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
+	double r_azim = d2r(azim);
+	double a = sin(r_azim) * distXY;
+	double b = cos(r_azim) * distXY;
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
-
 	double azim2 = r2d(atan2(a, e));
-
-	//aici e greseala
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
 //	for (int i = 0; i < mapping.size(); i++) {
 //		cout << mapping[i].first << "," << mapping[i].second << endl;
@@ -370,18 +378,74 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	return result;
 }
 
+double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
+	double result = 0.0;
+	double signalStrength = 0.0;
+	double x = c.x;
+	double y = c.y;
+	double z = c.z;
+
+	double antennaX = getLocation()->getCoordinate()->x;
+	double antennaY = getLocation()->getCoordinate()->y;
+	double antennaZ = getLocation()->getCoordinate()->z;
+
+	double dist = sqrt((x-antennaX)*(x-antennaX) + (y-antennaY)*(y-antennaY));//p->distance(getLocation());
+	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
+	signalStrength += S(dist);
+
+	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
+	if (theta_azim < 0)
+		theta_azim += 360;
+
+	double azim = fmod(theta_azim - m_direction, 360);
+	if (azim > 180)
+		azim -= 360;
+	if (azim < -180)
+		azim += 360;
+
+//project azim to elevation plane -> azim2
+	double r_azim = d2r(azim);
+	double a = sin(r_azim) * distXY;
+	double b = cos(r_azim) * distXY;
+
+	double e = projectToEPlane(b, m_height - z, m_tilt);
+	double azim2 = r2d(atan2(a, e));
+	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
+//	for (int i = 0; i < mapping.size(); i++) {
+//		cout << mapping[i].first << "," << mapping[i].second << endl;
+//	}
+	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
+
+	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
+
+//vertical component
+	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
+	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
+	if (elevation > 180)
+		elevation -= 360;
+	if (elevation < -180)
+		elevation += 360;
+
+	sd = findSD(m_beam_V, m_elev_dB_Back, mapping);  //? oare e acelasi mapping?
+	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
+
+	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	return result;
+}
+
+
+
 //TODO
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
-		for (auto& i : mapping) {
+	for (auto& i : mapping) {
 		tmp.push_back(i.second - beamWidth / 2.0);
 	}
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
 	result = mapping[indexMin].first;
 	return result;
 }
-
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -406,10 +470,9 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second -= dg;
 		i.second = fabs(i.second);
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
-			[](const pair<double, double>& a, const pair<double, double>& b) {
-				return a.second < b.second;
-			}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
+		return a.second < b.second;
+	}) - begin(_3dBDegrees);
 
 	return _3dBDegrees[minElementIndex].first;
 }

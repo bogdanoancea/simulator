@@ -54,8 +54,6 @@ int main(int argc, char** argv) {
 		else
 			map = new Map(mapFileName);
 
-
-		//map->addGrid(100, 100);
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 

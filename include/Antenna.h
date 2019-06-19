@@ -228,7 +228,9 @@ private:
 	double S0()const;
 	double SDist(double dist) const;
 	double computeSignalQualityOmnidirectional(const Point* p) const;
+	double computeSignalQualityOmnidirectional(const Coordinate c) const;
 	double computeSignalQualityDirectional(const Point* p) const;
+	double computeSignalQualityDirectional(const Coordinate c) const;
 	void setLocationWithElevation();
 	double projectToEPlane(double b, double c, double beta) const;
 	vector<pair<double, double>> createMapping(double dbBack) const;
