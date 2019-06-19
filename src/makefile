@@ -20,6 +20,7 @@ Map.o\
 MobilePhone.o\
 MovableAgent.o\
 Person.o\
+PriorType.o\
 RandomNumberGenerator.o\
 Tablet.o\
 Tinyxml2.o\
