@@ -98,12 +98,6 @@ int main(int argc, char** argv) {
 		}
 
 		w.runSimulation();
-
-		time_t tt = w.getClock()->realTime();
-		cout << "Computing probabilities started at " << ctime(&tt) << endl;
-		//now we compute the probabilities for the positions of the phones
-		// read the event connection data
-
 		vector<AntennaInfo> data;
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
@@ -126,48 +120,55 @@ int main(int argc, char** argv) {
 		}
 		antennaInfoFile.close();
 
-		ofstream p_file, g_File;
-		if (w.getProbFilename().empty()) {
-			throw runtime_error("no output file!");
-		}
-		try {
-			p_file.open(w.getProbFilename(), ios::out);
-			g_File.open(w.getGridFilename(), ios::out);
-		} catch (ofstream::failure& e) {
-			cerr << "Error opening output file!" << endl;
-		}
-		g_File << map->getGrid()->toString();
-		try {
-			g_File.close();
-		} catch (const ofstream::failure& e) {
-			cerr << "Error closing grid file!" << endl;
-		}
 
-		w.getClock()->reset();
-		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-		cout << "sum signal quality" << endl;
-		EMField::instance()->sumSignalQuality(map->getGrid());
-		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
-			//iterate over all devices
-			for (auto it = itrm.first; it != itrm.second; it++) {
-				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-				p_file << t << "," << m->getId() << ",";
-				ostringstream probs;
-				vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
-				for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
-					probs << fixed << setprecision(15) << p[i] << ",";
-				}
-				probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
-				p_file << probs.str() << endl;
+		if (w.getProbFilename().empty()) {
+			cout << "no probs output file, location probabilities will be not computed!" << endl;
+		} else {
+			time_t tt = w.getClock()->realTime();
+			cout << "Computing probabilities started at " << ctime(&tt) << endl;
+			//now we compute the probabilities for the positions of the phones
+			// read the event connection data
+
+			ofstream p_file, g_File;
+			try {
+				p_file.open(w.getProbFilename(), ios::out);
+				g_File.open(w.getGridFilename(), ios::out);
+			} catch (ofstream::failure& e) {
+				cerr << "Error opening output files!" << endl;
 			}
+			g_File << map->getGrid()->toString();
+			try {
+				g_File.close();
+			} catch (const ofstream::failure& e) {
+				cerr << "Error closing grid file!" << endl;
+			}
+
+			w.getClock()->reset();
+			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
+			cout << "Sum signal quality" << endl;
+			EMField::instance()->sumSignalQuality(map->getGrid());
+			for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+				//iterate over all devices
+				for (auto it = itrm.first; it != itrm.second; it++) {
+					MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+					p_file << t << "," << m->getId() << ",";
+					ostringstream probs;
+					vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
+					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+						probs << fixed << setprecision(15) << p[i] << ",";
+					}
+					probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
+					p_file << probs.str() << endl;
+				}
+			}
+			try {
+				p_file.close();
+			} catch (ofstream::failure& e) {
+				cerr << "Error closing probs file!" << endl;
+			}
+			tt = w.getClock()->realTime();
+			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
-		try {
-			p_file.close();
-		} catch (ofstream::failure& e) {
-			cerr << "Error closing probs file!" << endl;
-		}
-		tt = w.getClock()->realTime();
-		cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 	} catch (const runtime_error& e) {
 		cout << e.what() << endl;
 	} catch (const exception &e) {
