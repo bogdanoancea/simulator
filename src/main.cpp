@@ -43,6 +43,7 @@ int main(int argc, char** argv) {
 	const string &personsConfigFileName = parser.getCmdOption("-p");
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
 	bool verbose = parser.cmdOptionExists("-v");
+	bool generate_probs = parser.cmdOptionExists("-o");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
@@ -121,8 +122,8 @@ int main(int argc, char** argv) {
 		antennaInfoFile.close();
 
 
-		if (w.getProbFilename().empty()) {
-			cout << "no probs output file, location probabilities will be not computed!" << endl;
+		if (!generate_probs) {
+			cout << "Location probabilities will be not computed!" << endl;
 		} else {
 			time_t tt = w.getClock()->realTime();
 			cout << "Computing probabilities started at " << ctime(&tt) << endl;
