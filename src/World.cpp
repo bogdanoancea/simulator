@@ -356,18 +356,29 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		else
 			m_numMNO = Constants::NUM_MNO;
 
-		if(m_numMNO > 2)
+		if (m_numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported now");
 
 		if (m_numMNO == 1) {
 			XMLNode* mnoNameNode = getNode(simEl, "mno_name");
-			if (mnoNameNode)
+			if (mnoNameNode) {
 				addMNO(mnoNameNode->ToText()->Value());
+				cout << mnoNameNode->ToText()->Value() << endl;
+			}
 			else
 				addMNO(Constants::DEFAULT_MNO_NAME);
 
+		} else {
+			XMLElement* mnoNameEl = utils::getFirstChildElement(simEl, "mno_name");
+			for (; mnoNameEl; mnoNameEl = mnoNameEl->NextSiblingElement()) {
+				if (mnoNameEl && strcmp(mnoNameEl->Name(), "mno_name")) {
+					cout << "unknown element: " << mnoNameEl->Name() << " ignoring it" << endl;
+					continue;
+				}
+				addMNO(mnoNameEl->ToText()->Value());
+				cout << mnoNameEl->ToText()->Value() << endl;
+			}
 		}
-
 
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
@@ -497,9 +508,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		}
 		result.push_back(p);
 	}
-	delete [] walk_car;
-	delete [] phone;
-	delete [] phone2;
+	delete[] walk_car;
+	delete[] phone;
+	delete[] phone2;
 	delete[] speeds_walk;
 	delete[] speeds_car;
 	delete[] ages;
