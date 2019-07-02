@@ -51,3 +51,4 @@ const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 
 const unsigned int Constants::NUM_MNO = 1;
 
+const char* Constants::DEFAULT_MNO_NAME = "MNO";

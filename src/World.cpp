@@ -359,6 +359,16 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		if(m_numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported now");
 
+		if (m_numMNO == 1) {
+			XMLNode* mnoNameNode = getNode(simEl, "mno_name");
+			if (mnoNameNode)
+				addMNO(mnoNameNode->ToText()->Value());
+			else
+				addMNO(Constants::DEFAULT_MNO_NAME);
+
+		}
+
+
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
 			if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map"))
@@ -503,4 +513,8 @@ const string& World::getAntennasFilename() const {
 
 const string& World::getPersonsFilename() const {
 	return m_personsFilename;
+}
+
+void World::addMNO(string mnoName) {
+	m_mnoNames.push_back(mnoName);
 }

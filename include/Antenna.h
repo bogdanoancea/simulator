@@ -219,8 +219,8 @@ public:
 	void setTilt(double tilt);
 	double getDirection() const;
 	void setDirection(double direction);
-	unsigned long getMnoId() const;
-	void setMnoId(unsigned long mnoId);
+	unsigned long getMNOId() const;
+	void setMNOId(unsigned long mnoId);
 
 private:
 

@@ -153,6 +153,8 @@ public:
 	PriorType getPrior() const;
 	unsigned int getNumMno() const;
 	void setNumMno(unsigned int numMno);
+	void addMNO(string name);
+
 
 private:
 
@@ -167,6 +169,7 @@ private:
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
 	unsigned int m_numMNO;
+	vector<string> m_mnoNames;
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
