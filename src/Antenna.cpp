@@ -609,3 +609,11 @@ double Antenna::getDirection() const {
 void Antenna::setDirection(double direction) {
 	m_direction = direction;
 }
+
+unsigned long Antenna::getMnoId() const {
+	return m_MNO_ID;
+}
+
+void Antenna::setMnoId(unsigned long mnoId) {
+	m_MNO_ID = mnoId;
+}

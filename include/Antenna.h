@@ -219,6 +219,8 @@ public:
 	void setTilt(double tilt);
 	double getDirection() const;
 	void setDirection(double direction);
+	unsigned long getMnoId() const;
+	void setMnoId(unsigned long mnoId);
 
 private:
 
@@ -259,6 +261,8 @@ private:
 	double m_azim_dB_Back;
 	double m_elev_dB_Back;
 	double m_direction;
+
+	unsigned long m_MNO_ID;
 
 };
 

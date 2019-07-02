@@ -160,6 +160,7 @@ public:
 
 	static const unsigned int ANTENNA_MIN_3_DB;
 
+	static unsigned int NUM_MNO;
 };
 
 #endif /* CONSTANTS_H_ */

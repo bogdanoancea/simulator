@@ -151,6 +151,8 @@ public:
 	 * @return the type of the prior probability used to compute the posterior localization probability
 	 */
 	PriorType getPrior() const;
+	unsigned int getNumMno() const;
+	void setNumMno(unsigned int numMno);
 
 private:
 
@@ -164,7 +166,7 @@ private:
 	unsigned long m_GridDimTileX;
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
-
+	unsigned int m_numMNO;
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;

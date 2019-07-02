@@ -30,3 +30,4 @@ todo.txt
      
      de implementat Antenna::findSD
      
+     de adaugat al doilea MNO

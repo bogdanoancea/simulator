@@ -314,6 +314,14 @@ PriorType World::getPrior() const {
 	return m_prior;
 }
 
+unsigned int World::getNumMno() const {
+	return m_numMNO;
+}
+
+void World::setNumMno(unsigned int numMno) {
+	m_numMNO = numMno;
+}
+
 void World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configSimulationFileName.c_str());
@@ -341,6 +349,15 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 			m_timeIncrement = atol(iTNode->ToText()->Value());
 		else
 			m_timeIncrement = Constants::INCREMENT_TIME;
+
+		XMLNode* mnoNode = getNode(simEl, "num_mnos");
+		if (mnoNode)
+			m_numMNO = atol(mnoNode->ToText()->Value());
+		else
+			m_numMNO = Constants::NUM_MNO;
+
+		if(m_numMNO > 2)
+			throw std::runtime_error("Maximum 2 MNOs are supported now");
 
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
