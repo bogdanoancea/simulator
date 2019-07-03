@@ -16,6 +16,7 @@
 #include <Utils.h>
 #include <World.h>
 #include <algorithm>
+#include <numeric>
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -290,11 +291,26 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 		XMLNode* maleShareNode = getNode(personsEl, "male_share");
 		double male_share = atof(maleShareNode->ToText()->Value());
 
-		XMLNode* prob_mobilePhoneNode = getNode(personsEl, "prob_mobile_phone");
-		double probMobilePhone = atof(prob_mobilePhoneNode->ToText()->Value());
+		vector<pair<string, double>> probMobilePhones;
+		XMLElement* probMobilePhoneEl = utils::getFirstChildElement(personsEl, "prob_mobile_phone");
+		for (; probMobilePhoneEl; probMobilePhoneEl = probMobilePhoneEl->NextSiblingElement("prob_mobile_phone")) {
+			//unsigned long id = IDGenerator::instance()->next();
+			XMLNode* n = getNode(probMobilePhoneEl, "mno_name");
+			string name = n->ToText()->Value();
+			n = getNode(probMobilePhoneEl, "prob");
+			double prob = atof(n->ToText()->Value());
+			probMobilePhones.push_back(make_pair(name, prob));
+		}
 
+		double probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
 		XMLNode* prob_sec_mobilePhoneNode = getNode(personsEl, "prob_sec_mobile_phone");
-		double probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
+		if (prob_sec_mobilePhoneNode)
+			probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
+
+		double probSecMobilePhoneSameMNO = Constants::PROB_SECOND_MOBILE_PHONE;
+		XMLNode* prob_sec_mobilePhoneSameMNONode = getNode(personsEl, "prob_sec_mobile_phone_same_mno");
+		if (prob_sec_mobilePhoneSameMNONode)
+			probSecMobilePhoneSameMNO = atof(prob_sec_mobilePhoneSameMNONode->ToText()->Value());
 
 		XMLNode* speed_walkNode = getNode(personsEl, "speed_walk");
 		double speed_walk = atof(speed_walkNode->ToText()->Value());
@@ -302,7 +318,7 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, probMobilePhone, probSecMobilePhone, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, probMobilePhones, probSecMobilePhone, probSecMobilePhoneSameMNO, speed_walk, speed_car);
 	}
 	return (result);
 }
@@ -467,13 +483,17 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	return (result);
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,
-		double probSecMobilePhone, double speed_walk, double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
+		vector<pair<string, double>> probMobilePhones, double probSecMobilePhone, double probSecMobilePhoneSameMNO, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
+
+	double probMobilePhone = 0.0;
+	for (auto& n : probMobilePhones)
+		probMobilePhone += n.second;
 
 	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
 	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);

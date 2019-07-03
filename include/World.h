@@ -182,8 +182,8 @@ private:
 
 	vector<Person*> generatePopulation(unsigned long numPersons);
 
-	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,
-			double probSecMobilePhone, double speed_walk, double speed_car);
+	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, vector<pair<string, double>> probMobilePhone,
+			double probSecMobilePhone, double probSecMobilePhoneSameMNO, double speed_walk, double speed_car);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);

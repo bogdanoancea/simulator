@@ -19,8 +19,9 @@ const double Constants::S_MID = -92.5;
 const double Constants::S_STEEP = 0.2;
 const unsigned long Constants::NO_PERSONS = 100;
 const unsigned long Constants::NO_ANTENNAS = 10;
-const double Constants::MARKET_SHARE = 0.3;
-const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::MARKET_SHARE;
+const double Constants::PROB_MOBILE_PHONE = 0.35;
+const double Constants::PROB_SECOND_MOBILE_PHONE = 0.1;
+const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::PROB_MOBILE_PHONE;
 
 const unsigned long Constants::START_TIME = 0;
 const unsigned long Constants::END_TIME = 200;
