@@ -66,9 +66,14 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
 
-	parseSimulationFile(configSimulationFileName);
+	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
+
+	for (unsigned long i = 0; i < mnos.size(); i++) {
+		m_agentsCollection->addAgent(mnos[i]);
+	}
+
 	vector<Person*> persons = parsePersons(configPersonsFileName);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -322,8 +327,9 @@ void World::setNumMno(unsigned int numMno) {
 	m_numMNO = numMno;
 }
 
-void World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
+vector<MobileOperator*> World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
+	vector<MobileOperator*> result;
 	XMLError err = doc.LoadFile(configSimulationFileName.c_str());
 	if (err != XML_SUCCESS)
 		throw std::runtime_error("Error opening configuration file for simulation ");
@@ -370,8 +376,9 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		} else {
 
 			XMLElement* mnoNameEl = utils::getFirstChildElement(simEl, "mno_name");
-			addMNO(mnoNameEl->FirstChild()->ToText()->Value());
-			//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
+			unsigned long id = IDGenerator::instance()->next();
+			MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, mnoNameEl->FirstChild()->ToText()->Value());
+			result.push_back(mo);
 			for (unsigned int i = 1; i < m_numMNO; i++) {
 				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
 				mnoNameEl = mnoNameEl->NextSiblingElement("mno_name");
@@ -379,7 +386,9 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 					cout << "unknown element: " << mnoNameEl->Name() << " ignoring it" << endl;
 					continue;
 				}
-				addMNO(mnoNameEl->FirstChild()->ToText()->Value());
+				unsigned long id = IDGenerator::instance()->next();
+				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, mnoNameEl->FirstChild()->ToText()->Value());
+				result.push_back(mo);
 				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
 			}
 		}
@@ -455,6 +464,7 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 		} else
 			m_prior = Constants::PRIOR_PROBABILITY;
 	}
+	return (result);
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,

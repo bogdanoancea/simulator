@@ -20,6 +20,7 @@
 #include <MovementType.h>
 #include <TinyXML2.h>
 #include <PriorType.h>
+#include <MobileOperator.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -188,7 +189,7 @@ private:
 	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
 	vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
-	void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 
 };
 
