@@ -364,19 +364,23 @@ void World::parseSimulationFile(const string& configSimulationFileName) noexcept
 			if (mnoNameNode) {
 				addMNO(mnoNameNode->ToText()->Value());
 				cout << mnoNameNode->ToText()->Value() << endl;
-			}
-			else
+			} else
 				addMNO(Constants::DEFAULT_MNO_NAME);
 
 		} else {
+
 			XMLElement* mnoNameEl = utils::getFirstChildElement(simEl, "mno_name");
-			for (; mnoNameEl; mnoNameEl = mnoNameEl->NextSiblingElement()) {
+			addMNO(mnoNameEl->FirstChild()->ToText()->Value());
+			//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
+			for (unsigned int i = 1; i < m_numMNO; i++) {
+				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
+				mnoNameEl = mnoNameEl->NextSiblingElement("mno_name");
 				if (mnoNameEl && strcmp(mnoNameEl->Name(), "mno_name")) {
 					cout << "unknown element: " << mnoNameEl->Name() << " ignoring it" << endl;
 					continue;
 				}
-				addMNO(mnoNameEl->ToText()->Value());
-				cout << mnoNameEl->ToText()->Value() << endl;
+				addMNO(mnoNameEl->FirstChild()->ToText()->Value());
+				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
 			}
 		}
 
