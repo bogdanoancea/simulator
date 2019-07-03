@@ -76,6 +76,10 @@ namespace utils {
 				<< "Max Connections" << setw(20) << "Attenuation Factor" << endl;
 	}
 
+	void printMobileOperatorHeader() {
+		cout << left << setw(15) << "MNO ID" << setw(15) << " Name "  << endl;
+	}
+
 	void printPhoneHeader() {
 		cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
 				<< endl;

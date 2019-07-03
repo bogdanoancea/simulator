@@ -74,6 +74,14 @@ int main(int argc, char** argv) {
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
+			utils::printMobileOperatorHeader();
+			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
+			vector<MobileOperator*> mnos;
+			for (auto it = itr0.first; it != itr0.second; it++) {
+				MobileOperator* mno = dynamic_cast<MobileOperator*>(it->second);
+				cout << mno->toString() << endl;
+			}
+
 			utils::printPersonHeader();
 			auto itr = c->getAgentListByType(typeid(Person).name());
 			vector<Person*> persons;

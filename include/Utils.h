@@ -54,6 +54,13 @@ namespace utils {
 	void printPhoneHeader();
 
 	/**
+	 * Prints out a header containing the names of the member variables from the MobileOperator class in a human readable format
+	 * It is used together with MobileOperator::toString() to output the mobile network operators set on console
+	 */
+	void printMobileOperatorHeader();
+
+
+	/**
 	 * Number pi
 	 */
 	const double PI = std::atan(1.0) * 4;
