@@ -75,7 +75,7 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 		m_agentsCollection->addAgent(mnos[i]);
 	}
 
-	vector<Person*> persons = parsePersons(configPersonsFileName);
+	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
@@ -241,7 +241,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 	return (result);
 }
 
-vector<Person*> World::parsePersons(const string& personsFileName) noexcept(false) {
+vector<Person*> World::parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false) {
 	vector<Person*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(personsFileName.c_str());
@@ -318,7 +318,7 @@ vector<Person*> World::parsePersons(const string& personsFileName) noexcept(fals
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, probMobilePhones, probSecMobilePhone, probSecMobilePhoneSameMNO, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, probMobilePhones, probSecMobilePhone, probSecMobilePhoneSameMNO, mnos, speed_walk, speed_car);
 	}
 	return (result);
 }
@@ -484,7 +484,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-		vector<pair<string, double>> probMobilePhones, double probSecMobilePhone, double probSecMobilePhoneSameMNO, double speed_walk, double speed_car) {
+		vector<pair<string, double>> probMobilePhones, double probSecMobilePhone, double probSecMobilePhoneSameMNO, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 
@@ -498,12 +498,15 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
 	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
 	int* phone2 = RandomNumberGenerator::instance()->generateBinomialInt(1, probSecMobilePhone, numPersons);
+	cout << "sec mob phone:" << probSecMobilePhone << endl;
 	int sum = 0;
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
 		numPhones += (phone[i] + phone2[i]);
+		cout << phone[i] << ":" << phone2[i] << endl;
 	}
+cout << "numphones: " << numPhones << endl;
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
@@ -530,6 +533,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		else
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
+//		cout << "which MNO " << whichMNO(probMobilePhones,  mnos) << endl;
 		if (phone[i]) {
 			mobiles[m_index]->setHolder(p);
 			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
@@ -562,4 +566,20 @@ const string& World::getPersonsFilename() const {
 
 void World::addMNO(string mnoName) {
 	m_mnoNames.push_back(mnoName);
+}
+
+int World::whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos) {
+	int result = -1;
+	int n = probs.size();
+	int j;
+	for(j = 0; j < n; j++) {
+		cout << "mno " << j << "prob " << probs.at(j).second << endl;
+		 result = RandomNumberGenerator::instance()->generateBinomialInt(1, probs.at(j).second);
+		 if(result == 1)
+			 break;
+	}
+	if(result == 0)
+		return -1;
+	else
+		return j;
 }

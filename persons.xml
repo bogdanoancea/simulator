@@ -16,7 +16,7 @@
         	<mno_name>Orange</mno_name>
         	<prob>0.25</prob>
         </prob_mobile_phone>
-        <prob_sec_mobile_phone>0.1</prob_sec_mobile_phone>
+        <prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
         <prob_sec_mobile_phone_same_mno>0.35</prob_sec_mobile_phone_same_mno>
         <speed_walk>150</speed_walk>
         <speed_car>450</speed_car>
