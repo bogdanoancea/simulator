@@ -100,3 +100,10 @@ const string MobilePhone::getName() const {
 	return ("MobilePhone");
 }
 
+const MobileOperator* MobilePhone::getMobileOperator() const {
+	return m_mno;
+}
+
+void MobilePhone::setMobileOperator(const MobileOperator* mno) {
+	m_mno = mno;
+}

@@ -11,6 +11,7 @@
 #define MOBILEPHONE_H_
 
 #include <HoldableAgent.h>
+#include <MobileOperator.h>
 #include <Antenna.h>
 #include <Clock.h>
 #include <geos/geom/Point.h>
@@ -98,6 +99,8 @@ public:
 	 * @param qualityThreshold the minimum value of the signal power below which the phone cannot use the signal
 	 */
 	void setPowerThreshold(double powerThreshold);
+	const MobileOperator* getMobileOperator() const;
+	void setMobileOperator(const MobileOperator* mno);
 
 private:
 	//bool tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type);
@@ -105,6 +108,7 @@ private:
 	double m_qualityThreshold;
 	Antenna* m_connectedTo;
 	HoldableAgent::CONNECTION_TYPE m_connType;
+	MobileOperator* m_mno;
 
 };
 
