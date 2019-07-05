@@ -495,18 +495,20 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	for (auto& n : probMobilePhones)
 		probMobilePhone += n.second;
 
-	int* walk_car = RandomNumberGenerator::instance()->generateBinomialInt(1, 0.5, numPersons);
-	int* phone = RandomNumberGenerator::instance()->generateBinomialInt(1, probMobilePhone, numPersons);
-	int* phone2 = RandomNumberGenerator::instance()->generateBinomialInt(1, probSecMobilePhone, numPersons);
+	int* walk_car = RandomNumberGenerator::instance()->generateBernoulliInt(0.5, numPersons);
+	int* phone = RandomNumberGenerator::instance()->generateBernoulliInt(probMobilePhone, numPersons);
+	int* phone2 = RandomNumberGenerator::instance()->generateBernoulliInt(probSecMobilePhone, numPersons);
 	cout << "sec mob phone:" << probSecMobilePhone << endl;
 	int sum = 0;
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
 		numPhones += (phone[i] + phone2[i]);
-		cout << phone[i] << ":" << phone2[i] << endl;
+		//cout << phone[i] << ":" << phone2[i] << endl;
 	}
-cout << "numphones: " << numPhones << endl;
+//cout << "numphones: " << numPhones << endl;
+
+
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
@@ -534,6 +536,13 @@ cout << "numphones: " << numPhones << endl;
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
 //		cout << "which MNO " << whichMNO(probMobilePhones,  mnos) << endl;
+//		double pmno1 = RandomNumberGenerator::instance()->generateBernoulliInt(0.25);
+//		cout << "prob la PRIMUL OPERATOR " << pmno1 << endl;
+//		if(pmno1 == 1) {
+//			double psec = RandomNumberGenerator::instance()->generateBernoulliInt(0.1);
+//			cout << "prob al doilea telefon " << psec << endl;
+//		}
+
 		if (phone[i]) {
 			mobiles[m_index]->setHolder(p);
 			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);

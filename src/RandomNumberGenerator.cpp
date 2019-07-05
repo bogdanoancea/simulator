@@ -31,8 +31,7 @@ double* RandomNumberGenerator::generateNormal2Double(const double m1, const doub
 		if (i % 2) {
 			m_normal_double_distribution.param(p1);
 			result[i] = m_normal_double_distribution(m_generator);
-		}
-		else {
+		} else {
 			m_normal_double_distribution.param(p2);
 			result[i] = m_normal_double_distribution(m_generator);
 		}
@@ -127,8 +126,23 @@ double RandomNumberGenerator::generateNormalDouble(const double m, const double 
 	return (result);
 }
 
+int RandomNumberGenerator::generateBernoulliInt(const double p) {
+	int result = 0;
+	bernoulli_distribution::param_type par(p);
+	m_bernoulli_distribution.param(par);
+	result = m_bernoulli_distribution(m_generator);
+	return (result);
+}
 
-
+int* RandomNumberGenerator::generateBernoulliInt(const double p, const int n) {
+	int* result = new int[n];
+	bernoulli_distribution::param_type par(p);
+	m_bernoulli_distribution.param(par);
+	for (int i = 0; i < n; i++) {
+		result[i] = m_bernoulli_distribution(m_generator);
+	}
+	return (result);
+}
 
 ////------------------------------------------------------------
 //// Compute y_l from y_k
