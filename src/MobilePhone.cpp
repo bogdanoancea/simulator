@@ -59,7 +59,7 @@ bool MobilePhone::tryConnect() {
 	if (use_power)
 		antenna = EMField::instance()->computeMaxPower(p);
 	else
-		antenna = EMField::instance()->computeMaxQuality(p, getId());
+		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
 
 
 	if (antenna.second > threshold) {
@@ -73,7 +73,7 @@ bool MobilePhone::tryConnect() {
 	}
 	else {
 		//try to connect to another antenna in range
-		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getId());
+		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getMobileOperator()->getId());
 		unsigned long size = antennas.size();
 		for (unsigned long i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);
