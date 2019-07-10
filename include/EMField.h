@@ -59,7 +59,7 @@ public:
 	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides a signal with the
 	 * highest quality in p.
 	 */
-	pair<Antenna*, double> computeMaxQuality(const Point* p);
+	pair<Antenna*, double> computeMaxQuality(const Point* p, unsigned long mnoId);
 
 	/**
 	 * Returns a vector of pairs made up of an Antenna object and its power or signal quality. All the antennas in this vector
@@ -73,7 +73,7 @@ public:
 	 * provides a signal with a power or signal quality greater than the threshold provided as a parameter
 	 */
 	vector<pair<Antenna*, double>> getInRangeAntennas(const Point* p,
-			const double threshold, const bool power);
+			const double threshold, const bool power, unsigned long mnoId);
 
 	/**
 	 * Checks is the power or the signal quality given by an antenna in a specific point in space is above the limit

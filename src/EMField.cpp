@@ -52,7 +52,8 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
 	return (result);
 }
 
-pair<Antenna*, double> EMField::computeMaxQuality(const Point* p) {
+
+pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -96,7 +97,7 @@ void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const double threshold, const bool power) {
+vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const double threshold, const bool power, unsigned long mnoId) {
 	vector<pair<Antenna*, double>> result;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
