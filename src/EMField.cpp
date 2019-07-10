@@ -59,13 +59,13 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, unsigned long 
 	if (size > 0) {
 		double max = numeric_limits<double>::min();
 		for (Antenna* a : m_antennas) {
-			//if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
+			if(a->getId() != mnoId)
+				continue;
 			double quality = a->computeSignalQuality(p);
 			if (quality > max) {
 				max = quality;
 				result = make_pair(a, quality);
 			}
-			//}
 		}
 	}
 	return (result);
@@ -102,6 +102,8 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
+			if(a->getId() != mnoId)
+				continue;
 			double x;
 			if (power)
 				x = a->computePower(p);
