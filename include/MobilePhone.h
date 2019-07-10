@@ -100,7 +100,7 @@ public:
 	 */
 	void setPowerThreshold(double powerThreshold);
 	const MobileOperator* getMobileOperator() const;
-	void setMobileOperator(const MobileOperator* mno);
+	void setMobileOperator(MobileOperator* mno);
 
 private:
 	//bool tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type);

@@ -46,7 +46,8 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_personsFilename = Constants::PERSONS_FILE_NAME;
 	m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
 	m_probFilename = Constants::PROB_FILE_NAME;
-
+	m_numMNO = 0;
+	m_probSecMobilePhone = 0.0;
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -67,6 +68,8 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
 		m_map { map } {
 
+	m_numMNO = 0;
+	m_probSecMobilePhone = 0.0;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
@@ -291,34 +294,13 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 		XMLNode* maleShareNode = getNode(personsEl, "male_share");
 		double male_share = atof(maleShareNode->ToText()->Value());
 
-		vector<pair<string, double>> probMobilePhones;
-		XMLElement* probMobilePhoneEl = utils::getFirstChildElement(personsEl, "prob_mobile_phone");
-		for (; probMobilePhoneEl; probMobilePhoneEl = probMobilePhoneEl->NextSiblingElement("prob_mobile_phone")) {
-			//unsigned long id = IDGenerator::instance()->next();
-			XMLNode* n = getNode(probMobilePhoneEl, "mno_name");
-			string name = n->ToText()->Value();
-			n = getNode(probMobilePhoneEl, "prob");
-			double prob = atof(n->ToText()->Value());
-			probMobilePhones.push_back(make_pair(name, prob));
-		}
-
-		double probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
-		XMLNode* prob_sec_mobilePhoneNode = getNode(personsEl, "prob_sec_mobile_phone");
-		if (prob_sec_mobilePhoneNode)
-			probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
-
-		double probSecMobilePhoneSameMNO = Constants::PROB_SECOND_MOBILE_PHONE;
-		XMLNode* prob_sec_mobilePhoneSameMNONode = getNode(personsEl, "prob_sec_mobile_phone_same_mno");
-		if (prob_sec_mobilePhoneSameMNONode)
-			probSecMobilePhoneSameMNO = atof(prob_sec_mobilePhoneSameMNONode->ToText()->Value());
-
 		XMLNode* speed_walkNode = getNode(personsEl, "speed_walk");
 		double speed_walk = atof(speed_walkNode->ToText()->Value());
 
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, probMobilePhones, probSecMobilePhone, probSecMobilePhoneSameMNO, mnos, speed_walk, speed_car);
+		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car);
 	}
 	return (result);
 }
@@ -372,42 +354,26 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_timeIncrement = Constants::INCREMENT_TIME;
 
-		XMLNode* mnoNode = getNode(simEl, "num_mnos");
-		if (mnoNode)
-			m_numMNO = atol(mnoNode->ToText()->Value());
-		else
-			m_numMNO = Constants::NUM_MNO;
-
-		if (m_numMNO > 2)
-			throw std::runtime_error("Maximum 2 MNOs are supported now");
-
-		if (m_numMNO == 1) {
-			XMLNode* mnoNameNode = getNode(simEl, "mno_name");
-			if (mnoNameNode) {
-				addMNO(mnoNameNode->ToText()->Value());
-				cout << mnoNameNode->ToText()->Value() << endl;
-			} else
-				addMNO(Constants::DEFAULT_MNO_NAME);
-
-		} else {
-
-			XMLElement* mnoNameEl = utils::getFirstChildElement(simEl, "mno_name");
-			unsigned long id = IDGenerator::instance()->next();
-			MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, mnoNameEl->FirstChild()->ToText()->Value());
-			result.push_back(mo);
-			for (unsigned int i = 1; i < m_numMNO; i++) {
-				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
-				mnoNameEl = mnoNameEl->NextSiblingElement("mno_name");
-				if (mnoNameEl && strcmp(mnoNameEl->Name(), "mno_name")) {
-					cout << "unknown element: " << mnoNameEl->Name() << " ignoring it" << endl;
-					continue;
-				}
+		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
+		if (mnoEl) {
+			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
+				m_numMNO++;
+				XMLNode* n = getNode(mnoEl, "mno_name");
+				const char* name = n->ToText()->Value();
+				n = getNode(mnoEl, "prob_mobile_phone");
+				const double prob = atof(n->ToText()->Value());
 				unsigned long id = IDGenerator::instance()->next();
-				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, mnoNameEl->FirstChild()->ToText()->Value());
+				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob);
 				result.push_back(mo);
-				//cout << mnoNameEl->FirstChild()->ToText()->Value() << endl;
 			}
 		}
+		if (m_numMNO > 2)
+			throw std::runtime_error("Maximum 2 MNOs are supported!");
+
+		double probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
+		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
+		if (prob_sec_mobilePhoneNode)
+			m_probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
 
 		XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
@@ -420,6 +386,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		} else {
 			m_mvType = MovementType::UNKNOWN;
 		}
+
 		XMLNode* connNode = getNode(simEl, "connection_type");
 		if (connNode) {
 			if (!strcmp(connNode->ToText()->Value(), "power"))
@@ -484,31 +451,64 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-		vector<pair<string, double>> probMobilePhones, double probSecMobilePhone, double probSecMobilePhoneSameMNO, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
+		vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
-
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
 
 	double probMobilePhone = 0.0;
-	for (auto& n : probMobilePhones)
-		probMobilePhone += n.second;
+	double probIntersection = 1.0;
+	unsigned int numMno = mnos.size();
+	for (auto& n : mnos) {
+		probMobilePhone += n->getProbMobilePhone();
+		probIntersection *= n->getProbMobilePhone();
+	}
+	if (numMno > 1 && probIntersection > m_probSecMobilePhone)
+		throw std::runtime_error(
+				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
 
 	int* walk_car = RandomNumberGenerator::instance()->generateBernoulliInt(0.5, numPersons);
-	int* phone = RandomNumberGenerator::instance()->generateBernoulliInt(probMobilePhone, numPersons);
-	int* phone2 = RandomNumberGenerator::instance()->generateBernoulliInt(probSecMobilePhone, numPersons);
-	cout << "sec mob phone:" << probSecMobilePhone << endl;
+
+	int* phone1 = nullptr; //RandomNumberGenerator::instance()->generateBernoulliInt(probMobilePhones[0].second, numPersons);
+	int* phone2 = nullptr; //new int[numPersons] { 0 }; //RandomNumberGenerator::instance()->generateBernoulliInt(probSecMobilePhone, numPersons);
+	if (numMno == 1) {
+		phone1 = RandomNumberGenerator::instance()->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
+		for (unsigned long j = 0; j < numPersons; j++) {
+			if (phone1[j] == 1)
+				phone1[j] += RandomNumberGenerator::instance()->generateBernoulliInt(m_probSecMobilePhone);
+		}
+	} else if (numMno == 2) {
+		double pSecPhoneDiffMNO = probIntersection;
+		double pSecPhoneMNO1 = (m_probSecMobilePhone - pSecPhoneDiffMNO) / 2.0;
+		double pSecPhoneMNO2 = pSecPhoneMNO1;
+
+		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
+		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
+
+		phone1 = RandomNumberGenerator::instance()->generateBernoulliInt(pOnePhoneMNO1, numPersons);
+		phone2 = RandomNumberGenerator::instance()->generateBernoulliInt(pOnePhoneMNO2, numPersons);
+		for (unsigned int i = 1; i < numPersons; i++) {
+			if (phone1[i] == 1) {
+				phone1[i] = phone1[i] + RandomNumberGenerator::instance()->generateBernoulliInt(pSecPhoneMNO1);
+			}
+			if (phone2[i] == 1) {
+				phone2[i] = phone2[i] + +RandomNumberGenerator::instance()->generateBernoulliInt(pSecPhoneMNO2);
+			}
+		}
+	} else {
+		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
+	}
+
 	int sum = 0;
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
-		numPhones += (phone[i] + phone2[i]);
-		//cout << phone[i] << ":" << phone2[i] << endl;
+		if(phone1 && phone2)
+			numPhones += (phone1[i] + phone2[i]);
+		else
+			numPhones += phone1[i];
 	}
-//cout << "numphones: " << numPhones << endl;
-
-
 
 	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
@@ -525,8 +525,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	unsigned long cars = 0;
 	unsigned long walks = 0;
-	vector<MobilePhone*> mobiles = generateMobilePhones(numPhones, m_connType);
-	unsigned long m_index = 0;
 	Person* p;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
@@ -535,28 +533,30 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		else
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
-//		cout << "which MNO " << whichMNO(probMobilePhones,  mnos) << endl;
-//		double pmno1 = RandomNumberGenerator::instance()->generateBernoulliInt(0.25);
-//		cout << "prob la PRIMUL OPERATOR " << pmno1 << endl;
-//		if(pmno1 == 1) {
-//			double psec = RandomNumberGenerator::instance()->generateBernoulliInt(0.1);
-//			cout << "prob al doilea telefon " << psec << endl;
-//		}
-
-		if (phone[i]) {
-			mobiles[m_index]->setHolder(p);
-			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
-			m_index++;
+		int np1 = phone1[i];
+		int np2 = phone2[i];
+		while (np1) {
+			id = IDGenerator::instance()->next();
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			mp->setMobileOperator(mnos[0]);
+			mp->setHolder(p);
+			m_agentsCollection->addAgent(mp);
+			p->addDevice(typeid(MobilePhone).name(), mp);
+			np1--;
 		}
-		if (phone2[i]) {
-			mobiles[m_index]->setHolder(p);
-			p->addDevice(typeid(MobilePhone).name(), mobiles[m_index]);
-			m_index++;
+		while (np2) {
+			id = IDGenerator::instance()->next();
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			mp->setMobileOperator(mnos[1]);
+			mp->setHolder(p);
+			m_agentsCollection->addAgent(mp);
+			p->addDevice(typeid(MobilePhone).name(), mp);
+			np2--;
 		}
 		result.push_back(p);
 	}
 	delete[] walk_car;
-	delete[] phone;
+	delete[] phone1;
 	delete[] phone2;
 	delete[] speeds_walk;
 	delete[] speeds_car;
@@ -573,22 +573,3 @@ const string& World::getPersonsFilename() const {
 	return m_personsFilename;
 }
 
-void World::addMNO(string mnoName) {
-	m_mnoNames.push_back(mnoName);
-}
-
-int World::whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos) {
-	int result = -1;
-	int n = probs.size();
-	int j;
-	for(j = 0; j < n; j++) {
-		cout << "mno " << j << "prob " << probs.at(j).second << endl;
-		 result = RandomNumberGenerator::instance()->generateBinomialInt(1, probs.at(j).second);
-		 if(result == 1)
-			 break;
-	}
-	if(result == 0)
-		return -1;
-	else
-		return j;
-}

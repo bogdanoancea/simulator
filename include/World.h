@@ -170,7 +170,7 @@ private:
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
 	unsigned int m_numMNO;
-	vector<string> m_mnoNames;
+
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
@@ -178,12 +178,12 @@ private:
 	string m_probFilename;
 	string m_personsFilename;
 	string m_antennasFilename;
-
+	double m_probSecMobilePhone;
 
 	vector<Person*> generatePopulation(unsigned long numPersons);
 
-	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, vector<pair<string, double>> probMobilePhone,
-			double probSecMobilePhone, double probSecMobilePhoneSameMNO, vector<MobileOperator*> mnos, double speed_walk, double speed_car);
+	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
+			vector<MobileOperator*> mnos, double speed_walk, double speed_car);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
