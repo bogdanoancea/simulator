@@ -15,6 +15,7 @@
 #include <geos/geom/Polygon.h>
 #include <EventType.h>
 #include <AntennaType.h>
+#include <MobileOperator.h>
 #include <TinyXML2.h>
 #include <string>
 #include <fstream>
@@ -57,7 +58,7 @@ public:
 	 * @param id the id of the Antenna
 	 * @param el the XML Element containing the parameters of the Antenna.
 	 */
-	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el);
+	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos);
 
 
 	/**
@@ -219,8 +220,8 @@ public:
 	void setTilt(double tilt);
 	double getDirection() const;
 	void setDirection(double direction);
-	unsigned long getMNOId() const;
-	void setMNOId(unsigned long mnoId);
+	MobileOperator* getMNO() const;
+	void setMNO(MobileOperator* mno);
 
 private:
 
@@ -262,7 +263,7 @@ private:
 	double m_elev_dB_Back;
 	double m_direction;
 
-	unsigned long m_MNO_ID;
+	MobileOperator* m_MNO;
 
 };
 

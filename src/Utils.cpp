@@ -70,7 +70,7 @@ void printPersonHeader() {
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID"
 			<< endl;
 }
 

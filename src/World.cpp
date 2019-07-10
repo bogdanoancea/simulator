@@ -83,7 +83,7 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 		m_agentsCollection->addAgent(persons[i]);
 	}
 
-	vector<Antenna*> antennas = parseAntennas(configAntennasFile);
+	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
 	for (unsigned long i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
@@ -219,7 +219,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	return (result);
 }
 
-vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept(false) {
+vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false) {
 	vector<Antenna*> result;
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(configAntennasFile.c_str());
@@ -237,7 +237,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile) noexcept
 				continue;
 			}
 			unsigned long id = IDGenerator::instance()->next();
-			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl);
+			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos);
 			result.push_back(a);
 		}
 	}

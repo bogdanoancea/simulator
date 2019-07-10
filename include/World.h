@@ -186,7 +186,7 @@ private:
 			vector<MobileOperator*> mnos, double speed_walk, double speed_car);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
-	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
+	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
 	vector<Person*> parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false);
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
 	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
