@@ -18,9 +18,18 @@ using namespace std;
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
 RandomNumberGenerator::RandomNumberGenerator() {
-	std::random_device device;
+	random_device device;
 	m_generator.seed(device());
 }
+
+RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
+	m_generator.seed(seed);
+}
+
+void RandomNumberGenerator::setSeed(unsigned seed) {
+	m_generator.seed(seed);
+}
+
 
 double* RandomNumberGenerator::generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, const int n) {
 	double* result = new double[n];

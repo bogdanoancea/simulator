@@ -325,6 +325,14 @@ void World::setNumMno(unsigned int numMno) {
 	m_numMNO = numMno;
 }
 
+unsigned World::getSeed() const {
+	return m_seed;
+}
+
+void World::setSeed(unsigned seed) {
+	m_seed = seed;
+}
+
 vector<MobileOperator*> World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
 	vector<MobileOperator*> result;
@@ -370,7 +378,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		if (m_numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
-		double probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
+		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
 		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
 		if (prob_sec_mobilePhoneNode)
 			m_probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());

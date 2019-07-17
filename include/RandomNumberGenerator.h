@@ -31,6 +31,12 @@ public:
 		return m_instance;
 	}
 
+	static RandomNumberGenerator* instance(unsigned seed) {
+		if (m_instance == nullptr) {
+			m_instance = new RandomNumberGenerator(seed);
+		}
+		return m_instance;
+	}
 //
 //	uniform_int_distribution<int> getUnifIntDistribution() const {
 //		return m_unif_int_distribution;
@@ -169,8 +175,11 @@ public:
 		return inv_sqrt_2pi / s * exp(-(0.5) * a * a);
 	}
 
+	void setSeed(unsigned seed);
+
 private:
 	RandomNumberGenerator();
+	RandomNumberGenerator(unsigned seed);
 	RandomNumberGenerator(const RandomNumberGenerator&);
 	RandomNumberGenerator& operator=(const RandomNumberGenerator&);
 

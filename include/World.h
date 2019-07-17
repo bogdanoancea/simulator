@@ -155,7 +155,8 @@ public:
 	unsigned int getNumMno() const;
 	void setNumMno(unsigned int numMno);
 	void addMNO(string name);
-
+	unsigned getSeed() const;
+	void setSeed(unsigned seed);
 
 private:
 
@@ -170,6 +171,7 @@ private:
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
 	unsigned int m_numMNO;
+	unsigned m_seed;
 
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
@@ -179,6 +181,7 @@ private:
 	string m_personsFilename;
 	string m_antennasFilename;
 	double m_probSecMobilePhone;
+
 
 	vector<Person*> generatePopulation(unsigned long numPersons);
 
