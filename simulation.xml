@@ -2,9 +2,16 @@
         <start_time>0</start_time>
         <end_time>200</end_time>
 		<time_increment>1</time_increment>
-		<num_mnos>2</num_mnos>
-		<mno_name>Vodafone</mno_name>
-		<mno_name>Orange</mno_name>
+		<mno>
+        	<mno_name>Vodafone</mno_name>
+        	<prob_mobile_phone>0.35</prob_mobile_phone>
+        </mno>
+        <mno>
+        	<mno_name>Orange</mno_name>
+        	<prob_mobile_phone>0.35</prob_mobile_phone>
+        </mno>
+        <prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
+
 		<movement_type>random_walk_closed_map_drift</movement_type>
 		<connection_type>quality</connection_type>
 		<grid_file>grid.csv</grid_file>

@@ -44,15 +44,25 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
-	XMLNode* n = getNode(antennaEl, "maxconnections");
+
+	XMLNode* n = getNode(antennaEl, "mno_name");
+	const char* mno_name = n->ToText()->Value();
+	for(unsigned int i = 0; i < mnos.size(); i++) {
+		if(mnos.at(i)->getMNOName().compare(mno_name) == 0) {
+			m_MNO = mnos.at(i);
+		}
+	}
+	n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
 	n = getNode(antennaEl, "power");
 	m_power = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "attenuationfactor");
 	m_ple = atof(n->ToText()->Value());
+
+
 	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	m_type = AntennaType::OMNIDIRECTIONAL;
@@ -147,7 +157,7 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple;
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
 	return (result.str());
 }
 
@@ -610,10 +620,10 @@ void Antenna::setDirection(double direction) {
 	m_direction = direction;
 }
 
-unsigned long Antenna::getMNOId() const {
-	return m_MNO_ID;
+MobileOperator* Antenna::getMNO() const {
+	return m_MNO;
 }
 
-void Antenna::setMNOId(unsigned long mnoId) {
-	m_MNO_ID = mnoId;
+void Antenna::setMNO(MobileOperator* mno) {
+	m_MNO = mno;
 }

@@ -13,7 +13,7 @@
 
 class MobileOperator: public Agent {
 public:
-	MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name);
+	MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone);
 
 	virtual ~MobileOperator();
 
@@ -30,9 +30,11 @@ public:
 	const string toString() const override;
 
 	const string getMNOName() const;
+	const double getProbMobilePhone() const;
 
 private:
 	const string m_name;
+	const double m_probMobilePhone;
 };
 
 #endif /* INCLUDE_MOBILEOPERATOR_H_ */

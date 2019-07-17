@@ -10,6 +10,8 @@
 #include <MobilePhone.h>
 #include <EMField.h>
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 #include <utility>
 #include <Constants.h>
 
@@ -19,13 +21,21 @@ MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPositi
 		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD }, m_qualityThreshold {
 				Constants::QUALITY_THRESHOLD }, m_connType {connType} {
 	m_connectedTo = nullptr;
+	m_mno = nullptr;
 }
 
 MobilePhone::~MobilePhone() {
 }
 
 const string MobilePhone::toString() const {
-	return (HoldableAgent::toString());
+	ostringstream result;
+
+	result << HoldableAgent::toString();
+	if(m_mno)
+		result << left << setw(15) << m_mno->getId();
+	else
+		result << left << setw(15) << "No MNO";
+	return (result.str());
 }
 
 bool MobilePhone::tryConnect() {
@@ -47,9 +57,10 @@ bool MobilePhone::tryConnect() {
 	}
 	pair<Antenna*, double> antenna;
 	if (use_power)
-		antenna = EMField::instance()->computeMaxPower(p);
+		antenna = EMField::instance()->computeMaxPower(p, getMobileOperator()->getId());
 	else
-		antenna = EMField::instance()->computeMaxQuality(p);
+		// needs to be at the same MNO
+		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
 
 
 	if (antenna.second > threshold) {
@@ -63,7 +74,8 @@ bool MobilePhone::tryConnect() {
 	}
 	else {
 		//try to connect to another antenna in range
-		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power);
+		//antennas need to belong to the same MNO
+		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getMobileOperator()->getId());
 		unsigned long size = antennas.size();
 		for (unsigned long i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);
@@ -104,7 +116,7 @@ const MobileOperator* MobilePhone::getMobileOperator() const {
 	return m_mno;
 }
 
-void MobilePhone::setMobileOperator(const MobileOperator* mno) {
+void MobilePhone::setMobileOperator(MobileOperator* mno) {
 	m_mno = mno;
 }
 

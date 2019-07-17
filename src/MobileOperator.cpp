@@ -13,8 +13,8 @@
 
 using namespace std;
 
-MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name) :
-		Agent(m, id, clock), m_name{name} {
+MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone) :
+		Agent(m, id, clock), m_name{name}, m_probMobilePhone{probMobilePhone} {
 }
 
 MobileOperator::~MobileOperator() {
@@ -33,4 +33,8 @@ const string MobileOperator::toString() const {
 
 const string MobileOperator::getMNOName() const {
 	return m_name;
+}
+
+const double MobileOperator::getProbMobilePhone() const {
+	return m_probMobilePhone;
 }
