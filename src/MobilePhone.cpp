@@ -57,7 +57,7 @@ bool MobilePhone::tryConnect() {
 	}
 	pair<Antenna*, double> antenna;
 	if (use_power)
-		antenna = EMField::instance()->computeMaxPower(p);
+		antenna = EMField::instance()->computeMaxPower(p, getMobileOperator()->getId());
 	else
 		// needs to be at the same MNO
 		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());

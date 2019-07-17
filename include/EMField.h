@@ -49,7 +49,7 @@ public:
 	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides an electromagnetic field with the
 	 * highest power in p
 	 */
-	pair<Antenna*, double> computeMaxPower(const Point* p);
+	pair<Antenna*, double> computeMaxPower(const Point* p, const unsigned long mnoId);
 
 	/**
 	 * Returns a pair made of an Antenna object and its signal quality with the property that in the location specified by Point p,
@@ -59,7 +59,7 @@ public:
 	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides a signal with the
 	 * highest quality in p.
 	 */
-	pair<Antenna*, double> computeMaxQuality(const Point* p, unsigned long mnoId);
+	pair<Antenna*, double> computeMaxQuality(const Point* p, const unsigned long mnoId);
 
 	/**
 	 * Returns a vector of pairs made up of an Antenna object and its power or signal quality. All the antennas in this vector

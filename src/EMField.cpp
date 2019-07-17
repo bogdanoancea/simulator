@@ -33,7 +33,7 @@ EMField::~EMField() {
 	delete[] m_sd;
 }
 
-pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
+pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -52,7 +52,7 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p) {
 }
 
 
-pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, unsigned long mnoId) {
+pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
