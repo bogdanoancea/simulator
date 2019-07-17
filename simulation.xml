@@ -21,4 +21,5 @@
 		<persons_file>persons.csv</persons_file>
 		<antennas_file>antennas.csv</antennas_file>
 		<prior>network</prior>
+		<random_seed>123</random_seed>
 </simulation>

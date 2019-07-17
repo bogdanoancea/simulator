@@ -48,6 +48,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_probFilename = Constants::PROB_FILE_NAME;
 	m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
+	m_seed = -1;
 	vector<Person*> persons = generatePopulation(numPersons);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
@@ -70,6 +71,7 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 
 	m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
+	m_seed = -1;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
@@ -103,7 +105,7 @@ void World::runSimulation() noexcept(false) {
 	try {
 		pFile.open(m_personsFilename, ios::out);
 		aFile.open(m_antennasFilename, ios::out);
-	} catch (std::ofstream::failure& e) {
+	} catch (ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
@@ -201,7 +203,8 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep, AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
+				AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -212,7 +215,8 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
+				connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -454,12 +458,17 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				m_prior = PriorType::UNIFORM;
 		} else
 			m_prior = Constants::PRIOR_PROBABILITY;
+
+		XMLNode* randomSeedNode = getNode(simEl, "random_seed");
+		if (randomSeedNode)
+			m_seed = atoi(randomSeedNode->ToText()->Value());
+
 	}
 	return (result);
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-		vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 	unsigned long id;
@@ -512,7 +521,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
-		if(phone1 && phone2)
+		if (phone1 && phone2)
 			numPhones += (phone1[i] + phone2[i]);
 		else
 			numPhones += phone1[i];
@@ -537,15 +546,18 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
 		int np1 = phone1[i];
 		int np2 = phone2[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
+					Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[0]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -554,7 +566,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		}
 		while (np2) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
+					Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[1]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
