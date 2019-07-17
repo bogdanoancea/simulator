@@ -107,3 +107,4 @@ const MobileOperator* MobilePhone::getMobileOperator() const {
 void MobilePhone::setMobileOperator(const MobileOperator* mno) {
 	m_mno = mno;
 }
+
