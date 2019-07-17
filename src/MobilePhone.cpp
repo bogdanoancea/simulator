@@ -59,6 +59,7 @@ bool MobilePhone::tryConnect() {
 	if (use_power)
 		antenna = EMField::instance()->computeMaxPower(p);
 	else
+		// needs to be at the same MNO
 		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
 
 
@@ -73,6 +74,7 @@ bool MobilePhone::tryConnect() {
 	}
 	else {
 		//try to connect to another antenna in range
+		//antennas need to belong to the same MNO
 		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getMobileOperator()->getId());
 		unsigned long size = antennas.size();
 		for (unsigned long i = 0; i < size; i++) {
