@@ -24,7 +24,7 @@ EMField::EMField() {
 	}
 	m_sd = new double[Constants::ANTENNA_MAPPING_N];
 	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
-			m_sd[i] = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
+		m_sd[i] = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
 	}
 }
 
@@ -33,12 +33,15 @@ EMField::~EMField() {
 	delete[] m_sd;
 }
 
+//TODO Directional antennas
 pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		double max = numeric_limits<double>::min();
 		for (Antenna* a : m_antennas) {
+			if (a->getMNO()->getId() != mnoId)
+				continue;
 			if (a->getType() == AntennaType::OMNIDIRECTIONAL) {
 				double power = a->computePower(p);
 				if (power > max) {
@@ -51,14 +54,13 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned l
 	return (result);
 }
 
-
 pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		double max = numeric_limits<double>::min();
 		for (Antenna* a : m_antennas) {
-			if(a->getMNO()->getId() != mnoId)
+			if (a->getMNO()->getId() != mnoId)
 				continue;
 			double quality = a->computeSignalQuality(p);
 			if (quality > max) {
@@ -101,7 +103,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
-			if(a->getMNO()->getId() != mnoId)
+			if (a->getMNO()->getId() != mnoId)
 				continue;
 			double x;
 			if (power)

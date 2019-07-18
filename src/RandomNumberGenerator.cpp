@@ -23,7 +23,12 @@ RandomNumberGenerator::RandomNumberGenerator() {
 }
 
 RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
-	m_generator.seed(seed);
+	if(seed !=-1)
+		m_generator.seed(seed);
+	else {
+		random_device device;
+		m_generator.seed(device());
+	}
 }
 
 void RandomNumberGenerator::setSeed(unsigned seed) {

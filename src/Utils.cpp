@@ -23,8 +23,13 @@ using namespace geos;
 using namespace geos::geom;
 using namespace std;
 
-vector<Point*> generatePoints(Map* m, int n) {
+vector<Point*> generatePoints(Map* m, int n, unsigned seed) {
 	vector<Point*> result;
+	RandomNumberGenerator* random_generator;
+	if(seed!=-1)
+		random_generator = RandomNumberGenerator::instance(seed);
+	else
+		random_generator = RandomNumberGenerator::instance();
 
 	Geometry* g = m->getBoundary();
 	if (dynamic_cast<Polygon*>(g) != nullptr) {
@@ -36,8 +41,8 @@ vector<Point*> generatePoints(Map* m, int n) {
 		double ymax = env->getMaxX();
 
 		//generate a pool of numbers to choose from
-		double* x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n);
-		double* y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n);
+		double* x = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y = random_generator->generateUniformDouble(ymin, ymax, n);
 		int i = 0, k = 0;
 		while (k < n) {
 			Coordinate c = Coordinate(x[i], y[i]);
@@ -54,8 +59,8 @@ vector<Point*> generatePoints(Map* m, int n) {
 			if (i == n) {
 				delete[] x;
 				delete[] y;
-				x = RandomNumberGenerator::instance()->generateUniformDouble(xmin, xmax, n - k + 10);
-				y = RandomNumberGenerator::instance()->generateUniformDouble(ymin, ymax, n - k + 10);
+				x = random_generator->generateUniformDouble(xmin, xmax, n - k + 10);
+				y = random_generator->generateUniformDouble(ymin, ymax, n - k + 10);
 				i = 0;
 			}
 		}

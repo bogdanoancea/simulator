@@ -175,10 +175,15 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	vector<Person*> result;
 
 	unsigned long id;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
 	// temporary
-	double* speeds = RandomNumberGenerator::instance()->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
-	int* ages = RandomNumberGenerator::instance()->generateUniformInt(1, 100, numPersons);
+	RandomNumberGenerator* random_generator;
+	if(m_seed != -1)
+		random_generator = RandomNumberGenerator::instance(m_seed);
+	else
+		random_generator = RandomNumberGenerator::instance();
+	double* speeds = random_generator->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
+	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE);
@@ -200,7 +205,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	double smid = Constants::S_MID;
 	double ssteep = Constants::S_STEEP;
 
-	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas);
+	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
 		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
@@ -472,7 +477,13 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	vector<Person*> result;
 	unsigned long id;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons);
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
+
+	RandomNumberGenerator* random_generator;
+	if(m_seed != -1)
+		random_generator = RandomNumberGenerator::instance(m_seed);
+	else
+		random_generator = RandomNumberGenerator::instance();
 
 	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;
@@ -485,15 +496,16 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		throw std::runtime_error(
 				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
 
-	int* walk_car = RandomNumberGenerator::instance()->generateBernoulliInt(0.5, numPersons);
+
+	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
 
 	int* phone1 = nullptr; //RandomNumberGenerator::instance()->generateBernoulliInt(probMobilePhones[0].second, numPersons);
 	int* phone2 = nullptr; //new int[numPersons] { 0 }; //RandomNumberGenerator::instance()->generateBernoulliInt(probSecMobilePhone, numPersons);
 	if (numMno == 1) {
-		phone1 = RandomNumberGenerator::instance()->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
+		phone1 = random_generator->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
 		for (unsigned long j = 0; j < numPersons; j++) {
 			if (phone1[j] == 1)
-				phone1[j] += RandomNumberGenerator::instance()->generateBernoulliInt(m_probSecMobilePhone);
+				phone1[j] += random_generator->generateBernoulliInt(m_probSecMobilePhone);
 		}
 	} else if (numMno == 2) {
 		double pSecPhoneDiffMNO = probIntersection;
@@ -503,14 +515,14 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
 		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
 
-		phone1 = RandomNumberGenerator::instance()->generateBernoulliInt(pOnePhoneMNO1, numPersons);
-		phone2 = RandomNumberGenerator::instance()->generateBernoulliInt(pOnePhoneMNO2, numPersons);
+		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
+		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
 		for (unsigned int i = 1; i < numPersons; i++) {
 			if (phone1[i] == 1) {
-				phone1[i] = phone1[i] + RandomNumberGenerator::instance()->generateBernoulliInt(pSecPhoneMNO1);
+				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
 			if (phone2[i] == 1) {
-				phone2[i] = phone2[i] + +RandomNumberGenerator::instance()->generateBernoulliInt(pSecPhoneMNO2);
+				phone2[i] = phone2[i] + random_generator->generateBernoulliInt(pSecPhoneMNO2);
 			}
 		}
 	} else {
@@ -527,17 +539,17 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			numPhones += phone1[i];
 	}
 
-	int* gender = RandomNumberGenerator::instance()->generateBinomialInt(1, male_share, numPersons);
-	double* speeds_walk = RandomNumberGenerator::instance()->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
-	double* speeds_car = RandomNumberGenerator::instance()->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
+	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
+	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
+	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 
 	double* ages;
 	if (age_distribution == Person::AgeDistributions::UNIFORM)
-		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
+		ages = random_generator->generateUniformDouble(params[0], params[1], numPersons);
 	else if (age_distribution == Person::AgeDistributions::NORMAL) {
-		ages = RandomNumberGenerator::instance()->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
+		ages = random_generator->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
 	} else {
-		ages = RandomNumberGenerator::instance()->generateUniformDouble(params[0], params[1], numPersons);
+		ages = random_generator->generateUniformDouble(params[0], params[1], numPersons);
 	}
 
 	unsigned long cars = 0;
