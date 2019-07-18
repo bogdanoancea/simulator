@@ -17,13 +17,13 @@ using namespace std;
 
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
-RandomNumberGenerator::RandomNumberGenerator() {
-	random_device device;
-	m_generator.seed(device());
-}
+//RandomNumberGenerator::RandomNumberGenerator() {
+//	random_device device;
+//	m_generator.seed(device());
+//}
 
 RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
-	if(seed !=-1)
+	if(seed != 0)
 		m_generator.seed(seed);
 	else {
 		random_device device;

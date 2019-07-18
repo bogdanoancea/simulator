@@ -177,11 +177,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
 	// temporary
-	RandomNumberGenerator* random_generator;
-	if(m_seed != -1)
-		random_generator = RandomNumberGenerator::instance(m_seed);
-	else
-		random_generator = RandomNumberGenerator::instance();
+	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 	double* speeds = random_generator->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
@@ -479,11 +475,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
 
-	RandomNumberGenerator* random_generator;
-	if(m_seed != -1)
-		random_generator = RandomNumberGenerator::instance(m_seed);
-	else
-		random_generator = RandomNumberGenerator::instance();
+	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 
 	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;

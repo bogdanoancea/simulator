@@ -82,7 +82,7 @@ Point* Person::move(MovementType mvType) {
 
 void Person::randomWalkClosedMap() {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
+	theta = RandomNumberGenerator::instance(0)->generateUniformDouble(0.0, 2 * utils::PI);
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, false);
 }
@@ -93,9 +93,9 @@ void Person::randomWalkClosedMapDrift() {
 	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
 		trendAngle = 5 * utils::PI/4;
 	}
-	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
+	theta = RandomNumberGenerator::instance(0)->generateNormalDouble(trendAngle, 0.1);
 	if(m_changeDirection) {
-		theta =  theta + utils::PI/RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
+		theta =  theta + utils::PI/RandomNumberGenerator::instance(0)->generateUniformDouble(0.5, 1.5);
 	}
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, true);

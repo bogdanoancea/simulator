@@ -501,7 +501,7 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
-	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
+	RandomNumberGenerator* rand = RandomNumberGenerator::instance(0);
 	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
 	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
 }

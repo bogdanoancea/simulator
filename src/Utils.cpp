@@ -26,10 +26,7 @@ using namespace std;
 vector<Point*> generatePoints(Map* m, int n, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
-	if(seed!=-1)
-		random_generator = RandomNumberGenerator::instance(seed);
-	else
-		random_generator = RandomNumberGenerator::instance();
+	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
 	if (dynamic_cast<Polygon*>(g) != nullptr) {
