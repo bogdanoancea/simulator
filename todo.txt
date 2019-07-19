@@ -30,6 +30,7 @@ todo.txt
      
      de implementat Antenna::findSD
      
-     de adaugat al doilea MNO
+     de adaugat al doilea MNO: MobilePhone::tryConnect - antena si mobilul sa aiba acelasi MNO, EMField::isAntennaInRange, ComputeMaxPower, ComputedMaxQuality, Antenna::tryRegisterDevice, EMField::getInRangeAntennas
+     
      
      de verificat unde trebuie apelat random generator cu seed;
