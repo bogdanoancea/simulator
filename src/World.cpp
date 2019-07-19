@@ -505,7 +505,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		double pSecPhoneMNO2 = pSecPhoneMNO1;
 
 		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
-		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
+		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 - pSecPhoneDiffMNO;
 
 		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
