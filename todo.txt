@@ -34,3 +34,5 @@ todo.txt
      
      
      de verificat unde trebuie apelat random generator cu seed;
+     
+     AntennaInfo file trebuie separat dupa MNO

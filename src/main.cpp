@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = dynamic_cast<Antenna*>(it->second);
-			string fileName = a->getName() + to_string(a->getId()) + ".csv";
+			string fileName = a->getAntennaOutputfileName() ;
 			Parser file = Parser(fileName, DataType::eFILE, ',', false);
 			for (unsigned long i = 0; i < file.rowCount(); i++) {
 				Row s = file[i];

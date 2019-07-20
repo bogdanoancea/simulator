@@ -222,6 +222,7 @@ public:
 	void setDirection(double direction);
 	MobileOperator* getMNO() const;
 	void setMNO(MobileOperator* mno);
+	string getAntennaOutputfileName() const;
 
 private:
 

@@ -20,12 +20,12 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
-		double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
-				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
-	string fileName = getName() + std::to_string(id) + "_MNO_" + ".csv";
+	string fileName = getAntennaOutputfileName() ;
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -47,11 +47,10 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
-
 	XMLNode* n = getNode(antennaEl, "mno_name");
 	const char* mno_name = n->ToText()->Value();
-	for(unsigned int i = 0; i < mnos.size(); i++) {
-		if(mnos.at(i)->getMNOName().compare(mno_name) == 0) {
+	for (unsigned int i = 0; i < mnos.size(); i++) {
+		if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
 			m_MNO = mnos.at(i);
 		}
 	}
@@ -61,7 +60,6 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	m_power = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "attenuationfactor");
 	m_ple = atof(n->ToText()->Value());
-
 
 	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
@@ -126,7 +124,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 	}
-	string fileName = getName() + std::to_string(id) + "_MNO_" + m_MNO->getMNOName() + ".csv";
+	string fileName = getAntennaOutputfileName();
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -157,7 +155,8 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
+			<< m_MNO->getId();
 	return (result.str());
 }
 
@@ -233,7 +232,8 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
+				<< ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -251,8 +251,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
-				<< ag->getLocation()->getCoordinate()->y << endl;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
+				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -399,7 +399,7 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	double antennaY = getLocation()->getCoordinate()->y;
 	double antennaZ = getLocation()->getCoordinate()->z;
 
-	double dist = sqrt((x-antennaX)*(x-antennaX) + (y-antennaY)*(y-antennaY));//p->distance(getLocation());
+	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY));  //p->distance(getLocation());
 	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
 	signalStrength += S(dist);
 
@@ -443,8 +443,6 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	return result;
 }
 
-
-
 //TODO
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
@@ -480,9 +478,10 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second -= dg;
 		i.second = fabs(i.second);
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
-		return a.second < b.second;
-	}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
+			[](const pair<double, double>& a, const pair<double, double>& b) {
+				return a.second < b.second;
+			}) - begin(_3dBDegrees);
 
 	return _3dBDegrees[minElementIndex].first;
 }
@@ -626,4 +625,8 @@ MobileOperator* Antenna::getMNO() const {
 
 void Antenna::setMNO(MobileOperator* mno) {
 	m_MNO = mno;
+}
+
+string Antenna::getAntennaOutputfileName() const {
+	return getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv";
 }
