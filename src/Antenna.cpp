@@ -25,7 +25,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
 				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
-	string fileName = getName() + std::to_string(id) + ".csv";
+	string fileName = getName() + std::to_string(id) + "_MNO_" + ".csv";
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -126,7 +126,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 	}
-	string fileName = getName() + std::to_string(id) + ".csv";
+	string fileName = getName() + std::to_string(id) + "_MNO_" + m_MNO->getMNOName() + ".csv";
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
