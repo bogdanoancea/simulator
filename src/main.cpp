@@ -108,27 +108,34 @@ int main(int argc, char** argv) {
 
 		w.runSimulation();
 		vector<AntennaInfo> data;
+		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
-		for (auto it = itra.first; it != itra.second; it++) {
-			Antenna* a = dynamic_cast<Antenna*>(it->second);
-			string fileName = a->getAntennaOutputfileName() ;
-			Parser file = Parser(fileName, DataType::eFILE, ',', false);
-			for (unsigned long i = 0; i < file.rowCount(); i++) {
-				Row s = file[i];
-				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
-				data.push_back(a);
+		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+			MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+			vector<AntennaInfo> data;
+			for (auto it = itra.first; it != itra.second; it++) {
+				Antenna* a = dynamic_cast<Antenna*>(it->second);
+				if (a->getMNO()->getId() == mo->getId()) {
+					string fileName = a->getAntennaOutputfileName();
+					Parser file = Parser(fileName, DataType::eFILE, ',', false);
+					for (unsigned long i = 0; i < file.rowCount(); i++) {
+						Row s = file[i];
+						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
+						data.push_back(a);
+					}
+				}
+				sort(data.begin(), data.end());
+
+				ofstream antennaInfoFile;
+				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
+				antennaInfoFile.open(name, ios::out);
+				antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
+				for (AntennaInfo& ai : data) {
+					antennaInfoFile << ai.toString() << endl;
+				}
+				antennaInfoFile.close();
 			}
 		}
-		sort(data.begin(), data.end());
-
-		ofstream antennaInfoFile;
-		antennaInfoFile.open("AntennaInfo.csv", ios::out);
-		antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-		for (AntennaInfo& ai : data) {
-			antennaInfoFile << ai.toString() << endl;
-		}
-		antennaInfoFile.close();
-
 
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
