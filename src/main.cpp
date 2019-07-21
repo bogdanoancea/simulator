@@ -44,7 +44,6 @@ int main(int argc, char** argv) {
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
 	bool verbose = parser.cmdOptionExists("-v");
 	bool generate_probs = parser.cmdOptionExists("-o");
-
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
 
@@ -107,12 +106,14 @@ int main(int argc, char** argv) {
 		}
 
 		w.runSimulation();
-		vector<AntennaInfo> data;
+		cout << "aici1";
+		vector<vector<AntennaInfo>> data;
+		int k = 0;
+
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 			MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
-			vector<AntennaInfo> data;
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = dynamic_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
@@ -121,22 +122,22 @@ int main(int argc, char** argv) {
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
 						Row s = file[i];
 						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
-						data.push_back(a);
+						data[k].push_back(a);
 					}
 				}
-				sort(data.begin(), data.end());
-
+				sort(data[k].begin(), data[k].end());
 				ofstream antennaInfoFile;
 				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 				antennaInfoFile.open(name, ios::out);
 				antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-				for (AntennaInfo& ai : data) {
+				for (AntennaInfo& ai : data[k]) {
 					antennaInfoFile << ai.toString() << endl;
 				}
 				antennaInfoFile.close();
 			}
+			k++;
 		}
-
+cout << "aici2";
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 		} else {
@@ -163,18 +164,23 @@ int main(int argc, char** argv) {
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 			cout << "Sum signal quality" << endl;
 			EMField::instance()->sumSignalQuality(map->getGrid());
-			for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
-				//iterate over all devices
-				for (auto it = itrm.first; it != itrm.second; it++) {
-					MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-					p_file << t << "," << m->getId() << ",";
-					ostringstream probs;
-					vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
-					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
-						probs << fixed << setprecision(15) << p[i] << ",";
+			k = 0;
+			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" <<  endl;
+				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+					//iterate over all devices
+					for (auto it = itrm.first; it != itrm.second; it++) {
+						MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+						p_file << t << "," << m->getId() << ",";
+						ostringstream probs;
+						vector<double> p = map->getGrid()->computeProbability(t, m, data[k++], itra, w.getPrior());
+						for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+							probs << fixed << setprecision(15) << p[i] << ",";
+						}
+						probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
+						p_file << probs.str() << endl;
 					}
-					probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
-					p_file << probs.str() << endl;
 				}
 			}
 			try {
@@ -185,6 +191,7 @@ int main(int argc, char** argv) {
 			tt = w.getClock()->realTime();
 			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
+
 	} catch (const runtime_error& e) {
 		cout << e.what() << endl;
 	} catch (const exception &e) {
