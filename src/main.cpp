@@ -125,18 +125,20 @@ int main(int argc, char** argv) {
 						data[k].push_back(a);
 					}
 				}
-				sort(data[k].begin(), data[k].end());
+				vector<AntennaInfo> d = data[k];
+				sort(d.begin(), d.end());
 				ofstream antennaInfoFile;
 				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 				antennaInfoFile.open(name, ios::out);
 				antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-				for (AntennaInfo& ai : data[k]) {
+				for (AntennaInfo& ai : d) {
 					antennaInfoFile << ai.toString() << endl;
 				}
 				antennaInfoFile.close();
 			}
 			k++;
 		}
+
 cout << "aici2";
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
