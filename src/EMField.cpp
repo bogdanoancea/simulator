@@ -114,10 +114,10 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 				result.push_back(make_pair(a, x));
 		}
 	}
-
-	std::sort(result.begin(), result.end(), [](pair<Antenna*, double> &left, pair<Antenna*, double> &right) {
-		return (left.second < right.second);
-	});
+	if(result.size()>0)
+		std::sort(result.begin(), result.end(), [](pair<Antenna*, double> &left, pair<Antenna*, double> &right) {
+			return (left.second < right.second);
+		});
 
 	return (result);
 }

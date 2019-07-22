@@ -75,7 +75,7 @@ int main(int argc, char** argv) {
 		if (verbose) {
 			utils::printMobileOperatorHeader();
 			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
-			vector<MobileOperator*> mnos;
+			//vector<MobileOperator*> mnos;
 			for (auto it = itr0.first; it != itr0.second; it++) {
 				MobileOperator* mno = dynamic_cast<MobileOperator*>(it->second);
 				cout << mno->toString() << endl;
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 			vector<Person*> persons;
 			for (auto it = itr.first; it != itr.second; it++) {
 				Person* p = dynamic_cast<Person*>(it->second);
-				persons.push_back(p);
+				//persons.push_back(p);
 				cout << p->toString() << endl;
 			}
 
@@ -106,14 +106,13 @@ int main(int argc, char** argv) {
 		}
 
 		w.runSimulation();
-		cout << "aici1";
 		vector<vector<AntennaInfo>> data;
-		int k = 0;
-
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
+
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 			MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+			vector<AntennaInfo> tmp;
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = dynamic_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
@@ -122,24 +121,22 @@ int main(int argc, char** argv) {
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
 						Row s = file[i];
 						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
-						data[k].push_back(a);
+						tmp.push_back(a);
 					}
 				}
-				vector<AntennaInfo> d = data[k];
-				sort(d.begin(), d.end());
+//				vector<AntennaInfo> d = data[k];
+				sort(tmp.begin(), tmp.end());
 				ofstream antennaInfoFile;
 				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 				antennaInfoFile.open(name, ios::out);
 				antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-				for (AntennaInfo& ai : d) {
+				for (AntennaInfo& ai : tmp) {
 					antennaInfoFile << ai.toString() << endl;
 				}
 				antennaInfoFile.close();
 			}
-			k++;
 		}
 
-cout << "aici2";
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 		} else {
