@@ -15,6 +15,7 @@
 #include <Grid.h>
 #include <utility>
 #include <vector>
+#include <map>
 
 using namespace std;
 /**
@@ -103,7 +104,7 @@ public:
 	 *  for all tiles in the reference grid. An element of the vector corresponds to a tile in the grid. The tiles
 	 *  are linearized in row-major order.
 	 */
-	vector<double>& sumSignalQuality(const Grid* grid);
+	vector<double> sumSignalQuality(const Grid* grid, const unsigned long mnoID);
 
 	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
 	const double* getAntennaMin3DbArray() const;
@@ -117,7 +118,7 @@ private:
 
 	static EMField* m_instance;
 	vector<Antenna*> m_antennas;
-	vector<double> m_sumQuality;
+	map<const unsigned long, vector<double>> m_sumQuality;
 
 	double* m_antennaMin3DbArray;
 	double* m_sd;

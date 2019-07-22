@@ -26,11 +26,13 @@ EMField::EMField() {
 	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
 		m_sd[i] = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
 	}
+	//m_sumQuality = new vector<double>[2];
 }
 
 EMField::~EMField() {
 	delete[] m_antennaMin3DbArray;
 	delete[] m_sd;
+
 }
 
 //TODO Directional antennas
@@ -88,9 +90,10 @@ double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned lon
 	Coordinate c = g->getTileCenter(tileIndex);
 	c.z = 0; //TODO z = tile elevation
 	double s_quality = a->computeSignalQuality(c);
+	unsigned long mnoID = a->getMNO()->getId();
 	double result = 0.0;
-	result = s_quality / m_sumQuality[tileIndex];
-
+	vector<double> sumQuality = m_sumQuality[mnoID];
+	result = s_quality / sumQuality[tileIndex];
 	return (result);
 }
 
@@ -135,7 +138,8 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	return (result);
 }
 
-vector<double>& EMField::sumSignalQuality(const Grid* grid) {
+vector<double> EMField::sumSignalQuality(const Grid* grid, const unsigned long mnoID) {
+	vector<double> tmp;
 	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
 		double sum = 0.0;
 		if (!(tileIndex % grid->getNoTilesY()))
@@ -143,16 +147,19 @@ vector<double>& EMField::sumSignalQuality(const Grid* grid) {
 		Coordinate c = grid->getTileCenter(tileIndex);
 		c.z = 0; //TODO z should be the elevation
 		for (Antenna* a : m_antennas) {
+			if(a->getMNO()->getId() != mnoID)
+				continue;
 			sum += a->computeSignalQuality(c);
 		}
+		tmp.push_back(sum);
 		//cout << "tileIndex " << tileIndex << " tile center " << grid->getTileCenter(tileIndex) << " sum signal quality " << sum  << endl;
 		cout << fixed << setw(15) << sum << " ";
-		m_sumQuality.push_back(sum);
 	}
+	m_sumQuality.insert(pair<const unsigned long, vector<double>>(mnoID, tmp));
 	cout << endl;
-	return m_sumQuality;
-
+	return tmp;
 }
+
 
 const double* EMField::getAntennaMin3DbArray() const {
 	return m_antennaMin3DbArray;

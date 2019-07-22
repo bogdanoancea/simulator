@@ -22,6 +22,7 @@
 #include <Constants.h>
 #include<algorithm>
 #include <EMField.h>
+#include <map>
 
 using namespace std;
 using namespace geos;
@@ -32,9 +33,7 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v"
-				<< endl;
+		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v" << endl;
 		exit(0);
 	}
 
@@ -75,7 +74,7 @@ int main(int argc, char** argv) {
 		if (verbose) {
 			utils::printMobileOperatorHeader();
 			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
-			//vector<MobileOperator*> mnos;
+
 			for (auto it = itr0.first; it != itr0.second; it++) {
 				MobileOperator* mno = dynamic_cast<MobileOperator*>(it->second);
 				cout << mno->toString() << endl;
@@ -86,7 +85,6 @@ int main(int argc, char** argv) {
 			vector<Person*> persons;
 			for (auto it = itr.first; it != itr.second; it++) {
 				Person* p = dynamic_cast<Person*>(it->second);
-				//persons.push_back(p);
 				cout << p->toString() << endl;
 			}
 
@@ -106,7 +104,8 @@ int main(int argc, char** argv) {
 		}
 
 		w.runSimulation();
-		vector<vector<AntennaInfo>> data;
+
+		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 
@@ -124,7 +123,6 @@ int main(int argc, char** argv) {
 						tmp.push_back(a);
 					}
 				}
-//				vector<AntennaInfo> d = data[k];
 				sort(tmp.begin(), tmp.end());
 				ofstream antennaInfoFile;
 				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
@@ -135,6 +133,7 @@ int main(int argc, char** argv) {
 				}
 				antennaInfoFile.close();
 			}
+			data.insert(pair<unsigned long, vector<AntennaInfo>>(mo->getId(), tmp));
 		}
 
 		if (!generate_probs) {
@@ -161,23 +160,33 @@ int main(int argc, char** argv) {
 
 			w.getClock()->reset();
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-			cout << "Sum signal quality" << endl;
-			EMField::instance()->sumSignalQuality(map->getGrid());
-			k = 0;
+
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
-				p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" <<  endl;
+				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
+				EMField::instance()->sumSignalQuality(map->getGrid(), mo->getId());
+			}
+
+			//int k = 0;
+			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
 				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 					//iterate over all devices
 					for (auto it = itrm.first; it != itrm.second; it++) {
 						MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+						if(m->getMobileOperator()->getId()!= mo->getId())
+							continue;
 						p_file << t << "," << m->getId() << ",";
 						ostringstream probs;
-						vector<double> p = map->getGrid()->computeProbability(t, m, data[k++], itra, w.getPrior());
+
+						vector<double> p = map->getGrid()->computeProbability(t, m, data[mo->getId()], itra, w.getPrior());
 						for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
 							probs << fixed << setprecision(15) << p[i] << ",";
+							//cout << p[i] << ",";
 						}
 						probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
+						//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
 						p_file << probs.str() << endl;
 					}
 				}

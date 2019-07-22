@@ -61,6 +61,7 @@ unsigned long Grid::getNoTiles() const {
 
 vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data,
 		pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) const {
+
 	vector<double> result;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
@@ -83,6 +84,7 @@ vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<
 
 vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai,
 		pair<um_iterator, um_iterator> antennas_iterator) const {
+
 	vector<double> result;
 	double sum = 0.0;
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
@@ -102,10 +104,10 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 				lh = a->computeSignalQuality(c);
 				sum += lh;
 			}
-//			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-//					<< " tile center " << getTileCenter(tileIndex)
-//					<< " signal quality " << lh << " antenna id " << a->getId()
-//					<< endl;
+			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+					<< " tile center " << getTileCenter(tileIndex)
+					<< " signal quality " << lh << " antenna id " << a->getId()
+					<< endl;
 			//m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);
@@ -114,6 +116,7 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 	for (auto& i : result) {
 		if (sum != 0.0) {
 			i /= sum;
+			//cout <<i<<endl;
 		}
 	}
 	return result;
