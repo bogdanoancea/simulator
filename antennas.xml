@@ -5,6 +5,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>0</x>
@@ -16,6 +17,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>1000</x>
@@ -27,6 +29,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>2000</x>
@@ -38,6 +41,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>3000</x>
@@ -49,6 +53,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>4000</x>
@@ -60,6 +65,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>5000</x>
@@ -71,6 +77,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>6000</x>
@@ -82,6 +89,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>7000</x>
@@ -93,6 +101,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>8000</x>
@@ -104,6 +113,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>9000</x>
@@ -115,6 +125,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>1000</x>
@@ -126,6 +137,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>3000</x>
@@ -137,6 +149,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>5000</x>
@@ -148,6 +161,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>7000</x>
@@ -159,6 +173,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>9000</x>
@@ -170,6 +185,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>1000</x>
@@ -181,6 +197,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>3000</x>
@@ -192,6 +209,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>5000</x>
@@ -203,6 +221,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>7000</x>
@@ -214,6 +233,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>9000</x>
@@ -225,6 +245,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>10000</x>
@@ -236,6 +257,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>directional</type>
+        <Smin>8.75</Smin>
         <Smid>-92.5</Smid>
         <SSteep>0.2</SSteep>
         <x>0</x>

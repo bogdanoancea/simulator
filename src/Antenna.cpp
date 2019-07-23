@@ -68,6 +68,10 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	m_type = AntennaType::OMNIDIRECTIONAL;
 	if (!strcmp(t, "directional"))
 		m_type = AntennaType::DIRECTIONAL;
+
+	n = getNode(antennaEl, "Smin");
+	m_Smin = atof(n->ToText()->Value());
+
 	n = getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "SSteep");
@@ -134,14 +138,14 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		cerr << "Output goes to the console!" << endl;
 	}
 	m_S0 = 30 + 10 * log10(m_power);
-	m_rmax = pow(10, (3)/m_ple) * pow(m_power, 1.0/m_ple);
-	cout << m_rmax << "," << getId() << endl;
+	m_rmax = pow(10, (3-m_Smin/10)/m_ple) * pow(m_power, 10/m_ple);
+//	cout << m_rmax << "," << getId() << endl;
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(m_rmax);
 	m_cell = shapefactory.createCircle();
-	//geos::io::WKTWriter writter;
-	//cout << "cell:" << writter.write(m_cell->getBoundary()) << endl;
+//	geos::io::WKTWriter writter;
+//	cout << "cell:" << writter.write(m_cell->getBoundary()) << endl;
 }
 
 Antenna::~Antenna() {
@@ -642,4 +646,8 @@ string Antenna::getAntennaOutputfileName() const {
 
 double Antenna::getRmax() const {
 	return m_rmax;
+}
+
+double Antenna::getSmin() const {
+	return m_Smin;
 }
