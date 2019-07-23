@@ -106,7 +106,7 @@ public:
 	 */
 	vector<double> sumSignalQuality(const Grid* grid, const unsigned long mnoID);
 
-	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) const;
+	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) ;
 	const double* getAntennaMin3DbArray() const;
 	double* getSd() const;
 

@@ -104,10 +104,10 @@ vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<Ant
 				lh = a->computeSignalQuality(c);
 				sum += lh;
 			}
-			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
-					<< " tile center " << getTileCenter(tileIndex)
-					<< " signal quality " << lh << " antenna id " << a->getId()
-					<< endl;
+//			cout << " time " << ai->getTime() << " tileIndex " << tileIndex
+//					<< " tile center " << getTileCenter(tileIndex)
+//					<< " signal quality " << lh << " antenna id " << a->getId()
+//					<< endl;
 			//m_map->getGlobalFactory()->destroyGeometry(p);
 		}
 		result.push_back(lh);

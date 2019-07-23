@@ -102,9 +102,7 @@ int main(int argc, char** argv) {
 				cout << m->toString() << endl;
 			}
 		}
-
 		w.runSimulation();
-
 		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
