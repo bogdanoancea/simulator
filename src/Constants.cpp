@@ -29,7 +29,7 @@ const unsigned long Constants::INCREMENT_TIME = 1;
 
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";
-const char* Constants::PROB_FILE_NAME = "prob.csv";
+const char* Constants::PROB_FILE_NAME_PREFIX = "probabilities";
 const char* Constants::PERSONS_FILE_NAME = "persons.csv";
 const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
 

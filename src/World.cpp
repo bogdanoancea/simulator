@@ -45,7 +45,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_gridFilename = Constants::GRID_FILE_NAME;
 	m_personsFilename = Constants::PERSONS_FILE_NAME;
 	m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
-	m_probFilename = Constants::PROB_FILE_NAME;
+	//m_probFilename = Constants::PROB_FILE_NAME_PREFIX;
 	m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
 	m_seed = -1;
@@ -66,7 +66,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName) :
+World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName, const string& probabilitiesFileName) :
 		m_map { map } {
 
 	m_numMNO = 0;
@@ -75,9 +75,11 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
+	string probsPrefix = parseProbabilities(probabilitiesFileName);
 
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
+		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
 	}
 
 	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
@@ -204,8 +206,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
-				AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep, AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -216,8 +217,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
-				connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -417,12 +417,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_gridFilename = Constants::GRID_FILE_NAME;
 
-		XMLNode* probNode = getNode(simEl, "prob_file");
-		if (probNode)
-			m_probFilename = probNode->ToText()->Value();
-		else
-			m_probFilename = Constants::PROB_FILE_NAME;
-
 		XMLNode* persNode = getNode(simEl, "persons_file");
 		if (persNode)
 			m_personsFilename = persNode->ToText()->Value();
@@ -447,19 +441,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_GridDimTileY = Constants::GRID_DIM_TILE_Y;
 
-		XMLNode* priorNode = getNode(simEl, "prior");
-		if (priorNode) {
-			if (!strcmp(priorNode->ToText()->Value(), "network"))
-				m_prior = PriorType::NETWORK;
-			else if (!strcmp(priorNode->ToText()->Value(), "uniform"))
-				m_prior = PriorType::UNIFORM;
-			else if (!strcmp(priorNode->ToText()->Value(), "register"))
-				m_prior = PriorType::REGISTER;
-			else
-				m_prior = PriorType::UNIFORM;
-		} else
-			m_prior = Constants::PRIOR_PROBABILITY;
-
 		XMLNode* randomSeedNode = getNode(simEl, "random_seed");
 		if (randomSeedNode)
 			m_seed = atoi(randomSeedNode->ToText()->Value());
@@ -468,8 +449,8 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	return (result);
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
-		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
+		vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 	unsigned long id;
@@ -487,7 +468,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	if (numMno > 1 && probIntersection > m_probSecMobilePhone)
 		throw std::runtime_error(
 				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
-
 
 	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
 
@@ -550,18 +530,15 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
 
 		int np1 = phone1[i];
 		int np2 = phone2[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
-					Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[0]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -570,8 +547,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		}
 		while (np2) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
-					Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[1]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -596,5 +572,37 @@ const string& World::getAntennasFilename() const {
 
 const string& World::getPersonsFilename() const {
 	return m_personsFilename;
+}
+
+string World::parseProbabilities(const string& probabilitiesFileName) {
+	XMLDocument doc;
+	string probsFileNamePrefix;
+	XMLError err = doc.LoadFile(probabilitiesFileName.c_str());
+	if (err != XML_SUCCESS)
+		throw std::runtime_error("Error opening configuration file for probabilities ");
+
+	XMLElement* probEl = doc.FirstChildElement("probabilities");
+	if (!probEl)
+		throw std::runtime_error("Syntax error in the configuration file for probabilities ");
+	else {
+		XMLNode* priorNode = getNode(probEl, "prior");
+		if (priorNode) {
+			if (!strcmp(priorNode->ToText()->Value(), "network"))
+				m_prior = PriorType::NETWORK;
+			else if (!strcmp(priorNode->ToText()->Value(), "uniform"))
+				m_prior = PriorType::UNIFORM;
+			else if (!strcmp(priorNode->ToText()->Value(), "register"))
+				m_prior = PriorType::REGISTER;
+			else
+				m_prior = PriorType::UNIFORM;
+		} else
+			m_prior = Constants::PRIOR_PROBABILITY;
+		XMLNode* probsNode = getNode(probEl, "prob_file_name_prefix");
+		if (probsNode)
+			probsFileNamePrefix = probsNode->ToText()->Value();
+		else
+			probsFileNamePrefix = Constants::PROB_FILE_NAME_PREFIX;
+	}
+	return probsFileNamePrefix;
 }
 

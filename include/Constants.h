@@ -115,7 +115,7 @@ public:
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
 	 */
-	static const char* PROB_FILE_NAME;
+	static const char* PROB_FILE_NAME_PREFIX;
 
 	/**
 	 * The name of the file where the exact positions of the persons are saved during simulation. They are needed for later analysis.

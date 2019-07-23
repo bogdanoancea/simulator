@@ -33,7 +33,9 @@ int main(int argc, char** argv) {
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
-		cout << "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v" << endl;
+		cout
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -pb <probabilities.xml> -v -o"
+				<< endl;
 		exit(0);
 	}
 
@@ -41,6 +43,7 @@ int main(int argc, char** argv) {
 	const string &mapFileName = parser.getCmdOption("-m");
 	const string &personsConfigFileName = parser.getCmdOption("-p");
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
+	const string & probabilitiesConfigFileName = parser.getCmdOption("-pb");
 	bool verbose = parser.cmdOptionExists("-v");
 	bool generate_probs = parser.cmdOptionExists("-o");
 	cout << "Hello from our mobile phone network simulator!" << endl;
@@ -67,7 +70,7 @@ int main(int argc, char** argv) {
 			throw runtime_error("no simulation config file!");
 		}
 
-		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
+		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
 		map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
 
 		AgentsCollection* c = w.getAgents();
@@ -142,13 +145,13 @@ int main(int argc, char** argv) {
 			//now we compute the probabilities for the positions of the phones
 			// read the event connection data
 
-			ofstream p_file, g_File;
+			ofstream g_File;
 			try {
-				p_file.open(w.getProbFilename(), ios::out);
 				g_File.open(w.getGridFilename(), ios::out);
 			} catch (ofstream::failure& e) {
-				cerr << "Error opening output files!" << endl;
+				cerr << "Error opening grid output files!" << endl;
 			}
+
 			g_File << map->getGrid()->toString();
 			try {
 				g_File.close();
@@ -166,14 +169,16 @@ int main(int argc, char** argv) {
 			}
 
 			//int k = 0;
+			ofstream p_file;
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
-				p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
+				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
+				//p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
 				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 					//iterate over all devices
 					for (auto it = itrm.first; it != itrm.second; it++) {
 						MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-						if(m->getMobileOperator()->getId()!= mo->getId())
+						if (m->getMobileOperator()->getId() != mo->getId())
 							continue;
 						p_file << t << "," << m->getId() << ",";
 						ostringstream probs;
@@ -188,11 +193,11 @@ int main(int argc, char** argv) {
 						p_file << probs.str() << endl;
 					}
 				}
-			}
-			try {
-				p_file.close();
-			} catch (ofstream::failure& e) {
-				cerr << "Error closing probs file!" << endl;
+				try {
+					p_file.close();
+				} catch (ofstream::failure& e) {
+					cerr << "Error closing probs file!" << endl;
+				}
 			}
 			tt = w.getClock()->realTime();
 			cout << "Computing probabilities ended at " << ctime(&tt) << endl;

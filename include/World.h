@@ -14,6 +14,7 @@
 #include <Person.h>
 #include <random>
 #include <vector>
+#include <map>
 #include <AgentsCollection.h>
 #include <Clock.h>
 #include <MobilePhone.h>
@@ -56,7 +57,7 @@ public:
 	 * @param configAntennasFileName the configuration file name for antenna objects
 	 * @param configSimulationFileName the general configuration file for simulation
 	 */
-	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName)
+	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
 			noexcept(false);
 
 	/**
@@ -119,8 +120,8 @@ public:
 	 * Returns the name of the file where the probabilities of mobile phones location are saved
 	 * @return the name of the file where the probabilities of mobile phones location are saved
 	 */
-	const string& getProbFilename() const {
-		return m_probFilename;
+	map<const unsigned long, const string> getProbFilenames()  {
+		return m_probFilenames;
 	}
 
 	/**
@@ -157,6 +158,7 @@ public:
 	void addMNO(string name);
 	unsigned getSeed() const;
 	void setSeed(unsigned seed);
+	string parseProbabilities(const string& probabilitiesFileName);
 
 private:
 
@@ -177,7 +179,7 @@ private:
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
 	string m_gridFilename;
-	string m_probFilename;
+	map<const unsigned long, const string> m_probFilenames;
 	string m_personsFilename;
 	string m_antennasFilename;
 	double m_probSecMobilePhone;
