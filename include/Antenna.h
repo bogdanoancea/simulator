@@ -223,6 +223,7 @@ public:
 	MobileOperator* getMNO() const;
 	void setMNO(MobileOperator* mno);
 	string getAntennaOutputfileName() const;
+	double getRmax() const;
 
 private:
 
@@ -266,6 +267,7 @@ private:
 
 	MobileOperator* m_MNO;
 
+	double m_rmax;
 };
 
 #endif /* ANTENNA_H_ */

@@ -3,6 +3,8 @@
 #include <EventType.h>
 #include <Constants.h>
 #include <geos/geom/GeometryFactory.h>
+#include <geos/util/GeometricShapeFactory.h>
+#include <geos/io/WKTWriter.h>
 #include <Map.h>
 #include <iomanip>
 #include <sstream>
@@ -132,7 +134,14 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		cerr << "Output goes to the console!" << endl;
 	}
 	m_S0 = 30 + 10 * log10(m_power);
-	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
+	m_rmax = pow(10, (3)/m_ple) * pow(m_power, 1.0/m_ple);
+	cout << m_rmax << "," << getId() << endl;
+	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
+	shapefactory.setCentre(Coordinate(x, y));
+	shapefactory.setSize(m_rmax);
+	m_cell = shapefactory.createCircle();
+	//geos::io::WKTWriter writter;
+	//cout << "cell:" << writter.write(m_cell->getBoundary()) << endl;
 }
 
 Antenna::~Antenna() {
@@ -629,4 +638,8 @@ void Antenna::setMNO(MobileOperator* mno) {
 
 string Antenna::getAntennaOutputfileName() const {
 	return getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv";
+}
+
+double Antenna::getRmax() const {
+	return m_rmax;
 }
