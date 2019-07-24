@@ -84,7 +84,9 @@ public:
 	 */
 	static const unsigned long INCREMENT_TIME;
 
+	static const unsigned long STAY_TIME;
 
+	static const unsigned long INTERVAL_BETWEEN_STAYS;
 	/**
 	 * The separator used when information is saved in output files
 	 */

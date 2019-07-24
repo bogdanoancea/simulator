@@ -192,7 +192,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::STAY_TIME, Constants::INTERVAL_BETWEEN_STAYS);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -375,6 +375,19 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_timeIncrement = Constants::INCREMENT_TIME;
 
+		XMLNode* stayNode = getNode(simEl, "time_stay");
+		if (stayNode)
+			m_stay = atof(stayNode->ToText()->Value());
+		else
+			m_stay = Constants::STAY_TIME;
+
+
+		XMLNode* intervalNode = getNode(simEl, "interval_between_stays");
+		if (intervalNode)
+			m_intevalBetweenStays = atof(intervalNode->ToText()->Value());
+		else
+			m_intevalBetweenStays = Constants::INTERVAL_BETWEEN_STAYS;
+
 		unsigned numMNO = 0;
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
@@ -538,10 +551,12 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	Person* p;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
+		unsigned long stay = (unsigned long)random_generator->generateNormalDouble(m_stay, 0.2* m_stay);
+		unsigned long interval = (unsigned long)random_generator->generateExponentialDouble(m_intevalBetweenStays);
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 
 		int np1 = phone1[i];
 		int np2 = phone2[i];

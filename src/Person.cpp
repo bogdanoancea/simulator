@@ -30,8 +30,9 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}{
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay, unsigned long intervalBetweenStays) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_timeStay{timeStay},
+		m_intervalBetweenStays{intervalBetweenStays} {
 }
 
 Person::~Person() {
@@ -143,9 +144,6 @@ void Person::setNewLocation(Point* p, bool changeDirection) {
 */
 	}
 }
-
-
-
 
 
 bool Person::hasDevices() {

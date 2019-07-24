@@ -140,6 +140,17 @@ double RandomNumberGenerator::generateNormalDouble(const double m, const double 
 	return (result);
 }
 
+
+double RandomNumberGenerator::generateExponentialDouble(const double lambda) {
+	double result;
+	exponential_distribution<double>::param_type p1(lambda);
+	m_exponential_double_distribution.param(p1);
+	result = m_exponential_double_distribution(m_generator);
+	return (result);
+}
+
+
+
 int RandomNumberGenerator::generateBernoulliInt(const double p) {
 	int result = 0;
 	bernoulli_distribution::param_type par(p);

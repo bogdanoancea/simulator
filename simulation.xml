@@ -1,6 +1,8 @@
 <simulation>
         <start_time>0</start_time>
         <end_time>200</end_time>
+        <time_stay>5</time_stay>
+        <interval_between_stays>25</<interval_between_stays>
 		<time_increment>1</time_increment>
 		<mno>
         	<mno_name>Vodafone</mno_name>

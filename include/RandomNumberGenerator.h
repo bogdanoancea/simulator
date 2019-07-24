@@ -110,6 +110,9 @@ public:
 	 */
 	double* generateUniformDouble(const double min, const double max, const int n);
 
+
+	double generateExponentialDouble(const double lambda);
+
 	/**
 	 * Generates a random int value from a uniform distribution which lies inside [min, max]
 	 * @param min the lower limit of the value
@@ -195,6 +198,7 @@ private:
 	uniform_int_distribution<int> m_unif_int_distribution;
 	uniform_real_distribution<double> m_unif_double_distribution;
 	normal_distribution<double> m_normal_double_distribution;
+	exponential_distribution<double> m_exponential_double_distribution;
 	binomial_distribution<int> m_binomial_distribution;
 	bernoulli_distribution m_bernoulli_distribution;
 

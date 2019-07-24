@@ -26,6 +26,8 @@ const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Consta
 const unsigned long Constants::START_TIME = 0;
 const unsigned long Constants::END_TIME = 200;
 const unsigned long Constants::INCREMENT_TIME = 1;
+const unsigned long Constants::STAY_TIME = 5;
+const unsigned long Constants::INTERVAL_BETWEEN_STAYS = 25;
 
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";

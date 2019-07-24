@@ -40,7 +40,7 @@ public:
 	 * @param age the age of the person. The age is generated using a uniform or a normal distribution.
 	 * @param gender the gender of the person.
 	 */
-	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender);
+	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender, unsigned long timeStay, unsigned long intervalBetweenStays);
 
 	/**
 	 * Destructor
@@ -119,6 +119,8 @@ private:
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
 	bool m_changeDirection;
+	unsigned long m_timeStay;
+	unsigned long m_intervalBetweenStays;
 	void randomWalkClosedMap();
 	void randomWalkClosedMapDrift();
 	Point* generateNewLocation(double theta);

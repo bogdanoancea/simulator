@@ -174,6 +174,8 @@ private:
 	PriorType m_prior;
 	//unsigned int m_numMNO;
 	unsigned m_seed;
+	unsigned long m_stay;
+	unsigned m_intevalBetweenStays;
 
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
