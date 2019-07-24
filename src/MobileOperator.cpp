@@ -10,15 +10,30 @@
 #include <string.h>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
 MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone) :
-		Agent(m, id, clock), m_name{name}, m_probMobilePhone{probMobilePhone} {
+		Agent(m, id, clock), m_name { name }, m_probMobilePhone { probMobilePhone } {
+
+	ostringstream cells;
+	cells << "AntennaCells_" << name << ".csv";
+	try {
+		m_antennaCells.open(cells.str(), ios::out);
+	} catch (std::ofstream::failure& e) {
+		cerr << "Error opening antenna cells output file!" << endl;
+	}
 }
 
 MobileOperator::~MobileOperator() {
-	// TODO Auto-generated destructor stub
+	if (m_antennaCells.is_open()) {
+		try {
+			m_antennaCells.close();
+		} catch (std::ofstream::failure& e) {
+			cerr << "Error closing antenna cells output files!" << endl;
+		}
+	}
 }
 
 const string MobileOperator::getName() const {
@@ -37,4 +52,8 @@ const string MobileOperator::getMNOName() const {
 
 const double MobileOperator::getProbMobilePhone() const {
 	return m_probMobilePhone;
+}
+
+ofstream& MobileOperator::getAntennaCellsFile() {
+	return m_antennaCells;
 }

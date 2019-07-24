@@ -172,7 +172,7 @@ private:
 	unsigned long m_GridDimTileX;
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
-	unsigned int m_numMNO;
+	//unsigned int m_numMNO;
 	unsigned m_seed;
 
 

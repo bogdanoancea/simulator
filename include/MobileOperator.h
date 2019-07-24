@@ -10,6 +10,7 @@
 
 #include <Agent.h>
 #include <string>
+#include <fstream>
 
 class MobileOperator: public Agent {
 public:
@@ -31,10 +32,12 @@ public:
 
 	const string getMNOName() const;
 	const double getProbMobilePhone() const;
+	ofstream& getAntennaCellsFile() ;
 
 private:
 	const string m_name;
 	const double m_probMobilePhone;
+	ofstream m_antennaCells;
 };
 
 #endif /* INCLUDE_MOBILEOPERATOR_H_ */

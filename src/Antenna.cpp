@@ -22,12 +22,12 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
+		double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
+				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
-	string fileName = getAntennaOutputfileName() ;
+	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -71,6 +71,9 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 
 	n = getNode(antennaEl, "Smin");
 	m_Smin = atof(n->ToText()->Value());
+
+	n = getNode(antennaEl, "qual_min");
+	m_minQuality = atof(n->ToText()->Value());
 
 	n = getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());
@@ -130,7 +133,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 	}
-	string fileName = getAntennaOutputfileName();
+	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -138,14 +141,12 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		cerr << "Output goes to the console!" << endl;
 	}
 	m_S0 = 30 + 10 * log10(m_power);
-	m_rmax = pow(10, (3-m_Smin/10)/m_ple) * pow(m_power, 10/m_ple);
+	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 10 / m_ple);
 //	cout << m_rmax << "," << getId() << endl;
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(m_rmax);
 	m_cell = shapefactory.createCircle();
-//	geos::io::WKTWriter writter;
-//	cout << "cell:" << writter.write(m_cell->getBoundary()) << endl;
 }
 
 Antenna::~Antenna() {
@@ -168,8 +169,7 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
-			<< m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
 	return (result.str());
 }
 
@@ -245,8 +245,7 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -264,8 +263,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
-				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
+		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+				<< ag->getLocation()->getCoordinate()->y << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -491,10 +490,9 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second -= dg;
 		i.second = fabs(i.second);
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
-			[](const pair<double, double>& a, const pair<double, double>& b) {
-				return a.second < b.second;
-			}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
+		return a.second < b.second;
+	}) - begin(_3dBDegrees);
 
 	return _3dBDegrees[minElementIndex].first;
 }
@@ -640,7 +638,7 @@ void Antenna::setMNO(MobileOperator* mno) {
 	m_MNO = mno;
 }
 
-string Antenna::getAntennaOutputfileName() const {
+string Antenna::getAntennaOutputFileName() const {
 	return getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv";
 }
 
@@ -650,4 +648,11 @@ double Antenna::getRmax() const {
 
 double Antenna::getSmin() const {
 	return m_Smin;
+}
+
+string Antenna::dumpCell() const {
+	geos::io::WKTWriter writter;
+	ostringstream result;
+	result << writter.write(m_cell->getBoundary()) << endl;
+	return result.str();
 }

@@ -116,7 +116,7 @@ int main(int argc, char** argv) {
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = dynamic_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
-					string fileName = a->getAntennaOutputfileName();
+					string fileName = a->getAntennaOutputFileName();
 					Parser file = Parser(fileName, DataType::eFILE, ',', false);
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
 						Row s = file[i];

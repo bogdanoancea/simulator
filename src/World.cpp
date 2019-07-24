@@ -17,6 +17,7 @@
 #include <World.h>
 #include <algorithm>
 #include <numeric>
+#include <map>
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -46,7 +47,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	m_personsFilename = Constants::PERSONS_FILE_NAME;
 	m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
 	//m_probFilename = Constants::PROB_FILE_NAME_PREFIX;
-	m_numMNO = 0;
+	//m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
 	m_seed = -1;
 	vector<Person*> persons = generatePopulation(numPersons);
@@ -66,10 +67,10 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* map, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName, const string& probabilitiesFileName) :
-		m_map { map } {
+World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName, const string& probabilitiesFileName) :
+		m_map { mmap } {
 
-	m_numMNO = 0;
+	//m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
 	m_seed = -1;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
@@ -91,6 +92,11 @@ World::World(Map* map, const string& configPersonsFileName, const string& config
 	for (unsigned long i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
+		const unsigned long id  = antennas[i]->getMNO()->getId();
+		Agent* ag = m_agentsCollection->getAgent(id);
+		MobileOperator* mo = dynamic_cast<MobileOperator*>(ag);
+		ofstream& f = mo->getAntennaCellsFile();
+		f << antennas[i]->getId() << "," << antennas[i]->dumpCell();
 	}
 }
 
@@ -112,7 +118,7 @@ void World::runSimulation() noexcept(false) {
 		throw e;
 	}
 
-	//dumping antennas positions
+//dumping antennas positions
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = dynamic_cast<Antenna*>(it->second);
@@ -178,7 +184,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 
 	unsigned long id;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
-	// temporary
+// temporary
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 	double* speeds = random_generator->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
@@ -322,13 +328,13 @@ PriorType World::getPrior() const {
 	return m_prior;
 }
 
-unsigned int World::getNumMno() const {
-	return m_numMNO;
-}
-
-void World::setNumMno(unsigned int numMno) {
-	m_numMNO = numMno;
-}
+//unsigned int World::getNumMno() const {
+//	return m_numMNO;
+//}
+//
+//void World::setNumMno(unsigned int numMno) {
+//	m_numMNO = numMno;
+//}
 
 unsigned World::getSeed() const {
 	return m_seed;
@@ -367,10 +373,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_timeIncrement = Constants::INCREMENT_TIME;
 
+		unsigned numMNO = 0;
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
 			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
-				m_numMNO++;
+				numMNO++;
 				XMLNode* n = getNode(mnoEl, "mno_name");
 				const char* name = n->ToText()->Value();
 				n = getNode(mnoEl, "prob_mobile_phone");
@@ -380,7 +387,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				result.push_back(mo);
 			}
 		}
-		if (m_numMNO > 2)
+		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
 		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;

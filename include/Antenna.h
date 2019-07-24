@@ -222,9 +222,11 @@ public:
 	void setDirection(double direction);
 	MobileOperator* getMNO() const;
 	void setMNO(MobileOperator* mno);
-	string getAntennaOutputfileName() const;
+	string getAntennaOutputFileName() const;
 	double getRmax() const;
 	double getSmin() const;
+	string dumpCell() const;
+
 
 private:
 
@@ -270,6 +272,7 @@ private:
 
 	double m_rmax;
 	double m_Smin;
+	double m_minQuality;
 };
 
 #endif /* ANTENNA_H_ */
