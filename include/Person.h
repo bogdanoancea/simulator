@@ -98,6 +98,8 @@ public:
 	 */
 	virtual void setLocation(Point* pt) override;
 
+	bool stay(unsigned long time_increment);
+
 	/**
 	 * Add a mobile device to this person. Internally , all mobile devices are kept in an unordered_multimap
 	 * as pairs <name of the device class, pointer to the device object>
@@ -113,6 +115,8 @@ public:
 	 * @return the gender of the person
 	 */
 	Gender getGender() const;
+	unsigned long getTimeStay() const;
+	unsigned long getIntervalBetweenStays() const;
 
 private:
 	int m_age;
@@ -120,7 +124,9 @@ private:
 	unordered_multimap<string, Agent*> m_idDevices;
 	bool m_changeDirection;
 	unsigned long m_timeStay;
+	unsigned long m_copyTimeStay;
 	unsigned long m_intervalBetweenStays;
+	unsigned long m_copyIntervalBetweenStays;
 	void randomWalkClosedMap();
 	void randomWalkClosedMapDrift();
 	Point* generateNewLocation(double theta);

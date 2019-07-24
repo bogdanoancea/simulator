@@ -137,8 +137,13 @@ void World::runSimulation() noexcept(false) {
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
-			p->move(m_mvType);
+			if(!p->stay(m_clock->getIncrement())) {
+				p->move(m_mvType);
+			}
+			else
+				cout << t << "," << p->getId() << "," << "stay " << p->getIntervalBetweenStays() << endl;
 		}
+
 	}
 
 	tt = getClock()->realTime();
@@ -552,7 +557,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long)random_generator->generateNormalDouble(m_stay, 0.2* m_stay);
-		unsigned long interval = (unsigned long)random_generator->generateExponentialDouble(m_intevalBetweenStays);
+		unsigned long interval = (unsigned long)random_generator->generateExponentialDouble(1.0/m_intevalBetweenStays);
+		//cout << "stays " << stay << "," << interval << endl;
 		if (walk_car[i])
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		else

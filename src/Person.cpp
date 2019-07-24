@@ -33,6 +33,8 @@ using namespace geos::geom;
 Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay, unsigned long intervalBetweenStays) :
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_timeStay{timeStay},
 		m_intervalBetweenStays{intervalBetweenStays} {
+			this->m_copyTimeStay = timeStay;
+			this->m_copyIntervalBetweenStays = intervalBetweenStays;
 }
 
 Person::~Person() {
@@ -112,6 +114,15 @@ Point* Person::generateNewLocation(double theta) {
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 	return pt;
 }
+
+unsigned long Person::getTimeStay() const {
+	return m_timeStay;
+}
+
+unsigned long Person::getIntervalBetweenStays() const {
+	return m_intervalBetweenStays;
+}
+
 void Person::setNewLocation(Point* p, bool changeDirection) {
 	Geometry* g = getMap()->getBoundary();
 	if (p->within(g)) {
@@ -183,3 +194,15 @@ const string Person::getName() const {
 	return ("Person");
 }
 
+bool Person::stay(unsigned long time_increment) {
+	m_intervalBetweenStays-= time_increment;
+	if(m_intervalBetweenStays <= 0) {
+		m_intervalBetweenStays = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/m_copyIntervalBetweenStays);
+		if(m_intervalBetweenStays < time_increment)
+			m_intervalBetweenStays = time_increment;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
