@@ -130,6 +130,8 @@ void World::runSimulation() noexcept(false) {
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
+	RandomNumberGenerator* r = RandomNumberGenerator::instance();
+	r->setSeed(time(0));
 	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {

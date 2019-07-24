@@ -23,6 +23,8 @@
 #include<algorithm>
 #include <EMField.h>
 #include <map>
+#include <RandomNumberGenerator.h>
+
 
 using namespace std;
 using namespace geos;
@@ -115,7 +117,19 @@ int main(int argc, char** argv) {
 			vector<AntennaInfo> tmp;
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = dynamic_cast<Antenna*>(it->second);
+
 				if (a->getMNO()->getId() == mo->getId()) {
+					ofstream& qualityFile = a->getMNO()->getSignalQualityFile();
+					qualityFile << fixed << setprecision(15) << a->getId() << ",";
+					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+						Coordinate c = map->getGrid()->getTileCenter(i);
+						c.z = 0;
+						qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << ",";
+					}
+					Coordinate c = map->getGrid()->getTileCenter(map->getGrid()->getNoTiles() - 1);
+					c.z = 0;
+					qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << endl;
+
 					string fileName = a->getAntennaOutputFileName();
 					Parser file = Parser(fileName, DataType::eFILE, ',', false);
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
@@ -168,7 +182,6 @@ int main(int argc, char** argv) {
 				EMField::instance()->sumSignalQuality(map->getGrid(), mo->getId());
 			}
 
-			//int k = 0;
 			ofstream p_file;
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);

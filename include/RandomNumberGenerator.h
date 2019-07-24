@@ -24,12 +24,12 @@ public:
 	 * Returns an instance of this class
 	 * @return n instance of this class
 	 */
-//	static RandomNumberGenerator* instance() {
-//		if (m_instance == nullptr) {
-//			m_instance = new RandomNumberGenerator();
-//		}
-//		return m_instance;
-//	}
+	static RandomNumberGenerator* instance() {
+		if (m_instance == nullptr) {
+			m_instance = new RandomNumberGenerator();
+		}
+		return m_instance;
+	}
 
 	static RandomNumberGenerator* instance(unsigned seed) {
 		if (m_instance == nullptr) {
@@ -178,7 +178,7 @@ public:
 	void setSeed(unsigned seed);
 
 private:
-//	RandomNumberGenerator();
+	RandomNumberGenerator();
 	RandomNumberGenerator(unsigned seed);
 	RandomNumberGenerator(const RandomNumberGenerator&);
 	RandomNumberGenerator& operator=(const RandomNumberGenerator&);

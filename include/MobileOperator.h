@@ -33,11 +33,14 @@ public:
 	const string getMNOName() const;
 	const double getProbMobilePhone() const;
 	ofstream& getAntennaCellsFile() ;
+	ofstream& getSignalQualityFile() ;
+
 
 private:
 	const string m_name;
 	const double m_probMobilePhone;
 	ofstream m_antennaCells;
+	ofstream m_signalQuality;
 };
 
 #endif /* INCLUDE_MOBILEOPERATOR_H_ */

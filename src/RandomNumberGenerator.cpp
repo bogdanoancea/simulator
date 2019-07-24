@@ -17,10 +17,10 @@ using namespace std;
 
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
-//RandomNumberGenerator::RandomNumberGenerator() {
-//	random_device device;
-//	m_generator.seed(device());
-//}
+RandomNumberGenerator::RandomNumberGenerator() {
+	random_device device;
+	m_generator.seed(device());
+}
 
 RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
 	if(seed != 0)
@@ -32,7 +32,7 @@ RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
 }
 
 void RandomNumberGenerator::setSeed(unsigned seed) {
-	m_generator.seed(seed);
+	m_instance->m_generator.seed(seed);
 }
 
 

@@ -24,6 +24,13 @@ MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening antenna cells output file!" << endl;
 	}
+	ostringstream quality;
+	quality << "SignalQuality_" << name << ".csv";
+	try {
+		m_signalQuality.open(quality.str(), ios::out);
+	} catch (std::ofstream::failure& e) {
+		cerr << "Error opening signal quality output file!" << endl;
+	}
 }
 
 MobileOperator::~MobileOperator() {
@@ -32,6 +39,14 @@ MobileOperator::~MobileOperator() {
 			m_antennaCells.close();
 		} catch (std::ofstream::failure& e) {
 			cerr << "Error closing antenna cells output files!" << endl;
+		}
+	}
+
+	if (m_signalQuality.is_open()) {
+		try {
+			m_signalQuality.close();
+		} catch (std::ofstream::failure& e) {
+			cerr << "Error closing signal quality output files!" << endl;
 		}
 	}
 }
@@ -56,4 +71,8 @@ const double MobileOperator::getProbMobilePhone() const {
 
 ofstream& MobileOperator::getAntennaCellsFile() {
 	return m_antennaCells;
+}
+
+ofstream& MobileOperator::getSignalQualityFile() {
+	return m_signalQuality;
 }
