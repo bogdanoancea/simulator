@@ -67,7 +67,8 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName, const string& probabilitiesFileName) :
+World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName,
+		const string& probabilitiesFileName) :
 		m_map { mmap } {
 
 	//m_numMNO = 0;
@@ -92,7 +93,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < antennas.size(); i++) {
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
-		const unsigned long id  = antennas[i]->getMNO()->getId();
+		const unsigned long id = antennas[i]->getMNO()->getId();
 		Agent* ag = m_agentsCollection->getAgent(id);
 		MobileOperator* mo = dynamic_cast<MobileOperator*>(ag);
 		ofstream& f = mo->getAntennaCellsFile();
@@ -137,11 +138,10 @@ void World::runSimulation() noexcept(false) {
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
-			if(!p->stay(m_clock->getIncrement())) {
-				p->move(m_mvType);
-			}
-			else
-				cout << t << "," << p->getId() << "," << "stay " << p->getIntervalBetweenStays() << endl;
+
+			p->move(m_mvType);
+
+			cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
 		}
 
 	}
@@ -197,7 +197,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons) {
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::STAY_TIME, Constants::INTERVAL_BETWEEN_STAYS);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::STAY_TIME,
+				Constants::INTERVAL_BETWEEN_STAYS);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -219,7 +220,8 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep, AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
+				AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -230,7 +232,8 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
+				connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -386,7 +389,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_stay = Constants::STAY_TIME;
 
-
 		XMLNode* intervalNode = getNode(simEl, "interval_between_stays");
 		if (intervalNode)
 			m_intevalBetweenStays = atof(intervalNode->ToText()->Value());
@@ -476,8 +478,8 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	return (result);
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-		vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
 
 	vector<Person*> result;
 	unsigned long id;
@@ -556,19 +558,22 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	Person* p;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		unsigned long stay = (unsigned long)random_generator->generateNormalDouble(m_stay, 0.2* m_stay);
-		unsigned long interval = (unsigned long)random_generator->generateExponentialDouble(1.0/m_intevalBetweenStays);
+		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
+		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_intevalBetweenStays);
 		//cout << "stays " << stay << "," << interval << endl;
 		if (walk_car[i])
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		else
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 
 		int np1 = phone1[i];
 		int np2 = phone2[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
+					Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[0]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -577,7 +582,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		}
 		while (np2) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
+					Constants::QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[1]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);

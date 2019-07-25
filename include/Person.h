@@ -115,18 +115,18 @@ public:
 	 * @return the gender of the person
 	 */
 	Gender getGender() const;
-	unsigned long getTimeStay() const;
-	unsigned long getIntervalBetweenStays() const;
+	unsigned long getAvgTimeStay() const;
+	unsigned long getAvgIntervalBetweenStays() const;
 
 private:
 	int m_age;
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
 	bool m_changeDirection;
+	unsigned long m_avgTimeStay;
 	unsigned long m_timeStay;
-	unsigned long m_copyTimeStay;
-	unsigned long m_intervalBetweenStays;
-	unsigned long m_copyIntervalBetweenStays;
+	unsigned long m_avgIntervalBetweenStays;
+	unsigned long m_nextStay;
 	void randomWalkClosedMap();
 	void randomWalkClosedMapDrift();
 	Point* generateNewLocation(double theta);

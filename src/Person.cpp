@@ -31,10 +31,10 @@ using namespace geos;
 using namespace geos::geom;
 
 Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay, unsigned long intervalBetweenStays) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_timeStay{timeStay},
-		m_intervalBetweenStays{intervalBetweenStays} {
-			this->m_copyTimeStay = timeStay;
-			this->m_copyIntervalBetweenStays = intervalBetweenStays;
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_avgTimeStay{timeStay},
+		m_avgIntervalBetweenStays{intervalBetweenStays} {
+			m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
+			m_timeStay = timeStay;
 }
 
 Person::~Person() {
@@ -62,6 +62,19 @@ const string Person::toString() const {
 }
 
 Point* Person::move(MovementType mvType) {
+	unsigned long currentTime = getClock()->getCurrentTime();
+	if(currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
+		setLocation(getLocation());
+		if(currentTime  == m_nextStay + m_timeStay) {
+			unsigned long nextInterval = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/this->m_avgIntervalBetweenStays);
+			if(nextInterval % getClock()->getIncrement() != 0 )
+				nextInterval += nextInterval % getClock()->getIncrement();
+
+			m_nextStay = currentTime + nextInterval;
+			m_timeStay = (unsigned long)RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2*m_avgTimeStay);
+		}
+	}
+	else
 	if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
 		randomWalkClosedMap();
 	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
@@ -115,12 +128,12 @@ Point* Person::generateNewLocation(double theta) {
 	return pt;
 }
 
-unsigned long Person::getTimeStay() const {
-	return m_timeStay;
+unsigned long Person::getAvgTimeStay() const {
+	return m_avgTimeStay;
 }
 
-unsigned long Person::getIntervalBetweenStays() const {
-	return m_intervalBetweenStays;
+unsigned long Person::getAvgIntervalBetweenStays() const {
+	return m_avgIntervalBetweenStays;
 }
 
 void Person::setNewLocation(Point* p, bool changeDirection) {
@@ -194,15 +207,15 @@ const string Person::getName() const {
 	return ("Person");
 }
 
-bool Person::stay(unsigned long time_increment) {
-	m_intervalBetweenStays-= time_increment;
-	if(m_intervalBetweenStays <= 0) {
-		m_intervalBetweenStays = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/m_copyIntervalBetweenStays);
-		if(m_intervalBetweenStays < time_increment)
-			m_intervalBetweenStays = time_increment;
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+//bool Person::stay(unsigned long time_increment) {
+//	m_intervalBetweenStays-= time_increment;
+//	if(m_intervalBetweenStays <= 0) {
+//		m_intervalBetweenStays = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/m_copyIntervalBetweenStays);
+//		if(m_intervalBetweenStays < time_increment)
+//			m_intervalBetweenStays = time_increment;
+//		return true;
+//	}
+//	else {
+//		return false;
+//	}
+//}
