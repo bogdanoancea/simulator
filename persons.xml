@@ -8,6 +8,7 @@
             <sd>25</sd>
         </age_distribution>
         <male_share>0.48</male_share>
-        <speed_walk>150</speed_walk>
-        <speed_car>450</speed_car>
+        <speed_walk>1.50</speed_walk>
+        <speed_car>150</speed_car>
+        <percent_home>0.80</percent_home>
 </persons>

@@ -23,7 +23,82 @@ using namespace geos;
 using namespace geos::geom;
 using namespace std;
 
-vector<Point*> generatePoints(Map* m, int n, unsigned seed) {
+vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsigned seed) {
+	vector<Point*> result;
+	RandomNumberGenerator* random_generator;
+	random_generator = RandomNumberGenerator::instance(seed);
+
+	Geometry* g = m->getBoundary();
+	if (dynamic_cast<Polygon*>(g) != nullptr) {
+		Polygon* pol = dynamic_cast<Polygon*>(g);
+		const Envelope* env = pol->getEnvelopeInternal();
+		double xmin = env->getMinX();
+		double xmax = env->getMaxX();
+		double ymin = env->getMinY();
+		double ymax = env->getMaxX();
+
+		unsigned long nhome = (unsigned long) n * percentHome;
+//		cout << "nHome" << nhome << endl;
+		//generate a pool of numbers to choose from
+		double* x1 = random_generator->generateUniformDouble(xmin, xmax, nhome);
+		double* y1 = random_generator->generateUniformDouble(ymin, ymax, nhome);
+
+		unsigned long i = 0, k = 0;
+		while (k < nhome) {
+			Coordinate c = Coordinate(x1[i], y1[i]);
+			c.z = 0;
+			i++;
+			Point* p = m->getGlobalFactory()->createPoint(c);
+			if (pol->contains(p)) {
+				result.push_back(p);
+				k++;
+			} else
+				m->getGlobalFactory()->destroyGeometry(p);
+
+			// we used all the numbers, generate others
+			if (i == n) {
+				delete[] x1;
+				delete[] y1;
+				x1 = random_generator->generateUniformDouble(xmin, xmax, nhome - k + 50);
+				y1 = random_generator->generateUniformDouble(ymin, ymax, nhome - k + 50);
+				i = 0;
+			}
+		}
+		delete[] x1;
+		delete[] y1;
+
+		random_generator->setSeed(time(0));
+		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome + 1);
+		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome + 1);
+
+		k = 0;
+		while (k < n - nhome) {
+			Coordinate c = Coordinate(x2[i], y2[i]);
+			c.z = 0;
+			i++;
+			Point* p = m->getGlobalFactory()->createPoint(c);
+			if (pol->contains(p)) {
+				result.push_back(p);
+				k++;
+			} else
+				m->getGlobalFactory()->destroyGeometry(p);
+
+			// we used all the numbers, generate others
+			if (i == n) {
+				delete[] x2;
+				delete[] y2;
+				x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome - k + 50);
+				y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome - k + 50);
+				i = 0;
+			}
+		}
+		delete[] x2;
+		delete[] y2;
+	}
+	return (result);
+}
+
+vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
 	random_generator = RandomNumberGenerator::instance(seed);
@@ -38,11 +113,12 @@ vector<Point*> generatePoints(Map* m, int n, unsigned seed) {
 		double ymax = env->getMaxX();
 
 		//generate a pool of numbers to choose from
-		double* x = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y = random_generator->generateUniformDouble(ymin, ymax, n);
-		int i = 0, k = 0;
-		while (k < n) {
-			Coordinate c = Coordinate(x[i], y[i]);
+		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
+
+		unsigned long i = 0, k = 0;
+		while (n) {
+			Coordinate c = Coordinate(x1[i], y1[i]);
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
@@ -54,15 +130,16 @@ vector<Point*> generatePoints(Map* m, int n, unsigned seed) {
 
 			// we used all the numbers, generate others
 			if (i == n) {
-				delete[] x;
-				delete[] y;
-				x = random_generator->generateUniformDouble(xmin, xmax, n - k + 10);
-				y = random_generator->generateUniformDouble(ymin, ymax, n - k + 10);
+				delete[] x1;
+				delete[] y1;
+				x1 = random_generator->generateUniformDouble(xmin, xmax, n - k + 50);
+				y1 = random_generator->generateUniformDouble(ymin, ymax, n - k + 50);
 				i = 0;
 			}
 		}
-		delete[] x;
-		delete[] y;
+		delete[] x1;
+		delete[] y1;
+
 	}
 	return (result);
 }
@@ -72,8 +149,8 @@ void printPersonHeader() {
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID"
-			<< endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+			<< setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {

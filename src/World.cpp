@@ -50,7 +50,7 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	//m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
 	m_seed = -1;
-	vector<Person*> persons = generatePopulation(numPersons);
+	vector<Person*> persons = generatePopulation(numPersons, 0.8);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
@@ -73,7 +73,6 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	//m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
-	m_seed = -1;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
@@ -82,11 +81,6 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
-	}
-
-	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
-	for (unsigned long i = 0; i < persons.size(); i++) {
-		m_agentsCollection->addAgent(persons[i]);
 	}
 
 	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
@@ -98,6 +92,11 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		MobileOperator* mo = dynamic_cast<MobileOperator*>(ag);
 		ofstream& f = mo->getAntennaCellsFile();
 		f << antennas[i]->getId() << "," << antennas[i]->dumpCell();
+	}
+
+	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
+	for (unsigned long i = 0; i < persons.size(); i++) {
+		m_agentsCollection->addAgent(persons[i]);
 	}
 }
 
@@ -138,10 +137,8 @@ void World::runSimulation() noexcept(false) {
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
-
 			p->move(m_mvType);
-
-			cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
+//			cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
 		}
 
 	}
@@ -186,11 +183,11 @@ const string& World::getGridFilename() const {
 	return m_gridFilename;
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons) {
+vector<Person*> World::generatePopulation(unsigned long numPersons, double percentHome) {
 	vector<Person*> result;
 
 	unsigned long id;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 // temporary
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 	double* speeds = random_generator->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
@@ -217,7 +214,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	double smid = Constants::S_MID;
 	double ssteep = Constants::S_STEEP;
 
-	vector<Point*> positions = utils::generatePoints(getMap(), numAntennas, m_seed);
+	vector<Point*> positions = utils::generateFixedPoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
 		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
@@ -321,7 +318,10 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 		XMLNode* speed_carNode = getNode(personsEl, "speed_car");
 		double speed_car = atof(speed_carNode->ToText()->Value());
 
-		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car);
+		XMLNode* percentHomeNode = getNode(personsEl, "percent_home");
+		double percentHome = atof(percentHomeNode->ToText()->Value());
+
+		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car, percentHome);
 	}
 	return (result);
 }
@@ -479,13 +479,13 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 }
 
 vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
-		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car) {
+		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
 
 	vector<Person*> result;
 	unsigned long id;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, m_seed);
-
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
+
 
 	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;

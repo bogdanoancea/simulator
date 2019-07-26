@@ -187,10 +187,10 @@ private:
 	double m_probSecMobilePhone;
 
 
-	vector<Person*> generatePopulation(unsigned long numPersons);
+	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
 	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-			vector<MobileOperator*> mnos, double speed_walk, double speed_car);
+			vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);

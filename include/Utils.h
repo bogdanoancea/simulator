@@ -33,7 +33,9 @@ namespace utils {
 	 * @param n the number of points to generate
 	 * @return a vector of pointers to Point objects
 	 */
-	vector<Point*> generatePoints(Map* m, int n, unsigned seed);
+	vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsigned seed);
+
+	vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed);
 
 	/**
 	 * Prints out a header containing the names of the member variables from the Person class in a human readable format.
