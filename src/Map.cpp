@@ -71,7 +71,7 @@ Map::Map(string wktFileName) {
 
 	stringstream buffer;
 	buffer << wktFile.rdbuf();
-	cout << "mapa :" << buffer.str() << endl;
+	//cout << "mapa :" << buffer.str() << endl;
 	m_boundary = reader.read(buffer.str());
 	try {
 		wktFile.close();

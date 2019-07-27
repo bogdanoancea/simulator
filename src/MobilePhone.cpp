@@ -40,7 +40,8 @@ const string MobilePhone::toString() const {
 
 bool MobilePhone::tryConnect() {
 	bool connected = false;
-
+if(getId() == 93)
+	cout << "93 try connect" << endl;
 	//select the most powerful antenna
 	Point *p = this->getLocation();
 	bool use_power = (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER);

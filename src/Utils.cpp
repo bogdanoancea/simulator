@@ -145,46 +145,47 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 }
 
 void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << endl;
+std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)<< "Phone(s) ID"<< endl;
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-			<< setw(15) << "MNO ID" << endl;
+cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections"
+		<< setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {
-	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
+cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
 }
 
 void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
+cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
+		<< setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
-	XMLNode* n = nullptr;
-	XMLElement* element = el->FirstChildElement(name);
-	if (element) {
-		n = element->FirstChild();
-		if (!n)
-			throw std::runtime_error("Syntax error in the configuration file ");
-	}
-	return (n);
+XMLNode* n = nullptr;
+XMLElement* element = el->FirstChildElement(name);
+if (element) {
+	n = element->FirstChild();
+	if (!n)
+		throw std::runtime_error("Syntax error in the configuration file ");
+}
+return (n);
 }
 
 XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
-	XMLElement* n = el->FirstChildElement(name);
-	if (!n)
-		throw std::runtime_error("Syntax error in the configuration file ");
-	return (n);
+XMLElement* n = el->FirstChildElement(name);
+if (!n)
+	throw std::runtime_error("Syntax error in the configuration file ");
+return (n);
 }
 
 double r2d(double x) {
-	return (x * 180.0) / PI;
+return (x * 180.0) / PI;
 }
 
 double d2r(double x) {
-	return (PI / 180.0) * x;
+return (PI / 180.0) * x;
 }
 
 }

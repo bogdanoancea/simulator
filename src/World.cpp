@@ -139,8 +139,11 @@ void World::runSimulation() noexcept(false) {
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			pFile << p->dumpLocation() << p->dumpDevices() << endl;
+			if(p->getId() == 92) {
+				cout << t << ", 92" << endl;
+			}
 			p->move(m_mvType);
-//			cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
+			//cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
 		}
 
 	}
@@ -401,7 +404,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
 			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
-				cout << "aici" << endl;
 				numMNO++;
 				XMLNode* n = getNode(mnoEl, "mno_name");
 				const char* name = n->ToText()->Value();
@@ -412,11 +414,9 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				result.push_back(mo);
 			}
 		}
-		cout << "aici2" << endl;
 		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
-		cout << "aici3" << endl;
 		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
 		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
 		if (prob_sec_mobilePhoneNode)
