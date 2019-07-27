@@ -204,15 +204,23 @@ double Grid::getYOrigin() const {
 	return (m_yOrigin);
 }
 
-unsigned long Grid::getTileIndexX(Point* p) {
+unsigned long Grid::getTileIndexX(const Point* p) const{
 	unsigned long result = -1;
-	throw runtime_error("Not yet implemented");
+	for(int i = 0; i < m_noTilesX;i++) {
+		if(p->getX()< m_xOrigin + (i+1) * m_xTileDim )
+			return i;
+	}
+	//throw runtime_error("Not yet implemented");
 	return (result);
 }
 
-unsigned long Grid::getTileIndexY(Point* p) {
+unsigned long Grid::getTileIndexY(const Point* p) const {
 	unsigned long result = -1;
-	throw runtime_error("Not yet implemented");
+	for(int i = 0; i < m_noTilesY;i++) {
+			if(p->getX()< m_xOrigin + (i+1) * m_yTileDim )
+				return i;
+		}
+	//throw runtime_error("Not yet implemented");
 	return (result);
 }
 

@@ -138,10 +138,12 @@ void World::runSimulation() noexcept(false) {
 		//iterate over all persons and call move()
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
-			pFile << p->dumpLocation() << p->dumpDevices() << endl;
-			if(p->getId() == 92) {
-				cout << t << ", 92" << endl;
-			}
+			const Grid* g = getMap()->getGrid();
+			int x = g->getTileIndexX(p->getLocation());
+			pFile << p->dumpLocation() << Constants::sep << x << p->dumpDevices() << endl;
+//			if(p->getId() == 92) {
+//				cout << t << ", 92" << endl;
+//			}
 			p->move(m_mvType);
 			//cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
 		}

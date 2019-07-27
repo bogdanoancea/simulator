@@ -102,14 +102,14 @@ public:
 	 * @param p the point in space for which we need the tile index.
 	 * @return the tile index on X axis that contains a given point in space, i.e. a number between 0 and getNoTilesX() - 1.
 	 */
-	unsigned long getTileIndexX(Point* p);
+	unsigned long getTileIndexX(const Point* p) const;
 
 	/**
 	 * Returns the tile index on Y axis that contains a given point in space.
 	 * @param p the point in space for which we need the tile index.
 	 * @return the tile index on Y axis that contains a given point in space, i.e. a number between 0 and getNoTilesY() - 1.
 	 */
-	unsigned long getTileIndexY(Point* p);
+	unsigned long getTileIndexY(const Point* p) const;
 
 	/**
 	 * Computes the center of a tile where a given point is located
