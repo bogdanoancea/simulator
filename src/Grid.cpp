@@ -21,7 +21,6 @@
 #include <EMField.h>
 #include <algorithm>
 
-
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
@@ -159,7 +158,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 	return result;
 }
 
-Coordinate Grid::getTileCenter(unsigned long tileIndex) const{
+Coordinate Grid::getTileCenter(unsigned long tileIndex) const {
 	return (m_tileCenters[tileIndex]);
 }
 
@@ -204,23 +203,23 @@ double Grid::getYOrigin() const {
 	return (m_yOrigin);
 }
 
-unsigned long Grid::getTileIndexX(const Point* p) const{
+unsigned long Grid::getTileIndexX(const Point* p) const {
 	unsigned long result = -1;
-	for(int i = 0; i < m_noTilesX;i++) {
-		if(p->getX()< m_xOrigin + (i+1) * m_xTileDim )
-			return i;
-	}
-	//throw runtime_error("Not yet implemented");
+	double x = p->getX();
+	if (x < m_xOrigin || x > m_xOrigin + m_xTileDim * m_noTilesX)
+		result = -1;
+	result = (x - m_xOrigin) / m_xTileDim;
+
 	return (result);
 }
 
 unsigned long Grid::getTileIndexY(const Point* p) const {
 	unsigned long result = -1;
-	for(int i = 0; i < m_noTilesY;i++) {
-			if(p->getX()< m_xOrigin + (i+1) * m_yTileDim )
-				return i;
-		}
-	//throw runtime_error("Not yet implemented");
+	double y = p->getY();
+		if (y < m_yOrigin || y > m_yOrigin + m_yTileDim * m_noTilesY)
+			result = -1;
+		result = (y - m_yOrigin) / m_yTileDim;
+
 	return (result);
 }
 
