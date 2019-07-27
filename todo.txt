@@ -36,3 +36,6 @@ todo.txt
      de verificat unde trebuie apelat random generator cu seed;
      
      AntennaInfo file trebuie separat dupa MNO
+     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     la parseAntennas - daca nu gasesc MNO-ul antenei crapa, trebuie sa ignor!
+     al doilea telefon nu se genereaza corect daca am doar 1 singur MNO.

@@ -74,6 +74,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	//m_numMNO = 0;
 	m_probSecMobilePhone = 0.0;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
+
 	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
@@ -98,6 +99,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
+
 }
 
 //dtor
@@ -321,6 +323,7 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 		XMLNode* percentHomeNode = getNode(personsEl, "percent_home");
 		double percentHome = atof(percentHomeNode->ToText()->Value());
 
+
 		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car, percentHome);
 	}
 	return (result);
@@ -399,6 +402,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
 			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
+				cout << "aici" <<endl;
 				numMNO++;
 				XMLNode* n = getNode(mnoEl, "mno_name");
 				const char* name = n->ToText()->Value();
@@ -409,9 +413,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				result.push_back(mo);
 			}
 		}
+		cout << "aici2" <<endl;
 		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
+		cout << "aici3" <<endl;
 		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
 		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
 		if (prob_sec_mobilePhoneNode)
@@ -556,6 +562,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long walks = 0;
 	Person* p;
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
+
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
