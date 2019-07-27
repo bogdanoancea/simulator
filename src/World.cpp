@@ -323,7 +323,6 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 		XMLNode* percentHomeNode = getNode(personsEl, "percent_home");
 		double percentHome = atof(percentHomeNode->ToText()->Value());
 
-
 		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car, percentHome);
 	}
 	return (result);
@@ -402,7 +401,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
 			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
-				cout << "aici" <<endl;
+				cout << "aici" << endl;
 				numMNO++;
 				XMLNode* n = getNode(mnoEl, "mno_name");
 				const char* name = n->ToText()->Value();
@@ -413,11 +412,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				result.push_back(mo);
 			}
 		}
-		cout << "aici2" <<endl;
+		cout << "aici2" << endl;
 		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
-		cout << "aici3" <<endl;
+		cout << "aici3" << endl;
 		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
 		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
 		if (prob_sec_mobilePhoneNode)
@@ -490,7 +489,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	vector<Person*> result;
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
-
 
 	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;
@@ -576,7 +574,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 
 		int np1 = phone1[i];
-		int np2 = phone2[i];
+
 		while (np1) {
 			id = IDGenerator::instance()->next();
 			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
@@ -587,15 +585,18 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			p->addDevice(typeid(MobilePhone).name(), mp);
 			np1--;
 		}
-		while (np2) {
-			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
-					Constants::QUALITY_THRESHOLD, m_connType);
-			mp->setMobileOperator(mnos[1]);
-			mp->setHolder(p);
-			m_agentsCollection->addAgent(mp);
-			p->addDevice(typeid(MobilePhone).name(), mp);
-			np2--;
+		if (numMno == 2) {
+			int np2 = phone2[i];
+			while (np2) {
+				id = IDGenerator::instance()->next();
+				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
+						Constants::QUALITY_THRESHOLD, m_connType);
+				mp->setMobileOperator(mnos[1]);
+				mp->setHolder(p);
+				m_agentsCollection->addAgent(mp);
+				p->addDevice(typeid(MobilePhone).name(), mp);
+				np2--;
+			}
 		}
 		result.push_back(p);
 	}
