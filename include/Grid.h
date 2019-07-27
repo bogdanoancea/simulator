@@ -154,6 +154,8 @@ public:
 	 */
 	Coordinate getTileCenter(unsigned long tileIndex)const ;
 
+	unsigned long getTileNo(const Point* p) const;
+
 private:
 	//Map* m_map;
 	double m_xOrigin;

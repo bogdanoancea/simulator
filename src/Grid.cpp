@@ -229,6 +229,13 @@ unsigned long Grid::getTileCenterX(Point* p) {
 	return (result);
 }
 
+
+unsigned long Grid::getTileNo(const Point* p) const {
+	unsigned long x = getTileIndexX(p);
+	unsigned long y = getTileIndexY(p);
+	return y * m_noTilesX + x;
+}
+
 unsigned long Grid::getTileCenterY(Point* p) {
 	unsigned long result = -1;
 	throw runtime_error("Not yet implemented");

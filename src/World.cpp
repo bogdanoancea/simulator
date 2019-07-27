@@ -139,7 +139,7 @@ void World::runSimulation() noexcept(false) {
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
 			const Grid* g = getMap()->getGrid();
-			int x = g->getTileIndexX(p->getLocation());
+			int x = g->getTileNo(p->getLocation());
 			pFile << p->dumpLocation() << Constants::sep << x << p->dumpDevices() << endl;
 //			if(p->getId() == 92) {
 //				cout << t << ", 92" << endl;
