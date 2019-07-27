@@ -484,7 +484,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	vector<Person*> result;
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 
 
 	double probMobilePhone = 0.0;
@@ -556,6 +555,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long cars = 0;
 	unsigned long walks = 0;
 	Person* p;
+	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
