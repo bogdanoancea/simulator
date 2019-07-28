@@ -345,13 +345,6 @@ PriorType World::getPrior() const {
 	return m_prior;
 }
 
-//unsigned int World::getNumMno() const {
-//	return m_numMNO;
-//}
-//
-//void World::setNumMno(unsigned int numMno) {
-//	m_numMNO = numMno;
-//}
 
 unsigned World::getSeed() const {
 	return m_seed;
