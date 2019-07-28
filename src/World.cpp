@@ -31,6 +31,7 @@
 #include <MovementType.h>
 #include <TinyXML2.h>
 #include <stdlib.h>
+#include <iomanip>
 
 using namespace std;
 using namespace utils;
@@ -122,9 +123,10 @@ void World::runSimulation() noexcept(false) {
 
 //dumping antennas positions
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+	aFile <<"t" << Constants::sep << "Antenna ID" <<Constants::sep << "x" <<Constants::sep << "y" <<Constants::sep << "MNO ID" << Constants::sep << "Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = dynamic_cast<Antenna*>(it->second);
-		aFile << a->dumpLocation() << endl;
+		aFile << a->dumpLocation() << Constants::sep << a->getMNO()->getId() << Constants::sep<< a->getMap()->getGrid()->getTileNo(a->getLocation())<< endl;
 	}
 
 	time_t tt = getClock()->realTime();
