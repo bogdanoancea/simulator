@@ -117,7 +117,7 @@ a shell:
 <p>
 <b>How to run the simulator</b>
 <p>
-<br>In a terminal (command prompt) type:
+In a terminal (command prompt) type:
 <br>$simulator -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -pb probabilities.xml -v -o
 <br>
 <br>where the following files provide input parameters:
@@ -127,8 +127,6 @@ a shell:
 <br> persons.xml is the population configuration file
 <br> probabilities.xml is the file containing the parameters need to compute the location probabilities
 <br>
-<br>The location probabilities are computed only if -o parameter is given in the command line.
-
-<br>If -v is given in the command line the simulator will output on console the set of persons, mobile phone operators, antennas and mobile phones.
+<br>The location probabilities are computed only if -o parameter is given in the command line. If -v is given in the command line the simulator will output on console the set of persons, mobile phone operators, antennas and mobile phones.
 
 
