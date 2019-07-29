@@ -19,16 +19,19 @@ const double Constants::S_MID = -92.5;
 const double Constants::S_STEEP = 0.2;
 const unsigned long Constants::NO_PERSONS = 100;
 const unsigned long Constants::NO_ANTENNAS = 10;
-const double Constants::MARKET_SHARE = 0.3;
-const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::MARKET_SHARE;
+const double Constants::PROB_MOBILE_PHONE = 0.35;
+const double Constants::PROB_SECOND_MOBILE_PHONE = 0.1;
+const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::PROB_MOBILE_PHONE;
 
 const unsigned long Constants::START_TIME = 0;
 const unsigned long Constants::END_TIME = 200;
 const unsigned long Constants::INCREMENT_TIME = 1;
+const unsigned long Constants::STAY_TIME = 5;
+const unsigned long Constants::INTERVAL_BETWEEN_STAYS = 25;
 
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";
-const char* Constants::PROB_FILE_NAME = "prob.csv";
+const char* Constants::PROB_FILE_NAME_PREFIX = "probabilities";
 const char* Constants::PERSONS_FILE_NAME = "persons.csv";
 const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
 
@@ -49,4 +52,6 @@ const double Constants::ANTENNA_DIRECTION = 0;
 const unsigned int Constants::ANTENNA_MAPPING_N = 1000;
 const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 
+const unsigned int Constants::NUM_MNO = 1;
 
+const char* Constants::DEFAULT_MNO_NAME = "MNO";

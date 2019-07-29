@@ -18,9 +18,23 @@ using namespace std;
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
 RandomNumberGenerator::RandomNumberGenerator() {
-	std::random_device device;
+	random_device device;
 	m_generator.seed(device());
 }
+
+RandomNumberGenerator::RandomNumberGenerator(unsigned seed) {
+	if(seed != 0)
+		m_generator.seed(seed);
+	else {
+		random_device device;
+		m_generator.seed(device());
+	}
+}
+
+void RandomNumberGenerator::setSeed(unsigned seed) {
+	m_instance->m_generator.seed(seed);
+}
+
 
 double* RandomNumberGenerator::generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, const int n) {
 	double* result = new double[n];
@@ -31,8 +45,7 @@ double* RandomNumberGenerator::generateNormal2Double(const double m1, const doub
 		if (i % 2) {
 			m_normal_double_distribution.param(p1);
 			result[i] = m_normal_double_distribution(m_generator);
-		}
-		else {
+		} else {
 			m_normal_double_distribution.param(p2);
 			result[i] = m_normal_double_distribution(m_generator);
 		}
@@ -128,7 +141,33 @@ double RandomNumberGenerator::generateNormalDouble(const double m, const double 
 }
 
 
+double RandomNumberGenerator::generateExponentialDouble(const double lambda) {
+	double result;
+	exponential_distribution<double>::param_type p1(lambda);
+	m_exponential_double_distribution.param(p1);
+	result = m_exponential_double_distribution(m_generator);
+	return (result);
+}
 
+
+
+int RandomNumberGenerator::generateBernoulliInt(const double p) {
+	int result = 0;
+	bernoulli_distribution::param_type par(p);
+	m_bernoulli_distribution.param(par);
+	result = m_bernoulli_distribution(m_generator);
+	return (result);
+}
+
+int* RandomNumberGenerator::generateBernoulliInt(const double p, const int n) {
+	int* result = new int[n];
+	bernoulli_distribution::param_type par(p);
+	m_bernoulli_distribution.param(par);
+	for (int i = 0; i < n; i++) {
+		result[i] = m_bernoulli_distribution(m_generator);
+	}
+	return (result);
+}
 
 ////------------------------------------------------------------
 //// Compute y_l from y_k

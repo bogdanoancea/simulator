@@ -65,11 +65,6 @@ public:
 	static const unsigned long NO_ANTENNAS;
 
 	/**
-	 * The market share of mobile phone operator, used to compute how many people have mobile devices
-	 */
-	static const double MARKET_SHARE;
-
-	/**
 	 * The number of the mobile devices used for a simulation
 	 */
 	static const unsigned long NO_MOBILE_PHONES;
@@ -89,7 +84,9 @@ public:
 	 */
 	static const unsigned long INCREMENT_TIME;
 
+	static const unsigned long STAY_TIME;
 
+	static const unsigned long INTERVAL_BETWEEN_STAYS;
 	/**
 	 * The separator used when information is saved in output files
 	 */
@@ -120,7 +117,7 @@ public:
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
 	 */
-	static const char* PROB_FILE_NAME;
+	static const char* PROB_FILE_NAME_PREFIX;
 
 	/**
 	 * The name of the file where the exact positions of the persons are saved during simulation. They are needed for later analysis.
@@ -160,6 +157,12 @@ public:
 
 	static const unsigned int ANTENNA_MIN_3_DB;
 
+	static const unsigned int NUM_MNO;
+
+	static const char* DEFAULT_MNO_NAME;
+
+	static const double PROB_MOBILE_PHONE;
+	static const double PROB_SECOND_MOBILE_PHONE;
 };
 
 #endif /* CONSTANTS_H_ */

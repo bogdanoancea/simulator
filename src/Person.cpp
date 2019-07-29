@@ -30,8 +30,11 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}{
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay, unsigned long intervalBetweenStays) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_avgTimeStay{timeStay},
+		m_avgIntervalBetweenStays{intervalBetweenStays} {
+			m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
+			m_timeStay = timeStay;
 }
 
 Person::~Person() {
@@ -59,6 +62,19 @@ const string Person::toString() const {
 }
 
 Point* Person::move(MovementType mvType) {
+	unsigned long currentTime = getClock()->getCurrentTime();
+	if(currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
+		setLocation(getLocation());
+		if(currentTime  == m_nextStay + m_timeStay) {
+			unsigned long nextInterval = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/this->m_avgIntervalBetweenStays);
+			if(nextInterval % getClock()->getIncrement() != 0 )
+				nextInterval += nextInterval % getClock()->getIncrement();
+
+			m_nextStay = currentTime + nextInterval;
+			m_timeStay = (unsigned long)RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2*m_avgTimeStay);
+		}
+	}
+	else
 	if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
 		randomWalkClosedMap();
 	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
@@ -82,7 +98,7 @@ Point* Person::move(MovementType mvType) {
 
 void Person::randomWalkClosedMap() {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
+	theta = RandomNumberGenerator::instance(0)->generateUniformDouble(0.0, 2 * utils::PI);
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, false);
 }
@@ -93,9 +109,9 @@ void Person::randomWalkClosedMapDrift() {
 	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
 		trendAngle = 5 * utils::PI/4;
 	}
-	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
+	theta = RandomNumberGenerator::instance(0)->generateNormalDouble(trendAngle, 0.1);
 	if(m_changeDirection) {
-		theta =  theta + utils::PI/RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
+		theta =  theta + utils::PI/RandomNumberGenerator::instance(0)->generateUniformDouble(0.5, 1.5);
 	}
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, true);
@@ -111,6 +127,15 @@ Point* Person::generateNewLocation(double theta) {
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 	return pt;
 }
+
+unsigned long Person::getAvgTimeStay() const {
+	return m_avgTimeStay;
+}
+
+unsigned long Person::getAvgIntervalBetweenStays() const {
+	return m_avgIntervalBetweenStays;
+}
+
 void Person::setNewLocation(Point* p, bool changeDirection) {
 	Geometry* g = getMap()->getBoundary();
 	if (p->within(g)) {
@@ -143,9 +168,6 @@ void Person::setNewLocation(Point* p, bool changeDirection) {
 */
 	}
 }
-
-
-
 
 
 bool Person::hasDevices() {
@@ -185,3 +207,15 @@ const string Person::getName() const {
 	return ("Person");
 }
 
+//bool Person::stay(unsigned long time_increment) {
+//	m_intervalBetweenStays-= time_increment;
+//	if(m_intervalBetweenStays <= 0) {
+//		m_intervalBetweenStays = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/m_copyIntervalBetweenStays);
+//		if(m_intervalBetweenStays < time_increment)
+//			m_intervalBetweenStays = time_increment;
+//		return true;
+//	}
+//	else {
+//		return false;
+//	}
+//}

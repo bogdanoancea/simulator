@@ -31,6 +31,12 @@ public:
 		return m_instance;
 	}
 
+	static RandomNumberGenerator* instance(unsigned seed) {
+		if (m_instance == nullptr) {
+			m_instance = new RandomNumberGenerator(seed);
+		}
+		return m_instance;
+	}
 //
 //	uniform_int_distribution<int> getUnifIntDistribution() const {
 //		return m_unif_int_distribution;
@@ -104,6 +110,9 @@ public:
 	 */
 	double* generateUniformDouble(const double min, const double max, const int n);
 
+
+	double generateExponentialDouble(const double lambda);
+
 	/**
 	 * Generates a random int value from a uniform distribution which lies inside [min, max]
 	 * @param min the lower limit of the value
@@ -130,6 +139,13 @@ public:
 	int generateBinomialInt(const int max, const double p);
 
 	/**
+	 * Generates a int random value from abernoulli distribution
+	 * @param p the parameter of the bernoulli distribution
+	 * @return a int random value from a bernoulii distribution
+	 */
+	int generateBernoulliInt(const double p);
+
+	/**
 	 * Generates n int random value from a binomial distribution inside the interval [0, max]
 	 * @param max max the upper limit of the value
 	 * @param p the parameter of the binomial distribution
@@ -137,6 +153,14 @@ public:
 	 * @return array with n int values from a binomial distribution
 	 */
 	int* generateBinomialInt(const int max, const double p, const int n);
+
+	/**
+	 * Generates n int random values from a bernoulli distribution
+	 * @param p the parameter of the bernoulli distribution
+	 * @param n the number of values to be generated
+	 * @return array with n int values from a bernoulli distribution
+	 */
+	int* generateBernoulliInt(const double p, const int n);
 
 	//------------------------------------------------------------
 	// Pseudorandom numbers from a truncated Gaussian distribution
@@ -148,14 +172,17 @@ public:
 
 	//template<typename T> T normal_pdf(T x, T m, T s);
 	double normal_pdf(double x, double m, double s) {
-	    const double inv_sqrt_2pi = 0.3989422804014327;
-	    double a = (x - m) / s;
+		const double inv_sqrt_2pi = 0.3989422804014327;
+		double a = (x - m) / s;
 
-	    return inv_sqrt_2pi / s * exp(-(0.5) * a * a);
+		return inv_sqrt_2pi / s * exp(-(0.5) * a * a);
 	}
+
+	void setSeed(unsigned seed);
 
 private:
 	RandomNumberGenerator();
+	RandomNumberGenerator(unsigned seed);
 	RandomNumberGenerator(const RandomNumberGenerator&);
 	RandomNumberGenerator& operator=(const RandomNumberGenerator&);
 
@@ -171,7 +198,9 @@ private:
 	uniform_int_distribution<int> m_unif_int_distribution;
 	uniform_real_distribution<double> m_unif_double_distribution;
 	normal_distribution<double> m_normal_double_distribution;
+	exponential_distribution<double> m_exponential_double_distribution;
 	binomial_distribution<int> m_binomial_distribution;
+	bernoulli_distribution m_bernoulli_distribution;
 
 	std::mt19937 m_generator;
 

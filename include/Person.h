@@ -40,7 +40,7 @@ public:
 	 * @param age the age of the person. The age is generated using a uniform or a normal distribution.
 	 * @param gender the gender of the person.
 	 */
-	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender);
+	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender, unsigned long timeStay, unsigned long intervalBetweenStays);
 
 	/**
 	 * Destructor
@@ -98,6 +98,8 @@ public:
 	 */
 	virtual void setLocation(Point* pt) override;
 
+	bool stay(unsigned long time_increment);
+
 	/**
 	 * Add a mobile device to this person. Internally , all mobile devices are kept in an unordered_multimap
 	 * as pairs <name of the device class, pointer to the device object>
@@ -113,12 +115,18 @@ public:
 	 * @return the gender of the person
 	 */
 	Gender getGender() const;
+	unsigned long getAvgTimeStay() const;
+	unsigned long getAvgIntervalBetweenStays() const;
 
 private:
 	int m_age;
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
 	bool m_changeDirection;
+	unsigned long m_avgTimeStay;
+	unsigned long m_timeStay;
+	unsigned long m_avgIntervalBetweenStays;
+	unsigned long m_nextStay;
 	void randomWalkClosedMap();
 	void randomWalkClosedMapDrift();
 	Point* generateNewLocation(double theta);

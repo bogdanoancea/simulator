@@ -15,6 +15,7 @@
 #include <geos/geom/Polygon.h>
 #include <EventType.h>
 #include <AntennaType.h>
+#include <MobileOperator.h>
 #include <TinyXML2.h>
 #include <string>
 #include <fstream>
@@ -57,7 +58,7 @@ public:
 	 * @param id the id of the Antenna
 	 * @param el the XML Element containing the parameters of the Antenna.
 	 */
-	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el);
+	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos);
 
 
 	/**
@@ -219,6 +220,13 @@ public:
 	void setTilt(double tilt);
 	double getDirection() const;
 	void setDirection(double direction);
+	MobileOperator* getMNO() const;
+	void setMNO(MobileOperator* mno);
+	string getAntennaOutputFileName() const;
+	double getRmax() const;
+	double getSmin() const;
+	string dumpCell() const;
+
 
 private:
 
@@ -228,7 +236,9 @@ private:
 	double S0()const;
 	double SDist(double dist) const;
 	double computeSignalQualityOmnidirectional(const Point* p) const;
+	double computeSignalQualityOmnidirectional(const Coordinate c) const;
 	double computeSignalQualityDirectional(const Point* p) const;
+	double computeSignalQualityDirectional(const Coordinate c) const;
 	void setLocationWithElevation();
 	double projectToEPlane(double b, double c, double beta) const;
 	vector<pair<double, double>> createMapping(double dbBack) const;
@@ -258,6 +268,11 @@ private:
 	double m_elev_dB_Back;
 	double m_direction;
 
+	MobileOperator* m_MNO;
+
+	double m_rmax;
+	double m_Smin;
+	double m_minQuality;
 };
 
 #endif /* ANTENNA_H_ */

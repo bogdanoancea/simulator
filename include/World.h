@@ -14,12 +14,14 @@
 #include <Person.h>
 #include <random>
 #include <vector>
+#include <map>
 #include <AgentsCollection.h>
 #include <Clock.h>
 #include <MobilePhone.h>
 #include <MovementType.h>
 #include <TinyXML2.h>
 #include <PriorType.h>
+#include <MobileOperator.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -55,7 +57,7 @@ public:
 	 * @param configAntennasFileName the configuration file name for antenna objects
 	 * @param configSimulationFileName the general configuration file for simulation
 	 */
-	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName)
+	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
 			noexcept(false);
 
 	/**
@@ -118,8 +120,8 @@ public:
 	 * Returns the name of the file where the probabilities of mobile phones location are saved
 	 * @return the name of the file where the probabilities of mobile phones location are saved
 	 */
-	const string& getProbFilename() const {
-		return m_probFilename;
+	map<const unsigned long, const string> getProbFilenames()  {
+		return m_probFilenames;
 	}
 
 	/**
@@ -151,6 +153,12 @@ public:
 	 * @return the type of the prior probability used to compute the posterior localization probability
 	 */
 	PriorType getPrior() const;
+	unsigned int getNumMno() const;
+	void setNumMno(unsigned int numMno);
+	void addMNO(string name);
+	unsigned getSeed() const;
+	void setSeed(unsigned seed);
+	string parseProbabilities(const string& probabilitiesFileName);
 
 private:
 
@@ -164,26 +172,32 @@ private:
 	unsigned long m_GridDimTileX;
 	unsigned long m_GridDimTileY;
 	PriorType m_prior;
+	//unsigned int m_numMNO;
+	unsigned m_seed;
+	unsigned long m_stay;
+	unsigned m_intevalBetweenStays;
 
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
 	string m_gridFilename;
-	string m_probFilename;
+	map<const unsigned long, const string> m_probFilenames;
 	string m_personsFilename;
 	string m_antennasFilename;
+	double m_probSecMobilePhone;
 
 
-	vector<Person*> generatePopulation(unsigned long numPersons);
+	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Person*> generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share, double probMobilePhone,
-			double probSecMobilePhone, double speed_walk, double speed_car);
+	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
+			vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
-	vector<Antenna*> parseAntennas(const string& configAntennasFile) noexcept(false);
-	vector<Person*> parsePersons(const string& personsFileName) noexcept(false);
+	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
+	vector<Person*> parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false);
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
-	void parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 
 };
 

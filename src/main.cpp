@@ -22,6 +22,9 @@
 #include <Constants.h>
 #include<algorithm>
 #include <EMField.h>
+#include <map>
+#include <RandomNumberGenerator.h>
+
 
 using namespace std;
 using namespace geos;
@@ -33,17 +36,19 @@ int main(int argc, char** argv) {
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -v"
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -pb <probabilities.xml> -v -o"
 				<< endl;
 		exit(0);
 	}
+	char sep = Constants::sep;
 
 	const string &antennasConfigFileName = parser.getCmdOption("-a");
 	const string &mapFileName = parser.getCmdOption("-m");
 	const string &personsConfigFileName = parser.getCmdOption("-p");
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
+	const string & probabilitiesConfigFileName = parser.getCmdOption("-pb");
 	bool verbose = parser.cmdOptionExists("-v");
-
+	bool generate_probs = parser.cmdOptionExists("-o");
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
 
@@ -54,8 +59,6 @@ int main(int argc, char** argv) {
 		else
 			map = new Map(mapFileName);
 
-
-		//map->addGrid(100, 100);
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
 
@@ -70,17 +73,24 @@ int main(int argc, char** argv) {
 			throw runtime_error("no simulation config file!");
 		}
 
-		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName);
+		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
 		map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
+			utils::printMobileOperatorHeader();
+			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
+
+			for (auto it = itr0.first; it != itr0.second; it++) {
+				MobileOperator* mno = dynamic_cast<MobileOperator*>(it->second);
+				cout << mno->toString() << endl;
+			}
+
 			utils::printPersonHeader();
 			auto itr = c->getAgentListByType(typeid(Person).name());
 			vector<Person*> persons;
 			for (auto it = itr.first; it != itr.second; it++) {
 				Person* p = dynamic_cast<Person*>(it->second);
-				persons.push_back(p);
 				cout << p->toString() << endl;
 			}
 
@@ -98,78 +108,115 @@ int main(int argc, char** argv) {
 				cout << m->toString() << endl;
 			}
 		}
-
 		w.runSimulation();
-
-		time_t tt = w.getClock()->realTime();
-		cout << "Computing probabilities started at " << ctime(&tt) << endl;
-		//now we compute the probabilities for the positions of the phones
-		// read the event connection data
-
-		vector<AntennaInfo> data;
+		std::map<unsigned long, vector<AntennaInfo>> data;
+		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
-		for (auto it = itra.first; it != itra.second; it++) {
-			Antenna* a = dynamic_cast<Antenna*>(it->second);
-			string fileName = a->getName() + to_string(a->getId()) + ".csv";
-			Parser file = Parser(fileName, DataType::eFILE, ',', false);
-			for (unsigned long i = 0; i < file.rowCount(); i++) {
-				Row s = file[i];
-				AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
-				data.push_back(a);
-			}
-		}
-		sort(data.begin(), data.end());
 
-		ofstream antennaInfoFile;
-		antennaInfoFile.open("AntennaInfo.csv", ios::out);
-		antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
-		for (AntennaInfo& ai : data) {
-			antennaInfoFile << ai.toString() << endl;
-		}
-		antennaInfoFile.close();
+		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+			MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+			vector<AntennaInfo> tmp;
+			for (auto it = itra.first; it != itra.second; it++) {
+				Antenna* a = dynamic_cast<Antenna*>(it->second);
 
-		ofstream p_file, g_File;
-		if (w.getProbFilename().empty()) {
-			throw runtime_error("no output file!");
-		}
-		try {
-			p_file.open(w.getProbFilename(), ios::out);
-			g_File.open(w.getGridFilename(), ios::out);
-		} catch (ofstream::failure& e) {
-			cerr << "Error opening output file!" << endl;
-		}
-		g_File << map->getGrid()->toString();
-		try {
-			g_File.close();
-		} catch (const ofstream::failure& e) {
-			cerr << "Error closing grid file!" << endl;
-		}
+				if (a->getMNO()->getId() == mo->getId()) {
+					ofstream& qualityFile = a->getMNO()->getSignalQualityFile();
+					qualityFile << fixed << setprecision(15) << a->getId() << sep;
+					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+						Coordinate c = map->getGrid()->getTileCenter(i);
+						c.z = 0;
+						qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << sep;
+					}
+					Coordinate c = map->getGrid()->getTileCenter(map->getGrid()->getNoTiles() - 1);
+					c.z = 0;
+					qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << endl;
 
-		w.getClock()->reset();
-		auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-		cout << "sum signal quality" << endl;
-		EMField::instance()->sumSignalQuality(map->getGrid());
-		for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
-			//iterate over all devices
-			for (auto it = itrm.first; it != itrm.second; it++) {
-				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-				p_file << t << "," << m->getId() << ",";
-				ostringstream probs;
-				vector<double> p = map->getGrid()->computeProbability(t, m, data, itra, w.getPrior());
-				for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
-					probs << fixed << setprecision(15) << p[i] << ",";
+					string fileName = a->getAntennaOutputFileName();
+					Parser file = Parser(fileName, DataType::eFILE, ',', true);
+					for (unsigned long i = 0; i < file.rowCount(); i++) {
+						Row s = file[i];
+						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
+						tmp.push_back(a);
+					}
 				}
-				probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
-				p_file << probs.str() << endl;
+				sort(tmp.begin(), tmp.end());
+				ofstream antennaInfoFile;
+				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
+				antennaInfoFile.open(name, ios::out);
+				antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
+				for (AntennaInfo& ai : tmp) {
+					antennaInfoFile << ai.toString() << sep << w.getMap()->getGrid()->getTileNo(ai.getX(), ai.getY()) << endl;
+				}
+				antennaInfoFile.close();
 			}
+			data.insert(pair<unsigned long, vector<AntennaInfo>>(mo->getId(), tmp));
 		}
-		try {
-			p_file.close();
-		} catch (ofstream::failure& e) {
-			cerr << "Error closing probs file!" << endl;
+
+		if (!generate_probs) {
+			cout << "Location probabilities will be not computed!" << endl;
+		} else {
+			time_t tt = w.getClock()->realTime();
+			cout << "Computing probabilities started at " << ctime(&tt) << endl;
+			//now we compute the probabilities for the positions of the phones
+			// read the event connection data
+
+			ofstream g_File;
+			try {
+				g_File.open(w.getGridFilename(), ios::out);
+			} catch (ofstream::failure& e) {
+				cerr << "Error opening grid output files!" << endl;
+			}
+
+			g_File << map->getGrid()->toString();
+			try {
+				g_File.close();
+			} catch (const ofstream::failure& e) {
+				cerr << "Error closing grid file!" << endl;
+			}
+
+			w.getClock()->reset();
+			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
+
+			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
+				EMField::instance()->sumSignalQuality(map->getGrid(), mo->getId());
+			}
+
+			ofstream p_file;
+			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
+				//p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
+				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
+					//iterate over all devices
+					for (auto it = itrm.first; it != itrm.second; it++) {
+						MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+						if (m->getMobileOperator()->getId() != mo->getId())
+							continue;
+						p_file << t << sep << m->getId() << sep;
+						ostringstream probs;
+
+						vector<double> p = map->getGrid()->computeProbability(t, m, data[mo->getId()], itra, w.getPrior());
+						for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+							probs << fixed << setprecision(15) << p[i] << sep;
+							//cout << p[i] << ",";
+						}
+						probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
+						//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
+						p_file << probs.str() << endl;
+					}
+				}
+				try {
+					p_file.close();
+				} catch (ofstream::failure& e) {
+					cerr << "Error closing probs file!" << endl;
+				}
+			}
+			tt = w.getClock()->realTime();
+			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
-		tt = w.getClock()->realTime();
-		cout << "Computing probabilities ended at " << ctime(&tt) << endl;
+
 	} catch (const runtime_error& e) {
 		cout << e.what() << endl;
 	} catch (const exception &e) {

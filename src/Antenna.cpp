@@ -3,6 +3,8 @@
 #include <EventType.h>
 #include <Constants.h>
 #include <geos/geom/GeometryFactory.h>
+#include <geos/util/GeometricShapeFactory.h>
+#include <geos/io/WKTWriter.h>
 #include <Map.h>
 #include <iomanip>
 #include <sstream>
@@ -15,23 +17,26 @@
 #include <utility>
 #include <RandomNumberGenerator.h>
 #include <EMField.h>
+#include <Constants.h>
 
 using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
+		double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
+				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
-	string fileName = getName() + std::to_string(id) + ".csv";
+	string fileName = getAntennaOutputFileName();
+	char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		cerr << "Output goes to the console!" << endl;
+		//cerr << "Output goes to the console!" << endl;
 	}
+	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	if (type == AntennaType::DIRECTIONAL) {
 		m_beam_V = Constants::ANTENNA_BEAM_V;
@@ -44,20 +49,37 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
 		ImmovableAgent(m, id, nullptr, clk) {
 
-	XMLNode* n = getNode(antennaEl, "maxconnections");
+	char sep = Constants::sep;
+
+	XMLNode* n = getNode(antennaEl, "mno_name");
+	const char* mno_name = n->ToText()->Value();
+	for (unsigned int i = 0; i < mnos.size(); i++) {
+		if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
+			m_MNO = mnos.at(i);
+		}
+	}
+	n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
 	n = getNode(antennaEl, "power");
 	m_power = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "attenuationfactor");
 	m_ple = atof(n->ToText()->Value());
+
 	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
 	m_type = AntennaType::OMNIDIRECTIONAL;
 	if (!strcmp(t, "directional"))
 		m_type = AntennaType::DIRECTIONAL;
+
+	n = getNode(antennaEl, "Smin");
+	m_Smin = atof(n->ToText()->Value());
+
+	n = getNode(antennaEl, "qual_min");
+	m_minQuality = atof(n->ToText()->Value());
+
 	n = getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "SSteep");
@@ -116,15 +138,21 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 	}
-	string fileName = getName() + std::to_string(id) + ".csv";
+	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		cerr << "Output goes to the console!" << endl;
+		//cerr << "Output goes to the console!" << endl;
 	}
+	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
-	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
+	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 10 / m_ple);
+//	cout << m_rmax << "," << getId() << endl;
+	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
+	shapefactory.setCentre(Coordinate(x, y));
+	shapefactory.setSize(m_rmax);
+	m_cell = shapefactory.createCircle();
 }
 
 Antenna::~Antenna() {
@@ -147,7 +175,7 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple;
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
 	return (result.str());
 }
 
@@ -223,8 +251,7 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -238,12 +265,15 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
 			cout << " In range, not attached ";
 		}
-		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y;
+		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
+				<< ag->getMap()->getGrid()->getTileNo(ag->getLocation());
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
-				<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << endl;
+		const Grid* g = this->getMap()->getGrid();
+		if (g != nullptr)
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+					<< ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -286,28 +316,41 @@ void Antenna::setSSteep(double sSteep) {
 
 double Antenna::computeSignalQuality(const Point* p) const {
 	double result = 0.0;
+	const Coordinate* c = p->getCoordinate();
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
-		result = computeSignalQualityOmnidirectional(p);
+		result = computeSignalQualityOmnidirectional(*c);
 	}
 	if (m_type == AntennaType::DIRECTIONAL) {
-		result = computeSignalQualityDirectional(p);
+		result = computeSignalQualityDirectional(*c);
 	}
 	return (result);
 }
 
 double Antenna::computeSignalQuality(const Coordinate c) const {
-	double result;
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	result = computeSignalQuality(p);
-	getMap()->getGlobalFactory()->destroyGeometry(p);
+	double result = 0.0;
+	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+		result = computeSignalQualityOmnidirectional(c);
+	}
+	if (m_type == AntennaType::DIRECTIONAL) {
+		result = computeSignalQualityDirectional(c);
+	}
+	return (result);
+}
+
+double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
+	double result = 0.0;
+	Point *p = getLocation();
+	const Coordinate* cc = p->getCoordinate();
+	double dist = sqrt((c.z - cc->z) * (c.z - cc->z) + (c.y - cc->y) * (c.y - cc->y) + (c.x - cc->x) * (c.x - cc->x));
+	double signalStrength = S(dist);
+	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
 
 double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 	double result = 0.0;
-	double dist = p->distance(getLocation());
-	double signalStrength = S(dist);
-	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	const Coordinate* c = p->getCoordinate();
+	result = computeSignalQualityOmnidirectional(*c);
 	return result;
 }
 
@@ -337,16 +380,67 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 		azim += 360;
 
 //project azim to elevation plane -> azim2
-	double a = sin(d2r(azim)) * distXY;
-	double b = cos(d2r(azim)) * distXY;
-
-	//cout << " m_height -z " << m_height - z << " b " << b << " tilt " << m_tilt << p->toString()<< endl;
+	double r_azim = d2r(azim);
+	double a = sin(r_azim) * distXY;
+	double b = cos(r_azim) * distXY;
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
-
 	double azim2 = r2d(atan2(a, e));
+	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
+//	for (int i = 0; i < mapping.size(); i++) {
+//		cout << mapping[i].first << "," << mapping[i].second << endl;
+//	}
+	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
 
-	//aici e greseala
+	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
+
+//vertical component
+	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
+	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
+	if (elevation > 180)
+		elevation -= 360;
+	if (elevation < -180)
+		elevation += 360;
+
+	sd = findSD(m_beam_V, m_elev_dB_Back, mapping);  //? oare e acelasi mapping?
+	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
+
+	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	return result;
+}
+
+double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
+	double result = 0.0;
+	double signalStrength = 0.0;
+	double x = c.x;
+	double y = c.y;
+	double z = c.z;
+
+	double antennaX = getLocation()->getCoordinate()->x;
+	double antennaY = getLocation()->getCoordinate()->y;
+	double antennaZ = getLocation()->getCoordinate()->z;
+
+	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY));  //p->distance(getLocation());
+	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
+	signalStrength += S(dist);
+
+	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
+	if (theta_azim < 0)
+		theta_azim += 360;
+
+	double azim = fmod(theta_azim - m_direction, 360);
+	if (azim > 180)
+		azim -= 360;
+	if (azim < -180)
+		azim += 360;
+
+//project azim to elevation plane -> azim2
+	double r_azim = d2r(azim);
+	double a = sin(r_azim) * distXY;
+	double b = cos(r_azim) * distXY;
+
+	double e = projectToEPlane(b, m_height - z, m_tilt);
+	double azim2 = r2d(atan2(a, e));
 	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
 //	for (int i = 0; i < mapping.size(); i++) {
 //		cout << mapping[i].first << "," << mapping[i].second << endl;
@@ -374,14 +468,13 @@ double Antenna::computeSignalQualityDirectional(const Point* p) const {
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
-		for (auto& i : mapping) {
+	for (auto& i : mapping) {
 		tmp.push_back(i.second - beamWidth / 2.0);
 	}
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
 	result = mapping[indexMin].first;
 	return result;
 }
-
 
 vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	vector<pair<double, double>> v;
@@ -406,10 +499,9 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second -= dg;
 		i.second = fabs(i.second);
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
-			[](const pair<double, double>& a, const pair<double, double>& b) {
-				return a.second < b.second;
-			}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
+		return a.second < b.second;
+	}) - begin(_3dBDegrees);
 
 	return _3dBDegrees[minElementIndex].first;
 }
@@ -428,7 +520,7 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
-	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
+	RandomNumberGenerator* rand = RandomNumberGenerator::instance(0);
 	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
 	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
 }
@@ -545,4 +637,31 @@ double Antenna::getDirection() const {
 
 void Antenna::setDirection(double direction) {
 	m_direction = direction;
+}
+
+MobileOperator* Antenna::getMNO() const {
+	return m_MNO;
+}
+
+void Antenna::setMNO(MobileOperator* mno) {
+	m_MNO = mno;
+}
+
+string Antenna::getAntennaOutputFileName() const {
+	return getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv";
+}
+
+double Antenna::getRmax() const {
+	return m_rmax;
+}
+
+double Antenna::getSmin() const {
+	return m_Smin;
+}
+
+string Antenna::dumpCell() const {
+	geos::io::WKTWriter writter;
+	ostringstream result;
+	result << writter.write(m_cell->getBoundary()) << endl;
+	return result.str();
 }

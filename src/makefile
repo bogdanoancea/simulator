@@ -8,6 +8,7 @@ AntennaInfo.o\
 CSVParser.o\
 Clock.o\
 Constants.o\
+MobileOperator.o\
 EMField.o\
 EventType.o\
 Grid.o\

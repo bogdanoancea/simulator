@@ -33,7 +33,9 @@ namespace utils {
 	 * @param n the number of points to generate
 	 * @return a vector of pointers to Point objects
 	 */
-	vector<Point*> generatePoints(Map* m, int n);
+	vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsigned seed);
+
+	vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed);
 
 	/**
 	 * Prints out a header containing the names of the member variables from the Person class in a human readable format.
@@ -52,6 +54,13 @@ namespace utils {
 	 * It is used together with MobilePhone::toString() to output the mobile phones set on console
 	 */
 	void printPhoneHeader();
+
+	/**
+	 * Prints out a header containing the names of the member variables from the MobileOperator class in a human readable format
+	 * It is used together with MobileOperator::toString() to output the mobile network operators set on console
+	 */
+	void printMobileOperatorHeader();
+
 
 	/**
 	 * Number pi
