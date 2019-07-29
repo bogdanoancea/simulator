@@ -17,9 +17,10 @@
 
 using namespace std;
 
-MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold, HoldableAgent::CONNECTION_TYPE connType) :
-		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD }, m_qualityThreshold {
-				Constants::QUALITY_THRESHOLD }, m_connType {connType} {
+MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
+		HoldableAgent::CONNECTION_TYPE connType) :
+		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD }, m_qualityThreshold { Constants::QUALITY_THRESHOLD }, m_connType {
+				connType } {
 	m_connectedTo = nullptr;
 	m_mno = nullptr;
 }
@@ -31,7 +32,7 @@ const string MobilePhone::toString() const {
 	ostringstream result;
 
 	result << HoldableAgent::toString();
-	if(m_mno)
+	if (m_mno)
 		result << left << setw(15) << m_mno->getId();
 	else
 		result << left << setw(15) << "No MNO";
@@ -40,8 +41,6 @@ const string MobilePhone::toString() const {
 
 bool MobilePhone::tryConnect() {
 	bool connected = false;
-//if(getId() == 93)
-//	cout << "93 try connect" << endl;
 	//select the most powerful antenna
 	Point *p = this->getLocation();
 	bool use_power = (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER);
@@ -59,11 +58,10 @@ bool MobilePhone::tryConnect() {
 	pair<Antenna*, double> antenna;
 	if (use_power)
 		antenna = EMField::instance()->computeMaxPower(p, getMobileOperator()->getId());
-	else
+	else {
 		// needs to be at the same MNO
 		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
-
-
+	}
 	if (antenna.second > threshold) {
 		connected = antenna.first->tryRegisterDevice(this);
 	}
@@ -72,8 +70,7 @@ bool MobilePhone::tryConnect() {
 			m_connectedTo->dettachDevice(this);
 		}
 		m_connectedTo = antenna.first;
-	}
-	else {
+	} else {
 		//try to connect to another antenna in range
 		//antennas need to belong to the same MNO
 		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getMobileOperator()->getId());

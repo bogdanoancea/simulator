@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iomanip>
 #include <fstream>
+#include <Constants.h>
 
 using namespace std;
 
@@ -18,12 +19,15 @@ MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock
 		Agent(m, id, clock), m_name { name }, m_probMobilePhone { probMobilePhone } {
 
 	ostringstream cells;
+	char sep = Constants::sep;
 	cells << "AntennaCells_" << name << ".csv";
 	try {
 		m_antennaCells.open(cells.str(), ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening antenna cells output file!" << endl;
 	}
+	m_antennaCells << "AntennaId" << sep << "Cell Coordinates" << endl;
+
 	ostringstream quality;
 	quality << "SignalQuality_" << name << ".csv";
 	try {

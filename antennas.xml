@@ -260,7 +260,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Orange</mno_name>
+        <mno_name>Vodafone</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>

@@ -155,6 +155,10 @@ public:
 	Coordinate getTileCenter(unsigned long tileIndex)const ;
 
 	unsigned long getTileNo(const Point* p) const;
+	unsigned long getTileIndexX(double x) const;
+	unsigned long getTileIndexY(double y) const;
+	unsigned long getTileNo(double x, double y) const;
+
 
 private:
 	//Map* m_map;

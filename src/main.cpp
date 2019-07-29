@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
 				<< endl;
 		exit(0);
 	}
+	char sep = Constants::sep;
 
 	const string &antennasConfigFileName = parser.getCmdOption("-a");
 	const string &mapFileName = parser.getCmdOption("-m");
@@ -120,18 +121,18 @@ int main(int argc, char** argv) {
 
 				if (a->getMNO()->getId() == mo->getId()) {
 					ofstream& qualityFile = a->getMNO()->getSignalQualityFile();
-					qualityFile << fixed << setprecision(15) << a->getId() << ",";
+					qualityFile << fixed << setprecision(15) << a->getId() << sep;
 					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
 						Coordinate c = map->getGrid()->getTileCenter(i);
 						c.z = 0;
-						qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << ",";
+						qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << sep;
 					}
 					Coordinate c = map->getGrid()->getTileCenter(map->getGrid()->getNoTiles() - 1);
 					c.z = 0;
 					qualityFile << fixed << setprecision(15) << a->computeSignalQuality(c) << endl;
 
 					string fileName = a->getAntennaOutputFileName();
-					Parser file = Parser(fileName, DataType::eFILE, ',', false);
+					Parser file = Parser(fileName, DataType::eFILE, ',', true);
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
 						Row s = file[i];
 						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
@@ -142,9 +143,9 @@ int main(int argc, char** argv) {
 				ofstream antennaInfoFile;
 				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 				antennaInfoFile.open(name, ios::out);
-				antennaInfoFile << "t,Antenna_id,Event_code,Device_id,x,y" << endl;
+				antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
 				for (AntennaInfo& ai : tmp) {
-					antennaInfoFile << ai.toString() << endl;
+					antennaInfoFile << ai.toString() << sep << w.getMap()->getGrid()->getTileNo(ai.getX(), ai.getY()) << endl;
 				}
 				antennaInfoFile.close();
 			}
@@ -193,12 +194,12 @@ int main(int argc, char** argv) {
 						MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
 						if (m->getMobileOperator()->getId() != mo->getId())
 							continue;
-						p_file << t << "," << m->getId() << ",";
+						p_file << t << sep << m->getId() << sep;
 						ostringstream probs;
 
 						vector<double> p = map->getGrid()->computeProbability(t, m, data[mo->getId()], itra, w.getPrior());
 						for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
-							probs << fixed << setprecision(15) << p[i] << ",";
+							probs << fixed << setprecision(15) << p[i] << sep;
 							//cout << p[i] << ",";
 						}
 						probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];

@@ -1,15 +1,11 @@
 <simulation>
         <start_time>0</start_time>
-        <end_time>200</end_time>
+        <end_time>20</end_time>
 		<time_increment>1</time_increment>
 		<time_stay>10</time_stay>
         <interval_between_stays>25</interval_between_stays>
 		<mno>
         	<mno_name>Vodafone</mno_name>
-        	<prob_mobile_phone>0.35</prob_mobile_phone>
-        </mno>
-        <mno>
-        	<mno_name>Orange</mno_name>
         	<prob_mobile_phone>0.35</prob_mobile_phone>
         </mno>
         <prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
@@ -19,9 +15,7 @@
 		<grid_file>grid.csv</grid_file>
 		<grid_dim_tile_x>500</grid_dim_tile_x>
 		<grid_dim_tile_y>500</grid_dim_tile_y>
-		<prob_file>prob.csv</prob_file>
 		<persons_file>persons.csv</persons_file>
 		<antennas_file>antennas.csv</antennas_file>
-		<prior>network</prior>
-		<random_seed>123</random_seed>
+		<random_seed>12</random_seed>
 </simulation>

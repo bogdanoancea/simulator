@@ -33,12 +33,13 @@ Agent* HoldableAgent::getHolder() const {
 void HoldableAgent::setHolder(Agent* holder) {
 	m_holder = holder;
 	LocatableAgent* l = dynamic_cast<LocatableAgent*>(holder);
-	if (l != nullptr)
+	if (l != nullptr) {
 		setLocation(l->getLocation());
-
+	}
 	MovableAgent* m = dynamic_cast<MovableAgent*>(holder);
-	if (m != nullptr)
+	if (m != nullptr) {
 		setSpeed(m->getSpeed());
+	}
 	else
 		setSpeed(0.0);
 }

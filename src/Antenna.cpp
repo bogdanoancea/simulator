@@ -17,6 +17,7 @@
 #include <utility>
 #include <RandomNumberGenerator.h>
 #include <EMField.h>
+#include <Constants.h>
 
 using namespace tinyxml2;
 using namespace std;
@@ -28,12 +29,14 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getAntennaOutputFileName();
+	char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		cerr << "Output goes to the console!" << endl;
+		//cerr << "Output goes to the console!" << endl;
 	}
+	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	if (type == AntennaType::DIRECTIONAL) {
 		m_beam_V = Constants::ANTENNA_BEAM_V;
@@ -48,6 +51,8 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
 		ImmovableAgent(m, id, nullptr, clk) {
+
+	char sep = Constants::sep;
 
 	XMLNode* n = getNode(antennaEl, "mno_name");
 	const char* mno_name = n->ToText()->Value();
@@ -138,8 +143,9 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		cerr << "Output goes to the console!" << endl;
+		//cerr << "Output goes to the console!" << endl;
 	}
+	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 10 / m_ple);
 //	cout << m_rmax << "," << getId() << endl;
@@ -259,12 +265,15 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
 			cout << " In range, not attached ";
 		}
-		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y;
+		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
+				<< ag->getMap()->getGrid()->getTileNo(ag->getLocation());
 		cout << endl;
 	} else {
 		stringstream ss;
-		ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
-				<< ag->getLocation()->getCoordinate()->y << endl;
+		const Grid* g = this->getMap()->getGrid();
+		if (g != nullptr)
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+					<< ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
