@@ -5,7 +5,6 @@
  *      Author: Bogdan Oancea
  */
 
-
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Polygon.h>
 #include <geos/geom/LineString.h>
@@ -30,11 +29,12 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay, unsigned long intervalBetweenStays) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen } , m_changeDirection {false}, m_avgTimeStay{timeStay},
-		m_avgIntervalBetweenStays{intervalBetweenStays} {
-			m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
-			m_timeStay = timeStay;
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay,
+		unsigned long intervalBetweenStays) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_changeDirection { false }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
+				intervalBetweenStays } {
+	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
+	m_timeStay = timeStay;
 }
 
 Person::~Person() {
@@ -50,7 +50,7 @@ void Person::setAge(int age) {
 
 const string Person::toString() const {
 	ostringstream ss;
-	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE? "Male" : "Female");
+	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE ? "Male" : "Female");
 
 	if (m_idDevices.size() > 0) {
 		for (pair<string, Agent*> i : m_idDevices) {
@@ -63,66 +63,53 @@ const string Person::toString() const {
 
 Point* Person::move(MovementType mvType) {
 	unsigned long currentTime = getClock()->getCurrentTime();
-	if(currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
+	if (currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
 		setLocation(getLocation());
-		if(currentTime  == m_nextStay + m_timeStay) {
-			unsigned long nextInterval = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/this->m_avgIntervalBetweenStays);
-			if(nextInterval % getClock()->getIncrement() != 0 )
+		if (currentTime == m_nextStay + m_timeStay) {
+			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(1.0 / this->m_avgIntervalBetweenStays);
+			if (nextInterval % getClock()->getIncrement() != 0)
 				nextInterval += nextInterval % getClock()->getIncrement();
 
 			m_nextStay = currentTime + nextInterval;
-			m_timeStay = (unsigned long)RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2*m_avgTimeStay);
+			m_timeStay = (unsigned long) RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2 * m_avgTimeStay);
 		}
-	}
-	else
-	if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
+	} else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
 		randomWalkClosedMap();
 	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
 		randomWalkClosedMapDrift();
 	else
 		throw runtime_error("Movement type not yet implemented");
 
-	//get devices and try to connect
-//	if (hasDevices()) {
-//		unordered_multimap<string, Agent*>::iterator it;
-//		for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
-//			Agent* a = it->second;
-//			HoldableAgent* device = dynamic_cast<HoldableAgent*>(a);
-//			if (device != nullptr) {
-//				device->tryConnect(HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY);
-//			}
-//		}
-//	}
 	return (getLocation());
 }
 
 void Person::randomWalkClosedMap() {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance(0)->generateUniformDouble(0.0, 2 * utils::PI);
+	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, false);
 }
 
 void Person::randomWalkClosedMapDrift() {
 	double theta = 0.0;
-	double trendAngle = 3 * utils::PI/4;
-	if( getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
-		trendAngle = 5 * utils::PI/4;
+	double trendAngle = Constants::TREND_ANGLE_1;
+	if (getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
+		trendAngle = Constants::TREND_ANGLE_2;
 	}
-	theta = RandomNumberGenerator::instance(0)->generateNormalDouble(trendAngle, 0.1);
-	if(m_changeDirection) {
-		theta =  theta + utils::PI/RandomNumberGenerator::instance(0)->generateUniformDouble(0.5, 1.5);
+	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
+	if (m_changeDirection) {
+		theta = theta + utils::PI / RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
 	}
 	Point* pt = generateNewLocation(theta);
 	setNewLocation(pt, true);
 }
 
-
 Point* Person::generateNewLocation(double theta) {
 	double x = getLocation()->getCoordinate()->x;
 	double y = getLocation()->getCoordinate()->y;
-	double newX = x + getSpeed() * cos(theta);
-	double newY = y + getSpeed() * sin(theta);
+	double speed = getSpeed();
+	double newX = x + speed * cos(theta);
+	double newY = y + speed * sin(theta);
 	Coordinate c = Coordinate(newX, newY, 0);
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 	return pt;
@@ -141,34 +128,32 @@ void Person::setNewLocation(Point* p, bool changeDirection) {
 	if (p->within(g)) {
 		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
 		setLocation(p);
-	}
-	else {
-		if(changeDirection)
+	} else {
+		if (changeDirection)
 			m_changeDirection = !m_changeDirection;
 		setLocation(getLocation());
-/*
-		CoordinateSequence* cl = new CoordinateArraySequence();
-		cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
-		cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y));
+		/*
+		 CoordinateSequence* cl = new CoordinateArraySequence();
+		 cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
+		 cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y));
 
-		LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
-		Geometry* intersect = ls->intersection(g);
-		LineString* intersect2 = dynamic_cast<LineString*>(intersect);
-		Point* ptInt = intersect2->getEndPoint();
-		//cout << ptInt->toString()  << endl;
-		if (ptInt) {
-			cout << ptInt->toString()  << endl;
-			if(this->getClock()->getCurrentTime() == 2)
-					cout << "la momentul 2 setez locatia2" << endl;
-			this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-			setLocation(ptInt);
-		}
-		this->getMap()->getGlobalFactory()->destroyGeometry(ls);
-		this->getMap()->getGlobalFactory()->destroyGeometry(p);
-*/
+		 LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
+		 Geometry* intersect = ls->intersection(g);
+		 LineString* intersect2 = dynamic_cast<LineString*>(intersect);
+		 Point* ptInt = intersect2->getEndPoint();
+		 //cout << ptInt->toString()  << endl;
+		 if (ptInt) {
+		 cout << ptInt->toString()  << endl;
+		 if(this->getClock()->getCurrentTime() == 2)
+		 cout << "la momentul 2 setez locatia2" << endl;
+		 this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
+		 setLocation(ptInt);
+		 }
+		 this->getMap()->getGlobalFactory()->destroyGeometry(ls);
+		 this->getMap()->getGlobalFactory()->destroyGeometry(p);
+		 */
 	}
 }
-
 
 bool Person::hasDevices() {
 	return (m_idDevices.size() > 0);

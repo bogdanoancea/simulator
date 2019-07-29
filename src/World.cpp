@@ -148,24 +148,20 @@ void World::runSimulation() noexcept(false) {
 
 	RandomNumberGenerator* r = RandomNumberGenerator::instance();
 	r->setSeed(time(0));
+	const Grid* g = getMap()->getGrid();
+
 	pFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		cout << "Current simulation time: " << m_clock->getCurrentTime() << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = dynamic_cast<Person*>(it->second);
-			const Grid* g = getMap()->getGrid();
 			int x = g->getTileNo(p->getLocation());
-			pFile << p->dumpLocation() << Constants::sep << x << p->dumpDevices() << endl;
-//			if(p->getId() == 92) {
-//				cout << t << ", 92" << endl;
-//			}
+			pFile << p->dumpLocation() << sep << x << p->dumpDevices() << endl;
 			p->move(m_mvType);
-			//cout << t << "," << p->getId() << "," << "stay " << p->getAvgIntervalBetweenStays() << endl;
 		}
 
 	}
-
 	tt = getClock()->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
 
