@@ -153,9 +153,10 @@ void World::runSimulation() noexcept(false) {
 	pFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
-		cout << "Current simulation time: " << m_clock->getCurrentTime() << endl;
+		tt = getClock()->realTime();
+		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":"<<ctime(&tt) <<endl;
 		for (auto it = itr.first; it != itr.second; it++) {
-			Person* p = dynamic_cast<Person*>(it->second);
+			Person* p = static_cast<Person*>(it->second);
 			int x = g->getTileNo(p->getLocation());
 			pFile << p->dumpLocation() << sep << x << p->dumpDevices() << endl;
 			p->move(m_mvType);
