@@ -163,6 +163,10 @@ public:
 
 	static const double PROB_MOBILE_PHONE;
 	static const double PROB_SECOND_MOBILE_PHONE;
+
+	static const double TREND_ANGLE_1;
+	static const double TREND_ANGLE_2;
+
 };
 
 #endif /* CONSTANTS_H_ */

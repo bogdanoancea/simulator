@@ -8,6 +8,7 @@
  */
 
 #include <Constants.h>
+#include <Utils.h>
 
 
 const double Constants::POWER_THRESHOLD = 2;
@@ -55,3 +56,6 @@ const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 const unsigned int Constants::NUM_MNO = 1;
 
 const char* Constants::DEFAULT_MNO_NAME = "MNO";
+
+const double Constants::TREND_ANGLE_1 = 3 * utils::PI / 4;
+const double Constants::TREND_ANGLE_2 = 5 * utils::PI / 4;
