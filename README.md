@@ -117,7 +117,7 @@ a shell:
 <p>
 <b>How to run the simulator</b>
 <p>
-<br>In a terminal (command prompt) type:
+In a terminal (command prompt) type:
 <br>$simulator -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -pb probabilities.xml -v -o
 <br>
 <br>where the following files provide input parameters:
