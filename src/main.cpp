@@ -186,6 +186,14 @@ int main(int argc, char** argv) {
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
 				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
+				p_file << "t" << sep << "Phone ID" << sep;
+				const Grid* g = w.getMap()->getGrid();
+				unsigned long noTiles = g->getNoTiles();
+				for (unsigned long i = 0; i < noTiles - 1; i++) {
+					p_file << "Tile" << i << sep;
+				}
+				p_file << "Tile" << noTiles - 1 << endl;
+
 				//p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
 				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 					//iterate over all devices
