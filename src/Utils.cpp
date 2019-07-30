@@ -40,8 +40,8 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 		unsigned long nhome = (unsigned long) n * percentHome;
 //		cout << "nHome" << nhome << endl;
 		//generate a pool of numbers to choose from
-		double* x1 = random_generator->generateUniformDouble(xmin, xmax, nhome);
-		double* y1 = random_generator->generateUniformDouble(ymin, ymax, nhome);
+		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
 
 		unsigned long i = 0, k = 0;
 		while (k < nhome) {
@@ -56,22 +56,23 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n) {
+			if (i == nhome) {
 				delete[] x1;
 				delete[] y1;
-				x1 = random_generator->generateUniformDouble(xmin, xmax, nhome - k + 50);
-				y1 = random_generator->generateUniformDouble(ymin, ymax, nhome - k + 50);
+				x1 = random_generator->generateUniformDouble(xmin, xmax, nhome);
+				y1 = random_generator->generateUniformDouble(ymin, ymax, nhome);
+
 				i = 0;
 			}
 		}
 		delete[] x1;
 		delete[] y1;
-
 		random_generator->setSeed(time(0));
-		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome + 1);
-		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome + 1);
+		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n);
 
 		k = 0;
+		i = 0;
 		while (k < n - nhome) {
 			Coordinate c = Coordinate(x2[i], y2[i]);
 			c.z = 0;
@@ -84,11 +85,11 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n) {
+			if (i == n - nhome) {
 				delete[] x2;
 				delete[] y2;
-				x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome - k + 50);
-				y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome - k + 50);
+				x2 = random_generator->generateUniformDouble(xmin, xmax, n-nhome);
+				y2 = random_generator->generateUniformDouble(ymin, ymax, n-nhome);
 				i = 0;
 			}
 		}
@@ -145,47 +146,48 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 }
 
 void printPersonHeader() {
-std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)<< "Phone(s) ID"<< endl;
+	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
+			<< setw(15) << "Gender" << setw(15) << "Phone(s) ID" << endl;
 }
 
 void printAntennaHeader() {
-cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections"
-		<< setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
+			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {
-cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
+	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
 }
 
 void printPhoneHeader() {
-cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
-		<< setw(15) << "MNO Id" << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
+			<< setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
-XMLNode* n = nullptr;
-XMLElement* element = el->FirstChildElement(name);
-if (element) {
-	n = element->FirstChild();
-	if (!n)
-		throw std::runtime_error("Syntax error in the configuration file ");
-}
-return (n);
+	XMLNode* n = nullptr;
+	XMLElement* element = el->FirstChildElement(name);
+	if (element) {
+		n = element->FirstChild();
+		if (!n)
+			throw std::runtime_error("Syntax error in the configuration file ");
+	}
+	return (n);
 }
 
 XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
-XMLElement* n = el->FirstChildElement(name);
-if (!n)
-	throw std::runtime_error("Syntax error in the configuration file ");
-return (n);
+	XMLElement* n = el->FirstChildElement(name);
+	if (!n)
+		throw std::runtime_error("Syntax error in the configuration file ");
+	return (n);
 }
 
 double r2d(double x) {
-return (x * 180.0) / PI;
+	return (x * 180.0) / PI;
 }
 
 double d2r(double x) {
-return (PI / 180.0) * x;
+	return (PI / 180.0) * x;
 }
 
 }

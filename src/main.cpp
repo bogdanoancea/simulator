@@ -25,7 +25,6 @@
 #include <map>
 #include <RandomNumberGenerator.h>
 
-
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
@@ -217,6 +216,8 @@ int main(int argc, char** argv) {
 			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
 
+	} catch (const std::bad_alloc& e) {
+		cout << e.what() << endl;
 	} catch (const runtime_error& e) {
 		cout << e.what() << endl;
 	} catch (const exception &e) {
