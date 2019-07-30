@@ -175,7 +175,7 @@ public:
 		const double inv_sqrt_2pi = 0.3989422804014327;
 		double a = (x - m) / s;
 
-		return inv_sqrt_2pi / s * exp(-(0.5) * a * a);
+		return (inv_sqrt_2pi / s) * exp(-0.5 * a * a);
 	}
 
 	void setSeed(unsigned seed);

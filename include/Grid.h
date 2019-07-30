@@ -129,7 +129,7 @@ public:
 	 * Computes the total number of tiles in the grid
 	 * @return the total number of tiles in the grid
 	 */
-	unsigned long getNoTiles() const;
+	const unsigned long getNoTiles() const;
 
 	/**
 	 * Computes the posterior probability of a mobile device to be in a tile according to the method

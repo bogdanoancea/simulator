@@ -340,8 +340,7 @@ double Antenna::computeSignalQuality(const Coordinate c) const {
 double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
 	double result = 0.0;
 	Point *p = getLocation();
-	const Coordinate* cc = p->getCoordinate();
-	double dist = sqrt((c.z - cc->z) * (c.z - cc->z) + (c.y - cc->y) * (c.y - cc->y) + (c.x - cc->x) * (c.x - cc->x));
+	double dist = sqrt((c.z - p->getZ()) * (c.z - p->getZ()) + (c.y - p->getY()) * (c.y - p->getY()) + (c.x - p->getX()) * (c.x - p->getX()));
 	double signalStrength = S(dist);
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
@@ -355,58 +354,8 @@ double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 }
 
 double Antenna::computeSignalQualityDirectional(const Point* p) const {
-	double result = 0.0;
-	double signalStrength = 0.0;
-	double x = p->getCoordinate()->x;
-	double y = p->getCoordinate()->y;
-	double z = p->getCoordinate()->z;
-
-	double antennaX = getLocation()->getCoordinate()->x;
-	double antennaY = getLocation()->getCoordinate()->y;
-	double antennaZ = getLocation()->getCoordinate()->z;
-
-	double dist = p->distance(getLocation());
-	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
-	signalStrength += S(dist);
-
-	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
-	if (theta_azim < 0)
-		theta_azim += 360;
-
-	double azim = fmod(theta_azim - m_direction, 360);
-	if (azim > 180)
-		azim -= 360;
-	if (azim < -180)
-		azim += 360;
-
-//project azim to elevation plane -> azim2
-	double r_azim = d2r(azim);
-	double a = sin(r_azim) * distXY;
-	double b = cos(r_azim) * distXY;
-
-	double e = projectToEPlane(b, m_height - z, m_tilt);
-	double azim2 = r2d(atan2(a, e));
-	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
-//	for (int i = 0; i < mapping.size(); i++) {
-//		cout << mapping[i].first << "," << mapping[i].second << endl;
-//	}
-	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
-
-	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
-
-//vertical component
-	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
-	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
-	if (elevation > 180)
-		elevation -= 360;
-	if (elevation < -180)
-		elevation += 360;
-
-	sd = findSD(m_beam_V, m_elev_dB_Back, mapping);  //? oare e acelasi mapping?
-	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
-
-	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
-	return result;
+	const Coordinate* c = p->getCoordinate();
+	return computeSignalQualityDirectional(*c);
 }
 
 double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
@@ -416,11 +365,11 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	double y = c.y;
 	double z = c.z;
 
-	double antennaX = getLocation()->getCoordinate()->x;
-	double antennaY = getLocation()->getCoordinate()->y;
-	double antennaZ = getLocation()->getCoordinate()->z;
+	double antennaX = getLocation()->getX();
+	double antennaY = getLocation()->getY();
+	double antennaZ = getLocation()->getZ();
 
-	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY));  //p->distance(getLocation());
+	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY) + (z - antennaZ)*(z - antennaZ));  //p->distance(getLocation());
 	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
 	signalStrength += S(dist);
 
@@ -468,8 +417,9 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
+	double halfBeamWidth = beamWidth / 2.0;
 	for (auto& i : mapping) {
-		tmp.push_back(i.second - beamWidth / 2.0);
+		tmp.push_back(i.second - halfBeamWidth);
 	}
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
 	result = mapping[indexMin].first;
@@ -510,7 +460,6 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 	vector<double> v;
 	const double* p1 = EMField::instance()->getAntennaMin3DbArray();
 	for (unsigned int i = 0; i < Constants::ANTENNA_MIN_3_DB; i++) {
-		//double p1 = i * 180.0 / (Constants::ANTENNA_MIN_3_DB - 1.0);
 		double p2 = fabs(-3.0 - norm_dBLoss(p1[i], dbBack, sd));
 		v.push_back(p2);
 	}
@@ -521,8 +470,9 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
 	RandomNumberGenerator* rand = RandomNumberGenerator::instance(0);
-	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
-	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
+	double tmp = rand->normal_pdf(0.0, 0.0, sd);
+	double inflate = -dbBack / (tmp - rand->normal_pdf(180.0, 0.0, sd));
+	return ((rand->normal_pdf(a, 0.0, sd) - tmp) * inflate);
 }
 
 double Antenna::normalizeAngle(double angle) const {

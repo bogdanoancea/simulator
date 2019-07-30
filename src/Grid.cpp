@@ -53,7 +53,7 @@ string Grid::toString() const {
 	return (ss.str());
 }
 
-unsigned long Grid::getNoTiles() const {
+const unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
@@ -243,11 +243,6 @@ unsigned long Grid::getTileIndexY(double y) const {
 	return (result);
 }
 
-unsigned long Grid::getTileCenterX(Point* p) {
-	unsigned long result = -1;
-	throw runtime_error("Not yet implemented");
-	return (result);
-}
 
 unsigned long Grid::getTileNo(const Point* p) const {
 	unsigned long x = getTileIndexX(p);
@@ -262,6 +257,12 @@ unsigned long Grid::getTileNo(double x, double y) const {
 }
 
 unsigned long Grid::getTileCenterY(Point* p) {
+	unsigned long result = -1;
+	throw runtime_error("Not yet implemented");
+	return (result);
+}
+
+unsigned long Grid::getTileCenterX(Point* p) {
 	unsigned long result = -1;
 	throw runtime_error("Not yet implemented");
 	return (result);
