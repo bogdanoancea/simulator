@@ -226,7 +226,7 @@ public:
 	double getRmax() const;
 	double getSmin() const;
 	string dumpCell() const;
-
+	//double* getSignalQualityTileCenters() const;
 
 private:
 
@@ -273,6 +273,7 @@ private:
 	double m_rmax;
 	double m_Smin;
 	double m_minQuality;
+	//double* m_signalQualityTileCenters;
 };
 
 #endif /* ANTENNA_H_ */

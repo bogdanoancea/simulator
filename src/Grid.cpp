@@ -123,7 +123,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
 		double lh = 0.0;
 		if (connected) {
-			Coordinate c = getTileCenter(tileIndex);
+			//Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
@@ -131,7 +131,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 				if (a->getId() == antennaId)
 					break;
 			}
-			c.z = 0; //TODO elevation to be set
+			//c.z = 0; //TODO elevation to be set
 			//Point* p = m_map->getGlobalFactory()->createPoint(c);
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);

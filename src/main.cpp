@@ -113,23 +113,24 @@ int main(int argc, char** argv) {
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 
 		vector<Coordinate> tileCenters;
-		for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+		unsigned long noTiles = map->getGrid()->getNoTiles();
+		for (unsigned long i = 0; i < noTiles - 1; i++) {
 			Coordinate c =  map->getGrid()->getTileCenter(i);
 			c.z = 0;
 			tileCenters.push_back(c);
 		}
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-			MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+			MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 			vector<AntennaInfo> tmp;
 			for (auto it = itra.first; it != itra.second; it++) {
-				Antenna* a = dynamic_cast<Antenna*>(it->second);
+				Antenna* a = static_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
 					ofstream& qualityFile = a->getMNO()->getSignalQualityFile();
 					qualityFile << a->getId() << sep;
-					for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+					for (unsigned long i = 0; i < noTiles - 1; i++) {
 						qualityFile << a->computeSignalQuality(tileCenters[i]) << sep;
 					}
-					qualityFile << a->computeSignalQuality(tileCenters[map->getGrid()->getNoTiles() - 1]) << endl;
+					qualityFile << a->computeSignalQuality(tileCenters[noTiles - 1]) << endl;
 
 					string fileName = a->getAntennaOutputFileName();
 					Parser file = Parser(fileName, DataType::eFILE, ',', true);

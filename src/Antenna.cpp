@@ -153,6 +153,13 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(m_rmax);
 	m_cell = shapefactory.createCircle();
+
+//	m_signalQualityTileCenters = new double[getMap()->getGrid()->getNoTiles()];
+//
+//	for (unsigned long i = 0; i < getMap()->getGrid()->getNoTiles(); i++) {
+//		cout << getId() << endl;
+//		m_signalQualityTileCenters[i] = computeSignalQuality(getMap()->getGrid()->getTileCenter(i));
+//	}
 }
 
 Antenna::~Antenna() {
@@ -163,6 +170,8 @@ Antenna::~Antenna() {
 			cerr << "Error closing output files!" << endl;
 		}
 	}
+//	if(m_signalQualityTileCenters != nullptr)
+//		delete [] m_signalQualityTileCenters;
 }
 
 double Antenna::getPLE() const {
@@ -340,17 +349,21 @@ double Antenna::computeSignalQuality(const Coordinate c) const {
 double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
 	double result = 0.0;
 	Point *p = getLocation();
-	double dist = sqrt((c.z - p->getZ()) * (c.z - p->getZ()) + (c.y - p->getY()) * (c.y - p->getY()) + (c.x - p->getX()) * (c.x - p->getX()));
+	const double z = p->getZ();
+	const double y = p->getY();
+	const double x = p->getX();
+	const double dist = sqrt((c.z - z) * (c.z - z) + (c.y - y) * (c.y - y) + (c.x - x) * (c.x - x));
 	double signalStrength = S(dist);
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
 
+
+
 double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
-	double result = 0.0;
 	const Coordinate* c = p->getCoordinate();
-	result = computeSignalQualityOmnidirectional(*c);
-	return result;
+	return computeSignalQualityOmnidirectional(*c);
+
 }
 
 double Antenna::computeSignalQualityDirectional(const Point* p) const {
@@ -615,3 +628,7 @@ string Antenna::dumpCell() const {
 	result << writter.write(m_cell->getBoundary()) << endl;
 	return result.str();
 }
+
+//double* Antenna::getSignalQualityTileCenters() const {
+//	return m_signalQualityTileCenters;
+//}
