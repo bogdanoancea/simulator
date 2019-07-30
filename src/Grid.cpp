@@ -53,7 +53,7 @@ string Grid::toString() const {
 	return (ss.str());
 }
 
-unsigned long Grid::getNoTiles() const {
+const unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
@@ -123,7 +123,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
 		double lh = 0.0;
 		if (connected) {
-			Coordinate c = getTileCenter(tileIndex);
+			//Coordinate c = getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
@@ -131,7 +131,7 @@ vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<Ant
 				if (a->getId() == antennaId)
 					break;
 			}
-			c.z = 0; //TODO elevation to be set
+			//c.z = 0; //TODO elevation to be set
 			//Point* p = m_map->getGlobalFactory()->createPoint(c);
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);
@@ -243,11 +243,6 @@ unsigned long Grid::getTileIndexY(double y) const {
 	return (result);
 }
 
-unsigned long Grid::getTileCenterX(Point* p) {
-	unsigned long result = -1;
-	throw runtime_error("Not yet implemented");
-	return (result);
-}
 
 unsigned long Grid::getTileNo(const Point* p) const {
 	unsigned long x = getTileIndexX(p);
@@ -262,6 +257,12 @@ unsigned long Grid::getTileNo(double x, double y) const {
 }
 
 unsigned long Grid::getTileCenterY(Point* p) {
+	unsigned long result = -1;
+	throw runtime_error("Not yet implemented");
+	return (result);
+}
+
+unsigned long Grid::getTileCenterX(Point* p) {
 	unsigned long result = -1;
 	throw runtime_error("Not yet implemented");
 	return (result);

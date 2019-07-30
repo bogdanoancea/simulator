@@ -51,8 +51,8 @@ const string LocatableAgent::dumpLocation() {
 	ostringstream ss;
 	char sep = Constants::sep;
 	if (getClock() != nullptr)
-		ss << left << getClock()->getCurrentTime() << sep;
-	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
+		ss << getClock()->getCurrentTime() << sep;
+	ss << getId() << sep << getLocation()->getX() << sep << getLocation()->getY();
 	return (ss.str());
 }
 
