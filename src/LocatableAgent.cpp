@@ -11,6 +11,7 @@
 #include <geos/geom/GeometryFactory.h>
 #include <LocatableAgent.h>
 #include <Map.h>
+#include <Constants.h>
 #include <iomanip>
 #include <sstream>
 
@@ -48,7 +49,7 @@ const string LocatableAgent::toString() const {
 
 const string LocatableAgent::dumpLocation() {
 	ostringstream ss;
-	char sep = ',';
+	char sep = Constants::sep;
 	if (getClock() != nullptr)
 		ss << left << getClock()->getCurrentTime() << sep;
 	ss << getId() << sep << getLocation()->getCoordinate()->x << sep << getLocation()->getCoordinate()->y;
