@@ -45,6 +45,10 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 
 		unsigned long i = 0, k = 0;
 		while (k < nhome) {
+			if (x1[i] < 1e-15)
+				x1[i] = 0.0;
+			if (y1[i] < 1e-15)
+				y1[i] = 0.0;
 			Coordinate c = Coordinate(x1[i], y1[i]);
 			c.z = 0;
 			i++;
@@ -61,7 +65,10 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				delete[] y1;
 				x1 = random_generator->generateUniformDouble(xmin, xmax, nhome);
 				y1 = random_generator->generateUniformDouble(ymin, ymax, nhome);
-
+				if (x1[i] < 1e-15)
+					x1[i] = 0.0;
+				if (y1[i] < 1e-15)
+					y1[i] = 0.0;
 				i = 0;
 			}
 		}
@@ -74,6 +81,10 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 		k = 0;
 		i = 0;
 		while (k < n - nhome) {
+			if (x2[i] < 1e-15)
+				x2[i] = 0.0;
+			if (y2[i] < 1e-15)
+				y2[i] = 0.0;
 			Coordinate c = Coordinate(x2[i], y2[i]);
 			c.z = 0;
 			i++;
@@ -88,8 +99,12 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 			if (i == n - nhome) {
 				delete[] x2;
 				delete[] y2;
-				x2 = random_generator->generateUniformDouble(xmin, xmax, n-nhome);
-				y2 = random_generator->generateUniformDouble(ymin, ymax, n-nhome);
+				x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome);
+				y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome);
+				if (x2[i] < 1e-15)
+					x2[i] = 0.0;
+				if (y2[i] < 1e-15)
+					y2[i] = 0.0;
 				i = 0;
 			}
 		}
@@ -146,13 +161,13 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 }
 
 void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
-			<< setw(15) << "Gender" << setw(15) << "Phone(s) ID" << endl;
+	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
+			<< "Phone(s) ID" << endl;
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
-			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+			<< setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {
@@ -160,8 +175,7 @@ void printMobileOperatorHeader() {
 }
 
 void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
-			<< setw(15) << "MNO Id" << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
