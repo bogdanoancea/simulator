@@ -245,8 +245,8 @@ private:
 	double getMin3db(double sd, double dbBack) const;
 	double norm_dBLoss(double angle, double dbBack, double sd) const;
 	double normalizeAngle(double angle) const;
-	double searchMin(double dg, vector<pair<double, double>>& _3dBDegrees) const;
-	double findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const;
+	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
+	double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
 
 	double m_ple;
 	double m_power;

@@ -138,6 +138,9 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 		m_mapping_azim = createMapping(m_azim_dB_Back);
+//		for(int i = 0; i < m_mapping_azim.size();i ++) {
+//			cout << m_mapping_azim[i].first << ","<<m_mapping_azim[i].second <<endl;
+//		}
 		m_mapping_elev = createMapping(m_elev_dB_Back);
 		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
@@ -375,9 +378,11 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	double antennaY = getLocation()->getY();
 	double antennaZ = getLocation()->getZ();
 
-	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY) );//+ (z - antennaZ)*(z - antennaZ));  //p->distance(getLocation());
+	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY) + (z - antennaZ)*(z - antennaZ));  //p->distance(getLocation());
 	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
 	signalStrength += S(dist);
+
+	//cout << c.toString() << " dist : " << signalStrength << endl;
 
 	double theta_azim = 90 - r2d(atan2(y - antennaY, x - antennaX));
 	if (theta_azim < 0)
@@ -403,7 +408,7 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	//double sd = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 
 	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, m_sd_azim);
-
+	//cout << c.toString() << " dist + azim : " << signalStrength << " : " << m_sd_azim << endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
 	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
@@ -416,19 +421,21 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, m_sd_elev);
 
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+
 	return result;
 }
 
 //TODO
-double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
+double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
 	double halfBeamWidth = beamWidth / 2.0;
-	for (auto& i : mapping) {
-		tmp.push_back(i.second - halfBeamWidth);
+	for (auto i : mapping) {
+		tmp.push_back(fabs(i.first - halfBeamWidth));
 	}
 	int indexMin = std::min_element(tmp.begin(), tmp.end()) - tmp.begin();
-	result = mapping[indexMin].first;
+	result = mapping[indexMin].second;
+	//cout << "sd = " << result <<endl;
 	return result;
 }
 
@@ -440,7 +447,7 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 		double deg = getMin3db(sd[i], dbBack);
 		pair<double, double> p = make_pair(sd[i], deg);
 		v.push_back(p);
-		//cout << " sd " << sd << " deg " << deg << endl;
+		//cout << " sd " << sd[i] << " deg " << deg << endl;
 	}
 	for (unsigned int i = 1; i <= 180; i++) {
 		double sd = searchMin(i, v);
@@ -450,15 +457,18 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	return result;
 }
 
-double Antenna::searchMin(double dg, vector<pair<double, double>>& _3dBDegrees) const {
+double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
+
 	for (pair<double, double>& i : _3dBDegrees) {
 		i.second -= dg;
 		i.second = fabs(i.second);
+		//cout << "deg " << i.second << endl;
 	}
 	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
 		return a.second < b.second;
 	}) - begin(_3dBDegrees);
 
+//cout << "index min " << minElementIndex << endl;
 	return _3dBDegrees[minElementIndex].first;
 }
 
@@ -476,9 +486,9 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
 	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
-	double tmp = rand->normal_pdf(0.0, 0.0, sd);
-	double inflate = -dbBack / (tmp - rand->normal_pdf(180.0, 0.0, sd));
-	return ((rand->normal_pdf(a, 0.0, sd) - tmp) * inflate);
+	//double tmp = rand->normal_pdf(0.0, 0.0, sd);
+	double inflate = -dbBack / (rand->normal_pdf(0.0, 0.0, sd) - rand->normal_pdf(180.0, 0.0, sd));
+	return ((rand->normal_pdf(a, 0.0, sd) - rand->normal_pdf(0.0, 0.0, sd)) * inflate);
 }
 
 double Antenna::normalizeAngle(double angle) const {
@@ -503,6 +513,7 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 		cc = 3;
 	else
 		cc = 4;
+
 	switch (cc) {
 	case 1:
 		result = cos(d2r(lambda - beta)) * d;

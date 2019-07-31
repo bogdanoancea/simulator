@@ -25,11 +25,13 @@
 #include <map>
 #include <RandomNumberGenerator.h>
 
-//#if defined(__GNUC__) || defined(__GNUG__)
-//#include <omp.h>
-//#include <parallel/algorithm>
-//#include <parallel/settings.h>
-//#endif
+#if defined(__GNUC__) || defined(__GNUG__)
+#ifndef __clang__
+#include <omp.h>
+#include <parallel/algorithm>
+#include <parallel/settings.h>
+#endif
+#endif
 
 using namespace std;
 using namespace geos;
@@ -38,14 +40,17 @@ using namespace utils;
 
 int main(int argc, char** argv) {
 
-//#if defined(__GNUC__) || defined(__GNUG__)
-//	const int threads_wanted = 8;
-//	omp_set_dynamic(false);
-//	omp_set_num_threads(threads_wanted);
-//	__gnu_parallel ::_Settings s;
-//	s.algorithm_strategy = __gnu_parallel::force_parallel;
-//	__gnu_parallel::_Settings::set(s);
-//#endif
+#if defined(__GNUC__) || defined(__GNUG__)
+#ifndef __clang__
+	cout << "gnuc" << endl;
+	const int threads_wanted = 8;
+	omp_set_dynamic(false);
+	omp_set_num_threads(threads_wanted);
+	__gnu_parallel ::_Settings s;
+	s.algorithm_strategy = __gnu_parallel::force_parallel;
+	__gnu_parallel::_Settings::set(s);
+#endif
+#endif
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {

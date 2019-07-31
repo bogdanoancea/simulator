@@ -1,15 +1,10 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = D:\data-simulator\simulator
-GEOS_HOME = D:\data-simulator\geos-3.7.1
+PROJ_HOME = /Users/bogdanoancea/c-projects/simulator
+GEOS_HOME = /Users/bogdanoancea/c-projects//geos-3.7.1
 MSYS_HOME = C:/msys64/
 DEBUG     = 0
 
-CXXFLAGS = -Og -Wall -Wextra
-
-GCC_CXXFLAGS = -DMESSAGE='"Compiled with GCC"'
-CLANG_CXXFLAGS = -DMESSAGE='"Compiled with Clang"'
-UNKNOWN_CXXFLAGS = -DMESSAGE='"Compiled with an unknown compiler"'
 
 ifeq ($(CXX),g++)
   CXXFLAGS += $(GCC_CXXFLAGS)
@@ -46,6 +41,7 @@ else
 		TARGET	= simulator
 		LDFLAGS  = -L$(GEOS_HOME)/src/.libs 
 		LIBS = $(GEOS_HOME)/src/.libs/libgeos.a
+		CXXFLAGS = -march=native
     endif
 endif
 
