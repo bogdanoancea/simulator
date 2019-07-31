@@ -246,7 +246,7 @@ private:
 	double norm_dBLoss(double angle, double dbBack, double sd) const;
 	double normalizeAngle(double angle) const;
 	double searchMin(double dg, vector<pair<double, double>>& _3dBDegrees) const;
-	double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
+	double findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const;
 
 	double m_ple;
 	double m_power;
@@ -274,6 +274,10 @@ private:
 	double m_Smin;
 	double m_minQuality;
 	//double* m_signalQualityTileCenters;
+	vector<pair<double, double>> m_mapping_azim;
+	vector<pair<double, double>> m_mapping_elev;
+	double m_sd_azim;
+	double m_sd_elev;
 };
 
 #endif /* ANTENNA_H_ */

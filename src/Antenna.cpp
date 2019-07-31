@@ -136,30 +136,24 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = atof(n->ToText()->Value());
 		else
 			m_direction = Constants::ANTENNA_DIRECTION;
-
+		m_mapping_azim = createMapping(m_azim_dB_Back);
+		m_mapping_elev = createMapping(m_elev_dB_Back);
+		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
+		m_sd_elev = findSD(m_beam_H, m_azim_dB_Back, m_mapping_elev);
 	}
 	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		//cerr << "Output goes to the console!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 10 / m_ple);
-//	cout << m_rmax << "," << getId() << endl;
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(m_rmax);
 	m_cell = shapefactory.createCircle();
-
-//	m_signalQualityTileCenters = new double[getMap()->getGrid()->getNoTiles()];
-//
-//	for (unsigned long i = 0; i < getMap()->getGrid()->getNoTiles(); i++) {
-//		cout << getId() << endl;
-//		m_signalQualityTileCenters[i] = computeSignalQuality(getMap()->getGrid()->getTileCenter(i));
-//	}
 }
 
 Antenna::~Antenna() {
@@ -170,8 +164,6 @@ Antenna::~Antenna() {
 			cerr << "Error closing output files!" << endl;
 		}
 	}
-//	if(m_signalQualityTileCenters != nullptr)
-//		delete [] m_signalQualityTileCenters;
 }
 
 double Antenna::getPLE() const {
@@ -382,7 +374,7 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	double antennaY = getLocation()->getY();
 	double antennaZ = getLocation()->getZ();
 
-	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY) + (z - antennaZ)*(z - antennaZ));  //p->distance(getLocation());
+	double dist = sqrt((x - antennaX) * (x - antennaX) + (y - antennaY) * (y - antennaY) );//+ (z - antennaZ)*(z - antennaZ));  //p->distance(getLocation());
 	double distXY = sqrt(pow(x - antennaX, 2) + pow(y - antennaY, 2));
 	signalStrength += S(dist);
 
@@ -403,13 +395,13 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 
 	double e = projectToEPlane(b, m_height - z, m_tilt);
 	double azim2 = r2d(atan2(a, e));
-	vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
+	//vector<pair<double, double>> mapping = createMapping(m_azim_dB_Back);
 //	for (int i = 0; i < mapping.size(); i++) {
 //		cout << mapping[i].first << "," << mapping[i].second << endl;
 //	}
-	double sd = findSD(m_beam_H, m_azim_dB_Back, mapping);
+	//double sd = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 
-	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, sd);
+	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, m_sd_azim);
 
 //vertical component
 	double gamma_elevation = r2d(atan2(antennaZ - z, distXY));
@@ -419,15 +411,15 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	if (elevation < -180)
 		elevation += 360;
 
-	sd = findSD(m_beam_V, m_elev_dB_Back, mapping);  //? oare e acelasi mapping?
-	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, sd);
+	//sd = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);  //? oare e acelasi mapping?
+	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, m_sd_elev);
 
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
 
 //TODO
-double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const {
+double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
 	double halfBeamWidth = beamWidth / 2.0;
