@@ -562,6 +562,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long cars = 0;
 	unsigned long walks = 0;
 	Person* p;
+
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 
 	for (unsigned long i = 0; i < numPersons; i++) {
