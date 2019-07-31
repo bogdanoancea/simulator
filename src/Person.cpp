@@ -34,7 +34,13 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_changeDirection { false }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
 				intervalBetweenStays } {
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
+	while(m_nextStay % getClock()->getIncrement() != 0)
+		m_nextStay++;
+
 	m_timeStay = timeStay;
+	while(m_timeStay % getClock()->getIncrement() != 0)
+		m_timeStay++;
+
 }
 
 Person::~Person() {
@@ -67,11 +73,14 @@ Point* Person::move(MovementType mvType) {
 		setLocation(getLocation());
 		if (currentTime == m_nextStay + m_timeStay) {
 			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(1.0 / this->m_avgIntervalBetweenStays);
-			if (nextInterval % getClock()->getIncrement() != 0)
-				nextInterval += nextInterval % getClock()->getIncrement();
+			while (nextInterval % getClock()->getIncrement() != 0)
+				nextInterval++;
 
 			m_nextStay = currentTime + nextInterval;
 			m_timeStay = (unsigned long) RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2 * m_avgTimeStay);
+			while(m_timeStay % getClock()->getIncrement() != 0)
+				m_timeStay++;
+
 		}
 	} else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
 		randomWalkClosedMap();
@@ -108,8 +117,9 @@ Point* Person::generateNewLocation(double theta) {
 	double x = getLocation()->getCoordinate()->x;
 	double y = getLocation()->getCoordinate()->y;
 	double speed = getSpeed();
-	double newX = x + speed * cos(theta);
-	double newY = y + speed * sin(theta);
+	unsigned long delta_t = getClock()->getIncrement();
+	double newX = x + speed * cos(theta) * delta_t;
+	double newY = y + speed * sin(theta) * delta_t;
 	Coordinate c = Coordinate(newX, newY, 0);
 	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
 	return pt;

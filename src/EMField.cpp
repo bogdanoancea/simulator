@@ -64,10 +64,12 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoId)
 				continue;
-			double quality = a->computeSignalQuality(p);
-			if (quality > max) {
-				max = quality;
-				result = make_pair(a, quality);
+			if (a->getLocation()->distance(p) <= a->getRmax()) {
+				double quality = a->computeSignalQuality(p);
+				if (quality > max) {
+					max = quality;
+					result = make_pair(a, quality);
+				}
 			}
 		}
 	}
@@ -86,7 +88,7 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	return (result);
 }
 
-double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex)  {
+double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) {
 	Coordinate c = g->getTileCenter(tileIndex);
 	c.z = 0; //TODO z = tile elevation
 	double s_quality = a->computeSignalQuality(c);
@@ -106,19 +108,22 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
+
 			if (a->getMNO()->getId() != mnoId)
 				continue;
-			double x;
-			if (power)
-				x = a->computePower(p);
-			else
-				x = a->computeSignalQuality(p);
-			if (x > threshold)
-				result.push_back(make_pair(a, x));
+			if (a->getRmax() <= a->getLocation()->distance(p)) {
+				double x;
+				if (power)
+					x = a->computePower(p);
+				else
+					x = a->computeSignalQuality(p);
+				if (x > threshold)
+					result.push_back(make_pair(a, x));
+			}
 		}
 	}
-	if(result.size()>0)
-		std::sort(result.begin(), result.end(), [](pair<Antenna*, double> &left, pair<Antenna*, double> &right) {
+	if (result.size() > 0)
+		sort(result.begin(), result.end(), [](const pair<Antenna*, double> &left, const pair<Antenna*, double> &right) {
 			return (left.second < right.second);
 		});
 
@@ -130,8 +135,9 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	double ps = 0.0;
 	if (power)
 		ps = a->computePower(p);
-	else
+	else if (a->getRmax() <= a->getLocation()->distance(p))
 		ps = a->computeSignalQuality(p);
+
 	if (ps > threshold) {
 		result = true;
 	}
@@ -147,7 +153,7 @@ vector<double> EMField::sumSignalQuality(const Grid* grid, const unsigned long m
 		Coordinate c = grid->getTileCenter(tileIndex);
 		c.z = 0; //TODO z should be the elevation
 		for (Antenna* a : m_antennas) {
-			if(a->getMNO()->getId() != mnoID)
+			if (a->getMNO()->getId() != mnoID)
 				continue;
 			sum += a->computeSignalQuality(c);
 		}
@@ -159,7 +165,6 @@ vector<double> EMField::sumSignalQuality(const Grid* grid, const unsigned long m
 	cout << endl;
 	return tmp;
 }
-
 
 const double* EMField::getAntennaMin3DbArray() const {
 	return m_antennaMin3DbArray;
