@@ -45,7 +45,6 @@ int main(int argc, char** argv) {
 	__gnu_parallel ::_Settings s;
 	s.algorithm_strategy = __gnu_parallel::force_parallel;
 	__gnu_parallel::_Settings::set(s);
-	cout <<  "ala bala" << endl;
 #endif
 
 	InputParser parser(argc, argv);
