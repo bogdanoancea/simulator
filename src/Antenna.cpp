@@ -136,10 +136,11 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = atof(n->ToText()->Value());
 		else
 			m_direction = Constants::ANTENNA_DIRECTION;
+
 		m_mapping_azim = createMapping(m_azim_dB_Back);
 		m_mapping_elev = createMapping(m_elev_dB_Back);
 		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
-		m_sd_elev = findSD(m_beam_H, m_azim_dB_Back, m_mapping_elev);
+		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
 	}
 	string fileName = getAntennaOutputFileName();
 	try {
