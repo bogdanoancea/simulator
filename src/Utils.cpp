@@ -58,13 +58,12 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				k++;
 			} else
 				m->getGlobalFactory()->destroyGeometry(p);
-
 			// we used all the numbers, generate others
 			if (i == nhome) {
 				delete[] x1;
 				delete[] y1;
-				x1 = random_generator->generateUniformDouble(xmin, xmax, nhome);
-				y1 = random_generator->generateUniformDouble(ymin, ymax, nhome);
+				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
 				if (x1[i] < 1e-15)
 					x1[i] = 0.0;
 				if (y1[i] < 1e-15)
@@ -80,6 +79,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 
 		k = 0;
 		i = 0;
+
 		while (k < n - nhome) {
 			if (x2[i] < 1e-15)
 				x2[i] = 0.0;
@@ -96,11 +96,11 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n - nhome) {
+			if (i == n) {
 				delete[] x2;
 				delete[] y2;
-				x2 = random_generator->generateUniformDouble(xmin, xmax, n - nhome);
-				y2 = random_generator->generateUniformDouble(ymin, ymax, n - nhome);
+				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
+				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
 				if (x2[i] < 1e-15)
 					x2[i] = 0.0;
 				if (y2[i] < 1e-15)
@@ -197,7 +197,7 @@ XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
 }
 
 double r2d(double x) {
-	return (x * 180.0) / PI;
+	return x * (180.0 / PI);
 }
 
 double d2r(double x) {
