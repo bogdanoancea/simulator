@@ -24,6 +24,7 @@
 #include <EMField.h>
 #include <map>
 #include <RandomNumberGenerator.h>
+#include <omp.h>
 
 using namespace std;
 using namespace geos;
@@ -31,7 +32,9 @@ using namespace geos::geom;
 using namespace utils;
 
 int main(int argc, char** argv) {
-
+	const int threads_wanted = 8;
+	omp_set_dynamic(false);
+	omp_set_num_threads(threads_wanted);
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
@@ -115,7 +118,7 @@ int main(int argc, char** argv) {
 		vector<Coordinate> tileCenters;
 		unsigned long noTiles = map->getGrid()->getNoTiles();
 		for (unsigned long i = 0; i < noTiles - 1; i++) {
-			Coordinate c =  map->getGrid()->getTileCenter(i);
+			Coordinate c = map->getGrid()->getTileCenter(i);
 			c.z = 0;
 			tileCenters.push_back(c);
 		}

@@ -427,7 +427,7 @@ double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 }
 
 //TODO
-double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>> mapping) const {
+double Antenna::findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const {
 	double result = 0.0;
 	vector<double> tmp;
 	double halfBeamWidth = beamWidth / 2.0;
@@ -457,7 +457,7 @@ vector<pair<double, double>> Antenna::createMapping(double dbBack) const {
 	return result;
 }
 
-double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const {
+double Antenna::searchMin(double dg, vector<pair<double, double>>& _3dBDegrees) const {
 	for (pair<double, double>& i : _3dBDegrees) {
 		i.second -= dg;
 		i.second = fabs(i.second);
@@ -482,7 +482,7 @@ double Antenna::getMin3db(double sd, double dbBack) const {
 
 double Antenna::norm_dBLoss(double angle, double dbBack, double sd) const {
 	double a = normalizeAngle(angle);
-	RandomNumberGenerator* rand = RandomNumberGenerator::instance(0);
+	RandomNumberGenerator* rand = RandomNumberGenerator::instance();
 	double tmp = rand->normal_pdf(0.0, 0.0, sd);
 	double inflate = -dbBack / (tmp - rand->normal_pdf(180.0, 0.0, sd));
 	return ((rand->normal_pdf(a, 0.0, sd) - tmp) * inflate);
