@@ -42,7 +42,6 @@ int main(int argc, char** argv) {
 
 #if defined(__GNUC__) || defined(__GNUG__)
 #ifndef __clang__
-	cout << "gnuc" << endl;
 	const int threads_wanted = 8;
 	omp_set_dynamic(false);
 	omp_set_num_threads(threads_wanted);
@@ -128,6 +127,19 @@ int main(int argc, char** argv) {
 			}
 		}
 		w.runSimulation();
+		ofstream g_File;
+		try {
+			g_File.open(w.getGridFilename(), ios::out);
+		} catch (ofstream::failure& e) {
+			cerr << "Error opening grid output files!" << endl;
+		}
+
+		g_File << map->getGrid()->toString();
+		try {
+			g_File.close();
+		} catch (const ofstream::failure& e) {
+			cerr << "Error closing grid file!" << endl;
+		}
 		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
@@ -180,20 +192,6 @@ int main(int argc, char** argv) {
 			cout << "Computing probabilities started at " << ctime(&tt) << endl;
 			//now we compute the probabilities for the positions of the phones
 			// read the event connection data
-
-			ofstream g_File;
-			try {
-				g_File.open(w.getGridFilename(), ios::out);
-			} catch (ofstream::failure& e) {
-				cerr << "Error opening grid output files!" << endl;
-			}
-
-			g_File << map->getGrid()->toString();
-			try {
-				g_File.close();
-			} catch (const ofstream::failure& e) {
-				cerr << "Error closing grid file!" << endl;
-			}
 
 			w.getClock()->reset();
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
