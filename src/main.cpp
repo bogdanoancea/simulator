@@ -98,9 +98,8 @@ int main(int argc, char** argv) {
 		if (verbose) {
 			utils::printMobileOperatorHeader();
 			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
-
 			for (auto it = itr0.first; it != itr0.second; it++) {
-				MobileOperator* mno = dynamic_cast<MobileOperator*>(it->second);
+				MobileOperator* mno = static_cast<MobileOperator*>(it->second);
 				cout << mno->toString() << endl;
 			}
 
@@ -108,21 +107,21 @@ int main(int argc, char** argv) {
 			auto itr = c->getAgentListByType(typeid(Person).name());
 			vector<Person*> persons;
 			for (auto it = itr.first; it != itr.second; it++) {
-				Person* p = dynamic_cast<Person*>(it->second);
+				Person* p = static_cast<Person*>(it->second);
 				cout << p->toString() << endl;
 			}
 
 			utils::printAntennaHeader();
 			auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 			for (auto it = itr2.first; it != itr2.second; it++) {
-				Antenna* a = dynamic_cast<Antenna*>(it->second);
+				Antenna* a = static_cast<Antenna*>(it->second);
 				cout << a->toString() << endl;
 			}
 
 			utils::printPhoneHeader();
 			auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
 			for (auto it = itr3.first; it != itr3.second; it++) {
-				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+				MobilePhone* m = static_cast<MobilePhone*>(it->second);
 				cout << m->toString() << endl;
 			}
 		}
@@ -197,24 +196,23 @@ int main(int argc, char** argv) {
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
 				EMField::instance()->sumSignalQuality(map->getGrid(), mo->getId());
 			}
 
 			ofstream p_file;
+			const Grid* g = w.getMap()->getGrid();
+			unsigned long noTiles = g->getNoTiles();
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
 				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
 				p_file << "t" << sep << "Phone ID" << sep;
-				const Grid* g = w.getMap()->getGrid();
-				unsigned long noTiles = g->getNoTiles();
 				for (unsigned long i = 0; i < noTiles - 1; i++) {
 					p_file << "Tile" << i << sep;
 				}
 				p_file << "Tile" << noTiles - 1 << endl;
 
-				//p_file << "##### probabilities computed for " << mo->getMNOName() << "#######" << endl;
 				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 					//iterate over all devices
 					for (auto it = itrm.first; it != itrm.second; it++) {

@@ -38,8 +38,6 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 		double ymax = env->getMaxX();
 
 		unsigned long nhome = (unsigned long) n * percentHome;
-//		cout << "nHome" << nhome << endl;
-		//generate a pool of numbers to choose from
 		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
 		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
 
@@ -79,7 +77,6 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 
 		k = 0;
 		i = 0;
-
 		while (k < n - nhome) {
 			if (x2[i] < 1e-15)
 				x2[i] = 0.0;

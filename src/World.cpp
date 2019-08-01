@@ -572,13 +572,10 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_intevalBetweenStays);
 		//cout << "stays " << stay << "," << interval << endl;
 		if (walk_car[i]) {
-			//cout << positions[i]->toString() << "," << speeds_car[cars] << "," << ages[i] << "," << gender[i] << "," << stay << "," << interval << endl;
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], (int) ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		} else {
-			//cout << positions[i]->toString() << "," << speeds_walk[walks] << "," << ages[i] << "," << gender[i] << "," << stay << "," << interval << endl;
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], (int) ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		}
-
 		int np1 = phone1[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
