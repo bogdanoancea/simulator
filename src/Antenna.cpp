@@ -4,6 +4,9 @@
 #include <Constants.h>
 #include <geos/geom/GeometryFactory.h>
 #include <geos/util/GeometricShapeFactory.h>
+#include <geos/geom/CoordinateSequence.h>
+#include <geos/geom/CoordinateArraySequence.h>
+#include <geos/geom/LineString.h>
 #include <geos/io/WKTWriter.h>
 #include <Map.h>
 #include <iomanip>
@@ -23,10 +26,10 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
+		double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
+				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getAntennaOutputFileName();
 	char sep = Constants::sep;
@@ -138,9 +141,6 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			m_direction = Constants::ANTENNA_DIRECTION;
 
 		m_mapping_azim = createMapping(m_azim_dB_Back);
-//		for(int i = 0; i < m_mapping_azim.size();i ++) {
-//			cout << m_mapping_azim[i].first << ","<<m_mapping_azim[i].second <<endl;
-//		}
 		m_mapping_elev = createMapping(m_elev_dB_Back);
 		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
@@ -152,12 +152,37 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		cerr << "Error opening output files!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
+
 	m_S0 = 30 + 10 * log10(m_power);
-	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 10 / m_ple);
+
+	//if (m_type == AntennaType::OMNIDIRECTIONAL) {
+	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(m_rmax);
 	m_cell = shapefactory.createCircle();
+//		cout << m_rmax << "," << getId() << ","<<S(2000)<<endl;
+//	} else if (m_type == AntennaType::DIRECTIONAL) {
+//		m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
+//	CoordinateSequence* cl = new CoordinateArraySequence();
+//		for (double angle = 0; angle <= 2 * utils::PI; angle += utils::PI / 180) {
+//			double dist = m_rmax;
+//			double delta_dist = 0.01 * dist;
+//			double S_actual = S(m_rmax);
+//			double xx = x + dist * sin(angle);
+//			double yy = y + dist * cos(angle);
+//			cout << "angle = " << angle << "Sactual=" << S_actual << endl;
+//			while (S_actual <= m_Smin) {
+//				dist -= delta_dist;
+//				S_actual = S(dist);
+//				xx = x + dist * sin(angle);
+//				yy = y + dist * cos(angle);
+//			}
+//			cl->add(Coordinate(xx, yy));
+//
+//		}
+//		m_cell = (Polygon*) this->getMap()->getGlobalFactory()->createLineString(cl);
+//	}
 }
 
 Antenna::~Antenna() {
@@ -180,8 +205,7 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
-			<< m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
 	return (result.str());
 }
 
@@ -257,8 +281,7 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -279,9 +302,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		stringstream ss;
 		const Grid* g = this->getMap()->getGrid();
 		if (g != nullptr)
-			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep
-					<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << sep
-					<< g->getTileNo(ag->getLocation()) << endl;
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+					<< ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -296,7 +318,10 @@ double Antenna::S0() const {
 }
 
 double Antenna::SDist(double dist) const {
-	return (10 * m_ple * log10(dist));
+	if (dist > 0)
+		return (10 * m_ple * log10(dist));
+	else
+		return 0;
 }
 
 double Antenna::S(double dist) const {
@@ -470,10 +495,9 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second = fabs(i.second);
 		//cout << "deg " << i.second << endl;
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
-			[](const pair<double, double>& a, const pair<double, double>& b) {
-				return a.second < b.second;
-			}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
+		return a.second < b.second;
+	}) - begin(_3dBDegrees);
 
 //cout << "index min " << minElementIndex << endl;
 	return _3dBDegrees[minElementIndex].first;

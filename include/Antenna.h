@@ -254,7 +254,7 @@ private:
 	double m_Smid;
 	double m_SSteep;
 
-	Polygon* m_cell;
+	Geometry* m_cell;
 	vector<HoldableAgent*> m_devices;
 	AntennaType m_type;
 	ofstream m_file;
