@@ -155,34 +155,58 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 
 	m_S0 = 30 + 10 * log10(m_power);
 
-	//if (m_type == AntennaType::OMNIDIRECTIONAL) {
 	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
-	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
-	shapefactory.setCentre(Coordinate(x, y));
-	shapefactory.setSize(m_rmax);
-	m_cell = shapefactory.createCircle();
-//		cout << m_rmax << "," << getId() << ","<<S(2000)<<endl;
-//	} else if (m_type == AntennaType::DIRECTIONAL) {
-//		m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
-//	CoordinateSequence* cl = new CoordinateArraySequence();
-//		for (double angle = 0; angle <= 2 * utils::PI; angle += utils::PI / 180) {
-//			double dist = m_rmax;
-//			double delta_dist = 0.01 * dist;
-//			double S_actual = S(m_rmax);
-//			double xx = x + dist * sin(angle);
-//			double yy = y + dist * cos(angle);
-//			cout << "angle = " << angle << "Sactual=" << S_actual << endl;
-//			while (S_actual <= m_Smin) {
-//				dist -= delta_dist;
-//				S_actual = S(dist);
-//				xx = x + dist * sin(angle);
-//				yy = y + dist * cos(angle);
-//			}
-//			cl->add(Coordinate(xx, yy));
-//
-//		}
-//		m_cell = (Polygon*) this->getMap()->getGlobalFactory()->createLineString(cl);
-//	}
+
+	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+		geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
+		shapefactory.setCentre(Coordinate(x, y));
+		shapefactory.setSize(m_rmax);
+		m_cell = shapefactory.createCircle();
+	} else if (m_type == AntennaType::DIRECTIONAL) {
+		CoordinateSequence* cl = new CoordinateArraySequence();
+		Coordinate init;
+		for (double i = 0; i < 100; i++) {
+			double angle = i * (2 * utils::PI / 100);
+			double dist = m_rmax;
+			double delta_dist = 0.01 * dist;
+			double xx = x + dist * sin(angle);
+			double yy = y + dist * cos(angle);
+			double S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
+			int k = 0;
+			while (S_actual <= m_Smin && k < 100) {
+				//cout << S_actual << "," << dist << endl;
+				dist -= delta_dist;
+				xx = x + dist * sin(angle);
+				yy = y + dist * cos(angle);
+				S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 00));
+				k++;
+			}
+			if (k == 100) {
+				cout << "Warning: error computing coverage area for directional antenna: " << getId() << endl;
+				cout << "Check the parameters of the antenna (Smin)!" << endl;
+				cout << "The coverage area will be approximated with a circle regardless of the directional effect" << endl;
+				delete cl;
+				cl = nullptr;
+				break;
+			}
+			if (angle == 0) {
+				init = Coordinate(xx, yy);
+				cl->add(init);
+			} else
+				cl->add(Coordinate(xx, yy));
+		}
+		if (cl != nullptr) {
+			cl->add(init);
+			LinearRing* lr = this->getMap()->getGlobalFactory()->createLinearRing(cl);
+			m_cell = this->getMap()->getGlobalFactory()->createPolygon(lr, nullptr);
+		}
+		else{
+			geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
+			shapefactory.setCentre(Coordinate(x, y));
+			shapefactory.setSize(m_rmax);
+			m_cell = shapefactory.createCircle();
+		}
+	}
 }
 
 Antenna::~Antenna() {
@@ -192,6 +216,9 @@ Antenna::~Antenna() {
 		} catch (std::ofstream::failure& e) {
 			cerr << "Error closing output files!" << endl;
 		}
+	}
+	if (m_cell) {
+		this->getMap()->getGlobalFactory()->destroyGeometry(m_cell);
 	}
 }
 
@@ -392,6 +419,56 @@ double Antenna::computeSignalQualityOmnidirectional(const Point* p) const {
 double Antenna::computeSignalQualityDirectional(const Point* p) const {
 	const Coordinate* c = p->getCoordinate();
 	return computeSignalQualityDirectional(*c);
+}
+
+double Antenna::computeSignalStrengthDirectional(const Coordinate c) const {
+	double signalStrength = 0.0;
+	const double dx = c.x - getLocation()->getX();
+	const double dy = c.y - getLocation()->getY();
+	const double dz = c.z - getLocation()->getZ();
+
+	double dist = sqrt(dx * dx + dy * dy + dz * dz); //p->distance(getLocation());
+	double distXY = sqrt(dx * dx + dy * dy);
+
+	signalStrength += S(dist);
+	//cout << "1:" << signalStrength << endl;
+
+	double theta_azim = 90 - r2d(atan2(dy, dx));
+	if (theta_azim < 0)
+		theta_azim += 360;
+
+	//cout << "theta_azim = " << theta_azim << endl;
+
+	double azim = fmod(theta_azim - m_direction, 360);
+	if (azim > 180)
+		azim -= 360;
+	if (azim < -180)
+		azim += 360;
+
+	//cout << "azim = " << azim << endl;
+//project azim to elevation plane -> azim2
+	double r_azim = d2r(azim);
+	//cout << "r_azim = " << r_azim << endl;
+	double a = sin(r_azim) * distXY;
+	double b = cos(r_azim) * distXY;
+	//cout << "a=" << a << " b=" << b << endl;
+
+	double e = projectToEPlane(b, m_height - c.z, m_tilt);
+	double azim2 = r2d(atan2(a, e));
+	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, m_sd_azim);
+
+	//cout << "2:" << signalStrength << endl;
+//vertical component
+	double gamma_elevation = r2d(atan2(-dz, distXY));
+	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
+	if (elevation > 180)
+		elevation -= 360;
+	if (elevation < -180)
+		elevation += 360;
+
+	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, m_sd_elev);
+	//cout << "3:" << signalStrength << endl;
+	return signalStrength;
 }
 
 double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
@@ -660,7 +737,7 @@ double Antenna::getSmin() const {
 string Antenna::dumpCell() const {
 	geos::io::WKTWriter writter;
 	ostringstream result;
-	result << writter.write(m_cell->getBoundary()) << endl;
+	result << writter.write(m_cell) << endl;
 	return result.str();
 }
 
