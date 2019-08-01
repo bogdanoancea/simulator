@@ -72,14 +72,19 @@ namespace utils {
 	 * @param x the angle to be transformed from radians to degrees
 	 * @return the value of x in degrees
 	 */
-	double r2d(double x);
-
+	inline double r2d(double x) {
+		return x * (180.0 / PI);
+	}
 	/**
 	 * transforms a number from degrees to radians
 	 * @param x the angle to be transformed from degrees to radians
 	 * @return the value of x in radians
 	 */
-	double d2r(double x);
+	inline double d2r(double x){
+		return (PI / 180.0) * x;
+	}
+
+
 	/**
 	 * Returns a pointer to an XMLNode with a specific name that belongs to an XMLElement. This function is used
 	 * to parse the content of the configuration files.
