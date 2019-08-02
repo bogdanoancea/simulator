@@ -20,6 +20,7 @@
 #include <unordered_map>
 #include <EMField.h>
 #include <algorithm>
+#include <cmath>
 
 using namespace std;
 using namespace geos;
@@ -199,50 +200,46 @@ double Grid::getYOrigin() const {
 }
 
 unsigned long Grid::getTileIndexX(const Point* p) const {
-	unsigned long result = -1;
 	double x = p->getX();
-	if (x < m_xOrigin || x > m_xOrigin + m_xTileDim * m_noTilesX)
-		result = -1;
-	else
-		result = (x - m_xOrigin) / m_xTileDim;
-
-	return (result);
+	return (getTileIndexX(x));
 }
-
-
 
 unsigned long Grid::getTileIndexX(double x) const {
-	unsigned long result = -1;
-	if (x < m_xOrigin || x > m_xOrigin + m_xTileDim * m_noTilesX)
+	long result = -1;
+	if (x < m_xOrigin || x > m_xOrigin + m_xTileDim * m_noTilesX) {
+		//cout << "sunt aici" << endl;
 		result = -1;
-	else
+	} else if (fmod((x - m_xOrigin), m_xTileDim) == 0) {
+		result = (x - m_xOrigin) / m_xTileDim - 1;
+		if (result < 0)
+			result = 0;
+		//cout << result<< "," << m_xOrigin <<"," << (x- m_xOrigin) << "," << fmod((x - m_xOrigin), m_xTileDim)<<endl;
+	}else {
 		result = (x - m_xOrigin) / m_xTileDim;
-
+	}
 	return (result);
 }
 
-
 unsigned long Grid::getTileIndexY(const Point* p) const {
-	unsigned long result = -1;
 	double y = p->getY();
-	if (y < m_yOrigin || y > m_yOrigin + m_yTileDim * m_noTilesY)
-		result = -1;
-	else
-		result = (y - m_yOrigin) / m_yTileDim;
-
-	return (result);
+	return (getTileIndexY(y));
 }
 
 unsigned long Grid::getTileIndexY(double y) const {
-	unsigned long result = -1;
+	long result = -1;
+
 	if (y < m_yOrigin || y > m_yOrigin + m_yTileDim * m_noTilesY)
 		result = -1;
-	else
+	else if (fmod((y - m_yOrigin), m_yTileDim) == 0) {
+		result = (y - m_yOrigin) / m_yTileDim - 1;
+		if (result < 0)
+			result = 0;
+	} else {
 		result = (y - m_yOrigin) / m_yTileDim;
+	}
 
 	return (result);
 }
-
 
 unsigned long Grid::getTileNo(const Point* p) const {
 	unsigned long x = getTileIndexX(p);
@@ -253,7 +250,7 @@ unsigned long Grid::getTileNo(const Point* p) const {
 unsigned long Grid::getTileNo(double x, double y) const {
 	unsigned long i = getTileIndexX(x);
 	unsigned long j = getTileIndexY(y);
-	return  j * m_noTilesX + i;
+	return j * m_noTilesX + i;
 }
 
 unsigned long Grid::getTileCenterY(Point* p) {
