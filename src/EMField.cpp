@@ -111,7 +111,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 
 			if (a->getMNO()->getId() != mnoId)
 				continue;
-			if (a->getRmax() <= a->getLocation()->distance(p)) {
+			if (a->getRmax() >= a->getLocation()->distance(p)) {
 				double x;
 				if (power)
 					x = a->computePower(p);
@@ -135,7 +135,7 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	double ps = 0.0;
 	if (power)
 		ps = a->computePower(p);
-	else if (a->getRmax() <= a->getLocation()->distance(p))
+	else if (a->getRmax() >= a->getLocation()->distance(p))
 		ps = a->computeSignalQuality(p);
 
 	if (ps > threshold) {
