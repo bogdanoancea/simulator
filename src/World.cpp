@@ -91,7 +91,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
 	}
-
+	mmap->addGrid(getGridDimTileX(), getGridDimTileY());
 	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);

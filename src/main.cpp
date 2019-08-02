@@ -25,13 +25,13 @@
 #include <map>
 #include <RandomNumberGenerator.h>
 
-#if defined(__GNUC__) || defined(__GNUG__)
-#ifndef __clang__
-#include <omp.h>
-#include <parallel/algorithm>
-#include <parallel/settings.h>
-#endif
-#endif
+//#if defined(__GNUC__) || defined(__GNUG__)
+//#ifndef __clang__
+//#include <omp.h>
+//#include <parallel/algorithm>
+//#include <parallel/settings.h>
+//#endif
+//#endif
 
 using namespace std;
 using namespace geos;
@@ -40,16 +40,16 @@ using namespace utils;
 
 int main(int argc, char** argv) {
 
-#if defined(__GNUC__) || defined(__GNUG__)
-#ifndef __clang__
-	const int threads_wanted = 8;
-	omp_set_dynamic(false);
-	omp_set_num_threads(threads_wanted);
-	__gnu_parallel ::_Settings s;
-	s.algorithm_strategy = __gnu_parallel::force_parallel;
-	__gnu_parallel::_Settings::set(s);
-#endif
-#endif
+//#if defined(__GNUC__) || defined(__GNUG__)
+//#ifndef __clang__
+//	const int threads_wanted = 8;
+//	omp_set_dynamic(false);
+//	omp_set_num_threads(threads_wanted);
+//	__gnu_parallel ::_Settings s;
+//	s.algorithm_strategy = __gnu_parallel::force_parallel;
+//	__gnu_parallel::_Settings::set(s);
+//#endif
+//#endif
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
 		}
 
 		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
-		map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
+		//map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
@@ -212,7 +212,7 @@ int main(int argc, char** argv) {
 					p_file << "Tile" << i << sep;
 				}
 				p_file << "Tile" << noTiles - 1 << endl;
-
+				w.getClock()->reset();
 				for (unsigned long t = w.getClock()->getInitialTime(); t < w.getClock()->getFinalTime(); t = w.getClock()->tick()) {
 					//iterate over all devices
 					for (auto it = itrm.first; it != itrm.second; it++) {

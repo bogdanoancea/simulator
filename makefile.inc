@@ -21,8 +21,8 @@ ifeq ($(OS),Windows_NT)
 	CXX    = g++.exe
 	TARGET = simulator.exe
 	LDFLAGS  = -L$(GEOS_HOME)/src/.libs -L$(MSYS_HOME)/mingw64/lib 
-	LIBS = $(GEOS_HOME)/src/.libs/libgeos.dll.a -lgomp
-	CXXFLAGS = -march=native -D_GLIBCXX_PARALLEL -fopenmp
+	LIBS = $(GEOS_HOME)/src/.libs/libgeos.dll.a 
+	CXXFLAGS = -march=native 
 	
 else
     UNAME_S := $(shell uname -s)
@@ -32,7 +32,7 @@ else
 		TARGET  = simulator
 		LDFLAGS  = -L$(GEOS_HOME)/src/.libs 
 		LIBS = $(GEOS_HOME)/src/.libs/libgeos.a -lgomp
-		CXXFLAGS = -march=native -D_GLIBCXX_PARALLEL -fopenmp
+		CXXFLAGS = -march=native 
 		
     endif
     ifeq ($(UNAME_S),Darwin)
