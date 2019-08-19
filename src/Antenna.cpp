@@ -160,7 +160,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 		shapefactory.setCentre(Coordinate(x, y));
-		shapefactory.setSize(m_rmax);
+		shapefactory.setSize(2 * m_rmax);
 		m_cell = shapefactory.createCircle();
 	} else if (m_type == AntennaType::DIRECTIONAL) {
 		CoordinateSequence* cl = new CoordinateArraySequence();
@@ -199,8 +199,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 			cl->add(init);
 			LinearRing* lr = this->getMap()->getGlobalFactory()->createLinearRing(cl);
 			m_cell = this->getMap()->getGlobalFactory()->createPolygon(lr, nullptr);
-		}
-		else{
+		} else {
 			geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 			shapefactory.setCentre(Coordinate(x, y));
 			shapefactory.setSize(m_rmax);
