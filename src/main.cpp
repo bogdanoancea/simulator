@@ -191,10 +191,8 @@ int main(int argc, char** argv) {
 			cout << "Computing probabilities started at " << ctime(&tt) << endl;
 			//now we compute the probabilities for the positions of the phones
 			// read the event connection data
-
 			w.getClock()->reset();
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
-
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
