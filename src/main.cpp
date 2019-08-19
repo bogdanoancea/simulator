@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
 
 		vector<Coordinate> tileCenters;
 		unsigned long noTiles = map->getGrid()->getNoTiles();
-		for (unsigned long i = 0; i < noTiles - 1; i++) {
+		for (unsigned long i = 0; i < noTiles; i++) {
 			Coordinate c = map->getGrid()->getTileCenter(i);
 			c.z = 0;
 			tileCenters.push_back(c);
