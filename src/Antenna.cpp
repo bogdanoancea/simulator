@@ -58,11 +58,15 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	char sep = Constants::sep;
 
 	XMLNode* n = getNode(antennaEl, "mno_name");
-	const char* mno_name = n->ToText()->Value();
-	for (unsigned int i = 0; i < mnos.size(); i++) {
-		if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
-			m_MNO = mnos.at(i);
+	if (n) {
+		const char* mno_name = n->ToText()->Value();
+		for (unsigned int i = 0; i < mnos.size(); i++) {
+			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
+				m_MNO = mnos.at(i);
+			}
 		}
+	} else {
+		m_MNO = mnos.at(0);
 	}
 	n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
@@ -81,7 +85,10 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	m_Smin = atof(n->ToText()->Value());
 
 	n = getNode(antennaEl, "qual_min");
-	m_minQuality = atof(n->ToText()->Value());
+	if (n)
+		m_minQuality = atof(n->ToText()->Value());
+	else
+		m_minQuality = Constants::QUALITY_THRESHOLD;
 
 	n = getNode(antennaEl, "Smid");
 	m_Smid = atof(n->ToText()->Value());
@@ -160,7 +167,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 		shapefactory.setCentre(Coordinate(x, y));
-		shapefactory.setSize(2 * m_rmax);
+		shapefactory.setSize(m_rmax);
 		m_cell = shapefactory.createCircle();
 	} else if (m_type == AntennaType::DIRECTIONAL) {
 		CoordinateSequence* cl = new CoordinateArraySequence();

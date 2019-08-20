@@ -35,7 +35,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
-		double ymax = env->getMaxX();
+		double ymax = env->getMaxY();
 
 		unsigned long nhome = (unsigned long) n * percentHome;
 		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
@@ -123,7 +123,7 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
-		double ymax = env->getMaxX();
+		double ymax = env->getMaxY();
 
 		//generate a pool of numbers to choose from
 		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
@@ -192,7 +192,5 @@ XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
 		throw std::runtime_error("Syntax error in the configuration file ");
 	return (n);
 }
-
-
 
 }
