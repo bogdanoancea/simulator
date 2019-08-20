@@ -280,7 +280,6 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<M
 
 vector<Person*> World::parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false) {
 	vector<Person*> result;
-	cout << "aici";
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(personsFileName.c_str());
 	if (err != XML_SUCCESS)
