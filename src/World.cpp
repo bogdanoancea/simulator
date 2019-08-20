@@ -80,7 +80,6 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	time_t tt = getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
-
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
@@ -281,6 +280,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<M
 
 vector<Person*> World::parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false) {
 	vector<Person*> result;
+	cout << "aici";
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(personsFileName.c_str());
 	if (err != XML_SUCCESS)
@@ -290,6 +290,7 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 	if (!personsEl)
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
+
 		XMLNode* numNode = getNode(personsEl, "num_persons");
 		int numPersons = atoi(numNode->ToText()->Value());
 		XMLNode* minAgeNode = getNode(personsEl, "min_age");
@@ -303,6 +304,7 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 
 		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
 			throw std::runtime_error("Unknown age distribution for population!");
+
 
 		Person::AgeDistributions d;
 		vector<double> params;

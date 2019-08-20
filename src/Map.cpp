@@ -153,7 +153,6 @@ void Map::addGrid(double dimTileX, double dimTileY) {
 	}
 	unsigned long noTilesX = (maxX - minX) / dimTileX;
 	unsigned long noTilesY = (maxY - minY) / dimTileY;
-
 	//Grid g(minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 	m_grid = new Grid(minX, minY, dimTileX, dimTileY, noTilesX, noTilesY);
 
