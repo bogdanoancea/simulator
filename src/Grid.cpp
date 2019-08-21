@@ -49,7 +49,7 @@ string Grid::toString() const {
 	ss << left << "Origin X" << Constants::sep << "Origin Y" << Constants::sep << "X Tile Dim" << Constants::sep << "Y Tile Dim" << Constants::sep << "No Tiles X" << Constants::sep
 			<< "No Tiles Y" << endl;
 
-	ss << left << m_xOrigin << Constants::sep << m_yOrigin << Constants::sep << m_xTileDim << Constants::sep << m_yTileDim << Constants::sep << m_noTilesX << Constants::sep
+	ss << left << fixed << m_xOrigin << Constants::sep << m_yOrigin << Constants::sep << m_xTileDim << Constants::sep << m_yTileDim << Constants::sep << m_noTilesX << Constants::sep
 			<< m_noTilesY << endl;
 	return (ss.str());
 }
@@ -207,7 +207,6 @@ unsigned long Grid::getTileIndexX(const Point* p) const {
 unsigned long Grid::getTileIndexX(double x) const {
 	long result = -1;
 	if (x < m_xOrigin || x > m_xOrigin + m_xTileDim * m_noTilesX) {
-		//cout << "sunt aici" << endl;
 		result = -1;
 	} else if (fmod((x - m_xOrigin), m_xTileDim) == 0) {
 		result = (x - m_xOrigin) / m_xTileDim - 1;

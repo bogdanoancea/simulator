@@ -140,13 +140,13 @@ public:
 	 * Returns the dimension of tiles on OX, this number is read from simulation.xml config file
 	 * @return the dimension of tiles on OX, this number is read from simulation.xml config file
 	 */
-	unsigned long getGridDimTileX() const;
+	double getGridDimTileX() const;
 
 	/**
 	 * Returns the dimension of tiles on OY, this number is read from simulation.xml config file
 	 * @return the dimension of tiles on OY, this number is read from simulation.xml config file
 	 */
-	unsigned long getGridDimTileY() const;
+	double getGridDimTileY() const;
 
 	/**
 	 * Returns the type of the prior probability used to compute the posterior localization probability
@@ -169,8 +169,8 @@ private:
 	unsigned long m_startTime;
 	unsigned long m_endTime;
 	unsigned long m_timeIncrement;
-	unsigned long m_GridDimTileX;
-	unsigned long m_GridDimTileY;
+	double m_GridDimTileX;
+	double m_GridDimTileY;
 	PriorType m_prior;
 	//unsigned int m_numMNO;
 	unsigned m_seed;

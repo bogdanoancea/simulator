@@ -150,17 +150,27 @@ void World::runSimulation() noexcept(false) {
 	const Grid* g = getMap()->getGrid();
 
 	pFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
-	for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
+	//initial time
+	unsigned long t = m_clock->getInitialTime();
+	//iterate over all persons and call move()
+	tt = getClock()->realTime();
+	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":"<<ctime(&tt) <<endl;
+	for (auto it = itr.first; it != itr.second; it++) {
+		Person* p = static_cast<Person*>(it->second);
+		int n = g->getTileNo(p->getLocation()->getX(), p->getLocation()->getY());
+		pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+	}
+	t = m_clock->tick();
+	for (; t < m_clock->getFinalTime(); t = m_clock->tick()) {
 		//iterate over all persons and call move()
 		tt = getClock()->realTime();
 		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":"<<ctime(&tt) <<endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
-			int x = g->getTileNo(p->getLocation()->getX(), p->getLocation()->getY());
-			pFile << p->dumpLocation() << sep << x << p->dumpDevices() << endl;
 			p->move(m_mvType);
+			int n = g->getTileNo(p->getLocation()->getX(), p->getLocation()->getY());
+			pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 		}
-
 	}
 	tt = getClock()->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
@@ -343,11 +353,11 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 	return (result);
 }
 
-unsigned long World::getGridDimTileX() const {
+double World::getGridDimTileX() const {
 	return m_GridDimTileX;
 }
 
-unsigned long World::getGridDimTileY() const {
+double World::getGridDimTileY() const {
 	return m_GridDimTileY;
 }
 
@@ -469,13 +479,13 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 
 		XMLNode* xTilesNode = getNode(simEl, "grid_dim_tile_x");
 		if (xTilesNode)
-			m_GridDimTileX = atol(xTilesNode->ToText()->Value());
+			m_GridDimTileX = atof(xTilesNode->ToText()->Value());
 		else
 			m_GridDimTileX = Constants::GRID_DIM_TILE_X;
 
 		XMLNode* yTilesNode = getNode(simEl, "grid_dim_tile_y");
 		if (yTilesNode)
-			m_GridDimTileY = atol(yTilesNode->ToText()->Value());
+			m_GridDimTileY = atof(yTilesNode->ToText()->Value());
 		else
 			m_GridDimTileY = Constants::GRID_DIM_TILE_Y;
 
