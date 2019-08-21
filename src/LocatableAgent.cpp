@@ -52,7 +52,7 @@ const string LocatableAgent::dumpLocation() {
 	char sep = Constants::sep;
 	if (getClock() != nullptr)
 		ss << getClock()->getCurrentTime() << sep;
-	ss << getId() << sep << getLocation()->getX() << sep << getLocation()->getY();
+	ss << fixed << getId() << sep << getLocation()->getX() << sep << getLocation()->getY();
 	return (ss.str());
 }
 

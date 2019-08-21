@@ -44,7 +44,7 @@ double AntennaInfo::getY() const {
 const string AntennaInfo::toString() const {
 	ostringstream result;
 	result << m_time << "," << m_antennaId << "," << m_eventCode << ","
-			<< m_deviceId << "," << m_x << "," << m_y;
+			<< m_deviceId << "," << fixed << m_x << "," << m_y;
 	return (result.str());
 }
 

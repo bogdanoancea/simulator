@@ -17,8 +17,10 @@
 #include <geos/io/WKTReader.h>
 #include <geos/io/WKTWriter.h>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
+#include <cmath>
 
 
 using namespace std;
@@ -141,6 +143,7 @@ void Map::addGrid(double dimTileX, double dimTileY) {
 	for (size_t i = 0; i < seq->size(); i++) {
 		double x = seq->getX(i);
 		double y = seq->getY(i);
+
 		if (x > maxX)
 			maxX = x;
 		if (y > maxY)
@@ -149,10 +152,9 @@ void Map::addGrid(double dimTileX, double dimTileY) {
 			minX = x;
 		if (y < minY)
 			minY = y;
-
 	}
-	unsigned long noTilesX = (maxX - minX) / dimTileX;
-	unsigned long noTilesY = (maxY - minY) / dimTileY;
+	unsigned long noTilesX = ceil((maxX - minX) / dimTileX);
+	unsigned long noTilesY = ceil((maxY - minY) / dimTileY);
 	//Grid g(minX, minY, dimTileX, dimTileY, w.getGridTilesX(), w.getGridTilesX());
 	m_grid = new Grid(minX, minY, dimTileX, dimTileY, noTilesX, noTilesY);
 

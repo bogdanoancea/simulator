@@ -37,7 +37,6 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		m_file.open(fileName, ios::out);
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
-		//cerr << "Output goes to the console!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
@@ -99,7 +98,6 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	double x = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
-
 	n = getNode(antennaEl, "z");
 	if (n != nullptr)
 		m_height = atof(n->ToText()->Value());
@@ -167,7 +165,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
 		geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 		shapefactory.setCentre(Coordinate(x, y));
-		shapefactory.setSize(m_rmax);
+		shapefactory.setSize(2 * m_rmax);
 		m_cell = shapefactory.createCircle();
 	} else if (m_type == AntennaType::DIRECTIONAL) {
 		CoordinateSequence* cl = new CoordinateArraySequence();
@@ -335,7 +333,7 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		stringstream ss;
 		const Grid* g = this->getMap()->getGrid();
 		if (g != nullptr)
-			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << ag->getLocation()->getCoordinate()->x << sep
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep <<fixed<< ag->getLocation()->getCoordinate()->x << sep
 					<< ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
