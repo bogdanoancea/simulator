@@ -1,6 +1,6 @@
 <simulation>
         <start_time>0</start_time>
-        <end_time>20</end_time>
+        <end_time>200</end_time>
 		<time_increment>1</time_increment>
 		<time_stay>10</time_stay>
         <interval_between_stays>25</interval_between_stays>
