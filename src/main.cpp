@@ -240,8 +240,6 @@ int main(int argc, char** argv) {
 			tt = w.getClock()->realTime();
 			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
-	} catch (SimException& e) {
-		cout << e.what();
 	} catch (const std::bad_alloc& e) {
 		cout << e.what() << endl;
 	} catch (const runtime_error& e) {

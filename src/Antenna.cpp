@@ -91,14 +91,8 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	m_SSteep = getDoubleValue(antennaEl, "SSteep", Constants::S_STEEP);
 
 	n = getNode(antennaEl, "x");
-	if (n == nullptr) {
-		throw SimException("x coordinate missing for antenna ");
-	}
 	double x = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "y");
-	if (n == nullptr) {
-			throw SimException("y coordinate missing for antenna ");
-		}
 	double y = atof(n->ToText()->Value());
 
 
@@ -730,7 +724,3 @@ double 	Antenna::getDoubleValue(XMLElement* el, const char* name, double default
 	return result;
 }
 
-
-//double* Antenna::getSignalQualityTileCenters() const {
-//	return m_signalQualityTileCenters;
-//}
