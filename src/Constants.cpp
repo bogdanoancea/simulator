@@ -14,8 +14,8 @@
 const double Constants::POWER_THRESHOLD = 2;
 const double Constants::QUALITY_THRESHOLD = 0.3;
 const double Constants::ATT_FACTOR = 2;
-const int Constants::MAX_CONNECTIONS = 100;
-const double Constants::ANTENNA_POWER = 10;
+
+
 const double Constants::S_MID = -92.5;
 const double Constants::S_STEEP = 0.2;
 const unsigned long Constants::NO_PERSONS = 100;
@@ -52,6 +52,10 @@ const double Constants::ANTENNA_BEAM_V = 9;
 const double Constants::ANTENNA_DIRECTION = 0;
 const unsigned int Constants::ANTENNA_MAPPING_N = 1000;
 const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
+const int Constants::ANTENNA_MAX_CONNECTIONS = 100;
+const double Constants::ANTENNA_POWER = 10;
+const double Constants::ANTENNA_SMIN = -80;
+
 
 const unsigned int Constants::NUM_MNO = 1;
 

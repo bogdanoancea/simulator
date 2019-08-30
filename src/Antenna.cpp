@@ -14,6 +14,7 @@
 #include <fstream>
 #include <algorithm>
 #include <string>
+#include <cstring>
 #include <string.h>
 #include <TinyXML2.h>
 #include <Utils.h>
@@ -21,15 +22,18 @@
 #include <RandomNumberGenerator.h>
 #include <EMField.h>
 #include <Constants.h>
+#include <cstdlib>
+#include <SimException.h>
+#include <iostream>
 
 using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
-		double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
-				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getAntennaOutputFileName();
 	char sep = Constants::sep;
@@ -67,12 +71,12 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	} else {
 		m_MNO = mnos.at(0);
 	}
+
 	n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
-	n = getNode(antennaEl, "power");
-	m_power = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "attenuationfactor");
-	m_ple = atof(n->ToText()->Value());
+
+	m_power = getDoubleValue(antennaEl, "power", Constants::ANTENNA_POWER);
+	m_ple = getDoubleValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
 
 	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
@@ -80,70 +84,39 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	if (!strcmp(t, "directional"))
 		m_type = AntennaType::DIRECTIONAL;
 
-	n = getNode(antennaEl, "Smin");
-	m_Smin = atof(n->ToText()->Value());
 
-	n = getNode(antennaEl, "qual_min");
-	if (n)
-		m_minQuality = atof(n->ToText()->Value());
-	else
-		m_minQuality = Constants::QUALITY_THRESHOLD;
-
-	n = getNode(antennaEl, "Smid");
-	m_Smid = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "SSteep");
-	m_SSteep = atof(n->ToText()->Value());
+	m_Smin = getDoubleValue(antennaEl,"Smin", Constants::ANTENNA_SMIN);
+	m_minQuality = getDoubleValue(antennaEl, "qual_min", Constants::QUALITY_THRESHOLD);
+	m_Smid = getDoubleValue(antennaEl, "Smid", Constants::S_MID);
+	m_SSteep = getDoubleValue(antennaEl, "SSteep", Constants::S_STEEP);
 
 	n = getNode(antennaEl, "x");
+	if (n == nullptr) {
+		throw SimException("x coordinate missing for antenna ");
+	}
 	double x = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "y");
+	if (n == nullptr) {
+			throw SimException("y coordinate missing for antenna ");
+		}
 	double y = atof(n->ToText()->Value());
-	n = getNode(antennaEl, "z");
-	if (n != nullptr)
-		m_height = atof(n->ToText()->Value());
-	else
-		m_height = Constants::ANTENNA_HEIGHT;
+
+
+	m_height = getDoubleValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
 //TODO get elevation from Grid
+
 	Coordinate c = Coordinate(x, y, m_height);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
 
-	n = getNode(antennaEl, "tilt");
-	if (n != nullptr)
-		m_tilt = atof(n->ToText()->Value());
-	else
-		m_tilt = Constants::ANTENNA_TILT;
+	m_tilt = getDoubleValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
 
 	if (m_type == AntennaType::DIRECTIONAL) {
-		n = getNode(antennaEl, "azim_dB_back");
-		if (n != nullptr)
-			m_azim_dB_Back = atof(n->ToText()->Value());
-		else
-			m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
-
-		n = getNode(antennaEl, "elev_dB_back");
-		if (n != nullptr)
-			m_elev_dB_Back = atof(n->ToText()->Value());
-		else
-			m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
-
-		n = getNode(antennaEl, "beam_h");
-		if (n != nullptr)
-			m_beam_H = atof(n->ToText()->Value());
-		else
-			m_beam_H = Constants::ANTENNA_BEAM_H;
-
-		n = getNode(antennaEl, "beam_v");
-		if (n != nullptr)
-			m_beam_V = atof(n->ToText()->Value());
-		else
-			m_beam_V = Constants::ANTENNA_BEAM_V;
-
-		n = getNode(antennaEl, "direction");
-		if (n != nullptr)
-			m_direction = atof(n->ToText()->Value());
-		else
-			m_direction = Constants::ANTENNA_DIRECTION;
+		m_azim_dB_Back = getDoubleValue(antennaEl, "azim_dB_back",Constants::ANTENNA_AZIM_DB_BACK);
+		m_elev_dB_Back = getDoubleValue(antennaEl,"elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
+		m_beam_H = getDoubleValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
+		m_beam_V = getDoubleValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
+		m_direction = getDoubleValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
 
 		m_mapping_azim = createMapping(m_azim_dB_Back);
 		m_mapping_elev = createMapping(m_elev_dB_Back);
@@ -236,7 +209,8 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
+			<< m_MNO->getId();
 	return (result.str());
 }
 
@@ -312,7 +286,8 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
+				<< ag->getId() << sep;
 		switch (event) {
 		case EventType::ATTACH_DEVICE:
 			cout << " Attached ";
@@ -333,8 +308,9 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		stringstream ss;
 		const Grid* g = this->getMap()->getGrid();
 		if (g != nullptr)
-			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep <<fixed<< ag->getLocation()->getCoordinate()->x << sep
-					<< ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
+					<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << sep
+					<< g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -576,9 +552,10 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second = fabs(i.second);
 		//cout << "deg " << i.second << endl;
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
-		return a.second < b.second;
-	}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
+			[](const pair<double, double>& a, const pair<double, double>& b) {
+				return a.second < b.second;
+			}) - begin(_3dBDegrees);
 
 //cout << "index min " << minElementIndex << endl;
 	return _3dBDegrees[minElementIndex].first;
@@ -744,6 +721,15 @@ string Antenna::dumpCell() const {
 	result << writter.write(m_cell) << endl;
 	return result.str();
 }
+
+double 	Antenna::getDoubleValue(XMLElement* el, const char* name, double default_value) {
+	double result = default_value;
+	XMLNode* n = getNode(el, name);
+	if(n)
+		result = atof(n->ToText()->Value());
+	return result;
+}
+
 
 //double* Antenna::getSignalQualityTileCenters() const {
 //	return m_signalQualityTileCenters;

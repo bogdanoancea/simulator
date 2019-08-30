@@ -53,7 +53,7 @@ INCS  += -I$(GEOS_HOME)/include
 
 #-------[ compiler flags ]----------
 
-CXXFLAGS += $(INCS) -std=c++17 -O3 -pedantic -Wall -DHAVE_CONFIG_H -DGEOS_INLINE -DUSE_UNSTABLE_GEOS_CPP_API -c -fmessage-length=0 -Wno-long-long 
+CXXFLAGS += $(INCS) -std=c++17 -O3 -mavx2 -pedantic -Wall -DHAVE_CONFIG_H -DGEOS_INLINE -DUSE_UNSTABLE_GEOS_CPP_API -c -fmessage-length=0 -Wno-long-long 
 
 ifeq ($(DEBUG),1)
   CXXFLAGS +=-DDEBUG -g3

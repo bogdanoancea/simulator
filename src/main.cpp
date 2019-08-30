@@ -24,6 +24,7 @@
 #include <EMField.h>
 #include <map>
 #include <RandomNumberGenerator.h>
+#include <SimException.h>
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
@@ -239,6 +240,8 @@ int main(int argc, char** argv) {
 			tt = w.getClock()->realTime();
 			cout << "Computing probabilities ended at " << ctime(&tt) << endl;
 		}
+	} catch (SimException& e) {
+		cout << e.what();
 	} catch (const std::bad_alloc& e) {
 		cout << e.what() << endl;
 	} catch (const runtime_error& e) {
@@ -246,5 +249,6 @@ int main(int argc, char** argv) {
 	} catch (const exception &e) {
 		cout << e.what() << endl;
 	}
+
 	return (0);
 }
