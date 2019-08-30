@@ -3,6 +3,7 @@ include ../makefile.inc
 
 OBJECTS = Agent.o\
 AgentsCollection.o\
+SimException.o\
 Antenna.o\
 AntennaInfo.o\
 CSVParser.o\
