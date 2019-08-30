@@ -57,7 +57,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 			} else
 				m->getGlobalFactory()->destroyGeometry(p);
 			// we used all the numbers, generate others
-			if (i == nhome) {
+			if (i == n-1) {
 				delete[] x1;
 				delete[] y1;
 				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
@@ -93,7 +93,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n) {
+			if (i == n-1) {
 				delete[] x2;
 				delete[] y2;
 				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
