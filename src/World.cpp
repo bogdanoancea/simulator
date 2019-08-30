@@ -78,9 +78,11 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 
 	m_agentsCollection = new AgentsCollection();
+
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
 	time_t tt = getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
+
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);

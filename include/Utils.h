@@ -103,6 +103,8 @@ namespace utils {
 	 */
 	XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
 
+
+	double 	getDoubleValue(XMLElement* el, const char* name, double default_value);
 }
 
 #endif

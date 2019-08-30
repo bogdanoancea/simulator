@@ -716,11 +716,4 @@ string Antenna::dumpCell() const {
 	return result.str();
 }
 
-double 	Antenna::getDoubleValue(XMLElement* el, const char* name, double default_value) {
-	double result = default_value;
-	XMLNode* n = getNode(el, name);
-	if(n)
-		result = atof(n->ToText()->Value());
-	return result;
-}
 
