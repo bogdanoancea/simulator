@@ -75,18 +75,13 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		m_map { mmap } {
 
 	m_probSecMobilePhone = 0.0;
-	m_agentsCollection = new AgentsCollection();
+	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
 
+	m_agentsCollection = new AgentsCollection();
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
 	time_t tt = getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
-
-	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
-	if (mnos.size() == 0)
-		throw SimException("no MNOs defined");
-
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
-
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
@@ -247,7 +242,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	unsigned long id;
 	double power = Constants::ANTENNA_POWER;
 	double attFactor = Constants::ATT_FACTOR;
-	int maxConnections = Constants::MAX_CONNECTIONS;
+	int maxConnections = Constants::ANTENNA_MAX_CONNECTIONS;
 	double smid = Constants::S_MID;
 	double ssteep = Constants::S_STEEP;
 

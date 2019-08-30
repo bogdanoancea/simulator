@@ -250,6 +250,10 @@ private:
 	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
 	double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
 
+
+	double getDoubleValue(XMLElement* el, const char* name, double default_value);
+
+
 	double m_ple;
 	double m_power;
 	unsigned long m_maxConnections;

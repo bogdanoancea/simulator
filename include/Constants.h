@@ -42,7 +42,7 @@ public:
 	/**
 	 * The maximum number of devices an antenna can connect.
 	 */
-	static const int MAX_CONNECTIONS;
+	static const int ANTENNA_MAX_CONNECTIONS;
 
 	/**
 	 * The Smid parameter of an antenna
@@ -156,6 +156,8 @@ public:
 	static const unsigned int ANTENNA_MAPPING_N;
 
 	static const unsigned int ANTENNA_MIN_3_DB;
+
+	static const double ANTENNA_SMIN;
 
 	static const unsigned int NUM_MNO;
 
