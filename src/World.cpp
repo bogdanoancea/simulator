@@ -86,6 +86,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		throw SimException("no MNOs defined");
 
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
+
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
@@ -96,6 +97,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
 	}
+
 	mmap->addGrid(getGridDimTileX(), getGridDimTileY());
 	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
 	for (unsigned long i = 0; i < persons.size(); i++) {
