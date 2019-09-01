@@ -57,7 +57,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 			} else
 				m->getGlobalFactory()->destroyGeometry(p);
 			// we used all the numbers, generate others
-			if (i == nhome) {
+			if (i == n - 1) {
 				delete[] x1;
 				delete[] y1;
 				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
@@ -93,7 +93,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n) {
+			if (i == n - 1) {
 				delete[] x2;
 				delete[] y2;
 				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
@@ -142,7 +142,7 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n) {
+			if (i == n - 1) {
 				delete[] x1;
 				delete[] y1;
 				x1 = random_generator->generateUniformDouble(xmin, xmax, n - k + 50);
@@ -158,13 +158,13 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 }
 
 void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
-			<< "Phone(s) ID" << endl;
+	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
+			<< setw(15) << "Gender" << setw(15) << "Phone(s) ID" << endl;
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-			<< setw(15) << "MNO ID" << endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
+			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {
@@ -172,7 +172,8 @@ void printMobileOperatorHeader() {
 }
 
 void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
+			<< setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
@@ -191,6 +192,40 @@ XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
 	if (!n)
 		throw std::runtime_error("Syntax error in the configuration file ");
 	return (n);
+}
+
+double getValue(XMLElement* el, const char* name, double default_value) {
+	double result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atof(n->ToText()->Value());
+	return result;
+}
+
+
+unsigned long getValue(XMLElement* el, const char* name, unsigned long default_value) {
+	long result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atol(n->ToText()->Value());
+	return result;
+}
+
+
+const char* getValue(XMLElement* el, const char* name, const char* default_value) {
+	const char* result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = n->ToText()->Value();;
+	return result;
+}
+
+int getValue(XMLElement* el, const char* name, int default_value) {
+	int result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atoi(n->ToText()->Value());
+	return result;
 }
 
 }
