@@ -106,7 +106,8 @@ namespace utils {
 
 	double 	getValue(XMLElement* el, const char* name, double default_value);
 	int 	getValue(XMLElement* el, const char* name, int default_value);
-	long 	getValue(XMLElement* el, const char* name, long default_value);
+	unsigned long 	getValue(XMLElement* el, const char* name, unsigned long default_value);
+	const char* getValue(XMLElement* el, const char* name, const char* default_value);
 }
 
 #endif

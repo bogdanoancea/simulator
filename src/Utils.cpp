@@ -203,7 +203,7 @@ double getValue(XMLElement* el, const char* name, double default_value) {
 }
 
 
-long getValue(XMLElement* el, const char* name, long default_value) {
+unsigned long getValue(XMLElement* el, const char* name, unsigned long default_value) {
 	long result = default_value;
 	XMLNode* n = getNode(el, name);
 	if (n)
@@ -212,6 +212,14 @@ long getValue(XMLElement* el, const char* name, long default_value) {
 }
 
 
+const char* getValue(XMLElement* el, const char* name, const char* default_value) {
+	const char* result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = n->ToText()->Value();;
+	return result;
+}
+
 int getValue(XMLElement* el, const char* name, int default_value) {
 	int result = default_value;
 	XMLNode* n = getNode(el, name);
@@ -219,6 +227,5 @@ int getValue(XMLElement* el, const char* name, int default_value) {
 		result = atoi(n->ToText()->Value());
 	return result;
 }
-
 
 }

@@ -391,35 +391,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	if (!simEl)
 		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
-		XMLNode* sTNode = getNode(simEl, "start_time");
-		if (sTNode)
-			m_startTime = atol(sTNode->ToText()->Value());
-		else
-			m_startTime = Constants::START_TIME;
-
-		XMLNode* eTNode = getNode(simEl, "end_time");
-		if (eTNode)
-			m_endTime = atol(eTNode->ToText()->Value());
-		else
-			m_endTime = Constants::END_TIME;
-
-		XMLNode* iTNode = getNode(simEl, "time_increment");
-		if (iTNode)
-			m_timeIncrement = atol(iTNode->ToText()->Value());
-		else
-			m_timeIncrement = Constants::INCREMENT_TIME;
-
-		XMLNode* stayNode = getNode(simEl, "time_stay");
-		if (stayNode)
-			m_stay = atof(stayNode->ToText()->Value());
-		else
-			m_stay = Constants::STAY_TIME;
-
-		XMLNode* intervalNode = getNode(simEl, "interval_between_stays");
-		if (intervalNode)
-			m_intevalBetweenStays = atof(intervalNode->ToText()->Value());
-		else
-			m_intevalBetweenStays = Constants::INTERVAL_BETWEEN_STAYS;
+		m_startTime = getValue(simEl, "start_time", Constants::START_TIME);
+		m_endTime = getValue(simEl, "end_time", Constants::END_TIME);
+		m_timeIncrement = getValue(simEl, "time_increment", Constants::INCREMENT_TIME);
+		m_stay = getValue(simEl, "time_stay",Constants::STAY_TIME);
+		m_intevalBetweenStays = getValue(simEl, "interval_between_stays",Constants::INTERVAL_BETWEEN_STAYS);
 
 		unsigned numMNO = 0;
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
@@ -484,22 +460,9 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		else
 			m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
 
-		XMLNode* xTilesNode = getNode(simEl, "grid_dim_tile_x");
-		if (xTilesNode)
-			m_GridDimTileX = atof(xTilesNode->ToText()->Value());
-		else
-			m_GridDimTileX = Constants::GRID_DIM_TILE_X;
-
-		XMLNode* yTilesNode = getNode(simEl, "grid_dim_tile_y");
-		if (yTilesNode)
-			m_GridDimTileY = atof(yTilesNode->ToText()->Value());
-		else
-			m_GridDimTileY = Constants::GRID_DIM_TILE_Y;
-
-		XMLNode* randomSeedNode = getNode(simEl, "random_seed");
-		if (randomSeedNode)
-			m_seed = atoi(randomSeedNode->ToText()->Value());
-
+		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
+		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
+		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
 	}
 	return (result);
 }

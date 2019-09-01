@@ -72,9 +72,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_MNO = mnos.at(0);
 	}
 
-	n = getNode(antennaEl, "maxconnections");
-	m_maxConnections = atoi(n->ToText()->Value());
-
+	m_maxConnections = getValue(antennaEl, "maxconnections", Constants::ANTENNA_MAX_CONNECTIONS);
 	m_power = getValue(antennaEl, "power", Constants::ANTENNA_POWER);
 	m_ple = getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
 

@@ -52,12 +52,13 @@ const double Constants::ANTENNA_BEAM_V = 9;
 const double Constants::ANTENNA_DIRECTION = 0;
 const unsigned int Constants::ANTENNA_MAPPING_N = 1000;
 const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
-const int Constants::ANTENNA_MAX_CONNECTIONS = 100;
+const unsigned long Constants::ANTENNA_MAX_CONNECTIONS = 100;
 const double Constants::ANTENNA_POWER = 10;
 const double Constants::ANTENNA_SMIN = -80;
 
 
 const unsigned int Constants::NUM_MNO = 1;
+const int Constants::RANDOM_SEED = 123;
 
 const char* Constants::DEFAULT_MNO_NAME = "MNO";
 

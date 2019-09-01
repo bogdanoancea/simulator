@@ -42,7 +42,7 @@ public:
 	/**
 	 * The maximum number of devices an antenna can connect.
 	 */
-	static const int ANTENNA_MAX_CONNECTIONS;
+	static const unsigned long ANTENNA_MAX_CONNECTIONS;
 
 	/**
 	 * The Smid parameter of an antenna
@@ -168,6 +168,8 @@ public:
 
 	static const double TREND_ANGLE_1;
 	static const double TREND_ANGLE_2;
+
+	static const int RANDOM_SEED;
 
 };
 
