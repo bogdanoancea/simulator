@@ -414,12 +414,10 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
-		m_probSecMobilePhone = Constants::PROB_SECOND_MOBILE_PHONE;
-		XMLNode* prob_sec_mobilePhoneNode = getNode(simEl, "prob_sec_mobile_phone");
-		if (prob_sec_mobilePhoneNode)
-			m_probSecMobilePhone = atof(prob_sec_mobilePhoneNode->ToText()->Value());
 
-		XMLNode* mvNode = getNode(simEl, "movement_type");
+		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::PROB_SECOND_MOBILE_PHONE);
+
+				XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
 			if (!strcmp(mvNode->ToText()->Value(), "random_walk_closed_map"))
 				m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
@@ -442,24 +440,10 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		} else
 			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
 
-		XMLNode* gridNode = getNode(simEl, "grid_file");
-		if (gridNode)
-			m_gridFilename = gridNode->ToText()->Value();
-		else
-			m_gridFilename = Constants::GRID_FILE_NAME;
 
-		XMLNode* persNode = getNode(simEl, "persons_file");
-		if (persNode)
-			m_personsFilename = persNode->ToText()->Value();
-		else
-			m_personsFilename = Constants::PERSONS_FILE_NAME;
-
-		XMLNode* antennasNode = getNode(simEl, "antennas_file");
-		if (antennasNode)
-			m_antennasFilename = antennasNode->ToText()->Value();
-		else
-			m_antennasFilename = Constants::ANTENNAS_FILE_NAME;
-
+		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
+		m_personsFilename = getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME);
+		m_antennasFilename = getValue(simEl, "antennas_file", Constants::ANTENNAS_FILE_NAME);
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
