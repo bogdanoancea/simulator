@@ -194,12 +194,31 @@ XMLElement* getFirstChildElement(XMLElement* el, const char* name) {
 	return (n);
 }
 
-double getDoubleValue(XMLElement* el, const char* name, double default_value) {
+double getValue(XMLElement* el, const char* name, double default_value) {
 	double result = default_value;
 	XMLNode* n = getNode(el, name);
 	if (n)
 		result = atof(n->ToText()->Value());
 	return result;
 }
+
+
+long getValue(XMLElement* el, const char* name, long default_value) {
+	long result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atol(n->ToText()->Value());
+	return result;
+}
+
+
+int getValue(XMLElement* el, const char* name, int default_value) {
+	int result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atoi(n->ToText()->Value());
+	return result;
+}
+
 
 }

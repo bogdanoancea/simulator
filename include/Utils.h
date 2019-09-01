@@ -104,7 +104,9 @@ namespace utils {
 	XMLElement* getFirstChildElement(XMLElement* el, const char* name) noexcept(false);
 
 
-	double 	getDoubleValue(XMLElement* el, const char* name, double default_value);
+	double 	getValue(XMLElement* el, const char* name, double default_value);
+	int 	getValue(XMLElement* el, const char* name, int default_value);
+	long 	getValue(XMLElement* el, const char* name, long default_value);
 }
 
 #endif

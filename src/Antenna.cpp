@@ -75,8 +75,8 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	n = getNode(antennaEl, "maxconnections");
 	m_maxConnections = atoi(n->ToText()->Value());
 
-	m_power = getDoubleValue(antennaEl, "power", Constants::ANTENNA_POWER);
-	m_ple = getDoubleValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
+	m_power = getValue(antennaEl, "power", Constants::ANTENNA_POWER);
+	m_ple = getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
 
 	n = getNode(antennaEl, "type");
 	const char* t = n->ToText()->Value();
@@ -85,32 +85,31 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_type = AntennaType::DIRECTIONAL;
 
 
-	m_Smin = getDoubleValue(antennaEl,"Smin", Constants::ANTENNA_SMIN);
-	m_minQuality = getDoubleValue(antennaEl, "qual_min", Constants::QUALITY_THRESHOLD);
-	m_Smid = getDoubleValue(antennaEl, "Smid", Constants::S_MID);
-	m_SSteep = getDoubleValue(antennaEl, "SSteep", Constants::S_STEEP);
-
+	m_Smin = getValue(antennaEl,"Smin", Constants::ANTENNA_SMIN);
+	m_minQuality = getValue(antennaEl, "qual_min", Constants::QUALITY_THRESHOLD);
+	m_Smid = getValue(antennaEl, "Smid", Constants::S_MID);
+	m_SSteep = getValue(antennaEl, "SSteep", Constants::S_STEEP);
 	n = getNode(antennaEl, "x");
 	double x = atof(n->ToText()->Value());
 	n = getNode(antennaEl, "y");
 	double y = atof(n->ToText()->Value());
 
 
-	m_height = getDoubleValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
+	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
 //TODO get elevation from Grid
 
 	Coordinate c = Coordinate(x, y, m_height);
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
 
-	m_tilt = getDoubleValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
+	m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
 
 	if (m_type == AntennaType::DIRECTIONAL) {
-		m_azim_dB_Back = getDoubleValue(antennaEl, "azim_dB_back",Constants::ANTENNA_AZIM_DB_BACK);
-		m_elev_dB_Back = getDoubleValue(antennaEl,"elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
-		m_beam_H = getDoubleValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
-		m_beam_V = getDoubleValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
-		m_direction = getDoubleValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
+		m_azim_dB_Back = getValue(antennaEl, "azim_dB_back",Constants::ANTENNA_AZIM_DB_BACK);
+		m_elev_dB_Back = getValue(antennaEl,"elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
+		m_beam_H = getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
+		m_beam_V = getValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
+		m_direction = getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
 
 		m_mapping_azim = createMapping(m_azim_dB_Back);
 		m_mapping_elev = createMapping(m_elev_dB_Back);
