@@ -19,7 +19,7 @@ Agent::~Agent() {
 }
 
 bool Agent::operator==(const Agent& a) {
-	return this->m_id == a.getId();
+	return (this->m_id == a.getId());
 }
 
 const Map* Agent::getMap() const {
@@ -31,9 +31,9 @@ void Agent::setMap(const Map* map) {
 }
 
 const Clock* Agent::getClock() const {
-	return m_clock;
+	return (m_clock);
 }
 
 const unsigned long Agent::getId() const {
-	return m_id;
+	return (m_id);
 }
