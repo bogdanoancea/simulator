@@ -22,7 +22,7 @@ typedef unordered_multimap<string, Agent*>::iterator um_iterator;
 /**
  * This is actually a container for all the agents used for simulation. An agent could be an object of one the the derived classes of Agent.
  * The Agents are kept in an unordered_multimap as pairs <string, Agent*> where the first element of the pair is
- * the name of the concrete agent (a person, a mobile device, an antenna etc)
+ * the name of the concrete agent (a person, a mobile device, an antenna, a mno, etc.)
  * and the second element is a pointer to the actual object (agent).
  */
 class AgentsCollection {
@@ -39,7 +39,7 @@ public:
 	virtual ~AgentsCollection();
 
 	/**
-	 * Adds a new Agent to the collection. For performance reasons the AgentsCollection class keep only pointer to actual agents (objects).
+	 * Adds a new Agent to the collection. For performance reasons the AgentsCollection class keep only a pointer to actual agents (objects).
 	 * @param a a pointer to the object (one of the derived classes of the Agent) to be added to the collection.
 	 */
 	void addAgent(Agent* a);
@@ -60,8 +60,7 @@ public:
 	Agent* getAgent(const unsigned long id) const;
 
 	/**
-	 * This method is used to get a subset with a certain type of agents: persons, mobile phone etc.
-	 *
+	 * This method is used to get a subset with a certain type of agents: persons, mobile phones etc.
 	 * @param agentType is the name of the class of agents that the user wants to retrieve from the collection of all agents.
 	 * @return a std::pair of iterators of type unordered_multimap<string, Agent*>::iterator
 	 * that can be used to iterate through to subset of the agents.
