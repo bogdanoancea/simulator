@@ -10,11 +10,12 @@
 #include <AntennaInfo.h>
 #include <string>
 #include <sstream>
+#include <Constants.h>
 
 using namespace std;
 
 AntennaInfo::AntennaInfo(const unsigned long time, const unsigned long antennaId, const unsigned long event, const unsigned long deviceId, const double x, const double y) :
-m_time {time}, m_antennaId {antennaId}, m_eventCode {event}, m_deviceId {deviceId}, m_x {x}, m_y {y} {
+		m_time { time }, m_antennaId { antennaId }, m_eventCode { event }, m_deviceId { deviceId }, m_x { x }, m_y { y } {
 }
 
 unsigned long AntennaInfo::getAntennaId() const {
@@ -43,11 +44,11 @@ double AntennaInfo::getY() const {
 
 const string AntennaInfo::toString() const {
 	ostringstream result;
-	result << m_time << "," << m_antennaId << "," << m_eventCode << ","
-			<< m_deviceId << "," << fixed << m_x << "," << m_y;
+	const char sep = Constants::sep;
+	result << m_time << sep << m_antennaId << sep << m_eventCode << sep << m_deviceId << sep << fixed << m_x << sep << m_y;
 	return (result.str());
 }
 
 bool AntennaInfo::operator <(const AntennaInfo& ai) const {
-        return (m_time < ai.getTime());
-    }
+	return (m_time < ai.getTime());
+}
