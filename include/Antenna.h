@@ -206,6 +206,9 @@ public:
 	double computePower(const Point* p) const;
 
 
+	Geometry* getCoverageArea();
+
+
 	double getAzimDBBack() const;
 	void setAzimDBBack(double azimDBBack);
 	double getBeamH() const;
@@ -235,9 +238,9 @@ private:
 	unsigned long getNumActiveConections();
 	double S0()const;
 	double SDist(double dist) const;
-	double computeSignalQualityOmnidirectional(const Point* p) const;
+	//double computeSignalQualityOmnidirectional(const Point* p) const;
 	double computeSignalQualityOmnidirectional(const Coordinate c) const;
-	double computeSignalQualityDirectional(const Point* p) const;
+	//double computeSignalQualityDirectional(const Point* p) const;
 	double computeSignalQualityDirectional(const Coordinate c) const;
 	double computeSignalStrengthDirectional(const Coordinate c) const;
 
@@ -249,6 +252,9 @@ private:
 	double normalizeAngle(double angle) const;
 	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
 	double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
+
+	Geometry* getCoverageAreaOmnidirectional();
+	Geometry* getCoverageAreaDirectional();
 
 	double m_ple;
 	double m_power;

@@ -15,7 +15,7 @@
 #include <Utils.h>
 #include <iomanip>
 #include <iostream>
-
+#include <exception>
 #include <geos/geom/Polygon.h>
 
 namespace utils {
@@ -225,6 +225,18 @@ int getValue(XMLElement* el, const char* name, int default_value) {
 	XMLNode* n = getNode(el, name);
 	if (n)
 		result = atoi(n->ToText()->Value());
+	return result;
+}
+
+double getValue(XMLElement* el, const char* name) {
+	double result;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atof(n->ToText()->Value());
+	else {
+		string msg = string{"no value for "} + string{name};
+		throw runtime_error(msg);
+	}
 	return result;
 }
 
