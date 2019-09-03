@@ -244,7 +244,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	unsigned long id;
 	double power = Constants::ANTENNA_POWER;
 	double attFactor = Constants::ATT_FACTOR;
-	int maxConnections = Constants::ANTENNA_MAX_CONNECTIONS;
+	unsigned long maxConnections = Constants::ANTENNA_MAX_CONNECTIONS;
 	double smid = Constants::S_MID;
 	double ssteep = Constants::S_STEEP;
 
@@ -355,6 +355,7 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 
 		XMLNode* percentHomeNode = getNode(personsEl, "percent_home");
 		double percentHome = atof(percentHomeNode->ToText()->Value());
+
 		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car, percentHome);
 	}
 	return (result);
@@ -404,8 +405,10 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				numMNO++;
 				XMLNode* n = getNode(mnoEl, "mno_name");
 				const char* name = n->ToText()->Value();
+
 				n = getNode(mnoEl, "prob_mobile_phone");
 				const double prob = atof(n->ToText()->Value());
+
 				unsigned long id = IDGenerator::instance()->next();
 				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob);
 				result.push_back(mo);
