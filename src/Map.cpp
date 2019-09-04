@@ -35,11 +35,11 @@ Map::Map() {
 	m_grid = nullptr;
 }
 
-Map::Map(double llx, double llY, double width, double height) {
+Map::Map(double llX, double llY, double width, double height) {
 	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
 	m_globalFactory = GeometryFactory::create(pm, -1);
 	delete pm;
-	m_boundary = (Geometry*) create_rectangle(llx, lly, width, height);
+	m_boundary = (Geometry*) create_rectangle(llX, llY, width, height);
 	m_grid = nullptr;
 }
 
