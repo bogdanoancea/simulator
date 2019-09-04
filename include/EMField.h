@@ -19,13 +19,13 @@
 
 using namespace std;
 /**
- * This singleton class is used to compute different measures of the electromagnetic field radiated by an antenna (power, signal strength etc)
- * and it also provides utility methods nedeed to decide to which antenna a mobile device connects.
+ * This utility singleton class is used to compute different measures of the electromagnetic field radiated by an antenna (power, signal strength etc)
+ * and it also provides methods needed to decide to which antenna a mobile device connects.
  */
 class EMField {
 public:
 	/**
-	 * Returns an instance of this class.
+	 * Returns an instance of this class. This class is a singleton.
 	 * @return an instance of this class.
 	 */
 	static EMField* instance() {
