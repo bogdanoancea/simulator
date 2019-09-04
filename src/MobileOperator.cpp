@@ -45,7 +45,6 @@ MobileOperator::~MobileOperator() {
 			cerr << "Error closing antenna cells output files!" << endl;
 		}
 	}
-
 	if (m_signalQuality.is_open()) {
 		try {
 			m_signalQuality.close();
@@ -66,17 +65,17 @@ const string MobileOperator::toString() const {
 }
 
 const string MobileOperator::getMNOName() const {
-	return m_name;
+	return (m_name);
 }
 
 const double MobileOperator::getProbMobilePhone() const {
-	return m_probMobilePhone;
+	return (m_probMobilePhone);
 }
 
 ofstream& MobileOperator::getAntennaCellsFile() {
-	return m_antennaCells;
+	return (m_antennaCells);
 }
 
 ofstream& MobileOperator::getSignalQualityFile() {
-	return m_signalQuality;
+	return (m_signalQuality);
 }
