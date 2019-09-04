@@ -205,7 +205,7 @@ void World::setClock(Clock* clock) {
 	m_clock = clock;
 }
 
-Map* World::getMap() const {
+const Map* World::getMap() const {
 	return m_map;
 }
 

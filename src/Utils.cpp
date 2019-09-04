@@ -23,7 +23,7 @@ using namespace geos;
 using namespace geos::geom;
 using namespace std;
 
-vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsigned seed) {
+vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
 	random_generator = RandomNumberGenerator::instance(seed);
@@ -111,7 +111,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 	return (result);
 }
 
-vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
+vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
 	random_generator = RandomNumberGenerator::instance(seed);

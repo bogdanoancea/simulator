@@ -102,7 +102,7 @@ public:
 	 * Returns a pointer to a Map object where the simulation takes place
 	 * @return a pointer to a Map object where the simulation takes place
 	 */
-	Map* getMap() const;
+	const Map* getMap() const;
 
 	/**
 	 * Sets the map where the simulation takes place
