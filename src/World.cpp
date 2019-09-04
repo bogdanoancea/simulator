@@ -228,8 +228,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, double perce
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::STAY_TIME,
-				Constants::INTERVAL_BETWEEN_STAYS);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME,
+				Constants::SIM_INTERVAL_BETWEEN_STAYS);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -245,8 +245,8 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	double power = Constants::ANTENNA_POWER;
 	double attFactor = Constants::ATT_FACTOR;
 	unsigned long maxConnections = Constants::ANTENNA_MAX_CONNECTIONS;
-	double smid = Constants::S_MID;
-	double ssteep = Constants::S_STEEP;
+	double smid = Constants::ANTENNA_S_MID;
+	double ssteep = Constants::ANTENNA_S_STEEP;
 
 	vector<Point*> positions = utils::generateFixedPoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
@@ -263,7 +263,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD, Constants::QUALITY_THRESHOLD,
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD, Constants::PHONE_QUALITY_THRESHOLD,
 				connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
@@ -392,11 +392,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	if (!simEl)
 		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
-		m_startTime = getValue(simEl, "start_time", Constants::START_TIME);
-		m_endTime = getValue(simEl, "end_time", Constants::END_TIME);
-		m_timeIncrement = getValue(simEl, "time_increment", Constants::INCREMENT_TIME);
-		m_stay = getValue(simEl, "time_stay",Constants::STAY_TIME);
-		m_intevalBetweenStays = getValue(simEl, "interval_between_stays",Constants::INTERVAL_BETWEEN_STAYS);
+		m_startTime = getValue(simEl, "start_time", Constants::SIM_START_TIME);
+		m_endTime = getValue(simEl, "end_time", Constants::SIM_END_TIME);
+		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
+		m_stay = getValue(simEl, "time_stay",Constants::SIM_STAY_TIME);
+		m_intevalBetweenStays = getValue(simEl, "interval_between_stays",Constants::SIM_INTERVAL_BETWEEN_STAYS);
 
 		unsigned numMNO = 0;
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
@@ -418,7 +418,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
 
-		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::PROB_SECOND_MOBILE_PHONE);
+		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::SIM_PROB_SECOND_MOBILE_PHONE);
 
 				XMLNode* mvNode = getNode(simEl, "movement_type");
 		if (mvNode) {
@@ -549,8 +549,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		int np1 = phone1[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
-					Constants::QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD,
+					Constants::PHONE_QUALITY_THRESHOLD, m_connType);
 			mp->setMobileOperator(mnos[0]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -561,8 +561,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			int np2 = phone2[i];
 			while (np2) {
 				id = IDGenerator::instance()->next();
-				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::POWER_THRESHOLD,
-						Constants::QUALITY_THRESHOLD, m_connType);
+				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD,
+						Constants::PHONE_QUALITY_THRESHOLD, m_connType);
 				mp->setMobileOperator(mnos[1]);
 				mp->setHolder(p);
 				m_agentsCollection->addAgent(mp);

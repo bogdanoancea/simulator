@@ -19,7 +19,7 @@ using namespace std;
 
 MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
 		HoldableAgent::CONNECTION_TYPE connType) :
-		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::POWER_THRESHOLD }, m_qualityThreshold { Constants::QUALITY_THRESHOLD }, m_connType {
+		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::PHONE_POWER_THRESHOLD }, m_qualityThreshold { Constants::PHONE_QUALITY_THRESHOLD }, m_connType {
 				connType } {
 	m_connectedTo = nullptr;
 	m_mno = nullptr;

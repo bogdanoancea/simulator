@@ -15,7 +15,7 @@ using namespace std;
 using namespace std::chrono;
 
 Clock::Clock() :
-		m_initialTime { Constants::START_TIME }, m_currentTime { Constants::START_TIME }, m_increment { Constants::INCREMENT_TIME }, m_finalTime { Constants::END_TIME } {
+		m_initialTime { Constants::SIM_START_TIME }, m_currentTime { Constants::SIM_START_TIME }, m_increment { Constants::SIM_INCREMENT_TIME }, m_finalTime { Constants::SIM_END_TIME } {
 }
 
 Clock::Clock(unsigned long init, unsigned long end, unsigned long inc) :

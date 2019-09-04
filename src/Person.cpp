@@ -101,9 +101,9 @@ void Person::randomWalkClosedMap() {
 
 void Person::randomWalkClosedMapDrift() {
 	double theta = 0.0;
-	double trendAngle = Constants::TREND_ANGLE_1;
+	double trendAngle = Constants::SIM_TREND_ANGLE_1;
 	if (getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
-		trendAngle = Constants::TREND_ANGLE_2;
+		trendAngle = Constants::SIM_TREND_ANGLE_2;
 	}
 	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
 	if (m_changeDirection) {

@@ -80,9 +80,9 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_type = AntennaType::DIRECTIONAL;
 
 	m_Smin = getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN);
-	m_minQuality = getValue(antennaEl, "qual_min", Constants::QUALITY_THRESHOLD);
-	m_Smid = getValue(antennaEl, "Smid", Constants::S_MID);
-	m_SSteep = getValue(antennaEl, "SSteep", Constants::S_STEEP);
+	m_minQuality = getValue(antennaEl, "qual_min", Constants::PHONE_QUALITY_THRESHOLD);
+	m_Smid = getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID);
+	m_SSteep = getValue(antennaEl, "SSteep", Constants::ANTENNA_S_STEEP);
 	double x = getValue(antennaEl, "x");
 	double y = getValue(antennaEl, "y");
 	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
