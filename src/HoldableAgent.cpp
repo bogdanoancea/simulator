@@ -17,8 +17,8 @@ HoldableAgent::HoldableAgent(const Map* m, const unsigned long id, Point* initPo
 		MovableAgent(m, id, initPosition, clock, 0.0), m_holder { holder } {
 }
 
-HoldableAgent::HoldableAgent(const HoldableAgent &h):
-	MovableAgent(h.getMap(), h.getId(), h.getLocation(), h.getClock(), 0.0) {
+HoldableAgent::HoldableAgent(const HoldableAgent &h) :
+		MovableAgent(h.getMap(), h.getId(), h.getLocation(), h.getClock(), 0.0) {
 	m_holder = h.getHolder();
 	std::copy(h.getAntennas().begin(), h.getAntennas().end(), m_antennas.begin());
 }
@@ -39,8 +39,7 @@ void HoldableAgent::setHolder(Agent* holder) {
 	MovableAgent* m = dynamic_cast<MovableAgent*>(holder);
 	if (m != nullptr) {
 		setSpeed(m->getSpeed());
-	}
-	else
+	} else
 		setSpeed(0.0);
 }
 
@@ -57,7 +56,7 @@ void HoldableAgent::setLocation(Point* location) {
 	tryConnect();
 }
 
-const string HoldableAgent::toString() const{
+const string HoldableAgent::toString() const {
 	ostringstream result;
 	if (m_holder != nullptr)
 		result << MovableAgent::toString() << left << setw(15) << m_holder->getId();
