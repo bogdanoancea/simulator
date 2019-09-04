@@ -25,8 +25,6 @@ LocatableAgent::LocatableAgent(const Map* m, const unsigned long id, Point* init
 }
 
 LocatableAgent::~LocatableAgent() {
-//		if (m_location != nullptr)
-//			this->getMap()->getGlobalFactory()->destroyGeometry(m_location);
 }
 
 Point* LocatableAgent::getLocation() const {
