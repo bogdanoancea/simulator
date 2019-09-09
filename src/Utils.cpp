@@ -240,4 +240,16 @@ double getValue(XMLElement* el, const char* name) {
 	return result;
 }
 
+const char* getValue(XMLElement* el, const char* name) {
+	double result;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = n->ToText()->Value();
+	else {
+		string msg = string { "no value for " } + string { name };
+		throw runtime_error(msg);
+	}
+	return result;
+}
+
 }
