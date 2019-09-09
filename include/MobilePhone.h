@@ -65,9 +65,18 @@ public:
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
 	 * mvType parameter and by the Person object who owns this phone.
 	 * @param mvType selects the way people and their phones are moving on the map. At this moment only
-	 * RANDOM_WALK and RANDOM_WALK_WITH_DRIFT are implemented. RANDOM_WALK means that at each time instant the direction
-	 * is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the
-	 * time interval set in the simulation configuration file.
+	 * RANDOM_WALK_CLOSED_MAP and RANDOM_WALK_CLOSED_MAP_WITH_DRIFT are implemented. RANDOM_WALK_CLOSED_MAP means
+	 * that at each time instant the direction is generated as a uniformly distributed random value and the
+	 * step length is computed multiplying the speed with the time interval set in the simulation configuration file.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 * MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT means that there is a preference in the direction of the movement.
+	 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
+	 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
+	 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
+	 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, a MovableAgent can only move inside the map boundary.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 *
+	 *
 	 * @return the final location after the movement.
 	 */
 	Point* move(MovementType mvType) override {
