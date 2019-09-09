@@ -34,11 +34,11 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_changeDirection { false }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
 				intervalBetweenStays } {
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
-	while(m_nextStay % getClock()->getIncrement() != 0)
+	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
 
 	m_timeStay = timeStay;
-	while(m_timeStay % getClock()->getIncrement() != 0)
+	while (m_timeStay % getClock()->getIncrement() != 0)
 		m_timeStay++;
 
 }
@@ -78,7 +78,7 @@ Point* Person::move(MovementType mvType) {
 
 			m_nextStay = currentTime + nextInterval;
 			m_timeStay = (unsigned long) RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2 * m_avgTimeStay);
-			while(m_timeStay % getClock()->getIncrement() != 0)
+			while (m_timeStay % getClock()->getIncrement() != 0)
 				m_timeStay++;
 
 		}
@@ -126,11 +126,11 @@ Point* Person::generateNewLocation(double theta) {
 }
 
 unsigned long Person::getAvgTimeStay() const {
-	return m_avgTimeStay;
+	return (m_avgTimeStay);
 }
 
 unsigned long Person::getAvgIntervalBetweenStays() const {
-	return m_avgIntervalBetweenStays;
+	return (m_avgIntervalBetweenStays);
 }
 
 void Person::setNewLocation(Point* p, bool changeDirection) {
@@ -195,22 +195,14 @@ string Person::dumpDevices() {
 }
 
 Person::Gender Person::getGender() const {
-	return m_gender;
+	return (m_gender);
 }
 
 const string Person::getName() const {
 	return ("Person");
 }
 
-//bool Person::stay(unsigned long time_increment) {
-//	m_intervalBetweenStays-= time_increment;
-//	if(m_intervalBetweenStays <= 0) {
-//		m_intervalBetweenStays = (unsigned long)RandomNumberGenerator::instance()->generateExponentialDouble(1.0/m_copyIntervalBetweenStays);
-//		if(m_intervalBetweenStays < time_increment)
-//			m_intervalBetweenStays = time_increment;
-//		return true;
-//	}
-//	else {
-//		return false;
-//	}
-//}
+void Person::addDevice(string type, Agent* agent) {
+	m_idDevices.insert(std::pair<string, Agent*>(type, agent));
+}
+
