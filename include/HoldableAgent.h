@@ -42,10 +42,11 @@ public:
 	 * an enumeration of the modes used by the device to connect to an antenna:
 	 * USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device.
 	 * USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device.
+	 * USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device.
 	 * UNKNOWN - this should by an error.
 	 */
 	enum CONNECTION_TYPE {
-		USING_POWER, USING_SIGNAL_QUALITY, UNKNOWN
+		USING_POWER, USING_SIGNAL_QUALITY, USING_SIGNAL_STRENGTH, UNKNOWN
 	};
 
 	/**

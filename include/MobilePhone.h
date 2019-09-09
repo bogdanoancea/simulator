@@ -20,46 +20,54 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This class represents a mobile phone.
+ * This class represents a mobile phone. A mobile phone is own by a Person and it moves on the map together with its owner.
+ * While moving, at every time step it tries to connect to an antenna. The connection event is triggered by setLocation().
+ * The connection to antenna is determined by the signal emitted by antennas. A parameter in the simulation configuration file
+ * set the criterion used to connect: the power of the signal, the signal strength or the signal quality.
+ *
  */
 class MobilePhone: public HoldableAgent {
 public:
 	/**
-	 * Builds a new object with the parameters provided by the user
-	 * @param m a pointer to the map object where the simulation takes place
-	 * @param id the id of the mobile phone
-	 * @param initPosition the initial location of the phone on the map
-	 * @param holder a pointer to the Agent object that owns this mobile phone
-	 * @param clock a pointer to the Clock object used in this simulation
-	 * @param powerThreshold the minimum power of the field below which the mobile phone cannot connect to an antenna
-	 * @param qualityThreshold the minimum quality of the signal below which the mobile phone cannot connect to an antenna
-	 * @param connType the type of the connection to an antenna: based on the power of the signal or based on the signal quality. It could
-	 * take two values: HoldableAgent::CONNECTION_TYPE::USING_POWER or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY
+	 * Builds a new MobilewPhone object with the parameters provided by the user.
+	 * @param m a pointer to the Map object where the simulation takes place.
+	 * @param id the id of the mobile phone.
+	 * @param initPosition the initial location of the phone on the map.
+	 * @param holder a pointer to the Agent object that owns this mobile phone.
+	 * @param clock a pointer to the Clock object used in this simulation.
+	 * @param powerThreshold the minimum power of the field below which the mobile phone cannot connect to an antenna.
+	 * @param qualityThreshold the minimum quality of the signal below which the mobile phone cannot connect to an antenna.
+	 * @param connType the criterion used for the connection to an antenna: based on the power of the signal or based on the signal quality. It could
+	 * take three values: HoldableAgent::CONNECTION_TYPE::USING_POWER, HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY or
+	 * HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH.
 	 *
 	 */
 	explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
 			HoldableAgent::CONNECTION_TYPE connType);
 
 	/**
-	 * Destructor
+	 * The default destructor.
 	 */
 	virtual ~MobilePhone();
 
 	/**
-	 * Returns the name of this class
-	 * @return the name of this class
+	 * Returns the name of this class.
+	 * @return the name of this class.
 	 */
 	const string getName() const override;
 	/**
-	 * Returns a human readable string representation of this class useful to output it to a file or console
-	 * @return a human readable string representation of this class
+	 * Returns a human readable string representation of this class useful to output it to a file or console.
+	 * @return a human readable string representation of this class.
 	 */
 	const string toString() const override;
 
 	/**
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
-	 * mvType parameter and by the person object who owns this phone.
-	 * @param mvType selects the way people and phone are moving on the map. At this moment only RANDOM_WALK is implemented.
+	 * mvType parameter and by the Person object who owns this phone.
+	 * @param mvType selects the way people and their phones are moving on the map. At this moment only
+	 * RANDOM_WALK and RANDOM_WALK_WITH_DRIFT are implemented. RANDOM_WALK means that at each time instant the direction
+	 * is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the
+	 * time interval set in the simulation configuration file.
 	 * @return the final location after the movement.
 	 */
 	Point* move(MovementType mvType) override {
@@ -68,48 +76,51 @@ public:
 
 	/**
 	 * This method is called after the phone moves (together with its owner) to a new location. It tries to connect the
-	 * mobile phone to an antenna
-	 * @param type determines the connection method: using the power of the signal or using the quality of the signal. The allowed values for this
-	 * parameter are: HoldableAgent::CONNECTION_TYPE::USING_POWER or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY
-	 * @return true if the connection succeeds, false otherwise
+	 * mobile phone to an antenna.
+	 * The connection method is determined by inspecting the @member m_connType: using the power of the signal,
+	 * using the quality of the signal or using the signal strength. The value of the m_connType is set by the constructor of the class.
+	 * If the connection is successfully a pointer to the Antenna object where this mobile phone was connected is stored internally.
+	 * @return true if the connection succeeds, false otherwise.
 	 */
-	bool tryConnect() override;
+	bool tryConnect();
 
 
 	/**
-	 * Returns the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise)
-	 * @return the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise)
+	 * Returns the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise).
+	 * @return the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise).
 	 */
 	double getQualityThreshold() const;
 
 	/**
-	 * Sets the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise)
-	 * @param qualityThreshold the minimum value of the signal quality below which the phone cannot use the signal
-	 */
-	void setQualityThreshold(double qualityThreshold);
-
-	/**
-	 * Returns the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise)
-	 * @return the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise)
+	 * Returns the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise).
+	 * @return the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise).
 	 */
 	double getPowerThreshold() const;
 
 	/**
-	 * Sets the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise)
-	 * @param qualityThreshold the minimum value of the signal power below which the phone cannot use the signal
+	 * Returns the minimum value of the signal strength below which the phone cannot use the signal (i.e. the signal is considered noise).
+	 * @return the minimum value of the signal strength below which the phone cannot use the signal (i.e. the signal is considered noise).
 	 */
-	void setPowerThreshold(double powerThreshold);
+	double getSignalStrength() const;
+
+	/**
+	 * Returns the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
+	 * @return the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
+	 */
 	const MobileOperator* getMobileOperator() const;
+
+	/**
+	 * Sets the MobileOperator object which owns this phone.
+	 * @param mno the MobileOperator object which owns this phone.
+	 */
 	void setMobileOperator(MobileOperator* mno);
 
 private:
-	//bool tryConnectNaiveAlgorithm(HoldableAgent::CONNECTION_TYPE type);
 	double m_powerThreshold;
 	double m_qualityThreshold;
 	Antenna* m_connectedTo;
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MobileOperator* m_mno;
-
 };
 
 #endif /* MOBILEPHONE_H_ */
