@@ -390,15 +390,12 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		} else
 			m_mvType = MovementType::UNKNOWN;
 
-		XMLNode* connNode = getNode(simEl, "connection_type");
-		if (connNode) {
-			if (!strcmp(connNode->ToText()->Value(), "power"))
-				m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
-			else if (!strcmp(connNode->ToText()->Value(), "quality"))
-				m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
-			else
-				m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
-		} else
+		const char* connType = getValue(simEl, "connection_type", "UNKNOWN")
+		if (!strcmp(connType, "power"))
+			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+		else if (!strcmp(connType, "quality"))
+			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+		else
 			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
 
 		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
@@ -431,8 +428,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
 
-	int* phone1 = nullptr; //RandomNumberGenerator::instance()->generateBernoulliInt(probMobilePhones[0].second, numPersons);
-	int* phone2 = nullptr; //new int[numPersons] { 0 }; //RandomNumberGenerator::instance()->generateBernoulliInt(probSecMobilePhone, numPersons);
+	int* phone1 = nullptr;
+	int* phone2 = nullptr;
 	if (numMno == 1) {
 		phone1 = random_generator->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
 		for (unsigned long j = 0; j < numPersons; j++) {
@@ -449,7 +446,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
-		for (unsigned int i = 1; i < numPersons; i++) {
+		for (unsigned long i = 1; i < numPersons; i++) {
 			if (phone1[i] == 1) {
 				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
@@ -491,11 +488,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 
 	for (unsigned long i = 0; i < numPersons; i++) {
-
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
 		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_intevalBetweenStays);
-		//cout << "stays " << stay << "," << interval << endl;
 		if (walk_car[i]) {
 			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], (int) ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		} else {
