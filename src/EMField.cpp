@@ -14,6 +14,7 @@
 #include <vector>
 #include <AntennaType.h>
 #include <iomanip>
+#include <limits>
 
 EMField* EMField::m_instance = nullptr;
 
@@ -78,15 +79,16 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 
 
 pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigned long mnoId) {
-	pair<Antenna*, double> result { nullptr, 0.0 };
+	pair<Antenna*, double> result  = { nullptr, -numeric_limits<double>::max() };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
-		double max = numeric_limits<double>::min();
+		double max = -numeric_limits<double>::max();
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoId)
 				continue;
+			cout << "antenna " << a->getId() << endl;
 			if (a->getLocation()->distance(p) <= a->getRmax()) {
-				cout << "aici" << endl;
+				cout << "aici " << a->getId() << endl;
 				double strength = a->computeSignalStrength(p);
 				cout << strength << endl;
 				if (strength > max) {
@@ -96,7 +98,7 @@ pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigne
 			}
 		}
 	}
-	cout << result.second << endl;
+	cout << "returnez "<< result.second << endl;
 	return (result);
 }
 
@@ -133,7 +135,6 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		for (Antenna*& a : m_antennas) {
-
 			if (a->getMNO()->getId() != mnoId)
 				continue;
 			if (a->getRmax() >= a->getLocation()->distance(p)) {
@@ -144,7 +145,6 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 					x = a->computeSignalQuality(p);
 				else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH)
 					x = a->computeSignalStrength(p);
-
 
 				if (x > threshold)
 					result.push_back(make_pair(a, x));
