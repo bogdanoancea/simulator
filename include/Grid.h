@@ -159,6 +159,13 @@ public:
 	 */
 	void dumpGrid(const string& gridFileName) const;
 
+
+	/**
+	 * Returns a vector containing the coordinates of the tile centers.
+	 * @return a vector containing the coordinates of the tile centers.
+	 */
+	Coordinate* getTileCenters() const;
+
 private:
 	//Map* m_map;
 	double m_xOrigin;

@@ -128,13 +128,8 @@ int main(int argc, char** argv) {
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 
-		vector<Coordinate> tileCenters;
 		unsigned long noTiles = map->getGrid()->getNoTiles();
-		for (unsigned long i = 0; i < noTiles; i++) {
-			Coordinate c = map->getGrid()->getTileCenter(i);
-			c.z = 0;
-			tileCenters.push_back(c);
-		}
+		Coordinate* tileCenters = w.getMap()->getGrid()->getTileCenters();
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 			MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 			vector<AntennaInfo> tmp;
@@ -231,6 +226,5 @@ int main(int argc, char** argv) {
 	} catch (const exception &e) {
 		cout << e.what() << endl;
 	}
-
 	return (0);
 }

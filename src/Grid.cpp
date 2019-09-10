@@ -142,6 +142,7 @@ Coordinate* Grid::computeTileCenters() {
 		double y = nrow * m_yTileDim + m_yTileDim / 2.0;
 		result.x = x;
 		result.y = y;
+		result.z = 0;
 		tileCenters[tileIndex] = result;
 	}
 	return (tileCenters);
@@ -236,5 +237,8 @@ void Grid::dumpGrid(const string& gridFileName) const {
 	} catch (const ofstream::failure& e) {
 		cerr << "Error closing grid file!" << endl;
 	}
+}
 
+Coordinate* Grid::getTileCenters() const {
+	return m_tileCenters;
 }
