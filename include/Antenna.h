@@ -292,7 +292,6 @@ private:
 
 	double m_rmax;
 	double m_Smin;
-	double m_minQuality;
 	vector<pair<double, double>> m_mapping_azim;
 	vector<pair<double, double>> m_mapping_elev;
 	double m_sd_azim;

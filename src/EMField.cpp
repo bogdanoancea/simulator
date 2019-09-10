@@ -80,17 +80,18 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 
 pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result  = { nullptr, -numeric_limits<double>::max() };
+//	cout << "am intrat in compute max strength cu mnoid = " << mnoId << " si p = " << p->toString() <<endl;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
 		double max = -numeric_limits<double>::max();
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoId)
 				continue;
-			cout << "antenna " << a->getId() << endl;
+//			cout << "antenna " << a->getId() << endl;
 			if (a->getLocation()->distance(p) <= a->getRmax()) {
-				cout << "aici " << a->getId() << endl;
+//				cout << "aici " << a->getId() << endl;
 				double strength = a->computeSignalStrength(p);
-				cout << strength << endl;
+//				cout << strength << endl;
 				if (strength > max) {
 					max = strength;
 					result = make_pair(a, strength);
@@ -98,7 +99,7 @@ pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigne
 			}
 		}
 	}
-	cout << "returnez "<< result.second << endl;
+//	cout << "returnez "<< result.second << endl;
 	return (result);
 }
 
