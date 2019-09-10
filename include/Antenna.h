@@ -236,6 +236,14 @@ public:
 	 */
 	string dumpCell() const;
 
+
+	/**
+	 * Computes the signal strength given by an antenna in a certain location.
+	 * @param p the location where we want to compute the signal strength.
+	 * @return the signal strength.
+	 */
+	double computeSignalStrength(const Point* p) const;
+
 private:
 
 	bool alreadyRegistered(HoldableAgent * ag);
@@ -246,6 +254,7 @@ private:
 	double computeSignalQualityOmnidirectional(const Coordinate c) const;
 	double computeSignalQualityDirectional(const Coordinate c) const;
 	double computeSignalStrengthDirectional(const Coordinate c) const;
+	double computeSignalStrengthOmnidirectional(const Coordinate c) const;
 
 	void setLocationWithElevation();
 	double projectToEPlane(double b, double c, double beta) const;

@@ -13,6 +13,9 @@
 
 const double Constants::PHONE_POWER_THRESHOLD = 2;
 const double Constants::PHONE_QUALITY_THRESHOLD = 0.3;
+const double Constants::PHONE_STRENGTH_THRESHOLD = -80;
+const double Constants::PHONE_CONNECTION_THRESHOLD = -80;
+
 const double Constants::ATT_FACTOR = 2;
 
 

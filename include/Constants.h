@@ -29,6 +29,23 @@ public:
 	 */
 	static const double PHONE_QUALITY_THRESHOLD;
 
+
+	/**
+	 * If the signal received by a mobile device has a quality below this level, the signal is considered only noise and unusable.
+	 */
+	static const double PHONE_STRENGTH_THRESHOLD;
+
+	/**
+	 * This value is interpreted according to the connection type:
+	 *  - if the connection uses power it is the minimum value of the signal power received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 *  - if the connection uses signal quality it is the minimum value of the signal quality received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 *  - if the connection uses signal strength it is the minimum value of the signal strength received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 */
+	static const double PHONE_CONNECTION_THRESHOLD;
+
 	/**
 	 * Antenna power in Watts.
 	 */

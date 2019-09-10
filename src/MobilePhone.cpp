@@ -17,10 +17,9 @@
 
 using namespace std;
 
-MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
-		HoldableAgent::CONNECTION_TYPE connType) :
-		HoldableAgent(m, id, initPosition, nullptr, clock), m_powerThreshold { Constants::PHONE_POWER_THRESHOLD }, m_qualityThreshold { Constants::PHONE_QUALITY_THRESHOLD }, m_connType {
-				connType } {
+MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock,
+		double threshold, HoldableAgent::CONNECTION_TYPE connType) :
+		HoldableAgent(m, id, initPosition, nullptr, clock), m_threshold{threshold}, m_connType { connType } {
 	m_connectedTo = nullptr;
 	m_mno = nullptr;
 }
@@ -43,26 +42,26 @@ bool MobilePhone::tryConnect() {
 	bool connected = false;
 	//select the most powerful antenna
 	Point *p = this->getLocation();
-	bool use_power = (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER);
-	double threshold = (use_power ? m_powerThreshold : m_qualityThreshold);
-
 	if (m_connectedTo != nullptr) {
 		//check if this antenna is still in range, otherwise detach from it
-		bool inRange = EMField::instance()->isAntennaInRange(p, m_connectedTo, threshold, use_power);
+		bool inRange = EMField::instance()->isAntennaInRange(p, m_connectedTo, m_threshold, m_connType);
 		if (!inRange) {
 			m_connectedTo->dettachDevice(this);
 			m_connectedTo = nullptr;
 			connected = false;
 		}
 	}
+
 	pair<Antenna*, double> antenna;
-	if (use_power)
+	if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
 		antenna = EMField::instance()->computeMaxPower(p, getMobileOperator()->getId());
-	else {
-		// needs to be at the same MNO
+	else if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY) {
 		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
+	} else if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH) {
+		antenna = EMField::instance()->computeMaxStrength(p, getMobileOperator()->getId());
 	}
-	if (antenna.second > threshold) {
+
+	if (antenna.second > m_threshold) {
 		connected = antenna.first->tryRegisterDevice(this);
 	}
 	if (connected) {
@@ -73,7 +72,8 @@ bool MobilePhone::tryConnect() {
 	} else {
 		//try to connect to another antenna in range
 		//antennas need to belong to the same MNO
-		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, threshold, use_power, getMobileOperator()->getId());
+		vector<pair<Antenna*, double>> antennas = EMField::instance()->getInRangeAntennas(p, m_threshold, m_connType,
+				getMobileOperator()->getId());
 		unsigned long size = antennas.size();
 		for (unsigned long i = 0; i < size; i++) {
 			connected = antennas[i].first->tryRegisterDevice(this);

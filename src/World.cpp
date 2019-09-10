@@ -254,7 +254,7 @@ vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAg
 	unsigned long id;
 	for (auto i = 0; i < numMobilePhones; i++) {
 		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD, Constants::PHONE_QUALITY_THRESHOLD, connType);
+		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_CONNECTION_THRESHOLD, connType);
 		result.push_back(p);
 		m_agentsCollection->addAgent(p);
 	}
@@ -395,9 +395,12 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 		else if (!strcmp(connType, "quality"))
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+		else if(!strcmp(connType, "strength"))
+			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
 		else
 			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
 
+		m_connThreshold = getValue(simEl, "conn_threshold", Constants::PHONE_CONNECTION_THRESHOLD);
 		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
 		m_personsFilename = getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME);
 		m_antennasFilename = getValue(simEl, "antennas_file", Constants::ANTENNAS_FILE_NAME);
@@ -486,7 +489,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	Person* p;
 
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
-
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
@@ -499,7 +501,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		int np1 = phone1[i];
 		while (np1) {
 			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD, Constants::PHONE_QUALITY_THRESHOLD, m_connType);
+			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, m_connThreshold, m_connType);
 			mp->setMobileOperator(mnos[0]);
 			mp->setHolder(p);
 			m_agentsCollection->addAgent(mp);
@@ -510,7 +512,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			int np2 = phone2[i];
 			while (np2) {
 				id = IDGenerator::instance()->next();
-				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_POWER_THRESHOLD, Constants::PHONE_QUALITY_THRESHOLD, m_connType);
+				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, m_connThreshold, m_connType);
 				mp->setMobileOperator(mnos[1]);
 				mp->setHolder(p);
 				m_agentsCollection->addAgent(mp);

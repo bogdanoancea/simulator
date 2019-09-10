@@ -42,7 +42,7 @@ public:
 	 * HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH.
 	 *
 	 */
-	explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double powerThreshold, double qualityThreshold,
+	explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double threshold,
 			HoldableAgent::CONNECTION_TYPE connType);
 
 	/**
@@ -95,24 +95,6 @@ public:
 
 
 	/**
-	 * Returns the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 * @return the minimum value of the signal quality below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 */
-	double getQualityThreshold() const;
-
-	/**
-	 * Returns the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 * @return the minimum value of the signal power below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 */
-	double getPowerThreshold() const;
-
-	/**
-	 * Returns the minimum value of the signal strength below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 * @return the minimum value of the signal strength below which the phone cannot use the signal (i.e. the signal is considered noise).
-	 */
-	double getSignalStrength() const;
-
-	/**
 	 * Returns the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
 	 * @return the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
 	 */
@@ -124,9 +106,17 @@ public:
 	 */
 	void setMobileOperator(MobileOperator* mno);
 
+	/**
+	 * Returns the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.e. the signal is considered noise).
+	 * The returned value is interpreted as signal strength, power or quality according to the connection type.
+	 * @return the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.e. the signal is considered noise).
+	 */
+	double getConnectionThreshold() const;
+
 private:
-	double m_powerThreshold;
-	double m_qualityThreshold;
+	//double m_powerThreshold;
+	//double m_qualityThreshold;
+	double m_threshold;
 	Antenna* m_connectedTo;
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MobileOperator* m_mno;

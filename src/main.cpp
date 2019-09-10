@@ -225,6 +225,10 @@ int main(int argc, char** argv) {
 		cout << e.what() << endl;
 	} catch (const exception &e) {
 		cout << e.what() << endl;
+	} catch (...) {
+		std::exception_ptr p = std::current_exception();
+		cout << "o exceptie" << endl;
 	}
+
 	return (0);
 }

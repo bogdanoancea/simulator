@@ -178,7 +178,7 @@ private:
 	unsigned m_seed;
 	unsigned long m_stay;
 	unsigned m_intevalBetweenStays;
-
+	double m_connThreshold;
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;

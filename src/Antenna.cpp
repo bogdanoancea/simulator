@@ -295,15 +295,20 @@ double Antenna::computeSignalQuality(const Coordinate c) const {
 	return (result);
 }
 
-double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
-	double result = 0.0;
+
+double Antenna::computeSignalStrengthOmnidirectional(const Coordinate c) const {
 	Point *p = getLocation();
 	const double dz = c.z - p->getZ();
 	const double dy = c.y - p->getY();
 	const double dx = c.x - p->getX();
 
 	const double dist = sqrt(dz * dz + dy * dy + dx * dx);
-	double signalStrength = S(dist);
+	return (S(dist));
+}
+
+double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
+	double result = 0.0;
+	double signalStrength = computeSignalStrengthOmnidirectional(c);
 	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
 	return result;
 }
@@ -572,3 +577,15 @@ Geometry* Antenna::getCoverageAreaDirectional() {
 		return (getCoverageAreaOmnidirectional());
 }
 
+
+double Antenna::computeSignalStrength(const Point* p) const {
+	double result = 0.0;
+	const Coordinate* c = p->getCoordinate();
+	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+		result = computeSignalStrengthOmnidirectional(*c);
+	}
+	if (m_type == AntennaType::DIRECTIONAL) {
+		result = computeSignalStrengthDirectional(*c);
+	}
+	return (result);
+}

@@ -26,7 +26,6 @@ EMField::EMField() {
 	for (unsigned int i = 0; i < Constants::ANTENNA_MAPPING_N; i++) {
 		m_sd[i] = 180.0 / Constants::ANTENNA_MAPPING_N + i * 180.0 / Constants::ANTENNA_MAPPING_N;
 	}
-	//m_sumQuality = new vector<double>[2];
 }
 
 EMField::~EMField() {
@@ -56,6 +55,7 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned l
 	return (result);
 }
 
+
 pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
@@ -75,6 +75,31 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 	}
 	return (result);
 }
+
+
+pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigned long mnoId) {
+	pair<Antenna*, double> result { nullptr, 0.0 };
+	unsigned long size = m_antennas.size();
+	if (size > 0) {
+		double max = numeric_limits<double>::min();
+		for (Antenna* a : m_antennas) {
+			if (a->getMNO()->getId() != mnoId)
+				continue;
+			if (a->getLocation()->distance(p) <= a->getRmax()) {
+				cout << "aici" << endl;
+				double strength = a->computeSignalStrength(p);
+				cout << strength << endl;
+				if (strength > max) {
+					max = strength;
+					result = make_pair(a, strength);
+				}
+			}
+		}
+	}
+	cout << result.second << endl;
+	return (result);
+}
+
 
 double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	double s_quality = a->computeSignalQuality(p);
@@ -103,7 +128,7 @@ void EMField::addAntenna(Antenna* a) {
 	m_antennas.push_back(a);
 }
 
-vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const double threshold, const bool power, unsigned long mnoId) {
+vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const double threshold, const HoldableAgent::CONNECTION_TYPE connType, unsigned long mnoId) {
 	vector<pair<Antenna*, double>> result;
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -112,11 +137,15 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 			if (a->getMNO()->getId() != mnoId)
 				continue;
 			if (a->getRmax() >= a->getLocation()->distance(p)) {
-				double x;
-				if (power)
+				double x = 0.0;
+				if (connType == HoldableAgent::USING_POWER)
 					x = a->computePower(p);
-				else
+				else if(connType == HoldableAgent::USING_SIGNAL_QUALITY)
 					x = a->computeSignalQuality(p);
+				else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH)
+					x = a->computeSignalStrength(p);
+
+
 				if (x > threshold)
 					result.push_back(make_pair(a, x));
 			}
@@ -130,13 +159,19 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 	return (result);
 }
 
-bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshold, const bool power) {
+bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshold, const HoldableAgent::CONNECTION_TYPE connType) {
 	bool result = false;
 	double ps = 0.0;
-	if (power)
+	if (connType == HoldableAgent::USING_POWER)
 		ps = a->computePower(p);
-	else if (a->getRmax() >= a->getLocation()->distance(p))
-		ps = a->computeSignalQuality(p);
+	else if(connType == HoldableAgent::USING_SIGNAL_QUALITY) {
+		if (a->getRmax() >= a->getLocation()->distance(p))
+			ps = a->computeSignalQuality(p);
+	}
+	else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH) {
+		if(a->getRmax() >= a->getLocation()->distance(p))
+			ps = a->computeSignalStrength(p);
+	}
 
 	if (ps > threshold) {
 		result = true;

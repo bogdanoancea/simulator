@@ -67,6 +67,19 @@ public:
 	 */
 	pair<Antenna*, double> computeMaxQuality(const Point* p, const unsigned long mnoId);
 
+
+	/**
+	 * Returns a pair made of a pointer to an Antenna object and its signal strength with the property that in the
+	 * location specified by @param p, the Antenna returned by this method provides signal with the highest strength.
+	 * The signal strength in this pair is the computed in location @param p.
+	 * @param p the location where we want to find which Antenna provides the highest strength of the signal.
+	 * @param mnoId the id of the MNO for which we compute the signal strength. Only antennas belonging to this MNO will be considered during computations.
+	 * @return a pair<Antenna*, double> containing a pointer to the Antenna object that provides a signal with the
+	 * highest strength in @param p.
+	 */
+	pair<Antenna*, double> computeMaxStrength(const Point* p, const unsigned long mnoId);
+
+
 	/**
 	 * Returns a vector of pairs made up of a pointer to an Antenna object and its power or signal quality.
 	 * All the antennas in this vector provides a signal with a power or signal quality greater than
@@ -82,7 +95,7 @@ public:
 	 * @return a vector of pairs made up of a pointer to an Antenna object and its power or signal quality.
 	 * All the antennas in this vector provides a signal with a power or signal quality greater than the @param threshold.
 	 */
-	vector<pair<Antenna*, double>> getInRangeAntennas(const Point* p, const double threshold, const bool power, unsigned long mnoId);
+	vector<pair<Antenna*, double>> getInRangeAntennas(const Point* p, const double threshold, const HoldableAgent::CONNECTION_TYPE connType, unsigned long mnoId);
 
 	/**
 	 * Checks if @param p is in the coverage area of Antenna pointed out by @param a. The covergare area is considered the area
@@ -93,7 +106,7 @@ public:
 	 * @param power if true the computations are done considering the power of the antenna, otherwise the signal quality.
 	 * @return true is the Antenna object provide enough power or signal quality in the location given as @param p.
 	 */
-	bool isAntennaInRange(const Point* p, Antenna* a, const double threshold, const bool power);
+	bool isAntennaInRange(const Point* p, Antenna* a, const double threshold, const HoldableAgent::CONNECTION_TYPE connType);
 
 	/**
 	 * Computes the connection likelihood for Antenna indicated by @param a in a certain location given by @param p.
