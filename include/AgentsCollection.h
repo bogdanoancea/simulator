@@ -87,6 +87,11 @@ public:
 	 */
 	unsigned long size();
 
+	/**
+	 * Print out all agents in the collection.
+	 */
+	void printAgents();
+
 private:
 	unordered_multimap<string, Agent*> m_agents;
 };

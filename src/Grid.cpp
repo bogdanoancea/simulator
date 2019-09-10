@@ -222,3 +222,19 @@ unsigned long Grid::getTileNo(double x, double y) const {
 	return j * m_noTilesX + i;
 }
 
+void Grid::dumpGrid(const string& gridFileName) const {
+	ofstream gridFile;
+	try {
+		gridFile.open(gridFileName, ios::out);
+	} catch (ofstream::failure& e) {
+		cerr << "Error opening grid output files!" << endl;
+	}
+
+	gridFile << toString();
+	try {
+		gridFile.close();
+	} catch (const ofstream::failure& e) {
+		cerr << "Error closing grid file!" << endl;
+	}
+
+}

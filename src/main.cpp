@@ -93,7 +93,6 @@ int main(int argc, char** argv) {
 		}
 
 		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
-		//map->addGrid(w.getGridDimTileX(), w.getGridDimTileY());
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
@@ -103,7 +102,6 @@ int main(int argc, char** argv) {
 				MobileOperator* mno = static_cast<MobileOperator*>(it->second);
 				cout << mno->toString() << endl;
 			}
-
 			utils::printPersonHeader();
 			auto itr = c->getAgentListByType(typeid(Person).name());
 			vector<Person*> persons;
@@ -111,14 +109,12 @@ int main(int argc, char** argv) {
 				Person* p = static_cast<Person*>(it->second);
 				cout << p->toString() << endl;
 			}
-
 			utils::printAntennaHeader();
 			auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 			for (auto it = itr2.first; it != itr2.second; it++) {
 				Antenna* a = static_cast<Antenna*>(it->second);
 				cout << a->toString() << endl;
 			}
-
 			utils::printPhoneHeader();
 			auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
 			for (auto it = itr3.first; it != itr3.second; it++) {
@@ -127,19 +123,7 @@ int main(int argc, char** argv) {
 			}
 		}
 		w.runSimulation();
-		ofstream g_File;
-		try {
-			g_File.open(w.getGridFilename(), ios::out);
-		} catch (ofstream::failure& e) {
-			cerr << "Error opening grid output files!" << endl;
-		}
-
-		g_File << map->getGrid()->toString();
-		try {
-			g_File.close();
-		} catch (const ofstream::failure& e) {
-			cerr << "Error closing grid file!" << endl;
-		}
+		w.getMap()->getGrid()->dumpGrid(w.getGridFilename());
 		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());

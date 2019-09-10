@@ -153,6 +153,12 @@ public:
 	 */
 	unsigned long getTileNo(double x, double y) const;
 
+	/**
+	 * Writes the grid description in a .csv file for later processing.
+	 * @param gridFileName the name of the output file.
+	 */
+	void dumpGrid(const string& gridFileName) const;
+
 private:
 	//Map* m_map;
 	double m_xOrigin;
