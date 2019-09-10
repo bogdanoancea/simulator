@@ -446,7 +446,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 
 		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
-		for (unsigned long i = 1; i < numPersons; i++) {
+		for (unsigned long i = 0; i < numPersons; i++) {
 			if (phone1[i] == 1) {
 				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
@@ -549,23 +549,16 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 	if (!probEl)
 		throw std::runtime_error("Syntax error in the configuration file for probabilities ");
 	else {
-		XMLNode* priorNode = getNode(probEl, "prior");
-		if (priorNode) {
-			if (!strcmp(priorNode->ToText()->Value(), "network"))
-				m_prior = PriorType::NETWORK;
-			else if (!strcmp(priorNode->ToText()->Value(), "uniform"))
-				m_prior = PriorType::UNIFORM;
-			else if (!strcmp(priorNode->ToText()->Value(), "register"))
-				m_prior = PriorType::REGISTER;
-			else
-				m_prior = PriorType::UNIFORM;
-		} else
-			m_prior = Constants::PRIOR_PROBABILITY;
-		XMLNode* probsNode = getNode(probEl, "prob_file_name_prefix");
-		if (probsNode)
-			probsFileNamePrefix = probsNode->ToText()->Value();
+		const char* prior = getValue(probEl, "prior", "UNKNOWN");
+		if (!strcmp(prior, "network"))
+			m_prior = PriorType::NETWORK;
+		else if (!strcmp(prior, "uniform"))
+			m_prior = PriorType::UNIFORM;
+		else if (!strcmp(prior, "register"))
+			m_prior = PriorType::REGISTER;
 		else
-			probsFileNamePrefix = Constants::PROB_FILE_NAME_PREFIX;
+			m_prior = Constants::PRIOR_PROBABILITY;;
+		probsFileNamePrefix = getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX);
 	}
 	return probsFileNamePrefix;
 }
