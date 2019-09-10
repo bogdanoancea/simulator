@@ -91,7 +91,7 @@ public:
 	 * If the connection is successfully a pointer to the Antenna object where this mobile phone was connected is stored internally.
 	 * @return true if the connection succeeds, false otherwise.
 	 */
-	bool tryConnect();
+	bool tryConnect() override;
 
 
 	/**

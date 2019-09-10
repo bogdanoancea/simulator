@@ -390,7 +390,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		} else
 			m_mvType = MovementType::UNKNOWN;
 
-		const char* connType = getValue(simEl, "connection_type", "UNKNOWN")
+		const char* connType = getValue(simEl, "connection_type", "UNKNOWN");
 		if (!strcmp(connType, "power"))
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 		else if (!strcmp(connType, "quality"))
