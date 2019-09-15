@@ -201,6 +201,7 @@ private:
 	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
+	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 
 };
 

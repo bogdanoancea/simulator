@@ -68,7 +68,8 @@ World::World(Map* map, int numPersons, int numAntennas, int numMobilePhones) :
 	}
 }
 
-World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName, const string& probabilitiesFileName) :
+World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName,
+		const string& probabilitiesFileName) :
 		m_map { mmap } {
 
 	m_probSecMobilePhone = 0.0;
@@ -222,7 +223,8 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, double perce
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME, Constants::SIM_INTERVAL_BETWEEN_STAYS);
+		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME,
+				Constants::SIM_INTERVAL_BETWEEN_STAYS);
 		result.push_back(p);
 	}
 	delete[] speeds;
@@ -243,7 +245,8 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generateFixedPoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep, AntennaType::OMNIDIRECTIONAL);
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
+				AntennaType::OMNIDIRECTIONAL);
 		result.push_back(p);
 	}
 	return (result);
@@ -395,12 +398,13 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 		else if (!strcmp(connType, "quality"))
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
-		else if(!strcmp(connType, "strength"))
+		else if (!strcmp(connType, "strength"))
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
 		else
-			m_connType = HoldableAgent::CONNECTION_TYPE::UNKNOWN;
+			throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
 
-		m_connThreshold = getValue(simEl, "conn_threshold", Constants::PHONE_CONNECTION_THRESHOLD);
+
+		m_connThreshold = getValue(simEl, "conn_threshold", getDefaultConnectionThreshold(m_connType));
 		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
 		m_personsFilename = getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME);
 		m_antennasFilename = getValue(simEl, "antennas_file", Constants::ANTENNAS_FILE_NAME);
@@ -411,8 +415,19 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	return (result);
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-		vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
+double World::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType) {
+	double result = -1;
+	if (connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
+		result = Constants::PHONE_POWER_THRESHOLD;
+	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		result = Constants::PHONE_QUALITY_THRESHOLD;
+	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+		result = Constants::PHONE_STRENGTH_THRESHOLD;
+	return (result);
+
+}
+vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
 
 	vector<Person*> result;
 	unsigned long id;
@@ -494,9 +509,11 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
 		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_intevalBetweenStays);
 		if (walk_car[i]) {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], (int) ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], (int) ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		} else {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], (int) ages[i], gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], (int) ages[i],
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		}
 		int np1 = phone1[i];
 		while (np1) {
@@ -559,7 +576,8 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 		else if (!strcmp(prior, "register"))
 			m_prior = PriorType::REGISTER;
 		else
-			m_prior = Constants::PRIOR_PROBABILITY;;
+			m_prior = Constants::PRIOR_PROBABILITY;
+		;
 		probsFileNamePrefix = getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX);
 	}
 	return probsFileNamePrefix;
