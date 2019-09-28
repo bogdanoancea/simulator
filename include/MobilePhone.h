@@ -35,8 +35,7 @@ public:
 	 * @param initPosition the initial location of the phone on the map.
 	 * @param holder a pointer to the Agent object that owns this mobile phone.
 	 * @param clock a pointer to the Clock object used in this simulation.
-	 * @param powerThreshold the minimum power of the field below which the mobile phone cannot connect to an antenna.
-	 * @param qualityThreshold the minimum quality of the signal below which the mobile phone cannot connect to an antenna.
+	 * @param threshold the minimum power, signal qaulity or signal strength of the field below which the mobile phone cannot connect to an antenna.
 	 * @param connType the criterion used for the connection to an antenna: based on the power of the signal or based on the signal quality. It could
 	 * take three values: HoldableAgent::CONNECTION_TYPE::USING_POWER, HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY or
 	 * HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH.
@@ -84,9 +83,8 @@ public:
 	}
 
 	/**
-	 * This method is called after the phone moves (together with its owner) to a new location. It tries to connect the
-	 * mobile phone to an antenna.
-	 * The connection method is determined by inspecting the @member m_connType: using the power of the signal,
+	 * This method is called after the phone moves (together with its owner) to a new location. It tries to connect the mobile phone to an antenna.
+	 * The connection method is determined by inspecting the m_connType: using the power of the signal,
 	 * using the quality of the signal or using the signal strength. The value of the m_connType is set by the constructor of the class.
 	 * If the connection is successfully a pointer to the Antenna object where this mobile phone was connected is stored internally.
 	 * @return true if the connection succeeds, false otherwise.

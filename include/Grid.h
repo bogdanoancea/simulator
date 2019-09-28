@@ -92,16 +92,16 @@ public:
 	string toString() const;
 
 	/**
-	 * Returns the tile index on X axis that contains a given point in space, specified by @param p.
+	 * Returns the tile index on X axis that contains a given point in space, specified by p.
 	 * @param p a pointer to the point for which we need the tile index.
-	 * @return the tile index on X axis that contains the point specified by @param p, i.e. a number between 0 and getNoTilesX() - 1.
+	 * @return the tile index on X axis that contains the point specified by p, i.e. a number between 0 and getNoTilesX() - 1.
 	 */
 	unsigned long getTileIndexX(const Point* p) const;
 
 	/**
-	 * Returns the tile index on Y axis that contains a given point in space, specified by @param p.
+	 * Returns the tile index on Y axis that contains a given point in space, specified by p.
 	 * @param p the point in space for which we need the tile index.
-	 * @return the tile index on Y axis that contains the point specified by @param p, i.e. a number between 0 and getNoTilesY() - 1.
+	 * @return the tile index on Y axis that contains the point specified by p, i.e. a number between 0 and getNoTilesY() - 1.
 	 */
 	unsigned long getTileIndexY(const Point* p) const;
 
@@ -123,8 +123,8 @@ public:
 	 * @param prior is used to set the method of computing the prior probabilities. It could take 3 values:
 	 * PriorType::UNIFORM, PriorType::NETWORK or PriorType::REGISTER. Currently only
 	 * UNIFORM and NETWORK methods are implemented.
-	 * @return a vector with the posterior probability of the mobile phone given by @param m to be localized in a tile. The index of a value
-	 * in this vector indicates the corresponding tile index. The size of this vector is equat to the total number of tiles in the Grid.
+	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
+	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
 	 */
 	vector<double> computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior) const;
 
@@ -136,9 +136,9 @@ public:
 	Coordinate getTileCenter(unsigned long tileIndex) const;
 
 	/**
-	 * Computes the tile index of the tile that contains the Point indicated by @param p.
+	 * Computes the tile index of the tile that contains the Point indicated by p.
 	 * @param p a pointer to a Point object.
-	 * @return the tile index of the tile that contains the Point indicated by @param p.
+	 * @return the tile index of the tile that contains the Point indicated by p.
 	 */
 	unsigned long getTileNo(const Point* p) const;
 
@@ -146,10 +146,10 @@ public:
 	unsigned long getTileIndexY(double y) const;
 
 	/**
-	 * Computes the tile index of the tile that contains a point with coordinates indicated by @param x and @param y.
+	 * Computes the tile index of the tile that contains a point with coordinates indicated by x and y.
 	 * @param x x coordinate of a location.
 	 * @param y y coordinate of a location.
-	 * @return the tile index of the tile that contains a point with coordinates indicated by @param x and @param y.
+	 * @return the tile index of the tile that contains a point with coordinates indicated by x and y.
 	 */
 	unsigned long getTileNo(double x, double y) const;
 
