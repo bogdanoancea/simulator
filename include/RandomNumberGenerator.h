@@ -54,19 +54,19 @@ public:
 	double* generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, int n);
 
 	/**
-	 * Generates a random value, normally distributed with mean @param m and standard distribution @param sd
+	 * Generates a random value, normally distributed with mean m and standard distribution sd
 	 * @param m the mean of the normal distribution.
 	 * @param sd the standard deviation of the normal distribution.
-	 * @return a random value, normally distributed with mean @param m and standard distribution @param sd.
+	 * @return a random value, normally distributed with mean m and standard distribution sd.
 	 */
 	double generateNormalDouble(const double m, const double sd);
 
 	/**
-	 * Generates an array with n double values normally distributed with mean @param m and standard deviation @param sd.
+	 * Generates an array with n double values normally distributed with mean m and standard deviation sd.
 	 * @param m the mean of the normal distribution.
 	 * @param sd the standard deviation of the normal distribution.
 	 * @param n the number of values to be generated.
-	 * @return an array with @param n double values normally distributed with mean @param m and standard deviation @apram sd.
+	 * @return an array with n double values normally distributed with mean m and standard deviation sd.
 	 */
 	double* generateNormalDouble(const double m, const double sd, const int n);
 
@@ -100,9 +100,9 @@ public:
 
 
 	/**
-	 * Generates a random value distributed according to an exponential distribution with parameter @param lambda.
+	 * Generates a random value distributed according to an exponential distribution with parameter lambda.
 	 * @param lambda the parameter of the exponential distribution.
-	 * @return a random value distributed according to an exponential distribution with parameter @param lambda.
+	 * @return a random value distributed according to an exponential distribution with parameter lambda.
 	 */
 	double generateExponentialDouble(const double lambda);
 
@@ -156,11 +156,11 @@ public:
 	int* generateBernoulliInt(const double p, const int n);
 
 	/**
-	 * The value of the PDF of the normal distribution for @param x.
+	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.
 	 * @param m the mean of the normal distribution.
 	 * @param s the standard deviation of the normal distribution.
-	 * @return The value of the PDF of the normal distribution for @param x.
+	 * @return The value of the PDF of the normal distribution for x.
 	 */
 	double normal_pdf(double x, double m, double s);
 

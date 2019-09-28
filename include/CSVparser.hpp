@@ -25,7 +25,7 @@ class Row {
 public:
 	/**
 	 * Constructor. It takes a a line of text representing the header of the csv file.
-	 * @param the header line
+	 * @param header the header line
 	 */
 	Row(const vector<string> &header);
 
