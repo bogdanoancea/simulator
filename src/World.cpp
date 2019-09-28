@@ -380,6 +380,9 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				result.push_back(mo);
 			}
 		}
+		else {
+			throw std::runtime_error("No MNO defined! At least one MNO should be defined for a valid simulation");
+		}
 		if (numMNO > 2)
 			throw std::runtime_error("Maximum 2 MNOs are supported!");
 
