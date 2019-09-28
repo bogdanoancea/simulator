@@ -9,13 +9,13 @@
 
 #include <Clock.h>
 #include <ctime>
+#include <Constants.h>
 
 using namespace std;
 using namespace std::chrono;
 
-
 Clock::Clock() :
-		m_initialTime { 0 }, m_currentTime { 0 }, m_increment { 1 }, m_finalTime { 0 } {
+		m_initialTime { Constants::SIM_START_TIME }, m_currentTime { Constants::SIM_START_TIME }, m_increment { Constants::SIM_INCREMENT_TIME }, m_finalTime { Constants::SIM_END_TIME } {
 }
 
 Clock::Clock(unsigned long init, unsigned long end, unsigned long inc) :

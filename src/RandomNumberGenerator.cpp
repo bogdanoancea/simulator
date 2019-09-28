@@ -11,7 +11,6 @@
 #include <cmath>
 #include <ctgmath>
 #include <iostream>
-#include <TNorm.h>
 
 using namespace std;
 
@@ -168,6 +167,14 @@ int* RandomNumberGenerator::generateBernoulliInt(const double p, const int n) {
 	}
 	return (result);
 }
+
+double RandomNumberGenerator::normal_pdf(double x, double m, double s) {
+	const double inv_sqrt_2pi = 0.3989422804014327;
+	double a = (x - m) / s;
+
+	return (inv_sqrt_2pi / s) * exp(-0.5 * a * a);
+}
+
 
 ////------------------------------------------------------------
 //// Compute y_l from y_k

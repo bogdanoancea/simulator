@@ -20,13 +20,13 @@ using namespace geos::geom;
 using namespace std;
 
 /**
- * his class extends the Agent class and defines an object with a location on a map.
+ * This class extends the Agent class and defines an object with a location on a map.
  */
 class LocatableAgent: public Agent {
 public:
 
 	/**
-	 * Constructor of the class. Builds an object that has a location on the map of the simulation
+	 * Constructor of the class. Builds an object that has a location on the map of the simulation.
 	 * @param m a pointer to a Map object used in this simulation.
 	 * @param id the id of the object.
 	 * @param initLocation the initial location of the object.
@@ -40,26 +40,26 @@ public:
 	virtual ~LocatableAgent();
 
 	/**
-	 *  Returns the name of this class
-	 * @return the name of this class
+	 *  Returns the name of this class.
+	 * @return the name of this class.
 	 */
 	const string getName() const override;
 
 	/**
 	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.
-	 * @return a string representation of this class
+	 * @return a string representation of this class.
 	 */
 	const string toString() const override;
 
 	/**
 	 *
-	 * @return the location on the map
+	 * @return the location on the map as a pointer to a Point object.
 	 */
 	virtual Point* getLocation() const;
 
 	/**
-	 * Sets the location of the agent on the map
-	 * @param location the location of the agent on the map
+	 * Sets the location of the agent on the map.
+	 * @param location the location of the agent on the map passed as a pointer to a Point object.
 	 */
 	virtual void setLocation(Point* location);
 

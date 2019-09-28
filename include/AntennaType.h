@@ -12,6 +12,7 @@
 
 /**
  * An enum class that is used to represent the type of an antenna.
+ * There are two types of antennas supported: omnidirectional and directional.
  */
 enum class AntennaType {
 	OMNIDIRECTIONAL, DIRECTIONAL

@@ -22,12 +22,29 @@ public:
 	/**
 	 * If the signal received by a mobile device has a power below this level, the signal is considered only noise and unusable.
 	 */
-	static const double POWER_THRESHOLD;
+	static const double PHONE_POWER_THRESHOLD;
 
 	/**
 	 * If the signal received by a mobile device has a quality below this level, the signal is considered only noise and unusable.
 	 */
-	static const double QUALITY_THRESHOLD;
+	static const double PHONE_QUALITY_THRESHOLD;
+
+
+	/**
+	 * If the signal received by a mobile device has a quality below this level, the signal is considered only noise and unusable.
+	 */
+	static const double PHONE_STRENGTH_THRESHOLD;
+
+	/**
+	 * This value is interpreted according to the connection type:
+	 *  - if the connection uses power it is the minimum value of the signal power received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 *  - if the connection uses signal quality it is the minimum value of the signal quality received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 *  - if the connection uses signal strength it is the minimum value of the signal strength received by a phone not considered as
+	 *  noise. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible.
+	 */
+	static const double PHONE_CONNECTION_THRESHOLD;
 
 	/**
 	 * Antenna power in Watts.
@@ -47,46 +64,47 @@ public:
 	/**
 	 * The Smid parameter of an antenna
 	 */
-	static const double S_MID;
+	static const double ANTENNA_S_MID;
 
 	/**
 	 * The Sstepp parameter of an antenna
 	 */
-	static const double S_STEEP;
+	static const double ANTENNA_S_STEEP;
 
 	/**
 	 * The number of persons used for a simulation
 	 */
-	static const unsigned long NO_PERSONS;
+	static const unsigned long SIM_NO_PERSONS;
 
 	/**
 	 * The number of antenna used for a simulation
 	 */
-	static const unsigned long NO_ANTENNAS;
+	static const unsigned long SIM_NO_ANTENNAS;
 
 	/**
 	 * The number of the mobile devices used for a simulation
 	 */
-	static const unsigned long NO_MOBILE_PHONES;
+	static const unsigned long SIM_NO_MOBILE_PHONES;
 
 	/**
 	 * Default starting time of a simulation
 	 */
-	static const unsigned long START_TIME;
+	static const unsigned long SIM_START_TIME;
 
 	/**
 	 * Default ending time of a simulation
 	 */
-	static const unsigned long END_TIME;
+	static const unsigned long SIM_END_TIME;
 
 	/**
 	 * Default time increment for a simulation
 	 */
-	static const unsigned long INCREMENT_TIME;
+	static const unsigned long SIM_INCREMENT_TIME;
 
-	static const unsigned long STAY_TIME;
+	static const unsigned long SIM_STAY_TIME;
 
-	static const unsigned long INTERVAL_BETWEEN_STAYS;
+	static const unsigned long SIM_INTERVAL_BETWEEN_STAYS;
+
 	/**
 	 * The separator used when information is saved in output files
 	 */
@@ -97,16 +115,6 @@ public:
 	 */
 	static const char* GRID_FILE_NAME;
 
-	/**
-	 * Default number of tiles on OX in the grid
-	 */
-	//static const unsigned long GRID_NO_TILES_X;
-
-	/**
-	 * Default number of tiles on OY in the grid
-	 */
-	//static const unsigned long GRID_NO_TILES_Y;
-
 	static const unsigned long GRID_X_ORIG;
 
 	static const unsigned long GRID_Y_ORIG;
@@ -114,6 +122,7 @@ public:
 	static const double GRID_DIM_TILE_X;
 
 	static const double GRID_DIM_TILE_Y;
+
 	/**
 	 * The name of the file where the probabilities of mobile phones locations are saved
 	 */
@@ -159,15 +168,15 @@ public:
 
 	static const double ANTENNA_SMIN;
 
-	static const unsigned int NUM_MNO;
+	static const unsigned int SIM_NUM_MNO;
 
-	static const char* DEFAULT_MNO_NAME;
+	static const char* SIM_DEFAULT_MNO_NAME;
 
-	static const double PROB_MOBILE_PHONE;
-	static const double PROB_SECOND_MOBILE_PHONE;
+	static const double SIM_PROB_MOBILE_PHONE;
+	static const double SIM_PROB_SECOND_MOBILE_PHONE;
 
-	static const double TREND_ANGLE_1;
-	static const double TREND_ANGLE_2;
+	static const double SIM_TREND_ANGLE_1;
+	static const double SIM_TREND_ANGLE_2;
 
 	static const int RANDOM_SEED;
 

@@ -11,24 +11,27 @@
 #include <Utils.h>
 
 
-const double Constants::POWER_THRESHOLD = 2;
-const double Constants::QUALITY_THRESHOLD = 0.3;
+const double Constants::PHONE_POWER_THRESHOLD = 2;
+const double Constants::PHONE_QUALITY_THRESHOLD = 0.3;
+const double Constants::PHONE_STRENGTH_THRESHOLD = -80;
+const double Constants::PHONE_CONNECTION_THRESHOLD = -80;
+
 const double Constants::ATT_FACTOR = 2;
 
 
-const double Constants::S_MID = -92.5;
-const double Constants::S_STEEP = 0.2;
-const unsigned long Constants::NO_PERSONS = 100;
-const unsigned long Constants::NO_ANTENNAS = 10;
-const double Constants::PROB_MOBILE_PHONE = 0.35;
-const double Constants::PROB_SECOND_MOBILE_PHONE = 0.1;
-const unsigned long Constants::NO_MOBILE_PHONES = Constants::NO_PERSONS * Constants::PROB_MOBILE_PHONE;
+const double Constants::ANTENNA_S_MID = -92.5;
+const double Constants::ANTENNA_S_STEEP = 0.2;
+const unsigned long Constants::SIM_NO_PERSONS = 100;
+const unsigned long Constants::SIM_NO_ANTENNAS = 10;
+const double Constants::SIM_PROB_MOBILE_PHONE = 0.35;
+const double Constants::SIM_PROB_SECOND_MOBILE_PHONE = 0.1;
+const unsigned long Constants::SIM_NO_MOBILE_PHONES = Constants::SIM_NO_PERSONS * Constants::SIM_PROB_MOBILE_PHONE;
 
-const unsigned long Constants::START_TIME = 0;
-const unsigned long Constants::END_TIME = 200;
-const unsigned long Constants::INCREMENT_TIME = 1;
-const unsigned long Constants::STAY_TIME = 5;
-const unsigned long Constants::INTERVAL_BETWEEN_STAYS = 25;
+const unsigned long Constants::SIM_START_TIME = 0;
+const unsigned long Constants::SIM_END_TIME = 200;
+const unsigned long Constants::SIM_INCREMENT_TIME = 1;
+const unsigned long Constants::SIM_STAY_TIME = 5;
+const unsigned long Constants::SIM_INTERVAL_BETWEEN_STAYS = 25;
 
 const char Constants::sep = ',';
 const char* Constants::GRID_FILE_NAME = "grid.csv";
@@ -57,10 +60,10 @@ const double Constants::ANTENNA_POWER = 10;
 const double Constants::ANTENNA_SMIN = -80;
 
 
-const unsigned int Constants::NUM_MNO = 1;
+const unsigned int Constants::SIM_NUM_MNO = 1;
 const int Constants::RANDOM_SEED = 123;
 
-const char* Constants::DEFAULT_MNO_NAME = "MNO";
+const char* Constants::SIM_DEFAULT_MNO_NAME = "MNO";
 
-const double Constants::TREND_ANGLE_1 = 3 * utils::PI / 4;
-const double Constants::TREND_ANGLE_2 = 5 * utils::PI / 4;
+const double Constants::SIM_TREND_ANGLE_1 = 3 * utils::PI / 4;
+const double Constants::SIM_TREND_ANGLE_2 = 5 * utils::PI / 4;

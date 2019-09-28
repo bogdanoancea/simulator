@@ -63,3 +63,9 @@ um_iterator AgentsCollection::end() {
 unsigned long AgentsCollection::size() {
 	return (m_agents.size());
 }
+
+
+void AgentsCollection::printAgents() {
+//not yet implemented
+}
+

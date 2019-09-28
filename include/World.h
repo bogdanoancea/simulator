@@ -27,86 +27,96 @@ using namespace std;
 using namespace tinyxml2;
 
 /**
- * This is the class where all the simulation process takes place. A World object has a map, a clock, a set of agents
- * than can be persons, mobile phones, antennas etc. After generating all the required objects for simulation the runSimulation()
- * method is called to perform the actual simulation. The output of the simulation process is written in several files.
- * Each antenna objects output their registered events in a csv file and after the simulation ends, these files are merged
- * in a single file that is used to computed the posterior localization probabilities for each mobile device. These probabilities
- * are computed using a grid that is overlapped on the map, i.e. we compute the probability of a mobile phone to be in a tile
- * of the grid. A finer the grid mean more accurate localization.
+ * This is the class where the simulation process takes place. A World object has a Map, a Clock, a set of Agents
+ * than can be persons, mobile phones, antennas, mobile operators etc. After generating all the required objects
+ * for simulation by reading the parameters from the input configuration files the runSimulation() method is
+ * called to perform the actual simulation. The output of the simulation process is written in several files.
+ * Antenna objects output their registered events in a .csv file and after the simulation ends, these files are merged
+ * in a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities
+ * are computed using a Grid that is overlapped on the Map, i.e. we compute the probability of a mobile phone to be in a tile
+ * of the grid. A finer the grid means more accurate localization but this come with an important computational cost.
  */
 class World {
 public:
 
 	/**
-	 * Builds a new World object, randomly generating a set of persons, antenna and mobile devices with the default parameters
-	 * @param map a pointer to a Map object where the simulation takes place
-	 * @param numPersons the number of persons to be generated
-	 * @param numAntennas the number of antennas to be generated
+	 * Builds a new World object, randomly generating a set of persons, antennas and mobile devices with the default parameters.
+	 * This class is used only for testing and developing new features. For a real simulation the user should build the Wolrd
+	 * object using the other constructor that takes the name of the input files as params.
+	 * @param map a pointer to a Map object where the simulation takes place.
+	 * @param numPersons the number of persons to be generated.
+	 * @param numAntennas the number of antennas to be generated.
 	 * @param numMobilePhones the number of mobile phones to be generated. These phones are randomly given to persons.
 	 */
 	World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
 	/**
-	 * Builds a new World object, reading the parameters for the Persons, Antennas and Mobile phone from configuration files.
+	 * Builds a new World object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files.
 	 * The configuration files are in XML format and they should be provided as command line parameters. The general parameters
-	 * of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas etc are also
-	 * read from a configuration file
+	 * of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc. are also
+	 * read from a configuration file:
+	 * 	- the persons configuration file is provided through the -p parameter in the command line.
+	 * 	- the antennas configuration file is provided through the -a parameter in the command line.
+	 * 	- the simulation configuration file is provided through the -s parameter in the command line.
+	 * 	- the posterior probabilities configuration file is provided through the -pb parameter in the command line.
+	 *
 	 * @param map a pointer to a Map object where the simulation takes place
-	 * @param configPersonsFileName the configuration file name for the persons object
-	 * @param configAntennasFileName the configuration file name for antenna objects
-	 * @param configSimulationFileName the general configuration file for simulation
+	 * @param configPersonsFileName the configuration file name for the persons objects.
+	 * @param configAntennasFileName the configuration file name for antenna objects.
+	 * @param configSimulationFileName the general configuration file for a simulation.
+	 * @param probabilitiesFileName the config file for the posterior location probabilites.
 	 */
 	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
 			noexcept(false);
 
 	/**
 	 * Destructor
-	 * It releases the memory allocated for the agents collection and the the Clock object.
+	 * It releases the memory allocated for the agents collection and the Clock object.
 	 */
 	virtual ~World();
 
 	/**
 	 * This method is called to perform the actual simulation. During the simulation it outputs the exact positions
-	 * of all persons in a csv file and the positions of antennas at the starting time of the simulation. A simulation
+	 * of all persons in a .csv file and the positions of antennas at the starting time of the simulation. A simulation
 	 * means a number of time steps, at each step every person move to another position and after arriving at their new
-	 * position the mobile phones that they carry try to connect to one of the available antennas.
+	 * positions the mobile phones that they carry try to connect to one of the available antennas. The antennas record
+	 * these events and output them in a file.
 	 */
 	void runSimulation() noexcept(false);
 
 	/**
-	 * Returns the AgentsCollection used in simulation
-	 * @return a pointer to AgentsCollection object
+	 * Returns the AgentsCollection used in simulation.
+	 * @return a pointer to AgentsCollection object.
 	 */
 	AgentsCollection* getAgents() const;
 
 	/**
-	 * Sets the AgentsCollection to be used for simulation
-	 * @param agents a pointer to AgentsCollection object
+	 * Sets the AgentsCollection to be used for simulation.
+	 * @param agents a pointer to AgentsCollection object.
 	 */
 	void setAgents(AgentsCollection* agents);
 
 	/**
-	 * Returns a pointer to a Clock object used for simulation
-	 * @return a pointer to a Clock object used for simulation
+	 * Returns a pointer to a Clock object used for simulation.
+	 * @return a pointer to a Clock object used for simulation.
 	 */
 	Clock* getClock() const;
 
 	/**
-	 * Sets the Clock of the simulation
-	 * @param clock a pointer to a Clock object used for simulation
+	 * Sets the Clock of the simulation.
+	 * @param clock a pointer to a Clock object used for simulation.
 	 */
 	void setClock(Clock* clock);
 
 	/**
-	 * Returns a pointer to a Map object where the simulation takes place
-	 * @return a pointer to a Map object where the simulation takes place
+	 * Returns a pointer to a Map object where the simulation takes place.
+	 * @return a pointer to a Map object where the simulation takes place.
 	 */
-	Map* getMap() const;
+	const Map* getMap() const;
 
 	/**
-	 * Sets the map where the simulation takes place
-	 * @param map a pointer to a Map object where the simulation takes place
+	 * Sets the map where the simulation takes place.
+	 * @param map a pointer to a Map object where the simulation takes place.
 	 */
 	void setMap(Map* map);
 
@@ -117,48 +127,42 @@ public:
 	const string& getGridFilename() const;
 
 	/**
-	 * Returns the name of the file where the probabilities of mobile phones location are saved
-	 * @return the name of the file where the probabilities of mobile phones location are saved
+	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
+	 * @return the name of the file where the probabilities of mobile phones locations are saved.
 	 */
 	map<const unsigned long, const string> getProbFilenames()  {
 		return m_probFilenames;
 	}
 
 	/**
-	 * Returns the name of the file where the antennas exact locations are saved for later analysis
-	 * @return the name of the file where the antennas exact locations are saved for later analysis
+	 * Returns the name of the file where the antennas exact locations are saved for later analysis.
+	 * @return the name of the file where the antennas exact locations are saved for later analysis.
 	 */
 	const string& getAntennasFilename() const;
 
 	/**
-	 * Returns the name of the file where the persons exact locations are saved for later analysis
-	 * @return the name of the file where the persons exact locations are saved for later analysis
+	 * Returns the name of the file where the persons exact locations are saved for later analysis.
+	 * @return the name of the file where the persons exact locations are saved for later analysis.
 	 */
 	const string& getPersonsFilename() const;
 
 	/**
-	 * Returns the dimension of tiles on OX, this number is read from simulation.xml config file
-	 * @return the dimension of tiles on OX, this number is read from simulation.xml config file
+	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.
+	 * @return the dimension of tiles on OX, this number is read from simulation configuration file.
 	 */
 	double getGridDimTileX() const;
 
 	/**
-	 * Returns the dimension of tiles on OY, this number is read from simulation.xml config file
-	 * @return the dimension of tiles on OY, this number is read from simulation.xml config file
+	 * Returns the dimension of tiles on OY, this number is read from simulation configuration file.
+	 * @return the dimension of tiles on OY, this number is read from simulation configuration file.
 	 */
 	double getGridDimTileY() const;
 
 	/**
-	 * Returns the type of the prior probability used to compute the posterior localization probability
-	 * @return the type of the prior probability used to compute the posterior localization probability
+	 * Returns the type of the prior probability used to compute the posterior localization probability.
+	 * @return the type of the prior probability used to compute the posterior localization probability.
 	 */
 	PriorType getPrior() const;
-	unsigned int getNumMno() const;
-	void setNumMno(unsigned int numMno);
-	void addMNO(string name);
-	unsigned getSeed() const;
-	void setSeed(unsigned seed);
-	string parseProbabilities(const string& probabilitiesFileName);
 
 private:
 
@@ -172,11 +176,10 @@ private:
 	double m_GridDimTileX;
 	double m_GridDimTileY;
 	PriorType m_prior;
-	//unsigned int m_numMNO;
 	unsigned m_seed;
 	unsigned long m_stay;
 	unsigned m_intevalBetweenStays;
-
+	double m_connThreshold;
 
 	HoldableAgent::CONNECTION_TYPE m_connType;
 	MovementType m_mvType;
@@ -198,6 +201,8 @@ private:
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
 	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
+	string parseProbabilities(const string& probabilitiesFileName);
+	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 
 };
 

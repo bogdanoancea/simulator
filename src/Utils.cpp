@@ -15,7 +15,7 @@
 #include <Utils.h>
 #include <iomanip>
 #include <iostream>
-
+#include <exception>
 #include <geos/geom/Polygon.h>
 
 namespace utils {
@@ -23,7 +23,9 @@ using namespace geos;
 using namespace geos::geom;
 using namespace std;
 
-vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsigned seed) {
+
+//TODO it is a mess, this function should be written again.
+vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
 	random_generator = RandomNumberGenerator::instance(seed);
@@ -111,7 +113,7 @@ vector<Point*> generatePoints(Map* m, unsigned long n, double percentHome, unsig
 	return (result);
 }
 
-vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
+vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed) {
 	vector<Point*> result;
 	RandomNumberGenerator* random_generator;
 	random_generator = RandomNumberGenerator::instance(seed);
@@ -158,13 +160,13 @@ vector<Point*> generateFixedPoints(Map* m, unsigned long n, unsigned seed) {
 }
 
 void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age"
-			<< setw(15) << "Gender" << setw(15) << "Phone(s) ID" << endl;
+	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
+			<< "Phone(s) ID" << endl;
 }
 
 void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
-			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
+	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+			<< setw(15) << "MNO ID" << endl;
 }
 
 void printMobileOperatorHeader() {
@@ -172,8 +174,7 @@ void printMobileOperatorHeader() {
 }
 
 void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id "
-			<< setw(15) << "MNO Id" << endl;
+	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
@@ -202,7 +203,6 @@ double getValue(XMLElement* el, const char* name, double default_value) {
 	return result;
 }
 
-
 unsigned long getValue(XMLElement* el, const char* name, unsigned long default_value) {
 	long result = default_value;
 	XMLNode* n = getNode(el, name);
@@ -211,12 +211,12 @@ unsigned long getValue(XMLElement* el, const char* name, unsigned long default_v
 	return result;
 }
 
-
 const char* getValue(XMLElement* el, const char* name, const char* default_value) {
 	const char* result = default_value;
 	XMLNode* n = getNode(el, name);
 	if (n)
-		result = n->ToText()->Value();;
+		result = n->ToText()->Value();
+	;
 	return result;
 }
 
@@ -225,6 +225,18 @@ int getValue(XMLElement* el, const char* name, int default_value) {
 	XMLNode* n = getNode(el, name);
 	if (n)
 		result = atoi(n->ToText()->Value());
+	return result;
+}
+
+double getValue(XMLElement* el, const char* name) {
+	double result;
+	XMLNode* n = getNode(el, name);
+	if (n)
+		result = atof(n->ToText()->Value());
+	else {
+		string msg = string { "no value for " } + string { name };
+		throw runtime_error(msg);
+	}
 	return result;
 }
 

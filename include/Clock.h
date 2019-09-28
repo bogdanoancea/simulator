@@ -18,7 +18,8 @@ using namespace std;
 using namespace std::chrono;
 
 /**
- * This is the clock used to synchronize the simulation. All the agents and all other objects involved in a simulation use the same Clock object.
+ * This is the clock used to synchronize the simulation. All the agents and all other objects involved in a simulation
+ * use the same Clock object.
  * The Clock will be initialized with the value of the starting and ending time of the simulation and will keep a current time during
  * the simulation. At each step of the simulation the current time will be increased by an increment. Starting time, ending time, current
  * time and the time increment are only conventional units and they do not depend in any way on the real clock of the computer.
@@ -32,9 +33,9 @@ public:
 
 	/**
 	 * Constructor of the class. It takes the starting and ending time of the simulation as parameters as well as the time increment.
-	 * @param start the initial moment when the simulation starts
-	 * @param end the time when simulation will end
-	 * @param incr time increment, at each step of the simulation the current time will be incremented by this quantity
+	 * @param start the initial moment when the simulation starts.
+	 * @param end the time when simulation ends.
+	 * @param incr the time increment. At each step of the simulation the current time is incremented by this quantity.
 	 */
 	Clock(unsigned long start, unsigned long end, unsigned long incr);
 
@@ -44,47 +45,48 @@ public:
 	virtual ~Clock();
 
 	/**
-	 * increments the current time
-	 * @return the current time after incrementation
+	 * increments the current time.
+	 * @return the current time after incrementation.
 	 */
 	unsigned long tick();
 
 	/**
-	 * @return the current time
+	 * @return the current time of the simulator.
 	 */
 	unsigned long getCurrentTime() const;
 
 	/**
-	 * Sets the current time
-	 * @param currentTime the value of the current time to be set
+	 * Sets the current time of the simulator.
+	 * @param currentTime the value of the current time to be set.
 	 */
 	void setCurrentTime(unsigned long currentTime);
 
 	/**
-	 * @return the time increment used in simulation
+	 * @return the time increment used in simulation.
 	 */
 	unsigned long getIncrement() const;
 
 	/**
-	 * Sets the time increment to beused in simulation
-	 * @param increment  the value of the time increment
+	 * Sets the time increment to be used in a simulation.
+	 * @param increment the value of the time increment.
 	 */
 	void setIncrement(unsigned long increment);
 
 	/**
-	 *@return the starting time of the simulation
+	 *@return the starting time of the simulation.
 	 */
 	unsigned long getInitialTime() const;
 
 	/**
-	 * Sets the starting time of the simulation
+	 * Sets the starting time of the simulation.
 	 * @param initialTime the value of the starting time of the simulation.
 	 */
 	void setInitialTime(unsigned long initialTime);
 
 	/**
 	 *
-	 * @return the real time read from the computer clock. It is used only to register the exact date and time of a simulation.
+	 * @return the real time read from the computer clock. It is used only to register the
+	 * exact date and time of a simulation.
 	 */
 	time_t realTime();
 
@@ -95,8 +97,7 @@ public:
 
 	/**
 	 * Sets the ending time of a simulation.
-	 * @param finalTime the value of the ending time of a simulation. The user of this class will have to give correct values
-	 * for starting and ending times (ending time > starting time) since no checks are done by the methods of this class.
+	 * @param finalTime the value of the ending time of a simulation.
 	 */
 	void setFinalTime(unsigned long finalTime);
 

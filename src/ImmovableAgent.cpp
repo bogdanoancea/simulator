@@ -13,13 +13,11 @@
 using namespace geos;
 using namespace geos::geom;
 
-
 ImmovableAgent::ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock) :
 		LocatableAgent(m, id, initialPosition, clock) {
 }
 
 ImmovableAgent::~ImmovableAgent() {
-
 }
 
 const string ImmovableAgent::toString() const {

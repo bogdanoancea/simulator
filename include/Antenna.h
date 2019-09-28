@@ -21,7 +21,6 @@
 #include <fstream>
 #include <utility>
 
-
 using namespace tinyxml2;
 using namespace geos;
 using namespace geos::geom;
@@ -33,7 +32,8 @@ class Antenna: public ImmovableAgent {
 public:
 
 	/**
-	 * Constructor of the class. It builds an object providing directly the values for each parameter of the antenna.
+	 * Constructor of the class. It builds an object providing directly the values for each parameter of the antenna. This constructor
+	 * is used only for testing purposes. For a real simulation the other constructor of the class should be used.
 	 * @param m a pointer to the Map object used for the simulation
 	 * @param id the id of the Antenna
 	 * @param initPosition the position of the antenna on the map
@@ -47,8 +47,8 @@ public:
 	 * @param type it could have two values AntennaType::OMNIDIRECTIONAL for omnidirectional antennas
 	 * and AntennaType::DIRECTIONAL for directional antennas.
 	 */
-	explicit Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-			unsigned long maxConnections, double smid, double ssteep, AntennaType type);
+	explicit Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections,
+			double smid, double ssteep, AntennaType type);
 
 	/**
 	 * Constructor of the class. It builds an object taking the value of the antenna' parameters from an XML Element,
@@ -56,16 +56,15 @@ public:
 	 * @param m a pointer to the Map object used for the simulation
 	 * @param clock a pointer to the Clock object used for the simulation
 	 * @param id the id of the Antenna
-	 * @param el the XML Element containing the parameters of the Antenna.
+	 * @param el the XML Element containing the parameters of the Antenna
+	 * @param mnos a vector with pointers to MobileOperator objects.
 	 */
 	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos);
-
 
 	/**
 	 * Destructor of the class. It closes the file where the Antenna dumps the registered events during the simulation.
 	 */
 	virtual ~Antenna();
-
 
 	/**
 	 * Overrides the same method from the superclass.
@@ -150,14 +149,12 @@ public:
 	 */
 	void setType(AntennaType type);
 
-
 	/**
 	 * Computes the signal strength at the distance dist from antenna location.
 	 * @param dist the distance from antenna location.
 	 * @return the signal strength.
 	 */
 	double S(double dist) const;
-
 
 	/**
 	 * Returns the value of the Smid antenna parameter.
@@ -170,7 +167,6 @@ public:
 	 * @param smid the value of the Smid antenna parameter.
 	 */
 	void setSmid(double smid);
-
 
 	/**
 	 * Returns the value of the Ssteep antenna parameter.
@@ -193,7 +189,7 @@ public:
 
 	/**
 	 * Computes the signal quality given by an antenna in a certain location.
-	 * @param c coordinates of the location where we want to compute the signal quality.
+	 * @param c represents the coordinates of the location where we want to compute the signal quality.
 	 * @return the signal quality.
 	 */
 	double computeSignalQuality(const Coordinate c) const;
@@ -205,41 +201,61 @@ public:
 	 */
 	double computePower(const Point* p) const;
 
+	/**
+	 * Computes the coverage area of an antenna. It is defined as the area where the signal strength is greater than S_min
+	 * @return a Polygon* representing the coverage area of the antenna.
+	 */
+	Geometry* getCoverageArea();
 
-	double getAzimDBBack() const;
-	void setAzimDBBack(double azimDBBack);
-	double getBeamH() const;
-	void setBeamH(double beamH);
-	double getBeamV() const;
-	void setBeamV(double beamV);
-	double getElevDBBack() const;
-	void setElevDBBack(double elevDBBack);
-	double getHeight() const;
-	void setHeight(double height);
-	double getTilt() const;
-	void setTilt(double tilt);
-	double getDirection() const;
-	void setDirection(double direction);
+	/**
+	 * Returns a pointer to an MNO object representing the MNO that own this antenna.
+	 * @return a pointer to an MNO object representing the MNO that own this antenna.
+	 */
 	MobileOperator* getMNO() const;
-	void setMNO(MobileOperator* mno);
+
+	/**
+	 * Builds the name of the output file where the events registered by this antenna during a simulation are saved.
+	 * @return the name of the output file where the events registered by this antenna during a simulation are saved.
+	 */
 	string getAntennaOutputFileName() const;
+
+	/**
+	 * Computes the radius of the coverage area for an omnidirectional antenna. This area is a circle where the signal strength is greater than S_min.
+	 * @return the radius of the coverage area for an omnidirectional antenna.
+	 */
 	double getRmax() const;
+
+	/**
+	 * Returns the value of the minimum signal strength that defines the coverage area of this antenna.
+	 * @return the value of the minimum signal strength that defines the coverage area of this antenna.
+	 */
 	double getSmin() const;
+
+	/**
+	 * Builds a wkt string that represents the coverage area of this antenna.
+	 * @return a wkt string that represents the coverage area of this antenna.
+	 */
 	string dumpCell() const;
-	//double* getSignalQualityTileCenters() const;
+
+
+	/**
+	 * Computes the signal strength given by an antenna in a certain location.
+	 * @param p the location where we want to compute the signal strength.
+	 * @return the signal strength.
+	 */
+	double computeSignalStrength(const Point* p) const;
 
 private:
 
 	bool alreadyRegistered(HoldableAgent * ag);
 	void registerEvent(HoldableAgent * ag, const EventType event, const bool verbose);
 	unsigned long getNumActiveConections();
-	double S0()const;
+	double S0() const;
 	double SDist(double dist) const;
-	double computeSignalQualityOmnidirectional(const Point* p) const;
 	double computeSignalQualityOmnidirectional(const Coordinate c) const;
-	double computeSignalQualityDirectional(const Point* p) const;
 	double computeSignalQualityDirectional(const Coordinate c) const;
 	double computeSignalStrengthDirectional(const Coordinate c) const;
+	double computeSignalStrengthOmnidirectional(const Coordinate c) const;
 
 	void setLocationWithElevation();
 	double projectToEPlane(double b, double c, double beta) const;
@@ -249,6 +265,9 @@ private:
 	double normalizeAngle(double angle) const;
 	double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
 	double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
+
+	Geometry* getCoverageAreaOmnidirectional();
+	Geometry* getCoverageAreaDirectional();
 
 	double m_ple;
 	double m_power;
@@ -274,8 +293,6 @@ private:
 
 	double m_rmax;
 	double m_Smin;
-	double m_minQuality;
-	//double* m_signalQualityTileCenters;
 	vector<pair<double, double>> m_mapping_azim;
 	vector<pair<double, double>> m_mapping_elev;
 	double m_sd_azim;
