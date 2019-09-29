@@ -586,3 +586,6 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 	return probsFileNamePrefix;
 }
 
+map<const unsigned long, const string> World::getProbFilenames()  const {
+	return m_probFilenames;
+}

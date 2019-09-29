@@ -130,9 +130,7 @@ public:
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
 	 */
-	map<const unsigned long, const string> getProbFilenames()  {
-		return m_probFilenames;
-	}
+	map<const unsigned long, const string> getProbFilenames()  const;
 
 	/**
 	 * Returns the name of the file where the antennas exact locations are saved for later analysis.
