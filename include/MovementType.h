@@ -20,6 +20,7 @@
  *
  *  Created on: May 15, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef MOVEMENTTYPE_H_

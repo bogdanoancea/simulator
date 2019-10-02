@@ -16,7 +16,7 @@
  *
  * A data simulator for mobile phone network events
  *
- *
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef CSVPARSER_HPP

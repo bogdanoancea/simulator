@@ -15,6 +15,8 @@
  * <https://ec.europa.eu/info/european-union-public-licence_en>
  *
  * A data simulator for mobile phone network events
+ * 		Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  *
  */
 

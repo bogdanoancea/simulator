@@ -20,6 +20,7 @@
  *
  *  Created on: Apr 4, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef MAP_H

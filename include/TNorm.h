@@ -20,6 +20,7 @@
  *
  *  Created on: May 9, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef TNORM_H_

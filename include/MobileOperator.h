@@ -20,6 +20,7 @@
  *
  *  Created on: Jul 2, 2019
  *      Author: Bogdan.Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef INCLUDE_MOBILEOPERATOR_H_

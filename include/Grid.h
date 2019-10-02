@@ -20,6 +20,7 @@
  *
  *  Created on: May 7, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef GRID_H_
