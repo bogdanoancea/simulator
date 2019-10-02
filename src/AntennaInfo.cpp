@@ -20,6 +20,7 @@
  *
  *  Created on: May 16, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <AntennaInfo.h>

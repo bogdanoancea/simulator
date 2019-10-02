@@ -20,6 +20,7 @@
  *
  *  Created on: Apr 18, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <RandomNumberGenerator.h>

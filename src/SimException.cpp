@@ -18,7 +18,8 @@
  *
  * SimException.cpp
  * Created on: Aug 30, 2019
- *      Author: bogdanoancea
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include "SimException.h"

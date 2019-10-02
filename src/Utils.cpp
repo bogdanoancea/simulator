@@ -20,6 +20,7 @@
  *
  *  Created on: Apr 11, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <geos/geom/Coordinate.h>

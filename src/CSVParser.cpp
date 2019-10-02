@@ -19,6 +19,7 @@
  *
  *  Created on: Apr 24, 2019
  *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <fstream>

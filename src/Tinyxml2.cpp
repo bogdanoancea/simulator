@@ -34,7 +34,7 @@ distribution.
  * <https://ec.europa.eu/info/european-union-public-licence_en>
  *
  * A data simulator for mobile phone network events
- *
+ *      Email : bogdan.oancea@gmail.com
  */
 
 
