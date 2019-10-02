@@ -54,6 +54,8 @@ public:
 	 * @param initSpeed the initial speed of this person. It is provided in the configuration file.
 	 * @param age the age of the person. The age is generated using a uniform or a normal distribution.
 	 * @param gender the gender of the person.
+	 * @param timeStay the average time of a stop
+	 * @param intervalBetweenStays the average time between two consecutive stops.
 	 */
 	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender, unsigned long timeStay, unsigned long intervalBetweenStays);
 

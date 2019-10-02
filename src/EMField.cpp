@@ -55,7 +55,7 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned l
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
-		double max = numeric_limits<double>::min();
+		double max = -1;
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoId)
 				continue;
@@ -76,7 +76,7 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
-		double max = numeric_limits<double>::min();
+		double max = -1.0;
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoId)
 				continue;

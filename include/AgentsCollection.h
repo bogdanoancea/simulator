@@ -66,10 +66,11 @@ public:
 	 */
 	Agent* deleteAgent(Agent* a);
 
+
 	/**
 	 * Returns a pointer to an agent from the collection. The agent/object is identified by its id.
-	 * @param id of the agent to be returned.
-	 * @return a pointer to the agent with the id equal to the @param id. If there is no agent with the provided id,
+	 * @param id the id of the agent to be returned.
+	 * @return a pointer to the agent with the id equal to the parameter id. If there is no agent with the provided id,
 	 * this method returns nullptr.
 	 */
 	Agent* getAgent(const unsigned long id) const;

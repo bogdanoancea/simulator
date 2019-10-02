@@ -71,7 +71,8 @@ public:
 	 * @param m a pointer to the Map object used for the simulation
 	 * @param clock a pointer to the Clock object used for the simulation
 	 * @param id the id of the Antenna
-	 * @param el the XML Element containing the parameters of the Antenna.
+	 * @param el the XML Element containing the parameters of the Antenna
+	 * @param mnos a vector with pointers to MobileOperator objects.
 	 */
 	explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos);
 

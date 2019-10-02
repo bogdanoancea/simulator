@@ -70,15 +70,16 @@ public:
 	 * The configuration files are in XML format and they should be provided as command line parameters. The general parameters
 	 * of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc. are also
 	 * read from a configuration file:
-	 * 		- the persons configuration file is provided through the -p parameter in the command line.
-	 *		- the antennas configuration file is provided through the -a parameter in the command line.
-	 *		- the simulation configuration file is provided through the -s parameter in the command line.
-	 *		- the posterior probabilities configuration file is provided through the -pb parameter in the command line.
+	 * 	- the persons configuration file is provided through the -p parameter in the command line.
+	 * 	- the antennas configuration file is provided through the -a parameter in the command line.
+	 * 	- the simulation configuration file is provided through the -s parameter in the command line.
+	 * 	- the posterior probabilities configuration file is provided through the -pb parameter in the command line.
 	 *
 	 * @param map a pointer to a Map object where the simulation takes place
 	 * @param configPersonsFileName the configuration file name for the persons objects.
 	 * @param configAntennasFileName the configuration file name for antenna objects.
 	 * @param configSimulationFileName the general configuration file for a simulation.
+	 * @param probabilitiesFileName the config file for the posterior location probabilites.
 	 */
 	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
 			noexcept(false);
@@ -144,9 +145,7 @@ public:
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
 	 */
-	map<const unsigned long, const string> getProbFilenames()  {
-		return m_probFilenames;
-	}
+	map<const unsigned long, const string> getProbFilenames()  const;
 
 	/**
 	 * Returns the name of the file where the antennas exact locations are saved for later analysis.
@@ -216,6 +215,7 @@ private:
 	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
+	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 
 };
 
