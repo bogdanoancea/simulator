@@ -4,6 +4,9 @@
 <p>!!! Warning !!!</p>
 This project is in early stages of development. 
 Major code revisions are expected to occur without notice and on a daily basis.
+For any question about this software please write me at: bogdan.oancea@gmail.com
+
+<br>Bogdan Oancea
 </p>
 
 <p>
