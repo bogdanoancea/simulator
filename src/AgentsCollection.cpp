@@ -1,5 +1,20 @@
 /*
- * Data simulator for mobile phone network events
+ * Copyright (C) 2019  Bogdan Oancea
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version and under the EUPL free software license version 1.0 or later.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/> and
+ * <https://ec.europa.eu/info/european-union-public-licence_en>
+ *
+ * A data simulator for mobile phone network events
  *
  * AgentsCollection.cpp
  *
@@ -25,7 +40,6 @@ void AgentsCollection::addAgent(Agent* a) {
 	m_agents.insert(std::pair<string, Agent*>(typeid(*a).name(), a));
 }
 
-
 Agent* AgentsCollection::deleteAgent(Agent* a) {
 	Agent* result = nullptr;
 	std::pair<um_iterator, um_iterator> iterpair = m_agents.equal_range(typeid(*a).name());
@@ -39,7 +53,7 @@ Agent* AgentsCollection::deleteAgent(Agent* a) {
 	return (result);
 }
 
-std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const string& agentType)  {
+std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const string& agentType) {
 	return (m_agents.equal_range(agentType));
 }
 
@@ -63,7 +77,6 @@ um_iterator AgentsCollection::end() {
 unsigned long AgentsCollection::size() {
 	return (m_agents.size());
 }
-
 
 void AgentsCollection::printAgents() {
 //not yet implemented
