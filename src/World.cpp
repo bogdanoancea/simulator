@@ -138,7 +138,7 @@ void World::runSimulation() noexcept(false) {
 	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	for (auto it = itr0.first; it != itr0.second; it++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
-		ofstream& f = mo->getSignalQualityFile();
+		ofstream& f = mo->getSignalFile();
 		f << "Antenna ID" << sep;
 		unsigned long noTiles = getMap()->getGrid()->getNoTiles();
 		for (unsigned long i = 0; i < noTiles - 1; i++) {
@@ -604,4 +604,8 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 
 map<const unsigned long, const string> World::getProbFilenames()  const {
 	return m_probFilenames;
+}
+
+HoldableAgent::CONNECTION_TYPE World::getConnectionType() const{
+	return (m_connType);
 }

@@ -93,9 +93,9 @@ public:
 	ofstream& getAntennaCellsFile() ;
 
 	/**
-	 * @return a file where the signal quality values for all antennas belonging to this mobile Operator and all tiles of the gird are saved.
+	 * @return a file where the signal quality/strength/power values for all antennas belonging to this mobile Operator and all tiles of the grid are saved.
 	 */
-	ofstream& getSignalQualityFile() ;
+	ofstream& getSignalFile() ;
 
 
 private:
