@@ -47,7 +47,7 @@ MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock
 	m_antennaCells << "AntennaId" << sep << "Cell Coordinates" << endl;
 
 	ostringstream quality;
-	quality << "SignalQuality_" << name << ".csv";
+	quality << "SignalMeasure_" << name << ".csv";
 	try {
 		m_signalQuality.open(quality.str(), ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -94,6 +94,6 @@ ofstream& MobileOperator::getAntennaCellsFile() {
 	return (m_antennaCells);
 }
 
-ofstream& MobileOperator::getSignalQualityFile() {
+ofstream& MobileOperator::getSignalFile() {
 	return (m_signalQuality);
 }

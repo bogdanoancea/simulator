@@ -218,6 +218,13 @@ public:
 	double computePower(const Point* p) const;
 
 	/**
+	 * Computes the power of the signal given by an antenna in a certain location.
+	 * @param c the location where we want to compute the power of the signal.
+	 * @return the power of the signal in the location given by Coordinate c.
+	 */
+	double computePower(const Coordinate c) const;
+
+	/**
 	 * Computes the coverage area of an antenna. It is defined as the area where the signal strength is greater than S_min
 	 * @return a Polygon* representing the coverage area of the antenna.
 	 */
@@ -260,6 +267,21 @@ public:
 	 * @return the signal strength.
 	 */
 	double computeSignalStrength(const Point* p) const;
+
+	/**
+	 * Computes the signal strength given by an antenna in a certain location.
+	 * @param c the location where we want to compute the signal strength.
+	 * @return the signal strength.
+	 */
+	double computeSignalStrength(const Coordinate c) const;
+
+	/**
+	 * compute the signal strength, signal quality or signal power depending on the value of the handoverType parameter
+	 * @param handoverType the handover mechanism: signal quality, signal strength, signal power
+	 * @param c - a pointer to a coordinate that defines the location where the signal quality/strength/power should be computed
+	 * @return the signal strength, signal quality or signal power depending on the value of the handoverType parameter
+	 */
+	double computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const;
 
 private:
 

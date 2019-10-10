@@ -178,6 +178,14 @@ public:
 	 */
 	PriorType getPrior() const;
 
+	/** Returns the type of the handover mechanism
+	 *
+	 * @return the type of the handover mechanism: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY,
+	 *  HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH, HoldableAgent::CONNECTION_TYPE::USING_POWER
+	 */
+	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
+
+
 private:
 
 	Map* m_map;

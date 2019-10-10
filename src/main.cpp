@@ -136,12 +136,13 @@ int main(int argc, char** argv) {
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = static_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
-					ofstream& qualityFile = a->getMNO()->getSignalQualityFile();
+					ofstream& qualityFile = a->getMNO()->getSignalFile();
 					qualityFile << a->getId() << sep;
+					HoldableAgent::CONNECTION_TYPE handoverMechanism = w.getConnectionType();
 					for (unsigned long i = 0; i < noTiles - 1; i++) {
-						qualityFile << a->computeSignalQuality(tileCenters[i]) << sep;
+						qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[i]) << sep;
 					}
-					qualityFile << a->computeSignalQuality(tileCenters[noTiles - 1]) << endl;
+					qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[noTiles - 1]) << endl;
 
 					string fileName = a->getAntennaOutputFileName();
 					Parser file = Parser(fileName, DataType::eFILE, ',', true);

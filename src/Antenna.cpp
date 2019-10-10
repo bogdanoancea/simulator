@@ -23,7 +23,6 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-
 #include <Antenna.h>
 #include <HoldableAgent.h>
 #include <EventType.h>
@@ -320,7 +319,6 @@ double Antenna::computeSignalQuality(const Coordinate c) const {
 	return (result);
 }
 
-
 double Antenna::computeSignalStrengthOmnidirectional(const Coordinate c) const {
 	Point *p = getLocation();
 	const double dz = c.z - p->getZ();
@@ -507,6 +505,15 @@ double Antenna::computePower(const Point* p) const {
 	return (result);
 }
 
+double Antenna::computePower(const Coordinate c) const {
+	double result = 0.0;
+	const Coordinate dest = *(getLocation()->getCoordinate());
+	if (m_type == AntennaType::OMNIDIRECTIONAL)
+		result = m_power * pow(c.distance(dest), -m_ple);
+	return (result);
+}
+
+
 const string Antenna::getName() const {
 	return ("Antenna");
 }
@@ -602,15 +609,39 @@ Geometry* Antenna::getCoverageAreaDirectional() {
 		return (getCoverageAreaOmnidirectional());
 }
 
-
 double Antenna::computeSignalStrength(const Point* p) const {
 	double result = 0.0;
 	const Coordinate* c = p->getCoordinate();
+	result = computeSignalStrength(*c);
+	return (result);
+}
+
+
+double Antenna::computeSignalStrength(const Coordinate c) const {
+	double result = 0.0;
 	if (m_type == AntennaType::OMNIDIRECTIONAL) {
-		result = computeSignalStrengthOmnidirectional(*c);
+		result = computeSignalStrengthOmnidirectional(c);
 	}
 	if (m_type == AntennaType::DIRECTIONAL) {
-		result = computeSignalStrengthDirectional(*c);
+		result = computeSignalStrengthDirectional(c);
 	}
 	return (result);
+}
+
+
+
+double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const {
+	double result = 0.0;
+	switch (handoverType) {
+	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
+		result = computeSignalQuality(c);
+		break;
+	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
+		result = computeSignalStrength(c);
+		break;
+	case HoldableAgent::CONNECTION_TYPE::USING_POWER:
+		result = computePower(c);
+		break;
+	}
+	return result;
 }
