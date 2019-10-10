@@ -20,8 +20,8 @@ endif
 ifeq ($(OS),Windows_NT)
 	CXX    = g++.exe
 	TARGET = simulator.exe
-LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
-LIBS = $(GEOS_HOME)/libgeos.dll.a
+	LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
+	LIBS = $(GEOS_HOME)/libgeos.dll.a
 	CXXFLAGS = -march=native
 
 else
