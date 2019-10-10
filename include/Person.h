@@ -35,7 +35,7 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This class represents a person that can have a mobile phone.
+ * This class represents a person that can have 0,1 or 2  mobile phone(s). During the simulation the person move around the map, carrying his/her mobile devices.
  */
 class Person: public MovableAgent {
 public:
