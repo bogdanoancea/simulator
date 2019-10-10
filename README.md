@@ -79,7 +79,7 @@ Assuming that you want to download the source code in D:\data-simulator folder, 
 
 <p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator (for example D:\data-simulator\simulator), 
 GEOS_HOME should point to
-the folder where is your GEOS source code and MSYS_HOME should indicate the folder where is your MSYS2 development environment.
+the folder where you installed GEOS library (for example C:\msys64\mingw64\lib) and MSYS_HOME should indicate the folder where is your MSYS2 development environment.
 After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the folder where is your micro-simulator 
 source code and type:
 <br>$ make
@@ -119,7 +119,7 @@ a shell:
 <b>How to run the simulator</b>
 <p>
 In a terminal (command prompt) type:
-<br>$simulator -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -pb probabilities.xml -v -o
+<br>$simulator -m ./data/dataset1/map.wkt -s ./data/dataset1/simulation.xml -a ./data/dataset1/antennas.xml -p ./data/dataset1/persons.xml -pb ./data/dataset1/probabilities.xml -v -o
 <br>
 <br>where the following files provide input parameters:
 <br> map.wkt is the map of the simulation
