@@ -642,6 +642,9 @@ double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType
 	case HoldableAgent::CONNECTION_TYPE::USING_POWER:
 		result = computePower(c);
 		break;
+	case HoldableAgent::UNKNOWN:
+		throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
+		break;
 	}
 	return result;
 }
