@@ -98,6 +98,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
+
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
@@ -105,6 +106,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
 	for (unsigned long i = 0; i < antennas.size(); i++) {
+		antennas[i]->setHandoverMechanism(getConnectionType());
 		m_agentsCollection->addAgent(antennas[i]);
 		EMField::instance()->addAntenna(antennas[i]);
 	}
@@ -596,7 +598,6 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 			m_prior = PriorType::REGISTER;
 		else
 			m_prior = Constants::PRIOR_PROBABILITY;
-		;
 		probsFileNamePrefix = getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX);
 	}
 	return probsFileNamePrefix;

@@ -101,8 +101,8 @@ public:
 private:
 	const string m_name;
 	const double m_probMobilePhone;
-	ofstream m_antennaCells;
-	ofstream m_signalQuality;
+	ofstream m_antennaCellsFileName;
+	ofstream m_signalMeasureFileName;
 };
 
 #endif /* INCLUDE_MOBILEOPERATOR_H_ */

@@ -282,6 +282,8 @@ public:
 	 * @return the signal strength, signal quality or signal power depending on the value of the handoverType parameter
 	 */
 	double computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const;
+	HoldableAgent::CONNECTION_TYPE getHandoverMechanism() const;
+	void setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechanism);
 
 private:
 
@@ -331,10 +333,13 @@ private:
 
 	double m_rmax;
 	double m_Smin;
+	double m_Qmin;
 	vector<pair<double, double>> m_mapping_azim;
 	vector<pair<double, double>> m_mapping_elev;
 	double m_sd_azim;
 	double m_sd_elev;
+
+	HoldableAgent::CONNECTION_TYPE m_handoverMechanism;
 };
 
 #endif /* ANTENNA_H_ */
