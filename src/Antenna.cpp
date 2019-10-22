@@ -64,7 +64,8 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
@@ -81,18 +82,23 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 }
 
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
-		ImmovableAgent(m, id, nullptr, clk), m_cell{nullptr}, m_rmax{0}, m_handoverMechanism{HoldableAgent::CONNECTION_TYPE::UNKNOWN}  {
+		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
 
 	char sep = Constants::sep;
 	XMLNode* n = getNode(antennaEl, "mno_name");
 	if (n) {
 		const char* mno_name = n->ToText()->Value();
+		m_MNO = nullptr;
 		for (unsigned int i = 0; i < mnos.size(); i++) {
 			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
 				m_MNO = mnos.at(i);
+				break;
 			}
 		}
-	} else {
+		if (m_MNO == nullptr)
+			throw runtime_error("Unknown MNO " + string(mno_name));
+	}
+	else {
 		m_MNO = mnos.at(0);
 	}
 
@@ -133,7 +139,8 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
@@ -144,7 +151,8 @@ Antenna::~Antenna() {
 	if (m_file.is_open()) {
 		try {
 			m_file.close();
-		} catch (std::ofstream::failure& e) {
+		}
+		catch (std::ofstream::failure& e) {
 			cerr << "Error closing output files!" << endl;
 		}
 	}
@@ -191,11 +199,13 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
 			result = true;
-		} else {
+		}
+		else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE, false);
 			result = true;
 		}
-	} else {
+	}
+	else {
 		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE, false);
 	}
 
@@ -241,22 +251,23 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
 				<< ag->getId() << sep;
 		switch (event) {
-		case EventType::ATTACH_DEVICE:
-			cout << " Attached ";
-			break;
-		case EventType::DETACH_DEVICE:
-			cout << " Detached ";
-			break;
-		case EventType::ALREADY_ATTACHED_DEVICE:
-			cout << " In range, already attached ";
-			break;
-		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-			cout << " In range, not attached ";
+			case EventType::ATTACH_DEVICE:
+				cout << " Attached ";
+				break;
+			case EventType::DETACH_DEVICE:
+				cout << " Detached ";
+				break;
+			case EventType::ALREADY_ATTACHED_DEVICE:
+				cout << " In range, already attached ";
+				break;
+			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+				cout << " In range, not attached ";
 		}
 		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
 				<< ag->getMap()->getGrid()->getTileNo(ag->getLocation());
 		cout << endl;
-	} else {
+	}
+	else {
 		stringstream ss;
 		const Grid* g = this->getMap()->getGrid();
 		if (g != nullptr)
@@ -267,7 +278,8 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		if (m_file.is_open()) {
 			m_file << ss.str();
 			m_file.flush();
-		} else
+		}
+		else
 			cout << ss.str();
 	}
 }
@@ -483,18 +495,18 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 		cc = 4;
 
 	switch (cc) {
-	case 1:
-		result = cos(d2r(lambda - beta)) * d;
-		break;
-	case 2:
-		result = cos(d2r(beta - lambda)) * d;
-		break;
-	case 3:
-		result = -cos(d2r(lambda + beta)) * d;
-		break;
-	case 4:
-		result = cos(d2r(180 - lambda - beta)) * d;
-		break;
+		case 1:
+			result = cos(d2r(lambda - beta)) * d;
+			break;
+		case 2:
+			result = cos(d2r(beta - lambda)) * d;
+			break;
+		case 3:
+			result = -cos(d2r(lambda + beta)) * d;
+			break;
+		case 4:
+			result = cos(d2r(180 - lambda - beta)) * d;
+			break;
 	}
 	return (result);
 }
@@ -617,14 +629,16 @@ Geometry* Antenna::getCoverageAreaDirectional() {
 		if (angle == 0) {
 			init = Coordinate(xx, yy);
 			cl->add(init);
-		} else
+		}
+		else
 			cl->add(Coordinate(xx, yy));
 	}
 	if (cl != nullptr) {
 		cl->add(init);
 		LinearRing* lr = this->getMap()->getGlobalFactory()->createLinearRing(cl);
 		return (this->getMap()->getGlobalFactory()->createPolygon(lr, nullptr));
-	} else
+	}
+	else
 		return (getCoverageAreaOmnidirectional());
 }
 
@@ -649,18 +663,18 @@ double Antenna::computeSignalStrength(const Coordinate c) const {
 double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const {
 	double result = 0.0;
 	switch (handoverType) {
-	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
-		result = computeSignalQuality(c);
-		break;
-	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
-		result = computeSignalStrength(c);
-		break;
-	case HoldableAgent::CONNECTION_TYPE::USING_POWER:
-		result = computePower(c);
-		break;
-	case HoldableAgent::UNKNOWN:
-		throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
-		break;
+		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
+			result = computeSignalQuality(c);
+			break;
+		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
+			result = computeSignalStrength(c);
+			break;
+		case HoldableAgent::CONNECTION_TYPE::USING_POWER:
+			result = computePower(c);
+			break;
+		case HoldableAgent::UNKNOWN:
+			throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
+			break;
 	}
 	return result;
 }
