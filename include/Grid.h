@@ -44,7 +44,7 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This class implements a gird  of rectangular tiles overlapped on the map of the simulation. This grid is used to compute
+ * This class implements a grid  of rectangular tiles overlapped on the map of the simulation. This grid is used to compute
  * the "observed" location of a mobile phone. This means that we compute the probability of a mobile device to be in a
  * specific tile of the grid using the data recorded by each antenna during the simulation. A finer grid will give a
  * more accurate location but the computational cost increase when the size of the tiles decrease.

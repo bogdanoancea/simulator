@@ -30,6 +30,9 @@
 #include <Clock.h>
 #include <string>
 
+/**
+ * This is an abstract class, the base class for all agents involved in a simulation.
+ */
 class Agent {
 public:
 

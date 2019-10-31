@@ -34,7 +34,8 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This is a class that represents an agent that can have a location on map but it cannot move. The only subclass of it is Antenna.
+ * This is a class that represents an agent that can have a location on map but it cannot move.
+ * The only subclass of it is Antenna.
  */
 class ImmovableAgent: public LocatableAgent {
 public:
