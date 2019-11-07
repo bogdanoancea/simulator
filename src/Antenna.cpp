@@ -55,16 +55,17 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power, unsigned long maxConnections, double smid,
-		double ssteep, AntennaType type) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid { smid }, m_SSteep { ssteep }, m_type {
-				type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = getAntennaOutputFileName();
 	char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
@@ -81,18 +82,23 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 }
 
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
-		ImmovableAgent(m, id, nullptr, clk) {
+		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
 
 	char sep = Constants::sep;
 	XMLNode* n = getNode(antennaEl, "mno_name");
 	if (n) {
 		const char* mno_name = n->ToText()->Value();
+		m_MNO = nullptr;
 		for (unsigned int i = 0; i < mnos.size(); i++) {
 			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
 				m_MNO = mnos.at(i);
+				break;
 			}
 		}
-	} else {
+		if (m_MNO == nullptr)
+			throw runtime_error("Unknown MNO " + string(mno_name));
+	}
+	else {
 		m_MNO = mnos.at(0);
 	}
 
@@ -105,6 +111,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_type = AntennaType::DIRECTIONAL;
 
 	m_Smin = getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN);
+	m_Qmin = getValue(antennaEl, "Qmin", Constants::ANTENNA_QMIN);
 	m_Smid = getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID);
 	m_SSteep = getValue(antennaEl, "SSteep", Constants::ANTENNA_S_STEEP);
 	double x = getValue(antennaEl, "x");
@@ -132,20 +139,20 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	string fileName = getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
-	} catch (std::ofstream::failure& e) {
+	}
+	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
 	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
-	m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
-	m_cell = getCoverageArea();
 }
 
 Antenna::~Antenna() {
 	if (m_file.is_open()) {
 		try {
 			m_file.close();
-		} catch (std::ofstream::failure& e) {
+		}
+		catch (std::ofstream::failure& e) {
 			cerr << "Error closing output files!" << endl;
 		}
 	}
@@ -164,7 +171,8 @@ void Antenna::setPLE(double ple) {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15) << m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
+			<< m_MNO->getId();
 	return (result.str());
 }
 
@@ -191,11 +199,13 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
 			result = true;
-		} else {
+		}
+		else {
 			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE, false);
 			result = true;
 		}
-	} else {
+	}
+	else {
 		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE, false);
 	}
 
@@ -238,34 +248,38 @@ unsigned long Antenna::getNumActiveConections() {
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
 	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: " << ag->getId() << sep;
+		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
+				<< ag->getId() << sep;
 		switch (event) {
-		case EventType::ATTACH_DEVICE:
-			cout << " Attached ";
-			break;
-		case EventType::DETACH_DEVICE:
-			cout << " Detached ";
-			break;
-		case EventType::ALREADY_ATTACHED_DEVICE:
-			cout << " In range, already attached ";
-			break;
-		case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
-			cout << " In range, not attached ";
+			case EventType::ATTACH_DEVICE:
+				cout << " Attached ";
+				break;
+			case EventType::DETACH_DEVICE:
+				cout << " Detached ";
+				break;
+			case EventType::ALREADY_ATTACHED_DEVICE:
+				cout << " In range, already attached ";
+				break;
+			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+				cout << " In range, not attached ";
 		}
 		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
 				<< ag->getMap()->getGrid()->getTileNo(ag->getLocation());
 		cout << endl;
-	} else {
+	}
+	else {
 		stringstream ss;
 		const Grid* g = this->getMap()->getGrid();
 		if (g != nullptr)
-			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed << ag->getLocation()->getCoordinate()->x
-					<< sep << ag->getLocation()->getCoordinate()->y << sep << g->getTileNo(ag->getLocation()) << endl;
+			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
+					<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << sep
+					<< g->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
 			m_file.flush();
-		} else
+		}
+		else
 			cout << ss.str();
 	}
 }
@@ -430,9 +444,10 @@ double Antenna::searchMin(double dg, vector<pair<double, double>> _3dBDegrees) c
 		i.second = fabs(i.second);
 		//cout << "deg " << i.second << endl;
 	}
-	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees), [](const pair<double, double>& a, const pair<double, double>& b) {
-		return a.second < b.second;
-	}) - begin(_3dBDegrees);
+	int minElementIndex = std::min_element(begin(_3dBDegrees), end(_3dBDegrees),
+			[](const pair<double, double>& a, const pair<double, double>& b) {
+				return a.second < b.second;
+			}) - begin(_3dBDegrees);
 
 //cout << "index min " << minElementIndex << endl;
 	return (_3dBDegrees[minElementIndex].first);
@@ -480,18 +495,18 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 		cc = 4;
 
 	switch (cc) {
-	case 1:
-		result = cos(d2r(lambda - beta)) * d;
-		break;
-	case 2:
-		result = cos(d2r(beta - lambda)) * d;
-		break;
-	case 3:
-		result = -cos(d2r(lambda + beta)) * d;
-		break;
-	case 4:
-		result = cos(d2r(180 - lambda - beta)) * d;
-		break;
+		case 1:
+			result = cos(d2r(lambda - beta)) * d;
+			break;
+		case 2:
+			result = cos(d2r(beta - lambda)) * d;
+			break;
+		case 3:
+			result = -cos(d2r(lambda + beta)) * d;
+			break;
+		case 4:
+			result = cos(d2r(180 - lambda - beta)) * d;
+			break;
 	}
 	return (result);
 }
@@ -512,7 +527,6 @@ double Antenna::computePower(const Coordinate c) const {
 		result = m_power * pow(c.distance(dest), -m_ple);
 	return (result);
 }
-
 
 const string Antenna::getName() const {
 	return ("Antenna");
@@ -554,7 +568,7 @@ Geometry* Antenna::getCoverageArea() {
 	else if (m_type == AntennaType::DIRECTIONAL)
 		return getCoverageAreaDirectional();
 	else
-		throw runtime_error("Coverage area: unknow antenna type!");
+		throw runtime_error("Coverage area: unknown antenna type!");
 }
 
 Geometry* Antenna::getCoverageAreaOmnidirectional() {
@@ -578,13 +592,30 @@ Geometry* Antenna::getCoverageAreaDirectional() {
 		double delta_dist = 0.01 * dist;
 		double xx = x + dist * sin(angle);
 		double yy = y + dist * cos(angle);
-		double S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
+		double S_actual = 0.0;
+
+		if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+			S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
+		else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+			S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
+
 		unsigned k = 0;
-		while (S_actual <= m_Smin && k < N) {
+		double min = 0.0;
+
+		if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+			min = m_Smin;
+		else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+			min = m_Qmin;
+
+		while (S_actual <= min && k < N) {
 			dist -= delta_dist;
 			xx = x + dist * sin(angle);
 			yy = y + dist * cos(angle);
-			S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 00));
+
+			if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+				S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
+			else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+				S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
 			k++;
 		}
 		if (k == N) {
@@ -598,14 +629,16 @@ Geometry* Antenna::getCoverageAreaDirectional() {
 		if (angle == 0) {
 			init = Coordinate(xx, yy);
 			cl->add(init);
-		} else
+		}
+		else
 			cl->add(Coordinate(xx, yy));
 	}
 	if (cl != nullptr) {
 		cl->add(init);
 		LinearRing* lr = this->getMap()->getGlobalFactory()->createLinearRing(cl);
 		return (this->getMap()->getGlobalFactory()->createPolygon(lr, nullptr));
-	} else
+	}
+	else
 		return (getCoverageAreaOmnidirectional());
 }
 
@@ -615,7 +648,6 @@ double Antenna::computeSignalStrength(const Point* p) const {
 	result = computeSignalStrength(*c);
 	return (result);
 }
-
 
 double Antenna::computeSignalStrength(const Coordinate c) const {
 	double result = 0.0;
@@ -628,23 +660,34 @@ double Antenna::computeSignalStrength(const Coordinate c) const {
 	return (result);
 }
 
-
-
 double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const {
 	double result = 0.0;
 	switch (handoverType) {
-	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
-		result = computeSignalQuality(c);
-		break;
-	case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
-		result = computeSignalStrength(c);
-		break;
-	case HoldableAgent::CONNECTION_TYPE::USING_POWER:
-		result = computePower(c);
-		break;
-	case HoldableAgent::UNKNOWN:
-		throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
-		break;
+		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
+			result = computeSignalQuality(c);
+			break;
+		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
+			result = computeSignalStrength(c);
+			break;
+		case HoldableAgent::CONNECTION_TYPE::USING_POWER:
+			result = computePower(c);
+			break;
+		case HoldableAgent::UNKNOWN:
+			throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
+			break;
 	}
 	return result;
+}
+
+HoldableAgent::CONNECTION_TYPE Antenna::getHandoverMechanism() const {
+	return m_handoverMechanism;
+}
+
+void Antenna::setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
+	m_handoverMechanism = handoverMechanism;
+	if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+		m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
+	else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		m_rmax = pow(10, (m_S0 - m_Smid + (1.0 / m_SSteep) * log(1.0 / m_Qmin - 1)) / (10 * m_ple));
+	m_cell = getCoverageArea();
 }

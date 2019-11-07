@@ -128,7 +128,7 @@ enum DataType {
 /**
  * This class is used to read and parse a csv file or to write some values as a csv file.
  */
-class Parser {
+class CSVParser {
 
 public:
 	/**
@@ -139,13 +139,13 @@ public:
 	 * @param sep the separator of the individula values in a line of the csv file
 	 * @param hasHeader true means that the csv file has a header line, false that it doesn't have a header
 	 */
-	Parser(const string &data, const DataType &type = eFILE, char sep = ',',
+	CSVParser(const string &data, const DataType &type = eFILE, char sep = ',',
 			bool hasHeader = true);
 
 	/**
 	 * Destructor
 	 */
-	~Parser(void);
+	~CSVParser(void);
 
 	/**
 	 * Returns a Row object specified by its number in the file

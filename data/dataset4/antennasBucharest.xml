@@ -5,7 +5,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930642.8043406</x>
 		<y>1485392.76068981</y>
@@ -16,7 +17,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930651.50594499</x>
 		<y>1485402.96786041</y>
@@ -27,7 +29,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932167.98988088</x>
 		<y>1485927.77133565</y>
@@ -38,7 +41,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932093.44274402</x>
 		<y>1485873.25191089</y>
@@ -49,7 +53,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932179.10238966</x>
 		<y>1485961.91659002</y>
@@ -60,7 +65,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932237.88381501</x>
 		<y>1485910.08510663</y>
@@ -71,7 +77,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932229.81406</x>
 		<y>1486002.15110725</y>
@@ -82,7 +89,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931947.97398643</x>
 		<y>1485785.62693932</y>
@@ -93,7 +101,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931966.15419004</x>
 		<y>1485805.25510746</y>
@@ -104,7 +113,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932320.99933075</x>
 		<y>1485697.9445983</y>
@@ -115,7 +125,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932092.5292208</x>
 		<y>1485849.12958292</y>
@@ -126,7 +137,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931795.22570303</x>
 		<y>1485426.08578698</y>
@@ -137,7 +149,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931414.33380732</x>
 		<y>1485210.4501581</y>
@@ -148,7 +161,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931608.27551911</x>
 		<y>1485681.0223998</y>
@@ -159,7 +173,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931592.66859845</x>
 		<y>1485485.87643132</y>
@@ -170,7 +185,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931384.00452638</x>
 		<y>1485603.18066754</y>
@@ -181,7 +197,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931219.23166267</x>
 		<y>1485531.26511341</y>
@@ -192,7 +209,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930621.48280163</x>
 		<y>1485512.86476641</y>
@@ -203,7 +221,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931310.35776325</x>
 		<y>1485458.9533735</y>
@@ -214,7 +233,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930805.10272237</x>
 		<y>1485262.76803615</y>
@@ -225,7 +245,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931014.34378651</x>
 		<y>1485420.92321993</y>
@@ -236,7 +257,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930612.37565742</x>
 		<y>1485331.76877922</y>
@@ -247,7 +269,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931738.3942624</x>
 		<y>1485738.68046558</y>
@@ -258,7 +281,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931963.51665824</x>
 		<y>1485804.33944606</y>
@@ -269,7 +293,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931636.98744443</x>
 		<y>1485690.98856547</y>
@@ -280,7 +305,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930736.94154416</x>
 		<y>1485351.65487058</y>
@@ -291,7 +317,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930805.59268252</x>
 		<y>1485300.29301324</y>
@@ -302,7 +329,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930647.59063942</x>
 		<y>1485185.72965149</y>
@@ -313,7 +341,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931992.75407027</x>
 		<y>1485366.20387645</y>
@@ -324,7 +353,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932131.832329</x>
 		<y>1485307.83570674</y>
@@ -335,7 +365,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931714.11064132</x>
 		<y>1485463.4508444</y>
@@ -346,7 +377,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931973.18617287</x>
 		<y>1485320.40428144</y>
@@ -357,7 +389,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931985.2017289</x>
 		<y>1485354.39018851</y>
@@ -368,7 +401,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932111.10906173</x>
 		<y>1485224.9846225</y>
@@ -379,7 +413,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932131.70643242</x>
 		<y>1485223.06110492</y>
@@ -390,7 +425,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932027.6008055</x>
 		<y>1485267.52648197</y>
@@ -401,7 +437,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932042.00171182</x>
 		<y>1485333.80522485</y>
@@ -412,7 +449,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932313.50449513</x>
 		<y>1485291.95149615</y>
@@ -423,7 +461,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931987.87094191</x>
 		<y>1485188.09503633</y>
@@ -434,7 +473,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932234.35337708</x>
 		<y>1485921.46905674</y>
@@ -445,7 +485,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932259.20417211</x>
 		<y>1485265.43913909</y>
@@ -456,7 +497,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932412.51985556</x>
 		<y>1485312.84589366</y>
@@ -467,7 +509,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932021.47911158</x>
 		<y>1485627.8942987</y>
@@ -478,7 +521,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932045.50720281</x>
 		<y>1485081.42004352</y>
@@ -489,7 +533,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930659.56393733</x>
 		<y>1485351.76366866</y>
@@ -500,7 +545,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932102.02902181</x>
 		<y>1485205.04927101</y>
@@ -511,7 +557,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931955.4762507</x>
 		<y>1484947.6433075</y>
@@ -522,7 +569,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932309.00021652</x>
 		<y>1485276.95316108</y>
@@ -533,7 +581,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932105.24291223</x>
 		<y>1485529.83786855</y>
@@ -544,7 +593,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931490.27424413</x>
 		<y>1485448.80486794</y>
@@ -555,7 +605,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932460.62019776</x>
 		<y>1485397.00473871</y>
@@ -566,7 +617,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932305.45468314</x>
 		<y>1485374.24188617</y>
@@ -577,7 +629,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932280.9221885</x>
 		<y>1485914.54019186</y>
@@ -588,7 +641,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931954.81668809</x>
 		<y>1485963.12718556</y>
@@ -599,7 +653,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931954.81668809</x>
 		<y>1485963.12718556</y>
@@ -610,7 +665,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932108.44691507</x>
 		<y>1485854.62621844</y>
@@ -621,7 +677,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932055.10094586</x>
 		<y>1485674.26732881</y>
@@ -632,7 +689,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932105.24291223</x>
 		<y>1485529.83786855</y>
@@ -643,7 +701,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932155.38477028</x>
 		<y>1485385.40872029</y>
@@ -654,7 +713,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932102.02902181</x>
 		<y>1485205.04927101</y>
@@ -665,7 +725,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931998.53097006</x>
 		<y>1485169.12025254</y>
@@ -676,7 +737,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931741.40035706</x>
 		<y>1485241.69892535</y>
@@ -687,7 +749,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931337.30295032</x>
 		<y>1485355.76557823</y>
@@ -698,7 +761,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931892.25052532</x>
 		<y>1484854.87306071</y>
@@ -709,7 +773,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931924.05731866</x>
 		<y>1485467.03631008</y>
@@ -720,7 +785,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931018.88893948</x>
 		<y>1485185.17031653</y>
@@ -731,7 +797,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930874.48482074</x>
 		<y>1484509.346119</y>
@@ -742,7 +809,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931252.98874219</x>
 		<y>1485316.95982537</y>
@@ -753,7 +821,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932082.81113819</x>
 		<y>1485872.74262484</y>
@@ -764,7 +833,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931129.52891669</x>
 		<y>1485434.02631121</y>
@@ -775,7 +845,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931457.54243867</x>
 		<y>1485224.14975167</y>
@@ -786,7 +857,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931832.92014197</x>
 		<y>1485111.68183855</y>
@@ -797,7 +869,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931717.91845828</x>
 		<y>1485476.32130856</y>
@@ -808,7 +881,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931118.74038772</x>
 		<y>1484863.8250408</y>
@@ -819,7 +893,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932102.02902181</x>
 		<y>1485205.04927101</y>
@@ -830,7 +905,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932263.66546898</x>
 		<y>1485908.54836025</y>
@@ -841,7 +917,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932360.77519676</x>
 		<y>1485294.92913834</y>
@@ -852,7 +929,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931895.02148398</x>
 		<y>1485133.23819162</y>
@@ -863,7 +941,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -874,7 +953,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931051.37357594</x>
 		<y>1485002.24266194</y>
@@ -885,7 +965,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931217.01475061</x>
 		<y>1485666.60344236</y>
@@ -896,7 +977,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931954.81668809</x>
 		<y>1485963.12718556</y>
@@ -907,7 +989,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932058.30250681</x>
 		<y>1485999.05553042</y>
@@ -918,7 +1001,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932369.49611684</x>
 		<y>1485436.66294069</y>
@@ -929,7 +1013,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932362.37365553</x>
 		<y>1485457.27318482</y>
@@ -940,7 +1025,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932182.41763854</x>
 		<y>1485947.74741127</y>
@@ -951,7 +1037,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932233.74876156</x>
 		<y>1485898.16087949</y>
@@ -962,7 +1049,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932252.89774916</x>
 		<y>1485913.29472383</y>
@@ -973,7 +1061,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932160.20018593</x>
 		<y>1485872.62446555</y>
@@ -984,7 +1073,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932064.02744681</x>
 		<y>1485704.29950293</y>
@@ -995,7 +1085,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932241.05838956</x>
 		<y>1485900.69886627</y>
@@ -1006,7 +1097,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932247.76515921</x>
 		<y>1485903.02754154</y>
@@ -1017,7 +1109,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931411.23399936</x>
 		<y>1485381.42375959</y>
@@ -1028,7 +1121,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930644.49618596</x>
 		<y>1485325.82619491</y>
@@ -1039,7 +1133,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930724.77727409</x>
 		<y>1485523.72179018</y>
@@ -1050,7 +1145,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931998.19891474</x>
 		<y>1485135.23277278</y>
@@ -1061,7 +1157,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931932.93312991</x>
 		<y>1484912.59636575</y>
@@ -1072,7 +1169,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931899.6363487</x>
 		<y>1485197.06173834</y>
@@ -1083,7 +1181,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931996.43374032</x>
 		<y>1485856.18866877</y>
@@ -1094,7 +1193,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931681.78157716</x>
 		<y>1485800.57756321</y>
@@ -1105,7 +1205,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931908.32580102</x>
 		<y>1485376.37338133</y>
@@ -1116,7 +1217,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931933.95975352</x>
 		<y>1485822.83289055</y>
@@ -1127,7 +1229,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931675.93935556</x>
 		<y>1485813.51592234</y>
@@ -1138,7 +1241,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931060.56280235</x>
 		<y>1485191.85356778</y>
@@ -1149,7 +1253,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931734.36219005</x>
 		<y>1485722.07879556</y>
@@ -1160,7 +1265,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931599.99627548</x>
 		<y>1485607.32427457</y>
@@ -1171,7 +1277,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932211.93440548</x>
 		<y>1485890.55693027</y>
@@ -1182,7 +1289,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932451.96514529</x>
 		<y>1485326.59085466</y>
@@ -1193,7 +1301,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931550.88181075</x>
 		<y>1485456.40652669</y>
@@ -1204,7 +1313,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932034.99171864</x>
 		<y>1485308.5097211</y>
@@ -1215,7 +1325,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932240.72033642</x>
 		<y>1485253.24746058</y>
@@ -1226,7 +1337,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931918.00005736</x>
 		<y>1485553.08184278</y>
@@ -1237,7 +1349,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931681.73066641</x>
 		<y>1485553.08602889</y>
@@ -1248,7 +1361,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932201.8899349</x>
 		<y>1485919.38959142</y>
@@ -1259,7 +1373,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931655.92384902</x>
 		<y>1485908.15066188</y>
@@ -1270,7 +1385,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932015.1184397</x>
 		<y>1485239.50645609</y>
@@ -1281,7 +1397,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931893.58927434</x>
 		<y>1485147.82505797</y>
@@ -1292,7 +1409,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931797.59439976</x>
 		<y>1485161.87699232</y>
@@ -1303,7 +1421,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931470.23268238</x>
 		<y>1485036.00058105</y>
@@ -1314,7 +1433,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930891.34397904</x>
 		<y>1484683.70226858</y>
@@ -1325,7 +1445,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931807.41576345</x>
 		<y>1485122.3910513</y>
@@ -1336,7 +1457,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932047.75853891</x>
 		<y>1485361.49401466</y>
@@ -1347,7 +1469,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932038.95827171</x>
 		<y>1485345.0045942</y>
@@ -1358,7 +1481,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932099.23980868</x>
 		<y>1485395.39325902</y>
@@ -1369,7 +1493,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932102.04963968</x>
 		<y>1485205.10556908</y>
@@ -1380,7 +1505,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932064.13790895</x>
 		<y>1485286.33831135</y>
@@ -1391,7 +1517,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932084.67241439</x>
 		<y>1485684.48006389</y>
@@ -1402,7 +1529,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930886.7436862</x>
 		<y>1484864.1654305</y>
@@ -1413,7 +1541,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932412.47467489</x>
 		<y>1485312.87934786</y>
@@ -1424,7 +1553,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932522.81605025</x>
 		<y>1485203.528861</y>
@@ -1435,7 +1565,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932371.58857463</x>
 		<y>1485123.68154761</y>
@@ -1446,7 +1577,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932453.92459401</x>
 		<y>1485327.27120265</y>
@@ -1457,7 +1589,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932250.97486061</x>
 		<y>1485143.439932</y>
@@ -1468,7 +1601,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931672.04156828</x>
 		<y>1485723.3078078</y>
@@ -1479,7 +1613,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932068.64255504</x>
 		<y>1485301.33647921</y>
@@ -1490,7 +1625,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932216.39848438</x>
 		<y>1485905.57138069</y>
@@ -1501,7 +1637,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930508.49982317</x>
 		<y>1485285.83261181</y>
@@ -1512,7 +1649,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931269.43556855</x>
 		<y>1485320.66416491</y>
@@ -1523,7 +1661,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931552.47661677</x>
 		<y>1484998.7883786</y>
@@ -1534,7 +1673,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931996.95953472</x>
 		<y>1485006.70595813</y>
@@ -1545,7 +1685,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931859.25509617</x>
 		<y>1485169.37465154</y>
@@ -1556,7 +1697,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932052.03787272</x>
 		<y>1485794.53227475</y>
@@ -1567,7 +1709,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932410.6533055</x>
 		<y>1485535.80344556</y>
@@ -1578,7 +1721,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932424.2818678</x>
 		<y>1485478.31193905</y>
@@ -1589,7 +1733,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931776.07805221</x>
 		<y>1485237.48820001</y>
@@ -1600,7 +1745,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931233.44948897</x>
 		<y>1484989.5345596</y>
@@ -1611,7 +1757,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932427.39109898</x>
 		<y>1485302.26694885</y>
@@ -1622,7 +1769,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931745.89837516</x>
 		<y>1485696.38636043</y>
@@ -1633,7 +1781,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932262.08093049</x>
 		<y>1485746.12870314</y>
@@ -1644,7 +1793,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931336.10223266</x>
 		<y>1484939.25168106</y>
@@ -1655,7 +1805,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931571.80151581</x>
 		<y>1485668.36214586</y>
@@ -1666,7 +1817,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932394.75725111</x>
 		<y>1485252.75391818</y>
@@ -1677,7 +1829,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931572.01113333</x>
 		<y>1485232.76793884</y>
@@ -1688,7 +1841,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932302.67771241</x>
 		<y>1485321.18954441</y>
@@ -1699,7 +1853,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930891.64544926</x>
 		<y>1485351.36227419</y>
@@ -1710,7 +1865,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930936.65187011</x>
 		<y>1485555.75907315</y>
@@ -1721,7 +1877,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932212.82199111</x>
 		<y>1485671.93397133</y>
@@ -1732,7 +1889,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932226.48945157</x>
 		<y>1486057.44622154</y>
@@ -1743,7 +1901,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932065.78426474</x>
 		<y>1484888.47747524</y>
@@ -1754,7 +1913,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931916.91267461</x>
 		<y>1485344.825682</y>
@@ -1765,7 +1925,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931930.71683965</x>
 		<y>1484893.67919989</y>
@@ -1776,7 +1937,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931360.65476504</x>
 		<y>1485479.4730981</y>
@@ -1787,7 +1949,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930874.38728289</x>
 		<y>1485345.37401177</y>
@@ -1798,7 +1961,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931123.66361724</x>
 		<y>1485350.97007005</y>
@@ -1809,7 +1973,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930970.04799142</x>
 		<y>1485459.49362059</y>
@@ -1820,7 +1985,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931269.59466068</x>
 		<y>1485765.69159613</y>
@@ -1831,7 +1997,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932152.16843817</x>
 		<y>1485060.61997396</y>
@@ -1842,7 +2009,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931863.72889863</x>
 		<y>1485445.97621108</y>
@@ -1853,7 +2021,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932257.4211578</x>
 		<y>1485926.53230577</y>
@@ -1864,7 +2033,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930565.4206615</x>
 		<y>1485222.03298733</y>
@@ -1875,7 +2045,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931702.84674764</x>
 		<y>1485686.86295948</y>
@@ -1886,7 +2057,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932193.00156182</x>
 		<y>1485277.10180402</y>
@@ -1897,7 +2069,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932085.21762662</x>
 		<y>1485587.56381038</y>
@@ -1908,7 +2081,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930573.33666215</x>
 		<y>1485321.87768744</y>
@@ -1919,7 +2093,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932118.16160961</x>
 		<y>1485349.40305189</y>
@@ -1930,7 +2105,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931584.33533967</x>
 		<y>1485652.4434575</y>
@@ -1941,7 +2117,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930797.54168461</x>
 		<y>1485399.66620541</y>
@@ -1952,7 +2129,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932372.87106932</x>
 		<y>1485649.72476124</y>
@@ -1963,7 +2141,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931972.64788125</x>
 		<y>1485160.18444026</y>
@@ -1974,7 +2153,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932387.02983821</x>
 		<y>1485052.20697285</y>
@@ -1985,7 +2165,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932226.4970929</x>
 		<y>1485939.71824994</y>
@@ -1996,7 +2177,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931711.38522148</x>
 		<y>1485525.55147332</y>
@@ -2007,7 +2189,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930936.83425619</x>
 		<y>1484491.73802607</y>
@@ -2018,7 +2201,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932010.4709575</x>
 		<y>1485335.11519717</y>
@@ -2029,7 +2213,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931886.92833531</x>
 		<y>1485615.8310036</y>
@@ -2040,7 +2225,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931733.11761439</x>
 		<y>1485562.43840801</y>
@@ -2051,7 +2237,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931928.04598023</x>
 		<y>1484896.99446322</y>
@@ -2062,7 +2249,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932374.9729355</x>
 		<y>1485569.49309305</y>
@@ -2073,7 +2261,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931391.4145639</x>
 		<y>1485314.44574</y>
@@ -2084,7 +2273,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931725.74044393</x>
 		<y>1485398.0775332</y>
@@ -2095,7 +2285,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931723.88655909</x>
 		<y>1484974.25908789</y>
@@ -2106,7 +2297,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931529.55323538</x>
 		<y>1485422.48900491</y>
@@ -2117,7 +2309,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932320.96534715</x>
 		<y>1485442.9109097</y>
@@ -2128,7 +2321,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931277.47819807</x>
 		<y>1485043.70069707</y>
@@ -2139,7 +2333,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931898.25626298</x>
 		<y>1485457.98132699</y>
@@ -2150,7 +2345,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930504.3036014</x>
 		<y>1485297.92817484</y>
@@ -2161,7 +2357,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932258.87948966</x>
 		<y>1485421.34015529</y>
@@ -2172,7 +2369,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930860.01587341</x>
 		<y>1484774.00629232</y>
@@ -2183,7 +2381,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930919.92806072</x>
 		<y>1485603.9314286</y>
@@ -2194,7 +2393,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931948.39367067</x>
 		<y>1485313.55063376</y>
@@ -2205,7 +2405,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -2216,7 +2417,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930910.1285869</x>
 		<y>1484629.56772799</y>
@@ -2227,7 +2429,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930963.5200126</x>
 		<y>1484809.91777014</y>
@@ -2238,7 +2441,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930947.37806167</x>
 		<y>1484665.55324149</y>
@@ -2249,7 +2453,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930963.5200126</x>
 		<y>1484809.91777014</y>
@@ -2260,7 +2465,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930860.01587341</x>
 		<y>1484774.00629232</y>
@@ -2271,7 +2477,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931738.16400945</x>
 		<y>1484916.91037788</y>
@@ -2282,7 +2489,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930811.57034583</x>
 		<y>1485080.83019248</y>
@@ -2293,7 +2501,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931123.66361724</x>
 		<y>1485350.97007005</y>
@@ -2304,7 +2513,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931067.02359857</x>
 		<y>1484845.83084262</y>
@@ -2315,7 +2525,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930927.9437113</x>
 		<y>1484689.68385117</y>
@@ -2326,7 +2537,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930860.01587341</x>
 		<y>1484774.00629232</y>
@@ -2337,7 +2549,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930910.79369603</x>
 		<y>1484694.57465959</y>
@@ -2348,7 +2561,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931484.27712165</x>
 		<y>1485314.26820656</y>
@@ -2359,7 +2573,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930813.17454697</x>
 		<y>1485243.23301812</y>
@@ -2370,7 +2585,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931013.6212439</x>
 		<y>1484665.44081413</y>
@@ -2381,7 +2597,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930911.77708433</x>
 		<y>1484792.014117</y>
@@ -2392,7 +2609,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931794.76210815</x>
 		<y>1485422.05544797</y>
@@ -2403,7 +2621,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931954.81668809</x>
 		<y>1485963.12718556</y>
@@ -2414,7 +2633,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932363.97589839</x>
 		<y>1485619.6490331</y>
@@ -2425,7 +2645,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932424.01323253</x>
 		<y>1485344.34401029</y>
@@ -2436,7 +2657,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932455.79550303</x>
 		<y>1485364.68917822</y>
@@ -2447,7 +2669,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932312.22734717</x>
 		<y>1485601.70078799</y>
@@ -2458,7 +2681,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931113.67791386</x>
 		<y>1484950.4478487</y>
@@ -2469,7 +2693,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932213.52834992</x>
 		<y>1486052.94590742</y>
@@ -2480,7 +2705,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931073.54156962</x>
 		<y>1485495.40679357</y>
@@ -2491,7 +2717,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931173.7855566</x>
 		<y>1485206.53365851</y>
@@ -2502,7 +2729,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932312.22734717</x>
 		<y>1485601.70078799</y>
@@ -2513,7 +2741,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932258.87948966</x>
 		<y>1485421.34015529</y>
@@ -2524,7 +2753,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932138.67151069</x>
 		<y>1485433.59466772</y>
@@ -2535,7 +2765,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931866.74564733</x>
 		<y>1484880.66599505</y>
@@ -2546,7 +2777,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -2557,7 +2789,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931826.06185048</x>
 		<y>1485109.30125708</y>
@@ -2568,7 +2801,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932362.37365553</x>
 		<y>1485457.27318482</y>
@@ -2579,7 +2813,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930860.01587341</x>
 		<y>1484774.00629232</y>
@@ -2590,7 +2825,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931850.79275171</x>
 		<y>1484926.62602837</y>
@@ -2601,7 +2837,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931946.79757189</x>
 		<y>1485151.21097823</y>
@@ -2612,7 +2849,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932359.16733122</x>
 		<y>1485132.48433954</y>
@@ -2623,7 +2861,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931110.45788085</x>
 		<y>1484768.44753354</y>
@@ -2634,7 +2873,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931177.03459451</x>
 		<y>1485531.32156104</y>
@@ -2645,7 +2885,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930813.17454697</x>
 		<y>1485243.23301812</y>
@@ -2656,7 +2897,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931020.16781375</x>
 		<y>1485315.05612487</y>
@@ -2667,7 +2909,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931945.16733085</x>
 		<y>1484988.76198671</y>
@@ -2678,7 +2921,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932048.66816124</x>
 		<y>1485024.69018302</y>
@@ -2689,7 +2933,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932117.69709999</x>
 		<y>1485048.61875074</y>
@@ -2700,7 +2945,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931945.16733085</x>
 		<y>1484988.76198671</y>
@@ -2711,7 +2957,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931911.82096244</x>
 		<y>1485786.39269173</y>
@@ -2722,7 +2969,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930919.92806072</x>
 		<y>1485603.9314286</y>
@@ -2733,7 +2981,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930816.43615461</x>
 		<y>1485568.0206223</y>
@@ -2744,7 +2993,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932004.95887118</x>
 		<y>1485818.69710105</y>
@@ -2755,7 +3005,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930970.04799142</x>
 		<y>1485459.49362059</y>
@@ -2766,7 +3017,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930963.5200126</x>
 		<y>1484809.91777014</y>
@@ -2777,7 +3029,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931916.11234979</x>
 		<y>1485180.97982082</y>
@@ -2788,7 +3041,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931227.15886741</x>
 		<y>1485386.88560974</y>
@@ -2799,7 +3053,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932004.95887118</x>
 		<y>1485818.69710105</y>
@@ -2810,7 +3065,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932312.22734717</x>
 		<y>1485601.70078799</y>
@@ -2821,7 +3077,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932234.5821251</x>
 		<y>1485574.72285882</y>
@@ -2832,7 +3089,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932346.71842127</x>
 		<y>1485613.65698812</y>
@@ -2843,7 +3101,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931866.74564733</x>
 		<y>1484880.66599505</y>
@@ -2854,7 +3113,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931443.80585386</x>
 		<y>1485138.4250176</y>
@@ -2865,7 +3125,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931863.16811105</x>
 		<y>1484890.972819</y>
@@ -2876,7 +3137,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931893.40499289</x>
 		<y>1484970.76001075</y>
@@ -2887,7 +3149,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931089.55351558</x>
 		<y>1485308.08755605</y>
@@ -2898,7 +3161,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930916.67145704</x>
 		<y>1485279.14377424</y>
@@ -2909,7 +3173,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932383.33287391</x>
 		<y>1485606.21811951</y>
@@ -2920,7 +3185,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932258.87948966</x>
 		<y>1485421.34015529</y>
@@ -2931,7 +3197,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932312.22734717</x>
 		<y>1485601.70078799</y>
@@ -2942,7 +3209,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931587.772138</x>
 		<y>1485350.2084734</y>
@@ -2953,7 +3221,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931330.65356415</x>
 		<y>1485422.80274392</y>
@@ -2964,7 +3233,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931330.65356415</x>
 		<y>1485422.80274392</y>
@@ -2975,7 +3245,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931794.76210815</x>
 		<y>1485422.05544797</y>
@@ -2986,7 +3257,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931330.65356415</x>
 		<y>1485422.80274392</y>
@@ -2997,7 +3269,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932396.85484435</x>
 		<y>1485469.26024819</y>
@@ -3008,7 +3281,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930919.92806072</x>
 		<y>1485603.9314286</y>
@@ -3019,7 +3293,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931324.1881389</x>
 		<y>1485422.50848217</y>
@@ -3030,7 +3305,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932004.95887118</x>
 		<y>1485818.69710105</y>
@@ -3041,7 +3317,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932079.01872995</x>
 		<y>1486006.24354272</y>
@@ -3052,7 +3329,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932362.37365553</x>
 		<y>1485457.27318482</y>
@@ -3063,7 +3341,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931562.1334519</x>
 		<y>1485368.27628696</y>
@@ -3074,7 +3353,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932373.02180421</x>
 		<y>1485493.39318552</y>
@@ -3085,7 +3365,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932050.93180628</x>
 		<y>1485834.68763261</y>
@@ -3096,7 +3377,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930809.90305177</x>
 		<y>1484918.44516838</y>
@@ -3107,7 +3389,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931918.44831367</x>
 		<y>1484898.6124025</y>
@@ -3118,7 +3401,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932161.78777206</x>
 		<y>1486034.98546967</y>
@@ -3129,7 +3413,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931540.86787802</x>
 		<y>1485819.42974984</y>
@@ -3140,7 +3425,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3151,7 +3437,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931330.65356415</x>
 		<y>1485422.80274392</y>
@@ -3162,7 +3449,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931230.40045945</x>
 		<y>1485711.67341428</y>
@@ -3173,7 +3461,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932004.95887118</x>
 		<y>1485818.69710105</y>
@@ -3184,7 +3473,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3195,7 +3485,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932155.38477028</x>
 		<y>1485385.40872029</y>
@@ -3206,7 +3497,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3217,7 +3509,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932155.38477028</x>
 		<y>1485385.40872029</y>
@@ -3228,7 +3521,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3239,7 +3533,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931744.62681735</x>
 		<y>1485566.48722562</y>
@@ -3250,7 +3545,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3261,7 +3557,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932362.37365553</x>
 		<y>1485457.27318482</y>
@@ -3272,7 +3569,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3283,7 +3581,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931333.89015238</x>
 		<y>1485747.59059839</y>
@@ -3294,7 +3593,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931951.61012318</x>
 		<y>1485638.33903329</y>
@@ -3305,7 +3605,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932001.74986437</x>
 		<y>1485493.90880053</y>
@@ -3316,7 +3617,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3327,7 +3629,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932051.88949725</x>
 		<y>1485349.47887976</y>
@@ -3338,7 +3641,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932205.52652001</x>
 		<y>1485240.97988403</y>
@@ -3349,7 +3653,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931794.76210815</x>
 		<y>1485422.05544797</y>
@@ -3360,7 +3665,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930556.06814612</x>
 		<y>1485315.85687369</y>
@@ -3371,7 +3677,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3382,7 +3689,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931747.84338996</x>
 		<y>1485891.27527891</y>
@@ -3393,7 +3701,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3404,7 +3713,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -3415,7 +3725,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931747.84338996</x>
 		<y>1485891.27527891</y>
@@ -3426,7 +3737,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931381.38887858</x>
 		<y>1485359.63504626</y>
@@ -3437,7 +3749,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931817.15543339</x>
 		<y>1485146.39438022</y>
@@ -3448,7 +3761,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931026.87582036</x>
 		<y>1485341.25164531</y>
@@ -3459,7 +3773,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931342.54972681</x>
 		<y>1485388.57891379</y>
@@ -3470,7 +3785,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931302.8401997</x>
 		<y>1484977.67323063</y>
@@ -3481,7 +3797,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931669.81646954</x>
 		<y>1485084.0583146</y>
@@ -3492,7 +3809,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931896.34266056</x>
 		<y>1485831.22178638</y>
@@ -3503,7 +3821,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931608.7719439</x>
 		<y>1485519.27695372</y>
@@ -3514,7 +3833,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931161.81349724</x>
 		<y>1485320.55395012</y>
@@ -3525,7 +3845,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931858.81717015</x>
 		<y>1484948.0305341</y>
@@ -3536,7 +3857,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931017.93850917</x>
 		<y>1484885.17535731</y>
@@ -3547,7 +3869,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931373.45169346</x>
 		<y>1485452.33262304</y>
@@ -3558,7 +3881,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932227.03291238</x>
 		<y>1485845.27226137</y>
@@ -3569,7 +3893,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932085.95318385</x>
 		<y>1484968.07078303</y>
@@ -3580,7 +3905,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931019.6119261</x>
 		<y>1485260.95655792</y>
@@ -3591,7 +3917,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931536.05181432</x>
 		<y>1485332.23782744</y>
@@ -3602,7 +3929,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931748.82233402</x>
 		<y>1485177.82628599</y>
@@ -3613,7 +3941,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931418.65247393</x>
 		<y>1485632.29326838</y>
@@ -3624,7 +3953,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932295.8479433</x>
 		<y>1485550.03385106</y>
@@ -3635,7 +3965,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932012.85021856</x>
 		<y>1485796.011671</y>
@@ -3646,7 +3977,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930869.39991287</x>
 		<y>1485638.12586275</y>
@@ -3657,7 +3989,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932051.45139141</x>
 		<y>1485476.61487282</y>
@@ -3668,7 +4001,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930656.28988</x>
 		<y>1485026.97601738</y>
@@ -3679,7 +4013,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -3690,7 +4025,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931924.93604096</x>
 		<y>1485548.18322791</y>
@@ -3701,7 +4037,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932331.86088191</x>
 		<y>1485002.64895503</y>
@@ -3712,7 +4049,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932319.62506173</x>
 		<y>1485432.66426239</y>
@@ -3723,7 +4061,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931948.39367067</x>
 		<y>1485313.55063376</y>
@@ -3734,7 +4073,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930823.0903275</x>
 		<y>1485322.62596666</y>
@@ -3745,7 +4085,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932424.11798123</x>
 		<y>1485320.69310607</y>
@@ -3756,7 +4097,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932181.37068169</x>
 		<y>1485236.41388512</y>
@@ -3767,7 +4109,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931705.25161459</x>
 		<y>1484860.55478803</y>
@@ -3778,7 +4121,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931841.66594686</x>
 		<y>1484952.83538498</y>
@@ -3789,7 +4133,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931978.18958119</x>
 		<y>1484856.42124327</y>
@@ -3800,7 +4145,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932384.14805349</x>
 		<y>1485509.74818673</y>
@@ -3811,7 +4157,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931781.02554085</x>
 		<y>1484904.76683044</y>
@@ -3822,7 +4169,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932228.96287914</x>
 		<y>1485006.4038621</y>
@@ -3833,7 +4181,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932381.9881281</x>
 		<y>1485523.02209259</y>
@@ -3844,7 +4193,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930834.2723492</x>
 		<y>1484781.26754082</y>
@@ -3855,7 +4205,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932110.06529108</x>
 		<y>1486017.02278499</y>
@@ -3866,7 +4217,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931979.04041165</x>
 		<y>1485809.72878232</y>
@@ -3877,7 +4229,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931595.64644827</x>
 		<y>1485494.56986229</y>
@@ -3888,7 +4241,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931487.47395986</x>
 		<y>1485639.09260625</y>
@@ -3899,7 +4253,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932022.22049518</x>
 		<y>1485824.7196976</y>
@@ -3910,7 +4265,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932262.08093049</x>
 		<y>1485746.12870314</y>
@@ -3921,7 +4277,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930809.90305177</x>
 		<y>1484918.44516838</y>
@@ -3932,7 +4289,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931691.26739977</x>
 		<y>1485386.13116342</y>
@@ -3943,7 +4301,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930709.67708373</x>
 		<y>1485207.32385656</y>
@@ -3954,7 +4313,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931637.90287008</x>
 		<y>1485205.77546298</y>
@@ -3965,7 +4325,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932102.02902181</x>
 		<y>1485205.04927101</y>
@@ -3976,7 +4337,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -3987,7 +4349,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931227.15886741</x>
 		<y>1485386.88560974</y>
@@ -3998,7 +4361,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931794.76210815</x>
 		<y>1485422.05544797</y>
@@ -4009,7 +4373,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930916.67145704</x>
 		<y>1485279.14377424</y>
@@ -4020,7 +4385,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932412.51985556</x>
 		<y>1485312.84589366</y>
@@ -4031,7 +4397,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931020.16781375</x>
 		<y>1485315.05612487</y>
@@ -4042,7 +4409,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932051.88949725</x>
 		<y>1485349.47887976</y>
@@ -4053,7 +4421,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932412.51985556</x>
 		<y>1485312.84589366</y>
@@ -4064,7 +4433,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932205.52652001</x>
 		<y>1485240.97988403</y>
@@ -4075,7 +4445,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931531.15847409</x>
 		<y>1484845.0651475</y>
@@ -4086,7 +4457,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931531.15847409</x>
 		<y>1484845.0651475</y>
@@ -4097,7 +4469,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -4108,7 +4481,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932017.52380168</x>
 		<y>1485782.54983191</y>
@@ -4119,7 +4493,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931767.59378433</x>
 		<y>1484857.0923288</y>
@@ -4130,7 +4505,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931841.66594686</x>
 		<y>1484952.83538498</y>
@@ -4141,7 +4517,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931067.02359857</x>
 		<y>1484845.83084262</y>
@@ -4152,7 +4529,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930794.31148444</x>
 		<y>1485074.84213578</y>
@@ -4163,7 +4541,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931082.07926296</x>
 		<y>1484907.66677969</y>
@@ -4174,7 +4553,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931693.57621976</x>
 		<y>1485045.28579339</y>
@@ -4185,7 +4565,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931738.16400945</x>
 		<y>1484916.91037788</y>
@@ -4196,7 +4577,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932004.95887118</x>
 		<y>1485818.69710105</y>
@@ -4207,7 +4589,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931988.24086691</x>
 		<y>1485866.89671221</y>
@@ -4218,7 +4601,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932224.12206586</x>
 		<y>1484938.61231388</y>
@@ -4229,7 +4613,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930809.90305177</x>
 		<y>1484918.44516838</y>
@@ -4240,7 +4625,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931948.39367067</x>
 		<y>1485313.55063376</y>
@@ -4251,7 +4637,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931851.33031578</x>
 		<y>1485927.20043504</y>
@@ -4262,7 +4649,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931223.90738768</x>
 		<y>1485062.09755898</y>
@@ -4273,7 +4661,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931434.14770759</x>
 		<y>1485458.72147263</y>
@@ -4284,7 +4673,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930910.1285869</x>
 		<y>1484629.56772799</y>
@@ -4295,7 +4685,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930860.01587341</x>
 		<y>1484774.00629232</y>
@@ -4306,7 +4697,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930910.1285869</x>
 		<y>1484629.56772799</y>
@@ -4317,7 +4709,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931797.98112267</x>
 		<y>1485746.84364942</y>
@@ -4328,7 +4721,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931126.91021324</x>
 		<y>1485675.75782463</y>
@@ -4339,7 +4733,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931691.26739977</x>
 		<y>1485386.13116342</y>
@@ -4350,7 +4745,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931691.26739977</x>
 		<y>1485386.13116342</y>
@@ -4361,7 +4757,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930556.06814612</x>
 		<y>1485315.85687369</y>
@@ -4372,7 +4769,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931427.65487634</x>
 		<y>1484809.14492429</y>
@@ -4383,7 +4781,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931954.81668809</x>
 		<y>1485963.12718556</y>
@@ -4394,7 +4793,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931227.15886741</x>
 		<y>1485386.88560974</y>
@@ -4405,7 +4805,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931875.57360648</x>
 		<y>1485773.80927182</y>
@@ -4416,7 +4817,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931537.64129763</x>
 		<y>1485494.64179582</y>
@@ -4427,7 +4829,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932161.78777206</x>
 		<y>1486034.98546967</y>
@@ -4438,7 +4841,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931972.62216877</x>
 		<y>1486023.27832916</y>
@@ -4449,7 +4853,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931544.17494801</x>
 		<y>1485710.97793024</y>
@@ -4460,7 +4865,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930556.06814612</x>
 		<y>1485315.85687369</y>
@@ -4471,7 +4877,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932517.7846508</x>
 		<y>1485234.07200242</y>
@@ -4482,7 +4889,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931202.80970715</x>
 		<y>1485477.36877084</y>
@@ -4493,7 +4901,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932298.47456927</x>
 		<y>1485610.81229056</y>
@@ -4504,7 +4913,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932298.47456927</x>
 		<y>1485610.81229056</y>
@@ -4515,7 +4925,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931321.36285452</x>
 		<y>1485151.0815308</y>
@@ -4526,7 +4937,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932414.83310538</x>
 		<y>1485399.72664867</y>
@@ -4537,7 +4949,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932499.79671967</x>
 		<y>1485157.94299715</y>
@@ -4548,7 +4961,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932499.79671967</x>
 		<y>1485157.94299715</y>
@@ -4559,7 +4973,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932499.79671967</x>
 		<y>1485157.94299715</y>
@@ -4570,7 +4985,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932386.10755252</x>
 		<y>1485582.9048801</y>
@@ -4581,7 +4997,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932392.92055123</x>
 		<y>1485565.47204056</y>
@@ -4592,7 +5009,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932319.24558363</x>
 		<y>1485531.28840996</y>
@@ -4603,7 +5021,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932319.24558363</x>
 		<y>1485531.28840996</y>
@@ -4614,7 +5033,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931800.16974327</x>
 		<y>1484971.74714198</y>
@@ -4625,7 +5045,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931800.16974327</x>
 		<y>1484971.74714198</y>
@@ -4636,7 +5057,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932549.25875063</x>
 		<y>1485162.15383291</y>
@@ -4647,7 +5069,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932065.68205027</x>
 		<y>1485324.70270433</y>
@@ -4658,7 +5081,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931757.60719293</x>
 		<y>1485578.24562809</y>
@@ -4669,7 +5093,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931277.52914577</x>
 		<y>1485439.19349255</y>
@@ -4680,7 +5105,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931005.30355356</x>
 		<y>1485358.15898591</y>
@@ -4691,7 +5117,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932214.5624462</x>
 		<y>1485917.4257925</y>
@@ -4702,7 +5129,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932017.01988369</x>
 		<y>1485807.59408864</y>
@@ -4713,7 +5141,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932123.11504762</x>
 		<y>1485858.80589215</y>
@@ -4724,7 +5153,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931427.22248751</x>
 		<y>1485610.52063297</y>
@@ -4735,7 +5165,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931199.3413347</x>
 		<y>1485716.79861006</y>
@@ -4746,7 +5177,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931037.77271081</x>
 		<y>1485679.70128496</y>
@@ -4757,7 +5189,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930911.32796112</x>
 		<y>1485602.94600288</y>
@@ -4768,7 +5201,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931003.66718518</x>
 		<y>1485479.67391249</y>
@@ -4779,7 +5213,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2930967.10646219</x>
 		<y>1485533.44932318</y>
@@ -4790,7 +5225,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931043.16826096</x>
 		<y>1485423.26587053</y>
@@ -4801,7 +5237,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2932082.78637193</x>
 		<y>1485281.02769811</y>
@@ -4812,7 +5249,8 @@
 		<attenuationfactor>3.55</attenuationfactor>
 		<type>omnidirectional</type>
 		<Smid>-92.5</Smid>
-		<Smin>8.75</Smin>
+		<Smin>-80</Smin>
+		<Qmin>0.5</Qmin>
 		<SSteep>0.2</SSteep>
 		<x>2931225.3689778</x>
 		<y>1485022.55390908</y>

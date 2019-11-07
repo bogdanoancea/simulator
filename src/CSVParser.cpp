@@ -30,7 +30,7 @@
 
 using namespace std;
 
-Parser::Parser(const std::string &data, const DataType &type, char sep, bool hasHeader) :
+CSVParser::CSVParser(const std::string &data, const DataType &type, char sep, bool hasHeader) :
 		_type(type), _sep(sep), m_header { hasHeader } {
 	string line;
 	if (type == eFILE) {
@@ -66,14 +66,14 @@ Parser::Parser(const std::string &data, const DataType &type, char sep, bool has
 	}
 }
 
-Parser::~Parser(void) {
+CSVParser::~CSVParser(void) {
 	vector<Row *>::iterator it;
 
 	for (it = _content.begin(); it != _content.end(); it++)
 		delete *it;
 }
 
-void Parser::parseHeader(void) {
+void CSVParser::parseHeader(void) {
 	stringstream ss(_originalFile[0]);
 	string item;
 
@@ -81,7 +81,7 @@ void Parser::parseHeader(void) {
 		_header.push_back(item);
 }
 
-void Parser::parseContent(void) {
+void CSVParser::parseContent(void) {
 	vector<string>::iterator it;
 
 	it = _originalFile.begin();
@@ -114,35 +114,35 @@ void Parser::parseContent(void) {
 	}
 }
 
-Row &Parser::getRow(unsigned int rowPosition) const {
+Row &CSVParser::getRow(unsigned int rowPosition) const {
 	if (rowPosition < _content.size())
 		return *(_content[rowPosition]);
 	throw runtime_error("can't return this row (doesn't exist)");
 }
 
-Row &Parser::operator[](unsigned int rowPosition) const {
-	return Parser::getRow(rowPosition);
+Row &CSVParser::operator[](unsigned int rowPosition) const {
+	return CSVParser::getRow(rowPosition);
 }
 
-unsigned int Parser::rowCount(void) const {
+unsigned int CSVParser::rowCount(void) const {
 	return _content.size();
 }
 
-unsigned int Parser::columnCount(void) const {
+unsigned int CSVParser::columnCount(void) const {
 	return _header.size();
 }
 
-vector<string> Parser::getHeader(void) const {
+vector<string> CSVParser::getHeader(void) const {
 	return _header;
 }
 
-const string Parser::getHeaderElement(unsigned int pos) const {
+const string CSVParser::getHeaderElement(unsigned int pos) const {
 	if (pos >= _header.size())
 		throw runtime_error("can't return this header (doesn't exist)");
 	return _header[pos];
 }
 
-bool Parser::deleteRow(unsigned int pos) {
+bool CSVParser::deleteRow(unsigned int pos) {
 	if (pos < _content.size()) {
 		delete *(_content.begin() + pos);
 		_content.erase(_content.begin() + pos);
@@ -151,7 +151,7 @@ bool Parser::deleteRow(unsigned int pos) {
 	return false;
 }
 
-bool Parser::addRow(unsigned int pos, const vector<string> &r) {
+bool CSVParser::addRow(unsigned int pos, const vector<string> &r) {
 	Row *row = new Row(_header);
 
 	for (auto it = r.begin(); it != r.end(); it++)
@@ -164,7 +164,7 @@ bool Parser::addRow(unsigned int pos, const vector<string> &r) {
 	return false;
 }
 
-void Parser::sync(void) const {
+void CSVParser::sync(void) const {
 	if (_type == DataType::eFILE) {
 		ofstream f;
 		f.open(_file, ios::out | ios::trunc);
@@ -186,7 +186,7 @@ void Parser::sync(void) const {
 	}
 }
 
-const string &Parser::getFileName(void) const {
+const string &CSVParser::getFileName(void) const {
 	return _file;
 }
 

@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
 					qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[noTiles - 1]) << endl;
 
 					string fileName = a->getAntennaOutputFileName();
-					Parser file = Parser(fileName, DataType::eFILE, ',', true);
+					CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 					for (unsigned long i = 0; i < file.rowCount(); i++) {
 						Row s = file[i];
 						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
