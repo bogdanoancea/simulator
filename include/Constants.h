@@ -183,6 +183,7 @@ public:
 	static const unsigned int ANTENNA_MIN_3_DB;
 
 	static const double ANTENNA_SMIN;
+	static const double ANTENNA_QMIN;
 
 	static const unsigned int SIM_NUM_MNO;
 

@@ -74,7 +74,7 @@ const unsigned int Constants::ANTENNA_MIN_3_DB = 720;
 const unsigned long Constants::ANTENNA_MAX_CONNECTIONS = 100;
 const double Constants::ANTENNA_POWER = 10;
 const double Constants::ANTENNA_SMIN = -80;
-
+const double Constants::ANTENNA_QMIN = 0.3;
 
 const unsigned int Constants::SIM_NUM_MNO = 1;
 const int Constants::RANDOM_SEED = 123;
