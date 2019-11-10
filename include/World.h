@@ -45,7 +45,7 @@ using namespace tinyxml2;
 /**
  * This is the class where the simulation process takes place. A World object has a Map, a Clock, a set of Agents
  * than can be persons, mobile phones, antennas, mobile operators etc. After generating all the required objects
- * for simulation by reading the parameters from the input configuration files the runSimulation() method is
+ * for simulation by reading the parameters from the input configuration files runSimulation() method is
  * called to perform the actual simulation. The output of the simulation process is written in several files.
  * Antenna objects output their registered events in a .csv file and after the simulation ends, these files are merged
  * in a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities

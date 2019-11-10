@@ -30,8 +30,8 @@ else
         CCFLAGS += -D LINUX
 		CXX		= g++
 		TARGET  = simulator
-		LDFLAGS = -L$(GEOS_HOME)
-		LIBS = libgeos.a
+		LDFLAGS = -L$(GEOS_HOME)/src/.libs/
+		LIBS = $(GEOS_HOME)/libgeos.a
 		CXXFLAGS = -march=native
 
     endif
@@ -39,8 +39,8 @@ else
         CCFLAGS += -D OSX
 		CXX		= g++
 		TARGET	= simulator
-		LDFLAGS = -L$(GEOS_HOME)
-		LIBS = libgeos.a
+		LDFLAGS = -L$(GEOS_HOME)/src/.libs/
+		LIBS = $(GEOS_HOME)/libgeos.a
 		CXXFLAGS = -march=native
     endif
 endif
@@ -49,7 +49,7 @@ endif
 #-------[ include path ]------------
 
 INCS   = -I$(PROJ_HOME)/include
-INCS += -I$(GEOS_HOME)/../include
+INCS += -I$(GEOS_HOME)/include
 
 #-------[ compiler flags ]----------
 
