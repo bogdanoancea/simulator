@@ -1,0 +1,157 @@
+.TH "Map" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Map
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Map\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMap\fP ()"
+.br
+.ti -1c
+.RI "\fBMap\fP (double llX, double llY, double width, double height)"
+.br
+.ti -1c
+.RI "\fBMap\fP (string wktFile)"
+.br
+.ti -1c
+.RI "virtual \fB~Map\fP ()"
+.br
+.ti -1c
+.RI "const GeometryFactory::Ptr & \fBgetGlobalFactory\fP () const"
+.br
+.ti -1c
+.RI "Geometry * \fBgetBoundary\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetBoundary\fP (Geometry *boundary)"
+.br
+.ti -1c
+.RI "const \fBGrid\fP * \fBgetGrid\fP () const"
+.br
+.ti -1c
+.RI "void \fBaddGrid\fP (double dimTileX, double dimTileY)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "Polygon * \fBcreate_rectangle\fP (double llX, double llY, double width, double height)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "GeometryFactory::Ptr \fBm_globalFactory\fP"
+.br
+.ti -1c
+.RI "Geometry * \fBm_boundary\fP"
+.br
+.ti -1c
+.RI "\fBGrid\fP * \fBm_grid\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is the map where the simulation takes place\&. It could be a simple rectangle or any kind of geometry object(s) read from a wkt file\&. The map has a boundary that is implemented as a Geometry object, a factory object of GeometryFactory type used to create other objects\&. All geometric and geographic features of the simulator uses the GEOS library\&. GEOS is an open source C++ library which is just a port to C++ of the well known Java Topology Suite\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Map::Map ()"
+Creates a map with a null boundary\&. The user may set the boundary later, using \fBsetBoundary()\fP method\&. 
+.SS "Map::Map (double llX, double llY, double width, double height)"
+Build a simple map of a rectangular shape\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIllX\fP X coordinate of the bottom left corner of the rectangle\&. 
+.br
+\fIllY\fP Y coordinate of the bottom left corner of the rectangle\&. 
+.br
+\fIwidth\fP the width of the rectangle\&. 
+.br
+\fIheight\fP the height of the rectangle\&. 
+.RE
+.PP
+
+.SS "Map::Map (string wktFile)"
+Builds a map reading it from a \&.wkt file\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIwktFile\fP the name of the \&.wkt file that contains the description of the map\&. Currently, the first row of this file should contain the external boundary geometry of the map\&. 
+.RE
+.PP
+
+.SS "virtual Map::~Map ()\fC [virtual]\fP"
+Default destructor 
+.SH "Member Function Documentation"
+.PP 
+.SS "void Map::addGrid (double dimTileX, double dimTileY)"
+Adds a \fBGrid\fP that overlaps this \fBMap\fP objects\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdimTileX\fP the dimension on OX of a tile of the \fBGrid\fP object\&. 
+.br
+\fIdimTileY\fP the dimension on OY of a tile of the \fBGrid\fP object\&. 
+.RE
+.PP
+
+.SS "Polygon* Map::create_rectangle (double llX, double llY, double width, double height)\fC [private]\fP"
+
+.SS "Geometry* Map::getBoundary () const"
+Returns a pointer to the Geometry object that represents the external boundary of the map\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to the Geometry object that represents the external boundary of the map\&. 
+.RE
+.PP
+
+.SS "const GeometryFactory::Ptr& Map::getGlobalFactory () const"
+Returns a pointer to the GeometryFactory object which is a factory object used to create other geometric objects\&. The GEOS library allows users to create geometric objects only using this factory, all the constructors are made private\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to the GeometryFactory object used to create other geometric objects\&. 
+.RE
+.PP
+
+.SS "const \fBGrid\fP* Map::getGrid () const"
+Returns a pointer to the \fBGrid\fP object associated with this \fBMap\fP\&. After creation of a \fBMap\fP the user should associate a \fBGrid\fP that overlaps this \fBMap\fP\&. The gird is used to compute the probability of the localization of different events during the simulation\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer the \fBGrid\fP object associated with this \fBMap\fP\&. 
+.RE
+.PP
+
+.SS "void Map::setBoundary (Geometry * boundary)"
+Sets the boundary of the \fBMap\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIboundary\fP the boundary of the \fBMap\fP object\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "Geometry* Map::m_boundary\fC [private]\fP"
+
+.SS "GeometryFactory::Ptr Map::m_globalFactory\fC [private]\fP"
+
+.SS "\fBGrid\fP* Map::m_grid\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

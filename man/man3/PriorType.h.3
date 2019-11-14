@@ -1,0 +1,31 @@
+.TH "include/PriorType.h" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/PriorType.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBPriorType\fP { \fBPriorType::UNIFORM\fP, \fBPriorType::REGISTER\fP, \fBPriorType::NETWORK\fP }"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBPriorType\fP\fC [strong]\fP"
+An enum class that enumerates the types of the prior used to computed the posterior localization probability\&. UNIFORM : the prior is an uniform probability, i\&.e\&. each object is equally located in each tile of the map\&. REGISTER: the prior probability is given by an administrative register\&. NETWORK: the prior probability is given by the mobile network - it is computed as the ratio between the signal quality given by \fBAntenna\fP a in tile t and the sum of the signal quality given by all antennas in all tiles of the grid\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIUNIFORM \fP\fP
+.TP
+\fB\fIREGISTER \fP\fP
+.TP
+\fB\fINETWORK \fP\fP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

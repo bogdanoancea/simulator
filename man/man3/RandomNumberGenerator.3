@@ -1,0 +1,423 @@
+.TH "RandomNumberGenerator" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RandomNumberGenerator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <RandomNumberGenerator\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "double * \fBgenerateNormal2Double\fP (const double m1, const double sd1, const double m2, const double sd2, int n)"
+.br
+.ti -1c
+.RI "double \fBgenerateNormalDouble\fP (const double m, const double sd)"
+.br
+.ti -1c
+.RI "double * \fBgenerateNormalDouble\fP (const double m, const double sd, const int n)"
+.br
+.ti -1c
+.RI "double * \fBgenerateTruncatedNormalDouble\fP (const double a, const double b, const double m, const double sd, const unsigned long n)"
+.br
+.ti -1c
+.RI "double \fBgenerateUniformDouble\fP (const double min, const double max)"
+.br
+.ti -1c
+.RI "double * \fBgenerateUniformDouble\fP (const double min, const double max, const int n)"
+.br
+.ti -1c
+.RI "double \fBgenerateExponentialDouble\fP (const double lambda)"
+.br
+.ti -1c
+.RI "int \fBgenerateUniformInt\fP (const int min, const int max)"
+.br
+.ti -1c
+.RI "int * \fBgenerateUniformInt\fP (const int min, const int max, const int n)"
+.br
+.ti -1c
+.RI "int \fBgenerateBinomialInt\fP (const int max, const double p)"
+.br
+.ti -1c
+.RI "int \fBgenerateBernoulliInt\fP (const double p)"
+.br
+.ti -1c
+.RI "int * \fBgenerateBinomialInt\fP (const int max, const double p, const int n)"
+.br
+.ti -1c
+.RI "int * \fBgenerateBernoulliInt\fP (const double p, const int n)"
+.br
+.ti -1c
+.RI "double \fBnormal_pdf\fP (double x, double m, double s)"
+.br
+.ti -1c
+.RI "void \fBsetSeed\fP (unsigned seed)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBRandomNumberGenerator\fP * \fBinstance\fP ()"
+.br
+.ti -1c
+.RI "static \fBRandomNumberGenerator\fP * \fBinstance\fP (unsigned seed)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRandomNumberGenerator\fP ()"
+.br
+.ti -1c
+.RI "\fBRandomNumberGenerator\fP (unsigned seed)"
+.br
+.ti -1c
+.RI "\fBRandomNumberGenerator\fP (const \fBRandomNumberGenerator\fP &)"
+.br
+.ti -1c
+.RI "\fBRandomNumberGenerator\fP & \fBoperator=\fP (const \fBRandomNumberGenerator\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "uniform_int_distribution< int > \fBm_unif_int_distribution\fP"
+.br
+.ti -1c
+.RI "uniform_real_distribution< double > \fBm_unif_double_distribution\fP"
+.br
+.ti -1c
+.RI "normal_distribution< double > \fBm_normal_double_distribution\fP"
+.br
+.ti -1c
+.RI "exponential_distribution< double > \fBm_exponential_double_distribution\fP"
+.br
+.ti -1c
+.RI "binomial_distribution< int > \fBm_binomial_distribution\fP"
+.br
+.ti -1c
+.RI "bernoulli_distribution \fBm_bernoulli_distribution\fP"
+.br
+.ti -1c
+.RI "std::mt19937 \fBm_generator\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static \fBRandomNumberGenerator\fP * \fBm_instance\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility singleton class to generate random numbers according to different distributions\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RandomNumberGenerator::RandomNumberGenerator ()\fC [private]\fP"
+
+.SS "RandomNumberGenerator::RandomNumberGenerator (unsigned seed)\fC [private]\fP"
+
+.SS "RandomNumberGenerator::RandomNumberGenerator (const \fBRandomNumberGenerator\fP &)\fC [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "int RandomNumberGenerator::generateBernoulliInt (const double p)"
+Generates an int random value from a Bernoulli distribution\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP the parameter of the Bernoulli distribution\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an int random value from a Bernoulii distribution\&. 
+.RE
+.PP
+
+.SS "int* RandomNumberGenerator::generateBernoulliInt (const double p, const int n)"
+Generates n int random values from a Bernoulli distribution\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIp\fP the parameter of the Bernoulli distribution\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+array with n int values from a Bernoulli distribution\&. 
+.RE
+.PP
+
+.SS "int RandomNumberGenerator::generateBinomialInt (const int max, const double p)"
+Generates a int random value from a binomial distribution inside the interval [0, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImax\fP the upper limit of the value\&. 
+.br
+\fIp\fP the parameter of the binomial distribution\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a int random value from a binomial distribution inside the interval [0, max]\&. 
+.RE
+.PP
+
+.SS "int* RandomNumberGenerator::generateBinomialInt (const int max, const double p, const int n)"
+Generates n int random values from a binomial distribution inside the interval [0, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImax\fP the upper limit of the value\&. 
+.br
+\fIp\fP the parameter of the binomial distribution\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+array with n int values from a binomial distribution\&. 
+.RE
+.PP
+
+.SS "double RandomNumberGenerator::generateExponentialDouble (const double lambda)"
+Generates a random value distributed according to an exponential distribution with parameter lambda\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlambda\fP the parameter of the exponential distribution\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a random value distributed according to an exponential distribution with parameter lambda\&. 
+.RE
+.PP
+
+.SS "double* RandomNumberGenerator::generateNormal2Double (const double m1, const double sd1, const double m2, const double sd2, int n)"
+Generates n random numbers with a normal distribution\&. Half of them are N(m1,sd1), the other half N(m2,sd2)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm1\fP the mean of the first normal distribution\&. 
+.br
+\fIsd1\fP the standard deviation of the first normal distribution\&. 
+.br
+\fIm2\fP the mean of the second normal distribution\&. 
+.br
+\fIsd2\fP the standard deviation of the second normal distribution\&. 
+.br
+\fIn\fP the total number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an array with random numbers according to two normal distributions\&. 
+.RE
+.PP
+
+.SS "double RandomNumberGenerator::generateNormalDouble (const double m, const double sd)"
+Generates a random value, normally distributed with mean m and standard distribution sd 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP the mean of the normal distribution\&. 
+.br
+\fIsd\fP the standard deviation of the normal distribution\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a random value, normally distributed with mean m and standard distribution sd\&. 
+.RE
+.PP
+
+.SS "double* RandomNumberGenerator::generateNormalDouble (const double m, const double sd, const int n)"
+Generates an array with n double values normally distributed with mean m and standard deviation sd\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP the mean of the normal distribution\&. 
+.br
+\fIsd\fP the standard deviation of the normal distribution\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an array with n double values normally distributed with mean m and standard deviation sd\&. 
+.RE
+.PP
+
+.SS "double* RandomNumberGenerator::generateTruncatedNormalDouble (const double a, const double b, const double m, const double sd, const unsigned long n)"
+Generates n double values from a truncated normal distribution\&. All values will be in [a, b]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP the inferior limit of the truncated normal distribution\&. 
+.br
+\fIb\fP the superior limit of the truncated normal distribution\&. 
+.br
+\fIm\fP the mean of the normal distribution\&. 
+.br
+\fIsd\fP the standard deviation of the normal distribution\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an array with n double values from a truncated normal distribution\&. 
+.RE
+.PP
+
+.SS "double RandomNumberGenerator::generateUniformDouble (const double min, const double max)"
+Generates a random double value from a uniform distribution which lies inside [min, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImin\fP the lower limit of the value\&. 
+.br
+\fImax\fP the upper limit of the value\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a double value, uniformly distributed in [min, max]\&. 
+.RE
+.PP
+
+.SS "double* RandomNumberGenerator::generateUniformDouble (const double min, const double max, const int n)"
+Generates n uniform distributed random values which lie inside [min, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImin\fP the lower limit of the values\&. 
+.br
+\fImax\fP the upper limit of the values\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+n array with n double values from a uniform distribution\&. 
+.RE
+.PP
+
+.SS "int RandomNumberGenerator::generateUniformInt (const int min, const int max)"
+Generates a random int value from a uniform distribution which lies inside [min, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImin\fP the lower limit of the value\&. 
+.br
+\fImax\fP the upper limit of the value\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an int value, uniformly distributed in [min, max]\&. 
+.RE
+.PP
+
+.SS "int* RandomNumberGenerator::generateUniformInt (const int min, const int max, const int n)"
+Generates n uniform distributed random values which lie inside [min, max]\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImin\fP the lower limit of the values\&. 
+.br
+\fImax\fP the upper limit of the values\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an array with n int values from a uniform distribution\&. 
+.RE
+.PP
+
+.SS "static \fBRandomNumberGenerator\fP* RandomNumberGenerator::instance ()\fC [inline]\fP, \fC [static]\fP"
+Returns an instance of this class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+n instance of this class\&. 
+.RE
+.PP
+
+.SS "static \fBRandomNumberGenerator\fP* RandomNumberGenerator::instance (unsigned seed)\fC [inline]\fP, \fC [static]\fP"
+Returns an instance of this class and also sets the seed of the random number generator\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+n instance of this class\&. 
+.RE
+.PP
+
+.SS "double RandomNumberGenerator::normal_pdf (double x, double m, double s)"
+The value of the PDF of the normal distribution for x\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP the value for which we need the PDF\&. 
+.br
+\fIm\fP the mean of the normal distribution\&. 
+.br
+\fIs\fP the standard deviation of the normal distribution\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The value of the PDF of the normal distribution for x\&. 
+.RE
+.PP
+
+.SS "\fBRandomNumberGenerator\fP& RandomNumberGenerator::operator= (const \fBRandomNumberGenerator\fP &)\fC [private]\fP"
+
+.SS "void RandomNumberGenerator::setSeed (unsigned seed)"
+Sets the seed of the random number generator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIseed\fP 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "bernoulli_distribution RandomNumberGenerator::m_bernoulli_distribution\fC [private]\fP"
+
+.SS "binomial_distribution<int> RandomNumberGenerator::m_binomial_distribution\fC [private]\fP"
+
+.SS "exponential_distribution<double> RandomNumberGenerator::m_exponential_double_distribution\fC [private]\fP"
+
+.SS "std::mt19937 RandomNumberGenerator::m_generator\fC [private]\fP"
+
+.SS "\fBRandomNumberGenerator\fP* RandomNumberGenerator::m_instance\fC [static]\fP, \fC [private]\fP"
+
+.SS "normal_distribution<double> RandomNumberGenerator::m_normal_double_distribution\fC [private]\fP"
+
+.SS "uniform_real_distribution<double> RandomNumberGenerator::m_unif_double_distribution\fC [private]\fP"
+
+.SS "uniform_int_distribution<int> RandomNumberGenerator::m_unif_int_distribution\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

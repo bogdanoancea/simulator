@@ -1,0 +1,251 @@
+.TH "Constants" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Constants
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Constants\&.h>\fP
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const double \fBPHONE_POWER_THRESHOLD\fP"
+.br
+.ti -1c
+.RI "static const double \fBPHONE_QUALITY_THRESHOLD\fP"
+.br
+.ti -1c
+.RI "static const double \fBPHONE_STRENGTH_THRESHOLD\fP"
+.br
+.ti -1c
+.RI "static const double \fBPHONE_CONNECTION_THRESHOLD\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_POWER\fP"
+.br
+.ti -1c
+.RI "static const double \fBATT_FACTOR\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBANTENNA_MAX_CONNECTIONS\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_S_MID\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_S_STEEP\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_NO_PERSONS\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_NO_ANTENNAS\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_NO_MOBILE_PHONES\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_START_TIME\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_END_TIME\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_INCREMENT_TIME\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_STAY_TIME\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBSIM_INTERVAL_BETWEEN_STAYS\fP"
+.br
+.ti -1c
+.RI "static const char \fBsep\fP"
+.br
+.ti -1c
+.RI "static const char * \fBGRID_FILE_NAME\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBGRID_X_ORIG\fP"
+.br
+.ti -1c
+.RI "static const unsigned long \fBGRID_Y_ORIG\fP"
+.br
+.ti -1c
+.RI "static const double \fBGRID_DIM_TILE_X\fP"
+.br
+.ti -1c
+.RI "static const double \fBGRID_DIM_TILE_Y\fP"
+.br
+.ti -1c
+.RI "static const char * \fBPROB_FILE_NAME_PREFIX\fP"
+.br
+.ti -1c
+.RI "static const char * \fBPERSONS_FILE_NAME\fP"
+.br
+.ti -1c
+.RI "static const char * \fBANTENNAS_FILE_NAME\fP"
+.br
+.ti -1c
+.RI "static const \fBPriorType\fP \fBPRIOR_PROBABILITY\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_HEIGHT\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_TILT\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_AZIM_DB_BACK\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_ELEV_DB_BACK\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_BEAM_H\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_BEAM_V\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_DIRECTION\fP"
+.br
+.ti -1c
+.RI "static const unsigned int \fBANTENNA_MAPPING_N\fP"
+.br
+.ti -1c
+.RI "static const unsigned int \fBANTENNA_MIN_3_DB\fP"
+.br
+.ti -1c
+.RI "static const double \fBANTENNA_SMIN\fP"
+.br
+.ti -1c
+.RI "static const unsigned int \fBSIM_NUM_MNO\fP"
+.br
+.ti -1c
+.RI "static const char * \fBSIM_DEFAULT_MNO_NAME\fP"
+.br
+.ti -1c
+.RI "static const double \fBSIM_PROB_MOBILE_PHONE\fP"
+.br
+.ti -1c
+.RI "static const double \fBSIM_PROB_SECOND_MOBILE_PHONE\fP"
+.br
+.ti -1c
+.RI "static const double \fBSIM_TREND_ANGLE_1\fP"
+.br
+.ti -1c
+.RI "static const double \fBSIM_TREND_ANGLE_2\fP"
+.br
+.ti -1c
+.RI "static const int \fBRANDOM_SEED\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+These are some constants used in the process of the simulation, most of them are only used for testing and rapid development of some methods, the real values of the parameters being read from the configuration files\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "const double Constants::ANTENNA_AZIM_DB_BACK\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_BEAM_H\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_BEAM_V\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_DIRECTION\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_ELEV_DB_BACK\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_HEIGHT\fC [static]\fP"
+the antenna height 
+.SS "const unsigned int Constants::ANTENNA_MAPPING_N\fC [static]\fP"
+
+.SS "const unsigned long Constants::ANTENNA_MAX_CONNECTIONS\fC [static]\fP"
+The maximum number of devices an antenna can connect\&. 
+.SS "const unsigned int Constants::ANTENNA_MIN_3_DB\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_POWER\fC [static]\fP"
+\fBAntenna\fP power in Watts\&. 
+.SS "const double Constants::ANTENNA_S_MID\fC [static]\fP"
+The Smid parameter of an antenna 
+.SS "const double Constants::ANTENNA_S_STEEP\fC [static]\fP"
+The Sstepp parameter of an antenna 
+.SS "const double Constants::ANTENNA_SMIN\fC [static]\fP"
+
+.SS "const double Constants::ANTENNA_TILT\fC [static]\fP"
+
+.SS "const char* Constants::ANTENNAS_FILE_NAME\fC [static]\fP"
+The name of the file where the exact positions of the antennas are saved during simulation\&. They are needed for later analysis\&. 
+.SS "const double Constants::ATT_FACTOR\fC [static]\fP"
+Attenuation factor of the signal\&. It usually takes values between 2 in open field and 6 inside buildings 
+.SS "const double Constants::GRID_DIM_TILE_X\fC [static]\fP"
+
+.SS "const double Constants::GRID_DIM_TILE_Y\fC [static]\fP"
+
+.SS "const char* Constants::GRID_FILE_NAME\fC [static]\fP"
+The name of the file where the description of the grid is saved 
+.SS "const unsigned long Constants::GRID_X_ORIG\fC [static]\fP"
+
+.SS "const unsigned long Constants::GRID_Y_ORIG\fC [static]\fP"
+
+.SS "const char* Constants::PERSONS_FILE_NAME\fC [static]\fP"
+The name of the file where the exact positions of the persons are saved during simulation\&. They are needed for later analysis\&. 
+.SS "const double Constants::PHONE_CONNECTION_THRESHOLD\fC [static]\fP"
+This value is interpreted according to the connection type:
+.IP "\(bu" 2
+if the connection uses power it is the minimum value of the signal power received by a phone not considered as noise\&. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible\&.
+.IP "\(bu" 2
+if the connection uses signal quality it is the minimum value of the signal quality received by a phone not considered as noise\&. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible\&.
+.IP "\(bu" 2
+if the connection uses signal strength it is the minimum value of the signal strength received by a phone not considered as noise\&. Below this value the signal is unusable and the connection between a mobile phone and an antenna is not possible\&. 
+.PP
+
+.SS "const double Constants::PHONE_POWER_THRESHOLD\fC [static]\fP"
+If the signal received by a mobile device has a power below this level, the signal is considered only noise and unusable\&. 
+.SS "const double Constants::PHONE_QUALITY_THRESHOLD\fC [static]\fP"
+If the signal received by a mobile device has a quality below this level, the signal is considered only noise and unusable\&. 
+.SS "const double Constants::PHONE_STRENGTH_THRESHOLD\fC [static]\fP"
+If the signal received by a mobile device has a quality below this level, the signal is considered only noise and unusable\&. 
+.SS "const \fBPriorType\fP Constants::PRIOR_PROBABILITY\fC [static]\fP"
+Indicates how the prior probability is computed: uniform, register, network 
+.SS "const char* Constants::PROB_FILE_NAME_PREFIX\fC [static]\fP"
+The name of the file where the probabilities of mobile phones locations are saved 
+.SS "const int Constants::RANDOM_SEED\fC [static]\fP"
+
+.SS "const char Constants::sep\fC [static]\fP"
+The separator used when information is saved in output files 
+.SS "const char* Constants::SIM_DEFAULT_MNO_NAME\fC [static]\fP"
+
+.SS "const unsigned long Constants::SIM_END_TIME\fC [static]\fP"
+Default ending time of a simulation 
+.SS "const unsigned long Constants::SIM_INCREMENT_TIME\fC [static]\fP"
+Default time increment for a simulation 
+.SS "const unsigned long Constants::SIM_INTERVAL_BETWEEN_STAYS\fC [static]\fP"
+
+.SS "const unsigned long Constants::SIM_NO_ANTENNAS\fC [static]\fP"
+The number of antenna used for a simulation 
+.SS "const unsigned long Constants::SIM_NO_MOBILE_PHONES\fC [static]\fP"
+The number of the mobile devices used for a simulation 
+.SS "const unsigned long Constants::SIM_NO_PERSONS\fC [static]\fP"
+The number of persons used for a simulation 
+.SS "const unsigned int Constants::SIM_NUM_MNO\fC [static]\fP"
+
+.SS "const double Constants::SIM_PROB_MOBILE_PHONE\fC [static]\fP"
+
+.SS "const double Constants::SIM_PROB_SECOND_MOBILE_PHONE\fC [static]\fP"
+
+.SS "const unsigned long Constants::SIM_START_TIME\fC [static]\fP"
+Default starting time of a simulation 
+.SS "const unsigned long Constants::SIM_STAY_TIME\fC [static]\fP"
+
+.SS "const double Constants::SIM_TREND_ANGLE_1\fC [static]\fP"
+
+.SS "const double Constants::SIM_TREND_ANGLE_2\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

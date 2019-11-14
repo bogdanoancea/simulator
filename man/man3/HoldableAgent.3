@@ -1,0 +1,212 @@
+.TH "HoldableAgent" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HoldableAgent
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <HoldableAgent\&.h>\fP
+.PP
+Inherits \fBMovableAgent\fP\&.
+.PP
+Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBCONNECTION_TYPE\fP { \fBUSING_POWER\fP, \fBUSING_SIGNAL_QUALITY\fP, \fBUSING_SIGNAL_STRENGTH\fP, \fBUNKNOWN\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHoldableAgent\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, \fBAgent\fP *holder, const \fBClock\fP *clock)"
+.br
+.ti -1c
+.RI "\fBHoldableAgent\fP (const \fBHoldableAgent\fP &h)"
+.br
+.ti -1c
+.RI "virtual \fB~HoldableAgent\fP ()"
+.br
+.ti -1c
+.RI "\fBAgent\fP * \fBgetHolder\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetHolder\fP (\fBAgent\fP *holder)"
+.br
+.ti -1c
+.RI "const string \fBgetName\fP () const override"
+.br
+.ti -1c
+.RI "const string \fBtoString\fP () const override"
+.br
+.ti -1c
+.RI "virtual bool \fBtryConnect\fP ()=0"
+.br
+.ti -1c
+.RI "virtual bool \fBisConnected\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetLocation\fP (Point *location) override"
+.br
+.ti -1c
+.RI "vector< \fBAntenna\fP * > \fBgetAntennas\fP () const"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAgent\fP * \fBm_holder\fP"
+.br
+.ti -1c
+.RI "vector< \fBAntenna\fP * > \fBm_antennas\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is the superclass for all agents that represent a device that can by held by a person\&. 
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBHoldableAgent::CONNECTION_TYPE\fP"
+an enumeration of the modes used by the device to connect to an antenna: USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device\&. USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device\&. USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device\&. UNKNOWN - this should by an error\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIUSING_POWER \fP\fP
+.TP
+\fB\fIUSING_SIGNAL_QUALITY \fP\fP
+.TP
+\fB\fIUSING_SIGNAL_STRENGTH \fP\fP
+.TP
+\fB\fIUNKNOWN \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "HoldableAgent::HoldableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, \fBAgent\fP * holder, const \fBClock\fP * clock)\fC [explicit]\fP"
+Constructor of the class\&. It builds an \fBHoldableAgent\fP object with the parameters provided by user\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to a \fBMap\fP object used for this simulation\&. 
+.br
+\fIid\fP the id of the object\&. 
+.br
+\fIinitPosition\fP the initial location on the map of the object\&. 
+.br
+\fIholder\fP a pointer to an \fBAgent\fP that owns this device\&. 
+.br
+\fIclock\fP a pointer to a \fBClock\fP object used by this simulation\&. 
+.RE
+.PP
+
+.SS "HoldableAgent::HoldableAgent (const \fBHoldableAgent\fP & h)"
+Copy constructor\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIh\fP another object of the same type\&. 
+.RE
+.PP
+
+.SS "virtual HoldableAgent::~HoldableAgent ()\fC [virtual]\fP"
+Destructor 
+.SH "Member Function Documentation"
+.PP 
+.SS "vector<\fBAntenna\fP*> HoldableAgent::getAntennas () const"
+
+.PP
+\fBReturns:\fP
+.RS 4
+a vector with pointers to antennas where this device is connected 
+.RE
+.PP
+
+.SS "\fBAgent\fP* HoldableAgent::getHolder () const"
+Returns a pointer to an \fBAgent\fP object that owns this device 
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to an \fBAgent\fP object that owns this device 
+.RE
+.PP
+
+.SS "const string HoldableAgent::getName () const\fC [override]\fP, \fC [virtual]\fP"
+Returns the name of the class 
+.PP
+\fBReturns:\fP
+.RS 4
+the name of the class 
+.RE
+.PP
+
+.PP
+Implements \fBAgent\fP\&.
+.PP
+Reimplemented in \fBMobilePhone\fP, and \fBTablet\fP\&.
+.SS "virtual bool HoldableAgent::isConnected () const\fC [virtual]\fP"
+check if this device is connected to an antenna 
+.PP
+\fBReturns:\fP
+.RS 4
+true if the device is conneted to an antenna, false otherwise\&. 
+.RE
+.PP
+
+.SS "void HoldableAgent::setHolder (\fBAgent\fP * holder)"
+Sets the owner of this device 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIholder\fP a pointer to the owner of this device 
+.RE
+.PP
+
+.SS "void HoldableAgent::setLocation (Point * location)\fC [override]\fP, \fC [virtual]\fP"
+Sets the location of this device\&. After a new location is set, the device tries to connect to an antenna, i\&.e\&. the \fBtryConnect()\fP method is called\&. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override this method and provide the correct mode of connection\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlocation\fP a point on the \fBMap\fP of the simulation 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBLocatableAgent\fP\&.
+.SS "const string HoldableAgent::toString () const\fC [override]\fP, \fC [virtual]\fP"
+Returns a string representation of this class, useful to print it to the console or in a file\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a string representation of this class, useful to print it to the console or in a file\&. 
+.RE
+.PP
+
+.PP
+Implements \fBAgent\fP\&.
+.PP
+Reimplemented in \fBMobilePhone\fP, and \fBTablet\fP\&.
+.SS "virtual bool HoldableAgent::tryConnect ()\fC [pure virtual]\fP"
+Called when a device wants to connect to an antenna 
+.PP
+\fBReturns:\fP
+.RS 4
+true if the connection succeeds, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBMobilePhone\fP, and \fBTablet\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "vector<\fBAntenna\fP*> HoldableAgent::m_antennas\fC [private]\fP"
+
+.SS "\fBAgent\fP* HoldableAgent::m_holder\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

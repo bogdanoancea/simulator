@@ -1,0 +1,270 @@
+.TH "utils" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+utils
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "vector< Point * > \fBgeneratePoints\fP (const \fBMap\fP *m, unsigned long n, double percentHome, unsigned seed)"
+.br
+.ti -1c
+.RI "vector< Point * > \fBgenerateFixedPoints\fP (const \fBMap\fP *m, unsigned long n, unsigned seed)"
+.br
+.ti -1c
+.RI "void \fBprintPersonHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintAntennaHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintPhoneHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fBprintMobileOperatorHeader\fP ()"
+.br
+.ti -1c
+.RI "double \fBr2d\fP (double x)"
+.br
+.ti -1c
+.RI "double \fBd2r\fP (double x)"
+.br
+.ti -1c
+.RI "XMLNode * \fBgetNode\fP (XMLElement *el, const char *name)"
+.br
+.ti -1c
+.RI "XMLElement * \fBgetFirstChildElement\fP (XMLElement *el, const char *name) noexcept(false)"
+.br
+.ti -1c
+.RI "double \fBgetValue\fP (XMLElement *el, const char *name, double default_value)"
+.br
+.ti -1c
+.RI "int \fBgetValue\fP (XMLElement *el, const char *name, int default_value)"
+.br
+.ti -1c
+.RI "unsigned long \fBgetValue\fP (XMLElement *el, const char *name, unsigned long default_value)"
+.br
+.ti -1c
+.RI "const char * \fBgetValue\fP (XMLElement *el, const char *name, const char *default_value)"
+.br
+.ti -1c
+.RI "double \fBgetValue\fP (XMLElement *el, const char *name)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const double \fBPI\fP = std::atan(1\&.0) * 4"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This namespace contains utility functions that don't belong to any class\&. 
+.SH "Function Documentation"
+.PP 
+.SS "double utils::d2r (double x)\fC [inline]\fP"
+Transforms a number from degrees to radians\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP the angle to be transformed from degrees to radians\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value of x in radians\&. 
+.RE
+.PP
+
+.SS "vector<Point*> utils::generateFixedPoints (const \fBMap\fP * m, unsigned long n, unsigned seed)"
+Generates n random points on a map\&. The points have the same locations in all simulations\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to a \fBMap\fP object where the points have to be located\&. 
+.br
+\fIn\fP the number of points to generate\&. 
+.br
+\fIseed\fP the seed of the random number generator used to generate the points\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a vector of pointers to Point objects\&. 
+.RE
+.PP
+
+.SS "vector<Point*> utils::generatePoints (const \fBMap\fP * m, unsigned long n, double percentHome, unsigned seed)"
+Generates n random points on a map\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to a \fBMap\fP object where the points have to be located\&. 
+.br
+\fIn\fP the number of points to generate\&. 
+.br
+\fIseed\fP the seed of the random number generator used to generate the points\&. 
+.br
+\fIpercentHome\fP a percent of the total number of points considered to be 'home locations', i\&.e\&. each time they have the same values\&. The rest of the points differ from a simulation to another\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a vector of pointers to Point objects\&. 
+.RE
+.PP
+
+.SS "XMLElement* utils::getFirstChildElement (XMLElement * el, const char * name)\fC [noexcept]\fP"
+Returns a pointer to an XMLElement which is the first child of another XMLElement\&. This function is used to parse the content of the configuration files\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the parent XMLElement\&. 
+.br
+\fIname\fP the name of the child XMLElement\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to an XMLElement which is the first child of another XMLElement\&. 
+.RE
+.PP
+
+.SS "XMLNode* utils::getNode (XMLElement * el, const char * name)"
+Returns a pointer to an XMLNode with a specific name that belongs to an XMLElement\&. This function is used to parse the content of the configuration files\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the the XMLElement where to search the XMLNode\&. 
+.br
+\fIname\fP the name of the node\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to an XMLNode with a specific name that belongs to an XMLElement\&. 
+.RE
+.PP
+
+.SS "double utils::getValue (XMLElement * el, const char * name, double default_value)"
+Returns a double value obtained by converting the text in an XMLNode to a double\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a double value obtained by converting the text in an XMLNode to a double\&. 
+.RE
+.PP
+
+.SS "int utils::getValue (XMLElement * el, const char * name, int default_value)"
+Returns an int value obtained by converting the text in an XMLNode to an int\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an int value obtained by converting the text in an XMLNode to an int\&. 
+.RE
+.PP
+
+.SS "unsigned long utils::getValue (XMLElement * el, const char * name, unsigned long default_value)"
+Returns an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. 
+.RE
+.PP
+
+.SS "const char* utils::getValue (XMLElement * el, const char * name, const char * default_value)"
+Returns a string (const char*) value obtained by converting the text in an XMLNode to a const char* pointer\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a const char* value obtained by converting the text in an XMLNode to a const char*\&. 
+.RE
+.PP
+
+.SS "double utils::getValue (XMLElement * el, const char * name)"
+Returns a double value obtained by converting the text in an XMLNode to a double\&. In case the node does not exist this method throws an exection\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a double value obtained by converting the text in an XMLNode to a double 
+.RE
+.PP
+
+.SS "void utils::printAntennaHeader ()"
+Prints out a header containing the names of the member variables from the \fBAntenna\fP class in a human readable format It is used together with \fBAntenna::toString()\fP to output the antennas set on console 
+.SS "void utils::printMobileOperatorHeader ()"
+Prints out a header containing the names of the member variables from the \fBMobileOperator\fP class in a human readable format It is used together with \fBMobileOperator::toString()\fP to output the mobile network operators set on console 
+.SS "void utils::printPersonHeader ()"
+Prints out a header containing the names of the member variables from the \fBPerson\fP class in a human readable format\&. It is used together with \fBPerson::toString()\fP to output the Persons set on console 
+.SS "void utils::printPhoneHeader ()"
+Prints out a header containing the names of the member variables from the \fBMobilePhone\fP class in a human readable format It is used together with \fBMobilePhone::toString()\fP to output the mobile phones set on console 
+.SS "double utils::r2d (double x)\fC [inline]\fP"
+Transforms a number from radians to degrees\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP the angle to be transformed from radians to degrees\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value of x in degrees\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "const double utils::PI = std::atan(1\&.0) * 4"
+Number PI\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

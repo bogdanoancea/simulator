@@ -1,0 +1,83 @@
+.TH "include/Utils.h" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/Utils.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <geos/geom/Point\&.h>\fP
+.br
+\fC#include <TinyXML2\&.h>\fP
+.br
+\fC#include <cmath>\fP
+.br
+\fC#include <vector>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI " \fButils\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "vector< Point * > \fButils::generatePoints\fP (const \fBMap\fP *m, unsigned long n, double percentHome, unsigned seed)"
+.br
+.ti -1c
+.RI "vector< Point * > \fButils::generateFixedPoints\fP (const \fBMap\fP *m, unsigned long n, unsigned seed)"
+.br
+.ti -1c
+.RI "void \fButils::printPersonHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fButils::printAntennaHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fButils::printPhoneHeader\fP ()"
+.br
+.ti -1c
+.RI "void \fButils::printMobileOperatorHeader\fP ()"
+.br
+.ti -1c
+.RI "double \fButils::r2d\fP (double x)"
+.br
+.ti -1c
+.RI "double \fButils::d2r\fP (double x)"
+.br
+.ti -1c
+.RI "XMLNode * \fButils::getNode\fP (XMLElement *el, const char *name)"
+.br
+.ti -1c
+.RI "XMLElement * \fButils::getFirstChildElement\fP (XMLElement *el, const char *name) noexcept(false)"
+.br
+.ti -1c
+.RI "double \fButils::getValue\fP (XMLElement *el, const char *name, double default_value)"
+.br
+.ti -1c
+.RI "int \fButils::getValue\fP (XMLElement *el, const char *name, int default_value)"
+.br
+.ti -1c
+.RI "unsigned long \fButils::getValue\fP (XMLElement *el, const char *name, unsigned long default_value)"
+.br
+.ti -1c
+.RI "const char * \fButils::getValue\fP (XMLElement *el, const char *name, const char *default_value)"
+.br
+.ti -1c
+.RI "double \fButils::getValue\fP (XMLElement *el, const char *name)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const double \fButils::PI\fP = std::atan(1\&.0) * 4"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

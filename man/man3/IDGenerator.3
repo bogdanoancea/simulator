@@ -1,0 +1,82 @@
+.TH "IDGenerator" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IDGenerator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <IDGenerator\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned long \fBnext\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBIDGenerator\fP * \fBinstance\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIDGenerator\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned long \fBm_id\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static \fBIDGenerator\fP * \fBm_instance\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This singleton class is used to generate unique identifiers for all agents in the simulation\&. The ids are unsigned long integers\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "IDGenerator::IDGenerator ()\fC [inline]\fP, \fC [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "static \fBIDGenerator\fP* IDGenerator::instance ()\fC [inline]\fP, \fC [static]\fP"
+Returns an instance of this class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+an instance of this class\&. 
+.RE
+.PP
+
+.SS "unsigned long IDGenerator::next ()\fC [inline]\fP"
+Generates the next unique identifier\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a unique identifier\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned long IDGenerator::m_id\fC [private]\fP"
+
+.SS "\fBIDGenerator\fP* IDGenerator::m_instance\fC [static]\fP, \fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

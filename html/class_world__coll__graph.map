@@ -1,0 +1,9 @@
+<map id="World" name="World">
+<area shape="rect" id="node2" href="$class_agents_collection.html" title="AgentsCollection" alt="" coords="209,421,329,448"/>
+<area shape="rect" id="node4" href="$class_agent.html" title="Agent" alt="" coords="159,199,215,225"/>
+<area shape="rect" id="node5" href="$class_map.html" title="Map" alt="" coords="5,102,52,129"/>
+<area shape="rect" id="node6" href="$class_grid.html" title="Grid" alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node7" href="$class_clock.html" title="Clock" alt="" coords="121,102,176,129"/>
+<area shape="rect" id="node8" title="STL class. " alt="" coords="362,199,442,225"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="339,95,465,136"/>
+</map>
