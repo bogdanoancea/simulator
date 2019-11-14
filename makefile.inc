@@ -1,6 +1,6 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = c:/c-projects/simulator
+PROJ_HOME = C:/data-simulator/simulator
 GEOS_HOME = C:/msys64/mingw64/lib
 MSYS_HOME = C:/msys64/
 DEBUG     = 0
@@ -39,8 +39,8 @@ else
         CCFLAGS += -D OSX
 		CXX		= g++
 		TARGET	= simulator
-		LDFLAGS = -L$(GEOS_HOME)/src/.libs/
-		LIBS = $(GEOS_HOME)/libgeos.a
+		LDFLAGS = -L$(GEOS_HOME)
+		LIBS = $(GEOS_HOME)/libgeos.dylib
 		CXXFLAGS = -march=native
     endif
 endif
@@ -49,7 +49,7 @@ endif
 #-------[ include path ]------------
 
 INCS   = -I$(PROJ_HOME)/include
-INCS += -I$(GEOS_HOME)/include
+INCS += -I$(GEOS_HOME)/../include
 
 #-------[ compiler flags ]----------
 
