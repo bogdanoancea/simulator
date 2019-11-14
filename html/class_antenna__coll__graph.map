@@ -1,0 +1,18 @@
+<map id="Antenna" name="Antenna">
+<area shape="rect" id="node2" href="$class_immovable_agent.html" title="ImmovableAgent" alt="" coords="1087,108,1205,135"/>
+<area shape="rect" id="node3" href="$class_locatable_agent.html" title="LocatableAgent" alt="" coords="821,65,933,92"/>
+<area shape="rect" id="node18" href="$class_movable_agent.html" title="MovableAgent" alt="" coords="1237,59,1340,85"/>
+<area shape="rect" id="node4" href="$class_agent.html" title="Agent" alt="" coords="676,65,732,92"/>
+<area shape="rect" id="node8" href="$class_mobile_operator.html" title="MobileOperator" alt="" coords="1091,225,1201,252"/>
+<area shape="rect" id="node17" href="$class_holdable_agent.html" title="HoldableAgent" alt="" coords="1823,88,1929,115"/>
+<area shape="rect" id="node5" href="$class_map.html" title="Map" alt="" coords="445,91,491,117"/>
+<area shape="rect" id="node6" href="$class_grid.html" title="Grid" alt="" coords="209,91,255,117"/>
+<area shape="rect" id="node7" href="$class_clock.html" title="Clock" alt="" coords="441,40,495,67"/>
+<area shape="rect" id="node9" title="STL class. " alt="" coords="837,175,917,201"/>
+<area shape="rect" id="node10" title="STL class. " alt="" coords="641,167,767,209"/>
+<area shape="rect" id="node11" title="STL class. " alt="" coords="828,259,927,285"/>
+<area shape="rect" id="node12" title="STL class. " alt="" coords="636,251,772,293"/>
+<area shape="rect" id="node13" title="STL class. " alt="" coords="401,251,535,293"/>
+<area shape="rect" id="node14" title="STL class. " alt="" coords="155,259,309,285"/>
+<area shape="rect" id="node15" title="STL class. " alt="" coords="5,259,105,285"/>
+</map>
