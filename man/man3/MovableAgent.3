@@ -1,0 +1,139 @@
+.TH "MovableAgent" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MovableAgent
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <MovableAgent\&.h>\fP
+.PP
+Inherits \fBLocatableAgent\fP\&.
+.PP
+Inherited by \fBHoldableAgent\fP, and \fBPerson\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMovableAgent\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double initSpeed)"
+.br
+.ti -1c
+.RI "virtual \fB~MovableAgent\fP ()"
+.br
+.ti -1c
+.RI "const string \fBgetName\fP () const override"
+.br
+.ti -1c
+.RI "const string \fBtoString\fP () const override"
+.br
+.ti -1c
+.RI "virtual Point * \fBmove\fP (\fBMovementType\fP type)=0"
+.br
+.ti -1c
+.RI "double \fBgetSpeed\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetSpeed\fP (double speed)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBm_speed\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class represents an \fBAgent\fP that can move inside the map\&. This is an abstract class\&. It is used as a base class for all agents that can move\&. Currently \fBPerson\fP and \fBMobilePhone\fP classes inherits it and are already implemented\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MovableAgent::MovableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed)\fC [explicit]\fP"
+Constructor of the class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to a \fBMap\fP object used by the simulation\&. 
+.br
+\fIid\fP the id of the object\&. 
+.br
+\fIinitPosition\fP the initial location on map\&. 
+.br
+\fIclock\fP a pointer to the \fBClock\fP object used by this simulation\&. 
+.br
+\fIinitSpeed\fP the initial speed of the agent\&. Depending on the derived classes, this value could be read from a configuration file\&. For example, for the \fBPerson\fP class, this value is specified in the persons\&.xml configuration file\&. 
+.RE
+.PP
+
+.SS "virtual MovableAgent::~MovableAgent ()\fC [virtual]\fP"
+The default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "const string MovableAgent::getName () const\fC [override]\fP, \fC [virtual]\fP"
+Returns the name of the class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the name of the class\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBLocatableAgent\fP\&.
+.PP
+Reimplemented in \fBPerson\fP, and \fBTablet\fP\&.
+.SS "double MovableAgent::getSpeed () const"
+Returns the speed of this agent\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the speed of this agent\&. 
+.RE
+.PP
+
+.SS "virtual Point* MovableAgent::move (\fBMovementType\fP type)\fC [pure virtual]\fP"
+A pure virtual method used to move the agent to a new location on the map\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP the type of the movement\&. At this moment there are two values accepted for this parameter: \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP and \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP means that at each time instant, the direction is generated as a uniformly distributed random number and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. The agent can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, a \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implemented in \fBPerson\fP, \fBMobilePhone\fP, and \fBTablet\fP\&.
+.SS "void MovableAgent::setSpeed (double speed)"
+Sets the speed of this agent\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIspeed\fP the speed of this agent\&. 
+.RE
+.PP
+
+.SS "const string MovableAgent::toString () const\fC [override]\fP, \fC [virtual]\fP"
+Builds and returns a human readable string representation of the agent\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a human readable string representation of the agent\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBLocatableAgent\fP\&.
+.PP
+Reimplemented in \fBPerson\fP, and \fBTablet\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "double MovableAgent::m_speed\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

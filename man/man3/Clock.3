@@ -1,0 +1,202 @@
+.TH "Clock" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Clock
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Clock\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBClock\fP ()"
+.br
+.ti -1c
+.RI "\fBClock\fP (unsigned long start, unsigned long end, unsigned long incr)"
+.br
+.ti -1c
+.RI "virtual \fB~Clock\fP ()"
+.br
+.ti -1c
+.RI "unsigned long \fBtick\fP ()"
+.br
+.ti -1c
+.RI "unsigned long \fBgetCurrentTime\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetCurrentTime\fP (unsigned long currentTime)"
+.br
+.ti -1c
+.RI "unsigned long \fBgetIncrement\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetIncrement\fP (unsigned long increment)"
+.br
+.ti -1c
+.RI "unsigned long \fBgetInitialTime\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetInitialTime\fP (unsigned long initialTime)"
+.br
+.ti -1c
+.RI "time_t \fBrealTime\fP ()"
+.br
+.ti -1c
+.RI "unsigned long \fBgetFinalTime\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetFinalTime\fP (unsigned long finalTime)"
+.br
+.ti -1c
+.RI "void \fBreset\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned long \fBm_initialTime\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_currentTime\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_increment\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_finalTime\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is the clock used to synchronize the simulation\&. All the agents and all other objects involved in a simulation use the same \fBClock\fP object\&. The \fBClock\fP will be initialized with the value of the starting and ending time of the simulation and will keep a current time during the simulation\&. At each step of the simulation the current time will be increased by an increment\&. Starting time, ending time, current time and the time increment are only conventional units and they do not depend in any way on the real clock of the computer\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Clock::Clock ()"
+Default constructor 
+.SS "Clock::Clock (unsigned long start, unsigned long end, unsigned long incr)"
+Constructor of the class\&. It takes the starting and ending time of the simulation as parameters as well as the time increment\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIstart\fP the initial moment when the simulation starts\&. 
+.br
+\fIend\fP the time when simulation ends\&. 
+.br
+\fIincr\fP the time increment\&. At each step of the simulation the current time is incremented by this quantity\&. 
+.RE
+.PP
+
+.SS "virtual Clock::~Clock ()\fC [virtual]\fP"
+Default destructor 
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned long Clock::getCurrentTime () const"
+
+.PP
+\fBReturns:\fP
+.RS 4
+the current time of the simulator\&. 
+.RE
+.PP
+
+.SS "unsigned long Clock::getFinalTime () const"
+
+.PP
+\fBReturns:\fP
+.RS 4
+the ending time of the simulation\&. 
+.RE
+.PP
+
+.SS "unsigned long Clock::getIncrement () const"
+
+.PP
+\fBReturns:\fP
+.RS 4
+the time increment used in simulation\&. 
+.RE
+.PP
+
+.SS "unsigned long Clock::getInitialTime () const"
+
+.PP
+\fBReturns:\fP
+.RS 4
+the starting time of the simulation\&. 
+.RE
+.PP
+
+.SS "time_t Clock::realTime ()"
+
+.PP
+\fBReturns:\fP
+.RS 4
+the real time read from the computer clock\&. It is used only to register the exact date and time of a simulation\&. 
+.RE
+.PP
+
+.SS "void Clock::reset ()"
+Resets the current time and makes it equal to the starting time such that a new simulation can begin\&. 
+.SS "void Clock::setCurrentTime (unsigned long currentTime)"
+Sets the current time of the simulator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcurrentTime\fP the value of the current time to be set\&. 
+.RE
+.PP
+
+.SS "void Clock::setFinalTime (unsigned long finalTime)"
+Sets the ending time of a simulation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfinalTime\fP the value of the ending time of a simulation\&. 
+.RE
+.PP
+
+.SS "void Clock::setIncrement (unsigned long increment)"
+Sets the time increment to be used in a simulation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIincrement\fP the value of the time increment\&. 
+.RE
+.PP
+
+.SS "void Clock::setInitialTime (unsigned long initialTime)"
+Sets the starting time of the simulation\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIinitialTime\fP the value of the starting time of the simulation\&. 
+.RE
+.PP
+
+.SS "unsigned long Clock::tick ()"
+increments the current time\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the current time after incrementation\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned long Clock::m_currentTime\fC [private]\fP"
+
+.SS "unsigned long Clock::m_finalTime\fC [private]\fP"
+
+.SS "unsigned long Clock::m_increment\fC [private]\fP"
+
+.SS "unsigned long Clock::m_initialTime\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

@@ -1,0 +1,319 @@
+.TH "Person" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Person
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Person\&.h>\fP
+.PP
+Inherits \fBMovableAgent\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBGender\fP { \fBMALE\fP, \fBFEMALE\fP }"
+.br
+.ti -1c
+.RI "enum \fBAgeDistributions\fP { \fBNORMAL\fP, \fBUNIFORM\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPerson\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double initSpeed, int age, \fBGender\fP gender, unsigned long timeStay, unsigned long intervalBetweenStays)"
+.br
+.ti -1c
+.RI "virtual \fB~Person\fP ()"
+.br
+.ti -1c
+.RI "const string \fBgetName\fP () const override"
+.br
+.ti -1c
+.RI "const string \fBtoString\fP () const override"
+.br
+.ti -1c
+.RI "string \fBdumpDevices\fP ()"
+.br
+.ti -1c
+.RI "bool \fBhasDevices\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetAge\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetAge\fP (int age)"
+.br
+.ti -1c
+.RI "Point * \fBmove\fP (\fBMovementType\fP mvType) override"
+.br
+.ti -1c
+.RI "virtual void \fBsetLocation\fP (Point *pt) override"
+.br
+.ti -1c
+.RI "void \fBaddDevice\fP (string type, \fBAgent\fP *agent)"
+.br
+.ti -1c
+.RI "\fBGender\fP \fBgetGender\fP () const"
+.br
+.ti -1c
+.RI "unsigned long \fBgetAvgTimeStay\fP () const"
+.br
+.ti -1c
+.RI "unsigned long \fBgetAvgIntervalBetweenStays\fP () const"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBrandomWalkClosedMap\fP ()"
+.br
+.ti -1c
+.RI "void \fBrandomWalkClosedMapDrift\fP ()"
+.br
+.ti -1c
+.RI "Point * \fBgenerateNewLocation\fP (double theta)"
+.br
+.ti -1c
+.RI "void \fBsetNewLocation\fP (Point *p, bool changeDirection)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_age\fP"
+.br
+.ti -1c
+.RI "\fBGender\fP \fBm_gender\fP"
+.br
+.ti -1c
+.RI "unordered_multimap< string, \fBAgent\fP * > \fBm_idDevices\fP"
+.br
+.ti -1c
+.RI "bool \fBm_changeDirection\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_avgTimeStay\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_timeStay\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_avgIntervalBetweenStays\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_nextStay\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class represents a person that can have a mobile phone\&. 
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBPerson::AgeDistributions\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINORMAL \fP\fP
+.TP
+\fB\fIUNIFORM \fP\fP
+.SS "enum \fBPerson::Gender\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMALE \fP\fP
+.TP
+\fB\fIFEMALE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Person::Person (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed, int age, \fBGender\fP gender, unsigned long timeStay, unsigned long intervalBetweenStays)\fC [explicit]\fP"
+Builds a new \fBPerson\fP object with the characteristics given as parameters\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to the \fBMap\fP object where this \fBPerson\fP move\&. 
+.br
+\fIid\fP the id of the \fBPerson\fP\&. 
+.br
+\fIinitPosition\fP the initial location of the person on the map\&. 
+.br
+\fIclock\fP a pointer to a \fBClock\fP object used for this simulation\&. 
+.br
+\fIinitSpeed\fP the initial speed of this person\&. It is provided in the configuration file\&. 
+.br
+\fIage\fP the age of the person\&. The age is generated using a uniform or a normal distribution\&. 
+.br
+\fIgender\fP the gender of the person\&. 
+.br
+\fItimeStay\fP the average time of a stop 
+.br
+\fIintervalBetweenStays\fP the average time between two consecutive stops\&. 
+.RE
+.PP
+
+.SS "virtual Person::~Person ()\fC [virtual]\fP"
+The default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void Person::addDevice (string type, \fBAgent\fP * agent)"
+Add a mobile device to this person\&. Internally, all mobile devices are kept in an unordered_multimap as pairs <name of the device class, pointer to the device object> 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP the name of the device's class\&. 
+.br
+\fIagent\fP a pointer to the device object\&. 
+.RE
+.PP
+
+.SS "string Person::dumpDevices ()"
+Builds a string containing a list with the ids of the mobile devices that this person owns\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a string containing a list with the ids of the mobile devices that this person owns\&. 
+.RE
+.PP
+
+.SS "Point* Person::generateNewLocation (double theta)\fC [private]\fP"
+
+.SS "int Person::getAge () const"
+Returns the age of the person\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the age of the person\&. 
+.RE
+.PP
+
+.SS "unsigned long Person::getAvgIntervalBetweenStays () const"
+The average time interval between two stops\&. It is given in the simulation\&.xml configuration file\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+The average time interval between two stops\&. 
+.RE
+.PP
+
+.SS "unsigned long Person::getAvgTimeStay () const"
+The average time interval a person stay in the same location\&. It is given in the simulation\&.xml configuration file\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the average time a person stay in the same location\&. 
+.RE
+.PP
+
+.SS "\fBGender\fP Person::getGender () const"
+Returns the gender of the person\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the gender of the person\&. 
+.RE
+.PP
+
+.SS "const string Person::getName () const\fC [override]\fP, \fC [virtual]\fP"
+Returns the name of this class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the name of this class\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBMovableAgent\fP\&.
+.SS "bool Person::hasDevices ()"
+returns true if this person has at least a mobile device, false otherwise\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "Point* Person::move (\fBMovementType\fP mvType)\fC [override]\fP, \fC [virtual]\fP"
+Move the person to another location\&. Computes the coordinates of the new location and then call \fBsetLocation()\fP with this new coordinates\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImvType\fP specifies the method used to compute the new position of the person, i\&.e\&. how the direction and the length of the step are computed\&. It can have the following values: RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary\&. The direction is generated as a random value at each time step and the step length is computed multiplying the speed with the time interval\&. RANDOM_WALK_CLOSED_MAP_WITH_DRIFT: the agent moves in a preferential direction\&. There are two constants defining these directions: SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4)\&. The actual direction is generated as a normally distributed random value with means equals to these constants and sad = 0\&.1\&. In both cases, a \fBPerson\fP makes several steps then a stop\&. The average time length of a stop is given is the simulation configuration file while the actual values are generated as normal distributed random values with the mean read from the configuration file and and sd = 20% from mean\&. The average time interval elapsed between two stop is read from the simulation configuration file and the actual values are generated as exponential distributed random values\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to a Point object that represents the new location\&. 
+.RE
+.PP
+
+.PP
+Implements \fBMovableAgent\fP\&.
+.SS "void Person::randomWalkClosedMap ()\fC [private]\fP"
+
+.SS "void Person::randomWalkClosedMapDrift ()\fC [private]\fP"
+
+.SS "void Person::setAge (int age)"
+Sets the age of the person\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIage\fP the age of the person\&. 
+.RE
+.PP
+
+.SS "virtual void Person::setLocation (Point * pt)\fC [override]\fP, \fC [virtual]\fP"
+Sets the location of the person on the map\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpt\fP a pointer to a Point object that represent the location of the person on the map\&. If the person has mobile devices (phone, tablets) this function calls \fBsetLocation()\fP for all mobile devices too\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBLocatableAgent\fP\&.
+.SS "void Person::setNewLocation (Point * p, bool changeDirection)\fC [private]\fP"
+
+.SS "const string Person::toString () const\fC [override]\fP, \fC [virtual]\fP"
+Builds and returns a human readable string representation of the person\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a human readable string representation of the person\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBMovableAgent\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "int Person::m_age\fC [private]\fP"
+
+.SS "unsigned long Person::m_avgIntervalBetweenStays\fC [private]\fP"
+
+.SS "unsigned long Person::m_avgTimeStay\fC [private]\fP"
+
+.SS "bool Person::m_changeDirection\fC [private]\fP"
+
+.SS "\fBGender\fP Person::m_gender\fC [private]\fP"
+
+.SS "unordered_multimap<string, \fBAgent\fP*> Person::m_idDevices\fC [private]\fP"
+
+.SS "unsigned long Person::m_nextStay\fC [private]\fP"
+
+.SS "unsigned long Person::m_timeStay\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

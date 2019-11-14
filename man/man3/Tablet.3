@@ -1,0 +1,109 @@
+.TH "Tablet" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tablet
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Tablet\&.h>\fP
+.PP
+Inherits \fBHoldableAgent\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTablet\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock)"
+.br
+.ti -1c
+.RI "virtual \fB~Tablet\fP ()"
+.br
+.ti -1c
+.RI "const string \fBgetName\fP () const override"
+.br
+.ti -1c
+.RI "const string \fBtoString\fP () const override"
+.br
+.ti -1c
+.RI "Point * \fBmove\fP (\fBMovementType\fP type) override"
+.br
+.ti -1c
+.RI "bool \fBtryConnect\fP () override"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Tablet::Tablet (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock)\fC [explicit]\fP"
+Builds a new \fBTablet\fP object with the parameters provided by the user\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIm\fP a pointer to a \fBMap\fP object used for simulation\&. 
+.br
+\fIid\fP the id of the tablet\&. 
+.br
+\fIinitPosition\fP the initial location on map\&. 
+.br
+\fIclock\fP a pointer to a \fBClock\fP object used for simulation\&.\&. 
+.RE
+.PP
+
+.SS "virtual Tablet::~Tablet ()\fC [virtual]\fP"
+The default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "const string Tablet::getName () const\fC [override]\fP, \fC [virtual]\fP"
+Returns the name of this class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+the name of this class\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBHoldableAgent\fP\&.
+.SS "Point* Tablet::move (\fBMovementType\fP type)\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+This method is called to move the tablet (actually the person who own this tablet move) to another location on the map\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItype\fP the method used to compute the new location\&. For details see \fBMovableAgent::move()\fP and \fBPerson::move()\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+a pointer to a Point object representing the new location on the map\&. 
+.RE
+.PP
+
+.PP
+Implements \fBMovableAgent\fP\&.
+.SS "const string Tablet::toString () const\fC [override]\fP, \fC [virtual]\fP"
+Builds a human readable representation of this class\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+a human readable representation of this class\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBHoldableAgent\fP\&.
+.SS "bool Tablet::tryConnect ()\fC [override]\fP, \fC [virtual]\fP"
+Called after the tablet changes location on the map, tries to connect to an antenna\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+true if the connection succeeds, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHoldableAgent\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

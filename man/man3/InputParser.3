@@ -1,0 +1,84 @@
+.TH "InputParser" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+InputParser
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <InputParser\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBInputParser\fP (int &argc, char **argv)"
+.br
+.ti -1c
+.RI "const string & \fBgetCmdOption\fP (const string &option) const"
+.br
+.ti -1c
+.RI "bool \fBcmdOptionExists\fP (const string &option) const"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "vector< string > \fBtokens\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Utility class used to parse the command line and extract the parameters and their values\&. An option is passed with a '-' sign in front of it\&. Example: $simulator -s simulation\&.xml -p persons Here -s and -p are options and simulation\&.xml and persons\&.xml are their corresponding values\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "InputParser::InputParser (int & argc, char ** argv)"
+Constructor of the class\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIargc\fP the number of the arguments from the command line\&. 
+.br
+\fIargv\fP an array with the parameters passed in the command line\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool InputParser::cmdOptionExists (const string & option) const"
+Checks if an option was passed as a command line parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIoption\fP the option that we are checking\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+true if the option is present in the command line, false otherwise\&. 
+.RE
+.PP
+
+.SS "const string& InputParser::getCmdOption (const string & option) const"
+Returns the value of an option passed as a command line parameter\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIoption\fP an option from the command line\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value of the option passed as a command line parameter\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "vector<string> InputParser::tokens\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.
