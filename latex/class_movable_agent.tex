@@ -1,0 +1,168 @@
+\hypertarget{class_movable_agent}{}\section{Movable\+Agent Class Reference}
+\label{class_movable_agent}\index{MovableAgent@{MovableAgent}}
+
+
+{\ttfamily \#include $<$Movable\+Agent.\+h$>$}
+
+
+
+Inheritance diagram for Movable\+Agent\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_movable_agent__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Movable\+Agent\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_movable_agent__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_movable_agent_ad76b14a044181a57ade71f1267a2ccbd}{Movable\+Agent}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock, double init\+Speed)
+\item 
+virtual \mbox{\hyperlink{class_movable_agent_a20eb9ddcc953137e63e035837918206c}{$\sim$\+Movable\+Agent}} ()
+\item 
+const string \mbox{\hyperlink{class_movable_agent_abcc1218876c39c996f2cb1eba2b96379}{get\+Name}} () const override
+\item 
+const string \mbox{\hyperlink{class_movable_agent_a1dee2a6bf93f01006fadfb6fba6c9a59}{to\+String}} () const override
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{move}} (\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} type)=0
+\item 
+double \mbox{\hyperlink{class_movable_agent_a12fcdaee60f5bb29f15fe113a7dacaac}{get\+Speed}} () const
+\item 
+void \mbox{\hyperlink{class_movable_agent_ae2ef452e81789a4370e7dee32a9cc67e}{set\+Speed}} (double speed)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_movable_agent_ac725b42e7b968740a59c3e1033d69ac5}{m\+\_\+speed}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class represents an \mbox{\hyperlink{class_agent}{Agent}} that can move inside the map. This is an abstract class. It is used as a base class for all agents that can move. Currently \mbox{\hyperlink{class_person}{Person}} and \mbox{\hyperlink{class_mobile_phone}{Mobile\+Phone}} classes inherits it and are already implemented. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_movable_agent_ad76b14a044181a57ade71f1267a2ccbd}\label{class_movable_agent_ad76b14a044181a57ade71f1267a2ccbd}} 
+\index{MovableAgent@{MovableAgent}!MovableAgent@{MovableAgent}}
+\index{MovableAgent@{MovableAgent}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{MovableAgent()}{MovableAgent()}}
+{\footnotesize\ttfamily Movable\+Agent\+::\+Movable\+Agent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock,  }\item[{double}]{init\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor of the class. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object used by the simulation. \\
+\hline
+{\em id} & the id of the object. \\
+\hline
+{\em init\+Position} & the initial location on map. \\
+\hline
+{\em clock} & a pointer to the \mbox{\hyperlink{class_clock}{Clock}} object used by this simulation. \\
+\hline
+{\em init\+Speed} & the initial speed of the agent. Depending on the derived classes, this value could be read from a configuration file. For example, for the \mbox{\hyperlink{class_person}{Person}} class, this value is specified in the persons.\+xml configuration file. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_movable_agent_a20eb9ddcc953137e63e035837918206c}\label{class_movable_agent_a20eb9ddcc953137e63e035837918206c}} 
+\index{MovableAgent@{MovableAgent}!````~MovableAgent@{$\sim$MovableAgent}}
+\index{````~MovableAgent@{$\sim$MovableAgent}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{$\sim$MovableAgent()}{~MovableAgent()}}
+{\footnotesize\ttfamily virtual Movable\+Agent\+::$\sim$\+Movable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+The default destructor. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_movable_agent_abcc1218876c39c996f2cb1eba2b96379}\label{class_movable_agent_abcc1218876c39c996f2cb1eba2b96379}} 
+\index{MovableAgent@{MovableAgent}!getName@{getName}}
+\index{getName@{getName}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const string Movable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the name of the class. \begin{DoxyReturn}{Returns}
+the name of the class. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_locatable_agent_a754105958bb672744b525538f1584a7b}{Locatable\+Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_person_aa2a6f8d7f1d94045a03ca578f2ed272c}{Person}}, and \mbox{\hyperlink{class_tablet_adc7196aaee1e9714236b7cd8825d5826}{Tablet}}.
+
+\mbox{\Hypertarget{class_movable_agent_a12fcdaee60f5bb29f15fe113a7dacaac}\label{class_movable_agent_a12fcdaee60f5bb29f15fe113a7dacaac}} 
+\index{MovableAgent@{MovableAgent}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily double Movable\+Agent\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the speed of this agent. \begin{DoxyReturn}{Returns}
+the speed of this agent. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}\label{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}} 
+\index{MovableAgent@{MovableAgent}!move@{move}}
+\index{move@{move}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Movable\+Agent\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+A pure virtual method used to move the agent to a new location on the map. 
+\begin{DoxyParams}{Parameters}
+{\em type} & the type of the movement. At this moment there are two values accepted for this parameter\+: \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a1260a39bdcc19395a0085be09746f9d0}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP}} and \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT}}. \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a1260a39bdcc19395a0085be09746f9d0}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP}} means that at each time instant, the direction is generated as a uniformly distributed random number and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. The agent can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, a \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_person_a89843e85f14abc08422273c20252ae23}{Person}}, \mbox{\hyperlink{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}{Mobile\+Phone}}, and \mbox{\hyperlink{class_tablet_a0021a8d61f496d84540f675b1cb7d080}{Tablet}}.
+
+\mbox{\Hypertarget{class_movable_agent_ae2ef452e81789a4370e7dee32a9cc67e}\label{class_movable_agent_ae2ef452e81789a4370e7dee32a9cc67e}} 
+\index{MovableAgent@{MovableAgent}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void Movable\+Agent\+::set\+Speed (\begin{DoxyParamCaption}\item[{double}]{speed }\end{DoxyParamCaption})}
+
+Sets the speed of this agent. 
+\begin{DoxyParams}{Parameters}
+{\em speed} & the speed of this agent. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_movable_agent_a1dee2a6bf93f01006fadfb6fba6c9a59}\label{class_movable_agent_a1dee2a6bf93f01006fadfb6fba6c9a59}} 
+\index{MovableAgent@{MovableAgent}!toString@{toString}}
+\index{toString@{toString}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Movable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Builds and returns a human readable string representation of the agent. \begin{DoxyReturn}{Returns}
+a human readable string representation of the agent. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}{Locatable\+Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_person_a68872538da519d0a04297f43376db27c}{Person}}, and \mbox{\hyperlink{class_tablet_a3fae01e7d526699476221c6a686a4fba}{Tablet}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_movable_agent_ac725b42e7b968740a59c3e1033d69ac5}\label{class_movable_agent_ac725b42e7b968740a59c3e1033d69ac5}} 
+\index{MovableAgent@{MovableAgent}!m\_speed@{m\_speed}}
+\index{m\_speed@{m\_speed}!MovableAgent@{MovableAgent}}
+\subsubsection{\texorpdfstring{m\_speed}{m\_speed}}
+{\footnotesize\ttfamily double Movable\+Agent\+::m\+\_\+speed\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_movable_agent_8h}{Movable\+Agent.\+h}}\end{DoxyCompactItemize}

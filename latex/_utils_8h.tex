@@ -1,0 +1,57 @@
+\hypertarget{_utils_8h}{}\section{include/\+Utils.h File Reference}
+\label{_utils_8h}\index{include/Utils.h@{include/Utils.h}}
+{\ttfamily \#include $<$geos/geom/\+Point.\+h$>$}\newline
+{\ttfamily \#include $<$Tiny\+X\+M\+L2.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for Utils.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_utils_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceutils}{utils}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ Point $\ast$ $>$ \mbox{\hyperlink{namespaceutils_a16e957d5c26b39c840f6e109dd19d45d}{utils\+::generate\+Points}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, unsigned long n, double percent\+Home, unsigned seed)
+\item 
+vector$<$ Point $\ast$ $>$ \mbox{\hyperlink{namespaceutils_acd746b43155fa3033001f28a91a71cec}{utils\+::generate\+Fixed\+Points}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, unsigned long n, unsigned seed)
+\item 
+void \mbox{\hyperlink{namespaceutils_a1978a6ccb2360773215aba027d8b6f08}{utils\+::print\+Person\+Header}} ()
+\item 
+void \mbox{\hyperlink{namespaceutils_a2080e7db5afc5bb1b4c9ef5336f78ccb}{utils\+::print\+Antenna\+Header}} ()
+\item 
+void \mbox{\hyperlink{namespaceutils_a7633a4dfe509a009f4e02850b03ba1e4}{utils\+::print\+Phone\+Header}} ()
+\item 
+void \mbox{\hyperlink{namespaceutils_a207e9d12cc075f601c7fa32ac010b346}{utils\+::print\+Mobile\+Operator\+Header}} ()
+\item 
+double \mbox{\hyperlink{namespaceutils_af70f6f3c2ac66aa3b4ce64a3b48288cb}{utils\+::r2d}} (double x)
+\item 
+double \mbox{\hyperlink{namespaceutils_a1d747e438d856e6c46cd1fe558fe3821}{utils\+::d2r}} (double x)
+\item 
+X\+M\+L\+Node $\ast$ \mbox{\hyperlink{namespaceutils_a707d0fc1b0346b7da16a6f7714a7f24d}{utils\+::get\+Node}} (X\+M\+L\+Element $\ast$el, const char $\ast$name)
+\item 
+X\+M\+L\+Element $\ast$ \mbox{\hyperlink{namespaceutils_a929f9a6daaf5e504356ea4af5918c34b}{utils\+::get\+First\+Child\+Element}} (X\+M\+L\+Element $\ast$el, const char $\ast$name) noexcept(false)
+\item 
+double \mbox{\hyperlink{namespaceutils_a90cdccb9260004c67a61003d648b4e14}{utils\+::get\+Value}} (X\+M\+L\+Element $\ast$el, const char $\ast$name, double default\+\_\+value)
+\item 
+int \mbox{\hyperlink{namespaceutils_a50983d6cf6c443990ee6d15d8082f2c7}{utils\+::get\+Value}} (X\+M\+L\+Element $\ast$el, const char $\ast$name, int default\+\_\+value)
+\item 
+unsigned long \mbox{\hyperlink{namespaceutils_aa81758518e26568880b7d74dc182c75d}{utils\+::get\+Value}} (X\+M\+L\+Element $\ast$el, const char $\ast$name, unsigned long default\+\_\+value)
+\item 
+const char $\ast$ \mbox{\hyperlink{namespaceutils_ad69ebe54599ec891b3053cf9f5a1bd63}{utils\+::get\+Value}} (X\+M\+L\+Element $\ast$el, const char $\ast$name, const char $\ast$default\+\_\+value)
+\item 
+double \mbox{\hyperlink{namespaceutils_a7347b1fde0bc9f313cd0a7051c33818a}{utils\+::get\+Value}} (X\+M\+L\+Element $\ast$el, const char $\ast$name)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{namespaceutils_a92ce7d254229929886551de7417e1912}{utils\+::\+PI}} = std\+::atan(1.\+0) $\ast$ 4
+\end{DoxyCompactItemize}
