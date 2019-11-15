@@ -6,5 +6,6 @@ var searchData=
   ['end',['end',['../class_agents_collection.html#afc61b751cf3387ab4a1bf0dfbc29cb82',1,'AgentsCollection']]],
   ['epure',['ePURE',['../_c_s_vparser_8hpp.html#ad8ed01ff3ff33333d8e19db4d2818bb6aef7f347978c58a657566792291ec1e4b',1,'CSVparser.hpp']]],
   ['eventtype',['EventType',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6fa',1,'EventType.h']]],
-  ['eventtype_2eh',['EventType.h',['../_event_type_8h.html',1,'']]]
+  ['eventtype_2eh',['EventType.h',['../_event_type_8h.html',1,'']]],
+  ['exception',['exception',['../classexception.html',1,'']]]
 ];

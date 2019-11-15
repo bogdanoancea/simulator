@@ -1,4 +1,4 @@
 <map id="Tablet::move" name="Tablet::move">
-<area shape="rect" id="node2" href="$class_locatable_agent.html#ad779af171c67ce0d478fc79b904e2d90" title="LocatableAgent::getLocation" alt="" coords="148,5,335,32"/>
-<area shape="rect" id="node3" href="$class_tablet.html#a2328422e1706dfeb2b51a6960e6879f0" title="Tablet::tryConnect" alt="" coords="177,56,305,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,102,31"/>
+<area shape="rect" id="node2" href="$class_locatable_agent.html#ad779af171c67ce0d478fc79b904e2d90" title=" " alt="" coords="150,5,341,31"/>
 </map>

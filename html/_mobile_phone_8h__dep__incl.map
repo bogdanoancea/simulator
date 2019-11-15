@@ -1,5 +1,6 @@
 <map id="include/MobilePhone.h" name="include/MobilePhone.h">
-<area shape="rect" id="node2" href="$_grid_8h.html" title="include/Grid.h" alt="" coords="17,80,120,107"/>
-<area shape="rect" id="node4" href="$_world_8h.html" title="include/World.h" alt="" coords="145,80,257,107"/>
-<area shape="rect" id="node3" href="$_e_m_field_8h.html" title="include/EMField.h" alt="" coords="5,155,132,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="56,5,212,31"/>
+<area shape="rect" id="node2" href="$_grid_8h.html" title=" " alt="" coords="17,79,121,104"/>
+<area shape="rect" id="node4" href="$_world_8h.html" title=" " alt="" coords="144,79,257,104"/>
+<area shape="rect" id="node3" href="$_e_m_field_8h.html" title=" " alt="" coords="5,152,133,177"/>
 </map>

@@ -12,6 +12,7 @@ var searchData=
   ['setclock',['setClock',['../class_world.html#a52ebe3eed240fe4dd37915a1dad02efd',1,'World']]],
   ['setcurrenttime',['setCurrentTime',['../class_clock.html#a7046e8733ab749d3c24b3c61bd108d6c',1,'Clock']]],
   ['setfinaltime',['setFinalTime',['../class_clock.html#a4780f83b55bc2539cd7069cfc4f06d99',1,'Clock']]],
+  ['sethandovermechanism',['setHandoverMechanism',['../class_antenna.html#a08ae04778bc036f108762fa9be818332',1,'Antenna']]],
   ['setholder',['setHolder',['../class_holdable_agent.html#a39b53c9c6cacca716f38fccc520e9f52',1,'HoldableAgent']]],
   ['setincrement',['setIncrement',['../class_clock.html#a1ae60dca4e41f6e27d6104ec618c02f1',1,'Clock']]],
   ['setinitialtime',['setInitialTime',['../class_clock.html#abe7fb8f715d0dcae08e52b2b7aed7db2',1,'Clock']]],
@@ -46,5 +47,5 @@ var searchData=
   ['simexception_2eh',['SimException.h',['../_sim_exception_8h.html',1,'']]],
   ['size',['size',['../class_agents_collection.html#a3226f7eb58b11623bdb353d8938f60d3',1,'AgentsCollection::size()'],['../class_row.html#ac3dce6d0bd64e944a932a5a26c3ebcef',1,'Row::size()']]],
   ['sumsignalquality',['sumSignalQuality',['../class_e_m_field.html#a4995bf4b93c09f12b7aab64c7eb24603',1,'EMField']]],
-  ['sync',['sync',['../class_parser.html#aa92421ad7f5c4bb158b0b2f389458947',1,'Parser']]]
+  ['sync',['sync',['../class_c_s_v_parser.html#aa0b2494094eb2ce657787ae830b3cc52',1,'CSVParser']]]
 ];

@@ -2,7 +2,7 @@ var searchData=
 [
   ['d2r',['d2r',['../namespaceutils.html#a1d747e438d856e6c46cd1fe558fe3821',1,'utils']]],
   ['deleteagent',['deleteAgent',['../class_agents_collection.html#afd4d2e005b5e449637abd0fa022132a9',1,'AgentsCollection']]],
-  ['deleterow',['deleteRow',['../class_parser.html#a8f625a8081a5bde560d46d18d04efb2e',1,'Parser']]],
+  ['deleterow',['deleteRow',['../class_c_s_v_parser.html#a1bc14d9edecb802c19ad25bd5cab23b3',1,'CSVParser']]],
   ['dettachdevice',['dettachDevice',['../class_antenna.html#a983a0784315567c2ab6ac1820cf558c5',1,'Antenna']]],
   ['dumpcell',['dumpCell',['../class_antenna.html#a8ed18205ff7c675868090e4c80454c2c',1,'Antenna']]],
   ['dumpdevices',['dumpDevices',['../class_person.html#a0bc06f77b3e8a151f8c5cc77459895c9',1,'Person']]],
