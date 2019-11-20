@@ -1,0 +1,1462 @@
+\begin{theindex}
+
+  \item {\_content}
+    \subitem {CSVParser}, \hyperpage{67}
+  \item {\_file}
+    \subitem {CSVParser}, \hyperpage{67}
+  \item {\_header}
+    \subitem {CSVParser}, \hyperpage{67}
+    \subitem {Row}, \hyperpage{144}
+  \item {\_originalFile}
+    \subitem {CSVParser}, \hyperpage{67}
+  \item {\_sep}
+    \subitem {CSVParser}, \hyperpage{68}
+  \item {\_type}
+    \subitem {CSVParser}, \hyperpage{68}
+  \item {\_values}
+    \subitem {Row}, \hyperpage{145}
+  \item {$\sim$Agent}
+    \subitem {Agent}, \hyperpage{19}
+  \item {$\sim$AgentsCollection}
+    \subitem {AgentsCollection}, \hyperpage{22}
+  \item {$\sim$Antenna}
+    \subitem {Antenna}, \hyperpage{30}
+  \item {$\sim$CSVParser}
+    \subitem {CSVParser}, \hyperpage{64}
+  \item {$\sim$Clock}
+    \subitem {Clock}, \hyperpage{51}
+  \item {$\sim$EMField}
+    \subitem {EMField}, \hyperpage{69}
+  \item {$\sim$Grid}
+    \subitem {Grid}, \hyperpage{77}
+  \item {$\sim$HoldableAgent}
+    \subitem {HoldableAgent}, \hyperpage{87}
+  \item {$\sim$ImmovableAgent}
+    \subitem {ImmovableAgent}, \hyperpage{95}
+  \item {$\sim$LocatableAgent}
+    \subitem {LocatableAgent}, \hyperpage{99}
+  \item {$\sim$Map}
+    \subitem {Map}, \hyperpage{103}
+  \item {$\sim$MobileOperator}
+    \subitem {MobileOperator}, \hyperpage{107}
+  \item {$\sim$MobilePhone}
+    \subitem {MobilePhone}, \hyperpage{113}
+  \item {$\sim$MovableAgent}
+    \subitem {MovableAgent}, \hyperpage{118}
+  \item {$\sim$Person}
+    \subitem {Person}, \hyperpage{124}
+  \item {$\sim$Row}
+    \subitem {Row}, \hyperpage{141}
+  \item {$\sim$SimException}
+    \subitem {SimException}, \hyperpage{146}
+  \item {$\sim$Tablet}
+    \subitem {Tablet}, \hyperpage{149}
+  \item {$\sim$World}
+    \subitem {World}, \hyperpage{154}
+
+  \indexspace
+
+  \item {addAgent}
+    \subitem {AgentsCollection}, \hyperpage{23}
+  \item {addAntenna}
+    \subitem {EMField}, \hyperpage{70}
+  \item {addDevice}
+    \subitem {Person}, \hyperpage{124}
+  \item {addGrid}
+    \subitem {Map}, \hyperpage{103}
+  \item {addRow}
+    \subitem {CSVParser}, \hyperpage{64}
+  \item {AgeDistributions}
+    \subitem {Person}, \hyperpage{123}
+  \item {Agent}, \hyperpage{17}
+    \subitem {$\sim$Agent}, \hyperpage{19}
+    \subitem {Agent}, \hyperpage{18}
+    \subitem {getClock}, \hyperpage{19}
+    \subitem {getId}, \hyperpage{19}
+    \subitem {getMap}, \hyperpage{19}
+    \subitem {getName}, \hyperpage{20}
+    \subitem {m\_clock}, \hyperpage{21}
+    \subitem {m\_id}, \hyperpage{21}
+    \subitem {m\_map}, \hyperpage{21}
+    \subitem {operator==}, \hyperpage{20}
+    \subitem {setMap}, \hyperpage{20}
+    \subitem {toString}, \hyperpage{21}
+  \item {AgentsCollection}, \hyperpage{22}
+    \subitem {$\sim$AgentsCollection}, \hyperpage{22}
+    \subitem {addAgent}, \hyperpage{23}
+    \subitem {AgentsCollection}, \hyperpage{22}
+    \subitem {begin}, \hyperpage{24}
+    \subitem {deleteAgent}, \hyperpage{24}
+    \subitem {end}, \hyperpage{24}
+    \subitem {getAgent}, \hyperpage{24}
+    \subitem {getAgentListByType}, \hyperpage{25}
+    \subitem {m\_agents}, \hyperpage{26}
+    \subitem {printAgents}, \hyperpage{25}
+    \subitem {size}, \hyperpage{25}
+  \item {AgentsCollection.h}
+    \subitem {um\_iterator}, \hyperpage{165}
+  \item {ALREADY\_ATTACHED\_DEVICE}
+    \subitem {EventType.h}, \hyperpage{173}
+  \item {alreadyRegistered}
+    \subitem {Antenna}, \hyperpage{30}
+  \item {Antenna}, \hyperpage{26}
+    \subitem {$\sim$Antenna}, \hyperpage{30}
+    \subitem {alreadyRegistered}, \hyperpage{30}
+    \subitem {Antenna}, \hyperpage{29, 30}
+    \subitem {attachDevice}, \hyperpage{31}
+    \subitem {computePower}, \hyperpage{31}
+    \subitem {computeSignalMeasure}, \hyperpage{32}
+    \subitem {computeSignalQuality}, \hyperpage{32}
+    \subitem {computeSignalQualityDirectional}, \hyperpage{33}
+    \subitem {computeSignalQualityOmnidirectional}, \hyperpage{33}
+    \subitem {computeSignalStrength}, \hyperpage{33}
+    \subitem {computeSignalStrengthDirectional}, \hyperpage{34}
+    \subitem {computeSignalStrengthOmnidirectional}, \hyperpage{34}
+    \subitem {createMapping}, \hyperpage{34}
+    \subitem {dettachDevice}, \hyperpage{34}
+    \subitem {dumpCell}, \hyperpage{34}
+    \subitem {findSD}, \hyperpage{35}
+    \subitem {getAntennaOutputFileName}, \hyperpage{35}
+    \subitem {getCoverageArea}, \hyperpage{35}
+    \subitem {getCoverageAreaDirectional}, \hyperpage{35}
+    \subitem {getCoverageAreaOmnidirectional}, \hyperpage{36}
+    \subitem {getHandoverMechanism}, \hyperpage{36}
+    \subitem {getMaxConnections}, \hyperpage{36}
+    \subitem {getMin3db}, \hyperpage{36}
+    \subitem {getMNO}, \hyperpage{36}
+    \subitem {getName}, \hyperpage{36}
+    \subitem {getNumActiveConections}, \hyperpage{37}
+    \subitem {getPLE}, \hyperpage{37}
+    \subitem {getPower}, \hyperpage{37}
+    \subitem {getRmax}, \hyperpage{37}
+    \subitem {getSmid}, \hyperpage{38}
+    \subitem {getSmin}, \hyperpage{38}
+    \subitem {getSSteep}, \hyperpage{38}
+    \subitem {getType}, \hyperpage{38}
+    \subitem {m\_azim\_dB\_Back}, \hyperpage{43}
+    \subitem {m\_beam\_H}, \hyperpage{43}
+    \subitem {m\_beam\_V}, \hyperpage{43}
+    \subitem {m\_cell}, \hyperpage{43}
+    \subitem {m\_devices}, \hyperpage{43}
+    \subitem {m\_direction}, \hyperpage{43}
+    \subitem {m\_elev\_dB\_Back}, \hyperpage{44}
+    \subitem {m\_file}, \hyperpage{44}
+    \subitem {m\_handoverMechanism}, \hyperpage{44}
+    \subitem {m\_height}, \hyperpage{44}
+    \subitem {m\_mapping\_azim}, \hyperpage{44}
+    \subitem {m\_mapping\_elev}, \hyperpage{44}
+    \subitem {m\_maxConnections}, \hyperpage{44}
+    \subitem {m\_MNO}, \hyperpage{44}
+    \subitem {m\_ple}, \hyperpage{45}
+    \subitem {m\_power}, \hyperpage{45}
+    \subitem {m\_Qmin}, \hyperpage{45}
+    \subitem {m\_rmax}, \hyperpage{45}
+    \subitem {m\_S0}, \hyperpage{45}
+    \subitem {m\_sd\_azim}, \hyperpage{45}
+    \subitem {m\_sd\_elev}, \hyperpage{45}
+    \subitem {m\_Smid}, \hyperpage{45}
+    \subitem {m\_Smin}, \hyperpage{46}
+    \subitem {m\_SSteep}, \hyperpage{46}
+    \subitem {m\_tilt}, \hyperpage{46}
+    \subitem {m\_type}, \hyperpage{46}
+    \subitem {norm\_dBLoss}, \hyperpage{39}
+    \subitem {normalizeAngle}, \hyperpage{39}
+    \subitem {projectToEPlane}, \hyperpage{39}
+    \subitem {registerEvent}, \hyperpage{39}
+    \subitem {S}, \hyperpage{39}
+    \subitem {S0}, \hyperpage{40}
+    \subitem {SDist}, \hyperpage{40}
+    \subitem {searchMin}, \hyperpage{40}
+    \subitem {setHandoverMechanism}, \hyperpage{40}
+    \subitem {setLocationWithElevation}, \hyperpage{40}
+    \subitem {setMaxConnections}, \hyperpage{40}
+    \subitem {setPLE}, \hyperpage{41}
+    \subitem {setPower}, \hyperpage{41}
+    \subitem {setSmid}, \hyperpage{41}
+    \subitem {setSSteep}, \hyperpage{41}
+    \subitem {setType}, \hyperpage{42}
+    \subitem {toString}, \hyperpage{42}
+    \subitem {tryRegisterDevice}, \hyperpage{42}
+  \item {ANTENNA\_AZIM\_DB\_BACK}
+    \subitem {Constants}, \hyperpage{56}
+  \item {ANTENNA\_BEAM\_H}
+    \subitem {Constants}, \hyperpage{56}
+  \item {ANTENNA\_BEAM\_V}
+    \subitem {Constants}, \hyperpage{56}
+  \item {ANTENNA\_DIRECTION}
+    \subitem {Constants}, \hyperpage{56}
+  \item {ANTENNA\_ELEV\_DB\_BACK}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_HEIGHT}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_MAPPING\_N}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_MAX\_CONNECTIONS}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_MIN\_3\_DB}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_POWER}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_QMIN}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_S\_MID}
+    \subitem {Constants}, \hyperpage{57}
+  \item {ANTENNA\_S\_STEEP}
+    \subitem {Constants}, \hyperpage{58}
+  \item {ANTENNA\_SMIN}
+    \subitem {Constants}, \hyperpage{58}
+  \item {ANTENNA\_TILT}
+    \subitem {Constants}, \hyperpage{58}
+  \item {AntennaInfo}, \hyperpage{46}
+    \subitem {AntennaInfo}, \hyperpage{47}
+    \subitem {getAntennaId}, \hyperpage{47}
+    \subitem {getDeviceId}, \hyperpage{48}
+    \subitem {getEventCode}, \hyperpage{48}
+    \subitem {getTime}, \hyperpage{48}
+    \subitem {getX}, \hyperpage{48}
+    \subitem {getY}, \hyperpage{48}
+    \subitem {m\_antennaId}, \hyperpage{49}
+    \subitem {m\_deviceId}, \hyperpage{49}
+    \subitem {m\_eventCode}, \hyperpage{50}
+    \subitem {m\_time}, \hyperpage{50}
+    \subitem {m\_x}, \hyperpage{50}
+    \subitem {m\_y}, \hyperpage{50}
+    \subitem {operator$<$}, \hyperpage{49}
+    \subitem {toString}, \hyperpage{49}
+  \item {ANTENNAS\_FILE\_NAME}
+    \subitem {Constants}, \hyperpage{58}
+  \item {AntennaType}
+    \subitem {AntennaType.h}, \hyperpage{168}
+  \item {AntennaType.h}
+    \subitem {AntennaType}, \hyperpage{168}
+    \subitem {DIRECTIONAL}, \hyperpage{168}
+    \subitem {OMNIDIRECTIONAL}, \hyperpage{168}
+  \item {ATT\_FACTOR}
+    \subitem {Constants}, \hyperpage{58}
+  \item {ATTACH\_DEVICE}
+    \subitem {EventType.h}, \hyperpage{173}
+  \item {attachDevice}
+    \subitem {Antenna}, \hyperpage{31}
+
+  \indexspace
+
+  \item {begin}
+    \subitem {AgentsCollection}, \hyperpage{24}
+
+  \indexspace
+
+  \item {Clock}, \hyperpage{50}
+    \subitem {$\sim$Clock}, \hyperpage{51}
+    \subitem {Clock}, \hyperpage{51}
+    \subitem {getCurrentTime}, \hyperpage{52}
+    \subitem {getFinalTime}, \hyperpage{52}
+    \subitem {getIncrement}, \hyperpage{52}
+    \subitem {getInitialTime}, \hyperpage{52}
+    \subitem {m\_currentTime}, \hyperpage{54}
+    \subitem {m\_finalTime}, \hyperpage{54}
+    \subitem {m\_increment}, \hyperpage{54}
+    \subitem {m\_initialTime}, \hyperpage{55}
+    \subitem {realTime}, \hyperpage{52}
+    \subitem {reset}, \hyperpage{53}
+    \subitem {setCurrentTime}, \hyperpage{53}
+    \subitem {setFinalTime}, \hyperpage{53}
+    \subitem {setIncrement}, \hyperpage{53}
+    \subitem {setInitialTime}, \hyperpage{54}
+    \subitem {tick}, \hyperpage{54}
+  \item {cmdOptionExists}
+    \subitem {InputParser}, \hyperpage{96}
+  \item {columnCount}
+    \subitem {CSVParser}, \hyperpage{64}
+  \item {computeMaxPower}
+    \subitem {EMField}, \hyperpage{70}
+  \item {computeMaxQuality}
+    \subitem {EMField}, \hyperpage{71}
+  \item {computeMaxStrength}
+    \subitem {EMField}, \hyperpage{71}
+  \item {computePower}
+    \subitem {Antenna}, \hyperpage{31}
+  \item {computeProbability}
+    \subitem {Grid}, \hyperpage{77}
+  \item {computeSignalMeasure}
+    \subitem {Antenna}, \hyperpage{32}
+  \item {computeSignalQuality}
+    \subitem {Antenna}, \hyperpage{32}
+  \item {computeSignalQualityDirectional}
+    \subitem {Antenna}, \hyperpage{33}
+  \item {computeSignalQualityOmnidirectional}
+    \subitem {Antenna}, \hyperpage{33}
+  \item {computeSignalStrength}
+    \subitem {Antenna}, \hyperpage{33}
+  \item {computeSignalStrengthDirectional}
+    \subitem {Antenna}, \hyperpage{34}
+  \item {computeSignalStrengthOmnidirectional}
+    \subitem {Antenna}, \hyperpage{34}
+  \item {computeTileCenters}
+    \subitem {Grid}, \hyperpage{78}
+  \item {CONNECTION\_TYPE}
+    \subitem {HoldableAgent}, \hyperpage{86}
+  \item {connectionLikelihood}
+    \subitem {EMField}, \hyperpage{72}
+  \item {connectionLikelihoodGrid}
+    \subitem {EMField}, \hyperpage{72}
+  \item {Constants}, \hyperpage{55}
+    \subitem {ANTENNA\_AZIM\_DB\_BACK}, \hyperpage{56}
+    \subitem {ANTENNA\_BEAM\_H}, \hyperpage{56}
+    \subitem {ANTENNA\_BEAM\_V}, \hyperpage{56}
+    \subitem {ANTENNA\_DIRECTION}, \hyperpage{56}
+    \subitem {ANTENNA\_ELEV\_DB\_BACK}, \hyperpage{57}
+    \subitem {ANTENNA\_HEIGHT}, \hyperpage{57}
+    \subitem {ANTENNA\_MAPPING\_N}, \hyperpage{57}
+    \subitem {ANTENNA\_MAX\_CONNECTIONS}, \hyperpage{57}
+    \subitem {ANTENNA\_MIN\_3\_DB}, \hyperpage{57}
+    \subitem {ANTENNA\_POWER}, \hyperpage{57}
+    \subitem {ANTENNA\_QMIN}, \hyperpage{57}
+    \subitem {ANTENNA\_S\_MID}, \hyperpage{57}
+    \subitem {ANTENNA\_S\_STEEP}, \hyperpage{58}
+    \subitem {ANTENNA\_SMIN}, \hyperpage{58}
+    \subitem {ANTENNA\_TILT}, \hyperpage{58}
+    \subitem {ANTENNAS\_FILE\_NAME}, \hyperpage{58}
+    \subitem {ATT\_FACTOR}, \hyperpage{58}
+    \subitem {GRID\_DIM\_TILE\_X}, \hyperpage{58}
+    \subitem {GRID\_DIM\_TILE\_Y}, \hyperpage{58}
+    \subitem {GRID\_FILE\_NAME}, \hyperpage{59}
+    \subitem {GRID\_X\_ORIG}, \hyperpage{59}
+    \subitem {GRID\_Y\_ORIG}, \hyperpage{59}
+    \subitem {PERSONS\_FILE\_NAME}, \hyperpage{59}
+    \subitem {PHONE\_CONNECTION\_THRESHOLD}, \hyperpage{59}
+    \subitem {PHONE\_POWER\_THRESHOLD}, \hyperpage{59}
+    \subitem {PHONE\_QUALITY\_THRESHOLD}, \hyperpage{60}
+    \subitem {PHONE\_STRENGTH\_THRESHOLD}, \hyperpage{60}
+    \subitem {PRIOR\_PROBABILITY}, \hyperpage{60}
+    \subitem {PROB\_FILE\_NAME\_PREFIX}, \hyperpage{60}
+    \subitem {RANDOM\_SEED}, \hyperpage{60}
+    \subitem {sep}, \hyperpage{60}
+    \subitem {SIM\_DEFAULT\_MNO\_NAME}, \hyperpage{60}
+    \subitem {SIM\_END\_TIME}, \hyperpage{61}
+    \subitem {SIM\_INCREMENT\_TIME}, \hyperpage{61}
+    \subitem {SIM\_INTERVAL\_BETWEEN\_STAYS}, \hyperpage{61}
+    \subitem {SIM\_NO\_ANTENNAS}, \hyperpage{61}
+    \subitem {SIM\_NO\_MOBILE\_PHONES}, \hyperpage{61}
+    \subitem {SIM\_NO\_PERSONS}, \hyperpage{61}
+    \subitem {SIM\_NUM\_MNO}, \hyperpage{61}
+    \subitem {SIM\_PROB\_MOBILE\_PHONE}, \hyperpage{61}
+    \subitem {SIM\_PROB\_SECOND\_MOBILE\_PHONE}, \hyperpage{62}
+    \subitem {SIM\_START\_TIME}, \hyperpage{62}
+    \subitem {SIM\_STAY\_TIME}, \hyperpage{62}
+    \subitem {SIM\_TREND\_ANGLE\_1}, \hyperpage{62}
+    \subitem {SIM\_TREND\_ANGLE\_2}, \hyperpage{62}
+  \item {create\_rectangle}
+    \subitem {Map}, \hyperpage{104}
+  \item {createMapping}
+    \subitem {Antenna}, \hyperpage{34}
+  \item {CSVParser}, \hyperpage{62}
+    \subitem {\_content}, \hyperpage{67}
+    \subitem {\_file}, \hyperpage{67}
+    \subitem {\_header}, \hyperpage{67}
+    \subitem {\_originalFile}, \hyperpage{67}
+    \subitem {\_sep}, \hyperpage{68}
+    \subitem {\_type}, \hyperpage{68}
+    \subitem {$\sim$CSVParser}, \hyperpage{64}
+    \subitem {addRow}, \hyperpage{64}
+    \subitem {columnCount}, \hyperpage{64}
+    \subitem {CSVParser}, \hyperpage{63}
+    \subitem {deleteRow}, \hyperpage{65}
+    \subitem {getFileName}, \hyperpage{65}
+    \subitem {getHeader}, \hyperpage{65}
+    \subitem {getHeaderElement}, \hyperpage{65}
+    \subitem {getRow}, \hyperpage{66}
+    \subitem {m\_header}, \hyperpage{68}
+    \subitem {operator[]}, \hyperpage{66}
+    \subitem {parseContent}, \hyperpage{66}
+    \subitem {parseHeader}, \hyperpage{66}
+    \subitem {rowCount}, \hyperpage{67}
+    \subitem {sync}, \hyperpage{67}
+  \item {CSVparser.hpp}
+    \subitem {DataType}, \hyperpage{171}
+    \subitem {eFILE}, \hyperpage{171}
+    \subitem {ePURE}, \hyperpage{171}
+
+  \indexspace
+
+  \item {d2r}
+    \subitem {utils}, \hyperpage{9}
+  \item {DataType}
+    \subitem {CSVparser.hpp}, \hyperpage{171}
+  \item {deleteAgent}
+    \subitem {AgentsCollection}, \hyperpage{24}
+  \item {deleteRow}
+    \subitem {CSVParser}, \hyperpage{65}
+  \item {DETACH\_DEVICE}
+    \subitem {EventType.h}, \hyperpage{173}
+  \item {dettachDevice}
+    \subitem {Antenna}, \hyperpage{34}
+  \item {DIRECTIONAL}
+    \subitem {AntennaType.h}, \hyperpage{168}
+  \item {dumpCell}
+    \subitem {Antenna}, \hyperpage{34}
+  \item {dumpDevices}
+    \subitem {Person}, \hyperpage{125}
+  \item {dumpGrid}
+    \subitem {Grid}, \hyperpage{78}
+  \item {dumpLocation}
+    \subitem {LocatableAgent}, \hyperpage{100}
+
+  \indexspace
+
+  \item {eFILE}
+    \subitem {CSVparser.hpp}, \hyperpage{171}
+  \item {EMField}, \hyperpage{68}
+    \subitem {$\sim$EMField}, \hyperpage{69}
+    \subitem {addAntenna}, \hyperpage{70}
+    \subitem {computeMaxPower}, \hyperpage{70}
+    \subitem {computeMaxQuality}, \hyperpage{71}
+    \subitem {computeMaxStrength}, \hyperpage{71}
+    \subitem {connectionLikelihood}, \hyperpage{72}
+    \subitem {connectionLikelihoodGrid}, \hyperpage{72}
+    \subitem {EMField}, \hyperpage{70}
+    \subitem {getAntennaMin3DbArray}, \hyperpage{72}
+    \subitem {getInRangeAntennas}, \hyperpage{73}
+    \subitem {getSd}, \hyperpage{73}
+    \subitem {instance}, \hyperpage{73}
+    \subitem {isAntennaInRange}, \hyperpage{73}
+    \subitem {m\_antennaMin3DbArray}, \hyperpage{75}
+    \subitem {m\_antennas}, \hyperpage{75}
+    \subitem {m\_instance}, \hyperpage{75}
+    \subitem {m\_sd}, \hyperpage{75}
+    \subitem {m\_sumQuality}, \hyperpage{75}
+    \subitem {operator=}, \hyperpage{74}
+    \subitem {sumSignalQuality}, \hyperpage{74}
+  \item {end}
+    \subitem {AgentsCollection}, \hyperpage{24}
+  \item {ePURE}
+    \subitem {CSVparser.hpp}, \hyperpage{171}
+  \item {EventType}
+    \subitem {EventType.h}, \hyperpage{173}
+  \item {EventType.h}
+    \subitem {ALREADY\_ATTACHED\_DEVICE}, \hyperpage{173}
+    \subitem {ATTACH\_DEVICE}, \hyperpage{173}
+    \subitem {DETACH\_DEVICE}, \hyperpage{173}
+    \subitem {EventType}, \hyperpage{173}
+    \subitem {IN\_RANGE\_NOT\_ATTACHED\_DEVICE}, \hyperpage{173}
+
+  \indexspace
+
+  \item {FEMALE}
+    \subitem {Person}, \hyperpage{124}
+  \item {findSD}
+    \subitem {Antenna}, \hyperpage{35}
+
+  \indexspace
+
+  \item {Gender}
+    \subitem {Person}, \hyperpage{123}
+  \item {generateAntennas}
+    \subitem {World}, \hyperpage{154}
+  \item {generateBernoulliInt}
+    \subitem {RandomNumberGenerator}, \hyperpage{132, 133}
+  \item {generateBinomialInt}
+    \subitem {RandomNumberGenerator}, \hyperpage{133}
+  \item {generateExponentialDouble}
+    \subitem {RandomNumberGenerator}, \hyperpage{134}
+  \item {generateFixedPoints}
+    \subitem {utils}, \hyperpage{10}
+  \item {generateMobilePhones}
+    \subitem {World}, \hyperpage{154}
+  \item {generateNewLocation}
+    \subitem {Person}, \hyperpage{125}
+  \item {generateNormal2Double}
+    \subitem {RandomNumberGenerator}, \hyperpage{134}
+  \item {generateNormalDouble}
+    \subitem {RandomNumberGenerator}, \hyperpage{135}
+  \item {generatePoints}
+    \subitem {utils}, \hyperpage{10}
+  \item {generatePopulation}
+    \subitem {World}, \hyperpage{154}
+  \item {generateTruncatedNormalDouble}
+    \subitem {RandomNumberGenerator}, \hyperpage{136}
+  \item {generateUniformDouble}
+    \subitem {RandomNumberGenerator}, \hyperpage{136}
+  \item {generateUniformInt}
+    \subitem {RandomNumberGenerator}, \hyperpage{137}
+  \item {getAge}
+    \subitem {Person}, \hyperpage{125}
+  \item {getAgent}
+    \subitem {AgentsCollection}, \hyperpage{24}
+  \item {getAgentListByType}
+    \subitem {AgentsCollection}, \hyperpage{25}
+  \item {getAgents}
+    \subitem {World}, \hyperpage{154}
+  \item {getAntennaCellsFile}
+    \subitem {MobileOperator}, \hyperpage{107}
+  \item {getAntennaId}
+    \subitem {AntennaInfo}, \hyperpage{47}
+  \item {getAntennaMin3DbArray}
+    \subitem {EMField}, \hyperpage{72}
+  \item {getAntennaOutputFileName}
+    \subitem {Antenna}, \hyperpage{35}
+  \item {getAntennas}
+    \subitem {HoldableAgent}, \hyperpage{87}
+  \item {getAntennasFilename}
+    \subitem {World}, \hyperpage{155}
+  \item {getAvgIntervalBetweenStays}
+    \subitem {Person}, \hyperpage{125}
+  \item {getAvgTimeStay}
+    \subitem {Person}, \hyperpage{126}
+  \item {getBoundary}
+    \subitem {Map}, \hyperpage{104}
+  \item {getClock}
+    \subitem {Agent}, \hyperpage{19}
+    \subitem {World}, \hyperpage{155}
+  \item {getCmdOption}
+    \subitem {InputParser}, \hyperpage{97}
+  \item {getConnectionThreshold}
+    \subitem {MobilePhone}, \hyperpage{113}
+  \item {getConnectionType}
+    \subitem {World}, \hyperpage{155}
+  \item {getCoverageArea}
+    \subitem {Antenna}, \hyperpage{35}
+  \item {getCoverageAreaDirectional}
+    \subitem {Antenna}, \hyperpage{35}
+  \item {getCoverageAreaOmnidirectional}
+    \subitem {Antenna}, \hyperpage{36}
+  \item {getCurrentTime}
+    \subitem {Clock}, \hyperpage{52}
+  \item {getDefaultConnectionThreshold}
+    \subitem {World}, \hyperpage{155}
+  \item {getDeviceId}
+    \subitem {AntennaInfo}, \hyperpage{48}
+  \item {getEventCode}
+    \subitem {AntennaInfo}, \hyperpage{48}
+  \item {getFileName}
+    \subitem {CSVParser}, \hyperpage{65}
+  \item {getFinalTime}
+    \subitem {Clock}, \hyperpage{52}
+  \item {getFirstChildElement}
+    \subitem {utils}, \hyperpage{11}
+  \item {getGender}
+    \subitem {Person}, \hyperpage{126}
+  \item {getGlobalFactory}
+    \subitem {Map}, \hyperpage{104}
+  \item {getGrid}
+    \subitem {Map}, \hyperpage{104}
+  \item {getGridDimTileX}
+    \subitem {World}, \hyperpage{156}
+  \item {getGridDimTileY}
+    \subitem {World}, \hyperpage{156}
+  \item {getGridFilename}
+    \subitem {World}, \hyperpage{156}
+  \item {getHandoverMechanism}
+    \subitem {Antenna}, \hyperpage{36}
+  \item {getHeader}
+    \subitem {CSVParser}, \hyperpage{65}
+  \item {getHeaderElement}
+    \subitem {CSVParser}, \hyperpage{65}
+  \item {getHolder}
+    \subitem {HoldableAgent}, \hyperpage{87}
+  \item {getId}
+    \subitem {Agent}, \hyperpage{19}
+  \item {getIncrement}
+    \subitem {Clock}, \hyperpage{52}
+  \item {getInitialTime}
+    \subitem {Clock}, \hyperpage{52}
+  \item {getInRangeAntennas}
+    \subitem {EMField}, \hyperpage{73}
+  \item {getLocation}
+    \subitem {LocatableAgent}, \hyperpage{100}
+  \item {getMap}
+    \subitem {Agent}, \hyperpage{19}
+    \subitem {World}, \hyperpage{156}
+  \item {getMaxConnections}
+    \subitem {Antenna}, \hyperpage{36}
+  \item {getMin3db}
+    \subitem {Antenna}, \hyperpage{36}
+  \item {getMNO}
+    \subitem {Antenna}, \hyperpage{36}
+  \item {getMNOName}
+    \subitem {MobileOperator}, \hyperpage{107}
+  \item {getMobileOperator}
+    \subitem {MobilePhone}, \hyperpage{113}
+  \item {getName}
+    \subitem {Agent}, \hyperpage{20}
+    \subitem {Antenna}, \hyperpage{36}
+    \subitem {HoldableAgent}, \hyperpage{88}
+    \subitem {ImmovableAgent}, \hyperpage{95}
+    \subitem {LocatableAgent}, \hyperpage{100}
+    \subitem {MobileOperator}, \hyperpage{108}
+    \subitem {MobilePhone}, \hyperpage{113}
+    \subitem {MovableAgent}, \hyperpage{118}
+    \subitem {Person}, \hyperpage{126}
+    \subitem {Tablet}, \hyperpage{149}
+  \item {getNode}
+    \subitem {utils}, \hyperpage{11}
+  \item {getNoTiles}
+    \subitem {Grid}, \hyperpage{78}
+  \item {getNoTilesX}
+    \subitem {Grid}, \hyperpage{78}
+  \item {getNoTilesY}
+    \subitem {Grid}, \hyperpage{79}
+  \item {getNumActiveConections}
+    \subitem {Antenna}, \hyperpage{37}
+  \item {getPersonsFilename}
+    \subitem {World}, \hyperpage{157}
+  \item {getPLE}
+    \subitem {Antenna}, \hyperpage{37}
+  \item {getPower}
+    \subitem {Antenna}, \hyperpage{37}
+  \item {getPrior}
+    \subitem {World}, \hyperpage{157}
+  \item {getProbFilenames}
+    \subitem {World}, \hyperpage{157}
+  \item {getProbMobilePhone}
+    \subitem {MobileOperator}, \hyperpage{108}
+  \item {getRmax}
+    \subitem {Antenna}, \hyperpage{37}
+  \item {getRow}
+    \subitem {CSVParser}, \hyperpage{66}
+  \item {getSd}
+    \subitem {EMField}, \hyperpage{73}
+  \item {getSignalFile}
+    \subitem {MobileOperator}, \hyperpage{108}
+  \item {getSmid}
+    \subitem {Antenna}, \hyperpage{38}
+  \item {getSmin}
+    \subitem {Antenna}, \hyperpage{38}
+  \item {getSpeed}
+    \subitem {MovableAgent}, \hyperpage{118}
+  \item {getSSteep}
+    \subitem {Antenna}, \hyperpage{38}
+  \item {getTileCenter}
+    \subitem {Grid}, \hyperpage{79}
+  \item {getTileCenters}
+    \subitem {Grid}, \hyperpage{79}
+  \item {getTileIndexX}
+    \subitem {Grid}, \hyperpage{79, 80}
+  \item {getTileIndexY}
+    \subitem {Grid}, \hyperpage{80}
+  \item {getTileNo}
+    \subitem {Grid}, \hyperpage{80, 81}
+  \item {getTime}
+    \subitem {AntennaInfo}, \hyperpage{48}
+  \item {getType}
+    \subitem {Antenna}, \hyperpage{38}
+  \item {getValue}
+    \subitem {Row}, \hyperpage{142}
+    \subitem {utils}, \hyperpage{11--13}
+  \item {getX}
+    \subitem {AntennaInfo}, \hyperpage{48}
+  \item {getXOrigin}
+    \subitem {Grid}, \hyperpage{81}
+  \item {getXTileDim}
+    \subitem {Grid}, \hyperpage{81}
+  \item {getY}
+    \subitem {AntennaInfo}, \hyperpage{48}
+  \item {getYOrigin}
+    \subitem {Grid}, \hyperpage{82}
+  \item {getYTileDim}
+    \subitem {Grid}, \hyperpage{82}
+  \item {Grid}, \hyperpage{75}
+    \subitem {$\sim$Grid}, \hyperpage{77}
+    \subitem {computeProbability}, \hyperpage{77}
+    \subitem {computeTileCenters}, \hyperpage{78}
+    \subitem {dumpGrid}, \hyperpage{78}
+    \subitem {getNoTiles}, \hyperpage{78}
+    \subitem {getNoTilesX}, \hyperpage{78}
+    \subitem {getNoTilesY}, \hyperpage{79}
+    \subitem {getTileCenter}, \hyperpage{79}
+    \subitem {getTileCenters}, \hyperpage{79}
+    \subitem {getTileIndexX}, \hyperpage{79, 80}
+    \subitem {getTileIndexY}, \hyperpage{80}
+    \subitem {getTileNo}, \hyperpage{80, 81}
+    \subitem {getXOrigin}, \hyperpage{81}
+    \subitem {getXTileDim}, \hyperpage{81}
+    \subitem {getYOrigin}, \hyperpage{82}
+    \subitem {getYTileDim}, \hyperpage{82}
+    \subitem {Grid}, \hyperpage{77}
+    \subitem {m\_noTilesX}, \hyperpage{83}
+    \subitem {m\_noTilesY}, \hyperpage{83}
+    \subitem {m\_tileCenters}, \hyperpage{83}
+    \subitem {m\_xOrigin}, \hyperpage{83}
+    \subitem {m\_xTileDim}, \hyperpage{83}
+    \subitem {m\_yOrigin}, \hyperpage{83}
+    \subitem {m\_yTileDim}, \hyperpage{83}
+    \subitem {toString}, \hyperpage{82}
+    \subitem {useNetworkPrior}, \hyperpage{82}
+    \subitem {useUniformPrior}, \hyperpage{82}
+  \item {GRID\_DIM\_TILE\_X}
+    \subitem {Constants}, \hyperpage{58}
+  \item {GRID\_DIM\_TILE\_Y}
+    \subitem {Constants}, \hyperpage{58}
+  \item {GRID\_FILE\_NAME}
+    \subitem {Constants}, \hyperpage{59}
+  \item {GRID\_X\_ORIG}
+    \subitem {Constants}, \hyperpage{59}
+  \item {GRID\_Y\_ORIG}
+    \subitem {Constants}, \hyperpage{59}
+
+  \indexspace
+
+  \item {hasDevices}
+    \subitem {Person}, \hyperpage{126}
+  \item {HoldableAgent}, \hyperpage{84}
+    \subitem {$\sim$HoldableAgent}, \hyperpage{87}
+    \subitem {CONNECTION\_TYPE}, \hyperpage{86}
+    \subitem {getAntennas}, \hyperpage{87}
+    \subitem {getHolder}, \hyperpage{87}
+    \subitem {getName}, \hyperpage{88}
+    \subitem {HoldableAgent}, \hyperpage{86, 87}
+    \subitem {isConnected}, \hyperpage{88}
+    \subitem {m\_antennas}, \hyperpage{90}
+    \subitem {m\_holder}, \hyperpage{90}
+    \subitem {setHolder}, \hyperpage{88}
+    \subitem {setLocation}, \hyperpage{89}
+    \subitem {toString}, \hyperpage{89}
+    \subitem {tryConnect}, \hyperpage{89}
+    \subitem {UNKNOWN}, \hyperpage{86}
+    \subitem {USING\_POWER}, \hyperpage{86}
+    \subitem {USING\_SIGNAL\_QUALITY}, \hyperpage{86}
+    \subitem {USING\_SIGNAL\_STRENGTH}, \hyperpage{86}
+
+  \indexspace
+
+  \item {IDGenerator}, \hyperpage{90}
+    \subitem {IDGenerator}, \hyperpage{91}
+    \subitem {instance}, \hyperpage{91}
+    \subitem {m\_id}, \hyperpage{92}
+    \subitem {m\_instance}, \hyperpage{92}
+    \subitem {next}, \hyperpage{91}
+  \item {ImmovableAgent}, \hyperpage{92}
+    \subitem {$\sim$ImmovableAgent}, \hyperpage{95}
+    \subitem {getName}, \hyperpage{95}
+    \subitem {ImmovableAgent}, \hyperpage{93}
+    \subitem {toString}, \hyperpage{95}
+  \item {IN\_RANGE\_NOT\_ATTACHED\_DEVICE}
+    \subitem {EventType.h}, \hyperpage{173}
+  \item {include/Agent.h}, \hyperpage{163}
+  \item {include/AgentsCollection.h}, \hyperpage{164}
+  \item {include/Antenna.h}, \hyperpage{165}
+  \item {include/AntennaInfo.h}, \hyperpage{166}
+  \item {include/AntennaType.h}, \hyperpage{168}
+  \item {include/Clock.h}, \hyperpage{169}
+  \item {include/Constants.h}, \hyperpage{170}
+  \item {include/CSVparser.hpp}, \hyperpage{170}
+  \item {include/EMField.h}, \hyperpage{171}
+  \item {include/EventType.h}, \hyperpage{172}
+  \item {include/Grid.h}, \hyperpage{173}
+  \item {include/HoldableAgent.h}, \hyperpage{174}
+  \item {include/IDGenerator.h}, \hyperpage{176}
+  \item {include/ImmovableAgent.h}, \hyperpage{176}
+  \item {include/InputParser.h}, \hyperpage{177}
+  \item {include/LocatableAgent.h}, \hyperpage{178}
+  \item {include/Map.h}, \hyperpage{179}
+  \item {include/MobileOperator.h}, \hyperpage{180}
+  \item {include/MobilePhone.h}, \hyperpage{181}
+  \item {include/MovableAgent.h}, \hyperpage{182}
+  \item {include/MovementType.h}, \hyperpage{184}
+  \item {include/Person.h}, \hyperpage{185}
+  \item {include/PriorType.h}, \hyperpage{186}
+  \item {include/RandomNumberGenerator.h}, \hyperpage{186}
+  \item {include/SimException.h}, \hyperpage{187}
+  \item {include/Tablet.h}, \hyperpage{188}
+  \item {include/Utils.h}, \hyperpage{188}
+  \item {include/World.h}, \hyperpage{189}
+  \item {InputParser}, \hyperpage{96}
+    \subitem {cmdOptionExists}, \hyperpage{96}
+    \subitem {getCmdOption}, \hyperpage{97}
+    \subitem {InputParser}, \hyperpage{96}
+    \subitem {tokens}, \hyperpage{97}
+  \item {instance}
+    \subitem {EMField}, \hyperpage{73}
+    \subitem {IDGenerator}, \hyperpage{91}
+    \subitem {RandomNumberGenerator}, \hyperpage{138}
+  \item {isAntennaInRange}
+    \subitem {EMField}, \hyperpage{73}
+  \item {isConnected}
+    \subitem {HoldableAgent}, \hyperpage{88}
+
+  \indexspace
+
+  \item {LocatableAgent}, \hyperpage{97}
+    \subitem {$\sim$LocatableAgent}, \hyperpage{99}
+    \subitem {dumpLocation}, \hyperpage{100}
+    \subitem {getLocation}, \hyperpage{100}
+    \subitem {getName}, \hyperpage{100}
+    \subitem {LocatableAgent}, \hyperpage{99}
+    \subitem {m\_location}, \hyperpage{101}
+    \subitem {setLocation}, \hyperpage{100}
+    \subitem {toString}, \hyperpage{101}
+
+  \indexspace
+
+  \item {m\_age}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_agents}
+    \subitem {AgentsCollection}, \hyperpage{26}
+  \item {m\_agentsCollection}
+    \subitem {World}, \hyperpage{159}
+  \item {m\_antennaCellsFileName}
+    \subitem {MobileOperator}, \hyperpage{109}
+  \item {m\_antennaId}
+    \subitem {AntennaInfo}, \hyperpage{49}
+  \item {m\_antennaMin3DbArray}
+    \subitem {EMField}, \hyperpage{75}
+  \item {m\_antennas}
+    \subitem {EMField}, \hyperpage{75}
+    \subitem {HoldableAgent}, \hyperpage{90}
+  \item {m\_antennasFilename}
+    \subitem {World}, \hyperpage{159}
+  \item {m\_avgIntervalBetweenStays}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_avgTimeStay}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_azim\_dB\_Back}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_beam\_H}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_beam\_V}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_bernoulli\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{139}
+  \item {m\_binomial\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{139}
+  \item {m\_boundary}
+    \subitem {Map}, \hyperpage{105}
+  \item {m\_cell}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_changeDirection}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_clock}
+    \subitem {Agent}, \hyperpage{21}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_connectedTo}
+    \subitem {MobilePhone}, \hyperpage{115}
+  \item {m\_connThreshold}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_connType}
+    \subitem {MobilePhone}, \hyperpage{115}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_currentTime}
+    \subitem {Clock}, \hyperpage{54}
+  \item {m\_deviceId}
+    \subitem {AntennaInfo}, \hyperpage{49}
+  \item {m\_devices}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_direction}
+    \subitem {Antenna}, \hyperpage{43}
+  \item {m\_elev\_dB\_Back}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_endTime}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_eventCode}
+    \subitem {AntennaInfo}, \hyperpage{50}
+  \item {m\_exponential\_double\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{139}
+  \item {m\_file}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_finalTime}
+    \subitem {Clock}, \hyperpage{54}
+  \item {m\_gender}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_generator}
+    \subitem {RandomNumberGenerator}, \hyperpage{140}
+  \item {m\_globalFactory}
+    \subitem {Map}, \hyperpage{105}
+  \item {m\_grid}
+    \subitem {Map}, \hyperpage{105}
+  \item {m\_GridDimTileX}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_GridDimTileY}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_gridFilename}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_handoverMechanism}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_header}
+    \subitem {CSVParser}, \hyperpage{68}
+  \item {m\_height}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_holder}
+    \subitem {HoldableAgent}, \hyperpage{90}
+  \item {m\_id}
+    \subitem {Agent}, \hyperpage{21}
+    \subitem {IDGenerator}, \hyperpage{92}
+  \item {m\_idDevices}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_increment}
+    \subitem {Clock}, \hyperpage{54}
+  \item {m\_initialTime}
+    \subitem {Clock}, \hyperpage{55}
+  \item {m\_instance}
+    \subitem {EMField}, \hyperpage{75}
+    \subitem {IDGenerator}, \hyperpage{92}
+    \subitem {RandomNumberGenerator}, \hyperpage{140}
+  \item {m\_intevalBetweenStays}
+    \subitem {World}, \hyperpage{160}
+  \item {m\_location}
+    \subitem {LocatableAgent}, \hyperpage{101}
+  \item {m\_map}
+    \subitem {Agent}, \hyperpage{21}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_mapping\_azim}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_mapping\_elev}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_maxConnections}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_MNO}
+    \subitem {Antenna}, \hyperpage{44}
+  \item {m\_mno}
+    \subitem {MobilePhone}, \hyperpage{115}
+  \item {m\_mvType}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_name}
+    \subitem {MobileOperator}, \hyperpage{109}
+  \item {m\_nextStay}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_normal\_double\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{140}
+  \item {m\_noTilesX}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_noTilesY}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_personsFilename}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_ple}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_power}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_prior}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_probFilenames}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_probMobilePhone}
+    \subitem {MobileOperator}, \hyperpage{109}
+  \item {m\_probSecMobilePhone}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_Qmin}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_rmax}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_S0}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_sd}
+    \subitem {EMField}, \hyperpage{75}
+  \item {m\_sd\_azim}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_sd\_elev}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_seed}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_signalMeasureFileName}
+    \subitem {MobileOperator}, \hyperpage{109}
+  \item {m\_Smid}
+    \subitem {Antenna}, \hyperpage{45}
+  \item {m\_Smin}
+    \subitem {Antenna}, \hyperpage{46}
+  \item {m\_speed}
+    \subitem {MovableAgent}, \hyperpage{120}
+  \item {m\_SSteep}
+    \subitem {Antenna}, \hyperpage{46}
+  \item {m\_startTime}
+    \subitem {World}, \hyperpage{161}
+  \item {m\_stay}
+    \subitem {World}, \hyperpage{162}
+  \item {m\_sumQuality}
+    \subitem {EMField}, \hyperpage{75}
+  \item {m\_threshold}
+    \subitem {MobilePhone}, \hyperpage{115}
+  \item {m\_tileCenters}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_tilt}
+    \subitem {Antenna}, \hyperpage{46}
+  \item {m\_time}
+    \subitem {AntennaInfo}, \hyperpage{50}
+  \item {m\_timeIncrement}
+    \subitem {World}, \hyperpage{162}
+  \item {m\_timeStay}
+    \subitem {Person}, \hyperpage{129}
+  \item {m\_type}
+    \subitem {Antenna}, \hyperpage{46}
+  \item {m\_unif\_double\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{140}
+  \item {m\_unif\_int\_distribution}
+    \subitem {RandomNumberGenerator}, \hyperpage{140}
+  \item {m\_x}
+    \subitem {AntennaInfo}, \hyperpage{50}
+  \item {m\_xOrigin}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_xTileDim}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_y}
+    \subitem {AntennaInfo}, \hyperpage{50}
+  \item {m\_yOrigin}
+    \subitem {Grid}, \hyperpage{83}
+  \item {m\_yTileDim}
+    \subitem {Grid}, \hyperpage{83}
+  \item {MALE}
+    \subitem {Person}, \hyperpage{124}
+  \item {Map}, \hyperpage{101}
+    \subitem {$\sim$Map}, \hyperpage{103}
+    \subitem {addGrid}, \hyperpage{103}
+    \subitem {create\_rectangle}, \hyperpage{104}
+    \subitem {getBoundary}, \hyperpage{104}
+    \subitem {getGlobalFactory}, \hyperpage{104}
+    \subitem {getGrid}, \hyperpage{104}
+    \subitem {m\_boundary}, \hyperpage{105}
+    \subitem {m\_globalFactory}, \hyperpage{105}
+    \subitem {m\_grid}, \hyperpage{105}
+    \subitem {Map}, \hyperpage{102, 103}
+    \subitem {setBoundary}, \hyperpage{104}
+  \item {MobileOperator}, \hyperpage{105}
+    \subitem {$\sim$MobileOperator}, \hyperpage{107}
+    \subitem {getAntennaCellsFile}, \hyperpage{107}
+    \subitem {getMNOName}, \hyperpage{107}
+    \subitem {getName}, \hyperpage{108}
+    \subitem {getProbMobilePhone}, \hyperpage{108}
+    \subitem {getSignalFile}, \hyperpage{108}
+    \subitem {m\_antennaCellsFileName}, \hyperpage{109}
+    \subitem {m\_name}, \hyperpage{109}
+    \subitem {m\_probMobilePhone}, \hyperpage{109}
+    \subitem {m\_signalMeasureFileName}, \hyperpage{109}
+    \subitem {MobileOperator}, \hyperpage{107}
+    \subitem {toString}, \hyperpage{108}
+  \item {MobilePhone}, \hyperpage{110}
+    \subitem {$\sim$MobilePhone}, \hyperpage{113}
+    \subitem {getConnectionThreshold}, \hyperpage{113}
+    \subitem {getMobileOperator}, \hyperpage{113}
+    \subitem {getName}, \hyperpage{113}
+    \subitem {m\_connectedTo}, \hyperpage{115}
+    \subitem {m\_connType}, \hyperpage{115}
+    \subitem {m\_mno}, \hyperpage{115}
+    \subitem {m\_threshold}, \hyperpage{115}
+    \subitem {MobilePhone}, \hyperpage{112}
+    \subitem {move}, \hyperpage{113}
+    \subitem {setMobileOperator}, \hyperpage{114}
+    \subitem {toString}, \hyperpage{114}
+    \subitem {tryConnect}, \hyperpage{114}
+  \item {MovableAgent}, \hyperpage{116}
+    \subitem {$\sim$MovableAgent}, \hyperpage{118}
+    \subitem {getName}, \hyperpage{118}
+    \subitem {getSpeed}, \hyperpage{118}
+    \subitem {m\_speed}, \hyperpage{120}
+    \subitem {MovableAgent}, \hyperpage{118}
+    \subitem {move}, \hyperpage{119}
+    \subitem {setSpeed}, \hyperpage{119}
+    \subitem {toString}, \hyperpage{120}
+  \item {move}
+    \subitem {MobilePhone}, \hyperpage{113}
+    \subitem {MovableAgent}, \hyperpage{119}
+    \subitem {Person}, \hyperpage{127}
+    \subitem {Tablet}, \hyperpage{149}
+  \item {MovementType}
+    \subitem {MovementType.h}, \hyperpage{184}
+  \item {MovementType.h}
+    \subitem {MovementType}, \hyperpage{184}
+    \subitem {RANDOM\_WALK\_CLOSED\_MAP}, \hyperpage{185}
+    \subitem {RANDOM\_WALK\_CLOSED\_MAP\_WITH\_DRIFT}, \hyperpage{185}
+    \subitem {UNKNOWN}, \hyperpage{185}
+  \item {msg}
+    \subitem {SimException}, \hyperpage{146}
+
+  \indexspace
+
+  \item {NETWORK}
+    \subitem {PriorType.h}, \hyperpage{186}
+  \item {next}
+    \subitem {IDGenerator}, \hyperpage{91}
+  \item {norm\_dBLoss}
+    \subitem {Antenna}, \hyperpage{39}
+  \item {NORMAL}
+    \subitem {Person}, \hyperpage{123}
+  \item {normal\_pdf}
+    \subitem {RandomNumberGenerator}, \hyperpage{138}
+  \item {normalizeAngle}
+    \subitem {Antenna}, \hyperpage{39}
+
+  \indexspace
+
+  \item {OMNIDIRECTIONAL}
+    \subitem {AntennaType.h}, \hyperpage{168}
+  \item {operator$<$}
+    \subitem {AntennaInfo}, \hyperpage{49}
+  \item {operator$<$$<$}
+    \subitem {Row}, \hyperpage{144}
+  \item {operator=}
+    \subitem {EMField}, \hyperpage{74}
+    \subitem {RandomNumberGenerator}, \hyperpage{139}
+  \item {operator==}
+    \subitem {Agent}, \hyperpage{20}
+  \item {operator[]}
+    \subitem {CSVParser}, \hyperpage{66}
+    \subitem {Row}, \hyperpage{142}
+
+  \indexspace
+
+  \item {parseAntennas}
+    \subitem {World}, \hyperpage{157}
+  \item {parseContent}
+    \subitem {CSVParser}, \hyperpage{66}
+  \item {parseHeader}
+    \subitem {CSVParser}, \hyperpage{66}
+  \item {parsePersons}
+    \subitem {World}, \hyperpage{158}
+  \item {parseProbabilities}
+    \subitem {World}, \hyperpage{158}
+  \item {parseSimulationFile}
+    \subitem {World}, \hyperpage{158}
+  \item {Person}, \hyperpage{120}
+    \subitem {$\sim$Person}, \hyperpage{124}
+    \subitem {addDevice}, \hyperpage{124}
+    \subitem {AgeDistributions}, \hyperpage{123}
+    \subitem {dumpDevices}, \hyperpage{125}
+    \subitem {FEMALE}, \hyperpage{124}
+    \subitem {Gender}, \hyperpage{123}
+    \subitem {generateNewLocation}, \hyperpage{125}
+    \subitem {getAge}, \hyperpage{125}
+    \subitem {getAvgIntervalBetweenStays}, \hyperpage{125}
+    \subitem {getAvgTimeStay}, \hyperpage{126}
+    \subitem {getGender}, \hyperpage{126}
+    \subitem {getName}, \hyperpage{126}
+    \subitem {hasDevices}, \hyperpage{126}
+    \subitem {m\_age}, \hyperpage{129}
+    \subitem {m\_avgIntervalBetweenStays}, \hyperpage{129}
+    \subitem {m\_avgTimeStay}, \hyperpage{129}
+    \subitem {m\_changeDirection}, \hyperpage{129}
+    \subitem {m\_gender}, \hyperpage{129}
+    \subitem {m\_idDevices}, \hyperpage{129}
+    \subitem {m\_nextStay}, \hyperpage{129}
+    \subitem {m\_timeStay}, \hyperpage{129}
+    \subitem {MALE}, \hyperpage{124}
+    \subitem {move}, \hyperpage{127}
+    \subitem {NORMAL}, \hyperpage{123}
+    \subitem {Person}, \hyperpage{124}
+    \subitem {randomWalkClosedMap}, \hyperpage{127}
+    \subitem {randomWalkClosedMapDrift}, \hyperpage{127}
+    \subitem {setAge}, \hyperpage{128}
+    \subitem {setLocation}, \hyperpage{128}
+    \subitem {setNewLocation}, \hyperpage{128}
+    \subitem {toString}, \hyperpage{128}
+    \subitem {UNIFORM}, \hyperpage{123}
+  \item {PERSONS\_FILE\_NAME}
+    \subitem {Constants}, \hyperpage{59}
+  \item {PHONE\_CONNECTION\_THRESHOLD}
+    \subitem {Constants}, \hyperpage{59}
+  \item {PHONE\_POWER\_THRESHOLD}
+    \subitem {Constants}, \hyperpage{59}
+  \item {PHONE\_QUALITY\_THRESHOLD}
+    \subitem {Constants}, \hyperpage{60}
+  \item {PHONE\_STRENGTH\_THRESHOLD}
+    \subitem {Constants}, \hyperpage{60}
+  \item {PI}
+    \subitem {utils}, \hyperpage{15}
+  \item {printAgents}
+    \subitem {AgentsCollection}, \hyperpage{25}
+  \item {printAntennaHeader}
+    \subitem {utils}, \hyperpage{14}
+  \item {printMobileOperatorHeader}
+    \subitem {utils}, \hyperpage{14}
+  \item {printPersonHeader}
+    \subitem {utils}, \hyperpage{14}
+  \item {printPhoneHeader}
+    \subitem {utils}, \hyperpage{14}
+  \item {PRIOR\_PROBABILITY}
+    \subitem {Constants}, \hyperpage{60}
+  \item {PriorType}
+    \subitem {PriorType.h}, \hyperpage{186}
+  \item {PriorType.h}
+    \subitem {NETWORK}, \hyperpage{186}
+    \subitem {PriorType}, \hyperpage{186}
+    \subitem {REGISTER}, \hyperpage{186}
+    \subitem {UNIFORM}, \hyperpage{186}
+  \item {PROB\_FILE\_NAME\_PREFIX}
+    \subitem {Constants}, \hyperpage{60}
+  \item {projectToEPlane}
+    \subitem {Antenna}, \hyperpage{39}
+  \item {push}
+    \subitem {Row}, \hyperpage{143}
+
+  \indexspace
+
+  \item {r2d}
+    \subitem {utils}, \hyperpage{14}
+  \item {RANDOM\_SEED}
+    \subitem {Constants}, \hyperpage{60}
+  \item {RANDOM\_WALK\_CLOSED\_MAP}
+    \subitem {MovementType.h}, \hyperpage{185}
+  \item {RANDOM\_WALK\_CLOSED\_MAP\_WITH\_DRIFT}
+    \subitem {MovementType.h}, \hyperpage{185}
+  \item {RandomNumberGenerator}, \hyperpage{130}
+    \subitem {generateBernoulliInt}, \hyperpage{132, 133}
+    \subitem {generateBinomialInt}, \hyperpage{133}
+    \subitem {generateExponentialDouble}, \hyperpage{134}
+    \subitem {generateNormal2Double}, \hyperpage{134}
+    \subitem {generateNormalDouble}, \hyperpage{135}
+    \subitem {generateTruncatedNormalDouble}, \hyperpage{136}
+    \subitem {generateUniformDouble}, \hyperpage{136}
+    \subitem {generateUniformInt}, \hyperpage{137}
+    \subitem {instance}, \hyperpage{138}
+    \subitem {m\_bernoulli\_distribution}, \hyperpage{139}
+    \subitem {m\_binomial\_distribution}, \hyperpage{139}
+    \subitem {m\_exponential\_double\_distribution}, \hyperpage{139}
+    \subitem {m\_generator}, \hyperpage{140}
+    \subitem {m\_instance}, \hyperpage{140}
+    \subitem {m\_normal\_double\_distribution}, \hyperpage{140}
+    \subitem {m\_unif\_double\_distribution}, \hyperpage{140}
+    \subitem {m\_unif\_int\_distribution}, \hyperpage{140}
+    \subitem {normal\_pdf}, \hyperpage{138}
+    \subitem {operator=}, \hyperpage{139}
+    \subitem {RandomNumberGenerator}, \hyperpage{131}
+    \subitem {setSeed}, \hyperpage{139}
+  \item {randomWalkClosedMap}
+    \subitem {Person}, \hyperpage{127}
+  \item {randomWalkClosedMapDrift}
+    \subitem {Person}, \hyperpage{127}
+  \item {realTime}
+    \subitem {Clock}, \hyperpage{52}
+  \item {REGISTER}
+    \subitem {PriorType.h}, \hyperpage{186}
+  \item {registerEvent}
+    \subitem {Antenna}, \hyperpage{39}
+  \item {reset}
+    \subitem {Clock}, \hyperpage{53}
+  \item {Row}, \hyperpage{140}
+    \subitem {\_header}, \hyperpage{144}
+    \subitem {\_values}, \hyperpage{145}
+    \subitem {$\sim$Row}, \hyperpage{141}
+    \subitem {getValue}, \hyperpage{142}
+    \subitem {operator$<$$<$}, \hyperpage{144}
+    \subitem {operator[]}, \hyperpage{142}
+    \subitem {push}, \hyperpage{143}
+    \subitem {Row}, \hyperpage{141}
+    \subitem {set}, \hyperpage{143}
+    \subitem {size}, \hyperpage{143}
+  \item {rowCount}
+    \subitem {CSVParser}, \hyperpage{67}
+  \item {runSimulation}
+    \subitem {World}, \hyperpage{158}
+
+  \indexspace
+
+  \item {S}
+    \subitem {Antenna}, \hyperpage{39}
+  \item {S0}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {SDist}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {searchMin}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {sep}
+    \subitem {Constants}, \hyperpage{60}
+  \item {set}
+    \subitem {Row}, \hyperpage{143}
+  \item {setAge}
+    \subitem {Person}, \hyperpage{128}
+  \item {setAgents}
+    \subitem {World}, \hyperpage{158}
+  \item {setBoundary}
+    \subitem {Map}, \hyperpage{104}
+  \item {setClock}
+    \subitem {World}, \hyperpage{159}
+  \item {setCurrentTime}
+    \subitem {Clock}, \hyperpage{53}
+  \item {setFinalTime}
+    \subitem {Clock}, \hyperpage{53}
+  \item {setHandoverMechanism}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {setHolder}
+    \subitem {HoldableAgent}, \hyperpage{88}
+  \item {setIncrement}
+    \subitem {Clock}, \hyperpage{53}
+  \item {setInitialTime}
+    \subitem {Clock}, \hyperpage{54}
+  \item {setLocation}
+    \subitem {HoldableAgent}, \hyperpage{89}
+    \subitem {LocatableAgent}, \hyperpage{100}
+    \subitem {Person}, \hyperpage{128}
+  \item {setLocationWithElevation}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {setMap}
+    \subitem {Agent}, \hyperpage{20}
+    \subitem {World}, \hyperpage{159}
+  \item {setMaxConnections}
+    \subitem {Antenna}, \hyperpage{40}
+  \item {setMobileOperator}
+    \subitem {MobilePhone}, \hyperpage{114}
+  \item {setNewLocation}
+    \subitem {Person}, \hyperpage{128}
+  \item {setPLE}
+    \subitem {Antenna}, \hyperpage{41}
+  \item {setPower}
+    \subitem {Antenna}, \hyperpage{41}
+  \item {setSeed}
+    \subitem {RandomNumberGenerator}, \hyperpage{139}
+  \item {setSmid}
+    \subitem {Antenna}, \hyperpage{41}
+  \item {setSpeed}
+    \subitem {MovableAgent}, \hyperpage{119}
+  \item {setSSteep}
+    \subitem {Antenna}, \hyperpage{41}
+  \item {setType}
+    \subitem {Antenna}, \hyperpage{42}
+  \item {SIM\_DEFAULT\_MNO\_NAME}
+    \subitem {Constants}, \hyperpage{60}
+  \item {SIM\_END\_TIME}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_INCREMENT\_TIME}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_INTERVAL\_BETWEEN\_STAYS}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_NO\_ANTENNAS}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_NO\_MOBILE\_PHONES}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_NO\_PERSONS}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_NUM\_MNO}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_PROB\_MOBILE\_PHONE}
+    \subitem {Constants}, \hyperpage{61}
+  \item {SIM\_PROB\_SECOND\_MOBILE\_PHONE}
+    \subitem {Constants}, \hyperpage{62}
+  \item {SIM\_START\_TIME}
+    \subitem {Constants}, \hyperpage{62}
+  \item {SIM\_STAY\_TIME}
+    \subitem {Constants}, \hyperpage{62}
+  \item {SIM\_TREND\_ANGLE\_1}
+    \subitem {Constants}, \hyperpage{62}
+  \item {SIM\_TREND\_ANGLE\_2}
+    \subitem {Constants}, \hyperpage{62}
+  \item {SimException}, \hyperpage{145}
+    \subitem {$\sim$SimException}, \hyperpage{146}
+    \subitem {msg}, \hyperpage{146}
+    \subitem {SimException}, \hyperpage{146}
+    \subitem {what}, \hyperpage{146}
+  \item {size}
+    \subitem {AgentsCollection}, \hyperpage{25}
+    \subitem {Row}, \hyperpage{143}
+  \item {sumSignalQuality}
+    \subitem {EMField}, \hyperpage{74}
+  \item {sync}
+    \subitem {CSVParser}, \hyperpage{67}
+
+  \indexspace
+
+  \item {Tablet}, \hyperpage{147}
+    \subitem {$\sim$Tablet}, \hyperpage{149}
+    \subitem {getName}, \hyperpage{149}
+    \subitem {move}, \hyperpage{149}
+    \subitem {Tablet}, \hyperpage{148}
+    \subitem {toString}, \hyperpage{150}
+    \subitem {tryConnect}, \hyperpage{150}
+  \item {tick}
+    \subitem {Clock}, \hyperpage{54}
+  \item {tokens}
+    \subitem {InputParser}, \hyperpage{97}
+  \item {toString}
+    \subitem {Agent}, \hyperpage{21}
+    \subitem {Antenna}, \hyperpage{42}
+    \subitem {AntennaInfo}, \hyperpage{49}
+    \subitem {Grid}, \hyperpage{82}
+    \subitem {HoldableAgent}, \hyperpage{89}
+    \subitem {ImmovableAgent}, \hyperpage{95}
+    \subitem {LocatableAgent}, \hyperpage{101}
+    \subitem {MobileOperator}, \hyperpage{108}
+    \subitem {MobilePhone}, \hyperpage{114}
+    \subitem {MovableAgent}, \hyperpage{120}
+    \subitem {Person}, \hyperpage{128}
+    \subitem {Tablet}, \hyperpage{150}
+  \item {tryConnect}
+    \subitem {HoldableAgent}, \hyperpage{89}
+    \subitem {MobilePhone}, \hyperpage{114}
+    \subitem {Tablet}, \hyperpage{150}
+  \item {tryRegisterDevice}
+    \subitem {Antenna}, \hyperpage{42}
+
+  \indexspace
+
+  \item {um\_iterator}
+    \subitem {AgentsCollection.h}, \hyperpage{165}
+  \item {UNIFORM}
+    \subitem {Person}, \hyperpage{123}
+    \subitem {PriorType.h}, \hyperpage{186}
+  \item {UNKNOWN}
+    \subitem {HoldableAgent}, \hyperpage{86}
+    \subitem {MovementType.h}, \hyperpage{185}
+  \item {useNetworkPrior}
+    \subitem {Grid}, \hyperpage{82}
+  \item {useUniformPrior}
+    \subitem {Grid}, \hyperpage{82}
+  \item {USING\_POWER}
+    \subitem {HoldableAgent}, \hyperpage{86}
+  \item {USING\_SIGNAL\_QUALITY}
+    \subitem {HoldableAgent}, \hyperpage{86}
+  \item {USING\_SIGNAL\_STRENGTH}
+    \subitem {HoldableAgent}, \hyperpage{86}
+  \item {utils}, \hyperpage{9}
+    \subitem {d2r}, \hyperpage{9}
+    \subitem {generateFixedPoints}, \hyperpage{10}
+    \subitem {generatePoints}, \hyperpage{10}
+    \subitem {getFirstChildElement}, \hyperpage{11}
+    \subitem {getNode}, \hyperpage{11}
+    \subitem {getValue}, \hyperpage{11--13}
+    \subitem {PI}, \hyperpage{15}
+    \subitem {printAntennaHeader}, \hyperpage{14}
+    \subitem {printMobileOperatorHeader}, \hyperpage{14}
+    \subitem {printPersonHeader}, \hyperpage{14}
+    \subitem {printPhoneHeader}, \hyperpage{14}
+    \subitem {r2d}, \hyperpage{14}
+
+  \indexspace
+
+  \item {what}
+    \subitem {SimException}, \hyperpage{146}
+  \item {whichMNO}
+    \subitem {World}, \hyperpage{159}
+  \item {World}, \hyperpage{151}
+    \subitem {$\sim$World}, \hyperpage{154}
+    \subitem {generateAntennas}, \hyperpage{154}
+    \subitem {generateMobilePhones}, \hyperpage{154}
+    \subitem {generatePopulation}, \hyperpage{154}
+    \subitem {getAgents}, \hyperpage{154}
+    \subitem {getAntennasFilename}, \hyperpage{155}
+    \subitem {getClock}, \hyperpage{155}
+    \subitem {getConnectionType}, \hyperpage{155}
+    \subitem {getDefaultConnectionThreshold}, \hyperpage{155}
+    \subitem {getGridDimTileX}, \hyperpage{156}
+    \subitem {getGridDimTileY}, \hyperpage{156}
+    \subitem {getGridFilename}, \hyperpage{156}
+    \subitem {getMap}, \hyperpage{156}
+    \subitem {getPersonsFilename}, \hyperpage{157}
+    \subitem {getPrior}, \hyperpage{157}
+    \subitem {getProbFilenames}, \hyperpage{157}
+    \subitem {m\_agentsCollection}, \hyperpage{159}
+    \subitem {m\_antennasFilename}, \hyperpage{159}
+    \subitem {m\_clock}, \hyperpage{160}
+    \subitem {m\_connThreshold}, \hyperpage{160}
+    \subitem {m\_connType}, \hyperpage{160}
+    \subitem {m\_endTime}, \hyperpage{160}
+    \subitem {m\_GridDimTileX}, \hyperpage{160}
+    \subitem {m\_GridDimTileY}, \hyperpage{160}
+    \subitem {m\_gridFilename}, \hyperpage{160}
+    \subitem {m\_intevalBetweenStays}, \hyperpage{160}
+    \subitem {m\_map}, \hyperpage{161}
+    \subitem {m\_mvType}, \hyperpage{161}
+    \subitem {m\_personsFilename}, \hyperpage{161}
+    \subitem {m\_prior}, \hyperpage{161}
+    \subitem {m\_probFilenames}, \hyperpage{161}
+    \subitem {m\_probSecMobilePhone}, \hyperpage{161}
+    \subitem {m\_seed}, \hyperpage{161}
+    \subitem {m\_startTime}, \hyperpage{161}
+    \subitem {m\_stay}, \hyperpage{162}
+    \subitem {m\_timeIncrement}, \hyperpage{162}
+    \subitem {parseAntennas}, \hyperpage{157}
+    \subitem {parsePersons}, \hyperpage{158}
+    \subitem {parseProbabilities}, \hyperpage{158}
+    \subitem {parseSimulationFile}, \hyperpage{158}
+    \subitem {runSimulation}, \hyperpage{158}
+    \subitem {setAgents}, \hyperpage{158}
+    \subitem {setClock}, \hyperpage{159}
+    \subitem {setMap}, \hyperpage{159}
+    \subitem {whichMNO}, \hyperpage{159}
+    \subitem {World}, \hyperpage{153}
+
+\end{theindex}

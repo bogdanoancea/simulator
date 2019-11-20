@@ -1,4 +1,4 @@
-.TH "Person" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.TH "Person" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -112,7 +112,7 @@ Inherits \fBMovableAgent\fP\&.
 .in -1c
 .SH "Detailed Description"
 .PP 
-This class represents a person that can have a mobile phone\&. 
+This class represents a person that can have 0,1 or 2 mobile phone(s)\&. During the simulation the person move around the map, carrying his/her mobile devices\&. 
 .SH "Member Enumeration Documentation"
 .PP 
 .SS "enum \fBPerson::AgeDistributions\fP"
@@ -243,7 +243,7 @@ returns true if this person has at least a mobile device, false otherwise\&.
 .PP
 
 .SS "Point* Person::move (\fBMovementType\fP mvType)\fC [override]\fP, \fC [virtual]\fP"
-Move the person to another location\&. Computes the coordinates of the new location and then call \fBsetLocation()\fP with this new coordinates\&. 
+Move the person to another location\&. Computes the coordinates of the new location and then call \fBsetLocation()\fP with this new coordinates\&.
 .PP
 \fBParameters:\fP
 .RS 4

@@ -1,0 +1,652 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble }{}
+\contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Namespace List}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}utils Namespace Reference}{9}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{9}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Function Documentation}{9}{subsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.2.1}d2r()}{9}{subsubsection.5.1.2.1}
+\contentsline {subsubsection}{\numberline {5.1.2.2}generateFixedPoints()}{10}{subsubsection.5.1.2.2}
+\contentsline {subsubsection}{\numberline {5.1.2.3}generatePoints()}{10}{subsubsection.5.1.2.3}
+\contentsline {subsubsection}{\numberline {5.1.2.4}getFirstChildElement()}{11}{subsubsection.5.1.2.4}
+\contentsline {subsubsection}{\numberline {5.1.2.5}getNode()}{11}{subsubsection.5.1.2.5}
+\contentsline {subsubsection}{\numberline {5.1.2.6}getValue()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/5]}}{11}{subsubsection.5.1.2.6}
+\contentsline {subsubsection}{\numberline {5.1.2.7}getValue()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/5]}}{12}{subsubsection.5.1.2.7}
+\contentsline {subsubsection}{\numberline {5.1.2.8}getValue()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [3/5]}}{12}{subsubsection.5.1.2.8}
+\contentsline {subsubsection}{\numberline {5.1.2.9}getValue()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [4/5]}}{13}{subsubsection.5.1.2.9}
+\contentsline {subsubsection}{\numberline {5.1.2.10}getValue()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [5/5]}}{13}{subsubsection.5.1.2.10}
+\contentsline {subsubsection}{\numberline {5.1.2.11}printAntennaHeader()}{14}{subsubsection.5.1.2.11}
+\contentsline {subsubsection}{\numberline {5.1.2.12}printMobileOperatorHeader()}{14}{subsubsection.5.1.2.12}
+\contentsline {subsubsection}{\numberline {5.1.2.13}printPersonHeader()}{14}{subsubsection.5.1.2.13}
+\contentsline {subsubsection}{\numberline {5.1.2.14}printPhoneHeader()}{14}{subsubsection.5.1.2.14}
+\contentsline {subsubsection}{\numberline {5.1.2.15}r2d()}{14}{subsubsection.5.1.2.15}
+\contentsline {subsection}{\numberline {5.1.3}Variable Documentation}{15}{subsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.3.1}PI}{15}{subsubsection.5.1.3.1}
+\contentsline {chapter}{\numberline {6}Class Documentation}{17}{chapter.6}
+\contentsline {section}{\numberline {6.1}Agent Class Reference}{17}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{18}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Constructor \& Destructor Documentation}{18}{subsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.2.1}Agent()}{19}{subsubsection.6.1.2.1}
+\contentsline {subsubsection}{\numberline {6.1.2.2}$\sim $Agent()}{19}{subsubsection.6.1.2.2}
+\contentsline {subsection}{\numberline {6.1.3}Member Function Documentation}{19}{subsection.6.1.3}
+\contentsline {subsubsection}{\numberline {6.1.3.1}getClock()}{19}{subsubsection.6.1.3.1}
+\contentsline {subsubsection}{\numberline {6.1.3.2}getId()}{19}{subsubsection.6.1.3.2}
+\contentsline {subsubsection}{\numberline {6.1.3.3}getMap()}{20}{subsubsection.6.1.3.3}
+\contentsline {subsubsection}{\numberline {6.1.3.4}getName()}{20}{subsubsection.6.1.3.4}
+\contentsline {subsubsection}{\numberline {6.1.3.5}operator==()}{20}{subsubsection.6.1.3.5}
+\contentsline {subsubsection}{\numberline {6.1.3.6}setMap()}{20}{subsubsection.6.1.3.6}
+\contentsline {subsubsection}{\numberline {6.1.3.7}toString()}{21}{subsubsection.6.1.3.7}
+\contentsline {subsection}{\numberline {6.1.4}Member Data Documentation}{21}{subsection.6.1.4}
+\contentsline {subsubsection}{\numberline {6.1.4.1}m\_clock}{21}{subsubsection.6.1.4.1}
+\contentsline {subsubsection}{\numberline {6.1.4.2}m\_id}{21}{subsubsection.6.1.4.2}
+\contentsline {subsubsection}{\numberline {6.1.4.3}m\_map}{21}{subsubsection.6.1.4.3}
+\contentsline {section}{\numberline {6.2}Agents\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Collection Class Reference}{22}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{22}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Constructor \& Destructor Documentation}{22}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}AgentsCollection()}{22}{subsubsection.6.2.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2.2}$\sim $AgentsCollection()}{22}{subsubsection.6.2.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Member Function Documentation}{23}{subsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.3.1}addAgent()}{23}{subsubsection.6.2.3.1}
+\contentsline {subsubsection}{\numberline {6.2.3.2}begin()}{24}{subsubsection.6.2.3.2}
+\contentsline {subsubsection}{\numberline {6.2.3.3}deleteAgent()}{24}{subsubsection.6.2.3.3}
+\contentsline {subsubsection}{\numberline {6.2.3.4}end()}{24}{subsubsection.6.2.3.4}
+\contentsline {subsubsection}{\numberline {6.2.3.5}getAgent()}{25}{subsubsection.6.2.3.5}
+\contentsline {subsubsection}{\numberline {6.2.3.6}getAgentListByType()}{25}{subsubsection.6.2.3.6}
+\contentsline {subsubsection}{\numberline {6.2.3.7}printAgents()}{25}{subsubsection.6.2.3.7}
+\contentsline {subsubsection}{\numberline {6.2.3.8}size()}{25}{subsubsection.6.2.3.8}
+\contentsline {subsection}{\numberline {6.2.4}Member Data Documentation}{26}{subsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.4.1}m\_agents}{26}{subsubsection.6.2.4.1}
+\contentsline {section}{\numberline {6.3}Antenna Class Reference}{26}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{29}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Constructor \& Destructor Documentation}{29}{subsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.2.1}Antenna()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{29}{subsubsection.6.3.2.1}
+\contentsline {subsubsection}{\numberline {6.3.2.2}Antenna()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{30}{subsubsection.6.3.2.2}
+\contentsline {subsubsection}{\numberline {6.3.2.3}$\sim $Antenna()}{30}{subsubsection.6.3.2.3}
+\contentsline {subsection}{\numberline {6.3.3}Member Function Documentation}{30}{subsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.3.1}alreadyRegistered()}{31}{subsubsection.6.3.3.1}
+\contentsline {subsubsection}{\numberline {6.3.3.2}attachDevice()}{31}{subsubsection.6.3.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3.3}computePower()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{31}{subsubsection.6.3.3.3}
+\contentsline {subsubsection}{\numberline {6.3.3.4}computePower()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{31}{subsubsection.6.3.3.4}
+\contentsline {subsubsection}{\numberline {6.3.3.5}computeSignalMeasure()}{32}{subsubsection.6.3.3.5}
+\contentsline {subsubsection}{\numberline {6.3.3.6}computeSignalQuality()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{32}{subsubsection.6.3.3.6}
+\contentsline {subsubsection}{\numberline {6.3.3.7}computeSignalQuality()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{32}{subsubsection.6.3.3.7}
+\contentsline {subsubsection}{\numberline {6.3.3.8}computeSignalQualityDirectional()}{33}{subsubsection.6.3.3.8}
+\contentsline {subsubsection}{\numberline {6.3.3.9}computeSignalQualityOmnidirectional()}{33}{subsubsection.6.3.3.9}
+\contentsline {subsubsection}{\numberline {6.3.3.10}computeSignalStrength()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{33}{subsubsection.6.3.3.10}
+\contentsline {subsubsection}{\numberline {6.3.3.11}computeSignalStrength()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{33}{subsubsection.6.3.3.11}
+\contentsline {subsubsection}{\numberline {6.3.3.12}computeSignalStrengthDirectional()}{34}{subsubsection.6.3.3.12}
+\contentsline {subsubsection}{\numberline {6.3.3.13}computeSignalStrengthOmnidirectional()}{34}{subsubsection.6.3.3.13}
+\contentsline {subsubsection}{\numberline {6.3.3.14}createMapping()}{34}{subsubsection.6.3.3.14}
+\contentsline {subsubsection}{\numberline {6.3.3.15}dettachDevice()}{34}{subsubsection.6.3.3.15}
+\contentsline {subsubsection}{\numberline {6.3.3.16}dumpCell()}{35}{subsubsection.6.3.3.16}
+\contentsline {subsubsection}{\numberline {6.3.3.17}findSD()}{35}{subsubsection.6.3.3.17}
+\contentsline {subsubsection}{\numberline {6.3.3.18}getAntennaOutputFileName()}{35}{subsubsection.6.3.3.18}
+\contentsline {subsubsection}{\numberline {6.3.3.19}getCoverageArea()}{35}{subsubsection.6.3.3.19}
+\contentsline {subsubsection}{\numberline {6.3.3.20}getCoverageAreaDirectional()}{36}{subsubsection.6.3.3.20}
+\contentsline {subsubsection}{\numberline {6.3.3.21}getCoverageAreaOmnidirectional()}{36}{subsubsection.6.3.3.21}
+\contentsline {subsubsection}{\numberline {6.3.3.22}getHandoverMechanism()}{36}{subsubsection.6.3.3.22}
+\contentsline {subsubsection}{\numberline {6.3.3.23}getMaxConnections()}{36}{subsubsection.6.3.3.23}
+\contentsline {subsubsection}{\numberline {6.3.3.24}getMin3db()}{36}{subsubsection.6.3.3.24}
+\contentsline {subsubsection}{\numberline {6.3.3.25}getMNO()}{36}{subsubsection.6.3.3.25}
+\contentsline {subsubsection}{\numberline {6.3.3.26}getName()}{37}{subsubsection.6.3.3.26}
+\contentsline {subsubsection}{\numberline {6.3.3.27}getNumActiveConections()}{37}{subsubsection.6.3.3.27}
+\contentsline {subsubsection}{\numberline {6.3.3.28}getPLE()}{37}{subsubsection.6.3.3.28}
+\contentsline {subsubsection}{\numberline {6.3.3.29}getPower()}{37}{subsubsection.6.3.3.29}
+\contentsline {subsubsection}{\numberline {6.3.3.30}getRmax()}{38}{subsubsection.6.3.3.30}
+\contentsline {subsubsection}{\numberline {6.3.3.31}getSmid()}{38}{subsubsection.6.3.3.31}
+\contentsline {subsubsection}{\numberline {6.3.3.32}getSmin()}{38}{subsubsection.6.3.3.32}
+\contentsline {subsubsection}{\numberline {6.3.3.33}getSSteep()}{38}{subsubsection.6.3.3.33}
+\contentsline {subsubsection}{\numberline {6.3.3.34}getType()}{39}{subsubsection.6.3.3.34}
+\contentsline {subsubsection}{\numberline {6.3.3.35}norm\_dBLoss()}{39}{subsubsection.6.3.3.35}
+\contentsline {subsubsection}{\numberline {6.3.3.36}normalizeAngle()}{39}{subsubsection.6.3.3.36}
+\contentsline {subsubsection}{\numberline {6.3.3.37}projectToEPlane()}{39}{subsubsection.6.3.3.37}
+\contentsline {subsubsection}{\numberline {6.3.3.38}registerEvent()}{39}{subsubsection.6.3.3.38}
+\contentsline {subsubsection}{\numberline {6.3.3.39}S()}{39}{subsubsection.6.3.3.39}
+\contentsline {subsubsection}{\numberline {6.3.3.40}S0()}{40}{subsubsection.6.3.3.40}
+\contentsline {subsubsection}{\numberline {6.3.3.41}SDist()}{40}{subsubsection.6.3.3.41}
+\contentsline {subsubsection}{\numberline {6.3.3.42}searchMin()}{40}{subsubsection.6.3.3.42}
+\contentsline {subsubsection}{\numberline {6.3.3.43}setHandoverMechanism()}{40}{subsubsection.6.3.3.43}
+\contentsline {subsubsection}{\numberline {6.3.3.44}setLocationWithElevation()}{40}{subsubsection.6.3.3.44}
+\contentsline {subsubsection}{\numberline {6.3.3.45}setMaxConnections()}{40}{subsubsection.6.3.3.45}
+\contentsline {subsubsection}{\numberline {6.3.3.46}setPLE()}{41}{subsubsection.6.3.3.46}
+\contentsline {subsubsection}{\numberline {6.3.3.47}setPower()}{41}{subsubsection.6.3.3.47}
+\contentsline {subsubsection}{\numberline {6.3.3.48}setSmid()}{41}{subsubsection.6.3.3.48}
+\contentsline {subsubsection}{\numberline {6.3.3.49}setSSteep()}{42}{subsubsection.6.3.3.49}
+\contentsline {subsubsection}{\numberline {6.3.3.50}setType()}{42}{subsubsection.6.3.3.50}
+\contentsline {subsubsection}{\numberline {6.3.3.51}toString()}{42}{subsubsection.6.3.3.51}
+\contentsline {subsubsection}{\numberline {6.3.3.52}tryRegisterDevice()}{42}{subsubsection.6.3.3.52}
+\contentsline {subsection}{\numberline {6.3.4}Member Data Documentation}{43}{subsection.6.3.4}
+\contentsline {subsubsection}{\numberline {6.3.4.1}m\_azim\_dB\_Back}{43}{subsubsection.6.3.4.1}
+\contentsline {subsubsection}{\numberline {6.3.4.2}m\_beam\_H}{43}{subsubsection.6.3.4.2}
+\contentsline {subsubsection}{\numberline {6.3.4.3}m\_beam\_V}{43}{subsubsection.6.3.4.3}
+\contentsline {subsubsection}{\numberline {6.3.4.4}m\_cell}{43}{subsubsection.6.3.4.4}
+\contentsline {subsubsection}{\numberline {6.3.4.5}m\_devices}{43}{subsubsection.6.3.4.5}
+\contentsline {subsubsection}{\numberline {6.3.4.6}m\_direction}{44}{subsubsection.6.3.4.6}
+\contentsline {subsubsection}{\numberline {6.3.4.7}m\_elev\_dB\_Back}{44}{subsubsection.6.3.4.7}
+\contentsline {subsubsection}{\numberline {6.3.4.8}m\_file}{44}{subsubsection.6.3.4.8}
+\contentsline {subsubsection}{\numberline {6.3.4.9}m\_handoverMechanism}{44}{subsubsection.6.3.4.9}
+\contentsline {subsubsection}{\numberline {6.3.4.10}m\_height}{44}{subsubsection.6.3.4.10}
+\contentsline {subsubsection}{\numberline {6.3.4.11}m\_mapping\_azim}{44}{subsubsection.6.3.4.11}
+\contentsline {subsubsection}{\numberline {6.3.4.12}m\_mapping\_elev}{44}{subsubsection.6.3.4.12}
+\contentsline {subsubsection}{\numberline {6.3.4.13}m\_maxConnections}{44}{subsubsection.6.3.4.13}
+\contentsline {subsubsection}{\numberline {6.3.4.14}m\_MNO}{45}{subsubsection.6.3.4.14}
+\contentsline {subsubsection}{\numberline {6.3.4.15}m\_ple}{45}{subsubsection.6.3.4.15}
+\contentsline {subsubsection}{\numberline {6.3.4.16}m\_power}{45}{subsubsection.6.3.4.16}
+\contentsline {subsubsection}{\numberline {6.3.4.17}m\_Qmin}{45}{subsubsection.6.3.4.17}
+\contentsline {subsubsection}{\numberline {6.3.4.18}m\_rmax}{45}{subsubsection.6.3.4.18}
+\contentsline {subsubsection}{\numberline {6.3.4.19}m\_S0}{45}{subsubsection.6.3.4.19}
+\contentsline {subsubsection}{\numberline {6.3.4.20}m\_sd\_azim}{45}{subsubsection.6.3.4.20}
+\contentsline {subsubsection}{\numberline {6.3.4.21}m\_sd\_elev}{45}{subsubsection.6.3.4.21}
+\contentsline {subsubsection}{\numberline {6.3.4.22}m\_Smid}{46}{subsubsection.6.3.4.22}
+\contentsline {subsubsection}{\numberline {6.3.4.23}m\_Smin}{46}{subsubsection.6.3.4.23}
+\contentsline {subsubsection}{\numberline {6.3.4.24}m\_SSteep}{46}{subsubsection.6.3.4.24}
+\contentsline {subsubsection}{\numberline {6.3.4.25}m\_tilt}{46}{subsubsection.6.3.4.25}
+\contentsline {subsubsection}{\numberline {6.3.4.26}m\_type}{46}{subsubsection.6.3.4.26}
+\contentsline {section}{\numberline {6.4}Antenna\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Info Class Reference}{46}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{47}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Constructor \& Destructor Documentation}{47}{subsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.2.1}AntennaInfo()}{47}{subsubsection.6.4.2.1}
+\contentsline {subsection}{\numberline {6.4.3}Member Function Documentation}{47}{subsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.3.1}getAntennaId()}{47}{subsubsection.6.4.3.1}
+\contentsline {subsubsection}{\numberline {6.4.3.2}getDeviceId()}{48}{subsubsection.6.4.3.2}
+\contentsline {subsubsection}{\numberline {6.4.3.3}getEventCode()}{48}{subsubsection.6.4.3.3}
+\contentsline {subsubsection}{\numberline {6.4.3.4}getTime()}{48}{subsubsection.6.4.3.4}
+\contentsline {subsubsection}{\numberline {6.4.3.5}getX()}{48}{subsubsection.6.4.3.5}
+\contentsline {subsubsection}{\numberline {6.4.3.6}getY()}{49}{subsubsection.6.4.3.6}
+\contentsline {subsubsection}{\numberline {6.4.3.7}operator$<$()}{49}{subsubsection.6.4.3.7}
+\contentsline {subsubsection}{\numberline {6.4.3.8}toString()}{49}{subsubsection.6.4.3.8}
+\contentsline {subsection}{\numberline {6.4.4}Member Data Documentation}{49}{subsection.6.4.4}
+\contentsline {subsubsection}{\numberline {6.4.4.1}m\_antennaId}{49}{subsubsection.6.4.4.1}
+\contentsline {subsubsection}{\numberline {6.4.4.2}m\_deviceId}{50}{subsubsection.6.4.4.2}
+\contentsline {subsubsection}{\numberline {6.4.4.3}m\_eventCode}{50}{subsubsection.6.4.4.3}
+\contentsline {subsubsection}{\numberline {6.4.4.4}m\_time}{50}{subsubsection.6.4.4.4}
+\contentsline {subsubsection}{\numberline {6.4.4.5}m\_x}{50}{subsubsection.6.4.4.5}
+\contentsline {subsubsection}{\numberline {6.4.4.6}m\_y}{50}{subsubsection.6.4.4.6}
+\contentsline {section}{\numberline {6.5}Clock Class Reference}{50}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{51}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Constructor \& Destructor Documentation}{51}{subsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.2.1}Clock()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{51}{subsubsection.6.5.2.1}
+\contentsline {subsubsection}{\numberline {6.5.2.2}Clock()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{51}{subsubsection.6.5.2.2}
+\contentsline {subsubsection}{\numberline {6.5.2.3}$\sim $Clock()}{51}{subsubsection.6.5.2.3}
+\contentsline {subsection}{\numberline {6.5.3}Member Function Documentation}{52}{subsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.3.1}getCurrentTime()}{52}{subsubsection.6.5.3.1}
+\contentsline {subsubsection}{\numberline {6.5.3.2}getFinalTime()}{52}{subsubsection.6.5.3.2}
+\contentsline {subsubsection}{\numberline {6.5.3.3}getIncrement()}{52}{subsubsection.6.5.3.3}
+\contentsline {subsubsection}{\numberline {6.5.3.4}getInitialTime()}{52}{subsubsection.6.5.3.4}
+\contentsline {subsubsection}{\numberline {6.5.3.5}realTime()}{53}{subsubsection.6.5.3.5}
+\contentsline {subsubsection}{\numberline {6.5.3.6}reset()}{53}{subsubsection.6.5.3.6}
+\contentsline {subsubsection}{\numberline {6.5.3.7}setCurrentTime()}{53}{subsubsection.6.5.3.7}
+\contentsline {subsubsection}{\numberline {6.5.3.8}setFinalTime()}{53}{subsubsection.6.5.3.8}
+\contentsline {subsubsection}{\numberline {6.5.3.9}setIncrement()}{53}{subsubsection.6.5.3.9}
+\contentsline {subsubsection}{\numberline {6.5.3.10}setInitialTime()}{54}{subsubsection.6.5.3.10}
+\contentsline {subsubsection}{\numberline {6.5.3.11}tick()}{54}{subsubsection.6.5.3.11}
+\contentsline {subsection}{\numberline {6.5.4}Member Data Documentation}{54}{subsection.6.5.4}
+\contentsline {subsubsection}{\numberline {6.5.4.1}m\_currentTime}{54}{subsubsection.6.5.4.1}
+\contentsline {subsubsection}{\numberline {6.5.4.2}m\_finalTime}{54}{subsubsection.6.5.4.2}
+\contentsline {subsubsection}{\numberline {6.5.4.3}m\_increment}{55}{subsubsection.6.5.4.3}
+\contentsline {subsubsection}{\numberline {6.5.4.4}m\_initialTime}{55}{subsubsection.6.5.4.4}
+\contentsline {section}{\numberline {6.6}Constants Class Reference}{55}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Detailed Description}{56}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Member Data Documentation}{56}{subsection.6.6.2}
+\contentsline {subsubsection}{\numberline {6.6.2.1}ANTENNA\_AZIM\_DB\_BACK}{56}{subsubsection.6.6.2.1}
+\contentsline {subsubsection}{\numberline {6.6.2.2}ANTENNA\_BEAM\_H}{56}{subsubsection.6.6.2.2}
+\contentsline {subsubsection}{\numberline {6.6.2.3}ANTENNA\_BEAM\_V}{56}{subsubsection.6.6.2.3}
+\contentsline {subsubsection}{\numberline {6.6.2.4}ANTENNA\_DIRECTION}{57}{subsubsection.6.6.2.4}
+\contentsline {subsubsection}{\numberline {6.6.2.5}ANTENNA\_ELEV\_DB\_BACK}{57}{subsubsection.6.6.2.5}
+\contentsline {subsubsection}{\numberline {6.6.2.6}ANTENNA\_HEIGHT}{57}{subsubsection.6.6.2.6}
+\contentsline {subsubsection}{\numberline {6.6.2.7}ANTENNA\_MAPPING\_N}{57}{subsubsection.6.6.2.7}
+\contentsline {subsubsection}{\numberline {6.6.2.8}ANTENNA\_MAX\_CONNECTIONS}{57}{subsubsection.6.6.2.8}
+\contentsline {subsubsection}{\numberline {6.6.2.9}ANTENNA\_MIN\_3\_DB}{57}{subsubsection.6.6.2.9}
+\contentsline {subsubsection}{\numberline {6.6.2.10}ANTENNA\_POWER}{57}{subsubsection.6.6.2.10}
+\contentsline {subsubsection}{\numberline {6.6.2.11}ANTENNA\_QMIN}{57}{subsubsection.6.6.2.11}
+\contentsline {subsubsection}{\numberline {6.6.2.12}ANTENNA\_S\_MID}{58}{subsubsection.6.6.2.12}
+\contentsline {subsubsection}{\numberline {6.6.2.13}ANTENNA\_S\_STEEP}{58}{subsubsection.6.6.2.13}
+\contentsline {subsubsection}{\numberline {6.6.2.14}ANTENNA\_SMIN}{58}{subsubsection.6.6.2.14}
+\contentsline {subsubsection}{\numberline {6.6.2.15}ANTENNA\_TILT}{58}{subsubsection.6.6.2.15}
+\contentsline {subsubsection}{\numberline {6.6.2.16}ANTENNAS\_FILE\_NAME}{58}{subsubsection.6.6.2.16}
+\contentsline {subsubsection}{\numberline {6.6.2.17}ATT\_FACTOR}{58}{subsubsection.6.6.2.17}
+\contentsline {subsubsection}{\numberline {6.6.2.18}GRID\_DIM\_TILE\_X}{58}{subsubsection.6.6.2.18}
+\contentsline {subsubsection}{\numberline {6.6.2.19}GRID\_DIM\_TILE\_Y}{59}{subsubsection.6.6.2.19}
+\contentsline {subsubsection}{\numberline {6.6.2.20}GRID\_FILE\_NAME}{59}{subsubsection.6.6.2.20}
+\contentsline {subsubsection}{\numberline {6.6.2.21}GRID\_X\_ORIG}{59}{subsubsection.6.6.2.21}
+\contentsline {subsubsection}{\numberline {6.6.2.22}GRID\_Y\_ORIG}{59}{subsubsection.6.6.2.22}
+\contentsline {subsubsection}{\numberline {6.6.2.23}PERSONS\_FILE\_NAME}{59}{subsubsection.6.6.2.23}
+\contentsline {subsubsection}{\numberline {6.6.2.24}PHONE\_CONNECTION\_THRESHOLD}{59}{subsubsection.6.6.2.24}
+\contentsline {subsubsection}{\numberline {6.6.2.25}PHONE\_POWER\_THRESHOLD}{60}{subsubsection.6.6.2.25}
+\contentsline {subsubsection}{\numberline {6.6.2.26}PHONE\_QUALITY\_THRESHOLD}{60}{subsubsection.6.6.2.26}
+\contentsline {subsubsection}{\numberline {6.6.2.27}PHONE\_STRENGTH\_THRESHOLD}{60}{subsubsection.6.6.2.27}
+\contentsline {subsubsection}{\numberline {6.6.2.28}PRIOR\_PROBABILITY}{60}{subsubsection.6.6.2.28}
+\contentsline {subsubsection}{\numberline {6.6.2.29}PROB\_FILE\_NAME\_PREFIX}{60}{subsubsection.6.6.2.29}
+\contentsline {subsubsection}{\numberline {6.6.2.30}RANDOM\_SEED}{60}{subsubsection.6.6.2.30}
+\contentsline {subsubsection}{\numberline {6.6.2.31}sep}{60}{subsubsection.6.6.2.31}
+\contentsline {subsubsection}{\numberline {6.6.2.32}SIM\_DEFAULT\_MNO\_NAME}{61}{subsubsection.6.6.2.32}
+\contentsline {subsubsection}{\numberline {6.6.2.33}SIM\_END\_TIME}{61}{subsubsection.6.6.2.33}
+\contentsline {subsubsection}{\numberline {6.6.2.34}SIM\_INCREMENT\_TIME}{61}{subsubsection.6.6.2.34}
+\contentsline {subsubsection}{\numberline {6.6.2.35}SIM\_INTERVAL\_BETWEEN\_STAYS}{61}{subsubsection.6.6.2.35}
+\contentsline {subsubsection}{\numberline {6.6.2.36}SIM\_NO\_ANTENNAS}{61}{subsubsection.6.6.2.36}
+\contentsline {subsubsection}{\numberline {6.6.2.37}SIM\_NO\_MOBILE\_PHONES}{61}{subsubsection.6.6.2.37}
+\contentsline {subsubsection}{\numberline {6.6.2.38}SIM\_NO\_PERSONS}{61}{subsubsection.6.6.2.38}
+\contentsline {subsubsection}{\numberline {6.6.2.39}SIM\_NUM\_MNO}{61}{subsubsection.6.6.2.39}
+\contentsline {subsubsection}{\numberline {6.6.2.40}SIM\_PROB\_MOBILE\_PHONE}{62}{subsubsection.6.6.2.40}
+\contentsline {subsubsection}{\numberline {6.6.2.41}SIM\_PROB\_SECOND\_MOBILE\_PHONE}{62}{subsubsection.6.6.2.41}
+\contentsline {subsubsection}{\numberline {6.6.2.42}SIM\_START\_TIME}{62}{subsubsection.6.6.2.42}
+\contentsline {subsubsection}{\numberline {6.6.2.43}SIM\_STAY\_TIME}{62}{subsubsection.6.6.2.43}
+\contentsline {subsubsection}{\numberline {6.6.2.44}SIM\_TREND\_ANGLE\_1}{62}{subsubsection.6.6.2.44}
+\contentsline {subsubsection}{\numberline {6.6.2.45}SIM\_TREND\_ANGLE\_2}{62}{subsubsection.6.6.2.45}
+\contentsline {section}{\numberline {6.7}C\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}S\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}V\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parser Class Reference}{62}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{63}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Constructor \& Destructor Documentation}{63}{subsection.6.7.2}
+\contentsline {subsubsection}{\numberline {6.7.2.1}CSVParser()}{63}{subsubsection.6.7.2.1}
+\contentsline {subsubsection}{\numberline {6.7.2.2}$\sim $CSVParser()}{64}{subsubsection.6.7.2.2}
+\contentsline {subsection}{\numberline {6.7.3}Member Function Documentation}{64}{subsection.6.7.3}
+\contentsline {subsubsection}{\numberline {6.7.3.1}addRow()}{64}{subsubsection.6.7.3.1}
+\contentsline {subsubsection}{\numberline {6.7.3.2}columnCount()}{64}{subsubsection.6.7.3.2}
+\contentsline {subsubsection}{\numberline {6.7.3.3}deleteRow()}{65}{subsubsection.6.7.3.3}
+\contentsline {subsubsection}{\numberline {6.7.3.4}getFileName()}{65}{subsubsection.6.7.3.4}
+\contentsline {subsubsection}{\numberline {6.7.3.5}getHeader()}{65}{subsubsection.6.7.3.5}
+\contentsline {subsubsection}{\numberline {6.7.3.6}getHeaderElement()}{65}{subsubsection.6.7.3.6}
+\contentsline {subsubsection}{\numberline {6.7.3.7}getRow()}{66}{subsubsection.6.7.3.7}
+\contentsline {subsubsection}{\numberline {6.7.3.8}operator[]()}{66}{subsubsection.6.7.3.8}
+\contentsline {subsubsection}{\numberline {6.7.3.9}parseContent()}{66}{subsubsection.6.7.3.9}
+\contentsline {subsubsection}{\numberline {6.7.3.10}parseHeader()}{67}{subsubsection.6.7.3.10}
+\contentsline {subsubsection}{\numberline {6.7.3.11}rowCount()}{67}{subsubsection.6.7.3.11}
+\contentsline {subsubsection}{\numberline {6.7.3.12}sync()}{67}{subsubsection.6.7.3.12}
+\contentsline {subsection}{\numberline {6.7.4}Member Data Documentation}{67}{subsection.6.7.4}
+\contentsline {subsubsection}{\numberline {6.7.4.1}\_content}{67}{subsubsection.6.7.4.1}
+\contentsline {subsubsection}{\numberline {6.7.4.2}\_file}{67}{subsubsection.6.7.4.2}
+\contentsline {subsubsection}{\numberline {6.7.4.3}\_header}{67}{subsubsection.6.7.4.3}
+\contentsline {subsubsection}{\numberline {6.7.4.4}\_originalFile}{68}{subsubsection.6.7.4.4}
+\contentsline {subsubsection}{\numberline {6.7.4.5}\_sep}{68}{subsubsection.6.7.4.5}
+\contentsline {subsubsection}{\numberline {6.7.4.6}\_type}{68}{subsubsection.6.7.4.6}
+\contentsline {subsubsection}{\numberline {6.7.4.7}m\_header}{68}{subsubsection.6.7.4.7}
+\contentsline {section}{\numberline {6.8}E\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Field Class Reference}{68}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Detailed Description}{69}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Constructor \& Destructor Documentation}{69}{subsection.6.8.2}
+\contentsline {subsubsection}{\numberline {6.8.2.1}$\sim $EMField()}{70}{subsubsection.6.8.2.1}
+\contentsline {subsubsection}{\numberline {6.8.2.2}EMField()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{70}{subsubsection.6.8.2.2}
+\contentsline {subsubsection}{\numberline {6.8.2.3}EMField()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{70}{subsubsection.6.8.2.3}
+\contentsline {subsection}{\numberline {6.8.3}Member Function Documentation}{70}{subsection.6.8.3}
+\contentsline {subsubsection}{\numberline {6.8.3.1}addAntenna()}{70}{subsubsection.6.8.3.1}
+\contentsline {subsubsection}{\numberline {6.8.3.2}computeMaxPower()}{70}{subsubsection.6.8.3.2}
+\contentsline {subsubsection}{\numberline {6.8.3.3}computeMaxQuality()}{71}{subsubsection.6.8.3.3}
+\contentsline {subsubsection}{\numberline {6.8.3.4}computeMaxStrength()}{71}{subsubsection.6.8.3.4}
+\contentsline {subsubsection}{\numberline {6.8.3.5}connectionLikelihood()}{72}{subsubsection.6.8.3.5}
+\contentsline {subsubsection}{\numberline {6.8.3.6}connectionLikelihoodGrid()}{72}{subsubsection.6.8.3.6}
+\contentsline {subsubsection}{\numberline {6.8.3.7}getAntennaMin3DbArray()}{73}{subsubsection.6.8.3.7}
+\contentsline {subsubsection}{\numberline {6.8.3.8}getInRangeAntennas()}{73}{subsubsection.6.8.3.8}
+\contentsline {subsubsection}{\numberline {6.8.3.9}getSd()}{73}{subsubsection.6.8.3.9}
+\contentsline {subsubsection}{\numberline {6.8.3.10}instance()}{73}{subsubsection.6.8.3.10}
+\contentsline {subsubsection}{\numberline {6.8.3.11}isAntennaInRange()}{74}{subsubsection.6.8.3.11}
+\contentsline {subsubsection}{\numberline {6.8.3.12}operator=()}{74}{subsubsection.6.8.3.12}
+\contentsline {subsubsection}{\numberline {6.8.3.13}sumSignalQuality()}{74}{subsubsection.6.8.3.13}
+\contentsline {subsection}{\numberline {6.8.4}Member Data Documentation}{75}{subsection.6.8.4}
+\contentsline {subsubsection}{\numberline {6.8.4.1}m\_antennaMin3DbArray}{75}{subsubsection.6.8.4.1}
+\contentsline {subsubsection}{\numberline {6.8.4.2}m\_antennas}{75}{subsubsection.6.8.4.2}
+\contentsline {subsubsection}{\numberline {6.8.4.3}m\_instance}{75}{subsubsection.6.8.4.3}
+\contentsline {subsubsection}{\numberline {6.8.4.4}m\_sd}{75}{subsubsection.6.8.4.4}
+\contentsline {subsubsection}{\numberline {6.8.4.5}m\_sumQuality}{75}{subsubsection.6.8.4.5}
+\contentsline {section}{\numberline {6.9}Grid Class Reference}{75}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{76}{subsection.6.9.1}
+\contentsline {subsection}{\numberline {6.9.2}Constructor \& Destructor Documentation}{77}{subsection.6.9.2}
+\contentsline {subsubsection}{\numberline {6.9.2.1}Grid()}{77}{subsubsection.6.9.2.1}
+\contentsline {subsubsection}{\numberline {6.9.2.2}$\sim $Grid()}{77}{subsubsection.6.9.2.2}
+\contentsline {subsection}{\numberline {6.9.3}Member Function Documentation}{77}{subsection.6.9.3}
+\contentsline {subsubsection}{\numberline {6.9.3.1}computeProbability()}{77}{subsubsection.6.9.3.1}
+\contentsline {subsubsection}{\numberline {6.9.3.2}computeTileCenters()}{78}{subsubsection.6.9.3.2}
+\contentsline {subsubsection}{\numberline {6.9.3.3}dumpGrid()}{78}{subsubsection.6.9.3.3}
+\contentsline {subsubsection}{\numberline {6.9.3.4}getNoTiles()}{78}{subsubsection.6.9.3.4}
+\contentsline {subsubsection}{\numberline {6.9.3.5}getNoTilesX()}{79}{subsubsection.6.9.3.5}
+\contentsline {subsubsection}{\numberline {6.9.3.6}getNoTilesY()}{79}{subsubsection.6.9.3.6}
+\contentsline {subsubsection}{\numberline {6.9.3.7}getTileCenter()}{79}{subsubsection.6.9.3.7}
+\contentsline {subsubsection}{\numberline {6.9.3.8}getTileCenters()}{79}{subsubsection.6.9.3.8}
+\contentsline {subsubsection}{\numberline {6.9.3.9}getTileIndexX()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{80}{subsubsection.6.9.3.9}
+\contentsline {subsubsection}{\numberline {6.9.3.10}getTileIndexX()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{80}{subsubsection.6.9.3.10}
+\contentsline {subsubsection}{\numberline {6.9.3.11}getTileIndexY()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{80}{subsubsection.6.9.3.11}
+\contentsline {subsubsection}{\numberline {6.9.3.12}getTileIndexY()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{80}{subsubsection.6.9.3.12}
+\contentsline {subsubsection}{\numberline {6.9.3.13}getTileNo()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{81}{subsubsection.6.9.3.13}
+\contentsline {subsubsection}{\numberline {6.9.3.14}getTileNo()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{81}{subsubsection.6.9.3.14}
+\contentsline {subsubsection}{\numberline {6.9.3.15}getXOrigin()}{81}{subsubsection.6.9.3.15}
+\contentsline {subsubsection}{\numberline {6.9.3.16}getXTileDim()}{82}{subsubsection.6.9.3.16}
+\contentsline {subsubsection}{\numberline {6.9.3.17}getYOrigin()}{82}{subsubsection.6.9.3.17}
+\contentsline {subsubsection}{\numberline {6.9.3.18}getYTileDim()}{82}{subsubsection.6.9.3.18}
+\contentsline {subsubsection}{\numberline {6.9.3.19}toString()}{82}{subsubsection.6.9.3.19}
+\contentsline {subsubsection}{\numberline {6.9.3.20}useNetworkPrior()}{82}{subsubsection.6.9.3.20}
+\contentsline {subsubsection}{\numberline {6.9.3.21}useUniformPrior()}{83}{subsubsection.6.9.3.21}
+\contentsline {subsection}{\numberline {6.9.4}Member Data Documentation}{83}{subsection.6.9.4}
+\contentsline {subsubsection}{\numberline {6.9.4.1}m\_noTilesX}{83}{subsubsection.6.9.4.1}
+\contentsline {subsubsection}{\numberline {6.9.4.2}m\_noTilesY}{83}{subsubsection.6.9.4.2}
+\contentsline {subsubsection}{\numberline {6.9.4.3}m\_tileCenters}{83}{subsubsection.6.9.4.3}
+\contentsline {subsubsection}{\numberline {6.9.4.4}m\_xOrigin}{83}{subsubsection.6.9.4.4}
+\contentsline {subsubsection}{\numberline {6.9.4.5}m\_xTileDim}{83}{subsubsection.6.9.4.5}
+\contentsline {subsubsection}{\numberline {6.9.4.6}m\_yOrigin}{83}{subsubsection.6.9.4.6}
+\contentsline {subsubsection}{\numberline {6.9.4.7}m\_yTileDim}{84}{subsubsection.6.9.4.7}
+\contentsline {section}{\numberline {6.10}Holdable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent Class Reference}{84}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}Detailed Description}{86}{subsection.6.10.1}
+\contentsline {subsection}{\numberline {6.10.2}Member Enumeration Documentation}{86}{subsection.6.10.2}
+\contentsline {subsubsection}{\numberline {6.10.2.1}CONNECTION\_TYPE}{86}{subsubsection.6.10.2.1}
+\contentsline {subsection}{\numberline {6.10.3}Constructor \& Destructor Documentation}{86}{subsection.6.10.3}
+\contentsline {subsubsection}{\numberline {6.10.3.1}HoldableAgent()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{86}{subsubsection.6.10.3.1}
+\contentsline {subsubsection}{\numberline {6.10.3.2}HoldableAgent()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{87}{subsubsection.6.10.3.2}
+\contentsline {subsubsection}{\numberline {6.10.3.3}$\sim $HoldableAgent()}{87}{subsubsection.6.10.3.3}
+\contentsline {subsection}{\numberline {6.10.4}Member Function Documentation}{87}{subsection.6.10.4}
+\contentsline {subsubsection}{\numberline {6.10.4.1}getAntennas()}{87}{subsubsection.6.10.4.1}
+\contentsline {subsubsection}{\numberline {6.10.4.2}getHolder()}{88}{subsubsection.6.10.4.2}
+\contentsline {subsubsection}{\numberline {6.10.4.3}getName()}{88}{subsubsection.6.10.4.3}
+\contentsline {subsubsection}{\numberline {6.10.4.4}isConnected()}{88}{subsubsection.6.10.4.4}
+\contentsline {subsubsection}{\numberline {6.10.4.5}setHolder()}{88}{subsubsection.6.10.4.5}
+\contentsline {subsubsection}{\numberline {6.10.4.6}setLocation()}{89}{subsubsection.6.10.4.6}
+\contentsline {subsubsection}{\numberline {6.10.4.7}toString()}{89}{subsubsection.6.10.4.7}
+\contentsline {subsubsection}{\numberline {6.10.4.8}tryConnect()}{89}{subsubsection.6.10.4.8}
+\contentsline {subsection}{\numberline {6.10.5}Member Data Documentation}{90}{subsection.6.10.5}
+\contentsline {subsubsection}{\numberline {6.10.5.1}m\_antennas}{90}{subsubsection.6.10.5.1}
+\contentsline {subsubsection}{\numberline {6.10.5.2}m\_holder}{90}{subsubsection.6.10.5.2}
+\contentsline {section}{\numberline {6.11}I\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}D\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generator Class Reference}{90}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{91}{subsection.6.11.1}
+\contentsline {subsection}{\numberline {6.11.2}Constructor \& Destructor Documentation}{91}{subsection.6.11.2}
+\contentsline {subsubsection}{\numberline {6.11.2.1}IDGenerator()}{91}{subsubsection.6.11.2.1}
+\contentsline {subsection}{\numberline {6.11.3}Member Function Documentation}{91}{subsection.6.11.3}
+\contentsline {subsubsection}{\numberline {6.11.3.1}instance()}{91}{subsubsection.6.11.3.1}
+\contentsline {subsubsection}{\numberline {6.11.3.2}next()}{92}{subsubsection.6.11.3.2}
+\contentsline {subsection}{\numberline {6.11.4}Member Data Documentation}{92}{subsection.6.11.4}
+\contentsline {subsubsection}{\numberline {6.11.4.1}m\_id}{92}{subsubsection.6.11.4.1}
+\contentsline {subsubsection}{\numberline {6.11.4.2}m\_instance}{92}{subsubsection.6.11.4.2}
+\contentsline {section}{\numberline {6.12}Immovable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent Class Reference}{92}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Detailed Description}{93}{subsection.6.12.1}
+\contentsline {subsection}{\numberline {6.12.2}Constructor \& Destructor Documentation}{93}{subsection.6.12.2}
+\contentsline {subsubsection}{\numberline {6.12.2.1}ImmovableAgent()}{94}{subsubsection.6.12.2.1}
+\contentsline {subsubsection}{\numberline {6.12.2.2}$\sim $ImmovableAgent()}{95}{subsubsection.6.12.2.2}
+\contentsline {subsection}{\numberline {6.12.3}Member Function Documentation}{95}{subsection.6.12.3}
+\contentsline {subsubsection}{\numberline {6.12.3.1}getName()}{95}{subsubsection.6.12.3.1}
+\contentsline {subsubsection}{\numberline {6.12.3.2}toString()}{95}{subsubsection.6.12.3.2}
+\contentsline {section}{\numberline {6.13}Input\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parser Class Reference}{96}{section.6.13}
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{96}{subsection.6.13.1}
+\contentsline {subsection}{\numberline {6.13.2}Constructor \& Destructor Documentation}{96}{subsection.6.13.2}
+\contentsline {subsubsection}{\numberline {6.13.2.1}InputParser()}{96}{subsubsection.6.13.2.1}
+\contentsline {subsection}{\numberline {6.13.3}Member Function Documentation}{96}{subsection.6.13.3}
+\contentsline {subsubsection}{\numberline {6.13.3.1}cmdOptionExists()}{96}{subsubsection.6.13.3.1}
+\contentsline {subsubsection}{\numberline {6.13.3.2}getCmdOption()}{97}{subsubsection.6.13.3.2}
+\contentsline {subsection}{\numberline {6.13.4}Member Data Documentation}{97}{subsection.6.13.4}
+\contentsline {subsubsection}{\numberline {6.13.4.1}tokens}{97}{subsubsection.6.13.4.1}
+\contentsline {section}{\numberline {6.14}Locatable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent Class Reference}{97}{section.6.14}
+\contentsline {subsection}{\numberline {6.14.1}Detailed Description}{99}{subsection.6.14.1}
+\contentsline {subsection}{\numberline {6.14.2}Constructor \& Destructor Documentation}{99}{subsection.6.14.2}
+\contentsline {subsubsection}{\numberline {6.14.2.1}LocatableAgent()}{99}{subsubsection.6.14.2.1}
+\contentsline {subsubsection}{\numberline {6.14.2.2}$\sim $LocatableAgent()}{99}{subsubsection.6.14.2.2}
+\contentsline {subsection}{\numberline {6.14.3}Member Function Documentation}{100}{subsection.6.14.3}
+\contentsline {subsubsection}{\numberline {6.14.3.1}dumpLocation()}{100}{subsubsection.6.14.3.1}
+\contentsline {subsubsection}{\numberline {6.14.3.2}getLocation()}{100}{subsubsection.6.14.3.2}
+\contentsline {subsubsection}{\numberline {6.14.3.3}getName()}{100}{subsubsection.6.14.3.3}
+\contentsline {subsubsection}{\numberline {6.14.3.4}setLocation()}{100}{subsubsection.6.14.3.4}
+\contentsline {subsubsection}{\numberline {6.14.3.5}toString()}{101}{subsubsection.6.14.3.5}
+\contentsline {subsection}{\numberline {6.14.4}Member Data Documentation}{101}{subsection.6.14.4}
+\contentsline {subsubsection}{\numberline {6.14.4.1}m\_location}{101}{subsubsection.6.14.4.1}
+\contentsline {section}{\numberline {6.15}Map Class Reference}{101}{section.6.15}
+\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{102}{subsection.6.15.1}
+\contentsline {subsection}{\numberline {6.15.2}Constructor \& Destructor Documentation}{102}{subsection.6.15.2}
+\contentsline {subsubsection}{\numberline {6.15.2.1}Map()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/3]}}{102}{subsubsection.6.15.2.1}
+\contentsline {subsubsection}{\numberline {6.15.2.2}Map()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/3]}}{102}{subsubsection.6.15.2.2}
+\contentsline {subsubsection}{\numberline {6.15.2.3}Map()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [3/3]}}{103}{subsubsection.6.15.2.3}
+\contentsline {subsubsection}{\numberline {6.15.2.4}$\sim $Map()}{103}{subsubsection.6.15.2.4}
+\contentsline {subsection}{\numberline {6.15.3}Member Function Documentation}{103}{subsection.6.15.3}
+\contentsline {subsubsection}{\numberline {6.15.3.1}addGrid()}{103}{subsubsection.6.15.3.1}
+\contentsline {subsubsection}{\numberline {6.15.3.2}create\_rectangle()}{104}{subsubsection.6.15.3.2}
+\contentsline {subsubsection}{\numberline {6.15.3.3}getBoundary()}{104}{subsubsection.6.15.3.3}
+\contentsline {subsubsection}{\numberline {6.15.3.4}getGlobalFactory()}{104}{subsubsection.6.15.3.4}
+\contentsline {subsubsection}{\numberline {6.15.3.5}getGrid()}{104}{subsubsection.6.15.3.5}
+\contentsline {subsubsection}{\numberline {6.15.3.6}setBoundary()}{104}{subsubsection.6.15.3.6}
+\contentsline {subsection}{\numberline {6.15.4}Member Data Documentation}{105}{subsection.6.15.4}
+\contentsline {subsubsection}{\numberline {6.15.4.1}m\_boundary}{105}{subsubsection.6.15.4.1}
+\contentsline {subsubsection}{\numberline {6.15.4.2}m\_globalFactory}{105}{subsubsection.6.15.4.2}
+\contentsline {subsubsection}{\numberline {6.15.4.3}m\_grid}{105}{subsubsection.6.15.4.3}
+\contentsline {section}{\numberline {6.16}Mobile\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Operator Class Reference}{105}{section.6.16}
+\contentsline {subsection}{\numberline {6.16.1}Detailed Description}{106}{subsection.6.16.1}
+\contentsline {subsection}{\numberline {6.16.2}Constructor \& Destructor Documentation}{107}{subsection.6.16.2}
+\contentsline {subsubsection}{\numberline {6.16.2.1}MobileOperator()}{107}{subsubsection.6.16.2.1}
+\contentsline {subsubsection}{\numberline {6.16.2.2}$\sim $MobileOperator()}{107}{subsubsection.6.16.2.2}
+\contentsline {subsection}{\numberline {6.16.3}Member Function Documentation}{107}{subsection.6.16.3}
+\contentsline {subsubsection}{\numberline {6.16.3.1}getAntennaCellsFile()}{107}{subsubsection.6.16.3.1}
+\contentsline {subsubsection}{\numberline {6.16.3.2}getMNOName()}{108}{subsubsection.6.16.3.2}
+\contentsline {subsubsection}{\numberline {6.16.3.3}getName()}{108}{subsubsection.6.16.3.3}
+\contentsline {subsubsection}{\numberline {6.16.3.4}getProbMobilePhone()}{108}{subsubsection.6.16.3.4}
+\contentsline {subsubsection}{\numberline {6.16.3.5}getSignalFile()}{108}{subsubsection.6.16.3.5}
+\contentsline {subsubsection}{\numberline {6.16.3.6}toString()}{109}{subsubsection.6.16.3.6}
+\contentsline {subsection}{\numberline {6.16.4}Member Data Documentation}{109}{subsection.6.16.4}
+\contentsline {subsubsection}{\numberline {6.16.4.1}m\_antennaCellsFileName}{109}{subsubsection.6.16.4.1}
+\contentsline {subsubsection}{\numberline {6.16.4.2}m\_name}{109}{subsubsection.6.16.4.2}
+\contentsline {subsubsection}{\numberline {6.16.4.3}m\_probMobilePhone}{109}{subsubsection.6.16.4.3}
+\contentsline {subsubsection}{\numberline {6.16.4.4}m\_signalMeasureFileName}{109}{subsubsection.6.16.4.4}
+\contentsline {section}{\numberline {6.17}Mobile\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Phone Class Reference}{110}{section.6.17}
+\contentsline {subsection}{\numberline {6.17.1}Detailed Description}{112}{subsection.6.17.1}
+\contentsline {subsection}{\numberline {6.17.2}Constructor \& Destructor Documentation}{112}{subsection.6.17.2}
+\contentsline {subsubsection}{\numberline {6.17.2.1}MobilePhone()}{112}{subsubsection.6.17.2.1}
+\contentsline {subsubsection}{\numberline {6.17.2.2}$\sim $MobilePhone()}{113}{subsubsection.6.17.2.2}
+\contentsline {subsection}{\numberline {6.17.3}Member Function Documentation}{113}{subsection.6.17.3}
+\contentsline {subsubsection}{\numberline {6.17.3.1}getConnectionThreshold()}{113}{subsubsection.6.17.3.1}
+\contentsline {subsubsection}{\numberline {6.17.3.2}getMobileOperator()}{113}{subsubsection.6.17.3.2}
+\contentsline {subsubsection}{\numberline {6.17.3.3}getName()}{113}{subsubsection.6.17.3.3}
+\contentsline {subsubsection}{\numberline {6.17.3.4}move()}{113}{subsubsection.6.17.3.4}
+\contentsline {subsubsection}{\numberline {6.17.3.5}setMobileOperator()}{114}{subsubsection.6.17.3.5}
+\contentsline {subsubsection}{\numberline {6.17.3.6}toString()}{114}{subsubsection.6.17.3.6}
+\contentsline {subsubsection}{\numberline {6.17.3.7}tryConnect()}{115}{subsubsection.6.17.3.7}
+\contentsline {subsection}{\numberline {6.17.4}Member Data Documentation}{115}{subsection.6.17.4}
+\contentsline {subsubsection}{\numberline {6.17.4.1}m\_connectedTo}{115}{subsubsection.6.17.4.1}
+\contentsline {subsubsection}{\numberline {6.17.4.2}m\_connType}{115}{subsubsection.6.17.4.2}
+\contentsline {subsubsection}{\numberline {6.17.4.3}m\_mno}{115}{subsubsection.6.17.4.3}
+\contentsline {subsubsection}{\numberline {6.17.4.4}m\_threshold}{115}{subsubsection.6.17.4.4}
+\contentsline {section}{\numberline {6.18}Movable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent Class Reference}{116}{section.6.18}
+\contentsline {subsection}{\numberline {6.18.1}Detailed Description}{117}{subsection.6.18.1}
+\contentsline {subsection}{\numberline {6.18.2}Constructor \& Destructor Documentation}{118}{subsection.6.18.2}
+\contentsline {subsubsection}{\numberline {6.18.2.1}MovableAgent()}{118}{subsubsection.6.18.2.1}
+\contentsline {subsubsection}{\numberline {6.18.2.2}$\sim $MovableAgent()}{118}{subsubsection.6.18.2.2}
+\contentsline {subsection}{\numberline {6.18.3}Member Function Documentation}{118}{subsection.6.18.3}
+\contentsline {subsubsection}{\numberline {6.18.3.1}getName()}{118}{subsubsection.6.18.3.1}
+\contentsline {subsubsection}{\numberline {6.18.3.2}getSpeed()}{119}{subsubsection.6.18.3.2}
+\contentsline {subsubsection}{\numberline {6.18.3.3}move()}{119}{subsubsection.6.18.3.3}
+\contentsline {subsubsection}{\numberline {6.18.3.4}setSpeed()}{119}{subsubsection.6.18.3.4}
+\contentsline {subsubsection}{\numberline {6.18.3.5}toString()}{120}{subsubsection.6.18.3.5}
+\contentsline {subsection}{\numberline {6.18.4}Member Data Documentation}{120}{subsection.6.18.4}
+\contentsline {subsubsection}{\numberline {6.18.4.1}m\_speed}{120}{subsubsection.6.18.4.1}
+\contentsline {section}{\numberline {6.19}Person Class Reference}{120}{section.6.19}
+\contentsline {subsection}{\numberline {6.19.1}Detailed Description}{123}{subsection.6.19.1}
+\contentsline {subsection}{\numberline {6.19.2}Member Enumeration Documentation}{123}{subsection.6.19.2}
+\contentsline {subsubsection}{\numberline {6.19.2.1}AgeDistributions}{123}{subsubsection.6.19.2.1}
+\contentsline {subsubsection}{\numberline {6.19.2.2}Gender}{123}{subsubsection.6.19.2.2}
+\contentsline {subsection}{\numberline {6.19.3}Constructor \& Destructor Documentation}{124}{subsection.6.19.3}
+\contentsline {subsubsection}{\numberline {6.19.3.1}Person()}{124}{subsubsection.6.19.3.1}
+\contentsline {subsubsection}{\numberline {6.19.3.2}$\sim $Person()}{124}{subsubsection.6.19.3.2}
+\contentsline {subsection}{\numberline {6.19.4}Member Function Documentation}{124}{subsection.6.19.4}
+\contentsline {subsubsection}{\numberline {6.19.4.1}addDevice()}{125}{subsubsection.6.19.4.1}
+\contentsline {subsubsection}{\numberline {6.19.4.2}dumpDevices()}{125}{subsubsection.6.19.4.2}
+\contentsline {subsubsection}{\numberline {6.19.4.3}generateNewLocation()}{125}{subsubsection.6.19.4.3}
+\contentsline {subsubsection}{\numberline {6.19.4.4}getAge()}{125}{subsubsection.6.19.4.4}
+\contentsline {subsubsection}{\numberline {6.19.4.5}getAvgIntervalBetweenStays()}{126}{subsubsection.6.19.4.5}
+\contentsline {subsubsection}{\numberline {6.19.4.6}getAvgTimeStay()}{126}{subsubsection.6.19.4.6}
+\contentsline {subsubsection}{\numberline {6.19.4.7}getGender()}{126}{subsubsection.6.19.4.7}
+\contentsline {subsubsection}{\numberline {6.19.4.8}getName()}{126}{subsubsection.6.19.4.8}
+\contentsline {subsubsection}{\numberline {6.19.4.9}hasDevices()}{127}{subsubsection.6.19.4.9}
+\contentsline {subsubsection}{\numberline {6.19.4.10}move()}{127}{subsubsection.6.19.4.10}
+\contentsline {subsubsection}{\numberline {6.19.4.11}randomWalkClosedMap()}{127}{subsubsection.6.19.4.11}
+\contentsline {subsubsection}{\numberline {6.19.4.12}randomWalkClosedMapDrift()}{128}{subsubsection.6.19.4.12}
+\contentsline {subsubsection}{\numberline {6.19.4.13}setAge()}{128}{subsubsection.6.19.4.13}
+\contentsline {subsubsection}{\numberline {6.19.4.14}setLocation()}{128}{subsubsection.6.19.4.14}
+\contentsline {subsubsection}{\numberline {6.19.4.15}setNewLocation()}{128}{subsubsection.6.19.4.15}
+\contentsline {subsubsection}{\numberline {6.19.4.16}toString()}{128}{subsubsection.6.19.4.16}
+\contentsline {subsection}{\numberline {6.19.5}Member Data Documentation}{129}{subsection.6.19.5}
+\contentsline {subsubsection}{\numberline {6.19.5.1}m\_age}{129}{subsubsection.6.19.5.1}
+\contentsline {subsubsection}{\numberline {6.19.5.2}m\_avgIntervalBetweenStays}{129}{subsubsection.6.19.5.2}
+\contentsline {subsubsection}{\numberline {6.19.5.3}m\_avgTimeStay}{129}{subsubsection.6.19.5.3}
+\contentsline {subsubsection}{\numberline {6.19.5.4}m\_changeDirection}{129}{subsubsection.6.19.5.4}
+\contentsline {subsubsection}{\numberline {6.19.5.5}m\_gender}{129}{subsubsection.6.19.5.5}
+\contentsline {subsubsection}{\numberline {6.19.5.6}m\_idDevices}{129}{subsubsection.6.19.5.6}
+\contentsline {subsubsection}{\numberline {6.19.5.7}m\_nextStay}{129}{subsubsection.6.19.5.7}
+\contentsline {subsubsection}{\numberline {6.19.5.8}m\_timeStay}{130}{subsubsection.6.19.5.8}
+\contentsline {section}{\numberline {6.20}Random\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Number\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generator Class Reference}{130}{section.6.20}
+\contentsline {subsection}{\numberline {6.20.1}Detailed Description}{131}{subsection.6.20.1}
+\contentsline {subsection}{\numberline {6.20.2}Constructor \& Destructor Documentation}{131}{subsection.6.20.2}
+\contentsline {subsubsection}{\numberline {6.20.2.1}RandomNumberGenerator()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/3]}}{131}{subsubsection.6.20.2.1}
+\contentsline {subsubsection}{\numberline {6.20.2.2}RandomNumberGenerator()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/3]}}{131}{subsubsection.6.20.2.2}
+\contentsline {subsubsection}{\numberline {6.20.2.3}RandomNumberGenerator()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [3/3]}}{131}{subsubsection.6.20.2.3}
+\contentsline {subsection}{\numberline {6.20.3}Member Function Documentation}{132}{subsection.6.20.3}
+\contentsline {subsubsection}{\numberline {6.20.3.1}generateBernoulliInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{132}{subsubsection.6.20.3.1}
+\contentsline {subsubsection}{\numberline {6.20.3.2}generateBernoulliInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{133}{subsubsection.6.20.3.2}
+\contentsline {subsubsection}{\numberline {6.20.3.3}generateBinomialInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{133}{subsubsection.6.20.3.3}
+\contentsline {subsubsection}{\numberline {6.20.3.4}generateBinomialInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{134}{subsubsection.6.20.3.4}
+\contentsline {subsubsection}{\numberline {6.20.3.5}generateExponentialDouble()}{134}{subsubsection.6.20.3.5}
+\contentsline {subsubsection}{\numberline {6.20.3.6}generateNormal2Double()}{134}{subsubsection.6.20.3.6}
+\contentsline {subsubsection}{\numberline {6.20.3.7}generateNormalDouble()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{135}{subsubsection.6.20.3.7}
+\contentsline {subsubsection}{\numberline {6.20.3.8}generateNormalDouble()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{135}{subsubsection.6.20.3.8}
+\contentsline {subsubsection}{\numberline {6.20.3.9}generateTruncatedNormalDouble()}{136}{subsubsection.6.20.3.9}
+\contentsline {subsubsection}{\numberline {6.20.3.10}generateUniformDouble()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{136}{subsubsection.6.20.3.10}
+\contentsline {subsubsection}{\numberline {6.20.3.11}generateUniformDouble()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{137}{subsubsection.6.20.3.11}
+\contentsline {subsubsection}{\numberline {6.20.3.12}generateUniformInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{137}{subsubsection.6.20.3.12}
+\contentsline {subsubsection}{\numberline {6.20.3.13}generateUniformInt()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{137}{subsubsection.6.20.3.13}
+\contentsline {subsubsection}{\numberline {6.20.3.14}instance()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{138}{subsubsection.6.20.3.14}
+\contentsline {subsubsection}{\numberline {6.20.3.15}instance()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{138}{subsubsection.6.20.3.15}
+\contentsline {subsubsection}{\numberline {6.20.3.16}normal\_pdf()}{138}{subsubsection.6.20.3.16}
+\contentsline {subsubsection}{\numberline {6.20.3.17}operator=()}{139}{subsubsection.6.20.3.17}
+\contentsline {subsubsection}{\numberline {6.20.3.18}setSeed()}{139}{subsubsection.6.20.3.18}
+\contentsline {subsection}{\numberline {6.20.4}Member Data Documentation}{139}{subsection.6.20.4}
+\contentsline {subsubsection}{\numberline {6.20.4.1}m\_bernoulli\_distribution}{139}{subsubsection.6.20.4.1}
+\contentsline {subsubsection}{\numberline {6.20.4.2}m\_binomial\_distribution}{139}{subsubsection.6.20.4.2}
+\contentsline {subsubsection}{\numberline {6.20.4.3}m\_exponential\_double\_distribution}{140}{subsubsection.6.20.4.3}
+\contentsline {subsubsection}{\numberline {6.20.4.4}m\_generator}{140}{subsubsection.6.20.4.4}
+\contentsline {subsubsection}{\numberline {6.20.4.5}m\_instance}{140}{subsubsection.6.20.4.5}
+\contentsline {subsubsection}{\numberline {6.20.4.6}m\_normal\_double\_distribution}{140}{subsubsection.6.20.4.6}
+\contentsline {subsubsection}{\numberline {6.20.4.7}m\_unif\_double\_distribution}{140}{subsubsection.6.20.4.7}
+\contentsline {subsubsection}{\numberline {6.20.4.8}m\_unif\_int\_distribution}{140}{subsubsection.6.20.4.8}
+\contentsline {section}{\numberline {6.21}Row Class Reference}{140}{section.6.21}
+\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{141}{subsection.6.21.1}
+\contentsline {subsection}{\numberline {6.21.2}Constructor \& Destructor Documentation}{141}{subsection.6.21.2}
+\contentsline {subsubsection}{\numberline {6.21.2.1}Row()}{141}{subsubsection.6.21.2.1}
+\contentsline {subsubsection}{\numberline {6.21.2.2}$\sim $Row()}{141}{subsubsection.6.21.2.2}
+\contentsline {subsection}{\numberline {6.21.3}Member Function Documentation}{142}{subsection.6.21.3}
+\contentsline {subsubsection}{\numberline {6.21.3.1}getValue()}{142}{subsubsection.6.21.3.1}
+\contentsline {subsubsection}{\numberline {6.21.3.2}operator[]()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{142}{subsubsection.6.21.3.2}
+\contentsline {subsubsection}{\numberline {6.21.3.3}operator[]()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{142}{subsubsection.6.21.3.3}
+\contentsline {subsubsection}{\numberline {6.21.3.4}push()}{143}{subsubsection.6.21.3.4}
+\contentsline {subsubsection}{\numberline {6.21.3.5}set()}{143}{subsubsection.6.21.3.5}
+\contentsline {subsubsection}{\numberline {6.21.3.6}size()}{143}{subsubsection.6.21.3.6}
+\contentsline {subsection}{\numberline {6.21.4}Friends And Related Function Documentation}{144}{subsection.6.21.4}
+\contentsline {subsubsection}{\numberline {6.21.4.1}operator$<$$<$\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{144}{subsubsection.6.21.4.1}
+\contentsline {subsubsection}{\numberline {6.21.4.2}operator$<$$<$\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{144}{subsubsection.6.21.4.2}
+\contentsline {subsection}{\numberline {6.21.5}Member Data Documentation}{144}{subsection.6.21.5}
+\contentsline {subsubsection}{\numberline {6.21.5.1}\_header}{145}{subsubsection.6.21.5.1}
+\contentsline {subsubsection}{\numberline {6.21.5.2}\_values}{145}{subsubsection.6.21.5.2}
+\contentsline {section}{\numberline {6.22}Sim\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception Class Reference}{145}{section.6.22}
+\contentsline {subsection}{\numberline {6.22.1}Constructor \& Destructor Documentation}{146}{subsection.6.22.1}
+\contentsline {subsubsection}{\numberline {6.22.1.1}SimException()}{146}{subsubsection.6.22.1.1}
+\contentsline {subsubsection}{\numberline {6.22.1.2}$\sim $SimException()}{146}{subsubsection.6.22.1.2}
+\contentsline {subsection}{\numberline {6.22.2}Member Function Documentation}{146}{subsection.6.22.2}
+\contentsline {subsubsection}{\numberline {6.22.2.1}what()}{146}{subsubsection.6.22.2.1}
+\contentsline {subsection}{\numberline {6.22.3}Member Data Documentation}{146}{subsection.6.22.3}
+\contentsline {subsubsection}{\numberline {6.22.3.1}msg}{146}{subsubsection.6.22.3.1}
+\contentsline {section}{\numberline {6.23}Tablet Class Reference}{147}{section.6.23}
+\contentsline {subsection}{\numberline {6.23.1}Constructor \& Destructor Documentation}{148}{subsection.6.23.1}
+\contentsline {subsubsection}{\numberline {6.23.1.1}Tablet()}{149}{subsubsection.6.23.1.1}
+\contentsline {subsubsection}{\numberline {6.23.1.2}$\sim $Tablet()}{149}{subsubsection.6.23.1.2}
+\contentsline {subsection}{\numberline {6.23.2}Member Function Documentation}{149}{subsection.6.23.2}
+\contentsline {subsubsection}{\numberline {6.23.2.1}getName()}{149}{subsubsection.6.23.2.1}
+\contentsline {subsubsection}{\numberline {6.23.2.2}move()}{149}{subsubsection.6.23.2.2}
+\contentsline {subsubsection}{\numberline {6.23.2.3}toString()}{150}{subsubsection.6.23.2.3}
+\contentsline {subsubsection}{\numberline {6.23.2.4}tryConnect()}{150}{subsubsection.6.23.2.4}
+\contentsline {section}{\numberline {6.24}World Class Reference}{151}{section.6.24}
+\contentsline {subsection}{\numberline {6.24.1}Detailed Description}{152}{subsection.6.24.1}
+\contentsline {subsection}{\numberline {6.24.2}Constructor \& Destructor Documentation}{153}{subsection.6.24.2}
+\contentsline {subsubsection}{\numberline {6.24.2.1}World()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{153}{subsubsection.6.24.2.1}
+\contentsline {subsubsection}{\numberline {6.24.2.2}World()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{153}{subsubsection.6.24.2.2}
+\contentsline {subsubsection}{\numberline {6.24.2.3}$\sim $World()}{154}{subsubsection.6.24.2.3}
+\contentsline {subsection}{\numberline {6.24.3}Member Function Documentation}{154}{subsection.6.24.3}
+\contentsline {subsubsection}{\numberline {6.24.3.1}generateAntennas()}{154}{subsubsection.6.24.3.1}
+\contentsline {subsubsection}{\numberline {6.24.3.2}generateMobilePhones()}{154}{subsubsection.6.24.3.2}
+\contentsline {subsubsection}{\numberline {6.24.3.3}generatePopulation()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [1/2]}}{154}{subsubsection.6.24.3.3}
+\contentsline {subsubsection}{\numberline {6.24.3.4}generatePopulation()\hspace {0.1cm}{\relax \fontsize {8}{9.5}\selectfont \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \ttfamily [2/2]}}{154}{subsubsection.6.24.3.4}
+\contentsline {subsubsection}{\numberline {6.24.3.5}getAgents()}{155}{subsubsection.6.24.3.5}
+\contentsline {subsubsection}{\numberline {6.24.3.6}getAntennasFilename()}{155}{subsubsection.6.24.3.6}
+\contentsline {subsubsection}{\numberline {6.24.3.7}getClock()}{155}{subsubsection.6.24.3.7}
+\contentsline {subsubsection}{\numberline {6.24.3.8}getConnectionType()}{155}{subsubsection.6.24.3.8}
+\contentsline {subsubsection}{\numberline {6.24.3.9}getDefaultConnectionThreshold()}{156}{subsubsection.6.24.3.9}
+\contentsline {subsubsection}{\numberline {6.24.3.10}getGridDimTileX()}{156}{subsubsection.6.24.3.10}
+\contentsline {subsubsection}{\numberline {6.24.3.11}getGridDimTileY()}{156}{subsubsection.6.24.3.11}
+\contentsline {subsubsection}{\numberline {6.24.3.12}getGridFilename()}{156}{subsubsection.6.24.3.12}
+\contentsline {subsubsection}{\numberline {6.24.3.13}getMap()}{157}{subsubsection.6.24.3.13}
+\contentsline {subsubsection}{\numberline {6.24.3.14}getPersonsFilename()}{157}{subsubsection.6.24.3.14}
+\contentsline {subsubsection}{\numberline {6.24.3.15}getPrior()}{157}{subsubsection.6.24.3.15}
+\contentsline {subsubsection}{\numberline {6.24.3.16}getProbFilenames()}{157}{subsubsection.6.24.3.16}
+\contentsline {subsubsection}{\numberline {6.24.3.17}parseAntennas()}{158}{subsubsection.6.24.3.17}
+\contentsline {subsubsection}{\numberline {6.24.3.18}parsePersons()}{158}{subsubsection.6.24.3.18}
+\contentsline {subsubsection}{\numberline {6.24.3.19}parseProbabilities()}{158}{subsubsection.6.24.3.19}
+\contentsline {subsubsection}{\numberline {6.24.3.20}parseSimulationFile()}{158}{subsubsection.6.24.3.20}
+\contentsline {subsubsection}{\numberline {6.24.3.21}runSimulation()}{158}{subsubsection.6.24.3.21}
+\contentsline {subsubsection}{\numberline {6.24.3.22}setAgents()}{158}{subsubsection.6.24.3.22}
+\contentsline {subsubsection}{\numberline {6.24.3.23}setClock()}{159}{subsubsection.6.24.3.23}
+\contentsline {subsubsection}{\numberline {6.24.3.24}setMap()}{159}{subsubsection.6.24.3.24}
+\contentsline {subsubsection}{\numberline {6.24.3.25}whichMNO()}{159}{subsubsection.6.24.3.25}
+\contentsline {subsection}{\numberline {6.24.4}Member Data Documentation}{159}{subsection.6.24.4}
+\contentsline {subsubsection}{\numberline {6.24.4.1}m\_agentsCollection}{159}{subsubsection.6.24.4.1}
+\contentsline {subsubsection}{\numberline {6.24.4.2}m\_antennasFilename}{160}{subsubsection.6.24.4.2}
+\contentsline {subsubsection}{\numberline {6.24.4.3}m\_clock}{160}{subsubsection.6.24.4.3}
+\contentsline {subsubsection}{\numberline {6.24.4.4}m\_connThreshold}{160}{subsubsection.6.24.4.4}
+\contentsline {subsubsection}{\numberline {6.24.4.5}m\_connType}{160}{subsubsection.6.24.4.5}
+\contentsline {subsubsection}{\numberline {6.24.4.6}m\_endTime}{160}{subsubsection.6.24.4.6}
+\contentsline {subsubsection}{\numberline {6.24.4.7}m\_GridDimTileX}{160}{subsubsection.6.24.4.7}
+\contentsline {subsubsection}{\numberline {6.24.4.8}m\_GridDimTileY}{160}{subsubsection.6.24.4.8}
+\contentsline {subsubsection}{\numberline {6.24.4.9}m\_gridFilename}{160}{subsubsection.6.24.4.9}
+\contentsline {subsubsection}{\numberline {6.24.4.10}m\_intevalBetweenStays}{161}{subsubsection.6.24.4.10}
+\contentsline {subsubsection}{\numberline {6.24.4.11}m\_map}{161}{subsubsection.6.24.4.11}
+\contentsline {subsubsection}{\numberline {6.24.4.12}m\_mvType}{161}{subsubsection.6.24.4.12}
+\contentsline {subsubsection}{\numberline {6.24.4.13}m\_personsFilename}{161}{subsubsection.6.24.4.13}
+\contentsline {subsubsection}{\numberline {6.24.4.14}m\_prior}{161}{subsubsection.6.24.4.14}
+\contentsline {subsubsection}{\numberline {6.24.4.15}m\_probFilenames}{161}{subsubsection.6.24.4.15}
+\contentsline {subsubsection}{\numberline {6.24.4.16}m\_probSecMobilePhone}{161}{subsubsection.6.24.4.16}
+\contentsline {subsubsection}{\numberline {6.24.4.17}m\_seed}{161}{subsubsection.6.24.4.17}
+\contentsline {subsubsection}{\numberline {6.24.4.18}m\_startTime}{162}{subsubsection.6.24.4.18}
+\contentsline {subsubsection}{\numberline {6.24.4.19}m\_stay}{162}{subsubsection.6.24.4.19}
+\contentsline {subsubsection}{\numberline {6.24.4.20}m\_timeIncrement}{162}{subsubsection.6.24.4.20}
+\contentsline {chapter}{\numberline {7}File Documentation}{163}{chapter.7}
+\contentsline {section}{\numberline {7.1}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent.h File Reference}{163}{section.7.1}
+\contentsline {section}{\numberline {7.2}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agents\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Collection.h File Reference}{164}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Typedef Documentation}{165}{subsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.1.1}um\_iterator}{165}{subsubsection.7.2.1.1}
+\contentsline {section}{\numberline {7.3}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Antenna.h File Reference}{165}{section.7.3}
+\contentsline {section}{\numberline {7.4}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Antenna\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Info.h File Reference}{166}{section.7.4}
+\contentsline {section}{\numberline {7.5}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Antenna\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type.h File Reference}{168}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Enumeration Type Documentation}{168}{subsection.7.5.1}
+\contentsline {subsubsection}{\numberline {7.5.1.1}AntennaType}{168}{subsubsection.7.5.1.1}
+\contentsline {section}{\numberline {7.6}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Clock.h File Reference}{169}{section.7.6}
+\contentsline {section}{\numberline {7.7}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Constants.h File Reference}{170}{section.7.7}
+\contentsline {section}{\numberline {7.8}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}C\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}S\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Vparser.hpp File Reference}{170}{section.7.8}
+\contentsline {subsection}{\numberline {7.8.1}Enumeration Type Documentation}{171}{subsection.7.8.1}
+\contentsline {subsubsection}{\numberline {7.8.1.1}DataType}{171}{subsubsection.7.8.1.1}
+\contentsline {section}{\numberline {7.9}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}E\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Field.h File Reference}{171}{section.7.9}
+\contentsline {section}{\numberline {7.10}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Event\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type.h File Reference}{172}{section.7.10}
+\contentsline {subsection}{\numberline {7.10.1}Enumeration Type Documentation}{173}{subsection.7.10.1}
+\contentsline {subsubsection}{\numberline {7.10.1.1}EventType}{173}{subsubsection.7.10.1.1}
+\contentsline {section}{\numberline {7.11}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Grid.h File Reference}{173}{section.7.11}
+\contentsline {section}{\numberline {7.12}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Holdable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent.h File Reference}{174}{section.7.12}
+\contentsline {section}{\numberline {7.13}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}I\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}D\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generator.h File Reference}{176}{section.7.13}
+\contentsline {section}{\numberline {7.14}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Immovable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent.h File Reference}{176}{section.7.14}
+\contentsline {section}{\numberline {7.15}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Input\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Parser.h File Reference}{177}{section.7.15}
+\contentsline {section}{\numberline {7.16}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Locatable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent.h File Reference}{178}{section.7.16}
+\contentsline {section}{\numberline {7.17}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Map.h File Reference}{179}{section.7.17}
+\contentsline {section}{\numberline {7.18}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mobile\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Operator.h File Reference}{180}{section.7.18}
+\contentsline {section}{\numberline {7.19}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Mobile\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Phone.h File Reference}{181}{section.7.19}
+\contentsline {section}{\numberline {7.20}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Movable\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Agent.h File Reference}{182}{section.7.20}
+\contentsline {section}{\numberline {7.21}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Movement\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type.h File Reference}{184}{section.7.21}
+\contentsline {subsection}{\numberline {7.21.1}Enumeration Type Documentation}{184}{subsection.7.21.1}
+\contentsline {subsubsection}{\numberline {7.21.1.1}MovementType}{184}{subsubsection.7.21.1.1}
+\contentsline {section}{\numberline {7.22}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Person.h File Reference}{185}{section.7.22}
+\contentsline {section}{\numberline {7.23}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Prior\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Type.h File Reference}{186}{section.7.23}
+\contentsline {subsection}{\numberline {7.23.1}Enumeration Type Documentation}{186}{subsection.7.23.1}
+\contentsline {subsubsection}{\numberline {7.23.1.1}PriorType}{186}{subsubsection.7.23.1.1}
+\contentsline {section}{\numberline {7.24}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Random\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Number\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Generator.h File Reference}{186}{section.7.24}
+\contentsline {section}{\numberline {7.25}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Sim\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Exception.h File Reference}{187}{section.7.25}
+\contentsline {section}{\numberline {7.26}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Tablet.h File Reference}{188}{section.7.26}
+\contentsline {section}{\numberline {7.27}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Utils.h File Reference}{188}{section.7.27}
+\contentsline {section}{\numberline {7.28}include/\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}World.h File Reference}{189}{section.7.28}
+\contentsline {chapter}{Index}{191}{section*.171}

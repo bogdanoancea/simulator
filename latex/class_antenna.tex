@@ -1,0 +1,895 @@
+\hypertarget{class_antenna}{}\section{Antenna Class Reference}
+\label{class_antenna}\index{Antenna@{Antenna}}
+
+
+{\ttfamily \#include $<$Antenna.\+h$>$}
+
+
+
+Inheritance diagram for Antenna\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_antenna__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Antenna\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_antenna__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_antenna_a39c505109145908a5b032a16a2fe53c4}{Antenna}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock, double attenuation\+Factor, double power, unsigned long max\+Connections, double smid, double ssteep, \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} type)
+\item 
+\mbox{\hyperlink{class_antenna_a7c534fa7ee1e288e9e6af489b24a7349}{Antenna}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock, const unsigned long id, X\+M\+L\+Element $\ast$el, vector$<$ \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ $>$ mnos)
+\item 
+virtual \mbox{\hyperlink{class_antenna_ad7b98073b970db5d6bc83c5c5961fe44}{$\sim$\+Antenna}} ()
+\item 
+const string \mbox{\hyperlink{class_antenna_a4ad9da1ca9d79f20b331c22b94c57a02}{get\+Name}} () const override
+\item 
+const string \mbox{\hyperlink{class_antenna_a7fea30e065f49a3cbcee02f60bd033c8}{to\+String}} () const override
+\item 
+double \mbox{\hyperlink{class_antenna_ab0c45eb94291446fc48c312854f8818d}{get\+P\+LE}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_ac0724f137d8e0af08d30ce2d07e6aa87}{set\+P\+LE}} (double ple)
+\item 
+double \mbox{\hyperlink{class_antenna_afca01d00c8e393ee911f1e9240b51d2e}{get\+Power}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_a172a4c7765dea045d6504f6e2cbe0f59}{set\+Power}} (double power)
+\item 
+unsigned long \mbox{\hyperlink{class_antenna_ac7d42215283cd7d4dc16d449f61af91d}{get\+Max\+Connections}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_ad844ed8507afb83b74b804c2434a4e50}{set\+Max\+Connections}} (int max\+Connections)
+\item 
+bool \mbox{\hyperlink{class_antenna_a4455f5c804e1ea520dd849dc9fd7b0b4}{try\+Register\+Device}} (\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$device)
+\item 
+void \mbox{\hyperlink{class_antenna_a9c804d991a545157feb066761b6a69ef}{attach\+Device}} (\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$device)
+\item 
+void \mbox{\hyperlink{class_antenna_a983a0784315567c2ab6ac1820cf558c5}{dettach\+Device}} (\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$device)
+\item 
+\mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} \mbox{\hyperlink{class_antenna_adf45a8b339956741bf8dcb5361f5f249}{get\+Type}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_aa9a8414c469e6dd49eed7a7cc58725c1}{set\+Type}} (\mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} type)
+\item 
+double \mbox{\hyperlink{class_antenna_a5715c4100035c58d63b7c9a0195748fe}{S}} (double dist) const
+\item 
+double \mbox{\hyperlink{class_antenna_acfaf47d35cc742e76522ea31a8b01578}{get\+Smid}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_a67e5ae0106189d18e4f114d8e0e14a09}{set\+Smid}} (double smid)
+\item 
+double \mbox{\hyperlink{class_antenna_a096deca0fe8497c0fe53539ae80f2db5}{get\+S\+Steep}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_a92357bee36ba7dcfd08c4d2ce2280e3c}{set\+S\+Steep}} (double s\+Steep)
+\item 
+double \mbox{\hyperlink{class_antenna_afb03d417efec2423a1b67df16d6ebcb6}{compute\+Signal\+Quality}} (const Point $\ast$p) const
+\item 
+double \mbox{\hyperlink{class_antenna_ae49556bd6046b34a1dc1925d594783a2}{compute\+Signal\+Quality}} (const Coordinate c) const
+\item 
+double \mbox{\hyperlink{class_antenna_a7caa8004be14f97db64fdf7ae46d6c97}{compute\+Power}} (const Point $\ast$p) const
+\item 
+double \mbox{\hyperlink{class_antenna_a0192376f8702c5300fe1f13ce267b305}{compute\+Power}} (const Coordinate c) const
+\item 
+Geometry $\ast$ \mbox{\hyperlink{class_antenna_a5f94dd903add1b59957514887388bd52}{get\+Coverage\+Area}} ()
+\item 
+\mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ \mbox{\hyperlink{class_antenna_abfbb4a654f73fe0c3a30f50777f79349}{get\+M\+NO}} () const
+\item 
+string \mbox{\hyperlink{class_antenna_a7a3919b137b91c1f8f13d620bc7657ed}{get\+Antenna\+Output\+File\+Name}} () const
+\item 
+double \mbox{\hyperlink{class_antenna_adf33d1b0be85f95c543a31dc1b3159f5}{get\+Rmax}} () const
+\item 
+double \mbox{\hyperlink{class_antenna_a1955f59f9d3b20ffd8e79f4893bf2e61}{get\+Smin}} () const
+\item 
+string \mbox{\hyperlink{class_antenna_a8ed18205ff7c675868090e4c80454c2c}{dump\+Cell}} () const
+\item 
+double \mbox{\hyperlink{class_antenna_a228297a3cb00c11fab97d615b4817656}{compute\+Signal\+Strength}} (const Point $\ast$p) const
+\item 
+double \mbox{\hyperlink{class_antenna_ac33fe5654d4e3307a4c1c155b0f89128}{compute\+Signal\+Strength}} (const Coordinate c) const
+\item 
+double \mbox{\hyperlink{class_antenna_a2fab50e7dbe01acec58d7fe89798e9b6}{compute\+Signal\+Measure}} (\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} handover\+Type, const Coordinate c) const
+\item 
+\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{class_antenna_a35001fa0ad0e015c275d08ac84d2982b}{get\+Handover\+Mechanism}} () const
+\item 
+void \mbox{\hyperlink{class_antenna_a08ae04778bc036f108762fa9be818332}{set\+Handover\+Mechanism}} (\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} handover\+Mechanism)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_antenna_af4fb83843393bf36bdcaefae5b5dd0dd}{already\+Registered}} (\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$ag)
+\item 
+void \mbox{\hyperlink{class_antenna_aa21a4c0d581c59c36480d932584c0ef5}{register\+Event}} (\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$ag, const \mbox{\hyperlink{_event_type_8h_a2628ea8d12e8b2563c32f05dc7fff6fa}{Event\+Type}} event, const bool verbose)
+\item 
+unsigned long \mbox{\hyperlink{class_antenna_a86c5c094ab6ea432609afa00f3a8080a}{get\+Num\+Active\+Conections}} ()
+\item 
+double \mbox{\hyperlink{class_antenna_a033246c50bec80123860154a949620c7}{S0}} () const
+\item 
+double \mbox{\hyperlink{class_antenna_ae60ab40ded94be407c3b7455f4e886fe}{S\+Dist}} (double dist) const
+\item 
+double \mbox{\hyperlink{class_antenna_a036e212fda08a9fc5215732378fc4fbd}{compute\+Signal\+Quality\+Omnidirectional}} (const Coordinate c) const
+\item 
+double \mbox{\hyperlink{class_antenna_a0bba3b0a586d5dc36397c2b9887cd42b}{compute\+Signal\+Quality\+Directional}} (const Coordinate c) const
+\item 
+double \mbox{\hyperlink{class_antenna_a38bb70c5ca249773512186c34792b43a}{compute\+Signal\+Strength\+Directional}} (const Coordinate c) const
+\item 
+double \mbox{\hyperlink{class_antenna_a26077f4061413733cedf9253ecc8686f}{compute\+Signal\+Strength\+Omnidirectional}} (const Coordinate c) const
+\item 
+void \mbox{\hyperlink{class_antenna_a4b1d0ae147826e553a044fd481d6c7e0}{set\+Location\+With\+Elevation}} ()
+\item 
+double \mbox{\hyperlink{class_antenna_a298c80a54828c8f13d584e8e382145a5}{project\+To\+E\+Plane}} (double b, double c, double beta) const
+\item 
+vector$<$ pair$<$ double, double $>$ $>$ \mbox{\hyperlink{class_antenna_afe86e36673d4b28713f983cc63d89e1b}{create\+Mapping}} (double db\+Back) const
+\item 
+double \mbox{\hyperlink{class_antenna_a1c6126c232ee496b9b693fc20e4892f5}{get\+Min3db}} (double sd, double db\+Back) const
+\item 
+double \mbox{\hyperlink{class_antenna_a8270b1a03b61af1e048650e00a129b93}{norm\+\_\+d\+B\+Loss}} (double angle, double db\+Back, double sd) const
+\item 
+double \mbox{\hyperlink{class_antenna_a353ae3aafbc75033c30fb96004c2b73f}{normalize\+Angle}} (double angle) const
+\item 
+double \mbox{\hyperlink{class_antenna_a48ef89b0d1bd313bae4ca863da1cc77e}{search\+Min}} (double dg, vector$<$ pair$<$ double, double $>$$>$ \+\_\+3d\+B\+Degrees) const
+\item 
+double \mbox{\hyperlink{class_antenna_affb34fcbb958e09bd48a2c3069e06ac8}{find\+SD}} (double beam\+Width, double db\+Back, vector$<$ pair$<$ double, double $>$$>$ \&mapping) const
+\item 
+Geometry $\ast$ \mbox{\hyperlink{class_antenna_adaca77948cf68db3348e2819264767f6}{get\+Coverage\+Area\+Omnidirectional}} ()
+\item 
+Geometry $\ast$ \mbox{\hyperlink{class_antenna_af5e3d353fcc340b963181514b55bf715}{get\+Coverage\+Area\+Directional}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_antenna_a13b5973d4050a704682d65036acca851}{m\+\_\+ple}}
+\item 
+double \mbox{\hyperlink{class_antenna_a89874a2fbd083c99f780482bf4642b07}{m\+\_\+power}}
+\item 
+unsigned long \mbox{\hyperlink{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}{m\+\_\+max\+Connections}}
+\item 
+double \mbox{\hyperlink{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}{m\+\_\+\+Smid}}
+\item 
+double \mbox{\hyperlink{class_antenna_a48117d47d70c758f5a09c54fa323feed}{m\+\_\+\+S\+Steep}}
+\item 
+Geometry $\ast$ \mbox{\hyperlink{class_antenna_addbe8e6ae7a8bad737339d23bc2abbba}{m\+\_\+cell}}
+\item 
+vector$<$ \mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$ $>$ \mbox{\hyperlink{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}{m\+\_\+devices}}
+\item 
+\mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} \mbox{\hyperlink{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}{m\+\_\+type}}
+\item 
+ofstream \mbox{\hyperlink{class_antenna_a06824840191e96b19eb224d53e08d3ec}{m\+\_\+file}}
+\item 
+double \mbox{\hyperlink{class_antenna_a65bdd3ec77862b9427df42ae74dc54e4}{m\+\_\+\+S0}}
+\item 
+double \mbox{\hyperlink{class_antenna_a0fca07a2514679c814009730d966b2a3}{m\+\_\+height}}
+\item 
+double \mbox{\hyperlink{class_antenna_a039d6c95ae3a5e9d4973f647783062de}{m\+\_\+tilt}}
+\item 
+double \mbox{\hyperlink{class_antenna_a330f54f4d7344094bf137cabf2756112}{m\+\_\+beam\+\_\+V}}
+\item 
+double \mbox{\hyperlink{class_antenna_a9174c6dd20682cea4eccea7c7d6ffee7}{m\+\_\+beam\+\_\+H}}
+\item 
+double \mbox{\hyperlink{class_antenna_aa7ed7c0424dfd20193b550a4ececcb64}{m\+\_\+azim\+\_\+d\+B\+\_\+\+Back}}
+\item 
+double \mbox{\hyperlink{class_antenna_a4bea419f24f40b37cfd784e61a01aec7}{m\+\_\+elev\+\_\+d\+B\+\_\+\+Back}}
+\item 
+double \mbox{\hyperlink{class_antenna_ac8984b2ecb6fd5f2e1eaef132f0175cb}{m\+\_\+direction}}
+\item 
+\mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ \mbox{\hyperlink{class_antenna_a775a081edfeefcf293bf3ffb3c19013e}{m\+\_\+\+M\+NO}}
+\item 
+double \mbox{\hyperlink{class_antenna_a7b8fda5c94e7cf03c14a0fe5447e5d46}{m\+\_\+rmax}}
+\item 
+double \mbox{\hyperlink{class_antenna_a55c98e1d697184199f908f88ae364886}{m\+\_\+\+Smin}}
+\item 
+double \mbox{\hyperlink{class_antenna_a8f58c6af021dc13d6d76d390daaf59d7}{m\+\_\+\+Qmin}}
+\item 
+vector$<$ pair$<$ double, double $>$ $>$ \mbox{\hyperlink{class_antenna_a0d4e25b246a30e3e6fdb303bed85e7da}{m\+\_\+mapping\+\_\+azim}}
+\item 
+vector$<$ pair$<$ double, double $>$ $>$ \mbox{\hyperlink{class_antenna_a71b55ca74697d064e231829343209fec}{m\+\_\+mapping\+\_\+elev}}
+\item 
+double \mbox{\hyperlink{class_antenna_af9ed0b78826b52bd60c497eb7f87be3d}{m\+\_\+sd\+\_\+azim}}
+\item 
+double \mbox{\hyperlink{class_antenna_aeb2ce4a95682b9ecff1395dfa857c089}{m\+\_\+sd\+\_\+elev}}
+\item 
+\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{class_antenna_a4fa1f72704f7a10fa54498b839c76833}{m\+\_\+handover\+Mechanism}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class simulates an antenna of the mobile phone network. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_antenna_a39c505109145908a5b032a16a2fe53c4}\label{class_antenna_a39c505109145908a5b032a16a2fe53c4}} 
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{Antenna()}{Antenna()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock,  }\item[{double}]{attenuation\+Factor,  }\item[{double}]{power,  }\item[{unsigned long}]{max\+Connections,  }\item[{double}]{smid,  }\item[{double}]{ssteep,  }\item[{\mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor of the class. It builds an object providing directly the values for each parameter of the antenna. This constructor is used only for testing purposes. For a real simulation the other constructor of the class should be used. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the \mbox{\hyperlink{class_map}{Map}} object used for the simulation \\
+\hline
+{\em id} & the id of the \mbox{\hyperlink{class_antenna}{Antenna}} \\
+\hline
+{\em init\+Position} & the position of the antenna on the map \\
+\hline
+{\em clock} & a pointer to the \mbox{\hyperlink{class_clock}{Clock}} object used for the simulation \\
+\hline
+{\em attenuation\+Factor} & the attenuation factor of the surrounding environment. In real life, it takes values between 2 (in open field) and 6 (inside buildings). \\
+\hline
+{\em power} & the power of the antenna in Watts. \\
+\hline
+{\em max\+Connections} & the maximum number of the connections that the antenna can accept. \\
+\hline
+{\em smid} & is a parameter of an antenna. The significance of this parameter is described in mobloc R package. \\
+\hline
+{\em ssteep} & is a parameter of an antenna. The significance of this parameter is described in mobloc R package. \\
+\hline
+{\em type} & it could have two values \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de}{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}} for omnidirectional antennas and \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9}{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}} for directional antennas. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a7c534fa7ee1e288e9e6af489b24a7349}\label{class_antenna_a7c534fa7ee1e288e9e6af489b24a7349}} 
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\index{Antenna@{Antenna}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{Antenna()}{Antenna()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Antenna\+::\+Antenna (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock,  }\item[{const unsigned long}]{id,  }\item[{X\+M\+L\+Element $\ast$}]{el,  }\item[{vector$<$ \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ $>$}]{mnos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor of the class. It builds an object taking the value of the antenna\textquotesingle{} parameters from an X\+ML Element, usually when an \mbox{\hyperlink{class_antenna}{Antenna}} object is built reading the xml configuration file. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the \mbox{\hyperlink{class_map}{Map}} object used for the simulation \\
+\hline
+{\em clock} & a pointer to the \mbox{\hyperlink{class_clock}{Clock}} object used for the simulation \\
+\hline
+{\em id} & the id of the \mbox{\hyperlink{class_antenna}{Antenna}} \\
+\hline
+{\em el} & the X\+ML Element containing the parameters of the \mbox{\hyperlink{class_antenna}{Antenna}} \\
+\hline
+{\em mnos} & a vector with pointers to \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} objects. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_ad7b98073b970db5d6bc83c5c5961fe44}\label{class_antenna_ad7b98073b970db5d6bc83c5c5961fe44}} 
+\index{Antenna@{Antenna}!````~Antenna@{$\sim$Antenna}}
+\index{````~Antenna@{$\sim$Antenna}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{$\sim$Antenna()}{~Antenna()}}
+{\footnotesize\ttfamily virtual Antenna\+::$\sim$\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor of the class. It closes the file where the \mbox{\hyperlink{class_antenna}{Antenna}} dumps the registered events during the simulation. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_antenna_af4fb83843393bf36bdcaefae5b5dd0dd}\label{class_antenna_af4fb83843393bf36bdcaefae5b5dd0dd}} 
+\index{Antenna@{Antenna}!alreadyRegistered@{alreadyRegistered}}
+\index{alreadyRegistered@{alreadyRegistered}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{alreadyRegistered()}{alreadyRegistered()}}
+{\footnotesize\ttfamily bool Antenna\+::already\+Registered (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$}]{ag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a9c804d991a545157feb066761b6a69ef}\label{class_antenna_a9c804d991a545157feb066761b6a69ef}} 
+\index{Antenna@{Antenna}!attachDevice@{attachDevice}}
+\index{attachDevice@{attachDevice}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{attachDevice()}{attachDevice()}}
+{\footnotesize\ttfamily void Antenna\+::attach\+Device (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$}]{device }\end{DoxyParamCaption})}
+
+Connects a new mobile device and outputs an event \mbox{\hyperlink{_event_type_8h_a2628ea8d12e8b2563c32f05dc7fff6faa9893a3a649e7100d87b1560bd8202ec2}{Event\+Type\+::\+A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} in the output file. Internally, the antenna keeps a vector with all connected mobile devices. devices. When a new mobile device is connected it is added to this vector. 
+\begin{DoxyParams}{Parameters}
+{\em device} & a pointer to the object that represents the mobile device connected to this antenna. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a7caa8004be14f97db64fdf7ae46d6c97}\label{class_antenna_a7caa8004be14f97db64fdf7ae46d6c97}} 
+\index{Antenna@{Antenna}!computePower@{computePower}}
+\index{computePower@{computePower}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computePower()}{computePower()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Power (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption}) const}
+
+Computes the power of the signal given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location where we want to compute the power of the signal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the power of the signal in the location given by Point p. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a0192376f8702c5300fe1f13ce267b305}\label{class_antenna_a0192376f8702c5300fe1f13ce267b305}} 
+\index{Antenna@{Antenna}!computePower@{computePower}}
+\index{computePower@{computePower}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computePower()}{computePower()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Power (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const}
+
+Computes the power of the signal given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em c} & the location where we want to compute the power of the signal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the power of the signal in the location given by Coordinate c. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a2fab50e7dbe01acec58d7fe89798e9b6}\label{class_antenna_a2fab50e7dbe01acec58d7fe89798e9b6}} 
+\index{Antenna@{Antenna}!computeSignalMeasure@{computeSignalMeasure}}
+\index{computeSignalMeasure@{computeSignalMeasure}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalMeasure()}{computeSignalMeasure()}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Measure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}]{handover\+Type,  }\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const}
+
+compute the signal strength, signal quality or signal power depending on the value of the handover\+Type parameter 
+\begin{DoxyParams}{Parameters}
+{\em handover\+Type} & the handover mechanism\+: signal quality, signal strength, signal power \\
+\hline
+{\em c} & -\/ a pointer to a coordinate that defines the location where the signal quality/strength/power should be computed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal strength, signal quality or signal power depending on the value of the handover\+Type parameter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_afb03d417efec2423a1b67df16d6ebcb6}\label{class_antenna_afb03d417efec2423a1b67df16d6ebcb6}} 
+\index{Antenna@{Antenna}!computeSignalQuality@{computeSignalQuality}}
+\index{computeSignalQuality@{computeSignalQuality}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalQuality()}{computeSignalQuality()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption}) const}
+
+Computes the signal quality given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location where we want to compute the signal quality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal quality. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_ae49556bd6046b34a1dc1925d594783a2}\label{class_antenna_ae49556bd6046b34a1dc1925d594783a2}} 
+\index{Antenna@{Antenna}!computeSignalQuality@{computeSignalQuality}}
+\index{computeSignalQuality@{computeSignalQuality}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalQuality()}{computeSignalQuality()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const}
+
+Computes the signal quality given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em c} & represents the coordinates of the location where we want to compute the signal quality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal quality. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a0bba3b0a586d5dc36397c2b9887cd42b}\label{class_antenna_a0bba3b0a586d5dc36397c2b9887cd42b}} 
+\index{Antenna@{Antenna}!computeSignalQualityDirectional@{computeSignalQualityDirectional}}
+\index{computeSignalQualityDirectional@{computeSignalQualityDirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalQualityDirectional()}{computeSignalQualityDirectional()}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality\+Directional (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a036e212fda08a9fc5215732378fc4fbd}\label{class_antenna_a036e212fda08a9fc5215732378fc4fbd}} 
+\index{Antenna@{Antenna}!computeSignalQualityOmnidirectional@{computeSignalQualityOmnidirectional}}
+\index{computeSignalQualityOmnidirectional@{computeSignalQualityOmnidirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalQualityOmnidirectional()}{computeSignalQualityOmnidirectional()}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Quality\+Omnidirectional (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a228297a3cb00c11fab97d615b4817656}\label{class_antenna_a228297a3cb00c11fab97d615b4817656}} 
+\index{Antenna@{Antenna}!computeSignalStrength@{computeSignalStrength}}
+\index{computeSignalStrength@{computeSignalStrength}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalStrength()}{computeSignalStrength()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Strength (\begin{DoxyParamCaption}\item[{const Point $\ast$}]{p }\end{DoxyParamCaption}) const}
+
+Computes the signal strength given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em p} & the location where we want to compute the signal strength. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal strength. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_ac33fe5654d4e3307a4c1c155b0f89128}\label{class_antenna_ac33fe5654d4e3307a4c1c155b0f89128}} 
+\index{Antenna@{Antenna}!computeSignalStrength@{computeSignalStrength}}
+\index{computeSignalStrength@{computeSignalStrength}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalStrength()}{computeSignalStrength()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Strength (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const}
+
+Computes the signal strength given by an antenna in a certain location. 
+\begin{DoxyParams}{Parameters}
+{\em c} & the location where we want to compute the signal strength. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal strength. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a38bb70c5ca249773512186c34792b43a}\label{class_antenna_a38bb70c5ca249773512186c34792b43a}} 
+\index{Antenna@{Antenna}!computeSignalStrengthDirectional@{computeSignalStrengthDirectional}}
+\index{computeSignalStrengthDirectional@{computeSignalStrengthDirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalStrengthDirectional()}{computeSignalStrengthDirectional()}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Strength\+Directional (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a26077f4061413733cedf9253ecc8686f}\label{class_antenna_a26077f4061413733cedf9253ecc8686f}} 
+\index{Antenna@{Antenna}!computeSignalStrengthOmnidirectional@{computeSignalStrengthOmnidirectional}}
+\index{computeSignalStrengthOmnidirectional@{computeSignalStrengthOmnidirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{computeSignalStrengthOmnidirectional()}{computeSignalStrengthOmnidirectional()}}
+{\footnotesize\ttfamily double Antenna\+::compute\+Signal\+Strength\+Omnidirectional (\begin{DoxyParamCaption}\item[{const Coordinate}]{c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_afe86e36673d4b28713f983cc63d89e1b}\label{class_antenna_afe86e36673d4b28713f983cc63d89e1b}} 
+\index{Antenna@{Antenna}!createMapping@{createMapping}}
+\index{createMapping@{createMapping}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{createMapping()}{createMapping()}}
+{\footnotesize\ttfamily vector$<$pair$<$double, double$>$ $>$ Antenna\+::create\+Mapping (\begin{DoxyParamCaption}\item[{double}]{db\+Back }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a983a0784315567c2ab6ac1820cf558c5}\label{class_antenna_a983a0784315567c2ab6ac1820cf558c5}} 
+\index{Antenna@{Antenna}!dettachDevice@{dettachDevice}}
+\index{dettachDevice@{dettachDevice}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{dettachDevice()}{dettachDevice()}}
+{\footnotesize\ttfamily void Antenna\+::dettach\+Device (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$}]{device }\end{DoxyParamCaption})}
+
+Disconnects a mobile device from the antenna and outputs an event Event\+Type\+::\+D\+E\+A\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE in the output file. Internally, the mobile device is removed from the vector of the connected mobile devices. 
+\begin{DoxyParams}{Parameters}
+{\em device} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a8ed18205ff7c675868090e4c80454c2c}\label{class_antenna_a8ed18205ff7c675868090e4c80454c2c}} 
+\index{Antenna@{Antenna}!dumpCell@{dumpCell}}
+\index{dumpCell@{dumpCell}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{dumpCell()}{dumpCell()}}
+{\footnotesize\ttfamily string Antenna\+::dump\+Cell (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Builds a wkt string that represents the coverage area of this antenna. \begin{DoxyReturn}{Returns}
+a wkt string that represents the coverage area of this antenna. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_affb34fcbb958e09bd48a2c3069e06ac8}\label{class_antenna_affb34fcbb958e09bd48a2c3069e06ac8}} 
+\index{Antenna@{Antenna}!findSD@{findSD}}
+\index{findSD@{findSD}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{findSD()}{findSD()}}
+{\footnotesize\ttfamily double Antenna\+::find\+SD (\begin{DoxyParamCaption}\item[{double}]{beam\+Width,  }\item[{double}]{db\+Back,  }\item[{vector$<$ pair$<$ double, double $>$$>$ \&}]{mapping }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a7a3919b137b91c1f8f13d620bc7657ed}\label{class_antenna_a7a3919b137b91c1f8f13d620bc7657ed}} 
+\index{Antenna@{Antenna}!getAntennaOutputFileName@{getAntennaOutputFileName}}
+\index{getAntennaOutputFileName@{getAntennaOutputFileName}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getAntennaOutputFileName()}{getAntennaOutputFileName()}}
+{\footnotesize\ttfamily string Antenna\+::get\+Antenna\+Output\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Builds the name of the output file where the events registered by this antenna during a simulation are saved. \begin{DoxyReturn}{Returns}
+the name of the output file where the events registered by this antenna during a simulation are saved. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a5f94dd903add1b59957514887388bd52}\label{class_antenna_a5f94dd903add1b59957514887388bd52}} 
+\index{Antenna@{Antenna}!getCoverageArea@{getCoverageArea}}
+\index{getCoverageArea@{getCoverageArea}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getCoverageArea()}{getCoverageArea()}}
+{\footnotesize\ttfamily Geometry$\ast$ Antenna\+::get\+Coverage\+Area (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Computes the coverage area of an antenna. It is defined as the area where the signal strength is greater than S\+\_\+min \begin{DoxyReturn}{Returns}
+a Polygon$\ast$ representing the coverage area of the antenna. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_af5e3d353fcc340b963181514b55bf715}\label{class_antenna_af5e3d353fcc340b963181514b55bf715}} 
+\index{Antenna@{Antenna}!getCoverageAreaDirectional@{getCoverageAreaDirectional}}
+\index{getCoverageAreaDirectional@{getCoverageAreaDirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getCoverageAreaDirectional()}{getCoverageAreaDirectional()}}
+{\footnotesize\ttfamily Geometry$\ast$ Antenna\+::get\+Coverage\+Area\+Directional (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_adaca77948cf68db3348e2819264767f6}\label{class_antenna_adaca77948cf68db3348e2819264767f6}} 
+\index{Antenna@{Antenna}!getCoverageAreaOmnidirectional@{getCoverageAreaOmnidirectional}}
+\index{getCoverageAreaOmnidirectional@{getCoverageAreaOmnidirectional}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getCoverageAreaOmnidirectional()}{getCoverageAreaOmnidirectional()}}
+{\footnotesize\ttfamily Geometry$\ast$ Antenna\+::get\+Coverage\+Area\+Omnidirectional (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a35001fa0ad0e015c275d08ac84d2982b}\label{class_antenna_a35001fa0ad0e015c275d08ac84d2982b}} 
+\index{Antenna@{Antenna}!getHandoverMechanism@{getHandoverMechanism}}
+\index{getHandoverMechanism@{getHandoverMechanism}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getHandoverMechanism()}{getHandoverMechanism()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} Antenna\+::get\+Handover\+Mechanism (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_antenna_ac7d42215283cd7d4dc16d449f61af91d}\label{class_antenna_ac7d42215283cd7d4dc16d449f61af91d}} 
+\index{Antenna@{Antenna}!getMaxConnections@{getMaxConnections}}
+\index{getMaxConnections@{getMaxConnections}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getMaxConnections()}{getMaxConnections()}}
+{\footnotesize\ttfamily unsigned long Antenna\+::get\+Max\+Connections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the maximum number of mobile devices that an antenna can connect. \mbox{\Hypertarget{class_antenna_a1c6126c232ee496b9b693fc20e4892f5}\label{class_antenna_a1c6126c232ee496b9b693fc20e4892f5}} 
+\index{Antenna@{Antenna}!getMin3db@{getMin3db}}
+\index{getMin3db@{getMin3db}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getMin3db()}{getMin3db()}}
+{\footnotesize\ttfamily double Antenna\+::get\+Min3db (\begin{DoxyParamCaption}\item[{double}]{sd,  }\item[{double}]{db\+Back }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_abfbb4a654f73fe0c3a30f50777f79349}\label{class_antenna_abfbb4a654f73fe0c3a30f50777f79349}} 
+\index{Antenna@{Antenna}!getMNO@{getMNO}}
+\index{getMNO@{getMNO}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getMNO()}{getMNO()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}}$\ast$ Antenna\+::get\+M\+NO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns a pointer to an M\+NO object representing the M\+NO that own this antenna. \begin{DoxyReturn}{Returns}
+a pointer to an M\+NO object representing the M\+NO that own this antenna. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a4ad9da1ca9d79f20b331c22b94c57a02}\label{class_antenna_a4ad9da1ca9d79f20b331c22b94c57a02}} 
+\index{Antenna@{Antenna}!getName@{getName}}
+\index{getName@{getName}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const string Antenna\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Overrides the same method from the superclass. \begin{DoxyReturn}{Returns}
+the name of the class, i.\+e. \char`\"{}\+Antenna\char`\"{} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_afe6c72d91baf9ee4fe77ea1ed7fef3ba}{Agent}}.
+
+\mbox{\Hypertarget{class_antenna_a86c5c094ab6ea432609afa00f3a8080a}\label{class_antenna_a86c5c094ab6ea432609afa00f3a8080a}} 
+\index{Antenna@{Antenna}!getNumActiveConections@{getNumActiveConections}}
+\index{getNumActiveConections@{getNumActiveConections}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getNumActiveConections()}{getNumActiveConections()}}
+{\footnotesize\ttfamily unsigned long Antenna\+::get\+Num\+Active\+Conections (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_ab0c45eb94291446fc48c312854f8818d}\label{class_antenna_ab0c45eb94291446fc48c312854f8818d}} 
+\index{Antenna@{Antenna}!getPLE@{getPLE}}
+\index{getPLE@{getPLE}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getPLE()}{getPLE()}}
+{\footnotesize\ttfamily double Antenna\+::get\+P\+LE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the surrounding environment\textquotesingle{} path loss exponent of the signal. \begin{DoxyReturn}{Returns}
+the signals\textquotesingle{} path loss exponent of the surrounding environment. In real life, it takes values between 2 (in open field) and 6 (inside buildings). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_afca01d00c8e393ee911f1e9240b51d2e}\label{class_antenna_afca01d00c8e393ee911f1e9240b51d2e}} 
+\index{Antenna@{Antenna}!getPower@{getPower}}
+\index{getPower@{getPower}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getPower()}{getPower()}}
+{\footnotesize\ttfamily double Antenna\+::get\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the power of an antenna in Watts at the location of antenna. This power decreases with a power of the distance from antenna. \begin{DoxyReturn}{Returns}
+the power of an antenna in Watts. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_adf33d1b0be85f95c543a31dc1b3159f5}\label{class_antenna_adf33d1b0be85f95c543a31dc1b3159f5}} 
+\index{Antenna@{Antenna}!getRmax@{getRmax}}
+\index{getRmax@{getRmax}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getRmax()}{getRmax()}}
+{\footnotesize\ttfamily double Antenna\+::get\+Rmax (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Computes the radius of the coverage area for an omnidirectional antenna. This area is a circle where the signal strength is greater than S\+\_\+min. \begin{DoxyReturn}{Returns}
+the radius of the coverage area for an omnidirectional antenna. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_acfaf47d35cc742e76522ea31a8b01578}\label{class_antenna_acfaf47d35cc742e76522ea31a8b01578}} 
+\index{Antenna@{Antenna}!getSmid@{getSmid}}
+\index{getSmid@{getSmid}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getSmid()}{getSmid()}}
+{\footnotesize\ttfamily double Antenna\+::get\+Smid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the value of the Smid antenna parameter. \begin{DoxyReturn}{Returns}
+the value of the Smid antenna parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a1955f59f9d3b20ffd8e79f4893bf2e61}\label{class_antenna_a1955f59f9d3b20ffd8e79f4893bf2e61}} 
+\index{Antenna@{Antenna}!getSmin@{getSmin}}
+\index{getSmin@{getSmin}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getSmin()}{getSmin()}}
+{\footnotesize\ttfamily double Antenna\+::get\+Smin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the value of the minimum signal strength that defines the coverage area of this antenna. \begin{DoxyReturn}{Returns}
+the value of the minimum signal strength that defines the coverage area of this antenna. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a096deca0fe8497c0fe53539ae80f2db5}\label{class_antenna_a096deca0fe8497c0fe53539ae80f2db5}} 
+\index{Antenna@{Antenna}!getSSteep@{getSSteep}}
+\index{getSSteep@{getSSteep}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getSSteep()}{getSSteep()}}
+{\footnotesize\ttfamily double Antenna\+::get\+S\+Steep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the value of the Ssteep antenna parameter. \begin{DoxyReturn}{Returns}
+the value of the Ssteep antenna parameter. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_adf45a8b339956741bf8dcb5361f5f249}\label{class_antenna_adf45a8b339956741bf8dcb5361f5f249}} 
+\index{Antenna@{Antenna}!getType@{getType}}
+\index{getType@{getType}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} Antenna\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the antenna type\+: omnidirectional or directional \begin{DoxyReturn}{Returns}
+the antenna type \+: \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de}{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}} or \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9}{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a8270b1a03b61af1e048650e00a129b93}\label{class_antenna_a8270b1a03b61af1e048650e00a129b93}} 
+\index{Antenna@{Antenna}!norm\_dBLoss@{norm\_dBLoss}}
+\index{norm\_dBLoss@{norm\_dBLoss}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{norm\_dBLoss()}{norm\_dBLoss()}}
+{\footnotesize\ttfamily double Antenna\+::norm\+\_\+d\+B\+Loss (\begin{DoxyParamCaption}\item[{double}]{angle,  }\item[{double}]{db\+Back,  }\item[{double}]{sd }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a353ae3aafbc75033c30fb96004c2b73f}\label{class_antenna_a353ae3aafbc75033c30fb96004c2b73f}} 
+\index{Antenna@{Antenna}!normalizeAngle@{normalizeAngle}}
+\index{normalizeAngle@{normalizeAngle}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{normalizeAngle()}{normalizeAngle()}}
+{\footnotesize\ttfamily double Antenna\+::normalize\+Angle (\begin{DoxyParamCaption}\item[{double}]{angle }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a298c80a54828c8f13d584e8e382145a5}\label{class_antenna_a298c80a54828c8f13d584e8e382145a5}} 
+\index{Antenna@{Antenna}!projectToEPlane@{projectToEPlane}}
+\index{projectToEPlane@{projectToEPlane}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{projectToEPlane()}{projectToEPlane()}}
+{\footnotesize\ttfamily double Antenna\+::project\+To\+E\+Plane (\begin{DoxyParamCaption}\item[{double}]{b,  }\item[{double}]{c,  }\item[{double}]{beta }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_aa21a4c0d581c59c36480d932584c0ef5}\label{class_antenna_aa21a4c0d581c59c36480d932584c0ef5}} 
+\index{Antenna@{Antenna}!registerEvent@{registerEvent}}
+\index{registerEvent@{registerEvent}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{registerEvent()}{registerEvent()}}
+{\footnotesize\ttfamily void Antenna\+::register\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$}]{ag,  }\item[{const \mbox{\hyperlink{_event_type_8h_a2628ea8d12e8b2563c32f05dc7fff6fa}{Event\+Type}}}]{event,  }\item[{const bool}]{verbose }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a5715c4100035c58d63b7c9a0195748fe}\label{class_antenna_a5715c4100035c58d63b7c9a0195748fe}} 
+\index{Antenna@{Antenna}!S@{S}}
+\index{S@{S}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{S()}{S()}}
+{\footnotesize\ttfamily double Antenna\+::S (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption}) const}
+
+Computes the signal strength at the distance dist from antenna location. 
+\begin{DoxyParams}{Parameters}
+{\em dist} & the distance from antenna location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the signal strength. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_antenna_a033246c50bec80123860154a949620c7}\label{class_antenna_a033246c50bec80123860154a949620c7}} 
+\index{Antenna@{Antenna}!S0@{S0}}
+\index{S0@{S0}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{S0()}{S0()}}
+{\footnotesize\ttfamily double Antenna\+::\+S0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_ae60ab40ded94be407c3b7455f4e886fe}\label{class_antenna_ae60ab40ded94be407c3b7455f4e886fe}} 
+\index{Antenna@{Antenna}!SDist@{SDist}}
+\index{SDist@{SDist}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{SDist()}{SDist()}}
+{\footnotesize\ttfamily double Antenna\+::\+S\+Dist (\begin{DoxyParamCaption}\item[{double}]{dist }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a48ef89b0d1bd313bae4ca863da1cc77e}\label{class_antenna_a48ef89b0d1bd313bae4ca863da1cc77e}} 
+\index{Antenna@{Antenna}!searchMin@{searchMin}}
+\index{searchMin@{searchMin}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{searchMin()}{searchMin()}}
+{\footnotesize\ttfamily double Antenna\+::search\+Min (\begin{DoxyParamCaption}\item[{double}]{dg,  }\item[{vector$<$ pair$<$ double, double $>$$>$}]{\+\_\+3d\+B\+Degrees }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a08ae04778bc036f108762fa9be818332}\label{class_antenna_a08ae04778bc036f108762fa9be818332}} 
+\index{Antenna@{Antenna}!setHandoverMechanism@{setHandoverMechanism}}
+\index{setHandoverMechanism@{setHandoverMechanism}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setHandoverMechanism()}{setHandoverMechanism()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Handover\+Mechanism (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}]{handover\+Mechanism }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_antenna_a4b1d0ae147826e553a044fd481d6c7e0}\label{class_antenna_a4b1d0ae147826e553a044fd481d6c7e0}} 
+\index{Antenna@{Antenna}!setLocationWithElevation@{setLocationWithElevation}}
+\index{setLocationWithElevation@{setLocationWithElevation}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setLocationWithElevation()}{setLocationWithElevation()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Location\+With\+Elevation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_ad844ed8507afb83b74b804c2434a4e50}\label{class_antenna_ad844ed8507afb83b74b804c2434a4e50}} 
+\index{Antenna@{Antenna}!setMaxConnections@{setMaxConnections}}
+\index{setMaxConnections@{setMaxConnections}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setMaxConnections()}{setMaxConnections()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Max\+Connections (\begin{DoxyParamCaption}\item[{int}]{max\+Connections }\end{DoxyParamCaption})}
+
+Sets the number of mobile devices that an antenna can connect. 
+\begin{DoxyParams}{Parameters}
+{\em max\+Connections} & the number of mobile devices that an antenna can connect. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_ac0724f137d8e0af08d30ce2d07e6aa87}\label{class_antenna_ac0724f137d8e0af08d30ce2d07e6aa87}} 
+\index{Antenna@{Antenna}!setPLE@{setPLE}}
+\index{setPLE@{setPLE}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setPLE()}{setPLE()}}
+{\footnotesize\ttfamily void Antenna\+::set\+P\+LE (\begin{DoxyParamCaption}\item[{double}]{ple }\end{DoxyParamCaption})}
+
+Sets the surrounding environment\textquotesingle{} path loss exponent of the signal for an antenna. 
+\begin{DoxyParams}{Parameters}
+{\em ple} & the value of the surrounding environment\textquotesingle{} path loss exponent of the signal. In real life, it takes values between 2 (in open field) and 6 (inside buildings). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a172a4c7765dea045d6504f6e2cbe0f59}\label{class_antenna_a172a4c7765dea045d6504f6e2cbe0f59}} 
+\index{Antenna@{Antenna}!setPower@{setPower}}
+\index{setPower@{setPower}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setPower()}{setPower()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Power (\begin{DoxyParamCaption}\item[{double}]{power }\end{DoxyParamCaption})}
+
+Sets the power of an antenna. 
+\begin{DoxyParams}{Parameters}
+{\em power} & the value of the antenna\textquotesingle{}s power. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a67e5ae0106189d18e4f114d8e0e14a09}\label{class_antenna_a67e5ae0106189d18e4f114d8e0e14a09}} 
+\index{Antenna@{Antenna}!setSmid@{setSmid}}
+\index{setSmid@{setSmid}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setSmid()}{setSmid()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Smid (\begin{DoxyParamCaption}\item[{double}]{smid }\end{DoxyParamCaption})}
+
+Sets the value of the Smid antenna parameter. 
+\begin{DoxyParams}{Parameters}
+{\em smid} & the value of the Smid antenna parameter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a92357bee36ba7dcfd08c4d2ce2280e3c}\label{class_antenna_a92357bee36ba7dcfd08c4d2ce2280e3c}} 
+\index{Antenna@{Antenna}!setSSteep@{setSSteep}}
+\index{setSSteep@{setSSteep}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setSSteep()}{setSSteep()}}
+{\footnotesize\ttfamily void Antenna\+::set\+S\+Steep (\begin{DoxyParamCaption}\item[{double}]{s\+Steep }\end{DoxyParamCaption})}
+
+Sets the value of the Ssteep antenna parameter. 
+\begin{DoxyParams}{Parameters}
+{\em s\+Steep} & the value of the Ssteep antenna parameter. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_aa9a8414c469e6dd49eed7a7cc58725c1}\label{class_antenna_aa9a8414c469e6dd49eed7a7cc58725c1}} 
+\index{Antenna@{Antenna}!setType@{setType}}
+\index{setType@{setType}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{setType()}{setType()}}
+{\footnotesize\ttfamily void Antenna\+::set\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}}}]{type }\end{DoxyParamCaption})}
+
+Sets the antenna type. 
+\begin{DoxyParams}{Parameters}
+{\em type} & the antenna type. It could take the following two values\+: \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16a8ff57fa72952e98025e600a041b8b8de}{Antenna\+Type\+::\+O\+M\+N\+I\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}} or \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9}{Antenna\+Type\+::\+D\+I\+R\+E\+C\+T\+I\+O\+N\+AL}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_a7fea30e065f49a3cbcee02f60bd033c8}\label{class_antenna_a7fea30e065f49a3cbcee02f60bd033c8}} 
+\index{Antenna@{Antenna}!toString@{toString}}
+\index{toString@{toString}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Antenna\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Overrides the same method from the superclass. It is used to write the characteristics of the \mbox{\hyperlink{class_antenna}{Antenna}} in a file or console. \begin{DoxyReturn}{Returns}
+a string that describes the parameters of the \mbox{\hyperlink{class_antenna}{Antenna}}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_a44f291596d10c7878b0641d6ec156328}{Agent}}.
+
+\mbox{\Hypertarget{class_antenna_a4455f5c804e1ea520dd849dc9fd7b0b4}\label{class_antenna_a4455f5c804e1ea520dd849dc9fd7b0b4}} 
+\index{Antenna@{Antenna}!tryRegisterDevice@{tryRegisterDevice}}
+\index{tryRegisterDevice@{tryRegisterDevice}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{tryRegisterDevice()}{tryRegisterDevice()}}
+{\footnotesize\ttfamily bool Antenna\+::try\+Register\+Device (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} $\ast$}]{device }\end{DoxyParamCaption})}
+
+Tries to register a mobile device as being connected to this antenna. 
+\begin{DoxyParams}{Parameters}
+{\em device} & a pointer to the object that represents a mobile device. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the connection is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_antenna_aa7ed7c0424dfd20193b550a4ececcb64}\label{class_antenna_aa7ed7c0424dfd20193b550a4ececcb64}} 
+\index{Antenna@{Antenna}!m\_azim\_dB\_Back@{m\_azim\_dB\_Back}}
+\index{m\_azim\_dB\_Back@{m\_azim\_dB\_Back}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_azim\_dB\_Back}{m\_azim\_dB\_Back}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+azim\+\_\+d\+B\+\_\+\+Back\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a9174c6dd20682cea4eccea7c7d6ffee7}\label{class_antenna_a9174c6dd20682cea4eccea7c7d6ffee7}} 
+\index{Antenna@{Antenna}!m\_beam\_H@{m\_beam\_H}}
+\index{m\_beam\_H@{m\_beam\_H}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_beam\_H}{m\_beam\_H}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+beam\+\_\+H\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a330f54f4d7344094bf137cabf2756112}\label{class_antenna_a330f54f4d7344094bf137cabf2756112}} 
+\index{Antenna@{Antenna}!m\_beam\_V@{m\_beam\_V}}
+\index{m\_beam\_V@{m\_beam\_V}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_beam\_V}{m\_beam\_V}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+beam\+\_\+V\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_addbe8e6ae7a8bad737339d23bc2abbba}\label{class_antenna_addbe8e6ae7a8bad737339d23bc2abbba}} 
+\index{Antenna@{Antenna}!m\_cell@{m\_cell}}
+\index{m\_cell@{m\_cell}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_cell}{m\_cell}}
+{\footnotesize\ttfamily Geometry$\ast$ Antenna\+::m\+\_\+cell\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}\label{class_antenna_a2d0f7032eb1d8cc6c02b1dd64bc59856}} 
+\index{Antenna@{Antenna}!m\_devices@{m\_devices}}
+\index{m\_devices@{m\_devices}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_devices}{m\_devices}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}}$\ast$$>$ Antenna\+::m\+\_\+devices\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_ac8984b2ecb6fd5f2e1eaef132f0175cb}\label{class_antenna_ac8984b2ecb6fd5f2e1eaef132f0175cb}} 
+\index{Antenna@{Antenna}!m\_direction@{m\_direction}}
+\index{m\_direction@{m\_direction}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_direction}{m\_direction}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+direction\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a4bea419f24f40b37cfd784e61a01aec7}\label{class_antenna_a4bea419f24f40b37cfd784e61a01aec7}} 
+\index{Antenna@{Antenna}!m\_elev\_dB\_Back@{m\_elev\_dB\_Back}}
+\index{m\_elev\_dB\_Back@{m\_elev\_dB\_Back}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_elev\_dB\_Back}{m\_elev\_dB\_Back}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+elev\+\_\+d\+B\+\_\+\+Back\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a06824840191e96b19eb224d53e08d3ec}\label{class_antenna_a06824840191e96b19eb224d53e08d3ec}} 
+\index{Antenna@{Antenna}!m\_file@{m\_file}}
+\index{m\_file@{m\_file}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_file}{m\_file}}
+{\footnotesize\ttfamily ofstream Antenna\+::m\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a4fa1f72704f7a10fa54498b839c76833}\label{class_antenna_a4fa1f72704f7a10fa54498b839c76833}} 
+\index{Antenna@{Antenna}!m\_handoverMechanism@{m\_handoverMechanism}}
+\index{m\_handoverMechanism@{m\_handoverMechanism}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_handoverMechanism}{m\_handoverMechanism}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} Antenna\+::m\+\_\+handover\+Mechanism\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a0fca07a2514679c814009730d966b2a3}\label{class_antenna_a0fca07a2514679c814009730d966b2a3}} 
+\index{Antenna@{Antenna}!m\_height@{m\_height}}
+\index{m\_height@{m\_height}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_height}{m\_height}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+height\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a0d4e25b246a30e3e6fdb303bed85e7da}\label{class_antenna_a0d4e25b246a30e3e6fdb303bed85e7da}} 
+\index{Antenna@{Antenna}!m\_mapping\_azim@{m\_mapping\_azim}}
+\index{m\_mapping\_azim@{m\_mapping\_azim}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_mapping\_azim}{m\_mapping\_azim}}
+{\footnotesize\ttfamily vector$<$pair$<$double, double$>$ $>$ Antenna\+::m\+\_\+mapping\+\_\+azim\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a71b55ca74697d064e231829343209fec}\label{class_antenna_a71b55ca74697d064e231829343209fec}} 
+\index{Antenna@{Antenna}!m\_mapping\_elev@{m\_mapping\_elev}}
+\index{m\_mapping\_elev@{m\_mapping\_elev}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_mapping\_elev}{m\_mapping\_elev}}
+{\footnotesize\ttfamily vector$<$pair$<$double, double$>$ $>$ Antenna\+::m\+\_\+mapping\+\_\+elev\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}\label{class_antenna_a06480ddd6e9a9cb4d88c4cea72e2d2ab}} 
+\index{Antenna@{Antenna}!m\_maxConnections@{m\_maxConnections}}
+\index{m\_maxConnections@{m\_maxConnections}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_maxConnections}{m\_maxConnections}}
+{\footnotesize\ttfamily unsigned long Antenna\+::m\+\_\+max\+Connections\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a775a081edfeefcf293bf3ffb3c19013e}\label{class_antenna_a775a081edfeefcf293bf3ffb3c19013e}} 
+\index{Antenna@{Antenna}!m\_MNO@{m\_MNO}}
+\index{m\_MNO@{m\_MNO}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_MNO}{m\_MNO}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}}$\ast$ Antenna\+::m\+\_\+\+M\+NO\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a13b5973d4050a704682d65036acca851}\label{class_antenna_a13b5973d4050a704682d65036acca851}} 
+\index{Antenna@{Antenna}!m\_ple@{m\_ple}}
+\index{m\_ple@{m\_ple}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_ple}{m\_ple}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+ple\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a89874a2fbd083c99f780482bf4642b07}\label{class_antenna_a89874a2fbd083c99f780482bf4642b07}} 
+\index{Antenna@{Antenna}!m\_power@{m\_power}}
+\index{m\_power@{m\_power}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_power}{m\_power}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+power\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a8f58c6af021dc13d6d76d390daaf59d7}\label{class_antenna_a8f58c6af021dc13d6d76d390daaf59d7}} 
+\index{Antenna@{Antenna}!m\_Qmin@{m\_Qmin}}
+\index{m\_Qmin@{m\_Qmin}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_Qmin}{m\_Qmin}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Qmin\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a7b8fda5c94e7cf03c14a0fe5447e5d46}\label{class_antenna_a7b8fda5c94e7cf03c14a0fe5447e5d46}} 
+\index{Antenna@{Antenna}!m\_rmax@{m\_rmax}}
+\index{m\_rmax@{m\_rmax}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_rmax}{m\_rmax}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+rmax\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a65bdd3ec77862b9427df42ae74dc54e4}\label{class_antenna_a65bdd3ec77862b9427df42ae74dc54e4}} 
+\index{Antenna@{Antenna}!m\_S0@{m\_S0}}
+\index{m\_S0@{m\_S0}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_S0}{m\_S0}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+S0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_af9ed0b78826b52bd60c497eb7f87be3d}\label{class_antenna_af9ed0b78826b52bd60c497eb7f87be3d}} 
+\index{Antenna@{Antenna}!m\_sd\_azim@{m\_sd\_azim}}
+\index{m\_sd\_azim@{m\_sd\_azim}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_sd\_azim}{m\_sd\_azim}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+sd\+\_\+azim\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_aeb2ce4a95682b9ecff1395dfa857c089}\label{class_antenna_aeb2ce4a95682b9ecff1395dfa857c089}} 
+\index{Antenna@{Antenna}!m\_sd\_elev@{m\_sd\_elev}}
+\index{m\_sd\_elev@{m\_sd\_elev}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_sd\_elev}{m\_sd\_elev}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+sd\+\_\+elev\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}\label{class_antenna_ae5f536b16d9d924a7ee7cba954c44d05}} 
+\index{Antenna@{Antenna}!m\_Smid@{m\_Smid}}
+\index{m\_Smid@{m\_Smid}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_Smid}{m\_Smid}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Smid\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a55c98e1d697184199f908f88ae364886}\label{class_antenna_a55c98e1d697184199f908f88ae364886}} 
+\index{Antenna@{Antenna}!m\_Smin@{m\_Smin}}
+\index{m\_Smin@{m\_Smin}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_Smin}{m\_Smin}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+Smin\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a48117d47d70c758f5a09c54fa323feed}\label{class_antenna_a48117d47d70c758f5a09c54fa323feed}} 
+\index{Antenna@{Antenna}!m\_SSteep@{m\_SSteep}}
+\index{m\_SSteep@{m\_SSteep}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_SSteep}{m\_SSteep}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+\+S\+Steep\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a039d6c95ae3a5e9d4973f647783062de}\label{class_antenna_a039d6c95ae3a5e9d4973f647783062de}} 
+\index{Antenna@{Antenna}!m\_tilt@{m\_tilt}}
+\index{m\_tilt@{m\_tilt}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_tilt}{m\_tilt}}
+{\footnotesize\ttfamily double Antenna\+::m\+\_\+tilt\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}\label{class_antenna_a6b68373c8b139e8dafc4c11480eee0e1}} 
+\index{Antenna@{Antenna}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!Antenna@{Antenna}}
+\subsubsection{\texorpdfstring{m\_type}{m\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_antenna_type_8h_a7b678b5cb9dedc607131200119d96b16}{Antenna\+Type}} Antenna\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_antenna_8h}{Antenna.\+h}}\end{DoxyCompactItemize}

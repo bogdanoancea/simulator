@@ -1,13 +1,15 @@
 <map id="MobileOperator" name="MobileOperator">
-<area shape="rect" id="node2" href="$class_agent.html" title="Agent" alt="" coords="79,365,135,392"/>
-<area shape="rect" id="node3" href="$class_map.html" title="Map" alt="" coords="5,269,52,295"/>
-<area shape="rect" id="node4" href="$class_grid.html" title="Grid" alt="" coords="5,165,52,191"/>
-<area shape="rect" id="node5" href="$class_clock.html" title="Clock" alt="" coords="80,269,135,295"/>
-<area shape="rect" id="node6" title="STL class. " alt="" coords="182,365,262,392"/>
-<area shape="rect" id="node7" title="STL class. " alt="" coords="159,261,285,303"/>
-<area shape="rect" id="node8" title="STL class. " alt="" coords="297,365,395,392"/>
-<area shape="rect" id="node9" title="STL class. " alt="" coords="310,261,446,303"/>
-<area shape="rect" id="node10" title="STL class. " alt="" coords="311,157,445,199"/>
-<area shape="rect" id="node11" title="STL class. " alt="" coords="301,81,455,108"/>
-<area shape="rect" id="node12" title="STL class. " alt="" coords="328,5,428,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="372,1211,538,1377"/>
+<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="325,956,432,1136"/>
+<area shape="rect" id="node3" href="$class_map.html" title=" " alt="" coords="188,675,332,868"/>
+<area shape="rect" id="node4" href="$class_grid.html" title=" " alt="" coords="155,180,312,547"/>
+<area shape="rect" id="node5" title=" " alt="" coords="186,5,281,79"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,5,67,79"/>
+<area shape="rect" id="node7" title=" " alt="" coords="457,5,532,79"/>
+<area shape="rect" id="node8" title=" " alt="" coords="335,327,374,400"/>
+<area shape="rect" id="node9" title=" " alt="" coords="42,327,131,400"/>
+<area shape="rect" id="node10" href="$class_clock.html" title=" " alt="" coords="372,648,506,895"/>
+<area shape="rect" id="node11" title=" " alt="" coords="399,327,503,400"/>
+<area shape="rect" id="node12" title=" " alt="" coords="456,1009,510,1083"/>
+<area shape="rect" id="node13" title=" " alt="" coords="535,1009,609,1083"/>
 </map>

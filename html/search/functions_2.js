@@ -2,7 +2,7 @@ var searchData=
 [
   ['clock',['Clock',['../class_clock.html#adbc370eb6b5f8d01645cf440188160a8',1,'Clock::Clock()'],['../class_clock.html#a89a798e152f8eba2f6eb80ec92b26ece',1,'Clock::Clock(unsigned long start, unsigned long end, unsigned long incr)']]],
   ['cmdoptionexists',['cmdOptionExists',['../class_input_parser.html#ad3d06a9c59e91f425295bdc8408e0544',1,'InputParser']]],
-  ['columncount',['columnCount',['../class_parser.html#a5f0dfff7f5168d2ca894319651f102e3',1,'Parser']]],
+  ['columncount',['columnCount',['../class_c_s_v_parser.html#a1e30268d574a0c1911de002a893d7a7e',1,'CSVParser']]],
   ['computemaxpower',['computeMaxPower',['../class_e_m_field.html#a01cfb9fea3dadfcfe5d6f00551193acd',1,'EMField']]],
   ['computemaxquality',['computeMaxQuality',['../class_e_m_field.html#ac866f6224e34895a0ee085c4baf43a01',1,'EMField']]],
   ['computemaxstrength',['computeMaxStrength',['../class_e_m_field.html#a9a3cdbca4fcf408ce58a30fb98de1bbb',1,'EMField']]],
@@ -19,5 +19,6 @@ var searchData=
   ['connectionlikelihood',['connectionLikelihood',['../class_e_m_field.html#a710da64db53718cdeed7b8c8dc11bba3',1,'EMField']]],
   ['connectionlikelihoodgrid',['connectionLikelihoodGrid',['../class_e_m_field.html#a533effeee35a80746ea7e3ddc5998e48',1,'EMField']]],
   ['create_5frectangle',['create_rectangle',['../class_map.html#a36539152d451138361d82469218b4661',1,'Map']]],
-  ['createmapping',['createMapping',['../class_antenna.html#afe86e36673d4b28713f983cc63d89e1b',1,'Antenna']]]
+  ['createmapping',['createMapping',['../class_antenna.html#afe86e36673d4b28713f983cc63d89e1b',1,'Antenna']]],
+  ['csvparser',['CSVParser',['../class_c_s_v_parser.html#aba4d9ee88285f39766e7cc810f46d9d9',1,'CSVParser']]]
 ];

@@ -1,6 +1,6 @@
 <antennas>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -13,7 +13,7 @@
         <y>7500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -26,7 +26,7 @@
         <y>2500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -39,7 +39,7 @@
         <y>7500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -52,7 +52,7 @@
         <y>2500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -65,7 +65,7 @@
         <y>7500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -78,7 +78,7 @@
         <y>2500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -91,7 +91,7 @@
         <y>7500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -104,7 +104,7 @@
         <y>2500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -117,7 +117,7 @@
         <y>7500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -130,7 +130,7 @@
         <y>2500</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -143,7 +143,7 @@
         <y>0</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -156,7 +156,7 @@
         <y>0</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -169,7 +169,7 @@
         <y>0</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -182,7 +182,7 @@
         <y>0</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -195,7 +195,7 @@
         <y>0</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -208,7 +208,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -221,7 +221,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -234,7 +234,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -247,7 +247,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -260,7 +260,7 @@
         <y>10000</y>
     </antenna>
     <antenna>
-        <mno_name>Vodafone</mno_name>
+        <mno_name>MNO1</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
@@ -273,7 +273,7 @@
         <y>5000</y>
     </antenna>
     <antenna>
-        <mno_name>Orange</mno_name>
+        <mno_name>MNO2</mno_name>
         <maxconnections>100</maxconnections>
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>

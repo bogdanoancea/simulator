@@ -1,4 +1,4 @@
-.TH "Antenna" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.TH "Antenna" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,7 +17,7 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "\fBAntenna\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double attenuationFactor, double power, unsigned long maxConnections, double smid, double ssteep, \fBAntennaType\fP type)"
 .br
 .ti -1c
-.RI "\fBAntenna\fP (const \fBMap\fP *m, const \fBClock\fP *clock, const unsigned long id, XMLElement *el, vector< \fBMobileOperator\fP *> mnos)"
+.RI "\fBAntenna\fP (const \fBMap\fP *m, const \fBClock\fP *clock, const unsigned long id, XMLElement *el, vector< \fBMobileOperator\fP * > mnos)"
 .br
 .ti -1c
 .RI "virtual \fB~Antenna\fP ()"
@@ -114,6 +114,12 @@ Inherits \fBImmovableAgent\fP\&.
 .br
 .ti -1c
 .RI "double \fBcomputeSignalMeasure\fP (\fBHoldableAgent::CONNECTION_TYPE\fP handoverType, const Coordinate c) const"
+.br
+.ti -1c
+.RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBgetHandoverMechanism\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetHandoverMechanism\fP (\fBHoldableAgent::CONNECTION_TYPE\fP handoverMechanism)"
 .br
 .in -1c
 .SS "Private Member Functions"
@@ -241,6 +247,9 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "double \fBm_Smin\fP"
 .br
 .ti -1c
+.RI "double \fBm_Qmin\fP"
+.br
+.ti -1c
 .RI "vector< pair< double, double > > \fBm_mapping_azim\fP"
 .br
 .ti -1c
@@ -251,6 +260,9 @@ Inherits \fBImmovableAgent\fP\&.
 .br
 .ti -1c
 .RI "double \fBm_sd_elev\fP"
+.br
+.ti -1c
+.RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBm_handoverMechanism\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -285,7 +297,7 @@ Constructor of the class\&. It builds an object providing directly the values fo
 .RE
 .PP
 
-.SS "Antenna::Antenna (const \fBMap\fP * m, const \fBClock\fP * clock, const unsigned long id, XMLElement * el, vector< \fBMobileOperator\fP *> mnos)\fC [explicit]\fP"
+.SS "Antenna::Antenna (const \fBMap\fP * m, const \fBClock\fP * clock, const unsigned long id, XMLElement * el, vector< \fBMobileOperator\fP * > mnos)\fC [explicit]\fP"
 Constructor of the class\&. It builds an object taking the value of the antenna' parameters from an XML Element, usually when an \fBAntenna\fP object is built reading the xml configuration file\&. 
 .PP
 \fBParameters:\fP
@@ -469,6 +481,8 @@ a Polygon* representing the coverage area of the antenna\&.
 
 .SS "Geometry* Antenna::getCoverageAreaOmnidirectional ()\fC [private]\fP"
 
+.SS "\fBHoldableAgent::CONNECTION_TYPE\fP Antenna::getHandoverMechanism () const"
+
 .SS "unsigned long Antenna::getMaxConnections () const"
 Returns the maximum number of mobile devices that an antenna can connect\&. 
 .SS "double Antenna::getMin3db (double sd, double dbBack) const\fC [private]\fP"
@@ -586,6 +600,8 @@ the signal strength\&.
 
 .SS "double Antenna::searchMin (double dg, vector< pair< double, double >> _3dBDegrees) const\fC [private]\fP"
 
+.SS "void Antenna::setHandoverMechanism (\fBHoldableAgent::CONNECTION_TYPE\fP handoverMechanism)"
+
 .SS "void Antenna::setLocationWithElevation ()\fC [private]\fP"
 
 .SS "void Antenna::setMaxConnections (int maxConnections)"
@@ -685,6 +701,8 @@ true if the connection is successful, false otherwise\&.
 
 .SS "ofstream Antenna::m_file\fC [private]\fP"
 
+.SS "\fBHoldableAgent::CONNECTION_TYPE\fP Antenna::m_handoverMechanism\fC [private]\fP"
+
 .SS "double Antenna::m_height\fC [private]\fP"
 
 .SS "vector<pair<double, double> > Antenna::m_mapping_azim\fC [private]\fP"
@@ -698,6 +716,8 @@ true if the connection is successful, false otherwise\&.
 .SS "double Antenna::m_ple\fC [private]\fP"
 
 .SS "double Antenna::m_power\fC [private]\fP"
+
+.SS "double Antenna::m_Qmin\fC [private]\fP"
 
 .SS "double Antenna::m_rmax\fC [private]\fP"
 

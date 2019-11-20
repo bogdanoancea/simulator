@@ -1,0 +1,159 @@
+\hypertarget{class_locatable_agent}{}\section{Locatable\+Agent Class Reference}
+\label{class_locatable_agent}\index{LocatableAgent@{LocatableAgent}}
+
+
+{\ttfamily \#include $<$Locatable\+Agent.\+h$>$}
+
+
+
+Inheritance diagram for Locatable\+Agent\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_locatable_agent__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Locatable\+Agent\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_locatable_agent__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_locatable_agent_ab4939cf1ef1352acdac76736bfe47fc7}{Locatable\+Agent}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Location, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock)
+\item 
+virtual \mbox{\hyperlink{class_locatable_agent_ad721398f0b4e841aad377cd91a7f5e3a}{$\sim$\+Locatable\+Agent}} ()
+\item 
+const string \mbox{\hyperlink{class_locatable_agent_a754105958bb672744b525538f1584a7b}{get\+Name}} () const override
+\item 
+const string \mbox{\hyperlink{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}{to\+String}} () const override
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}{get\+Location}} () const
+\item 
+virtual void \mbox{\hyperlink{class_locatable_agent_a754b237c404b77714fedd397f214bc02}{set\+Location}} (Point $\ast$location)
+\item 
+const string \mbox{\hyperlink{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}{dump\+Location}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Point $\ast$ \mbox{\hyperlink{class_locatable_agent_a2a76ba315733ab26f19229a71071704d}{m\+\_\+location}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class extends the \mbox{\hyperlink{class_agent}{Agent}} class and defines an object with a location on a map. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_locatable_agent_ab4939cf1ef1352acdac76736bfe47fc7}\label{class_locatable_agent_ab4939cf1ef1352acdac76736bfe47fc7}} 
+\index{LocatableAgent@{LocatableAgent}!LocatableAgent@{LocatableAgent}}
+\index{LocatableAgent@{LocatableAgent}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{LocatableAgent()}{LocatableAgent()}}
+{\footnotesize\ttfamily Locatable\+Agent\+::\+Locatable\+Agent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Location,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor of the class. Builds an object that has a location on the map of the simulation. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object used in this simulation. \\
+\hline
+{\em id} & the id of the object. \\
+\hline
+{\em init\+Location} & the initial location of the object. \\
+\hline
+{\em clock} & a pointer to a \mbox{\hyperlink{class_clock}{Clock}} object used in this simulation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_locatable_agent_ad721398f0b4e841aad377cd91a7f5e3a}\label{class_locatable_agent_ad721398f0b4e841aad377cd91a7f5e3a}} 
+\index{LocatableAgent@{LocatableAgent}!````~LocatableAgent@{$\sim$LocatableAgent}}
+\index{````~LocatableAgent@{$\sim$LocatableAgent}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{$\sim$LocatableAgent()}{~LocatableAgent()}}
+{\footnotesize\ttfamily virtual Locatable\+Agent\+::$\sim$\+Locatable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}\label{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}} 
+\index{LocatableAgent@{LocatableAgent}!dumpLocation@{dumpLocation}}
+\index{dumpLocation@{dumpLocation}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{dumpLocation()}{dumpLocation()}}
+{\footnotesize\ttfamily const string Locatable\+Agent\+::dump\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds a human readable string representation of the location \begin{DoxyReturn}{Returns}
+a human readable string representation of the location 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}\label{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}} 
+\index{LocatableAgent@{LocatableAgent}!getLocation@{getLocation}}
+\index{getLocation@{getLocation}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{getLocation()}{getLocation()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Locatable\+Agent\+::get\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyReturn}{Returns}
+the location on the map as a pointer to a Point object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_locatable_agent_a754105958bb672744b525538f1584a7b}\label{class_locatable_agent_a754105958bb672744b525538f1584a7b}} 
+\index{LocatableAgent@{LocatableAgent}!getName@{getName}}
+\index{getName@{getName}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const string Locatable\+Agent\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the name of this class. \begin{DoxyReturn}{Returns}
+the name of this class. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_afe6c72d91baf9ee4fe77ea1ed7fef3ba}{Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_mobile_phone_a1eeac3141baafa75ebcf26fc3a0e4068}{Mobile\+Phone}}, \mbox{\hyperlink{class_person_aa2a6f8d7f1d94045a03ca578f2ed272c}{Person}}, \mbox{\hyperlink{class_movable_agent_abcc1218876c39c996f2cb1eba2b96379}{Movable\+Agent}}, and \mbox{\hyperlink{class_tablet_adc7196aaee1e9714236b7cd8825d5826}{Tablet}}.
+
+\mbox{\Hypertarget{class_locatable_agent_a754b237c404b77714fedd397f214bc02}\label{class_locatable_agent_a754b237c404b77714fedd397f214bc02}} 
+\index{LocatableAgent@{LocatableAgent}!setLocation@{setLocation}}
+\index{setLocation@{setLocation}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{setLocation()}{setLocation()}}
+{\footnotesize\ttfamily virtual void Locatable\+Agent\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Sets the location of the agent on the map. 
+\begin{DoxyParams}{Parameters}
+{\em location} & the location of the agent on the map passed as a pointer to a Point object. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{Person}}, and \mbox{\hyperlink{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}{Holdable\+Agent}}.
+
+\mbox{\Hypertarget{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}\label{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}} 
+\index{LocatableAgent@{LocatableAgent}!toString@{toString}}
+\index{toString@{toString}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Locatable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Builds a human readable string representation of this class useful to output it to a file or on the screen. \begin{DoxyReturn}{Returns}
+a string representation of this class. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_a44f291596d10c7878b0641d6ec156328}{Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_person_a68872538da519d0a04297f43376db27c}{Person}}, \mbox{\hyperlink{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04}{Mobile\+Phone}}, \mbox{\hyperlink{class_movable_agent_a1dee2a6bf93f01006fadfb6fba6c9a59}{Movable\+Agent}}, and \mbox{\hyperlink{class_tablet_a3fae01e7d526699476221c6a686a4fba}{Tablet}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_locatable_agent_a2a76ba315733ab26f19229a71071704d}\label{class_locatable_agent_a2a76ba315733ab26f19229a71071704d}} 
+\index{LocatableAgent@{LocatableAgent}!m\_location@{m\_location}}
+\index{m\_location@{m\_location}!LocatableAgent@{LocatableAgent}}
+\subsubsection{\texorpdfstring{m\_location}{m\_location}}
+{\footnotesize\ttfamily Point$\ast$ Locatable\+Agent\+::m\+\_\+location\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_locatable_agent_8h}{Locatable\+Agent.\+h}}\end{DoxyCompactItemize}

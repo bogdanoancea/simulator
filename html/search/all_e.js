@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['parseantennas',['parseAntennas',['../class_world.html#aebe7c211a9ddae90773f6ec880cdca15',1,'World']]],
-  ['parsecontent',['parseContent',['../class_parser.html#a7fe27b82f7adf8633d633ee79e608012',1,'Parser']]],
-  ['parseheader',['parseHeader',['../class_parser.html#adf0f8593adc24b7c2c9318473afcf8e4',1,'Parser']]],
-  ['parsepersons',['parsePersons',['../class_world.html#a70efdf2e1864a9711b168d0677179b34',1,'World']]],
+  ['parseantennas',['parseAntennas',['../class_world.html#a65aeb82bc52e45f024bcb966cc111cfc',1,'World']]],
+  ['parsecontent',['parseContent',['../class_c_s_v_parser.html#aa403f7d8238903aa0e046a9a091ab968',1,'CSVParser']]],
+  ['parseheader',['parseHeader',['../class_c_s_v_parser.html#a8b556e47ecfea188d4c6c630616f5667',1,'CSVParser']]],
+  ['parsepersons',['parsePersons',['../class_world.html#ac1ff7166ee1c03da452c0454f471fcef',1,'World']]],
   ['parseprobabilities',['parseProbabilities',['../class_world.html#a5675c3a896891827dd59255a9761f08e',1,'World']]],
-  ['parser',['Parser',['../class_parser.html',1,'Parser'],['../class_parser.html#a9ed29fd819ce3e3cf5225f0b1ae6f033',1,'Parser::Parser()']]],
   ['parsesimulationfile',['parseSimulationFile',['../class_world.html#adef43cc4ccb918aa68c00ee1e3286321',1,'World']]],
   ['person',['Person',['../class_person.html',1,'Person'],['../class_person.html#a1fb64d7ef7c528d01dd09b2099b00e38',1,'Person::Person()']]],
   ['person_2eh',['Person.h',['../_person_8h.html',1,'']]],

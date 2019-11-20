@@ -1,3 +1,9 @@
 <map id="Map" name="Map">
-<area shape="rect" id="node2" href="$class_grid.html" title="Grid" alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="224,608,367,801"/>
+<area shape="rect" id="node2" href="$class_grid.html" title=" " alt="" coords="96,180,253,547"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,101,79"/>
+<area shape="rect" id="node4" title=" " alt="" coords="144,5,205,79"/>
+<area shape="rect" id="node5" title=" " alt="" coords="246,5,321,79"/>
+<area shape="rect" id="node6" title=" " alt="" coords="276,327,315,400"/>
+<area shape="rect" id="node7" title=" " alt="" coords="389,327,477,400"/>
 </map>

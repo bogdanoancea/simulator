@@ -5,11 +5,7 @@
 	<time_stay>10</time_stay>
 	<interval_between_stays>25</interval_between_stays>
 	<mno>
-		<mno_name>Vodafone</mno_name>
-		<prob_mobile_phone>0.35</prob_mobile_phone>
-	</mno>
-	<mno>
-		<mno_name>Orange</mno_name>
+		<mno_name>MNO1</mno_name>
 		<prob_mobile_phone>0.35</prob_mobile_phone>
 	</mno>
 	<prob_sec_mobile_phone>0.25</prob_sec_mobile_phone>

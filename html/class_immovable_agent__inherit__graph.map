@@ -1,5 +1,6 @@
 <map id="ImmovableAgent" name="ImmovableAgent">
-<area shape="rect" id="node4" href="$class_antenna.html" title="Antenna" alt="" coords="29,229,99,256"/>
-<area shape="rect" id="node2" href="$class_locatable_agent.html" title="LocatableAgent" alt="" coords="8,80,120,107"/>
-<area shape="rect" id="node3" href="$class_agent.html" title="Agent" alt="" coords="36,5,92,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="65,461,215,575"/>
+<area shape="rect" id="node4" href="$class_antenna.html" title=" " alt="" coords="5,623,275,1749"/>
+<area shape="rect" id="node2" href="$class_locatable_agent.html" title=" " alt="" coords="69,260,211,413"/>
+<area shape="rect" id="node3" href="$class_agent.html" title=" " alt="" coords="87,5,194,212"/>
 </map>

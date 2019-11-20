@@ -1,0 +1,164 @@
+\hypertarget{class_agents_collection}{}\section{Agents\+Collection Class Reference}
+\label{class_agents_collection}\index{AgentsCollection@{AgentsCollection}}
+
+
+{\ttfamily \#include $<$Agents\+Collection.\+h$>$}
+
+
+
+Collaboration diagram for Agents\+Collection\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{class_agents_collection__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_agents_collection_a866b0ed56c0109e82bc7c839de0a3267}{Agents\+Collection}} ()
+\item 
+virtual \mbox{\hyperlink{class_agents_collection_a8a58eb1f8a45cc4d1c0e04dd912dbae0}{$\sim$\+Agents\+Collection}} ()
+\item 
+void \mbox{\hyperlink{class_agents_collection_a51d14d0635dedd5971ea90dec4f9e7f3}{add\+Agent}} (\mbox{\hyperlink{class_agent}{Agent}} $\ast$a)
+\item 
+\mbox{\hyperlink{class_agent}{Agent}} $\ast$ \mbox{\hyperlink{class_agents_collection_afd4d2e005b5e449637abd0fa022132a9}{delete\+Agent}} (\mbox{\hyperlink{class_agent}{Agent}} $\ast$a)
+\item 
+\mbox{\hyperlink{class_agent}{Agent}} $\ast$ \mbox{\hyperlink{class_agents_collection_a4b6b57c50d715edb3404520cfdb32688}{get\+Agent}} (const unsigned long id) const
+\item 
+pair$<$ \mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}}, \mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}} $>$ \mbox{\hyperlink{class_agents_collection_a4ab0c8e86e6f6ebceb12bd2bd8f9f758}{get\+Agent\+List\+By\+Type}} (const string \&agent\+Type)
+\item 
+\mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}} \mbox{\hyperlink{class_agents_collection_afc61b751cf3387ab4a1bf0dfbc29cb82}{end}} ()
+\item 
+\mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}} \mbox{\hyperlink{class_agents_collection_abc1d6593a3ed1c1c7b2d31b7efec8db8}{begin}} ()
+\item 
+unsigned long \mbox{\hyperlink{class_agents_collection_a3226f7eb58b11623bdb353d8938f60d3}{size}} ()
+\item 
+void \mbox{\hyperlink{class_agents_collection_a193faf9793030715e8edeb65137156e9}{print\+Agents}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unordered\+\_\+multimap$<$ string, \mbox{\hyperlink{class_agent}{Agent}} $\ast$ $>$ \mbox{\hyperlink{class_agents_collection_a35a5728b0e0108c2f37897720c904dd1}{m\+\_\+agents}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is actually a container for all the agents used for simulation. An agent could be an object of one the the derived classes of \mbox{\hyperlink{class_agent}{Agent}}. The Agents are kept in an unordered\+\_\+multimap as pairs $<$string, Agent$\ast$$>$ where the first element of the pair is the name of the concrete agent (a person, a mobile device, an antenna, a mno, etc.) and the second element is a pointer to the actual object (agent). 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_agents_collection_a866b0ed56c0109e82bc7c839de0a3267}\label{class_agents_collection_a866b0ed56c0109e82bc7c839de0a3267}} 
+\index{AgentsCollection@{AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\index{AgentsCollection@{AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{AgentsCollection()}{AgentsCollection()}}
+{\footnotesize\ttfamily Agents\+Collection\+::\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The default constructor of the class. \mbox{\Hypertarget{class_agents_collection_a8a58eb1f8a45cc4d1c0e04dd912dbae0}\label{class_agents_collection_a8a58eb1f8a45cc4d1c0e04dd912dbae0}} 
+\index{AgentsCollection@{AgentsCollection}!````~AgentsCollection@{$\sim$AgentsCollection}}
+\index{````~AgentsCollection@{$\sim$AgentsCollection}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{$\sim$AgentsCollection()}{~AgentsCollection()}}
+{\footnotesize\ttfamily virtual Agents\+Collection\+::$\sim$\+Agents\+Collection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor\+: it iterates through the collection of agents and frees the memory allocated for each agent in the collection. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_agents_collection_a51d14d0635dedd5971ea90dec4f9e7f3}\label{class_agents_collection_a51d14d0635dedd5971ea90dec4f9e7f3}} 
+\index{AgentsCollection@{AgentsCollection}!addAgent@{addAgent}}
+\index{addAgent@{addAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{addAgent()}{addAgent()}}
+{\footnotesize\ttfamily void Agents\+Collection\+::add\+Agent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+Adds a new \mbox{\hyperlink{class_agent}{Agent}} to the collection. For performance reasons the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} class keep only a pointer to actual agents (objects). 
+\begin{DoxyParams}{Parameters}
+{\em a} & a pointer to the object (one of the derived classes of the \mbox{\hyperlink{class_agent}{Agent}}) to be added to the collection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_agents_collection_abc1d6593a3ed1c1c7b2d31b7efec8db8}\label{class_agents_collection_abc1d6593a3ed1c1c7b2d31b7efec8db8}} 
+\index{AgentsCollection@{AgentsCollection}!begin@{begin}}
+\index{begin@{begin}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}} Agents\+Collection\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Iterator to the first agent of the container. \begin{DoxyReturn}{Returns}
+a random access iterator pointing to the first element (agent) in the container. If the container is empty, the returned iterator value shall not be dereferenced. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_agents_collection_afd4d2e005b5e449637abd0fa022132a9}\label{class_agents_collection_afd4d2e005b5e449637abd0fa022132a9}} 
+\index{AgentsCollection@{AgentsCollection}!deleteAgent@{deleteAgent}}
+\index{deleteAgent@{deleteAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{deleteAgent()}{deleteAgent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_agent}{Agent}}$\ast$ Agents\+Collection\+::delete\+Agent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{a }\end{DoxyParamCaption})}
+
+Removes an object from the collection. 
+\begin{DoxyParams}{Parameters}
+{\em a} & a pointer to the object to be removed from the collection. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_agents_collection_afc61b751cf3387ab4a1bf0dfbc29cb82}\label{class_agents_collection_afc61b751cf3387ab4a1bf0dfbc29cb82}} 
+\index{AgentsCollection@{AgentsCollection}!end@{end}}
+\index{end@{end}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}} Agents\+Collection\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Iterator to the past-\/the-\/end of the collection. It does not point to any agent, and thus shall not be dereferenced. \begin{DoxyReturn}{Returns}
+an iterator referring to the past-\/the-\/end element in the agents container. If the container is empty, this function returns the same as Agents\+Colletion\+::begin(). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_agents_collection_a4b6b57c50d715edb3404520cfdb32688}\label{class_agents_collection_a4b6b57c50d715edb3404520cfdb32688}} 
+\index{AgentsCollection@{AgentsCollection}!getAgent@{getAgent}}
+\index{getAgent@{getAgent}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{getAgent()}{getAgent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_agent}{Agent}}$\ast$ Agents\+Collection\+::get\+Agent (\begin{DoxyParamCaption}\item[{const unsigned long}]{id }\end{DoxyParamCaption}) const}
+
+Returns a pointer to an agent from the collection. The agent/object is identified by its id. 
+\begin{DoxyParams}{Parameters}
+{\em id} & the id of the agent to be returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the agent with the id equal to the parameter id. If there is no agent with the provided id, this method returns nullptr. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_agents_collection_a4ab0c8e86e6f6ebceb12bd2bd8f9f758}\label{class_agents_collection_a4ab0c8e86e6f6ebceb12bd2bd8f9f758}} 
+\index{AgentsCollection@{AgentsCollection}!getAgentListByType@{getAgentListByType}}
+\index{getAgentListByType@{getAgentListByType}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{getAgentListByType()}{getAgentListByType()}}
+{\footnotesize\ttfamily pair$<$\mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}}, \mbox{\hyperlink{_agents_collection_8h_afde47bc45d604b8b8c72755072376679}{um\+\_\+iterator}}$>$ Agents\+Collection\+::get\+Agent\+List\+By\+Type (\begin{DoxyParamCaption}\item[{const string \&}]{agent\+Type }\end{DoxyParamCaption})}
+
+This method is used to get a subset with a certain type of agents\+: persons, mobile phones etc. 
+\begin{DoxyParams}{Parameters}
+{\em agent\+Type} & is the name of the class of agents that the user wants to retrieve from the collection of all agents. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a std\+::pair of iterators of type unordered\+\_\+multimap$<$string, Agent$\ast$$>$\+::iterator that can be used to iterate through to subset of the agents. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_agents_collection_a193faf9793030715e8edeb65137156e9}\label{class_agents_collection_a193faf9793030715e8edeb65137156e9}} 
+\index{AgentsCollection@{AgentsCollection}!printAgents@{printAgents}}
+\index{printAgents@{printAgents}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{printAgents()}{printAgents()}}
+{\footnotesize\ttfamily void Agents\+Collection\+::print\+Agents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Print out all agents in the collection. \mbox{\Hypertarget{class_agents_collection_a3226f7eb58b11623bdb353d8938f60d3}\label{class_agents_collection_a3226f7eb58b11623bdb353d8938f60d3}} 
+\index{AgentsCollection@{AgentsCollection}!size@{size}}
+\index{size@{size}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily unsigned long Agents\+Collection\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the number of elements in the container. This is the number of actual objects held in the container, which is not necessarily equal to its storage capacity. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_agents_collection_a35a5728b0e0108c2f37897720c904dd1}\label{class_agents_collection_a35a5728b0e0108c2f37897720c904dd1}} 
+\index{AgentsCollection@{AgentsCollection}!m\_agents@{m\_agents}}
+\index{m\_agents@{m\_agents}!AgentsCollection@{AgentsCollection}}
+\subsubsection{\texorpdfstring{m\_agents}{m\_agents}}
+{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \mbox{\hyperlink{class_agent}{Agent}}$\ast$$>$ Agents\+Collection\+::m\+\_\+agents\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_agents_collection_8h}{Agents\+Collection.\+h}}\end{DoxyCompactItemize}

@@ -10,6 +10,7 @@ var searchData=
   ['antenna_5fmax_5fconnections',['ANTENNA_MAX_CONNECTIONS',['../class_constants.html#af89a10a7d59ac020b1fa06cf673ef01f',1,'Constants']]],
   ['antenna_5fmin_5f3_5fdb',['ANTENNA_MIN_3_DB',['../class_constants.html#a2bda61c04e204f4a1279338fb790e1f4',1,'Constants']]],
   ['antenna_5fpower',['ANTENNA_POWER',['../class_constants.html#a3f6f3825098d8eb1dc8081158c46c48a',1,'Constants']]],
+  ['antenna_5fqmin',['ANTENNA_QMIN',['../class_constants.html#a9149aaac071422191e4417885fd42b07',1,'Constants']]],
   ['antenna_5fs_5fmid',['ANTENNA_S_MID',['../class_constants.html#aea09e28749c0da58a4c831f9eabea773',1,'Constants']]],
   ['antenna_5fs_5fsteep',['ANTENNA_S_STEEP',['../class_constants.html#ae4b1b2c15d1e5bbb76464c03036c6baa',1,'Constants']]],
   ['antenna_5fsmin',['ANTENNA_SMIN',['../class_constants.html#af58b693e1ab4cdb1e83399eb0f2af647',1,'Constants']]],

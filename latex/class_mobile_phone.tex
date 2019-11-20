@@ -1,0 +1,213 @@
+\hypertarget{class_mobile_phone}{}\section{Mobile\+Phone Class Reference}
+\label{class_mobile_phone}\index{MobilePhone@{MobilePhone}}
+
+
+{\ttfamily \#include $<$Mobile\+Phone.\+h$>$}
+
+
+
+Inheritance diagram for Mobile\+Phone\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_mobile_phone__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Mobile\+Phone\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_mobile_phone__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mobile_phone_afd7beed70eb2af3baecd9521332ba8eb}{Mobile\+Phone}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Position, \mbox{\hyperlink{class_agent}{Agent}} $\ast$holder, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock, double threshold, \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} conn\+Type)
+\item 
+virtual \mbox{\hyperlink{class_mobile_phone_a51db1d9b4fcc52ea9f8d613dae4f6a4b}{$\sim$\+Mobile\+Phone}} ()
+\item 
+const string \mbox{\hyperlink{class_mobile_phone_a1eeac3141baafa75ebcf26fc3a0e4068}{get\+Name}} () const override
+\item 
+const string \mbox{\hyperlink{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04}{to\+String}} () const override
+\item 
+Point $\ast$ \mbox{\hyperlink{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}{move}} (\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} mv\+Type) override
+\item 
+bool \mbox{\hyperlink{class_mobile_phone_ad91afa811cea8ee124167f5941bcda1b}{try\+Connect}} () override
+\item 
+const \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ \mbox{\hyperlink{class_mobile_phone_aba72025d08c382d8533e0cbb9166999b}{get\+Mobile\+Operator}} () const
+\item 
+void \mbox{\hyperlink{class_mobile_phone_ad4db8203e8f2e974733357d7c3e6cf28}{set\+Mobile\+Operator}} (\mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$mno)
+\item 
+double \mbox{\hyperlink{class_mobile_phone_a57475711a8f85086f50067d219f1181d}{get\+Connection\+Threshold}} () const
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_mobile_phone_afb6364675f7cf6e09856f49ae6c10563}{m\+\_\+threshold}}
+\item 
+\mbox{\hyperlink{class_antenna}{Antenna}} $\ast$ \mbox{\hyperlink{class_mobile_phone_aa143b94346485788c3563228f6043721}{m\+\_\+connected\+To}}
+\item 
+\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{class_mobile_phone_a39f69fef45f380e3922dfe78b904372d}{m\+\_\+conn\+Type}}
+\item 
+\mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ \mbox{\hyperlink{class_mobile_phone_a1b26abc840ac8f8679dd62939330c597}{m\+\_\+mno}}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+This class represents a mobile phone. A mobile phone is own by a \mbox{\hyperlink{class_person}{Person}} and it moves on the map together with its owner. While moving, at every time step it tries to connect to an antenna. The connection event is triggered by \mbox{\hyperlink{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}{set\+Location()}}. The connection to antenna is determined by the signal emitted by antennas. A parameter in the simulation configuration file set the criterion used to connect\+: the power of the signal, the signal strength or the signal quality. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mobile_phone_afd7beed70eb2af3baecd9521332ba8eb}\label{class_mobile_phone_afd7beed70eb2af3baecd9521332ba8eb}} 
+\index{MobilePhone@{MobilePhone}!MobilePhone@{MobilePhone}}
+\index{MobilePhone@{MobilePhone}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{MobilePhone()}{MobilePhone()}}
+{\footnotesize\ttfamily Mobile\+Phone\+::\+Mobile\+Phone (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{holder,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock,  }\item[{double}]{threshold,  }\item[{\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}]{conn\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Builds a new Mobilew\+Phone object with the parameters provided by the user. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the \mbox{\hyperlink{class_map}{Map}} object where the simulation takes place. \\
+\hline
+{\em id} & the id of the mobile phone. \\
+\hline
+{\em init\+Position} & the initial location of the phone on the map. \\
+\hline
+{\em holder} & a pointer to the \mbox{\hyperlink{class_agent}{Agent}} object that owns this mobile phone. \\
+\hline
+{\em clock} & a pointer to the \mbox{\hyperlink{class_clock}{Clock}} object used in this simulation. \\
+\hline
+{\em threshold} & the minimum power, signal qaulity or signal strength of the field below which the mobile phone cannot connect to an antenna. \\
+\hline
+{\em conn\+Type} & the criterion used for the connection to an antenna\+: based on the power of the signal or based on the signal quality. It could take three values\+: Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+E\+::\+U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER, Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+E\+::\+U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY or Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+E\+::\+U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+T\+R\+E\+N\+G\+TH. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mobile_phone_a51db1d9b4fcc52ea9f8d613dae4f6a4b}\label{class_mobile_phone_a51db1d9b4fcc52ea9f8d613dae4f6a4b}} 
+\index{MobilePhone@{MobilePhone}!````~MobilePhone@{$\sim$MobilePhone}}
+\index{````~MobilePhone@{$\sim$MobilePhone}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{$\sim$MobilePhone()}{~MobilePhone()}}
+{\footnotesize\ttfamily virtual Mobile\+Phone\+::$\sim$\+Mobile\+Phone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+The default destructor. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mobile_phone_a57475711a8f85086f50067d219f1181d}\label{class_mobile_phone_a57475711a8f85086f50067d219f1181d}} 
+\index{MobilePhone@{MobilePhone}!getConnectionThreshold@{getConnectionThreshold}}
+\index{getConnectionThreshold@{getConnectionThreshold}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{getConnectionThreshold()}{getConnectionThreshold()}}
+{\footnotesize\ttfamily double Mobile\+Phone\+::get\+Connection\+Threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.\+e. the signal is considered noise). The returned value is interpreted as signal strength, power or quality according to the connection type. \begin{DoxyReturn}{Returns}
+the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.\+e. the signal is considered noise). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mobile_phone_aba72025d08c382d8533e0cbb9166999b}\label{class_mobile_phone_aba72025d08c382d8533e0cbb9166999b}} 
+\index{MobilePhone@{MobilePhone}!getMobileOperator@{getMobileOperator}}
+\index{getMobileOperator@{getMobileOperator}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{getMobileOperator()}{getMobileOperator()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}}$\ast$ Mobile\+Phone\+::get\+Mobile\+Operator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} object of this mobile phone. Each \mbox{\hyperlink{class_mobile_phone}{Mobile\+Phone}} should belong to a Mobile Operator. \begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} object of this mobile phone. Each \mbox{\hyperlink{class_mobile_phone}{Mobile\+Phone}} should belong to a Mobile Operator. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mobile_phone_a1eeac3141baafa75ebcf26fc3a0e4068}\label{class_mobile_phone_a1eeac3141baafa75ebcf26fc3a0e4068}} 
+\index{MobilePhone@{MobilePhone}!getName@{getName}}
+\index{getName@{getName}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const string Mobile\+Phone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the name of this class. \begin{DoxyReturn}{Returns}
+the name of this class. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_holdable_agent_ab330bb40de51a957ef8826af629f94a2}{Holdable\+Agent}}.
+
+\mbox{\Hypertarget{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}\label{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}} 
+\index{MobilePhone@{MobilePhone}!move@{move}}
+\index{move@{move}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily Point$\ast$ Mobile\+Phone\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the mv\+Type parameter and by the \mbox{\hyperlink{class_person}{Person}} object who owns this phone. 
+\begin{DoxyParams}{Parameters}
+{\em mv\+Type} & selects the way people and their phones are moving on the map. At this moment only R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP and R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT are implemented. R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, a \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the final location after the movement. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{Movable\+Agent}}.
+
+\mbox{\Hypertarget{class_mobile_phone_ad4db8203e8f2e974733357d7c3e6cf28}\label{class_mobile_phone_ad4db8203e8f2e974733357d7c3e6cf28}} 
+\index{MobilePhone@{MobilePhone}!setMobileOperator@{setMobileOperator}}
+\index{setMobileOperator@{setMobileOperator}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{setMobileOperator()}{setMobileOperator()}}
+{\footnotesize\ttfamily void Mobile\+Phone\+::set\+Mobile\+Operator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$}]{mno }\end{DoxyParamCaption})}
+
+Sets the \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} object which owns this phone. 
+\begin{DoxyParams}{Parameters}
+{\em mno} & the \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} object which owns this phone. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04}\label{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04}} 
+\index{MobilePhone@{MobilePhone}!toString@{toString}}
+\index{toString@{toString}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Mobile\+Phone\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns a human readable string representation of this class useful to output it to a file or console. \begin{DoxyReturn}{Returns}
+a human readable string representation of this class. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_holdable_agent_a2c581226b8994f24b6b2306ae17dbb52}{Holdable\+Agent}}.
+
+\mbox{\Hypertarget{class_mobile_phone_ad91afa811cea8ee124167f5941bcda1b}\label{class_mobile_phone_ad91afa811cea8ee124167f5941bcda1b}} 
+\index{MobilePhone@{MobilePhone}!tryConnect@{tryConnect}}
+\index{tryConnect@{tryConnect}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{tryConnect()}{tryConnect()}}
+{\footnotesize\ttfamily bool Mobile\+Phone\+::try\+Connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This method is called after the phone moves (together with its owner) to a new location. It tries to connect the mobile phone to an antenna. The connection method is determined by inspecting the m\+\_\+conn\+Type\+: using the power of the signal, using the quality of the signal or using the signal strength. The value of the m\+\_\+conn\+Type is set by the constructor of the class. If the connection is successfully a pointer to the \mbox{\hyperlink{class_antenna}{Antenna}} object where this mobile phone was connected is stored internally. \begin{DoxyReturn}{Returns}
+true if the connection succeeds, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}{Holdable\+Agent}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_mobile_phone_aa143b94346485788c3563228f6043721}\label{class_mobile_phone_aa143b94346485788c3563228f6043721}} 
+\index{MobilePhone@{MobilePhone}!m\_connectedTo@{m\_connectedTo}}
+\index{m\_connectedTo@{m\_connectedTo}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{m\_connectedTo}{m\_connectedTo}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_antenna}{Antenna}}$\ast$ Mobile\+Phone\+::m\+\_\+connected\+To\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mobile_phone_a39f69fef45f380e3922dfe78b904372d}\label{class_mobile_phone_a39f69fef45f380e3922dfe78b904372d}} 
+\index{MobilePhone@{MobilePhone}!m\_connType@{m\_connType}}
+\index{m\_connType@{m\_connType}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{m\_connType}{m\_connType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} Mobile\+Phone\+::m\+\_\+conn\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mobile_phone_a1b26abc840ac8f8679dd62939330c597}\label{class_mobile_phone_a1b26abc840ac8f8679dd62939330c597}} 
+\index{MobilePhone@{MobilePhone}!m\_mno@{m\_mno}}
+\index{m\_mno@{m\_mno}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{m\_mno}{m\_mno}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}}$\ast$ Mobile\+Phone\+::m\+\_\+mno\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_mobile_phone_afb6364675f7cf6e09856f49ae6c10563}\label{class_mobile_phone_afb6364675f7cf6e09856f49ae6c10563}} 
+\index{MobilePhone@{MobilePhone}!m\_threshold@{m\_threshold}}
+\index{m\_threshold@{m\_threshold}!MobilePhone@{MobilePhone}}
+\subsubsection{\texorpdfstring{m\_threshold}{m\_threshold}}
+{\footnotesize\ttfamily double Mobile\+Phone\+::m\+\_\+threshold\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_mobile_phone_8h}{Mobile\+Phone.\+h}}\end{DoxyCompactItemize}

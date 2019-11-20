@@ -1,4 +1,4 @@
-.TH "Grid" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.TH "Grid" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -112,7 +112,7 @@ Grid
 .in -1c
 .SH "Detailed Description"
 .PP 
-This class implements a gird of rectangular tiles overlapped on the map of the simulation\&. This grid is used to compute the 'observed' location of a mobile phone\&. This means that we compute the probability of a mobile device to be in a specific tile of the grid using the data recorded by each antenna during the simulation\&. A finer grid will give a more accurate location but the computational cost increase when the size of the tiles decrease\&. The tiles of the grid are indexed starting with 0 for the tile in the bottom left corner of the grid in a row-major ordering\&. The last tile, with the biggest index, is the tile in the upper-right corner of the grid\&. 
+This class implements a grid of rectangular tiles overlapped on the map of the simulation\&. This grid is used to compute the 'observed' location of a mobile phone\&. This means that we compute the probability of a mobile device to be in a specific tile of the grid using the data recorded by each antenna during the simulation\&. A finer grid will give a more accurate location but the computational cost increase when the size of the tiles decrease\&. The tiles of the grid are indexed starting with 0 for the tile in the bottom left corner of the grid in a row-major ordering\&. The last tile, with the biggest index, is the tile in the upper-right corner of the grid\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Grid::Grid (double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY)"
