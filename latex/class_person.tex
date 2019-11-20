@@ -6,8 +6,7 @@
 
 
 
-Inheritance diagram for Person\+:
-\nopagebreak
+Inheritance diagram for Person\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,8 +15,7 @@ Inheritance diagram for Person\+:
 \end{figure}
 
 
-Collaboration diagram for Person\+:
-\nopagebreak
+Collaboration diagram for Person\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -265,7 +263,9 @@ returns true if this person has at least a mobile device, false otherwise. \begi
 \subsubsection{\texorpdfstring{move()}{move()}}
 {\footnotesize\ttfamily Point$\ast$ Person\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Move the person to another location. Computes the coordinates of the new location and then call \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location()}} with this new coordinates. 
+Move the person to another location. Computes the coordinates of the new location and then call \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location()}} with this new coordinates.
+
+
 \begin{DoxyParams}{Parameters}
 {\em mv\+Type} & specifies the method used to compute the new position of the person, i.\+e. how the direction and the length of the step are computed. It can have the following values\+: R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP -\/ the agent moves randomly inside the map boundary. The direction is generated as a random value at each time step and the step length is computed multiplying the speed with the time interval. R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT\+: the agent moves in a preferential direction. There are two constants defining these directions\+: S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4). The actual direction is generated as a normally distributed random value with means equals to these constants and sad = 0.\+1. In both cases, a \mbox{\hyperlink{class_person}{Person}} makes several steps then a stop. The average time length of a stop is given is the simulation configuration file while the actual values are generated as normal distributed random values with the mean read from the configuration file and and sd = 20\% from mean. The average time interval elapsed between two stop is read from the simulation configuration file and the actual values are generated as exponential distributed random values. \\
 \hline

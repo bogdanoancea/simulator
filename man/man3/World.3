@@ -1,4 +1,4 @@
-.TH "World" 3 "Wed Oct 30 2019" "Simulator" \" -*- nroff -*-
+.TH "World" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -73,16 +73,16 @@ World
 .RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (unsigned long numPersons, double percentHome)"
 .br
 .ti -1c
-.RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (const unsigned long numPersons, vector< double > params, \fBPerson::AgeDistributions\fP age_distribution, double male_share, vector< \fBMobileOperator\fP *> mnos, double speed_walk, double speed_car, double percentHome)"
+.RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (const unsigned long numPersons, vector< double > params, \fBPerson::AgeDistributions\fP age_distribution, double male_share, vector< \fBMobileOperator\fP * > mnos, double speed_walk, double speed_car, double percentHome)"
 .br
 .ti -1c
 .RI "vector< \fBAntenna\fP * > \fBgenerateAntennas\fP (unsigned long numAntennas)"
 .br
 .ti -1c
-.RI "vector< \fBAntenna\fP * > \fBparseAntennas\fP (const string &configAntennasFile, vector< \fBMobileOperator\fP *> mnos) noexcept(false)"
+.RI "vector< \fBAntenna\fP * > \fBparseAntennas\fP (const string &configAntennasFile, vector< \fBMobileOperator\fP * > mnos) noexcept(false)"
 .br
 .ti -1c
-.RI "vector< \fBPerson\fP * > \fBparsePersons\fP (const string &personsFileName, vector< \fBMobileOperator\fP *> mnos) noexcept(false)"
+.RI "vector< \fBPerson\fP * > \fBparsePersons\fP (const string &personsFileName, vector< \fBMobileOperator\fP * > mnos) noexcept(false)"
 .br
 .ti -1c
 .RI "vector< \fBMobilePhone\fP * > \fBgenerateMobilePhones\fP (int numMobilePhones, \fBHoldableAgent::CONNECTION_TYPE\fP connType)"
@@ -91,7 +91,7 @@ World
 .RI "vector< \fBMobileOperator\fP * > \fBparseSimulationFile\fP (const string &configSimulationFileName) noexcept(false)"
 .br
 .ti -1c
-.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP *> mnos)"
+.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)"
 .br
 .ti -1c
 .RI "string \fBparseProbabilities\fP (const string &probabilitiesFileName)"
@@ -166,7 +166,7 @@ World
 .in -1c
 .SH "Detailed Description"
 .PP 
-This is the class where the simulation process takes place\&. A \fBWorld\fP object has a \fBMap\fP, a \fBClock\fP, a set of Agents than can be persons, mobile phones, antennas, mobile operators etc\&. After generating all the required objects for simulation by reading the parameters from the input configuration files the \fBrunSimulation()\fP method is called to perform the actual simulation\&. The output of the simulation process is written in several files\&. \fBAntenna\fP objects output their registered events in a \&.csv file and after the simulation ends, these files are merged in a single file that is used to compute the posterior localization probabilities for each mobile device\&. These probabilities are computed using a \fBGrid\fP that is overlapped on the \fBMap\fP, i\&.e\&. we compute the probability of a mobile phone to be in a tile of the grid\&. A finer the grid means more accurate localization but this come with an important computational cost\&. 
+This is the class where the simulation process takes place\&. A \fBWorld\fP object has a \fBMap\fP, a \fBClock\fP, a set of Agents than can be persons, mobile phones, antennas, mobile operators etc\&. After generating all the required objects for simulation by reading the parameters from the input configuration files \fBrunSimulation()\fP method is called to perform the actual simulation\&. The output of the simulation process is written in several files\&. \fBAntenna\fP objects output their registered events in a \&.csv file and after the simulation ends, these files are merged in a single file that is used to compute the posterior localization probabilities for each mobile device\&. These probabilities are computed using a \fBGrid\fP that is overlapped on the \fBMap\fP, i\&.e\&. we compute the probability of a mobile phone to be in a tile of the grid\&. A finer the grid means more accurate localization but this come with an important computational cost\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "World::World (\fBMap\fP * map, int numPersons, int numAntennas, int numMobilePhones)"
@@ -220,7 +220,7 @@ Destructor It releases the memory allocated for the agents collection and the \f
 
 .SS "vector<\fBPerson\fP*> World::generatePopulation (unsigned long numPersons, double percentHome)\fC [private]\fP"
 
-.SS "vector<\fBPerson\fP*> World::generatePopulation (const unsigned long numPersons, vector< double > params, \fBPerson::AgeDistributions\fP age_distribution, double male_share, vector< \fBMobileOperator\fP *> mnos, double speed_walk, double speed_car, double percentHome)\fC [private]\fP"
+.SS "vector<\fBPerson\fP*> World::generatePopulation (const unsigned long numPersons, vector< double > params, \fBPerson::AgeDistributions\fP age_distribution, double male_share, vector< \fBMobileOperator\fP * > mnos, double speed_walk, double speed_car, double percentHome)\fC [private]\fP"
 
 .SS "\fBAgentsCollection\fP* World::getAgents () const"
 Returns the \fBAgentsCollection\fP used in simulation\&. 
@@ -323,9 +323,9 @@ the name of the file where the probabilities of mobile phones locations are save
 .RE
 .PP
 
-.SS "vector<\fBAntenna\fP*> World::parseAntennas (const string & configAntennasFile, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP, \fC [noexcept]\fP"
+.SS "vector<\fBAntenna\fP*> World::parseAntennas (const string & configAntennasFile, vector< \fBMobileOperator\fP * > mnos)\fC [private]\fP, \fC [noexcept]\fP"
 
-.SS "vector<\fBPerson\fP*> World::parsePersons (const string & personsFileName, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP, \fC [noexcept]\fP"
+.SS "vector<\fBPerson\fP*> World::parsePersons (const string & personsFileName, vector< \fBMobileOperator\fP * > mnos)\fC [private]\fP, \fC [noexcept]\fP"
 
 .SS "string World::parseProbabilities (const string & probabilitiesFileName)\fC [private]\fP"
 
@@ -360,7 +360,7 @@ Sets the map where the simulation takes place\&.
 .RE
 .PP
 
-.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP"
+.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)\fC [private]\fP"
 
 .SH "Member Data Documentation"
 .PP 

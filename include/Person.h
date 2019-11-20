@@ -103,6 +103,7 @@ public:
 
 	/**
 	 * Move the person to another location. Computes the coordinates of the new location and then call setLocation() with this new coordinates.
+	 * \callgraph
 	 * @param mvType specifies the method used to compute the new position of the person, i.e. how the direction and the length
 	 * of the step are computed. It can have the following values:
 	 * RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary. The direction is generated

@@ -594,7 +594,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Move the person to another location. Computes the coordinates of the new location and then call <a class="el" href="class_person.html#a05f4ac2107d59e03f0f336eda08aa358">setLocation()</a> with this new coordinates. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Move the person to another location. Computes the coordinates of the new location and then call <a class="el" href="class_person.html#a05f4ac2107d59e03f0f336eda08aa358">setLocation()</a> with this new coordinates.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mvType</td><td>specifies the method used to compute the new position of the person, i.e. how the direction and the length of the step are computed. It can have the following values: RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary. The direction is generated as a random value at each time step and the step length is computed multiplying the speed with the time interval. RANDOM_WALK_CLOSED_MAP_WITH_DRIFT: the agent moves in a preferential direction. There are two constants defining these directions: SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4). The actual direction is generated as a normally distributed random value with means equals to these constants and sad = 0.1. In both cases, a <a class="el" href="class_person.html">Person</a> makes several steps then a stop. The average time length of a stop is given is the simulation configuration file while the actual values are generated as normal distributed random values with the mean read from the configuration file and and sd = 20% from mean. The average time interval elapsed between two stop is read from the simulation configuration file and the actual values are generated as exponential distributed random values. </td></tr>
   </table>
