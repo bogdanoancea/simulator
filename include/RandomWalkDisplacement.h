@@ -32,11 +32,34 @@
 using namespace geos;
 using namespace geos::geom;
 
+/**
+ * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
+ * the pure random walk behaviour, overriding the \code{generateNewLocation()} method from its superclass, Displace.
+ */
 class RandomWalkDisplacement: public Displace {
 
 public:
+	/**
+	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
+	 * @param map a pointer to the Map object of the simulation.
+	 * @param clk a pointer to the Clock object of the simulation.
+	 * @param speed the speed of displacement.
+	 */
 	RandomWalkDisplacement(Map* map, Clock* clk, double speed);
+
+	/**
+	 * Implements the random walk behaviour. It takes a pointer to the current location, generates a uniformly distributed value
+	 * between 0 and 2 PI as the angle of displacement and computes the length of the step in this direction using the
+	 * speed and the time duration of a simulation step. If the new location is outside the map, it returns the current location, i.e. the object
+	 * will stay in the same location until the next simulation step.
+	 * @param p a pointer to the current location.
+	 * @return the new location
+	 */
 	virtual Point* generateNewLocation(Point* p) override;
+
+	/**
+	 * Destructor. Does nothing.
+	 */
 	virtual ~RandomWalkDisplacement();
 };
 

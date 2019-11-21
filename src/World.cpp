@@ -129,11 +129,14 @@ World::~World() {
 }
 
 void World::runSimulation() noexcept(false) {
-	ofstream pFile, aFile;
+	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
+	const Grid* g = getMap()->getGrid();
+	unsigned long noTiles = g->getNoTiles();
+
 	try {
-		pFile.open(m_personsFilename, ios::out);
-		aFile.open(m_antennasFilename, ios::out);
+		personsFile.open(m_personsFilename, ios::out);
+		antennaFile.open(m_antennasFilename, ios::out);
 	} catch (ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
@@ -144,7 +147,6 @@ void World::runSimulation() noexcept(false) {
 		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
 		ofstream& f = mo->getSignalFile();
 		f << "Antenna ID" << sep;
-		unsigned long noTiles = getMap()->getGrid()->getNoTiles();
 		for (unsigned long i = 0; i < noTiles - 1; i++) {
 			f << "Tile" << i << sep;
 		}
@@ -152,10 +154,10 @@ void World::runSimulation() noexcept(false) {
 	}
 
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-	aFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
+	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
-		aFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMap()->getGrid()->getTileNo(a->getLocation()) << endl;
+		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << g->getTileNo(a->getLocation()) << endl;
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
 	}
@@ -167,9 +169,9 @@ void World::runSimulation() noexcept(false) {
 
 	RandomNumberGenerator* r = RandomNumberGenerator::instance();
 	r->setSeed(time(0));
-	const Grid* g = getMap()->getGrid();
 
-	pFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
+
+	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
 	unsigned long t = m_clock->getInitialTime();
 	tt = getClock()->realTime();
@@ -178,7 +180,7 @@ void World::runSimulation() noexcept(false) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
 		int n = g->getTileNo(loc->getX(), loc->getY());
-		pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+		personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 	}
 
 	//iterate over all persons and call move()
@@ -191,15 +193,15 @@ void World::runSimulation() noexcept(false) {
 			p->move();
 			Point* loc = p->getLocation();
 			int n = g->getTileNo(loc->getX(), loc->getY());
-			pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+			personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 		}
 	}
 	tt = getClock()->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
 
 	try {
-		pFile.close();
-		aFile.close();
+		personsFile.close();
+		antennaFile.close();
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;

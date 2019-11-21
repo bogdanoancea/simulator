@@ -41,6 +41,12 @@ using namespace geos::geom;
 class Displace {
 public:
 
+	/**
+	 * Constructor of the class. Initialize members.
+	 * @param map a pointer to the Map object of the simulation.
+	 * @param clk a pointer to the Clock object of the simulation.
+	 * @param speed the speed of displacement.
+	 */
 	Displace(Map* map, Clock* clk, double speed);
 
 	/**
@@ -56,7 +62,6 @@ public:
 
 
 protected:
-	//Point* m_initLocation;
 	Map* m_map;
 	Clock * m_clock;
 	double m_speed;
