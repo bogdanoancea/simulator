@@ -30,6 +30,8 @@
 #include <geos/geom/Point.h>
 #include <string>
 #include <unordered_map>
+#include <Displace.h>
+
 
 using namespace geos;
 using namespace geos::geom;
@@ -102,22 +104,23 @@ public:
 	void setAge(int age);
 
 	/**
-	 * Move the person to another location. Computes the coordinates of the new location and then call setLocation() with this new coordinates.
 	 * \callgraph
-	 * @param mvType specifies the method used to compute the new position of the person, i.e. how the direction and the length
-	 * of the step are computed. It can have the following values:
-	 * RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary. The direction is generated
-	 * as a random value at each time step and the step length is computed multiplying the speed with the time interval.
-	 * RANDOM_WALK_CLOSED_MAP_WITH_DRIFT:  the agent moves in a preferential direction. There are two constants defining these directions:
-	 * SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4). The actual direction is generated as a normally distributed random
-	 * value with means equals to these constants and sad = 0.1.
-	 * In both cases, a Person makes several steps then a stop. The average time length of a stop is given is the simulation configuration
-	 * file while the actual values are generated as normal distributed random values with the mean read from the configuration file and
-	 * and sd = 20% from mean. The average time interval elapsed between two stop is read from the simulation configuration file and
-	 * the actual values are generated as exponential distributed random values.
-	 * @return a pointer to a Point object that represents the new location.
+	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
+	 * displacement strategy set at the Person creation moment and currently two strategies are supported:
+	 * RandomWalkDisplacement and RandomWalkDriftDisplacement.
+	 * RandomWalkDisplacement means
+	 * that at each time instant the direction is generated as a uniformly distributed random value and the
+	 * step length is computed multiplying the speed with the time interval set in the simulation configuration file.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 * RandomWalkDriftDisplacement means that there is a preference in the direction of the movement.
+	 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
+	 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
+	 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
+	 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, any kind of MovableAgent can only move inside the map boundary.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 * @return the final location after the displacement.
 	 */
-	Point* move(MovementType mvType) override;
+	virtual Point* move() override;
 
 	/**
 	 * Sets the location of the person on the map.
@@ -154,19 +157,22 @@ public:
 	 */
 	unsigned long getAvgIntervalBetweenStays() const;
 
+	/**
+	 * Sets the displacement algorithm.
+	 * @param displace a reference to an implementation of the displacement method. Currently two displacement methods are supported and they are implemented in
+	 * RandomWalkDisplacement and RandomWalkDriftDisplacement classes.
+	 */
+	void setDisplacementMethod(const shared_ptr<Displace>& displace);
+
 private:
 	int m_age;
 	Gender m_gender;
 	unordered_multimap<string, Agent*> m_idDevices;
-	bool m_changeDirection;
 	unsigned long m_avgTimeStay;
 	unsigned long m_timeStay;
 	unsigned long m_avgIntervalBetweenStays;
 	unsigned long m_nextStay;
-	void randomWalkClosedMap();
-	void randomWalkClosedMapDrift();
-	Point* generateNewLocation(double theta);
-	void setNewLocation(Point* p, bool changeDirection);
+	shared_ptr<Displace> m_displacementMethod;
 };
 
 #endif /* PERSON_H_ */

@@ -1,4 +1,4 @@
-.TH "MobilePhone" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
+.TH "MobilePhone" 3 "Thu Nov 21 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -26,7 +26,7 @@ Inherits \fBHoldableAgent\fP\&.
 .RI "const string \fBtoString\fP () const override"
 .br
 .ti -1c
-.RI "Point * \fBmove\fP (\fBMovementType\fP mvType) override"
+.RI "Point * \fBmove\fP () override"
 .br
 .ti -1c
 .RI "bool \fBtryConnect\fP () override"
@@ -117,17 +117,12 @@ the name of this class\&.
 
 .PP
 Reimplemented from \fBHoldableAgent\fP\&.
-.SS "Point* MobilePhone::move (\fBMovementType\fP mvType)\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
-Makes a step on the map according to an algorithm\&. The direction and the length of the step is determined by the mvType parameter and by the \fBPerson\fP object who owns this phone\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fImvType\fP selects the way people and their phones are moving on the map\&. At this moment only RANDOM_WALK_CLOSED_MAP and RANDOM_WALK_CLOSED_MAP_WITH_DRIFT are implemented\&. RANDOM_WALK_CLOSED_MAP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. If a step projects it outside the map, it stops on the boundary\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, a \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&.
-.RE
+.SS "Point* MobilePhone::move ()\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+Makes a step on the map according to an algorithm\&. The direction and the length of the step is determined by the displacement strategy and by the \fBPerson\fP object who owns this phone\&. The displacement strategy is set at the \fBPerson\fP object creation and currently two strategies are supported: \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP\&. \fBRandomWalkDisplacement\fP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. If a step projects it outside the map, it stops on the boundary\&. \fBRandomWalkDriftDisplacement\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, any kind of \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
 .PP
 \fBReturns:\fP
 .RS 4
-the final location after the movement\&. 
+the final location after the displacement\&. 
 .RE
 .PP
 

@@ -49,6 +49,8 @@
 #include <stdlib.h>
 #include <iomanip>
 #include <SimException.h>
+#include <RandomWalkDisplacement.h>
+#include <RandomWalkDriftDisplacement.h>
 
 using namespace std;
 using namespace utils;
@@ -186,7 +188,7 @@ void World::runSimulation() noexcept(false) {
 		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
-			p->move(m_mvType);
+			p->move();
 			Point* loc = p->getLocation();
 			int n = g->getTileNo(loc->getX(), loc->getY());
 			pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
@@ -558,6 +560,14 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 				np2--;
 			}
 		}
+		if(m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP) {
+			auto displace = std::make_shared<RandomWalkDisplacement>(m_map, m_clock, p->getSpeed());
+			p->setDisplacementMethod(displace);
+		} else if(m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
+			auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_map, m_clock, p->getSpeed());
+			p->setDisplacementMethod(displace);
+		}
+
 		result.push_back(p);
 	}
 	delete[] walk_car;

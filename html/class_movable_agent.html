@@ -77,12 +77,12 @@ Inheritance diagram for MovableAgent:</div>
 <div class="center"><img src="class_movable_agent__inherit__graph.png" border="0" usemap="#_movable_agent_inherit__map" alt="Inheritance graph"/></div>
 <map name="_movable_agent_inherit__map" id="_movable_agent_inherit__map">
 <area shape="rect"  title=" " alt="" coords="215,461,350,615"/>
-<area shape="rect"  href="class_holdable_agent.html" title=" " alt="" coords="116,749,253,969"/>
-<area shape="rect"  href="class_person.html" title=" " alt="" coords="277,663,489,1056"/>
+<area shape="rect"  href="class_holdable_agent.html" title=" " alt="" coords="116,729,253,949"/>
+<area shape="rect"  href="class_person.html" title=" " alt="" coords="277,663,489,1016"/>
 <area shape="rect"  href="class_locatable_agent.html" title=" " alt="" coords="212,260,354,413"/>
 <area shape="rect"  href="class_agent.html" title=" " alt="" coords="229,5,336,212"/>
-<area shape="rect"  href="class_mobile_phone.html" title=" " alt="" coords="5,1104,192,1324"/>
-<area shape="rect"  href="class_tablet.html" title=" " alt="" coords="216,1144,323,1284"/>
+<area shape="rect"  href="class_mobile_phone.html" title=" " alt="" coords="5,1064,192,1284"/>
+<area shape="rect"  href="class_tablet.html" title=" " alt="" coords="216,1104,323,1244"/>
 </map>
 </div>
 <div class="dynheader">
@@ -116,8 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcc1218876c39c996f2cb1eba2b96379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dee2a6bf93f01006fadfb6fba6c9a59"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_movable_agent.html#a1dee2a6bf93f01006fadfb6fba6c9a59">toString</a> () const override</td></tr>
 <tr class="separator:a1dee2a6bf93f01006fadfb6fba6c9a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35299e133c6787689b553d74ce5f98f0"><td class="memItemLeft" align="right" valign="top">virtual Point *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_movable_agent.html#a35299e133c6787689b553d74ce5f98f0">move</a> (<a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a> type)=0</td></tr>
-<tr class="separator:a35299e133c6787689b553d74ce5f98f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88b617f0e78c817634e5b587da045ab0"><td class="memItemLeft" align="right" valign="top">virtual Point *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_movable_agent.html#a88b617f0e78c817634e5b587da045ab0">move</a> ()=0</td></tr>
+<tr class="separator:a88b617f0e78c817634e5b587da045ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12fcdaee60f5bb29f15fe113a7dacaac"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_movable_agent.html#a12fcdaee60f5bb29f15fe113a7dacaac">getSpeed</a> () const</td></tr>
 <tr class="separator:a12fcdaee60f5bb29f15fe113a7dacaac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ef452e81789a4370e7dee32a9cc67e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_movable_agent.html#ae2ef452e81789a4370e7dee32a9cc67e">setSpeed</a> (double speed)</td></tr>
@@ -155,7 +155,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ac725b42e7b968740a59c3e1033d69ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class represents an <a class="el" href="class_agent.html">Agent</a> that can move inside the map. This is an abstract class. It is used as a base class for all agents that can move. Currently <a class="el" href="class_person.html">Person</a> and <a class="el" href="class_mobile_phone.html">MobilePhone</a> classes inherits it and are already implemented. </p>
+<div class="textblock"><p>This class represents an <a class="el" href="class_agent.html">Agent</a> that can move inside the map. This is an abstract class. It is used as a base class for all agents that can move. Currently <a class="el" href="class_person.html">Person</a> and <a class="el" href="class_mobile_phone.html">MobilePhone</a> classes inherits it and are already implemented.</p>
+<p>A pure virtual method used to move the agent to a new location on the map. All the classes that inheritthis function. The actual implementation is based on a Strategy design pattern. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad76b14a044181a57ade71f1267a2ccbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad76b14a044181a57ade71f1267a2ccbd">&#9670;&nbsp;</a></span>MovableAgent()</h2>
@@ -296,8 +297,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a35299e133c6787689b553d74ce5f98f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35299e133c6787689b553d74ce5f98f0">&#9670;&nbsp;</a></span>move()</h2>
+<a id="a88b617f0e78c817634e5b587da045ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88b617f0e78c817634e5b587da045ab0">&#9670;&nbsp;</a></span>move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,8 +309,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual Point* MovableAgent::move </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a>&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -319,15 +319,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>A pure virtual method used to move the agent to a new location on the map. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>the type of the movement. At this moment there are two values accepted for this parameter: <a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a1260a39bdcc19395a0085be09746f9d0">MovementType::RANDOM_WALK_CLOSED_MAP</a> and <a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810">MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT</a>. <a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a1260a39bdcc19395a0085be09746f9d0">MovementType::RANDOM_WALK_CLOSED_MAP</a> means that at each time instant, the direction is generated as a uniformly distributed random number and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. The agent can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. <a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810">MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT</a> means that there is a preference in the direction of the movement. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, a <a class="el" href="class_movable_agent.html">MovableAgent</a> can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="class_person.html#a89843e85f14abc08422273c20252ae23">Person</a>, <a class="el" href="class_mobile_phone.html#a92d77fa5810ddb9c4c482d9c9baea456">MobilePhone</a>, and <a class="el" href="class_tablet.html#a0021a8d61f496d84540f675b1cb7d080">Tablet</a>.</p>
+<p>Implemented in <a class="el" href="class_person.html#a922e0462a1e7eac6523a9a864ce27afc">Person</a>, <a class="el" href="class_mobile_phone.html#a785d0cac08252386603c702ad8f38c5b">MobilePhone</a>, and <a class="el" href="class_tablet.html#ab1b8c7591be0c6ea118c8ab1c17839bb">Tablet</a>.</p>
 
 </div>
 </div>

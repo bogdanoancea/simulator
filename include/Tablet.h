@@ -63,11 +63,22 @@ public:
 	const string toString() const override;
 
 	/**
-	 * This method is called to move the tablet (actually the person who own this tablet move) to another location on the map.
-	 * @param type the method used to compute the new location. For details see MovableAgent::move() and Person::move().
-	 * @return a pointer to a Point object representing the new location on the map.
+	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
+	 * displacement strategy and by the Person object who owns this phone. The displacement strategy is set at the Person
+	 * object creation and currently two strategies are supported: RandomWalkDisplacement and RandomWalkDriftDisplacement.
+	 *  RandomWalkDisplacement means
+	 * that at each time instant the direction is generated as a uniformly distributed random value and the
+	 * step length is computed multiplying the speed with the time interval set in the simulation configuration file.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 * RandomWalkDriftDisplacement means that there is a preference in the direction of the movement.
+	 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
+	 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
+	 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
+	 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, any kind of MovableAgent can only move inside the map boundary.
+	 * If a step projects it outside the map, it stops on the boundary.
+	 * @return the final location after the displacement.
 	 */
-	Point* move(MovementType type) override {
+	Point* move() override {
 		return getLocation();
 	}
 

@@ -126,8 +126,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1eeac3141baafa75ebcf26fc3a0e4068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b7e556d12a43e380786ad0eccf3ce04"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mobile_phone.html#a2b7e556d12a43e380786ad0eccf3ce04">toString</a> () const override</td></tr>
 <tr class="separator:a2b7e556d12a43e380786ad0eccf3ce04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d77fa5810ddb9c4c482d9c9baea456"><td class="memItemLeft" align="right" valign="top">Point *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mobile_phone.html#a92d77fa5810ddb9c4c482d9c9baea456">move</a> (<a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a> mvType) override</td></tr>
-<tr class="separator:a92d77fa5810ddb9c4c482d9c9baea456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785d0cac08252386603c702ad8f38c5b"><td class="memItemLeft" align="right" valign="top">Point *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mobile_phone.html#a785d0cac08252386603c702ad8f38c5b">move</a> () override</td></tr>
+<tr class="separator:a785d0cac08252386603c702ad8f38c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad91afa811cea8ee124167f5941bcda1b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mobile_phone.html#ad91afa811cea8ee124167f5941bcda1b">tryConnect</a> () override</td></tr>
 <tr class="separator:ad91afa811cea8ee124167f5941bcda1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba72025d08c382d8533e0cbb9166999b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mobile_operator.html">MobileOperator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mobile_phone.html#aba72025d08c382d8533e0cbb9166999b">getMobileOperator</a> () const</td></tr>
@@ -384,8 +384,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a92d77fa5810ddb9c4c482d9c9baea456"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92d77fa5810ddb9c4c482d9c9baea456">&#9670;&nbsp;</a></span>move()</h2>
+<a id="a785d0cac08252386603c702ad8f38c5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785d0cac08252386603c702ad8f38c5b">&#9670;&nbsp;</a></span>move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,8 +396,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Point* MobilePhone::move </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493">MovementType</a>&#160;</td>
-          <td class="paramname"><em>mvType</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -407,15 +406,9 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the mvType parameter and by the <a class="el" href="class_person.html">Person</a> object who owns this phone. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mvType</td><td>selects the way people and their phones are moving on the map. At this moment only RANDOM_WALK_CLOSED_MAP and RANDOM_WALK_CLOSED_MAP_WITH_DRIFT are implemented. RANDOM_WALK_CLOSED_MAP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. <a class="el" href="_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810">MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT</a> means that there is a preference in the direction of the movement. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, a <a class="el" href="class_movable_agent.html">MovableAgent</a> can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the final location after the movement. </dd></dl>
+<p>Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the displacement strategy and by the <a class="el" href="class_person.html">Person</a> object who owns this phone. The displacement strategy is set at the <a class="el" href="class_person.html">Person</a> object creation and currently two strategies are supported: <a class="el" href="class_random_walk_displacement.html">RandomWalkDisplacement</a> and <a class="el" href="class_random_walk_drift_displacement.html">RandomWalkDriftDisplacement</a>. <a class="el" href="class_random_walk_displacement.html">RandomWalkDisplacement</a> means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. <a class="el" href="class_random_walk_drift_displacement.html">RandomWalkDriftDisplacement</a> means that there is a preference in the direction of the movement. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, any kind of <a class="el" href="class_movable_agent.html">MovableAgent</a> can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. </p><dl class="section return"><dt>Returns</dt><dd>the final location after the displacement. </dd></dl>
 
-<p>Implements <a class="el" href="class_movable_agent.html#a35299e133c6787689b553d74ce5f98f0">MovableAgent</a>.</p>
+<p>Implements <a class="el" href="class_movable_agent.html#a88b617f0e78c817634e5b587da045ab0">MovableAgent</a>.</p>
 
 </div>
 </div>

@@ -33,7 +33,7 @@ const string \mbox{\hyperlink{class_tablet_adc7196aaee1e9714236b7cd8825d5826}{ge
 \item 
 const string \mbox{\hyperlink{class_tablet_a3fae01e7d526699476221c6a686a4fba}{to\+String}} () const override
 \item 
-Point $\ast$ \mbox{\hyperlink{class_tablet_a0021a8d61f496d84540f675b1cb7d080}{move}} (\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} type) override
+Point $\ast$ \mbox{\hyperlink{class_tablet_ab1b8c7591be0c6ea118c8ab1c17839bb}{move}} () override
 \item 
 bool \mbox{\hyperlink{class_tablet_a2328422e1706dfeb2b51a6960e6879f0}{try\+Connect}} () override
 \end{DoxyCompactItemize}
@@ -80,29 +80,25 @@ the name of this class.
 
 Reimplemented from \mbox{\hyperlink{class_holdable_agent_ab330bb40de51a957ef8826af629f94a2}{Holdable\+Agent}}.
 
-\mbox{\Hypertarget{class_tablet_a0021a8d61f496d84540f675b1cb7d080}\label{class_tablet_a0021a8d61f496d84540f675b1cb7d080}} 
+\mbox{\Hypertarget{class_tablet_ab1b8c7591be0c6ea118c8ab1c17839bb}\label{class_tablet_ab1b8c7591be0c6ea118c8ab1c17839bb}} 
 \index{Tablet@{Tablet}!move@{move}}
 \index{move@{move}!Tablet@{Tablet}}
 \subsubsection{\texorpdfstring{move()}{move()}}
-{\footnotesize\ttfamily Point$\ast$ Tablet\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily Point$\ast$ Tablet\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
-This method is called to move the tablet (actually the person who own this tablet move) to another location on the map. 
-\begin{DoxyParams}{Parameters}
-{\em type} & the method used to compute the new location. For details see \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{Movable\+Agent\+::move()}} and \mbox{\hyperlink{class_person_a89843e85f14abc08422273c20252ae23}{Person\+::move()}}. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-a pointer to a Point object representing the new location on the map. 
+Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the displacement strategy and by the \mbox{\hyperlink{class_person}{Person}} object who owns this phone. The displacement strategy is set at the \mbox{\hyperlink{class_person}{Person}} object creation and currently two strategies are supported\+: \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}}. \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, any kind of \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \begin{DoxyReturn}{Returns}
+the final location after the displacement. 
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{Movable\+Agent}}.
+Implements \mbox{\hyperlink{class_movable_agent_a88b617f0e78c817634e5b587da045ab0}{Movable\+Agent}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=331pt]{class_tablet_a0021a8d61f496d84540f675b1cb7d080_cgraph}
+\includegraphics[width=331pt]{class_tablet_ab1b8c7591be0c6ea118c8ab1c17839bb_cgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{class_tablet_a3fae01e7d526699476221c6a686a4fba}\label{class_tablet_a3fae01e7d526699476221c6a686a4fba}} 

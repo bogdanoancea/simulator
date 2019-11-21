@@ -41,14 +41,16 @@
 #include <iostream>
 #include <sstream>
 #include <utility>
+#include <RandomWalkDriftDisplacement.h>
 
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay,
-		unsigned long intervalBetweenStays) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_changeDirection { false }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen,
+		unsigned long timeStay, unsigned long intervalBetweenStays) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
 				intervalBetweenStays } {
+	m_displacementMethod = nullptr;
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
@@ -83,12 +85,14 @@ const string Person::toString() const {
 	return (ss.str());
 }
 
-Point* Person::move(MovementType mvType) {
+Point* Person::move() {
 	unsigned long currentTime = getClock()->getCurrentTime();
+	Point* currentLocation = getLocation();
 	if (currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
-		setLocation(getLocation());
+		setLocation(currentLocation);
 		if (currentTime == m_nextStay + m_timeStay) {
-			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(1.0 / this->m_avgIntervalBetweenStays);
+			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(
+					1.0 / this->m_avgIntervalBetweenStays);
 			while (nextInterval % getClock()->getIncrement() != 0)
 				nextInterval++;
 
@@ -98,47 +102,15 @@ Point* Person::move(MovementType mvType) {
 				m_timeStay++;
 
 		}
-	} else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP)
-		randomWalkClosedMap();
-	else if (mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT)
-		randomWalkClosedMapDrift();
-	else
-		throw runtime_error("Movement type not yet implemented");
+	} else {
+		Point* pt = m_displacementMethod->generateNewLocation(currentLocation);
+		if (pt != currentLocation) {
+			this->getMap()->getGlobalFactory()->destroyGeometry(currentLocation);
+		}
+		setLocation(pt);
+	}
 
 	return (getLocation());
-}
-
-void Person::randomWalkClosedMap() {
-	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
-	Point* pt = generateNewLocation(theta);
-	setNewLocation(pt, false);
-}
-
-void Person::randomWalkClosedMapDrift() {
-	double theta = 0.0;
-	double trendAngle = Constants::SIM_TREND_ANGLE_1;
-	if (getClock()->getCurrentTime() >= getClock()->getFinalTime() / 2) {
-		trendAngle = Constants::SIM_TREND_ANGLE_2;
-	}
-	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
-	if (m_changeDirection) {
-		theta = theta + utils::PI / RandomNumberGenerator::instance()->generateUniformDouble(0.5, 1.5);
-	}
-	Point* pt = generateNewLocation(theta);
-	setNewLocation(pt, true);
-}
-
-Point* Person::generateNewLocation(double theta) {
-	double x = getLocation()->getCoordinate()->x;
-	double y = getLocation()->getCoordinate()->y;
-	double speed = getSpeed();
-	unsigned long delta_t = getClock()->getIncrement();
-	double newX = x + speed * cos(theta) * delta_t;
-	double newY = y + speed * sin(theta) * delta_t;
-	Coordinate c = Coordinate(newX, newY, 0);
-	Point* pt = getMap()->getGlobalFactory()->createPoint(c);
-	return pt;
 }
 
 unsigned long Person::getAvgTimeStay() const {
@@ -147,38 +119,6 @@ unsigned long Person::getAvgTimeStay() const {
 
 unsigned long Person::getAvgIntervalBetweenStays() const {
 	return (m_avgIntervalBetweenStays);
-}
-
-void Person::setNewLocation(Point* p, bool changeDirection) {
-	Geometry* g = getMap()->getBoundary();
-	if (p->within(g)) {
-		this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-		setLocation(p);
-	} else {
-		if (changeDirection)
-			m_changeDirection = !m_changeDirection;
-		setLocation(getLocation());
-		/*
-		 CoordinateSequence* cl = new CoordinateArraySequence();
-		 cl->add(Coordinate(getLocation()->getCoordinate()->x, getLocation()->getCoordinate()->y));
-		 cl->add(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y));
-
-		 LineString* ls = this->getMap()->getGlobalFactory()->createLineString(cl);
-		 Geometry* intersect = ls->intersection(g);
-		 LineString* intersect2 = dynamic_cast<LineString*>(intersect);
-		 Point* ptInt = intersect2->getEndPoint();
-		 //cout << ptInt->toString()  << endl;
-		 if (ptInt) {
-		 cout << ptInt->toString()  << endl;
-		 if(this->getClock()->getCurrentTime() == 2)
-		 cout << "la momentul 2 setez locatia2" << endl;
-		 this->getMap()->getGlobalFactory()->destroyGeometry(getLocation());
-		 setLocation(ptInt);
-		 }
-		 this->getMap()->getGlobalFactory()->destroyGeometry(ls);
-		 this->getMap()->getGlobalFactory()->destroyGeometry(p);
-		 */
-	}
 }
 
 bool Person::hasDevices() {
@@ -222,3 +162,6 @@ void Person::addDevice(string type, Agent* agent) {
 	m_idDevices.insert(std::pair<string, Agent*>(type, agent));
 }
 
+void Person::setDisplacementMethod(const std::shared_ptr<Displace>& displace) {
+	m_displacementMethod = displace;
+}

@@ -71,22 +71,12 @@ public:
 	const string toString() const override;
 
 	/**
-	 * A pure virtual method used to move the agent to a new location on the map.
-	 * @param type the type of the movement. At this moment there are two values accepted for this parameter:
-	 * MovementType::RANDOM_WALK_CLOSED_MAP and MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT.
-	 * MovementType::RANDOM_WALK_CLOSED_MAP means that
-	 * at each time instant, the direction is generated as a uniformly distributed random number and the step length
-	 * is computed multiplying the speed with the time interval set in the simulation configuration file. The agent can only
-	 * move inside the map boundary. If a step projects it outside the map, it stops on the boundary.
-	 * MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT means that there is a preference in the direction of the movement.
-	 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
-	 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
-	 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
-	 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, a MovableAgent can only move inside the map boundary.
-	 * If a step projects it outside the map, it stops on the boundary.
-	 * @return
+	 * A pure virtual method used to move the agent to a new location on the map. All the classes that inherit \class MovableAgent implement
+	 * this function. The actual implementation is based on a Strategy design pattern. \class Displace defines the displacement strategy
+	 * interface and the classes that inherits it implements the interface defining concrete displacement methods.
+	 * @return the final location after displacement.
 	 */
-	virtual Point* move(MovementType type) = 0;
+	virtual Point* move() = 0;
 
 	/**
 	 * Returns the speed of this agent.

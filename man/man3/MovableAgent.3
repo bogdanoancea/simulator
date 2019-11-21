@@ -1,4 +1,4 @@
-.TH "MovableAgent" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
+.TH "MovableAgent" 3 "Thu Nov 21 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -28,7 +28,7 @@ Inherited by \fBHoldableAgent\fP, and \fBPerson\fP\&.
 .RI "const string \fBtoString\fP () const override"
 .br
 .ti -1c
-.RI "virtual Point * \fBmove\fP (\fBMovementType\fP type)=0"
+.RI "virtual Point * \fBmove\fP ()=0"
 .br
 .ti -1c
 .RI "double \fBgetSpeed\fP () const"
@@ -46,7 +46,9 @@ Inherited by \fBHoldableAgent\fP, and \fBPerson\fP\&.
 .in -1c
 .SH "Detailed Description"
 .PP 
-This class represents an \fBAgent\fP that can move inside the map\&. This is an abstract class\&. It is used as a base class for all agents that can move\&. Currently \fBPerson\fP and \fBMobilePhone\fP classes inherits it and are already implemented\&. 
+This class represents an \fBAgent\fP that can move inside the map\&. This is an abstract class\&. It is used as a base class for all agents that can move\&. Currently \fBPerson\fP and \fBMobilePhone\fP classes inherits it and are already implemented\&.
+.PP
+A pure virtual method used to move the agent to a new location on the map\&. All the classes that inheritthis function\&. The actual implementation is based on a Strategy design pattern\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "MovableAgent::MovableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed)\fC [explicit]\fP"
@@ -92,18 +94,7 @@ the speed of this agent\&.
 .RE
 .PP
 
-.SS "virtual Point* MovableAgent::move (\fBMovementType\fP type)\fC [pure virtual]\fP"
-A pure virtual method used to move the agent to a new location on the map\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fItype\fP the type of the movement\&. At this moment there are two values accepted for this parameter: \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP and \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP means that at each time instant, the direction is generated as a uniformly distributed random number and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. The agent can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, a \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-.RE
-.PP
+.SS "virtual Point* MovableAgent::move ()\fC [pure virtual]\fP"
 
 .PP
 Implemented in \fBPerson\fP, \fBMobilePhone\fP, and \fBTablet\fP\&.

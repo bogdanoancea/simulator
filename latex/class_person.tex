@@ -6,7 +6,8 @@
 
 
 
-Inheritance diagram for Person\+:\nopagebreak
+Inheritance diagram for Person\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,11 +16,12 @@ Inheritance diagram for Person\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Person\+:\nopagebreak
+Collaboration diagram for Person\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{class_person__coll__graph}
+\includegraphics[width=350pt]{class_person__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -52,7 +54,7 @@ int \mbox{\hyperlink{class_person_a4b66dbee570398920b8fb6aacddd2559}{get\+Age}} 
 \item 
 void \mbox{\hyperlink{class_person_ac8ade54c27a0657c987c395ff04a9d46}{set\+Age}} (int age)
 \item 
-Point $\ast$ \mbox{\hyperlink{class_person_a89843e85f14abc08422273c20252ae23}{move}} (\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} mv\+Type) override
+virtual Point $\ast$ \mbox{\hyperlink{class_person_a922e0462a1e7eac6523a9a864ce27afc}{move}} () override
 \item 
 virtual void \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location}} (Point $\ast$pt) override
 \item 
@@ -63,17 +65,8 @@ void \mbox{\hyperlink{class_person_a3ce0a72a98c2e723e48dcd7b4d9af599}{add\+Devic
 unsigned long \mbox{\hyperlink{class_person_a2b01d9997db6f6d4555dbc5ac9898077}{get\+Avg\+Time\+Stay}} () const
 \item 
 unsigned long \mbox{\hyperlink{class_person_a59d3ea8e10928537043ee7b3d24a470c}{get\+Avg\+Interval\+Between\+Stays}} () const
-\end{DoxyCompactItemize}
-\subsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{class_person_a92afed7b9c170806afe8cfe0d46af6af}{random\+Walk\+Closed\+Map}} ()
-\item 
-void \mbox{\hyperlink{class_person_a43353854c1f8800cb5575d2cab71d720}{random\+Walk\+Closed\+Map\+Drift}} ()
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_a3d314ffa374b2c550e09253d041fc67f}{generate\+New\+Location}} (double theta)
-\item 
-void \mbox{\hyperlink{class_person_a69c7c176dcafd2023b9f43b26cd6de06}{set\+New\+Location}} (Point $\ast$p, bool change\+Direction)
+void \mbox{\hyperlink{class_person_a89ada26d3541bc82e514dae833dc959d}{set\+Displacement\+Method}} (const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \&displace)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -84,8 +77,6 @@ int \mbox{\hyperlink{class_person_a743e071da10a5ac9150f61df919cfbb4}{m\+\_\+age}
 \item 
 unordered\+\_\+multimap$<$ string, \mbox{\hyperlink{class_agent}{Agent}} $\ast$ $>$ \mbox{\hyperlink{class_person_a95b2e60a54b72aea51a7600048e76291}{m\+\_\+id\+Devices}}
 \item 
-bool \mbox{\hyperlink{class_person_a477ee8a358a38979d379e41072cbd0ac}{m\+\_\+change\+Direction}}
-\item 
 unsigned long \mbox{\hyperlink{class_person_a8c9502459dd59182d11f60f429b44457}{m\+\_\+avg\+Time\+Stay}}
 \item 
 unsigned long \mbox{\hyperlink{class_person_a5554109f1f3a7c466f02346d0061c6e7}{m\+\_\+time\+Stay}}
@@ -93,6 +84,8 @@ unsigned long \mbox{\hyperlink{class_person_a5554109f1f3a7c466f02346d0061c6e7}{m
 unsigned long \mbox{\hyperlink{class_person_a62a07c9565931a618a09be7510dde07c}{m\+\_\+avg\+Interval\+Between\+Stays}}
 \item 
 unsigned long \mbox{\hyperlink{class_person_ad8809184fc32b28b1bcc115b10493b55}{m\+\_\+next\+Stay}}
+\item 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \mbox{\hyperlink{class_person_a92ceead10a7ca858d2151391e4421843}{m\+\_\+displacement\+Method}}
 \end{DoxyCompactItemize}
 
 
@@ -193,12 +186,6 @@ Add a mobile device to this person. Internally, all mobile devices are kept in a
 Builds a string containing a list with the ids of the mobile devices that this person owns. \begin{DoxyReturn}{Returns}
 a string containing a list with the ids of the mobile devices that this person owns. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_person_a3d314ffa374b2c550e09253d041fc67f}\label{class_person_a3d314ffa374b2c550e09253d041fc67f}} 
-\index{Person@{Person}!generateNewLocation@{generateNewLocation}}
-\index{generateNewLocation@{generateNewLocation}!Person@{Person}}
-\subsubsection{\texorpdfstring{generateNewLocation()}{generateNewLocation()}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::generate\+New\+Location (\begin{DoxyParamCaption}\item[{double}]{theta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
 \mbox{\Hypertarget{class_person_a4b66dbee570398920b8fb6aacddd2559}\label{class_person_a4b66dbee570398920b8fb6aacddd2559}} 
 \index{Person@{Person}!getAge@{getAge}}
 \index{getAge@{getAge}!Person@{Person}}
@@ -257,37 +244,18 @@ Reimplemented from \mbox{\hyperlink{class_movable_agent_abcc1218876c39c996f2cb1e
 returns true if this person has at least a mobile device, false otherwise. \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_person_a89843e85f14abc08422273c20252ae23}\label{class_person_a89843e85f14abc08422273c20252ae23}} 
+\mbox{\Hypertarget{class_person_a922e0462a1e7eac6523a9a864ce27afc}\label{class_person_a922e0462a1e7eac6523a9a864ce27afc}} 
 \index{Person@{Person}!move@{move}}
 \index{move@{move}!Person@{Person}}
 \subsubsection{\texorpdfstring{move()}{move()}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual Point$\ast$ Person\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Move the person to another location. Computes the coordinates of the new location and then call \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location()}} with this new coordinates.
-
-
-\begin{DoxyParams}{Parameters}
-{\em mv\+Type} & specifies the method used to compute the new position of the person, i.\+e. how the direction and the length of the step are computed. It can have the following values\+: R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP -\/ the agent moves randomly inside the map boundary. The direction is generated as a random value at each time step and the step length is computed multiplying the speed with the time interval. R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT\+: the agent moves in a preferential direction. There are two constants defining these directions\+: S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4). The actual direction is generated as a normally distributed random value with means equals to these constants and sad = 0.\+1. In both cases, a \mbox{\hyperlink{class_person}{Person}} makes several steps then a stop. The average time length of a stop is given is the simulation configuration file while the actual values are generated as normal distributed random values with the mean read from the configuration file and and sd = 20\% from mean. The average time interval elapsed between two stop is read from the simulation configuration file and the actual values are generated as exponential distributed random values. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-a pointer to a Point object that represents the new location. 
+Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the displacement strategy set at the \mbox{\hyperlink{class_person}{Person}} creation moment and currently two strategies are supported\+: \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}}. \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, any kind of \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \begin{DoxyReturn}{Returns}
+the final location after the displacement. 
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{Movable\+Agent}}.
-
-\mbox{\Hypertarget{class_person_a92afed7b9c170806afe8cfe0d46af6af}\label{class_person_a92afed7b9c170806afe8cfe0d46af6af}} 
-\index{Person@{Person}!randomWalkClosedMap@{randomWalkClosedMap}}
-\index{randomWalkClosedMap@{randomWalkClosedMap}!Person@{Person}}
-\subsubsection{\texorpdfstring{randomWalkClosedMap()}{randomWalkClosedMap()}}
-{\footnotesize\ttfamily void Person\+::random\+Walk\+Closed\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a43353854c1f8800cb5575d2cab71d720}\label{class_person_a43353854c1f8800cb5575d2cab71d720}} 
-\index{Person@{Person}!randomWalkClosedMapDrift@{randomWalkClosedMapDrift}}
-\index{randomWalkClosedMapDrift@{randomWalkClosedMapDrift}!Person@{Person}}
-\subsubsection{\texorpdfstring{randomWalkClosedMapDrift()}{randomWalkClosedMapDrift()}}
-{\footnotesize\ttfamily void Person\+::random\+Walk\+Closed\+Map\+Drift (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+Implements \mbox{\hyperlink{class_movable_agent_a88b617f0e78c817634e5b587da045ab0}{Movable\+Agent}}.
 
 \mbox{\Hypertarget{class_person_ac8ade54c27a0657c987c395ff04a9d46}\label{class_person_ac8ade54c27a0657c987c395ff04a9d46}} 
 \index{Person@{Person}!setAge@{setAge}}
@@ -298,6 +266,17 @@ Implements \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f
 Sets the age of the person. 
 \begin{DoxyParams}{Parameters}
 {\em age} & the age of the person. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_person_a89ada26d3541bc82e514dae833dc959d}\label{class_person_a89ada26d3541bc82e514dae833dc959d}} 
+\index{Person@{Person}!setDisplacementMethod@{setDisplacementMethod}}
+\index{setDisplacementMethod@{setDisplacementMethod}!Person@{Person}}
+\subsubsection{\texorpdfstring{setDisplacementMethod()}{setDisplacementMethod()}}
+{\footnotesize\ttfamily void Person\+::set\+Displacement\+Method (\begin{DoxyParamCaption}\item[{const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \&}]{displace }\end{DoxyParamCaption})}
+
+Sets the displacement algorithm. 
+\begin{DoxyParams}{Parameters}
+{\em displace} & a reference to an implementation of the displacement method. Currently two displacement methods are supported and they are implemented in \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} classes. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_person_a05f4ac2107d59e03f0f336eda08aa358}\label{class_person_a05f4ac2107d59e03f0f336eda08aa358}} 
@@ -314,12 +293,6 @@ Sets the location of the person on the map.
 
 
 Reimplemented from \mbox{\hyperlink{class_locatable_agent_a754b237c404b77714fedd397f214bc02}{Locatable\+Agent}}.
-
-\mbox{\Hypertarget{class_person_a69c7c176dcafd2023b9f43b26cd6de06}\label{class_person_a69c7c176dcafd2023b9f43b26cd6de06}} 
-\index{Person@{Person}!setNewLocation@{setNewLocation}}
-\index{setNewLocation@{setNewLocation}!Person@{Person}}
-\subsubsection{\texorpdfstring{setNewLocation()}{setNewLocation()}}
-{\footnotesize\ttfamily void Person\+::set\+New\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p,  }\item[{bool}]{change\+Direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_person_a68872538da519d0a04297f43376db27c}\label{class_person_a68872538da519d0a04297f43376db27c}} 
 \index{Person@{Person}!toString@{toString}}
@@ -355,11 +328,11 @@ Reimplemented from \mbox{\hyperlink{class_movable_agent_a1dee2a6bf93f01006fadfb6
 \subsubsection{\texorpdfstring{m\_avgTimeStay}{m\_avgTimeStay}}
 {\footnotesize\ttfamily unsigned long Person\+::m\+\_\+avg\+Time\+Stay\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{class_person_a477ee8a358a38979d379e41072cbd0ac}\label{class_person_a477ee8a358a38979d379e41072cbd0ac}} 
-\index{Person@{Person}!m\_changeDirection@{m\_changeDirection}}
-\index{m\_changeDirection@{m\_changeDirection}!Person@{Person}}
-\subsubsection{\texorpdfstring{m\_changeDirection}{m\_changeDirection}}
-{\footnotesize\ttfamily bool Person\+::m\+\_\+change\+Direction\hspace{0.3cm}{\ttfamily [private]}}
+\mbox{\Hypertarget{class_person_a92ceead10a7ca858d2151391e4421843}\label{class_person_a92ceead10a7ca858d2151391e4421843}} 
+\index{Person@{Person}!m\_displacementMethod@{m\_displacementMethod}}
+\index{m\_displacementMethod@{m\_displacementMethod}!Person@{Person}}
+\subsubsection{\texorpdfstring{m\_displacementMethod}{m\_displacementMethod}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$\mbox{\hyperlink{class_displace}{Displace}}$>$ Person\+::m\+\_\+displacement\+Method\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}\label{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}} 
 \index{Person@{Person}!m\_gender@{m\_gender}}

@@ -33,7 +33,7 @@ const string \mbox{\hyperlink{class_mobile_phone_a1eeac3141baafa75ebcf26fc3a0e40
 \item 
 const string \mbox{\hyperlink{class_mobile_phone_a2b7e556d12a43e380786ad0eccf3ce04}{to\+String}} () const override
 \item 
-Point $\ast$ \mbox{\hyperlink{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}{move}} (\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}} mv\+Type) override
+Point $\ast$ \mbox{\hyperlink{class_mobile_phone_a785d0cac08252386603c702ad8f38c5b}{move}} () override
 \item 
 bool \mbox{\hyperlink{class_mobile_phone_ad91afa811cea8ee124167f5941bcda1b}{try\+Connect}} () override
 \item 
@@ -124,23 +124,18 @@ the name of this class.
 
 Reimplemented from \mbox{\hyperlink{class_holdable_agent_ab330bb40de51a957ef8826af629f94a2}{Holdable\+Agent}}.
 
-\mbox{\Hypertarget{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}\label{class_mobile_phone_a92d77fa5810ddb9c4c482d9c9baea456}} 
+\mbox{\Hypertarget{class_mobile_phone_a785d0cac08252386603c702ad8f38c5b}\label{class_mobile_phone_a785d0cac08252386603c702ad8f38c5b}} 
 \index{MobilePhone@{MobilePhone}!move@{move}}
 \index{move@{move}!MobilePhone@{MobilePhone}}
 \subsubsection{\texorpdfstring{move()}{move()}}
-{\footnotesize\ttfamily Point$\ast$ Mobile\+Phone\+::move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493}{Movement\+Type}}}]{mv\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily Point$\ast$ Mobile\+Phone\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the mv\+Type parameter and by the \mbox{\hyperlink{class_person}{Person}} object who owns this phone. 
-\begin{DoxyParams}{Parameters}
-{\em mv\+Type} & selects the way people and their phones are moving on the map. At this moment only R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP and R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT are implemented. R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+AP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{_movement_type_8h_a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810}{Movement\+Type\+::\+R\+A\+N\+D\+O\+M\+\_\+\+W\+A\+L\+K\+\_\+\+C\+L\+O\+S\+E\+D\+\_\+\+M\+A\+P\+\_\+\+W\+I\+T\+H\+\_\+\+D\+R\+I\+FT}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, a \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-the final location after the movement. 
+Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the displacement strategy and by the \mbox{\hyperlink{class_person}{Person}} object who owns this phone. The displacement strategy is set at the \mbox{\hyperlink{class_person}{Person}} object creation and currently two strategies are supported\+: \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}}. \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, any kind of \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \begin{DoxyReturn}{Returns}
+the final location after the displacement. 
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{class_movable_agent_a35299e133c6787689b553d74ce5f98f0}{Movable\+Agent}}.
+Implements \mbox{\hyperlink{class_movable_agent_a88b617f0e78c817634e5b587da045ab0}{Movable\+Agent}}.
 
 \mbox{\Hypertarget{class_mobile_phone_ad4db8203e8f2e974733357d7c3e6cf28}\label{class_mobile_phone_ad4db8203e8f2e974733357d7c3e6cf28}} 
 \index{MobilePhone@{MobilePhone}!setMobileOperator@{setMobileOperator}}

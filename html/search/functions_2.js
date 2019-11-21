@@ -6,6 +6,7 @@ var searchData=
   ['computemaxpower',['computeMaxPower',['../class_e_m_field.html#a01cfb9fea3dadfcfe5d6f00551193acd',1,'EMField']]],
   ['computemaxquality',['computeMaxQuality',['../class_e_m_field.html#ac866f6224e34895a0ee085c4baf43a01',1,'EMField']]],
   ['computemaxstrength',['computeMaxStrength',['../class_e_m_field.html#a9a3cdbca4fcf408ce58a30fb98de1bbb',1,'EMField']]],
+  ['computenewlocation',['computeNewLocation',['../class_displace.html#a4d5526361f570922737d24e98773e45a',1,'Displace']]],
   ['computepower',['computePower',['../class_antenna.html#a7caa8004be14f97db64fdf7ae46d6c97',1,'Antenna::computePower(const Point *p) const'],['../class_antenna.html#a0192376f8702c5300fe1f13ce267b305',1,'Antenna::computePower(const Coordinate c) const']]],
   ['computeprobability',['computeProbability',['../class_grid.html#a15b32bc4e110b63b3506cd932afa5e2a',1,'Grid']]],
   ['computesignalmeasure',['computeSignalMeasure',['../class_antenna.html#a2fab50e7dbe01acec58d7fe89798e9b6',1,'Antenna']]],

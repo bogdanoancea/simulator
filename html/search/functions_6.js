@@ -6,7 +6,7 @@ var searchData=
   ['generateexponentialdouble',['generateExponentialDouble',['../class_random_number_generator.html#a95d897f9265ece8d5ee18fbf2802b844',1,'RandomNumberGenerator']]],
   ['generatefixedpoints',['generateFixedPoints',['../namespaceutils.html#acd746b43155fa3033001f28a91a71cec',1,'utils']]],
   ['generatemobilephones',['generateMobilePhones',['../class_world.html#a9ba6bd08d85c5f610ea30bf4f74b925d',1,'World']]],
-  ['generatenewlocation',['generateNewLocation',['../class_person.html#a3d314ffa374b2c550e09253d041fc67f',1,'Person']]],
+  ['generatenewlocation',['generateNewLocation',['../class_displace.html#ab35e5c066b2f4ad7ff942be00c862564',1,'Displace::generateNewLocation()'],['../class_random_walk_displacement.html#abce6bc5d5bd68f685b8eaa7d956834c4',1,'RandomWalkDisplacement::generateNewLocation()'],['../class_random_walk_drift_displacement.html#a97f69f73694bc5d5813faed4fc704edf',1,'RandomWalkDriftDisplacement::generateNewLocation()']]],
   ['generatenormal2double',['generateNormal2Double',['../class_random_number_generator.html#a6a8cdbfdb3343a10aab18b83fc6ce0dc',1,'RandomNumberGenerator']]],
   ['generatenormaldouble',['generateNormalDouble',['../class_random_number_generator.html#a2598d9959bf595c3703c1d8e24f6e2f1',1,'RandomNumberGenerator::generateNormalDouble(const double m, const double sd)'],['../class_random_number_generator.html#a8a08591104b4fd1943eade351aa126c9',1,'RandomNumberGenerator::generateNormalDouble(const double m, const double sd, const int n)']]],
   ['generatepoints',['generatePoints',['../namespaceutils.html#a16e957d5c26b39c840f6e109dd19d45d',1,'utils']]],

@@ -9,6 +9,9 @@ AntennaInfo.o\
 CSVParser.o\
 Clock.o\
 Constants.o\
+Displace.o\
+RandomWalkDisplacement.o\
+RandomWalkDriftDisplacement.o\
 MobileOperator.o\
 EMField.o\
 EventType.o\
