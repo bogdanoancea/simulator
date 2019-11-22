@@ -31,7 +31,7 @@
 
 /**
  * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
- * the random walk with drift behaviour, overriding the \code{generateNewLocation()} method from its superclass, Displace.
+ * the random walk with drift behaviour, overriding the generateNewLocation() method from its superclass, Displace.
  */
 class RandomWalkDriftDisplacement: public Displace {
 public:

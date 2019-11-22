@@ -34,7 +34,7 @@ using namespace geos::geom;
 
 /**
  * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
- * the pure random walk behaviour, overriding the \code{generateNewLocation()} method from its superclass, Displace.
+ * the pure random walk behaviour, overriding the generateNewLocation() method from its superclass, Displace.
  */
 class RandomWalkDisplacement: public Displace {
 

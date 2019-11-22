@@ -71,8 +71,8 @@ public:
 	const string toString() const override;
 
 	/**
-	 * A pure virtual method used to move the agent to a new location on the map. All the classes that inherit \class MovableAgent implement
-	 * this function. The actual implementation is based on a Strategy design pattern. \class Displace defines the displacement strategy
+	 * A pure virtual method used to move the agent to a new location on the map. All the classes that inherit MovableAgent implement
+	 * this function. The actual implementation is based on a Strategy design pattern. Displace defines the displacement strategy
 	 * interface and the classes that inherits it implements the interface defining concrete displacement methods.
 	 * @return the final location after displacement.
 	 */
