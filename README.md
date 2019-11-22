@@ -86,7 +86,7 @@ source code and type:
 <br>$ make install
 
 <p> The executable is copied under the <I>Release folder</I>. To run a simulation type the following:
-<br>$simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml 
+<br>$Release/simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml 
 
 <p> We provide sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the root folder of the simulator source code. 
 The output file is prob.csv.
