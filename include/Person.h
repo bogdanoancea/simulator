@@ -123,6 +123,7 @@ public:
 	virtual Point* move() override;
 
 	/**
+	 * \callgraph
 	 * Sets the location of the person on the map.
 	 * @param pt a pointer to a Point object that represent the location of the person on the map.
 	 * If the person has mobile devices (phone, tablets) this function calls setLocation()

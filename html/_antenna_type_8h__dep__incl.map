@@ -1,8 +1,7 @@
 <map id="include/AntennaType.h" name="include/AntennaType.h">
-<area shape="rect" id="node1" title=" " alt="" coords="62,5,219,31"/>
-<area shape="rect" id="node2" href="$_antenna_8h.html" title=" " alt="" coords="77,79,205,104"/>
-<area shape="rect" id="node3" href="$_e_m_field_8h.html" title=" " alt="" coords="5,299,133,324"/>
-<area shape="rect" id="node4" href="$_mobile_phone_8h.html" title=" " alt="" coords="63,152,219,177"/>
-<area shape="rect" id="node6" href="$_world_8h.html" title=" " alt="" coords="198,225,311,251"/>
-<area shape="rect" id="node5" href="$_grid_8h.html" title=" " alt="" coords="68,225,171,251"/>
+<area shape="rect" id="node2" href="$_antenna_8h.html" title="include/Antenna.h" alt="" coords="75,80,201,107"/>
+<area shape="rect" id="node3" href="$_e_m_field_8h.html" title="include/EMField.h" alt="" coords="5,304,132,331"/>
+<area shape="rect" id="node4" href="$_mobile_phone_8h.html" title="include/MobilePhone.h" alt="" coords="61,155,215,181"/>
+<area shape="rect" id="node6" href="$_world_8h.html" title="include/World.h" alt="" coords="194,229,306,256"/>
+<area shape="rect" id="node5" href="$_grid_8h.html" title="include/Grid.h" alt="" coords="63,229,165,256"/>
 </map>

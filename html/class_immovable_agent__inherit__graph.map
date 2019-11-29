@@ -1,6 +1,5 @@
 <map id="ImmovableAgent" name="ImmovableAgent">
-<area shape="rect" id="node1" title=" " alt="" coords="65,461,215,575"/>
-<area shape="rect" id="node4" href="$class_antenna.html" title=" " alt="" coords="5,623,275,1749"/>
-<area shape="rect" id="node2" href="$class_locatable_agent.html" title=" " alt="" coords="69,260,211,413"/>
-<area shape="rect" id="node3" href="$class_agent.html" title=" " alt="" coords="87,5,194,212"/>
+<area shape="rect" id="node4" href="$class_antenna.html" title="{Antenna\n|&#45; m_ple\l&#45; m_power\l&#45; m_maxConnections\l&#45; m_Smid\l&#45; m_SSteep\l&#45; m_cell\l&#45; m_devices\l&#45; m_type\l&#45; m_file\l&#45; m_S0\land 16 more...\l|+ Antenna()\l+ Antenna()\l+ ~Antenna()\l+ getName()\l+ toString()\l+ getPLE()\l+ setPLE()\l+ getPower()\l+ setPower()\l+ getMaxConnections()\land 26 more...\l&#45; alreadyRegistered()\l&#45; registerEvent()\l&#45; getNumActiveConections()\l&#45; S0()\l&#45; SDist()\l&#45; computeSignalQualityOmnidirectional()\l&#45; computeSignalQualityDirectional()\l&#45; computeSignalStrengthDirectional()\l&#45; computeSignalStrengthOmnidirectional()\l&#45; setLocationWithElevation()\land 9 more...\l}" alt="" coords="5,660,268,1192"/>
+<area shape="rect" id="node2" href="$class_locatable_agent.html" title="{LocatableAgent\n|&#45; m_location\l|+ LocatableAgent()\l+ ~LocatableAgent()\l+ getName()\l+ toString()\l+ getLocation()\l+ setLocation()\l+ dumpLocation()\l}" alt="" coords="67,277,207,443"/>
+<area shape="rect" id="node3" href="$class_agent.html" title="{Agent\n|&#45; m_map\l&#45; m_id\l&#45; m_clock\l|+ Agent()\l+ ~Agent()\l+ operator==()\l+ getName()\l+ toString()\l+ getMap()\l+ setMap()\l+ getClock()\l+ getId()\l}" alt="" coords="84,5,189,229"/>
 </map>
