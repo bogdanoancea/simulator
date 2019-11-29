@@ -29,11 +29,11 @@
 #include <Map.h>
 #include <Clock.h>
 #include <string>
-
+#include <interface/IAgent.h>
 /**
  * This is an abstract class, the base class for all agents involved in a simulation.
  */
-class Agent {
+class Agent: public IAgent {
 public:
 
 	/**
