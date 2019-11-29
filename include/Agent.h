@@ -36,6 +36,8 @@
 class Agent: public IAgent {
 public:
 
+	Agent();
+
 	/**
 	 * Constructor of the class. Agent is the base class for all agents used in the simulator: persons, antennas, devices, mnos. Agent is an abstract class,
 	 * users should build specific subclasses.
@@ -57,43 +59,25 @@ public:
 	 */
 	bool operator==(const Agent& a);
 
-	/**
-	 * This function is used to obtain the name of the class. It is a pure virtual function, all subclasses
-	 * implement it and return the actual name of the class.
-	 * @return the name of the class.
-	 */
-	virtual const string getName() const = 0;
-
-	/**
-	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
-	 * the description of concrete agents.
-	 * @return a string representation of the class content. The values of the members are written in this string.
-	 */
-	virtual const string toString() const = 0;
 
 	/**
 	 * Getter that returns a pointer to the Map object passed to the constructor when an object was build.
 	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
-	const Map* getMap() const;
+	const Map* getMap() const override;
 
-	/**
-	 * Sets the Map to be used by this agent during the simulation. It is not advisable to change the map during a simulation.
-	 * @param map pointer to a Map object.
-	 */
-	void setMap(const Map* map);
 
 	/**
 	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
 	 * @return
 	 */
-	const Clock* getClock() const;
+	const Clock* getClock() const override;
 
 	/**
 	 * Returns the id of the object.
 	 * @return the id of the object.
 	 */
-	const unsigned long getId() const ;
+	const unsigned long getId() const override;
 
 private:
 	const Map* m_map;
