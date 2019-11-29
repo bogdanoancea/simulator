@@ -26,6 +26,9 @@
 #define INCLUDE_INTERFACE_IMAP_H_
 
 #include <geos/geom/GeometryFactory.h>
+#include <geos/geom/Geometry.h>
+#include <string>
+#include <geos/geom/Point.h>
 
 using namespace std;
 using namespace geos;
@@ -37,7 +40,8 @@ class IMap {
 public:
 
 	virtual Geometry* getBoundary() const = 0;
-	virtual void setBoundary(Geometry* boundary) = 0;
+	virtual void addGrid(double dimTileX, double dimTileY) = 0;
+
 	virtual unsigned long getNoTilesX() const = 0;
 	virtual unsigned long getNoTilesY() const = 0;
 	virtual double getXTileDim() const = 0;
@@ -50,14 +54,6 @@ public:
 	virtual unsigned long getTileNo(double x, double y) const = 0;
 	virtual void dumpGrid(const string& gridFileName) const = 0;
 	virtual Coordinate* getTileCenters() const = 0;
-
-
-
-
-
-
-
-
 };
 
 #endif /* INCLUDE_INTERFACE_IMAP_H_ */
