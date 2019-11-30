@@ -54,6 +54,7 @@ public:
 	virtual unsigned long getTileNo(double x, double y) const = 0;
 	virtual void dumpGrid(const string& gridFileName) const = 0;
 	virtual Coordinate* getTileCenters() const = 0;
+
 };
 
 #endif /* INCLUDE_INTERFACE_IMAP_H_ */
