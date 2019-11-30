@@ -61,7 +61,6 @@ functions from JTS.
 <p>The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
 https://trac.osgeo.org/geos. Instructions how to build the GEOS C++ library are provided here: https://trac.osgeo.org/geos/wiki/BuildingOnUnixWithAutotools
 Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the folder where your source code is located and then type
-<br>$ ./autogen.sh
 <br>$ ./configure
 <br>$ make
 <br>$ make install
