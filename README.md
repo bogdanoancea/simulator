@@ -93,7 +93,6 @@ The output file is prob.csv.
 <p>
 <b>How to build the application under <I>Linux</I> or <I>Mac OS X</I> operating systems</b>
 <p>1. Download GEOS C++ library from https://trac.osgeo.org/geos. Build the library by typing:
-<br>$ ./autogen.sh
 <br>$ ./configure
 <br>$ make
 <br>$ make install
