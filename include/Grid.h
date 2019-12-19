@@ -101,25 +101,8 @@ public:
 	 */
 	double getYOrigin() const;
 
-	/**
-	 * @return a string representation of an object of type Grid. This is useful to write a textual description of the grid in a file
-	 * for later processing.
-	 */
-	string toString() const;
 
-	/**
-	 * Returns the tile index on X axis that contains a given point in space, specified by p.
-	 * @param p a pointer to the point for which we need the tile index.
-	 * @return the tile index on X axis that contains the point specified by p, i.e. a number between 0 and getNoTilesX() - 1.
-	 */
-	unsigned long getTileIndexX(const Point* p) const;
 
-	/**
-	 * Returns the tile index on Y axis that contains a given point in space, specified by p.
-	 * @param p the point in space for which we need the tile index.
-	 * @return the tile index on Y axis that contains the point specified by p, i.e. a number between 0 and getNoTilesY() - 1.
-	 */
-	unsigned long getTileIndexY(const Point* p) const;
 
 	/**
 	 * Computes the total number of tiles in the grid.
@@ -158,8 +141,6 @@ public:
 	 */
 	unsigned long getTileNo(const Point* p) const;
 
-	unsigned long getTileIndexX(double x) const;
-	unsigned long getTileIndexY(double y) const;
 
 	/**
 	 * Computes the tile index of the tile that contains a point with coordinates indicated by x and y.
@@ -183,7 +164,6 @@ public:
 	Coordinate* getTileCenters() const;
 
 private:
-	//Map* m_map;
 	double m_xOrigin;
 	double m_yOrigin;
 	double m_xTileDim;
@@ -192,7 +172,33 @@ private:
 	unsigned long m_noTilesY;
 	Coordinate* m_tileCenters;
 
+
+	unsigned long getTileIndexX(double x) const;
+	unsigned long getTileIndexY(double y) const;
+	/**
+	 * Returns the tile index on X axis that contains a given point in space, specified by p.
+	 * @param p a pointer to the point for which we need the tile index.
+	 * @return the tile index on X axis that contains the point specified by p, i.e. a number between 0 and getNoTilesX() - 1.
+	 */
+	unsigned long getTileIndexX(const Point* p) const;
+
+	/**
+	 * Returns the tile index on Y axis that contains a given point in space, specified by p.
+	 * @param p the point in space for which we need the tile index.
+	 * @return the tile index on Y axis that contains the point specified by p, i.e. a number between 0 and getNoTilesY() - 1.
+	 */
+	unsigned long getTileIndexY(const Point* p) const;
+
+	/**
+	 * @return a string representation of an object of type Grid. This is useful to write a textual description of the grid in a file
+	 * for later processing.
+	 */
+	string toString() const;
+
+
+
 	Coordinate* computeTileCenters();
+
 	vector<double> useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
 	vector<double> useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
 

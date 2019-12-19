@@ -25,6 +25,11 @@
 
 #include <Agent.h>
 
+Agent::Agent() : m_id{0} {
+	m_map = nullptr;
+	m_clock = nullptr;
+}
+
 Agent::Agent(const Map* m, const unsigned long id, const Clock* clock) :
 		m_id { id } {
 	m_map = m;
@@ -42,9 +47,6 @@ const Map* Agent::getMap() const {
 	return (m_map);
 }
 
-void Agent::setMap(const Map* map) {
-	m_map = map;
-}
 
 const Clock* Agent::getClock() const {
 	return (m_clock);
