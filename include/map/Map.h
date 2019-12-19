@@ -26,9 +26,8 @@
 #define MAP_H
 
 #include <geos/geom/GeometryFactory.h>
-#include <map/Grid.h>
 #include <string>
-
+#include <map/Grid.h>
 
 using namespace std;
 using namespace geos;
