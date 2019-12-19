@@ -23,11 +23,11 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#ifndef INCLUDE_INTERFACE_IAGENT_H_
-#define INCLUDE_INTERFACE_IAGENT_H_
+#ifndef INCLUDE_MAP_IAGENT_H_
+#define INCLUDE_MAP_IAGENT_H_
 
+#include <WKTMap.h>
 #include <string>
-#include "../Map.h"
 #include "../Clock.h"
 
 
@@ -49,7 +49,7 @@ public:
 	 * Getter that returns a pointer to the Map object passed to the constructor when an object was build.
 	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
-	virtual const Map* getMap() const = 0;
+	virtual const WKTMap* getMap() const = 0;
 
 	/**
 	* Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
@@ -66,4 +66,4 @@ public:
 
 };
 
-#endif /* INCLUDE_INTERFACE_IAGENT_H_ */
+#endif /* INCLUDE_MAP_IAGENT_H_ */

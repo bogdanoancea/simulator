@@ -26,18 +26,15 @@
 #ifndef AGENT_H
 #define AGENT_H
 
-#include <Map.h>
+#include <map/Map.h>
 #include <Clock.h>
-#include <string>
-#include <interface/IAgent.h>
+
 /**
  * This is an abstract class, the base class for all agents involved in a simulation.
  */
-class Agent: public IAgent {
+class Agent {
 public:
-
 	Agent();
-
 	/**
 	 * Constructor of the class. Agent is the base class for all agents used in the simulator: persons, antennas, devices, mnos. Agent is an abstract class,
 	 * users should build specific subclasses.
@@ -64,20 +61,29 @@ public:
 	 * Getter that returns a pointer to the Map object passed to the constructor when an object was build.
 	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
-	const Map* getMap() const override;
+	virtual const Map* getMap() const;
 
 
 	/**
 	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
 	 * @return
 	 */
-	const Clock* getClock() const override;
+	virtual const Clock* getClock() const;
 
 	/**
 	 * Returns the id of the object.
 	 * @return the id of the object.
 	 */
-	const unsigned long getId() const override;
+	virtual const unsigned long getId() const;
+
+	virtual const string getName() const = 0;
+
+	/**
+	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
+	 * the description of concrete agents.
+	 * @return a string representation of the class content. The values of the members are written in this string.
+	 */
+	virtual const string toString() const = 0;
 
 private:
 	const Map* m_map;

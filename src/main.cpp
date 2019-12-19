@@ -1,30 +1,36 @@
-#include <AgentsCollection.h>
-#include <Antenna.h>
+#include <agent/AgentsCollection.h>
+#include <agent/Antenna.h>
+#include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
+#include <agent/MobilePhone.h>
+#include <agent/Person.h>
+#include <AntennaInfo.h>
+#include <crtdefs.h>
+#include <Clock.h>
+#include <Constants.h>
+#include <CSVparser.hpp>
+#include <EMField.h>
+#include <geos/geom/Coordinate.h>
 #include <geos/io/WKTWriter.h>
 #include <InputParser.h>
-#include <Map.h>
-#include <MobilePhone.h>
-#include <Person.h>
+#include <map/WKTMap.h>
+#include <PriorType.h>
 #include <Utils.h>
 #include <World.h>
+#include <algorithm>
 #include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <stdexcept>
+#include <map>
+#include <new>
+#include <sstream>
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
 #include <vector>
-#include <Grid.h>
-#include <CSVparser.hpp>
-#include <AntennaInfo.h>
-#include <iomanip>
-#include <Constants.h>
-#include<algorithm>
-#include <EMField.h>
-#include <map>
-#include <RandomNumberGenerator.h>
-#include <SimException.h>
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
@@ -76,7 +82,7 @@ int main(int argc, char** argv) {
 		if (mapFileName.empty())
 			throw runtime_error("no map file!");
 		else
-			map = new Map(mapFileName);
+			map = new WKTMap(mapFileName);
 
 		geos::io::WKTWriter writter;
 		cout << "Our world has a map:" << endl << writter.write(map->getBoundary()) << endl;
@@ -123,13 +129,13 @@ int main(int argc, char** argv) {
 			}
 		}
 		w.runSimulation();
-		w.getMap()->getGrid()->dumpGrid(w.getGridFilename());
+		w.getMap()->dumpGrid(w.getGridFilename());
 		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 
-		unsigned long noTiles = map->getGrid()->getNoTiles();
-		Coordinate* tileCenters = w.getMap()->getGrid()->getTileCenters();
+		unsigned long noTiles = map->getNoTiles();
+		Coordinate* tileCenters = w.getMap()->getTileCenters();
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 			MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 			vector<AntennaInfo> tmp;
@@ -158,7 +164,7 @@ int main(int argc, char** argv) {
 				antennaInfoFile.open(name, ios::out);
 				antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
 				for (AntennaInfo& ai : tmp) {
-					antennaInfoFile << ai.toString() << sep << w.getMap()->getGrid()->getTileNo(ai.getX(), ai.getY()) << endl;
+					antennaInfoFile << ai.toString() << sep << w.getMap()->getTileNo(ai.getX(), ai.getY()) << endl;
 				}
 				antennaInfoFile.close();
 			}
@@ -177,12 +183,11 @@ int main(int argc, char** argv) {
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
-				EMField::instance()->sumSignalQuality(map->getGrid(), mo->getId());
+				EMField::instance()->sumSignalQuality(map, mo->getId());
 			}
 
 			ofstream p_file;
-			const Grid* g = w.getMap()->getGrid();
-			unsigned long noTiles = g->getNoTiles();
+			unsigned long noTiles = w.getMap()->getNoTiles();
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
 				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
@@ -201,12 +206,12 @@ int main(int argc, char** argv) {
 						p_file << t << sep << m->getId() << sep;
 						ostringstream probs;
 
-						vector<double> p = map->getGrid()->computeProbability(t, m, data[mo->getId()], itra, w.getPrior());
-						for (unsigned long i = 0; i < map->getGrid()->getNoTiles() - 1; i++) {
+						vector<double> p = utils::computeProbability(map, t, m, data[mo->getId()], itra, w.getPrior());
+						for (unsigned long i = 0; i < map->getNoTiles() - 1; i++) {
 							probs << fixed << setprecision(15) << p[i] << sep;
 							//cout << p[i] << ",";
 						}
-						probs << fixed << setprecision(15) << p[map->getGrid()->getNoTiles() - 1];
+						probs << fixed << setprecision(15) << p[map->getNoTiles() - 1];
 						//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
 						p_file << probs.str() << endl;
 					}

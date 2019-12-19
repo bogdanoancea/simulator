@@ -26,12 +26,12 @@
 #ifndef HOLDABLEAGENT_H_
 #define HOLDABLEAGENT_H_
 
-#include <MovableAgent.h>
-#include <Clock.h>
+
+
+#include <agent/MovableAgent.h>
 #include <string>
-
+#include <vector>
 class Antenna;
-
 /**
  * This is the superclass for all agents that represent a device that can by held by a person.
  */

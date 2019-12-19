@@ -16,34 +16,38 @@
  *
  * A data simulator for mobile phone network events
  *
- * Tablet.cpp
+ * MovableAgent.cpp
  *
- *  Created on: Apr 5, 2019
+ *  Created on: Apr 4, 2019
  *      Author: Bogdan Oancea
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <Tablet.h>
-#include <iostream>
+#include <agent/MovableAgent.h>
+#include <iomanip>
+#include <sstream>
 
-Tablet::Tablet(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock) :
-		HoldableAgent(m, id, initPosition, nullptr, clock) {
-// TODO Auto-generated constructor stub
-
+MovableAgent::MovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock, double initialSpeed) :
+		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
 }
 
-Tablet::~Tablet() {
-	// TODO Auto-generated destructor stub
+MovableAgent::~MovableAgent() {
 }
 
-const string Tablet::toString() const {
-	return (HoldableAgent::toString());
+double MovableAgent::getSpeed() const {
+	return (m_speed);
 }
 
-bool Tablet::tryConnect() {
-	return false;
+void MovableAgent::setSpeed(double val) {
+	m_speed = val;
 }
 
-const string Tablet::getName() const  {
-	return ("Tablet");
+const string MovableAgent::toString() const {
+	ostringstream ss;
+	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
+	return (ss.str());
+}
+
+const string MovableAgent::getName() const {
+	return ("MovableAgent");
 }

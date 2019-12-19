@@ -26,10 +26,10 @@
 #ifndef AGENTSCOLLECTION_H
 #define AGENTSCOLLECTION_H
 
-#include <Agent.h>
-#include <typeinfo>
+#include <agent/Agent.h>
+#include <string>
 #include <unordered_map>
-#include <vector>
+#include <utility>
 
 using namespace std;
 

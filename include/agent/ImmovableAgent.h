@@ -26,9 +26,8 @@
 #ifndef IMMOVABLEAGENT_H_
 #define IMMOVABLEAGENT_H_
 
-#include "LocatableAgent.h"
-#include <Clock.h>
-#include <geos/geom/Point.h>
+#include <agent/LocatableAgent.h>
+#include <string>
 
 using namespace geos;
 using namespace geos::geom;

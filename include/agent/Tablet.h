@@ -26,8 +26,9 @@
 #ifndef TABLET_H_
 #define TABLET_H_
 
-#include <HoldableAgent.h>
-#include <MovementType.h>
+#include <agent/HoldableAgent.h>
+#include <string>
+
 
 /*
  * This class represents a mobile device, i.e. a tablet that can have a SIM card and can connect to the mobile

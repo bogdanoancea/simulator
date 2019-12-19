@@ -26,11 +26,11 @@
 #ifndef PERSON_H_
 #define PERSON_H_
 
-#include <MovableAgent.h>
-#include <geos/geom/Point.h>
+#include <agent/MovableAgent.h>
+#include <Displace.h>
+#include <memory>
 #include <string>
 #include <unordered_map>
-#include <Displace.h>
 
 
 using namespace geos;

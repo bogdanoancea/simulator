@@ -27,8 +27,8 @@
 #define INCLUDE_DISPLACE_H_
 
 #include <geos/geom/Point.h>
-#include <Map.h>
 #include <Clock.h>
+#include <map/Map.h>
 
 
 using namespace geos;

@@ -22,39 +22,51 @@
  *      Author: Bogdan Oancea
  *      Email : bogdan.oancea@gmail.com
  */
-#ifndef INCLUDE_INTERFACE_IMAP_H_
-#define INCLUDE_INTERFACE_IMAP_H_
+#ifndef MAP_H
+#define MAP_H
 
 #include <geos/geom/GeometryFactory.h>
-#include <geos/geom/Geometry.h>
 #include <string>
-#include <geos/geom/Point.h>
+#include <Grid.h>
+
 
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
 
 
-class IMap {
+class Map {
 
 public:
 
+	virtual ~Map();
+
 	virtual Geometry* getBoundary() const = 0;
-	virtual void addGrid(double dimTileX, double dimTileY) = 0;
+	virtual Geometry* getEnvelope() const = 0;
 
-	virtual unsigned long getNoTilesX() const = 0;
-	virtual unsigned long getNoTilesY() const = 0;
-	virtual double getXTileDim() const = 0;
+	//temporar
+	virtual const GeometryFactory::Ptr& getGlobalFactory() const = 0;
+
+	virtual void addGrid(double dimTileX, double dimTileY);
+	virtual unsigned long getNoTilesX() const;
+	virtual unsigned long getNoTilesY() const ;
+	virtual double getXTileDim() const;
 	virtual double getYTileDim() const;
-	virtual double getXOrigin() const = 0;
-	virtual double getYOrigin() const = 0;
-	virtual const unsigned long getNoTiles() const = 0;
-	virtual Coordinate getTileCenter(unsigned long tileIndex) const = 0;
-	virtual unsigned long getTileNo(const Point* p) const = 0;
-	virtual unsigned long getTileNo(double x, double y) const = 0;
-	virtual void dumpGrid(const string& gridFileName) const = 0;
-	virtual Coordinate* getTileCenters() const = 0;
+	virtual double getXOrigin() const;
+	virtual double getYOrigin() const;
+	virtual const unsigned long getNoTiles() const;
+	virtual Coordinate getTileCenter(unsigned long tileIndex) const;
+	virtual unsigned long getTileNo(const Point* p) const;
+	virtual unsigned long getTileNo(double x, double y) const;
+	virtual void dumpGrid(const string& gridFileName) const;
+	virtual Coordinate* getTileCenters() const;
+	virtual bool hasGrid() const;
 
+protected:
+	Map(string mapFileName);
+
+	Grid* m_grid;
+	string m_mapFileName;
 };
 
-#endif /* INCLUDE_INTERFACE_IMAP_H_ */
+#endif /* MAP_H */

@@ -16,42 +16,34 @@
  *
  * A data simulator for mobile phone network events
  *
- * Agent.cpp
+ * Tablet.cpp
  *
- *  Created on: Apr 4, 2019
+ *  Created on: Apr 5, 2019
  *      Author: Bogdan Oancea
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <Agent.h>
+#include <agent/Tablet.h>
+#include <iostream>
 
-Agent::Agent() : m_id{0} {
-	m_map = nullptr;
-	m_clock = nullptr;
+Tablet::Tablet(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock) :
+		HoldableAgent(m, id, initPosition, nullptr, clock) {
+// TODO Auto-generated constructor stub
+
 }
 
-Agent::Agent(const Map* m, const unsigned long id, const Clock* clock) :
-		m_id { id } {
-	m_map = m;
-	m_clock = clock;
+Tablet::~Tablet() {
+	// TODO Auto-generated destructor stub
 }
 
-Agent::~Agent() {
+const string Tablet::toString() const {
+	return (HoldableAgent::toString());
 }
 
-bool Agent::operator==(const Agent& a) {
-	return (this->m_id == a.getId());
+bool Tablet::tryConnect() {
+	return false;
 }
 
-const Map* Agent::getMap() const {
-	return (m_map);
-}
-
-
-const Clock* Agent::getClock() const {
-	return (m_clock);
-}
-
-const unsigned long Agent::getId() const {
-	return (m_id);
+const string Tablet::getName() const  {
+	return ("Tablet");
 }

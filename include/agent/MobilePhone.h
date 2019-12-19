@@ -26,11 +26,11 @@
 #ifndef MOBILEPHONE_H_
 #define MOBILEPHONE_H_
 
-#include <HoldableAgent.h>
-#include <MobileOperator.h>
-#include <Antenna.h>
-#include <Clock.h>
-#include <geos/geom/Point.h>
+#include <agent/HoldableAgent.h>
+#include <string>
+
+
+class MobileOperator;
 
 using namespace geos;
 using namespace geos::geom;
@@ -126,8 +126,6 @@ public:
 	double getConnectionThreshold() const;
 
 private:
-	//double m_powerThreshold;
-	//double m_qualityThreshold;
 	double m_threshold;
 	Antenna* m_connectedTo;
 	HoldableAgent::CONNECTION_TYPE m_connType;

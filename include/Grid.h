@@ -28,16 +28,8 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 #include <geos/geom/Coordinate.h>
-#include <MobilePhone.h>
-#include <AntennaInfo.h>
-#include <Agent.h>
-#include <AgentsCollection.h>
-#include <typeinfo>
-#include <unordered_map>
-#include <utility>
-#include <PriorType.h>
+#include <geos/geom/Point.h>
 
 using namespace std;
 using namespace geos;
@@ -102,30 +94,12 @@ public:
 	double getYOrigin() const;
 
 
-
-
 	/**
 	 * Computes the total number of tiles in the grid.
 	 * @return the total number of tiles in the grid.
 	 */
 	const unsigned long getNoTiles() const;
 
-	/**
-	 * Computes the posterior probability of a mobile device to be in a tile of the Grid according to the method
-	 * described in he paper "Deriving geographic location of mobile devices from network data"
-	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.
-	 * @param t the time instant when the posterior localization probability is computed.
-	 * @param m a pointer to a MobilePhone object for which the posterior localization probability is computed.
-	 * @param data a vector of AntennaInfo objects generated and recorded by each antenna during the simulation.
-	 * It contains the events recorder by each antenna during the simulation.
-	 * @param it an iterator to access all objects of type Antenna from the AgentsCollection container.
-	 * @param prior is used to set the method of computing the prior probabilities. It could take 3 values:
-	 * PriorType::UNIFORM, PriorType::NETWORK or PriorType::REGISTER. Currently only
-	 * UNIFORM and NETWORK methods are implemented.
-	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
-	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
-	 */
-	vector<double> computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior) const;
 
 	/**
 	 * Computes the coordinates of the tile center given by its index in the grid.
@@ -195,12 +169,8 @@ private:
 	 */
 	string toString() const;
 
-
-
 	Coordinate* computeTileCenters();
 
-	vector<double> useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
-	vector<double> useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
 
 };
 

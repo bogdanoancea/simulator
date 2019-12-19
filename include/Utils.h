@@ -26,12 +26,19 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <agent/AgentsCollection.h>
+#include <AntennaInfo.h>
 #include <geos/geom/Point.h>
-#include <TinyXML2.h>
+#include <PriorType.h>
 #include <cmath>
+#include <utility>
 #include <vector>
 
-class Map;
+class MobilePhone;
+namespace tinyxml2 {
+class XMLElement;
+class XMLNode;
+} /* namespace tinyxml2 */
 
 using namespace geos;
 using namespace geos::geom;
@@ -184,6 +191,26 @@ namespace utils {
 	 * @return a double value obtained by converting the text in an XMLNode to a double
 	 */
 	double getValue(XMLElement* el, const char* name);
+
+	/**
+	 * Computes the posterior probability of a mobile device to be in a tile of the Grid according to the method
+	 * described in he paper "Deriving geographic location of mobile devices from network data"
+	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.
+	 * @param t the time instant when the posterior localization probability is computed.
+	 * @param m a pointer to a MobilePhone object for which the posterior localization probability is computed.
+	 * @param data a vector of AntennaInfo objects generated and recorded by each antenna during the simulation.
+	 * It contains the events recorder by each antenna during the simulation.
+	 * @param it an iterator to access all objects of type Antenna from the AgentsCollection container.
+	 * @param prior is used to set the method of computing the prior probabilities. It could take 3 values:
+	 * PriorType::UNIFORM, PriorType::NETWORK or PriorType::REGISTER. Currently only
+	 * UNIFORM and NETWORK methods are implemented.
+	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
+	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
+	 */
+	vector<double> computeProbability(Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior);
+	vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
+	vector<double> useUniformPrior(Map *map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
+
 }
 
 #endif

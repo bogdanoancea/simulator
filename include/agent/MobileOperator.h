@@ -26,9 +26,10 @@
 #ifndef INCLUDE_MOBILEOPERATOR_H_
 #define INCLUDE_MOBILEOPERATOR_H_
 
-#include <Agent.h>
-#include <string>
+#include <agent/Agent.h>
 #include <fstream>
+#include <string>
+
 /**
  * This class represents a Mobile Operator company. Currently a simulation can be run with 1 or 2 mobile operators.
  * A mobile operator own a set of antennas and has a set of mobile phone subscribed.

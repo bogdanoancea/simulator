@@ -26,18 +26,19 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include <Antenna.h>
-#include <Person.h>
-#include <random>
-#include <vector>
-#include <map>
-#include <AgentsCollection.h>
-#include <Clock.h>
-#include <MobilePhone.h>
+#include <agent/Antenna.h>
+#include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
+#include <agent/MobilePhone.h>
+#include <agent/Person.h>
 #include <MovementType.h>
-#include <TinyXML2.h>
 #include <PriorType.h>
-#include <MobileOperator.h>
+#include <map>
+#include <string>
+#include <utility>
+#include <vector>
+
+class AgentsCollection;
 
 using namespace std;
 using namespace tinyxml2;
@@ -130,11 +131,6 @@ public:
 	 */
 	const Map* getMap() const;
 
-	/**
-	 * Sets the map where the simulation takes place.
-	 * @param map a pointer to a Map object where the simulation takes place.
-	 */
-	void setMap(Map* map);
 
 	/**
 	 * Returns the file name where the grid parameters are saved. They are needed for the visualization software.
