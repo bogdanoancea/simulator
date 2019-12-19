@@ -24,7 +24,7 @@
  */
 
 #include <Constants.h>
-#include <Grid.h>
+#include <map/Grid.h>
 #include <cmath>
 #include <fstream>
 #include <sstream>

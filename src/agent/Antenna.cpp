@@ -31,7 +31,6 @@
 #include <geos/geom/Polygon.h>
 #include <geos/io/WKTWriter.h>
 #include <geos/util/GeometricShapeFactory.h>
-#include <Grid.h>
 #include <map/Map.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
