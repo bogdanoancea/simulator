@@ -22,8 +22,15 @@
  *      Author: Bogdan Oancea
  *      Email : bogdan.oancea@gmail.com
  */
-#include <map/Map.h>
+
 #include <geos/geom/CoordinateSequence.h>
+#include <geos/geom/Geometry.h>
+#include <map/Map.h>
+#include <cmath>
+#include <iostream>
+#include <limits>
+#include <stdexcept>
+
 
 Map::Map(string mapFileName) {
 	m_mapFileName = mapFileName;

@@ -24,7 +24,6 @@
  */
 
 #include <AntennaType.h>
-#include <crtdefs.h>
 #include <Constants.h>
 #include <EMField.h>
 #include <geos/geom/Point.h>

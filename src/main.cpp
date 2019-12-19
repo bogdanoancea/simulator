@@ -5,7 +5,6 @@
 #include <agent/MobilePhone.h>
 #include <agent/Person.h>
 #include <AntennaInfo.h>
-#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
@@ -105,27 +104,22 @@ int main(int argc, char** argv) {
 			utils::printMobileOperatorHeader();
 			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
 			for (auto it = itr0.first; it != itr0.second; it++) {
-				MobileOperator* mno = static_cast<MobileOperator*>(it->second);
-				cout << mno->toString() << endl;
+				cout << it->second->toString() << endl;
 			}
 			utils::printPersonHeader();
 			auto itr = c->getAgentListByType(typeid(Person).name());
-			vector<Person*> persons;
 			for (auto it = itr.first; it != itr.second; it++) {
-				Person* p = static_cast<Person*>(it->second);
-				cout << p->toString() << endl;
+				cout << it->second->toString() << endl;
 			}
 			utils::printAntennaHeader();
 			auto itr2 = c->getAgentListByType(typeid(Antenna).name());
 			for (auto it = itr2.first; it != itr2.second; it++) {
-				Antenna* a = static_cast<Antenna*>(it->second);
-				cout << a->toString() << endl;
+				cout << it->second->toString() << endl;
 			}
 			utils::printPhoneHeader();
 			auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
 			for (auto it = itr3.first; it != itr3.second; it++) {
-				MobilePhone* m = static_cast<MobilePhone*>(it->second);
-				cout << m->toString() << endl;
+				cout << it->second->toString() << endl;
 			}
 		}
 		w.runSimulation();
