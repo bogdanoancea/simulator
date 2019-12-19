@@ -29,7 +29,6 @@
 #include <string>
 #include <Grid.h>
 
-
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
@@ -45,7 +44,7 @@ public:
 	virtual Geometry* getEnvelope() const = 0;
 
 	//temporar
-	virtual const GeometryFactory::Ptr& getGlobalFactory() const = 0;
+		const virtual GeometryFactory::Ptr& getGlobalFactory() const = 0;
 
 	virtual void addGrid(double dimTileX, double dimTileY);
 	virtual unsigned long getNoTilesX() const;
@@ -54,7 +53,7 @@ public:
 	virtual double getYTileDim() const;
 	virtual double getXOrigin() const;
 	virtual double getYOrigin() const;
-	virtual const unsigned long getNoTiles() const;
+		const virtual unsigned long getNoTiles() const;
 	virtual Coordinate getTileCenter(unsigned long tileIndex) const;
 	virtual unsigned long getTileNo(const Point* p) const;
 	virtual unsigned long getTileNo(double x, double y) const;
