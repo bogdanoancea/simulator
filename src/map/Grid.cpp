@@ -23,20 +23,11 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <Grid.h>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <geos/geom/Coordinate.h>
-#include <AgentsCollection.h>
-#include <Agent.h>
-#include <typeinfo>
-#include <utility>
-#include <unordered_map>
-#include <EMField.h>
-#include <algorithm>
+#include <Constants.h>
+#include <map/Grid.h>
 #include <cmath>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 using namespace geos;
@@ -66,83 +57,6 @@ const unsigned long Grid::getNoTiles() const {
 	return (m_noTilesX * m_noTilesY);
 }
 
-vector<double> Grid::computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) const {
-	vector<double> result;
-	// take the mobile phone and see which is the antenna connected to
-	vector<AntennaInfo>::iterator ai;
-	bool found = false;
-	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
-		ai = i;
-		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
-			found = true;
-			break;
-		}
-	}
-	if (prior == PriorType::NETWORK)
-		result = useNetworkPrior(t, found, ai, antennas_iterator);
-	else if (prior == PriorType::UNIFORM)
-		result = useUniformPrior(t, found, ai, antennas_iterator);
-	return (result);
-}
-
-vector<double> Grid::useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const {
-	vector<double> result;
-	double sum = 0.0;
-	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
-		double lh = 0.0;
-		if (connected) {
-			Coordinate c = getTileCenter(tileIndex);
-			unsigned long antennaId = ai->getAntennaId();
-			Antenna* a = nullptr;
-			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				a = dynamic_cast<Antenna*>(it->second);
-				if (a->getId() == antennaId)
-					break;
-			}
-			c.z = 0; //TODO tile elevation!
-			if (a != nullptr) {
-				lh = a->computeSignalQuality(c);
-				sum += lh;
-			}
-		}
-		result.push_back(lh);
-	}
-	for (auto& i : result) {
-		if (sum != 0.0) {
-			i /= sum;
-		}
-	}
-	return result;
-}
-
-vector<double> Grid::useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const {
-	vector<double> result;
-
-	for (unsigned long tileIndex = 0; tileIndex < getNoTiles(); tileIndex++) {
-		double lh = 0.0;
-		if (connected) {
-			unsigned long antennaId = ai->getAntennaId();
-			Antenna* a = nullptr;
-			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				a = dynamic_cast<Antenna*>(it->second);
-				if (a->getId() == antennaId)
-					break;
-			}
-			if (a != nullptr) {
-				lh = EMField::instance()->connectionLikelihoodGrid(a, this, tileIndex);
-			}
-		}
-		result.push_back(lh);
-	}
-	for (auto& i : result) {
-		if (i > 0.0)
-			i /= (m_noTilesX * m_noTilesY);
-		else
-			i = 1.0 / (m_noTilesX * m_noTilesY);
-	}
-	return result;
-}
 
 Coordinate Grid::getTileCenter(unsigned long tileIndex) const {
 	return (m_tileCenters[tileIndex]);

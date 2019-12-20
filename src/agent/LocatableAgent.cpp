@@ -25,8 +25,7 @@
 
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/GeometryFactory.h>
-#include <LocatableAgent.h>
-#include <Map.h>
+#include <agent/LocatableAgent.h>
 #include <Constants.h>
 #include <iomanip>
 #include <sstream>

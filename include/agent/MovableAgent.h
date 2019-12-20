@@ -26,10 +26,7 @@
 #ifndef MOVABLEAGENT_H_
 #define MOVABLEAGENT_H_
 
-#include <LocatableAgent.h>
-#include <Clock.h>
-#include <random>
-#include <MovementType.h>
+#include <agent/LocatableAgent.h>
 #include <string>
 
 using namespace geos;

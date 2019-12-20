@@ -23,10 +23,8 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <AgentsCollection.h>
-#include <initializer_list>
-#include <iostream>
-#include <utility>
+#include <agent/AgentsCollection.h>
+#include <typeinfo>
 
 AgentsCollection::AgentsCollection() {
 }

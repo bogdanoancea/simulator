@@ -16,38 +16,42 @@
  *
  * A data simulator for mobile phone network events
  *
- * MovableAgent.cpp
+ * Agent.cpp
  *
  *  Created on: Apr 4, 2019
  *      Author: Bogdan Oancea
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <MovableAgent.h>
-#include <iomanip>
-#include <sstream>
+#include <agent/Agent.h>
 
-MovableAgent::MovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock, double initialSpeed) :
-		LocatableAgent(m, id, initialPosition, clock), m_speed { initialSpeed } {
+Agent::Agent() : m_id{0} {
+	m_map = nullptr;
+	m_clock = nullptr;
 }
 
-MovableAgent::~MovableAgent() {
+Agent::Agent(const Map* m, const unsigned long id, const Clock* clock) :
+		m_id { id } {
+	m_map = m;
+	m_clock = clock;
 }
 
-double MovableAgent::getSpeed() const {
-	return (m_speed);
+Agent::~Agent() {
 }
 
-void MovableAgent::setSpeed(double val) {
-	m_speed = val;
+bool Agent::operator==(const Agent& a) {
+	return (this->m_id == a.getId());
 }
 
-const string MovableAgent::toString() const {
-	ostringstream ss;
-	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
-	return (ss.str());
+const Map* Agent::getMap() const {
+	return (m_map);
 }
 
-const string MovableAgent::getName() const {
-	return ("MovableAgent");
+
+const Clock* Agent::getClock() const {
+	return (m_clock);
+}
+
+const unsigned long Agent::getId() const {
+	return (m_id);
 }

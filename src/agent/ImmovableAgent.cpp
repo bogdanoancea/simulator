@@ -23,7 +23,7 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <ImmovableAgent.h>
+#include <agent/ImmovableAgent.h>
 #include <iostream>
 
 using namespace geos;

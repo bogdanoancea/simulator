@@ -26,10 +26,8 @@
 #ifndef LOCATABLEAGENT_H_
 #define LOCATABLEAGENT_H_
 
-#include <Agent.h>
-#include <Clock.h>
-#include <Map.h>
-#include <geos/geom/Point.h>
+#include <agent/Agent.h>
+#include <string>
 
 using namespace geos;
 using namespace geos::geom;

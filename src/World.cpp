@@ -23,34 +23,26 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <AntennaType.h>
+#include <Constants.h>
+#include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
-#include <Map.h>
 #include <RandomNumberGenerator.h>
-#include <EMField.h>
-#include <ctime>
+#include <RandomWalkDisplacement.h>
+#include <RandomWalkDriftDisplacement.h>
 #include <Utils.h>
 #include <World.h>
-#include <algorithm>
-#include <numeric>
-#include <map>
+#include <cstring>
 #include <ctime>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <map>
+#include <memory>
+#include <string>
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
-#include <sstream>
-#include <AntennaType.h>
-#include <cstring>
-#include <HoldableAgent.h>
-#include <MovementType.h>
-#include <TinyXML2.h>
-#include <stdlib.h>
-#include <iomanip>
-#include <SimException.h>
-#include <RandomWalkDisplacement.h>
-#include <RandomWalkDriftDisplacement.h>
 
 using namespace std;
 using namespace utils;
@@ -131,8 +123,7 @@ World::~World() {
 void World::runSimulation() noexcept(false) {
 	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
-	const Grid* g = getMap()->getGrid();
-	unsigned long noTiles = g->getNoTiles();
+	unsigned long noTiles = m_map->getNoTiles();
 
 	try {
 		personsFile.open(m_personsFilename, ios::out);
@@ -157,7 +148,7 @@ void World::runSimulation() noexcept(false) {
 	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
-		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << g->getTileNo(a->getLocation()) << endl;
+		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << m_map->getTileNo(a->getLocation()) << endl;
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
 	}
@@ -179,7 +170,7 @@ void World::runSimulation() noexcept(false) {
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
-		int n = g->getTileNo(loc->getX(), loc->getY());
+		int n = m_map->getTileNo(loc->getX(), loc->getY());
 		personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 	}
 
@@ -192,7 +183,7 @@ void World::runSimulation() noexcept(false) {
 			Person* p = static_cast<Person*>(it->second);
 			p->move();
 			Point* loc = p->getLocation();
-			int n = g->getTileNo(loc->getX(), loc->getY());
+			int n = m_map->getTileNo(loc->getX(), loc->getY());
 			personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 		}
 	}
@@ -226,10 +217,6 @@ void World::setClock(Clock* clock) {
 
 const Map* World::getMap() const {
 	return (m_map);
-}
-
-void World::setMap(Map* map) {
-	m_map = map;
 }
 
 const string& World::getGridFilename() const {

@@ -132,8 +132,8 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 	return (result);
 }
 
-double EMField::connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex) {
-	Coordinate c = g->getTileCenter(tileIndex);
+double EMField::connectionLikelihoodGrid(Antenna* a, const Map* m, unsigned long tileIndex) {
+	Coordinate c = m->getTileCenter(tileIndex);
 	c.z = 0; //TODO z = tile elevation
 	double s_quality = a->computeSignalQuality(c);
 	unsigned long mnoID = a->getMNO()->getId();
@@ -196,13 +196,13 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	return (result);
 }
 
-vector<double> EMField::sumSignalQuality(const Grid* grid, const unsigned long mnoID) {
+vector<double> EMField::sumSignalQuality(const Map* map, const unsigned long mnoID) {
 	vector<double> tmp;
-	for (unsigned long tileIndex = 0; tileIndex < grid->getNoTiles(); tileIndex++) {
+	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
 		double sum = 0.0;
-		if (!(tileIndex % grid->getNoTilesY()))
+		if (!(tileIndex % map->getNoTilesY()))
 			cout << endl;
-		Coordinate c = grid->getTileCenter(tileIndex);
+		Coordinate c = map->getTileCenter(tileIndex);
 		c.z = 0; //TODO z should be the elevation
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoID)

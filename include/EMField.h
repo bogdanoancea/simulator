@@ -26,9 +26,9 @@
 #ifndef EMFIELD_H_
 #define EMFIELD_H_
 
-#include <Antenna.h>
+#include <agent/Antenna.h>
 #include <Constants.h>
-#include <Grid.h>
+#include <map/Map.h>
 #include <utility>
 #include <vector>
 #include <map>
@@ -144,7 +144,7 @@ public:
 	 *  for all tiles in the reference grid. An element of the vector corresponds to a tile in the grid. The tiles
 	 *  are linearized in a row-major order starting with the bottom-left corner.
 	 */
-	vector<double> sumSignalQuality(const Grid* grid, const unsigned long mnoID);
+	vector<double> sumSignalQuality(const Map* map, const unsigned long mnoID);
 
 	/**
 	 * Computes the connection likelihood for Antenna indicated by a in the center of the tile indicated by tileIndex
@@ -153,7 +153,7 @@ public:
 	 * @param tileIndex the index of the tile where we want to compute the connection likelihood.
 	 * @return the connection likelihood for Antenna  a in the center of the tile with the index tileIndex.
 	 */
-	double connectionLikelihoodGrid(Antenna* a, const Grid* g, unsigned long tileIndex);
+	double connectionLikelihoodGrid(Antenna* a, const Map* , unsigned long tileIndex);
 
 	const double* getAntennaMin3DbArray() const;
 

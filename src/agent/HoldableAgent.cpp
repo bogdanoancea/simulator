@@ -23,8 +23,8 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <Agent.h>
-#include <HoldableAgent.h>
+
+#include <agent/HoldableAgent.h>
 #include <iomanip>
 #include <sstream>
 #include <algorithm>

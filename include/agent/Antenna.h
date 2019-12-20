@@ -26,21 +26,21 @@
 #ifndef ANTENNA_H_
 #define ANTENNA_H_
 
-#include <ImmovableAgent.h>
-#include <HoldableAgent.h>
-#include <geos/geom/Polygon.h>
-#include <EventType.h>
+#include <agent/HoldableAgent.h>
+#include <agent/ImmovableAgent.h>
+#include <agent/MobileOperator.h>
 #include <AntennaType.h>
-#include <MobileOperator.h>
-#include <TinyXML2.h>
+#include <EventType.h>
+#include <geos/geom/Coordinate.h>
+#include <iostream>
 #include <string>
-#include <fstream>
 #include <utility>
+#include <vector>
+#include <TinyXML2.h>
 
-using namespace tinyxml2;
 using namespace geos;
 using namespace geos::geom;
-
+using namespace tinyxml2;
 /**
  * This class simulates an antenna of the mobile phone network.
  */

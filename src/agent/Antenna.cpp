@@ -23,33 +23,26 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <Antenna.h>
-#include <HoldableAgent.h>
-#include <EventType.h>
+#include <agent/Antenna.h>
 #include <Constants.h>
-#include <geos/geom/GeometryFactory.h>
-#include <geos/util/GeometricShapeFactory.h>
-#include <geos/geom/CoordinateSequence.h>
+#include <EMField.h>
 #include <geos/geom/CoordinateArraySequence.h>
-#include <geos/geom/LineString.h>
+#include <geos/geom/Point.h>
+#include <geos/geom/Polygon.h>
 #include <geos/io/WKTWriter.h>
-#include <Map.h>
-#include <iomanip>
-#include <sstream>
-#include <fstream>
-#include <algorithm>
-#include <string>
-#include <cstring>
-#include <string.h>
+#include <geos/util/GeometricShapeFactory.h>
+#include <map/Map.h>
+#include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
 #include <Utils.h>
-#include <utility>
-#include <RandomNumberGenerator.h>
-#include <EMField.h>
-#include <Constants.h>
-#include <cstdlib>
-#include <SimException.h>
-#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <cstring>
+#include <fstream>
+#include <iomanip>
+#include <iterator>
+#include <sstream>
+
 
 using namespace tinyxml2;
 using namespace std;
@@ -264,16 +257,15 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 				cout << " In range, not attached ";
 		}
 		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
-				<< ag->getMap()->getGrid()->getTileNo(ag->getLocation());
+				<< ag->getMap()->getTileNo(ag->getLocation());
 		cout << endl;
 	}
 	else {
 		stringstream ss;
-		const Grid* g = this->getMap()->getGrid();
-		if (g != nullptr)
+		if (getMap()->hasGrid())
 			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
 					<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << sep
-					<< g->getTileNo(ag->getLocation()) << endl;
+					<< getMap()->getTileNo(ag->getLocation()) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();

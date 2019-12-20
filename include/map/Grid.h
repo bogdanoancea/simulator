@@ -28,16 +28,8 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 #include <geos/geom/Coordinate.h>
-#include <MobilePhone.h>
-#include <AntennaInfo.h>
-#include <Agent.h>
-#include <AgentsCollection.h>
-#include <typeinfo>
-#include <unordered_map>
-#include <utility>
-#include <PriorType.h>
+#include <geos/geom/Point.h>
 
 using namespace std;
 using namespace geos;
@@ -101,25 +93,6 @@ public:
 	 */
 	double getYOrigin() const;
 
-	/**
-	 * @return a string representation of an object of type Grid. This is useful to write a textual description of the grid in a file
-	 * for later processing.
-	 */
-	string toString() const;
-
-	/**
-	 * Returns the tile index on X axis that contains a given point in space, specified by p.
-	 * @param p a pointer to the point for which we need the tile index.
-	 * @return the tile index on X axis that contains the point specified by p, i.e. a number between 0 and getNoTilesX() - 1.
-	 */
-	unsigned long getTileIndexX(const Point* p) const;
-
-	/**
-	 * Returns the tile index on Y axis that contains a given point in space, specified by p.
-	 * @param p the point in space for which we need the tile index.
-	 * @return the tile index on Y axis that contains the point specified by p, i.e. a number between 0 and getNoTilesY() - 1.
-	 */
-	unsigned long getTileIndexY(const Point* p) const;
 
 	/**
 	 * Computes the total number of tiles in the grid.
@@ -127,22 +100,6 @@ public:
 	 */
 	const unsigned long getNoTiles() const;
 
-	/**
-	 * Computes the posterior probability of a mobile device to be in a tile of the Grid according to the method
-	 * described in he paper "Deriving geographic location of mobile devices from network data"
-	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.
-	 * @param t the time instant when the posterior localization probability is computed.
-	 * @param m a pointer to a MobilePhone object for which the posterior localization probability is computed.
-	 * @param data a vector of AntennaInfo objects generated and recorded by each antenna during the simulation.
-	 * It contains the events recorder by each antenna during the simulation.
-	 * @param it an iterator to access all objects of type Antenna from the AgentsCollection container.
-	 * @param prior is used to set the method of computing the prior probabilities. It could take 3 values:
-	 * PriorType::UNIFORM, PriorType::NETWORK or PriorType::REGISTER. Currently only
-	 * UNIFORM and NETWORK methods are implemented.
-	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
-	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
-	 */
-	vector<double> computeProbability(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior) const;
 
 	/**
 	 * Computes the coordinates of the tile center given by its index in the grid.
@@ -158,8 +115,6 @@ public:
 	 */
 	unsigned long getTileNo(const Point* p) const;
 
-	unsigned long getTileIndexX(double x) const;
-	unsigned long getTileIndexY(double y) const;
 
 	/**
 	 * Computes the tile index of the tile that contains a point with coordinates indicated by x and y.
@@ -183,7 +138,6 @@ public:
 	Coordinate* getTileCenters() const;
 
 private:
-	//Map* m_map;
 	double m_xOrigin;
 	double m_yOrigin;
 	double m_xTileDim;
@@ -192,9 +146,31 @@ private:
 	unsigned long m_noTilesY;
 	Coordinate* m_tileCenters;
 
+
+	unsigned long getTileIndexX(double x) const;
+	unsigned long getTileIndexY(double y) const;
+	/**
+	 * Returns the tile index on X axis that contains a given point in space, specified by p.
+	 * @param p a pointer to the point for which we need the tile index.
+	 * @return the tile index on X axis that contains the point specified by p, i.e. a number between 0 and getNoTilesX() - 1.
+	 */
+	unsigned long getTileIndexX(const Point* p) const;
+
+	/**
+	 * Returns the tile index on Y axis that contains a given point in space, specified by p.
+	 * @param p the point in space for which we need the tile index.
+	 * @return the tile index on Y axis that contains the point specified by p, i.e. a number between 0 and getNoTilesY() - 1.
+	 */
+	unsigned long getTileIndexY(const Point* p) const;
+
+	/**
+	 * @return a string representation of an object of type Grid. This is useful to write a textual description of the grid in a file
+	 * for later processing.
+	 */
+	string toString() const;
+
 	Coordinate* computeTileCenters();
-	vector<double> useNetworkPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
-	vector<double> useUniformPrior(unsigned long t, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator) const;
+
 
 };
 

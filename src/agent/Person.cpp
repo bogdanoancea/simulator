@@ -21,27 +21,18 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/Polygon.h>
-#include <geos/geom/LineString.h>
-#include <geos/geom/CoordinateSequence.h>
-#include <geos/geom/CoordinateArraySequence.h>
-#include <geos/geom/Point.h>
-
-#include <Agent.h>
-#include <HoldableAgent.h>
-#include <Map.h>
-#include <Person.h>
-#include <RandomNumberGenerator.h>
-#include <Utils.h>
+#include <agent/HoldableAgent.h>
+#include <agent/Person.h>
+#include <Clock.h>
 #include <Constants.h>
-
-#include <cmath>
+#include <geos/geom/GeometryFactory.h>
+#include <geos/geom/Point.h>
+#include <map/Map.h>
+#include <RandomNumberGenerator.h>
 #include <iomanip>
-#include <iostream>
 #include <sstream>
 #include <utility>
-#include <RandomWalkDriftDisplacement.h>
+
 
 using namespace geos;
 using namespace geos::geom;
