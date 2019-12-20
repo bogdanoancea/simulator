@@ -45,9 +45,6 @@ bool Tablet::tryConnect() {
 	return false;
 }
 
-const string Tablet::getName() const  {
-	return ("Tablet");
-}
 
 const string Tablet::getHeader()  {
 	ostringstream result;

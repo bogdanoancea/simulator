@@ -67,11 +67,6 @@ public:
 	 */
 	virtual ~Person();
 
-	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
 
 	/**
 	 * Builds and returns a human readable string representation of the person.

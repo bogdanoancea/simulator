@@ -104,9 +104,6 @@ bool MobilePhone::tryConnect() {
 	return (connected);
 }
 
-const string MobilePhone::getName() const {
-	return ("MobilePhone");
-}
 
 const MobileOperator* MobilePhone::getMobileOperator() const {
 	return (m_mno);

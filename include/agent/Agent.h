@@ -76,8 +76,6 @@ public:
 	 */
 	virtual const unsigned long getId() const;
 
-	virtual const string getName() const = 0;
-
 	/**
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
 	 * the description of concrete agents.

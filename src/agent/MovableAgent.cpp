@@ -47,7 +47,3 @@ const string MovableAgent::toString() const {
 	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
 	return (ss.str());
 }
-
-const string MovableAgent::getName() const {
-	return ("MovableAgent");
-}

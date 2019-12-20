@@ -61,12 +61,6 @@ public:
 	virtual ~MobileOperator();
 
 	/**
-	 * Overrides the same method from the superclass.
-	 * @return the name of the class, i.e. "MobileOperator".
-	 */
-	const string getName() const override;
-
-	/**
 	 * Overrides the same method from the superclass. It is used to write the characteristics of the
 	 * Mobile Operator to a file or to console.
 	 * @return a string that describes the parameters of the MobieOperator.

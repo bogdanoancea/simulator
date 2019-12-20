@@ -72,10 +72,6 @@ MobileOperator::~MobileOperator() {
 	}
 }
 
-const string MobileOperator::getName() const {
-	return ("MobileOperator");
-}
-
 const string MobileOperator::toString() const {
 	ostringstream result;
 	result << left << setw(15) << getId() << setw(15) << getMNOName();

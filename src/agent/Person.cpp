@@ -142,10 +142,6 @@ Person::Gender Person::getGender() const {
 	return (m_gender);
 }
 
-const string Person::getName() const {
-	return ("Person");
-}
-
 void Person::addDevice(string type, Agent* agent) {
 	m_idDevices.insert(std::pair<string, Agent*>(type, agent));
 }

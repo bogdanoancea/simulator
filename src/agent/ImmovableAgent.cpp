@@ -40,6 +40,3 @@ const string ImmovableAgent::toString() const {
 	return (LocatableAgent::toString());
 }
 
-const string ImmovableAgent::getName() const {
-	return ("ImovableAgent");
-}

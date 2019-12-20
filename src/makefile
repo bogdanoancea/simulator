@@ -1,10 +1,10 @@
 include ../makefile.inc
 
 
-OBJECTS = Agent.o\
-AgentsCollection.o\
+OBJECTS = agent/Agent.o\
+agent/AgentsCollection.o\
 SimException.o\
-Antenna.o\
+agent/Antenna.o\
 AntennaInfo.o\
 CSVParser.o\
 Clock.o\
@@ -12,22 +12,23 @@ Constants.o\
 Displace.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
-MobileOperator.o\
+agent/MobileOperator.o\
 EMField.o\
 EventType.o\
-Grid.o\
-HoldableAgent.o\
+map/Grid.o\
+agent/HoldableAgent.o\
 IDGenerator.o\
-ImmovableAgent.o\
+agent/ImmovableAgent.o\
 InputParser.o\
-LocatableAgent.o\
-Map.o\
-MobilePhone.o\
-MovableAgent.o\
-Person.o\
+agent/LocatableAgent.o\
+map/Map.o\
+map/WKTMap.o\
+agent/MobilePhone.o\
+agent/MovableAgent.o\
+agent/Person.o\
 PriorType.o\
 RandomNumberGenerator.o\
-Tablet.o\
+agent/Tablet.o\
 Tinyxml2.o\
 Utils.o\
 World.o\

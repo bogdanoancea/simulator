@@ -55,11 +55,6 @@ public:
 	 */
 	virtual ~MovableAgent();
 
-	/**
-	 * Returns the name of the class.
-	 * @return the name of the class.
-	 */
-	const string getName() const override;
 
 	/**
 	 * Builds and returns a human readable string representation of the agent.

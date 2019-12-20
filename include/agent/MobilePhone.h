@@ -66,11 +66,6 @@ public:
 	virtual ~MobilePhone();
 
 	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
-	/**
 	 * Returns a human readable string representation of this class useful to output it to a file or console.
 	 * @return a human readable string representation of this class.
 	 */

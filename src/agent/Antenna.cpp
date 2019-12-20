@@ -520,10 +520,6 @@ double Antenna::computePower(const Coordinate c) const {
 	return (result);
 }
 
-const string Antenna::getName() const {
-	return ("Antenna");
-}
-
 void Antenna::setLocationWithElevation() {
 	Point* p = getLocation();
 	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y, m_height));
@@ -536,7 +532,7 @@ MobileOperator* Antenna::getMNO() const {
 }
 
 string Antenna::getAntennaOutputFileName() const {
-	return (getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv");
+	return (string("Antenna") + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv");
 }
 
 double Antenna::getRmax() const {
