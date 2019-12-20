@@ -39,9 +39,8 @@ Displace::~Displace() {
 }
 
 Point* Displace::computeNewLocation(Point* initLocation, double theta) {
-	const Coordinate *c = initLocation->getCoordinate();
-	double x = c->x;
-	double y = c->y;
+	double x = initLocation->getX();
+	double y = initLocation->getY();
 
 	unsigned long delta_t = m_clock->getIncrement();
 	double newX = x + m_speed * cos(theta) * delta_t;

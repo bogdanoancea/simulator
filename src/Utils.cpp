@@ -57,9 +57,8 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
-	if (dynamic_cast<Polygon*>(g) != nullptr) {
-		Polygon* pol = dynamic_cast<Polygon*>(g);
-		const Envelope* env = pol->getEnvelopeInternal();
+	if (g != nullptr) {
+		const Envelope* env = g->getEnvelopeInternal();
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
@@ -79,7 +78,7 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -114,7 +113,7 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -145,9 +144,8 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
-	if (dynamic_cast<Polygon*>(g) != nullptr) {
-		Polygon* pol = dynamic_cast<Polygon*>(g);
-		const Envelope* env = pol->getEnvelopeInternal();
+	if (g != nullptr) {
+		const Envelope* env = g->getEnvelopeInternal();
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
@@ -163,7 +161,7 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -185,23 +183,6 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 	return (result);
 }
 
-//void printPersonHeader() {
-//	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
-//			<< "Phone(s) ID" << endl;
-//}
-
-//void printAntennaHeader() {
-//	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-//			<< setw(15) << "MNO ID" << endl;
-//}
-
-//void printMobileOperatorHeader() {
-//	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
-//}
-
-//void printPhoneHeader() {
-//	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
-//}
 
 XMLNode* getNode(XMLElement* el, const char* name) {
 	XMLNode* n = nullptr;
@@ -296,9 +277,11 @@ vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::it
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				a = dynamic_cast<Antenna*>(it->second);
-				if (a->getId() == antennaId)
+				//a = dynamic_cast<Antenna*>(it->second);
+				if (it->second->getId() == antennaId) {
+					a = it->second;
 					break;
+				}
 			}
 			c.z = 0; //TODO tile elevation!
 			if (a != nullptr) {
@@ -325,9 +308,11 @@ vector<double> useUniformPrior(Map* map, bool connected, vector<AntennaInfo>::it
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				a = dynamic_cast<Antenna*>(it->second);
-				if (a->getId() == antennaId)
+				//a = dynamic_cast<Antenna*>(it->second);
+				if (a->getId() == antennaId) {
+					a = it->second;
 					break;
+				}
 			}
 			if (a != nullptr) {
 				lh = EMField::instance()->connectionLikelihoodGrid(a, map, tileIndex);
