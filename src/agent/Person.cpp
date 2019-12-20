@@ -25,7 +25,6 @@
 #include <agent/Person.h>
 #include <Clock.h>
 #include <Constants.h>
-#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
 #include <map/Map.h>
 #include <RandomNumberGenerator.h>

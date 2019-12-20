@@ -178,8 +178,8 @@ int main(int argc, char** argv) {
 						if (m->getMobileOperator()->getId() != mo->getId())
 							continue;
 						p_file << t << sep << m->getId() << sep;
-						ostringstream probs;
 
+						ostringstream probs;
 						vector<double> p = utils::computeProbability(map, t, m, data[mo->getId()], itra, w.getPrior());
 						for (unsigned long i = 0; i < map->getNoTiles() - 1; i++) {
 							probs << fixed << setprecision(15) << p[i] << sep;

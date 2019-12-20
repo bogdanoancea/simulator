@@ -71,7 +71,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		m_direction = Constants::ANTENNA_DIRECTION;
 	}
 	setLocationWithElevation();
-	m_cell = this->getMap()->getGlobalFactory()->createPolygon();
+	m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
 }
 
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :

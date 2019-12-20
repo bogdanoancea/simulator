@@ -24,7 +24,6 @@
  */
 
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/GeometryFactory.h>
 #include <agent/LocatableAgent.h>
 #include <Constants.h>
 #include <iomanip>
