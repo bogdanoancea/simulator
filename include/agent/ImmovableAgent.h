@@ -60,12 +60,6 @@ public:
 	 */
 	const string toString() const override;
 
-
-	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
 };
 
 #endif /* IMMOVABLEAGENT_H_ */

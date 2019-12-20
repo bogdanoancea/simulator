@@ -27,6 +27,7 @@
 #define UTILS_H
 
 #include <agent/AgentsCollection.h>
+#include <agent/MobilePhone.h>
 #include <AntennaInfo.h>
 #include <geos/geom/Point.h>
 #include <PriorType.h>
@@ -34,7 +35,7 @@
 #include <utility>
 #include <vector>
 
-class MobilePhone;
+
 namespace tinyxml2 {
 class XMLElement;
 class XMLNode;
@@ -69,31 +70,6 @@ namespace utils {
 	 * @return a vector of pointers to Point objects.
 	 */
 	vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed);
-
-	/**
-	 * Prints out a header containing the names of the member variables from the Person class in a human readable format.
-	 * It is used together with Person::toString() to output the Persons set on console
-	 */
-	void printPersonHeader();
-
-	/**
-	 * Prints out a header containing the names of the member variables from the Antenna class in a human readable format
-	 * It is used together with Antenna::toString() to output the antennas set on console
-	 */
-	void printAntennaHeader();
-
-	/**
-	 * Prints out a header containing the names of the member variables from the MobilePhone class in a human readable format
-	 * It is used together with MobilePhone::toString() to output the mobile phones set on console
-	 */
-	void printPhoneHeader();
-
-	/**
-	 * Prints out a header containing the names of the member variables from the MobileOperator class in a human readable format
-	 * It is used together with MobileOperator::toString() to output the mobile network operators set on console
-	 */
-	void printMobileOperatorHeader();
-
 
 	/**
 	 * Number PI.

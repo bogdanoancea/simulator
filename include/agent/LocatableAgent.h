@@ -54,12 +54,6 @@ public:
 	virtual ~LocatableAgent();
 
 	/**
-	 *  Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
-
-	/**
 	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.
 	 * @return a string representation of this class.
 	 */

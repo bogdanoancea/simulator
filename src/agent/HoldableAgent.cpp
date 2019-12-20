@@ -81,6 +81,3 @@ const string HoldableAgent::toString() const {
 	return (result.str());
 }
 
-const string HoldableAgent::getName() const {
-	return ("HoldableAgent");
-}

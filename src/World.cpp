@@ -477,11 +477,14 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
 		for (unsigned long i = 0; i < numPersons; i++) {
+			if(phone1[i] == 1 && phone2[i] == 1)
+				continue;
 			if (phone1[i] == 1) {
 				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
 			if (phone2[i] == 1) {
-				phone2[i] = phone2[i] + random_generator->generateBernoulliInt(pSecPhoneMNO2);
+				if(phone1[i] == 0)
+					phone2[i] = phone2[i] + random_generator->generateBernoulliInt(pSecPhoneMNO2);
 			}
 		}
 	} else {

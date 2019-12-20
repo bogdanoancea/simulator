@@ -72,10 +72,6 @@ MobileOperator::~MobileOperator() {
 	}
 }
 
-const string MobileOperator::getName() const {
-	return ("MobileOperator");
-}
-
 const string MobileOperator::toString() const {
 	ostringstream result;
 	result << left << setw(15) << getId() << setw(15) << getMNOName();
@@ -96,4 +92,10 @@ ofstream& MobileOperator::getAntennaCellsFile() {
 
 ofstream& MobileOperator::getSignalFile() {
 	return (m_signalMeasureFileName);
+}
+
+const string MobileOperator::getHeader() {
+	ostringstream result;
+	result << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
+	return (result.str());
 }

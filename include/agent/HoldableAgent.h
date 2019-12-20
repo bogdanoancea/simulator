@@ -83,12 +83,6 @@ public:
 	void setHolder(Agent* holder);
 
 	/**
-	 * Returns the name of the class
-	 * @return the name of the class
-	 */
-	const string getName() const override;
-
-	/**
 	 * Returns a string representation of this class, useful to print it to the console or in a file.
 	 * @return a string representation of this class, useful to print it to the console or in a file.
 	 */

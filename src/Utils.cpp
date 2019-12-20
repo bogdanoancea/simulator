@@ -185,23 +185,23 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 	return (result);
 }
 
-void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
-			<< "Phone(s) ID" << endl;
-}
+//void printPersonHeader() {
+//	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
+//			<< "Phone(s) ID" << endl;
+//}
 
-void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-			<< setw(15) << "MNO ID" << endl;
-}
+//void printAntennaHeader() {
+//	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+//			<< setw(15) << "MNO ID" << endl;
+//}
 
-void printMobileOperatorHeader() {
-	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
-}
+//void printMobileOperatorHeader() {
+//	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
+//}
 
-void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
-}
+//void printPhoneHeader() {
+//	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
+//}
 
 XMLNode* getNode(XMLElement* el, const char* name) {
 	XMLNode* n = nullptr;

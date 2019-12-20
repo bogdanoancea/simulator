@@ -67,17 +67,14 @@ public:
 	 */
 	virtual ~Person();
 
-	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
 
 	/**
 	 * Builds and returns a human readable string representation of the person.
 	 * @return a human readable string representation of the person.
 	 */
 	const string toString() const override;
+
+	static const string getHeader();
 
 	/**
 	 * Builds a string containing a list with the ids of the mobile devices that this person owns.

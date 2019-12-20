@@ -76,14 +76,13 @@ public:
 	 */
 	virtual const unsigned long getId() const;
 
-	virtual const string getName() const = 0;
-
 	/**
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
 	 * the description of concrete agents.
 	 * @return a string representation of the class content. The values of the members are written in this string.
 	 */
 	virtual const string toString() const = 0;
+
 
 private:
 	const Map* m_map;

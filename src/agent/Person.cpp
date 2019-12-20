@@ -33,14 +33,12 @@
 #include <sstream>
 #include <utility>
 
-
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen,
-		unsigned long timeStay, unsigned long intervalBetweenStays) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays {
-				intervalBetweenStays } {
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay,
+		unsigned long intervalBetweenStays) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays { intervalBetweenStays } {
 	m_displacementMethod = nullptr;
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
 	while (m_nextStay % getClock()->getIncrement() != 0)
@@ -82,8 +80,7 @@ Point* Person::move() {
 	if (currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
 		setLocation(currentLocation);
 		if (currentTime == m_nextStay + m_timeStay) {
-			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(
-					1.0 / this->m_avgIntervalBetweenStays);
+			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(1.0 / this->m_avgIntervalBetweenStays);
 			while (nextInterval % getClock()->getIncrement() != 0)
 				nextInterval++;
 
@@ -145,14 +142,18 @@ Person::Gender Person::getGender() const {
 	return (m_gender);
 }
 
-const string Person::getName() const {
-	return ("Person");
-}
-
 void Person::addDevice(string type, Agent* agent) {
 	m_idDevices.insert(std::pair<string, Agent*>(type, agent));
 }
 
 void Person::setDisplacementMethod(const std::shared_ptr<Displace>& displace) {
 	m_displacementMethod = displace;
+}
+
+const string Person::getHeader()  {
+	ostringstream result;
+	result << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
+			<< "Phone(s) ID" << endl;
+	return result.str();
+
 }

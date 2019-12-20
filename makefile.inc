@@ -1,7 +1,7 @@
 #-------[ environment vars ]--------
 
 PROJ_HOME = C:/c-projects/simulator
-GEOS_HOME = C:/msys64/mingw32/lib
+GEOS_HOME = C:/msys64/mingw64/lib
 MSYS_HOME = C:/msys64/
 DEBUG     = 0
 
@@ -20,7 +20,7 @@ endif
 ifeq ($(OS),Windows_NT)
 	CXX    = g++.exe
 	TARGET = simulator.exe
-	LDFLAGS = -L$(MSYS_HOME)/mingw32/lib
+	LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
 	LIBS = $(GEOS_HOME)/libgeos.dll.a
 	CXXFLAGS = -march=native
 

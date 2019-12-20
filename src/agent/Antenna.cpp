@@ -520,10 +520,6 @@ double Antenna::computePower(const Coordinate c) const {
 	return (result);
 }
 
-const string Antenna::getName() const {
-	return ("Antenna");
-}
-
 void Antenna::setLocationWithElevation() {
 	Point* p = getLocation();
 	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y, m_height));
@@ -536,7 +532,7 @@ MobileOperator* Antenna::getMNO() const {
 }
 
 string Antenna::getAntennaOutputFileName() const {
-	return (getName() + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv");
+	return (string("Antenna") + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv");
 }
 
 double Antenna::getRmax() const {
@@ -682,4 +678,12 @@ void Antenna::setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechan
 	else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
 		m_rmax = pow(10, (m_S0 - m_Smid + (1.0 / m_SSteep) * log(1.0 / m_Qmin - 1)) / (10 * m_ple));
 	m_cell = getCoverageArea();
+}
+
+
+const string Antenna::getHeader() {
+	ostringstream result;
+	result << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
+			<< setw(15) << "MNO ID" << endl;
+	return (result.str());
 }

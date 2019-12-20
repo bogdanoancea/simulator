@@ -24,7 +24,8 @@
  */
 
 #include <agent/Tablet.h>
-#include <iostream>
+#include <iomanip>
+#include <sstream>
 
 Tablet::Tablet(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock) :
 		HoldableAgent(m, id, initPosition, nullptr, clock) {
@@ -44,6 +45,10 @@ bool Tablet::tryConnect() {
 	return false;
 }
 
-const string Tablet::getName() const  {
-	return ("Tablet");
+
+const string Tablet::getHeader()  {
+	ostringstream result;
+	result << left << setw(15) << "Tablet ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
+	return result.str();
+
 }

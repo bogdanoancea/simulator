@@ -68,7 +68,3 @@ const string LocatableAgent::dumpLocation() {
 	ss << fixed << getId() << sep << getLocation()->getX() << sep << getLocation()->getY();
 	return (ss.str());
 }
-
-const string LocatableAgent::getName() const {
-	return ("LocatableAgent");
-}

@@ -52,12 +52,6 @@ public:
 
 
 	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
-
-	/**
 	 * Builds a human readable representation of this class.
 	 * @return a human readable representation of this class.
 	 */
@@ -88,6 +82,8 @@ public:
 	 * @return true if the connection succeeds, false otherwise.
 	 */
 	bool tryConnect() override;
+
+	static const string getHeader();
 
 private:
 

@@ -66,15 +66,12 @@ public:
 	virtual ~MobilePhone();
 
 	/**
-	 * Returns the name of this class.
-	 * @return the name of this class.
-	 */
-	const string getName() const override;
-	/**
 	 * Returns a human readable string representation of this class useful to output it to a file or console.
 	 * @return a human readable string representation of this class.
 	 */
 	const string toString() const override;
+
+	static const string getHeader();
 
 	/**
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the

@@ -83,16 +83,13 @@ public:
 	virtual ~Antenna();
 
 	/**
-	 * Overrides the same method from the superclass.
-	 * @return the name of the class, i.e. "Antenna"
-	 */
-	const string getName() const override;
-
-	/**
 	 * Overrides the same method from the superclass. It is used to write the characteristics of the Antenna in a file or console.
 	 * @return a string that describes the parameters of the Antenna.
 	 */
 	const string toString() const override;
+
+
+	static const string getHeader();
 
 	/**
 	 * Returns the surrounding environment' path loss exponent of the signal.
