@@ -73,6 +73,9 @@ public:
 	 */
 	const string toString() const override;
 
+	static const string getHeader();
+
+
 	/**
 	 * The name of the Mobile Operator. It should be provided as a parameter to the constructor of the class.
 	 * @return The name of the Mobile Operator

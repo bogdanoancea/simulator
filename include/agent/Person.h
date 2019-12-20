@@ -79,6 +79,8 @@ public:
 	 */
 	const string toString() const override;
 
+	static const string getHeader();
+
 	/**
 	 * Builds a string containing a list with the ids of the mobile devices that this person owns.
 	 * @return a string containing a list with the ids of the mobile devices that this person owns.

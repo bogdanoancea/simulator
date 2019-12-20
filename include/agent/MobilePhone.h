@@ -76,6 +76,8 @@ public:
 	 */
 	const string toString() const override;
 
+	static const string getHeader();
+
 	/**
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
 	 * displacement strategy and by the Person object who owns this phone. The displacement strategy is set at the Person

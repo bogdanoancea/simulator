@@ -89,6 +89,8 @@ public:
 	 */
 	bool tryConnect() override;
 
+	static const string getHeader();
+
 private:
 
 };

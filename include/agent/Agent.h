@@ -85,6 +85,7 @@ public:
 	 */
 	virtual const string toString() const = 0;
 
+
 private:
 	const Map* m_map;
 	const unsigned long m_id;

@@ -3,8 +3,8 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
-#include <agent/Person.h>
 #include <AntennaInfo.h>
+#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
@@ -101,26 +101,7 @@ int main(int argc, char** argv) {
 
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
-			utils::printMobileOperatorHeader();
-			auto itr0 = c->getAgentListByType(typeid(MobileOperator).name());
-			for (auto it = itr0.first; it != itr0.second; it++) {
-				cout << it->second->toString() << endl;
-			}
-			utils::printPersonHeader();
-			auto itr = c->getAgentListByType(typeid(Person).name());
-			for (auto it = itr.first; it != itr.second; it++) {
-				cout << it->second->toString() << endl;
-			}
-			utils::printAntennaHeader();
-			auto itr2 = c->getAgentListByType(typeid(Antenna).name());
-			for (auto it = itr2.first; it != itr2.second; it++) {
-				cout << it->second->toString() << endl;
-			}
-			utils::printPhoneHeader();
-			auto itr3 = c->getAgentListByType(typeid(MobilePhone).name());
-			for (auto it = itr3.first; it != itr3.second; it++) {
-				cout << it->second->toString() << endl;
-			}
+			c->printAgents();
 		}
 		w.runSimulation();
 		w.getMap()->dumpGrid(w.getGridFilename());
@@ -175,15 +156,14 @@ int main(int argc, char** argv) {
 			w.getClock()->reset();
 			auto itrm = c->getAgentListByType(typeid(MobilePhone).name());
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-				MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
-				cout << "Sum signal quality" << " MNO : " << mo->getMNOName() << endl;
-				EMField::instance()->sumSignalQuality(map, mo->getId());
+				cout << "Sum signal quality" << " MNO : " << itmno->second->getId() << endl;
+				EMField::instance()->sumSignalQuality(map, itmno->second->getId());
 			}
 
 			ofstream p_file;
 			unsigned long noTiles = w.getMap()->getNoTiles();
 			for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-				MobileOperator* mo = dynamic_cast<MobileOperator*>(itmno->second);
+				Agent* mo = itmno->second;
 				p_file.open(w.getProbFilenames()[mo->getId()], ios::out);
 				p_file << "t" << sep << "Phone ID" << sep;
 				for (unsigned long i = 0; i < noTiles - 1; i++) {

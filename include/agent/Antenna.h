@@ -94,6 +94,9 @@ public:
 	 */
 	const string toString() const override;
 
+
+	static const string getHeader();
+
 	/**
 	 * Returns the surrounding environment' path loss exponent of the signal.
 	 * @return the signals' path loss exponent of the surrounding environment. In real life, it takes

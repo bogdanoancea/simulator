@@ -23,19 +23,19 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <agent/Antenna.h>
+#include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <EMField.h>
-#include <iostream>
 #include <iomanip>
 #include <sstream>
 #include <utility>
-#include <Constants.h>
+#include <vector>
 
 using namespace std;
 
-MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock,
-		double threshold, HoldableAgent::CONNECTION_TYPE connType) :
-		HoldableAgent(m, id, initPosition, nullptr, clock), m_threshold{threshold}, m_connType { connType } {
+MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double threshold, HoldableAgent::CONNECTION_TYPE connType) :
+		HoldableAgent(m, id, initPosition, nullptr, clock), m_threshold { threshold }, m_connType { connType } {
 	m_connectedTo = nullptr;
 	m_mno = nullptr;
 }
@@ -116,3 +116,8 @@ void MobilePhone::setMobileOperator(MobileOperator* mno) {
 	m_mno = mno;
 }
 
+const string MobilePhone::getHeader()  {
+	ostringstream result;
+	result << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
+	return result.str();
+}
