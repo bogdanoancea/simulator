@@ -4,7 +4,6 @@
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <AntennaInfo.h>
-#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
