@@ -30,7 +30,6 @@
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Envelope.h>
 #include <geos/geom/GeometryFactory.h>
-#include <geos/geom/Polygon.h>
 #include <map/Map.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
@@ -277,9 +276,8 @@ vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::it
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				//a = dynamic_cast<Antenna*>(it->second);
-				if (it->second->getId() == antennaId) {
-					a = it->second;
+				a = dynamic_cast<Antenna*>(it->second);
+				if (a->getId() == antennaId) {
 					break;
 				}
 			}
@@ -308,9 +306,8 @@ vector<double> useUniformPrior(Map* map, bool connected, vector<AntennaInfo>::it
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-				//a = dynamic_cast<Antenna*>(it->second);
+				a = dynamic_cast<Antenna*>(it->second);
 				if (a->getId() == antennaId) {
-					a = it->second;
 					break;
 				}
 			}

@@ -24,7 +24,6 @@
  */
 
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/Polygon.h>
 #include <geos/geom/PrecisionModel.h>
 #include <geos/util/GeometricShapeFactory.h>
 
