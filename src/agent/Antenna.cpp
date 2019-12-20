@@ -240,6 +240,7 @@ unsigned long Antenna::getNumActiveConections() {
 
 void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
 	char sep = Constants::sep;
+	Point* loc = ag->getLocation();
 	if (verbose) {
 		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
 				<< ag->getId() << sep;
@@ -256,16 +257,16 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
 				cout << " In range, not attached ";
 		}
-		cout << sep << " Location: " << ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y
-				<< ag->getMap()->getTileNo(ag->getLocation());
+
+		cout << sep << " Location: " << loc->getX() << sep << loc->getY() << ag->getMap()->getTileNo(loc);
 		cout << endl;
 	}
 	else {
 		stringstream ss;
 		if (getMap()->hasGrid())
 			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
-					<< ag->getLocation()->getCoordinate()->x << sep << ag->getLocation()->getCoordinate()->y << sep
-					<< getMap()->getTileNo(ag->getLocation()) << endl;
+					<< loc->getX() << sep << loc->getY() << sep
+					<< getMap()->getTileNo(loc) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -344,9 +345,10 @@ double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
 
 double Antenna::computeSignalStrengthDirectional(const Coordinate c) const {
 	double signalStrength = 0.0;
-	const double dx = c.x - getLocation()->getX();
-	const double dy = c.y - getLocation()->getY();
-	const double dz = c.z - getLocation()->getZ();
+	Point *p = getLocation();
+	const double dx = c.x - p->getX();
+	const double dy = c.y - p->getY();
+	const double dz = c.z - p->getZ();
 
 	double dist = sqrt(dx * dx + dy * dy + dz * dz); //p->distance(getLocation());
 	double distXY = sqrt(dx * dx + dy * dy);
@@ -522,7 +524,7 @@ double Antenna::computePower(const Coordinate c) const {
 
 void Antenna::setLocationWithElevation() {
 	Point* p = getLocation();
-	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getCoordinate()->x, p->getCoordinate()->y, m_height));
+	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getX(), p->getY(), m_height));
 	setLocation(newP);
 	getMap()->getGlobalFactory()->destroyGeometry(p);
 }

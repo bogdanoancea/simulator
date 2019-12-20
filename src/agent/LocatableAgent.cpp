@@ -53,7 +53,7 @@ void LocatableAgent::setLocation(Point* location) {
 const string LocatableAgent::toString() const {
 	ostringstream ss;
 	if (m_location != nullptr)
-		ss << left << setw(15) << getId() << setw(15) << getLocation()->getCoordinate()->x << setw(15) << getLocation()->getCoordinate()->y;
+		ss << left << setw(15) << getId() << setw(15) << getLocation()->getX() << setw(15) << getLocation()->getY();
 	else
 		ss << left << setw(15) << getId() << setw(15) << "null" << setw(15) << "null";
 	return (ss.str());

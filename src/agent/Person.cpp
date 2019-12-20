@@ -67,8 +67,7 @@ const string Person::toString() const {
 
 	if (m_idDevices.size() > 0) {
 		for (pair<string, Agent*> i : m_idDevices) {
-			HoldableAgent* h = dynamic_cast<HoldableAgent*>(i.second);
-			ss << setw(15) << (h->getId());
+			ss << setw(15) << (i.second->getId());
 		}
 	}
 	return (ss.str());
@@ -132,8 +131,7 @@ string Person::dumpDevices() {
 	char sep = Constants::sep;
 	unordered_multimap<string, Agent*>::iterator it;
 	for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
-		Agent* a = it->second;
-		ss << sep << a->getId();
+		ss << sep << it->second->getId();
 	}
 	return (ss.str());
 }
