@@ -83,7 +83,7 @@ public:
 	 */
 	bool tryConnect() override;
 
-	static const string getHeader();
+		static const string getHeader();
 
 private:
 

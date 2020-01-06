@@ -67,7 +67,8 @@ public:
 	 */
 	const string toString() const override;
 
-	static const string getHeader();
+
+		static const string getHeader();
 
 
 	/**

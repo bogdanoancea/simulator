@@ -104,26 +104,18 @@ int main(int argc, char** argv) {
 		}
 		w.runSimulation();
 		w.getMap()->dumpGrid(w.getGridFilename());
+
 		std::map<unsigned long, vector<AntennaInfo>> data;
 		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
 		auto itra = c->getAgentListByType(typeid(Antenna).name());
 
-		unsigned long noTiles = map->getNoTiles();
-		Coordinate* tileCenters = w.getMap()->getTileCenters();
 		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 			MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 			vector<AntennaInfo> tmp;
 			for (auto it = itra.first; it != itra.second; it++) {
 				Antenna* a = static_cast<Antenna*>(it->second);
 				if (a->getMNO()->getId() == mo->getId()) {
-					ofstream& qualityFile = a->getMNO()->getSignalFile();
-					qualityFile << a->getId() << sep;
-					HoldableAgent::CONNECTION_TYPE handoverMechanism = w.getConnectionType();
-					for (unsigned long i = 0; i < noTiles - 1; i++) {
-						qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[i]) << sep;
-					}
-					qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[noTiles - 1]) << endl;
-
+					a->dumpSignal();
 					string fileName = a->getAntennaOutputFileName();
 					CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 					for (unsigned long i = 0; i < file.rowCount(); i++) {

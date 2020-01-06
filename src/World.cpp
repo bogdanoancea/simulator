@@ -23,14 +23,18 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <agent/AgentsCollection.h>
 #include <AntennaType.h>
+#include <Clock.h>
 #include <Constants.h>
 #include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
+#include <map/Map.h>
 #include <RandomNumberGenerator.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
+#include <TinyXML2.h>
 #include <Utils.h>
 #include <World.h>
 #include <cstring>
@@ -39,10 +43,8 @@
 #include <iostream>
 #include <map>
 #include <memory>
-#include <string>
 #include <typeinfo>
 #include <unordered_map>
-#include <utility>
 
 using namespace std;
 using namespace utils;

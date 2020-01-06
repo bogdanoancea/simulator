@@ -118,3 +118,5 @@ const string MobilePhone::getHeader()  {
 	result << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
 	return result.str();
 }
+
+

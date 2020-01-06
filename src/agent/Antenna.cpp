@@ -24,9 +24,12 @@
  */
 
 #include <agent/Antenna.h>
+#include <Clock.h>
 #include <Constants.h>
 #include <EMField.h>
+#include <geos/geom/Coordinate.inl>
 #include <geos/geom/CoordinateArraySequence.h>
+#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
 #include <geos/geom/Polygon.h>
 #include <geos/io/WKTWriter.h>
@@ -41,8 +44,8 @@
 #include <fstream>
 #include <iomanip>
 #include <iterator>
+#include <memory>
 #include <sstream>
-
 
 using namespace tinyxml2;
 using namespace std;
@@ -265,8 +268,7 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 		stringstream ss;
 		if (getMap()->hasGrid())
 			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
-					<< loc->getX() << sep << loc->getY() << sep
-					<< getMap()->getTileNo(loc) << endl;
+					<< loc->getX() << sep << loc->getY() << sep << getMap()->getTileNo(loc) << endl;
 
 		if (m_file.is_open()) {
 			m_file << ss.str();
@@ -682,10 +684,21 @@ void Antenna::setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechan
 	m_cell = getCoverageArea();
 }
 
-
 const string Antenna::getHeader() {
 	ostringstream result;
-	result << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-			<< setw(15) << "MNO ID" << endl;
+	result << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
+			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
 	return (result.str());
+}
+
+void Antenna::dumpSignal() const {
+	char sep = Constants::sep;
+	ofstream& qualityFile = getMNO()->getSignalFile();
+	qualityFile << getId() << sep;
+	unsigned long noTiles = getMap()->getNoTiles();
+	Coordinate* tileCenters = getMap()->getTileCenters();
+	for (unsigned long i = 0; i < noTiles - 1; i++) {
+		qualityFile << computeSignalMeasure(m_handoverMechanism, tileCenters[i]) << sep;
+	}
+	qualityFile << computeSignalMeasure(m_handoverMechanism, tileCenters[noTiles - 1]) << endl;
 }
