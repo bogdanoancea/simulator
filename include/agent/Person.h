@@ -82,18 +82,21 @@ class Person: public MovableAgent {
 		 */
 		string dumpDevices();
 
+		//TODO make it private
 		/**
 		 * returns true if this person has at least a mobile device, false otherwise.
 		 * @return
 		 */
 		bool hasDevices();
 
+		//TODO remove it - never called
 		/**
 		 * Returns the age of the person.
 		 * @return the age of the person.
 		 */
 		int getAge() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the age of the person.
 		 * @param age the age of the person.
@@ -101,7 +104,6 @@ class Person: public MovableAgent {
 		void setAge(int age);
 
 		/**
-		 * \callgraph
 		 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
 		 * displacement strategy set at the Person creation moment and currently two strategies are supported:
 		 * RandomWalkDisplacement and RandomWalkDriftDisplacement.
@@ -136,18 +138,22 @@ class Person: public MovableAgent {
 		 */
 		void addDevice(string type, Agent* agent);
 
+		//TODO remove it - never called
 		/**
 		 * Returns the gender of the person.
 		 * @return the gender of the person.
 		 */
 		Gender getGender() const;
 
+
+		//TODO remove it - never called
 		/**
 		 * The average time interval a person stay in the same location. It is given in the simulation.xml configuration file.
 		 * @return the average time a person stay in the same location.
 		 */
 		unsigned long getAvgTimeStay() const;
 
+		//TODO remove it - never called
 		/**
 		 * The average time interval between two stops. It is given in the simulation.xml configuration file.
 		 * @return The average time interval between two stops.

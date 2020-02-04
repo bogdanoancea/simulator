@@ -94,6 +94,7 @@ class Antenna: public ImmovableAgent {
 
 		static const string getHeader();
 
+		//TODO remove it - never called
 		/**
 		 * Returns the surrounding environment' path loss exponent of the signal.
 		 * @return the signals' path loss exponent of the surrounding environment. In real life, it takes
@@ -101,6 +102,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double getPLE() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the surrounding environment' path loss exponent of the signal for an antenna.
 		 * @param ple the value of the surrounding environment' path loss exponent of the signal. In real life, it takes
@@ -108,23 +110,27 @@ class Antenna: public ImmovableAgent {
 		 */
 		void setPLE(double ple);
 
+		//TODO remove it - never called
 		/**
 		 * Returns the power of an antenna in Watts at the location of antenna. This power decreases with a power of the distance from antenna.
 		 * @return the power of an antenna in Watts.
 		 */
 		double getPower() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the power of an antenna.
 		 * @param power the value of the antenna's power.
 		 */
 		void setPower(double power);
 
+		//TODO remove it - never called
 		/**
 		 * Returns the maximum number of mobile devices that an antenna can connect.
 		 */
 		unsigned long getMaxConnections() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the number of mobile devices that an antenna can connect.
 		 * @param maxConnections the number of mobile devices that an antenna can connect.
@@ -159,12 +165,14 @@ class Antenna: public ImmovableAgent {
 		 */
 		AntennaType getType() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the antenna type.
 		 * @param type the antenna type. It could take the following two values: AntennaType::OMNIDIRECTIONAL or AntennaType::DIRECTIONAL.
 		 */
 		void setType(AntennaType type);
 
+		//TODO make it private
 		/**
 		 * Computes the signal strength at the distance dist from antenna location.
 		 * @param dist the distance from antenna location.
@@ -172,24 +180,28 @@ class Antenna: public ImmovableAgent {
 		 */
 		double S(double dist) const;
 
+		//TODO remove it - never called
 		/**
 		 * Returns the value of the Smid antenna parameter.
 		 * @return the value of the Smid antenna parameter.
 		 */
 		double getSmid() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the value of the Smid antenna parameter.
 		 * @param smid the value of the Smid antenna parameter.
 		 */
 		void setSmid(double smid);
 
+		//TODO remove it - never called
 		/**
 		 * Returns the value of the Ssteep antenna parameter.
 		 * @return the value of the Ssteep antenna parameter.
 		 */
 		double getSSteep() const;
 
+		//TODO remove it - never called
 		/**
 		 * Sets the value of the Ssteep antenna parameter.
 		 * @param sSteep the value of the Ssteep antenna parameter.
@@ -224,6 +236,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double computePower(const Coordinate c) const;
 
+		//TODO make it private
 		/**
 		 * Computes the coverage area of an antenna. It is defined as the area where the signal strength is greater than S_min
 		 * @return a Polygon* representing the coverage area of the antenna.
@@ -248,6 +261,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double getRmax() const;
 
+		//TODO remove it - never called
 		/**
 		 * Returns the value of the minimum signal strength that defines the coverage area of this antenna.
 		 * @return the value of the minimum signal strength that defines the coverage area of this antenna.
@@ -267,6 +281,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double computeSignalStrength(const Point* p) const;
 
+		//TODO make it private
 		/**
 		 * Computes the signal strength given by an antenna in a certain location.
 		 * @param c the location where we want to compute the signal strength.
@@ -274,6 +289,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double computeSignalStrength(const Coordinate c) const;
 
+		//TODO make it private
 		/**
 		 * compute the signal strength, signal quality or signal power depending on the value of the handoverType parameter
 		 * @param handoverType the handover mechanism: signal quality, signal strength, signal power
@@ -281,8 +297,12 @@ class Antenna: public ImmovableAgent {
 		 * @return the signal strength, signal quality or signal power depending on the value of the handoverType parameter
 		 */
 		double computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const;
+
+		//TODO remove it - never called
 		HoldableAgent::CONNECTION_TYPE getHandoverMechanism() const;
+
 		void setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechanism);
+
 		void dumpSignal() const;
 
 	private:

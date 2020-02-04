@@ -95,7 +95,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	m_agentsCollection = new AgentsCollection();
 
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
-	time_t tt = getClock()->realTime();
+	time_t tt = m_clock->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
@@ -117,7 +117,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
-	tt = getClock()->realTime();
+	tt = m_clock->realTime();
 	cout << "Generating objects ended at " << ctime(&tt) << endl;
 }
 
@@ -160,7 +160,7 @@ void World::runSimulation() noexcept(false) {
 		f << a->getId() << sep << a->dumpCell();
 	}
 
-	time_t tt = getClock()->realTime();
+	time_t tt = m_clock->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
@@ -171,7 +171,7 @@ void World::runSimulation() noexcept(false) {
 	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
 	unsigned long t = m_clock->getInitialTime();
-	tt = getClock()->realTime();
+	tt = m_clock->realTime();
 	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
@@ -183,7 +183,7 @@ void World::runSimulation() noexcept(false) {
 	//iterate over all persons and call move()
 	t = m_clock->tick();
 	for (; t < m_clock->getFinalTime(); t = m_clock->tick()) {
-		tt = getClock()->realTime();
+		tt = m_clock->realTime();
 		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
@@ -193,7 +193,7 @@ void World::runSimulation() noexcept(false) {
 			personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 		}
 	}
-	tt = getClock()->realTime();
+	tt = m_clock->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
 
 	try {

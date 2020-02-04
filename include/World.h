@@ -103,24 +103,28 @@ public:
 	 */
 	void runSimulation() noexcept(false);
 
+	//TODO
 	/**
 	 * Returns the AgentsCollection used in simulation.
 	 * @return a pointer to AgentsCollection object.
 	 */
 	AgentsCollection* getAgents() const;
 
+	//TODO remove it - never called
 	/**
 	 * Sets the AgentsCollection to be used for simulation.
 	 * @param agents a pointer to AgentsCollection object.
 	 */
 	void setAgents(AgentsCollection* agents);
 
+	//TODO remove it - never called
 	/**
 	 * Returns a pointer to a Clock object used for simulation.
 	 * @return a pointer to a Clock object used for simulation.
 	 */
 	Clock* getClock() const;
 
+	//TODO remove it - never called
 	/**
 	 * Sets the Clock of the simulation.
 	 * @param clock a pointer to a Clock object used for simulation.
@@ -140,42 +144,50 @@ public:
 	 */
 	const string& getGridFilename() const;
 
+	//TODO make it private
 	/**
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
 	 */
 	map<const unsigned long, const string> getProbFilenames()  const;
 
+	//TODO remove it - never called
 	/**
 	 * Returns the name of the file where the antennas exact locations are saved for later analysis.
 	 * @return the name of the file where the antennas exact locations are saved for later analysis.
 	 */
 	const string& getAntennasFilename() const;
 
+	//TODO remove it - never called
 	/**
 	 * Returns the name of the file where the persons exact locations are saved for later analysis.
 	 * @return the name of the file where the persons exact locations are saved for later analysis.
 	 */
 	const string& getPersonsFilename() const;
 
+
+	//TODO make it private
 	/**
 	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.
 	 * @return the dimension of tiles on OX, this number is read from simulation configuration file.
 	 */
 	double getGridDimTileX() const;
 
+	//TODO make it private
 	/**
 	 * Returns the dimension of tiles on OY, this number is read from simulation configuration file.
 	 * @return the dimension of tiles on OY, this number is read from simulation configuration file.
 	 */
 	double getGridDimTileY() const;
 
+	//TODO remove it - never called
 	/**
 	 * Returns the type of the prior probability used to compute the posterior localization probability.
 	 * @return the type of the prior probability used to compute the posterior localization probability.
 	 */
 	PriorType getPrior() const;
 
+	//TODO make it private
 	/** Returns the type of the handover mechanism
 	 *
 	 * @return the type of the handover mechanism: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY,
