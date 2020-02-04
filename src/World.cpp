@@ -44,9 +44,11 @@
 #include <cstring>
 #include <ctime>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <typeinfo>
 #include <unordered_map>
 
@@ -645,4 +647,64 @@ std::map<unsigned long, vector<AntennaInfo>> World::getAntennaInfo() {
 		data.insert(pair<unsigned long, vector<AntennaInfo>>(mo->getId(), tmp));
 	}
 	return data;
+}
+
+void World::computeProbabilities() {
+	char sep = Constants::sep;
+	std::map<unsigned long, vector<AntennaInfo>> data = getAntennaInfo();
+	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
+	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+
+	time_t tt = m_clock->realTime();
+	cout << "Computing probabilities started at " << ctime(&tt) << endl;
+
+	auto itrm = m_agentsCollection->getAgentListByType(typeid(MobilePhone).name());
+	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+		cout << "Sum signal quality" << " MNO : " << itmno->second->getId() << endl;
+		EMField::instance()->sumSignalQuality(m_map, itmno->second->getId());
+	}
+
+	ofstream p_file;
+	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+		Agent* mo = itmno->second;
+		p_file.open(getProbFilenames()[mo->getId()], ios::out);
+		writeProbFileHeader(p_file);
+		m_clock->reset();
+		for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
+			//iterate over all devices
+			for (auto it = itrm.first; it != itrm.second; it++) {
+				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+				if (m->getMobileOperator()->getId() != mo->getId())
+					continue;
+				p_file << t << sep << m->getId() << sep;
+
+				ostringstream probs;
+				vector<double> p = utils::computeProbability(m_map, t, m, data[mo->getId()], itra, m_prior);
+				for (unsigned long i = 0; i < m_map->getNoTiles() - 1; i++) {
+					probs << fixed << setprecision(15) << p[i] << sep;
+					//cout << p[i] << ",";
+				}
+				probs << fixed << setprecision(15) << p[m_map->getNoTiles() - 1];
+				//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
+				p_file << probs.str() << endl;
+			}
+		}
+		try {
+			p_file.close();
+		} catch (ofstream::failure& e) {
+			cerr << "Error closing probs file!" << endl;
+		}
+	}
+	tt = m_clock->realTime();
+	cout << "Computing probabilities ended at " << ctime(&tt) << endl;
+}
+
+void World::writeProbFileHeader(ofstream& file) {
+	char sep = Constants::sep;
+	unsigned long noTiles = m_map->getNoTiles();
+	file << "t" << sep << "Phone ID" << sep;
+	for (unsigned long i = 0; i < noTiles - 1; i++) {
+		file << "Tile" << i << sep;
+	}
+	file << "Tile" << noTiles - 1 << endl;
 }
