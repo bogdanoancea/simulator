@@ -31,8 +31,10 @@
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <agent/Person.h>
+#include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
+#include <iostream>
 #include <map>
 #include <string>
 #include <utility>
@@ -181,12 +183,8 @@ public:
 	 */
 	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
 
-	/**
-	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
-	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
-	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
-	 */
-	std::map<unsigned long, vector<AntennaInfo>> getAntennaInfo();
+
+	void computeProbabilities();
 
 private:
 
@@ -227,6 +225,16 @@ private:
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
+
+	void writeProbFileHeader(ofstream& file);
+
+	/**
+	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
+	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
+	 */
+	std::map<unsigned long, vector<AntennaInfo>> getAntennaInfo();
+
 
 };
 
