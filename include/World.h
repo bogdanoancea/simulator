@@ -181,6 +181,12 @@ public:
 	 */
 	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
 
+	/**
+	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
+	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
+	 */
+	std::map<unsigned long, vector<AntennaInfo>> getAntennaInfo();
 
 private:
 
