@@ -52,3 +52,4 @@ const string Tablet::getHeader()  {
 	return result.str();
 
 }
+

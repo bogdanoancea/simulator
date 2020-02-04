@@ -104,50 +104,13 @@ int main(int argc, char** argv) {
 		}
 		w.runSimulation();
 		w.getMap()->dumpGrid(w.getGridFilename());
-		std::map<unsigned long, vector<AntennaInfo>> data;
-		auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
-		auto itra = c->getAgentListByType(typeid(Antenna).name());
-
-		unsigned long noTiles = map->getNoTiles();
-		Coordinate* tileCenters = w.getMap()->getTileCenters();
-		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-			MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
-			vector<AntennaInfo> tmp;
-			for (auto it = itra.first; it != itra.second; it++) {
-				Antenna* a = static_cast<Antenna*>(it->second);
-				if (a->getMNO()->getId() == mo->getId()) {
-					ofstream& qualityFile = a->getMNO()->getSignalFile();
-					qualityFile << a->getId() << sep;
-					HoldableAgent::CONNECTION_TYPE handoverMechanism = w.getConnectionType();
-					for (unsigned long i = 0; i < noTiles - 1; i++) {
-						qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[i]) << sep;
-					}
-					qualityFile << a->computeSignalMeasure(handoverMechanism, tileCenters[noTiles - 1]) << endl;
-
-					string fileName = a->getAntennaOutputFileName();
-					CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
-					for (unsigned long i = 0; i < file.rowCount(); i++) {
-						Row s = file[i];
-						AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
-						tmp.push_back(a);
-					}
-				}
-				sort(tmp.begin(), tmp.end());
-				ofstream antennaInfoFile;
-				string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
-				antennaInfoFile.open(name, ios::out);
-				antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
-				for (AntennaInfo& ai : tmp) {
-					antennaInfoFile << ai.toString() << sep << w.getMap()->getTileNo(ai.getX(), ai.getY()) << endl;
-				}
-				antennaInfoFile.close();
-			}
-			data.insert(pair<unsigned long, vector<AntennaInfo>>(mo->getId(), tmp));
-		}
+		std::map<unsigned long, vector<AntennaInfo>> data = w.getAntennaInfo();
 
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 		} else {
+			auto itr_mno = c->getAgentListByType(typeid(MobileOperator).name());
+			auto itra = c->getAgentListByType(typeid(Antenna).name());
 			time_t tt = w.getClock()->realTime();
 			cout << "Computing probabilities started at " << ctime(&tt) << endl;
 			//now we compute the probabilities for the positions of the phones
