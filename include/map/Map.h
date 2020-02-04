@@ -33,7 +33,6 @@ using namespace std;
 using namespace geos;
 using namespace geos::geom;
 
-
 class Map {
 
 public:
@@ -44,16 +43,16 @@ public:
 	virtual Geometry* getEnvelope() const = 0;
 
 	//temporar
-		const virtual GeometryFactory::Ptr& getGlobalFactory() const = 0;
+	const virtual GeometryFactory::Ptr& getGlobalFactory() const = 0;
 
 	virtual void addGrid(double dimTileX, double dimTileY);
 	virtual unsigned long getNoTilesX() const;
-	virtual unsigned long getNoTilesY() const ;
+	virtual unsigned long getNoTilesY() const;
 	virtual double getXTileDim() const;
 	virtual double getYTileDim() const;
 	virtual double getXOrigin() const;
 	virtual double getYOrigin() const;
-		const virtual unsigned long getNoTiles() const;
+	const virtual unsigned long getNoTiles() const;
 	virtual Coordinate getTileCenter(unsigned long tileIndex) const;
 	virtual unsigned long getTileNo(const Point* p) const;
 	virtual unsigned long getTileNo(double x, double y) const;

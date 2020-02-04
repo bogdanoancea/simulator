@@ -67,16 +67,13 @@ public:
 	 */
 	const string toString() const override;
 
-
-		static const string getHeader();
-
+	static const string getHeader();
 
 	/**
 	 * The name of the Mobile Operator. It should be provided as a parameter to the constructor of the class.
 	 * @return The name of the Mobile Operator
 	 */
 	const string getMNOName() const;
-
 
 	/**
 	 * The probability that a person will have a cell phone at this company. It should be
@@ -89,13 +86,12 @@ public:
 	 * @return a file where the coverage area of all the antennas that belong to this MobileOperator
 	 * are saved in csv format.
 	 */
-	ofstream& getAntennaCellsFile() ;
+	ofstream& getAntennaCellsFile();
 
 	/**
 	 * @return a file where the signal quality/strength/power values for all antennas belonging to this mobile Operator and all tiles of the grid are saved.
 	 */
-	ofstream& getSignalFile() ;
-
+	ofstream& getSignalFile();
 
 private:
 	const string m_name;

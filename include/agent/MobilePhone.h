@@ -114,6 +114,7 @@ class MobilePhone: public HoldableAgent {
 		 */
 		void setMobileOperator(MobileOperator* mno);
 
+		//TODO remove it - never called
 		/**
 		 * Returns the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.e. the signal is considered noise).
 		 * The returned value is interpreted as signal strength, power or quality according to the connection type.
