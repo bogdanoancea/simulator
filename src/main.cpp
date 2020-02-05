@@ -5,7 +5,6 @@
 #include <World.h>
 #include <cstdlib>
 #include <iostream>
-#include <new>
 #include <stdexcept>
 #include <string>
 #include <Utils.h>

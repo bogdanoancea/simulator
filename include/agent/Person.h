@@ -138,27 +138,6 @@ class Person: public MovableAgent {
 		 */
 		void addDevice(string type, Agent* agent);
 
-		//TODO remove it - never called
-		/**
-		 * Returns the gender of the person.
-		 * @return the gender of the person.
-		 */
-		Gender getGender() const;
-
-
-		//TODO remove it - never called
-		/**
-		 * The average time interval a person stay in the same location. It is given in the simulation.xml configuration file.
-		 * @return the average time a person stay in the same location.
-		 */
-		unsigned long getAvgTimeStay() const;
-
-		//TODO remove it - never called
-		/**
-		 * The average time interval between two stops. It is given in the simulation.xml configuration file.
-		 * @return The average time interval between two stops.
-		 */
-		unsigned long getAvgIntervalBetweenStays() const;
 
 		/**
 		 * Sets the displacement algorithm.

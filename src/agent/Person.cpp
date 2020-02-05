@@ -52,9 +52,7 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 Person::~Person() {
 }
 
-int Person::getAge() const {
-	return (m_age);
-}
+
 
 void Person::setAge(int age) {
 	m_age = age;
@@ -99,13 +97,6 @@ Point* Person::move() {
 	return (getLocation());
 }
 
-unsigned long Person::getAvgTimeStay() const {
-	return (m_avgTimeStay);
-}
-
-unsigned long Person::getAvgIntervalBetweenStays() const {
-	return (m_avgIntervalBetweenStays);
-}
 
 bool Person::hasDevices() {
 	return (m_idDevices.size() > 0);
@@ -133,10 +124,6 @@ string Person::dumpDevices() {
 		ss << sep << it->second->getId();
 	}
 	return (ss.str());
-}
-
-Person::Gender Person::getGender() const {
-	return (m_gender);
 }
 
 void Person::addDevice(string type, Agent* agent) {

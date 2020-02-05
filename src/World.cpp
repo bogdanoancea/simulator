@@ -24,9 +24,7 @@
  */
 
 #include <agent/AgentsCollection.h>
-#include <AntennaInfo.h>
 #include <AntennaType.h>
-#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
@@ -45,10 +43,7 @@
 #include <ctime>
 #include <fstream>
 #include <iomanip>
-#include <iostream>
-#include <map>
 #include <memory>
-#include <sstream>
 #include <typeinfo>
 #include <unordered_map>
 
@@ -209,18 +204,6 @@ AgentsCollection* World::getAgents() const {
 	return (m_agentsCollection);
 }
 
-void World::setAgents(AgentsCollection* agents) {
-	m_agentsCollection = agents;
-}
-
-Clock* World::getClock() const {
-	return (m_clock);
-}
-
-void World::setClock(Clock* clock) {
-	m_clock = clock;
-}
-
 const Map* World::getMap() const {
 	return (m_map);
 }
@@ -358,10 +341,6 @@ double World::getGridDimTileX() const {
 
 double World::getGridDimTileY() const {
 	return (m_GridDimTileY);
-}
-
-PriorType World::getPrior() const {
-	return (m_prior);
 }
 
 vector<MobileOperator*> World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
@@ -570,14 +549,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	delete[] ages;
 	delete[] gender;
 	return (result);
-}
-
-const string& World::getAntennasFilename() const {
-	return (m_antennasFilename);
-}
-
-const string& World::getPersonsFilename() const {
-	return (m_personsFilename);
 }
 
 string World::parseProbabilities(const string& probabilitiesFileName) {

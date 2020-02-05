@@ -56,34 +56,30 @@ public:
 	 */
 	bool operator==(const Agent& a);
 
-
 	/**
 	 * Getter that returns a pointer to the Map object passed to the constructor when an object was build.
 	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
-		const virtual Map* getMap() const;
-
+	const virtual Map* getMap() const;
 
 	/**
 	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
 	 * @return
 	 */
-		const virtual Clock* getClock() const;
+	const virtual Clock* getClock() const;
 
 	/**
 	 * Returns the id of the object.
 	 * @return the id of the object.
 	 */
-		const virtual unsigned long getId() const;
+	const virtual unsigned long getId() const;
 
 	/**
 	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
 	 * the description of concrete agents.
 	 * @return a string representation of the class content. The values of the members are written in this string.
 	 */
-		const virtual string toString() const = 0;
-
-
+	const virtual string toString() const = 0;
 
 private:
 	const Map* m_map;
