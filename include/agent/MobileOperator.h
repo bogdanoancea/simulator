@@ -82,6 +82,7 @@ public:
 	 */
 	const double getProbMobilePhone() const;
 
+
 	/**
 	 * @return a file where the coverage area of all the antennas that belong to this MobileOperator
 	 * are saved in csv format.
@@ -92,6 +93,8 @@ public:
 	 * @return a file where the signal quality/strength/power values for all antennas belonging to this mobile Operator and all tiles of the grid are saved.
 	 */
 	ofstream& getSignalFile();
+
+	void writeSignalFileHeader();
 
 private:
 	const string m_name;

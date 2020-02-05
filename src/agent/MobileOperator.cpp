@@ -94,9 +94,19 @@ ofstream& MobileOperator::getSignalFile() {
 	return (m_signalMeasureFileName);
 }
 
+
 const string MobileOperator::getHeader() {
 	ostringstream result;
 	result << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
 	return (result.str());
 }
 
+void MobileOperator::writeSignalFileHeader() {
+	char sep = Constants::sep;
+	unsigned long noTiles = getMap()->getNoTiles();
+	m_signalMeasureFileName << "Antenna ID" << sep;
+	for (unsigned long i = 0; i < noTiles - 1; i++) {
+		m_signalMeasureFileName << "Tile" << i << sep;
+	}
+	m_signalMeasureFileName << "Tile" << noTiles - 1 << endl;
+}

@@ -138,13 +138,14 @@ class Person: public MovableAgent {
 		 */
 		void addDevice(string type, Agent* agent);
 
-
 		/**
 		 * Sets the displacement algorithm.
 		 * @param displace a reference to an implementation of the displacement method. Currently two displacement methods are supported and they are implemented in
 		 * RandomWalkDisplacement and RandomWalkDriftDisplacement classes.
 		 */
 		void setDisplacementMethod(const shared_ptr<Displace>& displace);
+
+
 
 	private:
 		int m_age;

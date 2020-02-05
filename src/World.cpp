@@ -125,7 +125,7 @@ World::~World() {
 void World::runSimulation() noexcept(false) {
 	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
-	unsigned long noTiles = m_map->getNoTiles();
+	//unsigned long noTiles = m_map->getNoTiles();
 
 	try {
 		personsFile.open(m_personsFilename, ios::out);
@@ -138,12 +138,7 @@ void World::runSimulation() noexcept(false) {
 	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	for (auto it = itr0.first; it != itr0.second; it++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
-		ofstream& f = mo->getSignalFile();
-		f << "Antenna ID" << sep;
-		for (unsigned long i = 0; i < noTiles - 1; i++) {
-			f << "Tile" << i << sep;
-		}
-		f << "Tile" << noTiles - 1 << endl;
+		mo->writeSignalFileHeader();
 	}
 
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
@@ -153,6 +148,7 @@ void World::runSimulation() noexcept(false) {
 		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << m_map->getTileNo(a->getLocation()) << endl;
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
+		a->dumpSignal();
 	}
 
 	time_t tt = m_clock->realTime();
@@ -426,11 +422,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 
-	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;
 	unsigned int numMno = mnos.size();
 	for (auto& n : mnos) {
-		probMobilePhone += n->getProbMobilePhone();
 		probIntersection *= n->getProbMobilePhone();
 	}
 	if (numMno > 1 && probIntersection > m_probSecMobilePhone)
@@ -461,11 +455,11 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			if (phone1[i] == 1 && phone2[i] == 1)
 				continue;
 			if (phone1[i] == 1) {
-				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
+				phone1[i] += random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
 			if (phone2[i] == 1) {
 				if (phone1[i] == 0)
-					phone2[i] = phone2[i] + random_generator->generateBernoulliInt(pSecPhoneMNO2);
+					phone2[i] += random_generator->generateBernoulliInt(pSecPhoneMNO2);
 			}
 		}
 	} else {
@@ -584,6 +578,7 @@ HoldableAgent::CONNECTION_TYPE World::getConnectionType() const {
 	return (m_connType);
 }
 
+
 std::map<unsigned long, vector<AntennaInfo>> World::getAntennaInfo() {
 	char sep = Constants::sep;
 	std::map<unsigned long, vector<AntennaInfo>> data;
@@ -596,7 +591,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getAntennaInfo() {
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = static_cast<Antenna*>(it->second);
 			if (a->getMNO()->getId() == mo->getId()) {
-				a->dumpSignal();
 				string fileName = a->getAntennaOutputFileName();
 				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 				for (unsigned long i = 0; i < file.rowCount(); i++) {
