@@ -157,35 +157,11 @@ Antenna::~Antenna() {
 	}
 }
 
-double Antenna::getPLE() const {
-	return (m_ple);
-}
-
-void Antenna::setPLE(double ple) {
-	m_ple = ple;
-}
-
 const string Antenna::toString() const {
 	ostringstream result;
 	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
 			<< m_MNO->getId();
 	return (result.str());
-}
-
-double Antenna::getPower() const {
-	return (m_power);
-}
-
-void Antenna::setPower(double power) {
-	m_power = power;
-}
-
-unsigned long Antenna::getMaxConnections() const {
-	return (m_maxConnections);
-}
-
-void Antenna::setMaxConnections(int maxConnections) {
-	m_maxConnections = maxConnections;
 }
 
 bool Antenna::tryRegisterDevice(HoldableAgent* device) {
@@ -231,10 +207,6 @@ bool Antenna::alreadyRegistered(HoldableAgent * device) {
 
 AntennaType Antenna::getType() const {
 	return (m_type);
-}
-
-void Antenna::setType(AntennaType type) {
-	m_type = type;
 }
 
 unsigned long Antenna::getNumActiveConections() {
@@ -292,22 +264,6 @@ double Antenna::SDist(double dist) const {
 
 double Antenna::S(double dist) const {
 	return (S0() - SDist(dist));
-}
-
-double Antenna::getSmid() const {
-	return (m_Smid);
-}
-
-void Antenna::setSmid(double smid) {
-	m_Smid = smid;
-}
-
-double Antenna::getSSteep() const {
-	return (m_SSteep);
-}
-
-void Antenna::setSSteep(double sSteep) {
-	m_SSteep = sSteep;
 }
 
 double Antenna::computeSignalQuality(const Point* p) const {
@@ -543,10 +499,6 @@ double Antenna::getRmax() const {
 	return (m_rmax);
 }
 
-double Antenna::getSmin() const {
-	return (m_Smin);
-}
-
 string Antenna::dumpCell() const {
 	geos::io::WKTWriter writter;
 	ostringstream result;
@@ -671,9 +623,6 @@ double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType
 	return result;
 }
 
-HoldableAgent::CONNECTION_TYPE Antenna::getHandoverMechanism() const {
-	return m_handoverMechanism;
-}
 
 void Antenna::setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
 	m_handoverMechanism = handoverMechanism;
