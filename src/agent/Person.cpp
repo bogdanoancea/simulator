@@ -116,6 +116,7 @@ void Person::setLocation(Point* location) {
 	}
 }
 
+
 string Person::dumpDevices() {
 	stringstream ss;
 	char sep = Constants::sep;

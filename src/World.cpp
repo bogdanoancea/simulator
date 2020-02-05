@@ -578,6 +578,7 @@ HoldableAgent::CONNECTION_TYPE World::getConnectionType() const {
 	return (m_connType);
 }
 
+
 std::map<unsigned long, vector<AntennaInfo>> World::getAntennaInfo() {
 	char sep = Constants::sep;
 	std::map<unsigned long, vector<AntennaInfo>> data;

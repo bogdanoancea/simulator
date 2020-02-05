@@ -145,6 +145,8 @@ class Person: public MovableAgent {
 		 */
 		void setDisplacementMethod(const shared_ptr<Displace>& displace);
 
+
+
 	private:
 		int m_age;
 		Gender m_gender;

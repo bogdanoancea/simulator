@@ -94,6 +94,7 @@ ofstream& MobileOperator::getSignalFile() {
 	return (m_signalMeasureFileName);
 }
 
+
 const string MobileOperator::getHeader() {
 	ostringstream result;
 	result << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;

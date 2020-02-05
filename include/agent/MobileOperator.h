@@ -82,6 +82,7 @@ public:
 	 */
 	const double getProbMobilePhone() const;
 
+
 	/**
 	 * @return a file where the coverage area of all the antennas that belong to this MobileOperator
 	 * are saved in csv format.
