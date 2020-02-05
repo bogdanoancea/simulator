@@ -138,7 +138,6 @@ class Person: public MovableAgent {
 		 */
 		void addDevice(string type, Agent* agent);
 
-
 		/**
 		 * Sets the displacement algorithm.
 		 * @param displace a reference to an implementation of the displacement method. Currently two displacement methods are supported and they are implemented in

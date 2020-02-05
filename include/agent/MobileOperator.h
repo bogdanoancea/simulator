@@ -93,6 +93,8 @@ public:
 	 */
 	ofstream& getSignalFile();
 
+	void writeSignalFileHeader();
+
 private:
 	const string m_name;
 	const double m_probMobilePhone;
