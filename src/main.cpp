@@ -2,12 +2,14 @@
 #include <geos/io/WKTWriter.h>
 #include <InputParser.h>
 #include <map/WKTMap.h>
+#include <NetPriorPostLocProb.h>
+#include <PriorType.h>
+#include <UnifPriorPostLocProb.h>
 #include <World.h>
-#include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <stdexcept>
 #include <string>
-#include <Utils.h>
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
@@ -20,7 +22,7 @@
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
-using namespace utils;
+
 
 int main(int argc, char** argv) {
 
