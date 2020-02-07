@@ -12,6 +12,9 @@ Constants.o\
 Displace.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
+PostLocProb.o\
+NetPriorPostLocProb.o\
+UnifPriorPostLocProb.o\
 agent/MobileOperator.o\
 EMField.o\
 EventType.o\
@@ -33,6 +36,7 @@ Tinyxml2.o\
 Utils.o\
 World.o\
 main.o
+
 
 
 $(TARGET): $(OBJECTS) 
