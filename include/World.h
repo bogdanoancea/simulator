@@ -30,16 +30,17 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
+#include <agent/AgentsCollection.h>
 #include <agent/Person.h>
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
+#include <PostLocProb.h>
 #include <iostream>
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
-
 
 using namespace std;
 using namespace tinyxml2;
@@ -84,8 +85,8 @@ public:
 	 * @param configSimulationFileName the general configuration file for a simulation.
 	 * @param probabilitiesFileName the config file for the posterior location probabilites.
 	 */
-	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
-			noexcept(false);
+	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName,
+			const string& probabilitiesFileName) noexcept(false);
 
 	/**
 	 * Destructor
@@ -114,16 +115,24 @@ public:
 	 */
 	const Map* getMap() const;
 
-
 	/**
 	 * Returns the file name where the grid parameters are saved. They are needed for the visualization software.
 	 * @return the file name where the grid parameters are saved.
 	 */
 	const string& getGridFilename() const;
 
+	Clock* getClock();
 
 	void computeProbabilities();
+	/**
+	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
+	 * @return the name of the file where the probabilities of mobile phones locations are saved.
+	 */
+	map<const unsigned long, const string> getProbFilenames() const;
 
+	void setPostProbMethod(const std::shared_ptr<PostLocProb>& post);
+
+	PriorType getPrior();
 private:
 
 	Map* m_map;
@@ -148,12 +157,12 @@ private:
 	string m_personsFilename;
 	string m_antennasFilename;
 	double m_probSecMobilePhone;
-
+	shared_ptr<PostLocProb> m_postMethod;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-			vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
+	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+			double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
@@ -163,23 +172,6 @@ private:
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
-
-	void writeProbFileHeader(ofstream& file);
-
-	/**
-	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
-	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
-	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
-	 */
-	std::map<unsigned long, vector<AntennaInfo>> getAntennaInfo();
-
-
-	//TODO make it private
-	/**
-	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
-	 * @return the name of the file where the probabilities of mobile phones locations are saved.
-	 */
-	map<const unsigned long, const string> getProbFilenames()  const;
 
 	//TODO make it private
 	/**

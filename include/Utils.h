@@ -183,9 +183,9 @@ namespace utils {
 	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
 	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
 	 */
-	vector<double> computeProbability(Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior);
-	vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
-	vector<double> useUniformPrior(Map *map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
+//  vector<double> computeProbability(Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it, PriorType prior);
+//	vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
+//	vector<double> useUniformPrior(Map *map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator);
 
 }
 
