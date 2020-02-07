@@ -38,7 +38,8 @@
 #include <utility>
 #include <vector>
 
-UnifPriorPostLocProb::UnifPriorPostLocProb(const Map* m, Clock* clk, AgentsCollection* agents, map<const unsigned long, const string> probFiles) :
+UnifPriorPostLocProb::UnifPriorPostLocProb(const Map* m, Clock* clk, AgentsCollection* agents,
+		map<const unsigned long, const string> probFiles) :
 		PostLocProb(m, clk, agents, probFiles) {
 	// TODO Auto-generated constructor stub
 
@@ -48,7 +49,7 @@ UnifPriorPostLocProb::~UnifPriorPostLocProb() {
 	// TODO Auto-generated destructor stub
 }
 
-vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) {
+vector<double> UnifPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) {
 	vector<double> result;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
@@ -63,7 +64,7 @@ vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<Ante
 		}
 	}
 
-	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
+	for (unsigned long tileIndex = 0; tileIndex < m_map->getNoTiles(); tileIndex++) {
 		double lh = 0.0;
 		if (found) {
 			unsigned long antennaId = ai->getAntennaId();
@@ -75,21 +76,17 @@ vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<Ante
 				}
 			}
 			if (a != nullptr) {
-				lh = EMField::instance()->connectionLikelihoodGrid(a, map, tileIndex);
+				lh = EMField::instance()->connectionLikelihoodGrid(a, m_map, tileIndex);
 			}
 		}
 		result.push_back(lh);
 	}
 	for (auto& i : result) {
 		if (i > 0.0)
-			i /= (map->getNoTilesX() * map->getNoTilesY());
+			i /= (m_map->getNoTilesX() * m_map->getNoTilesY());
 		else
-			i = 1.0 / (map->getNoTilesX() * map->getNoTilesY());
+			i = 1.0 / (m_map->getNoTilesX() * m_map->getNoTilesY());
 	}
 
 	return (result);
 }
-
-//void UnifPriorPostLocProb::computeProbabilities(){
-//	PostLocProb::computeProbabilities();
-//}

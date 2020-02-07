@@ -23,7 +23,6 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-
 #ifndef INCLUDE_UNIFPRIORPOSTLOCPROB_H_
 #define INCLUDE_UNIFPRIORPOSTLOCPROB_H_
 
@@ -35,9 +34,7 @@ public:
 
 	virtual ~UnifPriorPostLocProb();
 
-
-	//virtual void computeProbabilities() override;
-	virtual vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) override;
+	virtual vector<double> prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) override;
 };
 
 #endif /* INCLUDE_UNIFPRIORPOSTLOCPROB_H_ */

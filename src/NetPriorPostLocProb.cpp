@@ -32,7 +32,6 @@
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
 #include <iostream>
-#include <iterator>
 #include <map>
 #include <unordered_map>
 #include <utility>
@@ -49,7 +48,7 @@ NetPriorPostLocProb::~NetPriorPostLocProb() {
 }
 
 
-vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) {
+vector<double> NetPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) {
 	vector<double> result;
 	// take the mobile phone and see which is the antenna connected to
 	vector<AntennaInfo>::iterator ai;
@@ -65,10 +64,10 @@ vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<Ante
 	}
 
 	double sum = 0.0;
-	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
+	for (unsigned long tileIndex = 0; tileIndex < m_map->getNoTiles(); tileIndex++) {
 		double lh = 0.0;
 		if (found) {
-			Coordinate c = map->getTileCenter(tileIndex);
+			Coordinate c = m_map->getTileCenter(tileIndex);
 			unsigned long antennaId = ai->getAntennaId();
 			Antenna* a = nullptr;
 			for (auto itr = it.first; itr != it.second; itr++) {
@@ -90,10 +89,6 @@ vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<Ante
 			i /= sum;
 		}
 	}
-
 	return (result);
 }
-//
-//void NetPriorPostLocProb::computeProbabilities(){
-//	PostLocProb::computeProbabilities();
-//}
+

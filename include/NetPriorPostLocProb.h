@@ -36,7 +36,7 @@ public:
 
 	//virtual void computeProbabilities() override;
 
-	virtual vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) override;
+	virtual vector<double> prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) override;
 };
 
 #endif /* INCLUDE_NETPRIORPOSTLOCPROB_H_ */

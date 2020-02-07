@@ -77,10 +77,6 @@ int main(int argc, char** argv) {
 
 		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
 
-
-
-
-
 		AgentsCollection* c = w.getAgents();
 		if (verbose) {
 			c->printAgents();
@@ -90,14 +86,6 @@ int main(int argc, char** argv) {
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 		} else {
-
-			if (w.getPrior() == PriorType::UNIFORM) {
-				auto postProb = std::make_shared<UnifPriorPostLocProb>(w.getMap(), w.getClock(), w.getAgents(), w.getProbFilenames());
-				w.setPostProbMethod(postProb);
-			} else if (w.getPrior() == PriorType::NETWORK) {
-				auto postProb = std::make_shared<NetPriorPostLocProb>(w.getMap(), w.getClock(), w.getAgents(), w.getProbFilenames());
-				w.setPostProbMethod(postProb);
-			}
 			w.computeProbabilities();
 		}
 	} catch (const std::bad_alloc& e) {

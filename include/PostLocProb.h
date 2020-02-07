@@ -26,7 +26,6 @@
 #ifndef INCLUDE_POSTLOCPROB_H_
 #define INCLUDE_POSTLOCPROB_H_
 
-
 #include <AntennaInfo.h>
 #include <agent/AgentsCollection.h>
 #include <map/Map.h>
@@ -37,18 +36,17 @@
 
 using namespace std;
 
-
 class PostLocProb {
 public:
-	PostLocProb(const Map* m, Clock* clk, AgentsCollection* agents, map<const unsigned long, const string> probFiles );
+	PostLocProb(const Map* m, Clock* clk, AgentsCollection* agents, map<const unsigned long, const string> probFiles);
 
 	virtual ~PostLocProb();
 
-	void computeProbabilities();
+	virtual void computeProbabilities();
 
-	virtual vector<double> prob(const Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) = 0;
+	virtual vector<double> prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) = 0;
 
-private:
+protected:
 	const Map* m_map;
 	Clock* m_clock;
 	AgentsCollection* m_agents;

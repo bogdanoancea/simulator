@@ -31,7 +31,7 @@
 #include <CSVparser.hpp>
 #include <vector>
 #include <map>
-
+#include <iomanip>
 using namespace std;
 
 PostLocProb::PostLocProb(const Map* m, Clock* clk, AgentsCollection* agents, map<const unsigned long, const string> probFiles) :
@@ -48,7 +48,7 @@ void PostLocProb::computeProbabilities() {
 	char sep = Constants::sep;
 	std::map<unsigned long, vector<AntennaInfo>> data = getAntennaInfo();
 	auto itr_mno = m_agents->getAgentListByType(typeid(MobileOperator).name());
-	auto itra = m_agents->getAgentListByType(typeid(Antenna).name());
+	std::pair<um_iterator, um_iterator> itra = m_agents->getAgentListByType(typeid(Antenna).name());
 
 	time_t tt = m_clock->realTime();
 	cout << "Computing probabilities started at " << ctime(&tt) << endl;
@@ -74,7 +74,7 @@ void PostLocProb::computeProbabilities() {
 				p_file << t << sep << m->getId() << sep;
 
 				ostringstream probs;
-				vector<double> p = prob(m_map, t, m, data[mo->getId()], itra); // asta e virtuala pura
+				vector<double> p = prob(t, m, data[mo->getId()], itra); // asta e virtuala pura
 				for (unsigned long i = 0; i < m_map->getNoTiles() - 1; i++) {
 					probs << fixed << setprecision(15) << p[i] << sep;
 					//cout << p[i] << ",";

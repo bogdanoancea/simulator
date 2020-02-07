@@ -29,7 +29,6 @@
 
 using namespace utils;
 
-class Person;
 
 RandomWalkDisplacement::RandomWalkDisplacement(Map* map, Clock* clk,  double speed):
 		Displace(map, clk, speed) {
