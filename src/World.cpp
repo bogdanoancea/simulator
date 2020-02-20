@@ -34,7 +34,6 @@
 #include <RandomNumberGenerator.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
-#include <sys/_types/_time_t.h>
 #include <TinyXML2.h>
 #include <UnifPriorPostLocProb.h>
 #include <Utils.h>
