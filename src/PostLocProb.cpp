@@ -32,6 +32,7 @@
 #include <vector>
 #include <map>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 PostLocProb::PostLocProb(const Map* m, Clock* clk, AgentsCollection* agents, map<const unsigned long, const string> probFiles) :
