@@ -26,18 +26,21 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include <Antenna.h>
-#include <Person.h>
-#include <random>
-#include <vector>
-#include <map>
-#include <AgentsCollection.h>
-#include <Clock.h>
-#include <MobilePhone.h>
+#include <agent/Antenna.h>
+#include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
+#include <agent/MobilePhone.h>
+#include <agent/AgentsCollection.h>
+#include <agent/Person.h>
+#include <AntennaInfo.h>
 #include <MovementType.h>
-#include <TinyXML2.h>
 #include <PriorType.h>
-#include <MobileOperator.h>
+#include <PostLocProb.h>
+#include <iostream>
+#include <map>
+#include <string>
+#include <utility>
+#include <vector>
 
 using namespace std;
 using namespace tinyxml2;
@@ -82,8 +85,8 @@ public:
 	 * @param configSimulationFileName the general configuration file for a simulation.
 	 * @param probabilitiesFileName the config file for the posterior location probabilites.
 	 */
-	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName, const string& probabilitiesFileName)
-			noexcept(false);
+	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName,
+			const string& probabilitiesFileName) noexcept(false);
 
 	/**
 	 * Destructor
@@ -107,34 +110,10 @@ public:
 	AgentsCollection* getAgents() const;
 
 	/**
-	 * Sets the AgentsCollection to be used for simulation.
-	 * @param agents a pointer to AgentsCollection object.
-	 */
-	void setAgents(AgentsCollection* agents);
-
-	/**
-	 * Returns a pointer to a Clock object used for simulation.
-	 * @return a pointer to a Clock object used for simulation.
-	 */
-	Clock* getClock() const;
-
-	/**
-	 * Sets the Clock of the simulation.
-	 * @param clock a pointer to a Clock object used for simulation.
-	 */
-	void setClock(Clock* clock);
-
-	/**
 	 * Returns a pointer to a Map object where the simulation takes place.
 	 * @return a pointer to a Map object where the simulation takes place.
 	 */
 	const Map* getMap() const;
-
-	/**
-	 * Sets the map where the simulation takes place.
-	 * @param map a pointer to a Map object where the simulation takes place.
-	 */
-	void setMap(Map* map);
 
 	/**
 	 * Returns the file name where the grid parameters are saved. They are needed for the visualization software.
@@ -142,50 +121,18 @@ public:
 	 */
 	const string& getGridFilename() const;
 
+	Clock* getClock();
+
+	void computeProbabilities();
 	/**
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
 	 */
-	map<const unsigned long, const string> getProbFilenames()  const;
+	map<const unsigned long, const string> getProbFilenames() const;
 
-	/**
-	 * Returns the name of the file where the antennas exact locations are saved for later analysis.
-	 * @return the name of the file where the antennas exact locations are saved for later analysis.
-	 */
-	const string& getAntennasFilename() const;
+	void setPostProbMethod(const std::shared_ptr<PostLocProb>& post);
 
-	/**
-	 * Returns the name of the file where the persons exact locations are saved for later analysis.
-	 * @return the name of the file where the persons exact locations are saved for later analysis.
-	 */
-	const string& getPersonsFilename() const;
-
-	/**
-	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.
-	 * @return the dimension of tiles on OX, this number is read from simulation configuration file.
-	 */
-	double getGridDimTileX() const;
-
-	/**
-	 * Returns the dimension of tiles on OY, this number is read from simulation configuration file.
-	 * @return the dimension of tiles on OY, this number is read from simulation configuration file.
-	 */
-	double getGridDimTileY() const;
-
-	/**
-	 * Returns the type of the prior probability used to compute the posterior localization probability.
-	 * @return the type of the prior probability used to compute the posterior localization probability.
-	 */
-	PriorType getPrior() const;
-
-	/** Returns the type of the handover mechanism
-	 *
-	 * @return the type of the handover mechanism: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY,
-	 *  HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH, HoldableAgent::CONNECTION_TYPE::USING_POWER
-	 */
-	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
-
-
+	PriorType getPrior();
 private:
 
 	Map* m_map;
@@ -210,12 +157,12 @@ private:
 	string m_personsFilename;
 	string m_antennasFilename;
 	double m_probSecMobilePhone;
-
+	shared_ptr<PostLocProb> m_postMethod;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution, double male_share,
-			vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
+	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+			double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
@@ -226,6 +173,26 @@ private:
 	string parseProbabilities(const string& probabilitiesFileName);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 
+	//TODO make it private
+	/**
+	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.
+	 * @return the dimension of tiles on OX, this number is read from simulation configuration file.
+	 */
+	double getGridDimTileX() const;
+
+	//TODO make it private
+	/**
+	 * Returns the dimension of tiles on OY, this number is read from simulation configuration file.
+	 * @return the dimension of tiles on OY, this number is read from simulation configuration file.
+	 */
+	double getGridDimTileY() const;
+
+	//TODO make it private
+	/** Returns the type of the handover mechanism
+	 * @return the type of the handover mechanism: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY,
+	 *  HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH, HoldableAgent::CONNECTION_TYPE::USING_POWER
+	 */
+	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
 };
 
 #endif // WORLD_H

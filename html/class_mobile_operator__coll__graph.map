@@ -1,15 +1,6 @@
 <map id="MobileOperator" name="MobileOperator">
-<area shape="rect" id="node1" title=" " alt="" coords="372,1211,538,1377"/>
-<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="325,956,432,1136"/>
-<area shape="rect" id="node3" href="$class_map.html" title=" " alt="" coords="188,675,332,868"/>
-<area shape="rect" id="node4" href="$class_grid.html" title=" " alt="" coords="155,180,312,547"/>
-<area shape="rect" id="node5" title=" " alt="" coords="186,5,281,79"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,5,67,79"/>
-<area shape="rect" id="node7" title=" " alt="" coords="457,5,532,79"/>
-<area shape="rect" id="node8" title=" " alt="" coords="335,327,374,400"/>
-<area shape="rect" id="node9" title=" " alt="" coords="42,327,131,400"/>
-<area shape="rect" id="node10" href="$class_clock.html" title=" " alt="" coords="372,648,506,895"/>
-<area shape="rect" id="node11" title=" " alt="" coords="399,327,503,400"/>
-<area shape="rect" id="node12" title=" " alt="" coords="456,1009,510,1083"/>
-<area shape="rect" id="node13" title=" " alt="" coords="535,1009,609,1083"/>
+<area shape="rect" id="node2" href="$class_agent.html" title="{Agent\n||+ Agent()\l+ ~Agent()\l+ operator==()\l+ getName()\l+ toString()\l+ getMap()\l+ setMap()\l+ getClock()\l+ getId()\l}" alt="" coords="319,895,425,1089"/>
+<area shape="rect" id="node3" href="$class_map.html" title="{Map\n||+ Map()\l+ Map()\l+ Map()\l+ ~Map()\l+ getGlobalFactory()\l+ getBoundary()\l+ setBoundary()\l+ getGrid()\l+ addGrid()\l&#45; create_rectangle()\l}" alt="" coords="168,593,309,803"/>
+<area shape="rect" id="node4" href="$class_grid.html" title="{Grid\n||+ Grid()\l+ ~Grid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ toString()\l+ getTileIndexX()\land 10 more...\l&#45; computeTileCenters()\l&#45; useNetworkPrior()\l&#45; useUniformPrior()\l}" alt="" coords="155,189,309,457"/>
+<area shape="rect" id="node10" href="$class_clock.html" title="{Clock\n||+ Clock()\l+ Clock()\l+ ~Clock()\l+ tick()\l+ getCurrentTime()\l+ setCurrentTime()\l+ getIncrement()\l+ setIncrement()\l+ getInitialTime()\l+ setInitialTime()\l+ realTime()\l+ getFinalTime()\l+ setFinalTime()\l+ reset()\l}" alt="" coords="368,564,499,832"/>
 </map>

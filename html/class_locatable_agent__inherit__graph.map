@@ -1,11 +1,10 @@
 <map id="LocatableAgent" name="LocatableAgent">
-<area shape="rect" id="node1" title=" " alt="" coords="182,260,325,413"/>
-<area shape="rect" id="node3" href="$class_immovable_agent.html" title=" " alt="" coords="96,481,246,595"/>
-<area shape="rect" id="node5" href="$class_movable_agent.html" title=" " alt="" coords="299,461,434,615"/>
-<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="200,5,307,212"/>
-<area shape="rect" id="node4" href="$class_antenna.html" title=" " alt="" coords="5,663,275,1789"/>
-<area shape="rect" id="node6" href="$class_holdable_agent.html" title=" " alt="" coords="298,1116,435,1336"/>
-<area shape="rect" id="node9" href="$class_person.html" title=" " alt="" coords="459,1029,671,1423"/>
-<area shape="rect" id="node7" href="$class_mobile_phone.html" title=" " alt="" coords="188,1837,375,2057"/>
-<area shape="rect" id="node8" href="$class_tablet.html" title=" " alt="" coords="399,1877,505,2017"/>
+<area shape="rect" id="node3" href="$class_immovable_agent.html" title="{ImmovableAgent\n||+ ImmovableAgent()\l+ ~ImmovableAgent()\l+ toString()\l+ getName()\l}" alt="" coords="93,513,239,634"/>
+<area shape="rect" id="node5" href="$class_movable_agent.html" title="{MovableAgent\n|&#45; m_speed\l|+ MovableAgent()\l+ ~MovableAgent()\l+ getName()\l+ toString()\l+ move()\l+ getSpeed()\l+ setSpeed()\l}" alt="" coords="294,491,425,656"/>
+<area shape="rect" id="node2" href="$class_agent.html" title="{Agent\n|&#45; m_map\l&#45; m_id\l&#45; m_clock\l|+ Agent()\l+ ~Agent()\l+ operator==()\l+ getName()\l+ toString()\l+ getMap()\l+ setMap()\l+ getClock()\l+ getId()\l}" alt="" coords="224,5,329,229"/>
+<area shape="rect" id="node4" href="$class_antenna.html" title="{Antenna\n|&#45; m_ple\l&#45; m_power\l&#45; m_maxConnections\l&#45; m_Smid\l&#45; m_SSteep\l&#45; m_cell\l&#45; m_devices\l&#45; m_type\l&#45; m_file\l&#45; m_S0\land 16 more...\l|+ Antenna()\l+ Antenna()\l+ ~Antenna()\l+ getName()\l+ toString()\l+ getPLE()\l+ setPLE()\l+ getPower()\l+ setPower()\l+ getMaxConnections()\land 26 more...\l&#45; alreadyRegistered()\l&#45; registerEvent()\l&#45; getNumActiveConections()\l&#45; S0()\l&#45; SDist()\l&#45; computeSignalQualityOmnidirectional()\l&#45; computeSignalQualityDirectional()\l&#45; computeSignalStrengthDirectional()\l&#45; computeSignalStrengthOmnidirectional()\l&#45; setLocationWithElevation()\land 9 more...\l}" alt="" coords="5,704,268,1236"/>
+<area shape="rect" id="node6" href="$class_holdable_agent.html" title="{HoldableAgent\n|&#45; m_holder\l&#45; m_antennas\l|+ HoldableAgent()\l+ HoldableAgent()\l+ ~HoldableAgent()\l+ getHolder()\l+ setHolder()\l+ getName()\l+ toString()\l+ tryConnect()\l+ isConnected()\l+ setLocation()\l+ getAntennas()\l}" alt="" coords="292,851,427,1089"/>
+<area shape="rect" id="node9" href="$class_person.html" title="{Person\n|&#45; m_age\l&#45; m_gender\l&#45; m_idDevices\l&#45; m_avgTimeStay\l&#45; m_timeStay\l&#45; m_avgIntervalBetweenStays\l&#45; m_nextStay\l&#45; m_displacementMethod\l|+ Person()\l+ ~Person()\l+ getName()\l+ toString()\l+ dumpDevices()\l+ hasDevices()\l+ getAge()\l+ setAge()\l+ move()\l+ setLocation()\l+ addDevice()\l+ getGender()\l+ getAvgTimeStay()\l+ getAvgIntervalBetweenStays()\l+ setDisplacementMethod()\l}" alt="" coords="451,777,657,1163"/>
+<area shape="rect" id="node7" href="$class_mobile_phone.html" title="{MobilePhone\n|&#45; m_threshold\l&#45; m_connectedTo\l&#45; m_connType\l&#45; m_mno\l|+ MobilePhone()\l+ ~MobilePhone()\l+ getName()\l+ toString()\l+ move()\l+ tryConnect()\l+ getMobileOperator()\l+ setMobileOperator()\l+ getConnectionThreshold()\l}" alt="" coords="185,1284,366,1523"/>
+<area shape="rect" id="node8" href="$class_tablet.html" title="{Tablet\n||+ Tablet()\l+ ~Tablet()\l+ getName()\l+ toString()\l+ move()\l+ tryConnect()\l}" alt="" coords="391,1328,496,1479"/>
 </map>

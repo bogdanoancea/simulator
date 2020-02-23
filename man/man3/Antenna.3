@@ -1,4 +1,4 @@
-.TH "Antenna" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
+.TH "Antenna" 3 "Fri Nov 22 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,7 +17,7 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "\fBAntenna\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double attenuationFactor, double power, unsigned long maxConnections, double smid, double ssteep, \fBAntennaType\fP type)"
 .br
 .ti -1c
-.RI "\fBAntenna\fP (const \fBMap\fP *m, const \fBClock\fP *clock, const unsigned long id, XMLElement *el, vector< \fBMobileOperator\fP * > mnos)"
+.RI "\fBAntenna\fP (const \fBMap\fP *m, const \fBClock\fP *clock, const unsigned long id, XMLElement *el, vector< \fBMobileOperator\fP *> mnos)"
 .br
 .ti -1c
 .RI "virtual \fB~Antenna\fP ()"
@@ -297,7 +297,7 @@ Constructor of the class\&. It builds an object providing directly the values fo
 .RE
 .PP
 
-.SS "Antenna::Antenna (const \fBMap\fP * m, const \fBClock\fP * clock, const unsigned long id, XMLElement * el, vector< \fBMobileOperator\fP * > mnos)\fC [explicit]\fP"
+.SS "Antenna::Antenna (const \fBMap\fP * m, const \fBClock\fP * clock, const unsigned long id, XMLElement * el, vector< \fBMobileOperator\fP *> mnos)\fC [explicit]\fP"
 Constructor of the class\&. It builds an object taking the value of the antenna' parameters from an XML Element, usually when an \fBAntenna\fP object is built reading the xml configuration file\&. 
 .PP
 \fBParameters:\fP

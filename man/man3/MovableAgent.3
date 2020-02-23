@@ -1,4 +1,4 @@
-.TH "MovableAgent" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
+.TH "MovableAgent" 3 "Fri Nov 22 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -28,7 +28,7 @@ Inherited by \fBHoldableAgent\fP, and \fBPerson\fP\&.
 .RI "const string \fBtoString\fP () const override"
 .br
 .ti -1c
-.RI "virtual Point * \fBmove\fP (\fBMovementType\fP type)=0"
+.RI "virtual Point * \fBmove\fP ()=0"
 .br
 .ti -1c
 .RI "double \fBgetSpeed\fP () const"
@@ -92,16 +92,12 @@ the speed of this agent\&.
 .RE
 .PP
 
-.SS "virtual Point* MovableAgent::move (\fBMovementType\fP type)\fC [pure virtual]\fP"
-A pure virtual method used to move the agent to a new location on the map\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fItype\fP the type of the movement\&. At this moment there are two values accepted for this parameter: \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP and \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP\fP means that at each time instant, the direction is generated as a uniformly distributed random number and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. The agent can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. \fBMovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, a \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
-.RE
+.SS "virtual Point* MovableAgent::move ()\fC [pure virtual]\fP"
+A pure virtual method used to move the agent to a new location on the map\&. All the classes that inherit \fBMovableAgent\fP implement this function\&. The actual implementation is based on a Strategy design pattern\&. \fBDisplace\fP defines the displacement strategy interface and the classes that inherits it implements the interface defining concrete displacement methods\&. 
 .PP
 \fBReturns:\fP
 .RS 4
+the final location after displacement\&. 
 .RE
 .PP
 

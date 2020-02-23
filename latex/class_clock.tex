@@ -10,55 +10,55 @@ Collaboration diagram for Clock\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{class_clock__coll__graph}
+\includegraphics[width=197pt]{class_clock__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_clock_adbc370eb6b5f8d01645cf440188160a8}{Clock}} ()
+\hyperlink{class_clock_adbc370eb6b5f8d01645cf440188160a8}{Clock} ()
 \item 
-\mbox{\hyperlink{class_clock_a89a798e152f8eba2f6eb80ec92b26ece}{Clock}} (unsigned long start, unsigned long end, unsigned long incr)
+\hyperlink{class_clock_a89a798e152f8eba2f6eb80ec92b26ece}{Clock} (unsigned long start, unsigned long end, unsigned long incr)
 \item 
-virtual \mbox{\hyperlink{class_clock_ac1ddbca9092c61e98668473209f36b19}{$\sim$\+Clock}} ()
+virtual \hyperlink{class_clock_ac1ddbca9092c61e98668473209f36b19}{$\sim$\+Clock} ()
 \item 
-unsigned long \mbox{\hyperlink{class_clock_ab7c857c5b43cf98d991435ba9ce46b2c}{tick}} ()
+unsigned long \hyperlink{class_clock_ab7c857c5b43cf98d991435ba9ce46b2c}{tick} ()
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a17b19c062d1f0344f37b57cc2dfdaa14}{get\+Current\+Time}} () const
+unsigned long \hyperlink{class_clock_a17b19c062d1f0344f37b57cc2dfdaa14}{get\+Current\+Time} () const
 \item 
-void \mbox{\hyperlink{class_clock_a7046e8733ab749d3c24b3c61bd108d6c}{set\+Current\+Time}} (unsigned long current\+Time)
+void \hyperlink{class_clock_a7046e8733ab749d3c24b3c61bd108d6c}{set\+Current\+Time} (unsigned long current\+Time)
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a804626d5455f4a2a73321f84ed7a9819}{get\+Increment}} () const
+unsigned long \hyperlink{class_clock_a804626d5455f4a2a73321f84ed7a9819}{get\+Increment} () const
 \item 
-void \mbox{\hyperlink{class_clock_a1ae60dca4e41f6e27d6104ec618c02f1}{set\+Increment}} (unsigned long increment)
+void \hyperlink{class_clock_a1ae60dca4e41f6e27d6104ec618c02f1}{set\+Increment} (unsigned long increment)
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a9792f62fed3c320abecc5c455b13a804}{get\+Initial\+Time}} () const
+unsigned long \hyperlink{class_clock_a9792f62fed3c320abecc5c455b13a804}{get\+Initial\+Time} () const
 \item 
-void \mbox{\hyperlink{class_clock_abe7fb8f715d0dcae08e52b2b7aed7db2}{set\+Initial\+Time}} (unsigned long initial\+Time)
+void \hyperlink{class_clock_abe7fb8f715d0dcae08e52b2b7aed7db2}{set\+Initial\+Time} (unsigned long initial\+Time)
 \item 
-time\+\_\+t \mbox{\hyperlink{class_clock_a29512d39298cafed334d0c01da70ea7b}{real\+Time}} ()
+time\+\_\+t \hyperlink{class_clock_a29512d39298cafed334d0c01da70ea7b}{real\+Time} ()
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a0b9ef0b9272d6555bb0fdca4978c705d}{get\+Final\+Time}} () const
+unsigned long \hyperlink{class_clock_a0b9ef0b9272d6555bb0fdca4978c705d}{get\+Final\+Time} () const
 \item 
-void \mbox{\hyperlink{class_clock_a4780f83b55bc2539cd7069cfc4f06d99}{set\+Final\+Time}} (unsigned long final\+Time)
+void \hyperlink{class_clock_a4780f83b55bc2539cd7069cfc4f06d99}{set\+Final\+Time} (unsigned long final\+Time)
 \item 
-void \mbox{\hyperlink{class_clock_a0ab5423b0a997aa13d7b6131c46d1358}{reset}} ()
+void \hyperlink{class_clock_a0ab5423b0a997aa13d7b6131c46d1358}{reset} ()
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a71afbea0f41f612e36d45ee2bb79ff0e}{m\+\_\+initial\+Time}}
+unsigned long \hyperlink{class_clock_a71afbea0f41f612e36d45ee2bb79ff0e}{m\+\_\+initial\+Time}
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a73bf4edfc8f0fe2548ef6956f68b678e}{m\+\_\+current\+Time}}
+unsigned long \hyperlink{class_clock_a73bf4edfc8f0fe2548ef6956f68b678e}{m\+\_\+current\+Time}
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a2f940f0a30d58d1f7f36d0296463b9aa}{m\+\_\+increment}}
+unsigned long \hyperlink{class_clock_a2f940f0a30d58d1f7f36d0296463b9aa}{m\+\_\+increment}
 \item 
-unsigned long \mbox{\hyperlink{class_clock_a5c473d84c1051d946ab5565060902840}{m\+\_\+final\+Time}}
+unsigned long \hyperlink{class_clock_a5c473d84c1051d946ab5565060902840}{m\+\_\+final\+Time}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This is the clock used to synchronize the simulation. All the agents and all other objects involved in a simulation use the same \mbox{\hyperlink{class_clock}{Clock}} object. The \mbox{\hyperlink{class_clock}{Clock}} will be initialized with the value of the starting and ending time of the simulation and will keep a current time during the simulation. At each step of the simulation the current time will be increased by an increment. Starting time, ending time, current time and the time increment are only conventional units and they do not depend in any way on the real clock of the computer. 
+This is the clock used to synchronize the simulation. All the agents and all other objects involved in a simulation use the same \hyperlink{class_clock}{Clock} object. The \hyperlink{class_clock}{Clock} will be initialized with the value of the starting and ending time of the simulation and will keep a current time during the simulation. At each step of the simulation the current time will be increased by an increment. Starting time, ending time, current time and the time increment are only conventional units and they do not depend in any way on the real clock of the computer. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_clock_adbc370eb6b5f8d01645cf440188160a8}\label{class_clock_adbc370eb6b5f8d01645cf440188160a8}} 
@@ -83,54 +83,54 @@ Constructor of the class. It takes the starting and ending time of the simulatio
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_clock_ac1ddbca9092c61e98668473209f36b19}\label{class_clock_ac1ddbca9092c61e98668473209f36b19}} 
-\index{Clock@{Clock}!````~Clock@{$\sim$Clock}}
-\index{````~Clock@{$\sim$Clock}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{$\sim$Clock()}{~Clock()}}
+\index{Clock@{Clock}!````~Clock@{$\sim$\+Clock}}
+\index{````~Clock@{$\sim$\+Clock}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{$\sim$\+Clock()}{~Clock()}}
 {\footnotesize\ttfamily virtual Clock\+::$\sim$\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Default destructor 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_clock_a17b19c062d1f0344f37b57cc2dfdaa14}\label{class_clock_a17b19c062d1f0344f37b57cc2dfdaa14}} 
-\index{Clock@{Clock}!getCurrentTime@{getCurrentTime}}
-\index{getCurrentTime@{getCurrentTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{getCurrentTime()}{getCurrentTime()}}
+\index{Clock@{Clock}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{get\+Current\+Time()}{getCurrentTime()}}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the current time of the simulator. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_clock_a0b9ef0b9272d6555bb0fdca4978c705d}\label{class_clock_a0b9ef0b9272d6555bb0fdca4978c705d}} 
-\index{Clock@{Clock}!getFinalTime@{getFinalTime}}
-\index{getFinalTime@{getFinalTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{getFinalTime()}{getFinalTime()}}
+\index{Clock@{Clock}!get\+Final\+Time@{get\+Final\+Time}}
+\index{get\+Final\+Time@{get\+Final\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{get\+Final\+Time()}{getFinalTime()}}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Final\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the ending time of the simulation. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_clock_a804626d5455f4a2a73321f84ed7a9819}\label{class_clock_a804626d5455f4a2a73321f84ed7a9819}} 
-\index{Clock@{Clock}!getIncrement@{getIncrement}}
-\index{getIncrement@{getIncrement}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{getIncrement()}{getIncrement()}}
+\index{Clock@{Clock}!get\+Increment@{get\+Increment}}
+\index{get\+Increment@{get\+Increment}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{get\+Increment()}{getIncrement()}}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the time increment used in simulation. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_clock_a9792f62fed3c320abecc5c455b13a804}\label{class_clock_a9792f62fed3c320abecc5c455b13a804}} 
-\index{Clock@{Clock}!getInitialTime@{getInitialTime}}
-\index{getInitialTime@{getInitialTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{getInitialTime()}{getInitialTime()}}
+\index{Clock@{Clock}!get\+Initial\+Time@{get\+Initial\+Time}}
+\index{get\+Initial\+Time@{get\+Initial\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{get\+Initial\+Time()}{getInitialTime()}}
 {\footnotesize\ttfamily unsigned long Clock\+::get\+Initial\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 \begin{DoxyReturn}{Returns}
 the starting time of the simulation. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_clock_a29512d39298cafed334d0c01da70ea7b}\label{class_clock_a29512d39298cafed334d0c01da70ea7b}} 
-\index{Clock@{Clock}!realTime@{realTime}}
-\index{realTime@{realTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{realTime()}{realTime()}}
+\index{Clock@{Clock}!real\+Time@{real\+Time}}
+\index{real\+Time@{real\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{real\+Time()}{realTime()}}
 {\footnotesize\ttfamily time\+\_\+t Clock\+::real\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
@@ -143,9 +143,9 @@ the real time read from the computer clock. It is used only to register the exac
 {\footnotesize\ttfamily void Clock\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Resets the current time and makes it equal to the starting time such that a new simulation can begin. \mbox{\Hypertarget{class_clock_a7046e8733ab749d3c24b3c61bd108d6c}\label{class_clock_a7046e8733ab749d3c24b3c61bd108d6c}} 
-\index{Clock@{Clock}!setCurrentTime@{setCurrentTime}}
-\index{setCurrentTime@{setCurrentTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{setCurrentTime()}{setCurrentTime()}}
+\index{Clock@{Clock}!set\+Current\+Time@{set\+Current\+Time}}
+\index{set\+Current\+Time@{set\+Current\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{set\+Current\+Time()}{setCurrentTime()}}
 {\footnotesize\ttfamily void Clock\+::set\+Current\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{current\+Time }\end{DoxyParamCaption})}
 
 Sets the current time of the simulator. 
@@ -154,9 +154,9 @@ Sets the current time of the simulator.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_clock_a4780f83b55bc2539cd7069cfc4f06d99}\label{class_clock_a4780f83b55bc2539cd7069cfc4f06d99}} 
-\index{Clock@{Clock}!setFinalTime@{setFinalTime}}
-\index{setFinalTime@{setFinalTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{setFinalTime()}{setFinalTime()}}
+\index{Clock@{Clock}!set\+Final\+Time@{set\+Final\+Time}}
+\index{set\+Final\+Time@{set\+Final\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{set\+Final\+Time()}{setFinalTime()}}
 {\footnotesize\ttfamily void Clock\+::set\+Final\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{final\+Time }\end{DoxyParamCaption})}
 
 Sets the ending time of a simulation. 
@@ -165,9 +165,9 @@ Sets the ending time of a simulation.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_clock_a1ae60dca4e41f6e27d6104ec618c02f1}\label{class_clock_a1ae60dca4e41f6e27d6104ec618c02f1}} 
-\index{Clock@{Clock}!setIncrement@{setIncrement}}
-\index{setIncrement@{setIncrement}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{setIncrement()}{setIncrement()}}
+\index{Clock@{Clock}!set\+Increment@{set\+Increment}}
+\index{set\+Increment@{set\+Increment}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{set\+Increment()}{setIncrement()}}
 {\footnotesize\ttfamily void Clock\+::set\+Increment (\begin{DoxyParamCaption}\item[{unsigned long}]{increment }\end{DoxyParamCaption})}
 
 Sets the time increment to be used in a simulation. 
@@ -176,9 +176,9 @@ Sets the time increment to be used in a simulation.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_clock_abe7fb8f715d0dcae08e52b2b7aed7db2}\label{class_clock_abe7fb8f715d0dcae08e52b2b7aed7db2}} 
-\index{Clock@{Clock}!setInitialTime@{setInitialTime}}
-\index{setInitialTime@{setInitialTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{setInitialTime()}{setInitialTime()}}
+\index{Clock@{Clock}!set\+Initial\+Time@{set\+Initial\+Time}}
+\index{set\+Initial\+Time@{set\+Initial\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{set\+Initial\+Time()}{setInitialTime()}}
 {\footnotesize\ttfamily void Clock\+::set\+Initial\+Time (\begin{DoxyParamCaption}\item[{unsigned long}]{initial\+Time }\end{DoxyParamCaption})}
 
 Sets the starting time of the simulation. 
@@ -199,31 +199,31 @@ the current time after incrementation.
 
 \subsection{Member Data Documentation}
 \mbox{\Hypertarget{class_clock_a73bf4edfc8f0fe2548ef6956f68b678e}\label{class_clock_a73bf4edfc8f0fe2548ef6956f68b678e}} 
-\index{Clock@{Clock}!m\_currentTime@{m\_currentTime}}
-\index{m\_currentTime@{m\_currentTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{m\_currentTime}{m\_currentTime}}
+\index{Clock@{Clock}!m\+\_\+current\+Time@{m\+\_\+current\+Time}}
+\index{m\+\_\+current\+Time@{m\+\_\+current\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{m\+\_\+current\+Time}{m\_currentTime}}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+current\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_clock_a5c473d84c1051d946ab5565060902840}\label{class_clock_a5c473d84c1051d946ab5565060902840}} 
-\index{Clock@{Clock}!m\_finalTime@{m\_finalTime}}
-\index{m\_finalTime@{m\_finalTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{m\_finalTime}{m\_finalTime}}
+\index{Clock@{Clock}!m\+\_\+final\+Time@{m\+\_\+final\+Time}}
+\index{m\+\_\+final\+Time@{m\+\_\+final\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{m\+\_\+final\+Time}{m\_finalTime}}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+final\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_clock_a2f940f0a30d58d1f7f36d0296463b9aa}\label{class_clock_a2f940f0a30d58d1f7f36d0296463b9aa}} 
-\index{Clock@{Clock}!m\_increment@{m\_increment}}
-\index{m\_increment@{m\_increment}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{m\_increment}{m\_increment}}
+\index{Clock@{Clock}!m\+\_\+increment@{m\+\_\+increment}}
+\index{m\+\_\+increment@{m\+\_\+increment}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{m\+\_\+increment}{m\_increment}}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+increment\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_clock_a71afbea0f41f612e36d45ee2bb79ff0e}\label{class_clock_a71afbea0f41f612e36d45ee2bb79ff0e}} 
-\index{Clock@{Clock}!m\_initialTime@{m\_initialTime}}
-\index{m\_initialTime@{m\_initialTime}!Clock@{Clock}}
-\subsubsection{\texorpdfstring{m\_initialTime}{m\_initialTime}}
+\index{Clock@{Clock}!m\+\_\+initial\+Time@{m\+\_\+initial\+Time}}
+\index{m\+\_\+initial\+Time@{m\+\_\+initial\+Time}!Clock@{Clock}}
+\subsubsection{\texorpdfstring{m\+\_\+initial\+Time}{m\_initialTime}}
 {\footnotesize\ttfamily unsigned long Clock\+::m\+\_\+initial\+Time\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{_clock_8h}{Clock.\+h}}\end{DoxyCompactItemize}
+include/\hyperlink{_clock_8h}{Clock.\+h}\end{DoxyCompactItemize}

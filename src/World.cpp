@@ -23,32 +23,26 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <AntennaType.h>
+#include <Clock.h>
+#include <Constants.h>
+#include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
-#include <Map.h>
+#include <map/Map.h>
+#include <NetPriorPostLocProb.h>
 #include <RandomNumberGenerator.h>
-#include <EMField.h>
-#include <ctime>
+#include <RandomWalkDisplacement.h>
+#include <RandomWalkDriftDisplacement.h>
+#include <TinyXML2.h>
+#include <UnifPriorPostLocProb.h>
 #include <Utils.h>
 #include <World.h>
-#include <algorithm>
-#include <numeric>
-#include <map>
+#include <cstring>
 #include <ctime>
-#include <iostream>
-#include <fstream>
+#include <memory>
 #include <typeinfo>
 #include <unordered_map>
-#include <utility>
-#include <sstream>
-#include <AntennaType.h>
-#include <cstring>
-#include <HoldableAgent.h>
-#include <MovementType.h>
-#include <TinyXML2.h>
-#include <stdlib.h>
-#include <iomanip>
-#include <SimException.h>
 
 using namespace std;
 using namespace utils;
@@ -94,7 +88,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	m_agentsCollection = new AgentsCollection();
 
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
-	time_t tt = getClock()->realTime();
+	time_t tt = m_clock->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
 	string probsPrefix = parseProbabilities(probabilitiesFileName);
@@ -116,7 +110,15 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
-	tt = getClock()->realTime();
+
+	if (m_prior == PriorType::UNIFORM) {
+		auto postProb = std::make_shared<UnifPriorPostLocProb>(m_map, m_clock, m_agentsCollection, m_probFilenames);
+		setPostProbMethod(postProb);
+	} else if (m_prior == PriorType::NETWORK) {
+		auto postProb = std::make_shared<NetPriorPostLocProb>(m_map, m_clock, m_agentsCollection, m_probFilenames);
+		setPostProbMethod(postProb);
+	}
+	tt = m_clock->realTime();
 	cout << "Generating objects ended at " << ctime(&tt) << endl;
 }
 
@@ -127,11 +129,13 @@ World::~World() {
 }
 
 void World::runSimulation() noexcept(false) {
-	ofstream pFile, aFile;
+	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
+	//unsigned long noTiles = m_map->getNoTiles();
+
 	try {
-		pFile.open(m_personsFilename, ios::out);
-		aFile.open(m_antennasFilename, ios::out);
+		personsFile.open(m_personsFilename, ios::out);
+		antennaFile.open(m_antennasFilename, ios::out);
 	} catch (ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
@@ -140,64 +144,58 @@ void World::runSimulation() noexcept(false) {
 	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	for (auto it = itr0.first; it != itr0.second; it++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
-		ofstream& f = mo->getSignalFile();
-		f << "Antenna ID" << sep;
-		unsigned long noTiles = getMap()->getGrid()->getNoTiles();
-		for (unsigned long i = 0; i < noTiles - 1; i++) {
-			f << "Tile" << i << sep;
-		}
-		f << "Tile" << noTiles - 1 << endl;
+		mo->writeSignalFileHeader();
 	}
 
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-	aFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
+	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
-		aFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMap()->getGrid()->getTileNo(a->getLocation()) << endl;
+		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << m_map->getTileNo(a->getLocation()) << endl;
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
+		a->dumpSignal();
 	}
 
-	time_t tt = getClock()->realTime();
+	time_t tt = m_clock->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 
 	RandomNumberGenerator* r = RandomNumberGenerator::instance();
 	r->setSeed(time(0));
-	const Grid* g = getMap()->getGrid();
 
-	pFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
+	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
 	unsigned long t = m_clock->getInitialTime();
-	tt = getClock()->realTime();
+	tt = m_clock->realTime();
 	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
-		int n = g->getTileNo(loc->getX(), loc->getY());
-		pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+		int n = m_map->getTileNo(loc->getX(), loc->getY());
+		personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 	}
 
 	//iterate over all persons and call move()
 	t = m_clock->tick();
 	for (; t < m_clock->getFinalTime(); t = m_clock->tick()) {
-		tt = getClock()->realTime();
+		tt = m_clock->realTime();
 		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
-			p->move(m_mvType);
+			p->move();
 			Point* loc = p->getLocation();
-			int n = g->getTileNo(loc->getX(), loc->getY());
-			pFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+			int n = m_map->getTileNo(loc->getX(), loc->getY());
+			personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
 		}
 	}
-	tt = getClock()->realTime();
+	tt = m_clock->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
 
 	try {
-		pFile.close();
-		aFile.close();
+		personsFile.close();
+		antennaFile.close();
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;
@@ -208,24 +206,8 @@ AgentsCollection* World::getAgents() const {
 	return (m_agentsCollection);
 }
 
-void World::setAgents(AgentsCollection* agents) {
-	m_agentsCollection = agents;
-}
-
-Clock* World::getClock() const {
-	return (m_clock);
-}
-
-void World::setClock(Clock* clock) {
-	m_clock = clock;
-}
-
 const Map* World::getMap() const {
 	return (m_map);
-}
-
-void World::setMap(Map* map) {
-	m_map = map;
 }
 
 const string& World::getGridFilename() const {
@@ -365,10 +347,6 @@ double World::getGridDimTileY() const {
 	return (m_GridDimTileY);
 }
 
-PriorType World::getPrior() const {
-	return (m_prior);
-}
-
 vector<MobileOperator*> World::parseSimulationFile(const string& configSimulationFileName) noexcept(false) {
 	XMLDocument doc;
 	vector<MobileOperator*> result;
@@ -397,8 +375,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob);
 				result.push_back(mo);
 			}
-		}
-		else {
+		} else {
 			throw std::runtime_error("No MNO defined! At least one MNO should be defined for a valid simulation");
 		}
 		if (numMNO > 2)
@@ -423,7 +400,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
 		else
 			throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
-
 
 		m_connThreshold = getValue(simEl, "conn_threshold", getDefaultConnectionThreshold(m_connType));
 		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
@@ -454,11 +430,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
 
-	double probMobilePhone = 0.0;
 	double probIntersection = 1.0;
 	unsigned int numMno = mnos.size();
 	for (auto& n : mnos) {
-		probMobilePhone += n->getProbMobilePhone();
 		probIntersection *= n->getProbMobilePhone();
 	}
 	if (numMno > 1 && probIntersection > m_probSecMobilePhone)
@@ -486,11 +460,14 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
 		for (unsigned long i = 0; i < numPersons; i++) {
+			if (phone1[i] == 1 && phone2[i] == 1)
+				continue;
 			if (phone1[i] == 1) {
-				phone1[i] = phone1[i] + random_generator->generateBernoulliInt(pSecPhoneMNO1);
+				phone1[i] += random_generator->generateBernoulliInt(pSecPhoneMNO1);
 			}
 			if (phone2[i] == 1) {
-				phone2[i] = phone2[i] + random_generator->generateBernoulliInt(pSecPhoneMNO2);
+				if (phone1[i] == 0)
+					phone2[i] += random_generator->generateBernoulliInt(pSecPhoneMNO2);
 			}
 		}
 	} else {
@@ -558,6 +535,14 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 				np2--;
 			}
 		}
+		if (m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP) {
+			auto displace = std::make_shared<RandomWalkDisplacement>(m_map, m_clock, p->getSpeed());
+			p->setDisplacementMethod(displace);
+		} else if (m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
+			auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_map, m_clock, p->getSpeed());
+			p->setDisplacementMethod(displace);
+		}
+
 		result.push_back(p);
 	}
 	delete[] walk_car;
@@ -568,14 +553,6 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	delete[] ages;
 	delete[] gender;
 	return (result);
-}
-
-const string& World::getAntennasFilename() const {
-	return (m_antennasFilename);
-}
-
-const string& World::getPersonsFilename() const {
-	return (m_personsFilename);
 }
 
 string World::parseProbabilities(const string& probabilitiesFileName) {
@@ -603,10 +580,76 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 	return probsFileNamePrefix;
 }
 
-map<const unsigned long, const string> World::getProbFilenames()  const {
+map<const unsigned long, const string> World::getProbFilenames() const {
 	return m_probFilenames;
 }
 
-HoldableAgent::CONNECTION_TYPE World::getConnectionType() const{
+HoldableAgent::CONNECTION_TYPE World::getConnectionType() const {
 	return (m_connType);
+}
+
+void World::setPostProbMethod(const std::shared_ptr<PostLocProb>& post) {
+	m_postMethod = post;
+}
+
+PriorType World::getPrior() {
+	return m_prior;
+}
+
+void World::computeProbabilities() {
+	m_postMethod->computeProbabilities();
+}
+
+//void World::computeProbabilities() {
+//	char sep = Constants::sep;
+//	std::map<unsigned long, vector<AntennaInfo>> data = getAntennaInfo();
+//	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
+//	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+//
+//	time_t tt = m_clock->realTime();
+//	cout << "Computing probabilities started at " << ctime(&tt) << endl;
+//
+//	auto itrm = m_agentsCollection->getAgentListByType(typeid(MobilePhone).name());
+//	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+//		cout << "Sum signal quality" << " MNO : " << itmno->second->getId() << endl;
+//		EMField::instance()->sumSignalQuality(m_map, itmno->second->getId());
+//	}
+//
+//	ofstream p_file;
+//	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+//		Agent* mo = itmno->second;
+//		p_file.open(getProbFilenames()[mo->getId()], ios::out);
+//		writeProbFileHeader(p_file);
+//		m_clock->reset();
+//		for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
+//			//iterate over all devices
+//			for (auto it = itrm.first; it != itrm.second; it++) {
+//				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
+//				if (m->getMobileOperator()->getId() != mo->getId())
+//					continue;
+//				p_file << t << sep << m->getId() << sep;
+//
+//				ostringstream probs;
+//				vector<double> p = utils::computeProbability(m_map, t, m, data[mo->getId()], itra, m_prior);
+//				for (unsigned long i = 0; i < m_map->getNoTiles() - 1; i++) {
+//					probs << fixed << setprecision(15) << p[i] << sep;
+//					//cout << p[i] << ",";
+//				}
+//				probs << fixed << setprecision(15) << p[m_map->getNoTiles() - 1];
+//				//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
+//				p_file << probs.str() << endl;
+//			}
+//		}
+//		try {
+//			p_file.close();
+//		} catch (ofstream::failure& e) {
+//			cerr << "Error closing probs file!" << endl;
+//		}
+//	}
+//	tt = m_clock->realTime();
+//	cout << "Computing probabilities ended at " << ctime(&tt) << endl;
+//}
+
+Clock* World::getClock() {
+	return m_clock;
 }

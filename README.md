@@ -61,7 +61,6 @@ functions from JTS.
 <p>The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
 https://trac.osgeo.org/geos. Instructions how to build the GEOS C++ library are provided here: https://trac.osgeo.org/geos/wiki/BuildingOnUnixWithAutotools
 Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the folder where your source code is located and then type
-<br>$ ./autogen.sh
 <br>$ ./configure
 <br>$ make
 <br>$ make install
@@ -86,7 +85,7 @@ source code and type:
 <br>$ make install
 
 <p> The executable is copied under the <I>Release folder</I>. To run a simulation type the following:
-<br>$simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml 
+<br>$Release/simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml 
 
 <p> We provide sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the root folder of the simulator source code. 
 The output file is prob.csv.
@@ -94,7 +93,6 @@ The output file is prob.csv.
 <p>
 <b>How to build the application under <I>Linux</I> or <I>Mac OS X</I> operating systems</b>
 <p>1. Download GEOS C++ library from https://trac.osgeo.org/geos. Build the library by typing:
-<br>$ ./autogen.sh
 <br>$ ./configure
 <br>$ make
 <br>$ make install
@@ -119,7 +117,7 @@ a shell:
 <b>How to run the simulator</b>
 <p>
 In a terminal (command prompt) type:
-<br>$simulator -m ./data/dataset1/map.wkt -s ./data/dataset1/simulation.xml -a ./data/dataset1/antennas.xml -p ./data/dataset1/persons.xml -pb ./data/dataset1/probabilities.xml -v -o
+<br>$Release/simulator -m ./data/dataset1/map.wkt -s ./data/dataset1/simulation.xml -a ./data/dataset1/antennas.xml -p ./data/dataset1/persons.xml -pb ./data/dataset1/probabilities.xml -v -o
 <br>
 <br>where the following files provide input parameters:
 <br> map.wkt is the map of the simulation

@@ -1,4 +1,4 @@
-.TH "Person" 3 "Fri Nov 15 2019" "Simulator" \" -*- nroff -*-
+.TH "Person" 3 "Fri Nov 22 2019" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -48,7 +48,7 @@ Inherits \fBMovableAgent\fP\&.
 .RI "void \fBsetAge\fP (int age)"
 .br
 .ti -1c
-.RI "Point * \fBmove\fP (\fBMovementType\fP mvType) override"
+.RI "virtual Point * \fBmove\fP () override"
 .br
 .ti -1c
 .RI "virtual void \fBsetLocation\fP (Point *pt) override"
@@ -65,21 +65,8 @@ Inherits \fBMovableAgent\fP\&.
 .ti -1c
 .RI "unsigned long \fBgetAvgIntervalBetweenStays\fP () const"
 .br
-.in -1c
-.SS "Private Member Functions"
-
-.in +1c
 .ti -1c
-.RI "void \fBrandomWalkClosedMap\fP ()"
-.br
-.ti -1c
-.RI "void \fBrandomWalkClosedMapDrift\fP ()"
-.br
-.ti -1c
-.RI "Point * \fBgenerateNewLocation\fP (double theta)"
-.br
-.ti -1c
-.RI "void \fBsetNewLocation\fP (Point *p, bool changeDirection)"
+.RI "void \fBsetDisplacementMethod\fP (const shared_ptr< \fBDisplace\fP > &displace)"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -95,9 +82,6 @@ Inherits \fBMovableAgent\fP\&.
 .RI "unordered_multimap< string, \fBAgent\fP * > \fBm_idDevices\fP"
 .br
 .ti -1c
-.RI "bool \fBm_changeDirection\fP"
-.br
-.ti -1c
 .RI "unsigned long \fBm_avgTimeStay\fP"
 .br
 .ti -1c
@@ -108,6 +92,9 @@ Inherits \fBMovableAgent\fP\&.
 .br
 .ti -1c
 .RI "unsigned long \fBm_nextStay\fP"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDisplace\fP > \fBm_displacementMethod\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -184,8 +171,6 @@ a string containing a list with the ids of the mobile devices that this person o
 .RE
 .PP
 
-.SS "Point* Person::generateNewLocation (double theta)\fC [private]\fP"
-
 .SS "int Person::getAge () const"
 Returns the age of the person\&. 
 .PP
@@ -242,32 +227,32 @@ returns true if this person has at least a mobile device, false otherwise\&.
 .RE
 .PP
 
-.SS "Point* Person::move (\fBMovementType\fP mvType)\fC [override]\fP, \fC [virtual]\fP"
-Move the person to another location\&. Computes the coordinates of the new location and then call \fBsetLocation()\fP with this new coordinates\&.
-.PP
-\fBParameters:\fP
-.RS 4
-\fImvType\fP specifies the method used to compute the new position of the person, i\&.e\&. how the direction and the length of the step are computed\&. It can have the following values: RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary\&. The direction is generated as a random value at each time step and the step length is computed multiplying the speed with the time interval\&. RANDOM_WALK_CLOSED_MAP_WITH_DRIFT: the agent moves in a preferential direction\&. There are two constants defining these directions: SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4)\&. The actual direction is generated as a normally distributed random value with means equals to these constants and sad = 0\&.1\&. In both cases, a \fBPerson\fP makes several steps then a stop\&. The average time length of a stop is given is the simulation configuration file while the actual values are generated as normal distributed random values with the mean read from the configuration file and and sd = 20% from mean\&. The average time interval elapsed between two stop is read from the simulation configuration file and the actual values are generated as exponential distributed random values\&. 
-.RE
+.SS "virtual Point* Person::move ()\fC [override]\fP, \fC [virtual]\fP"
+Makes a step on the map according to an algorithm\&. The direction and the length of the step is determined by the displacement strategy set at the \fBPerson\fP creation moment and currently two strategies are supported: \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP\&. \fBRandomWalkDisplacement\fP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. If a step projects it outside the map, it stops on the boundary\&. \fBRandomWalkDriftDisplacement\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, any kind of \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
 .PP
 \fBReturns:\fP
 .RS 4
-a pointer to a Point object that represents the new location\&. 
+the final location after the displacement\&. 
 .RE
 .PP
 
 .PP
 Implements \fBMovableAgent\fP\&.
-.SS "void Person::randomWalkClosedMap ()\fC [private]\fP"
-
-.SS "void Person::randomWalkClosedMapDrift ()\fC [private]\fP"
-
 .SS "void Person::setAge (int age)"
 Sets the age of the person\&. 
 .PP
 \fBParameters:\fP
 .RS 4
 \fIage\fP the age of the person\&. 
+.RE
+.PP
+
+.SS "void Person::setDisplacementMethod (const shared_ptr< \fBDisplace\fP > & displace)"
+Sets the displacement algorithm\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdisplace\fP a reference to an implementation of the displacement method\&. Currently two displacement methods are supported and they are implemented in \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP classes\&. 
 .RE
 .PP
 
@@ -282,8 +267,6 @@ Sets the location of the person on the map\&.
 
 .PP
 Reimplemented from \fBLocatableAgent\fP\&.
-.SS "void Person::setNewLocation (Point * p, bool changeDirection)\fC [private]\fP"
-
 .SS "const string Person::toString () const\fC [override]\fP, \fC [virtual]\fP"
 Builds and returns a human readable string representation of the person\&. 
 .PP
@@ -303,7 +286,7 @@ Reimplemented from \fBMovableAgent\fP\&.
 
 .SS "unsigned long Person::m_avgTimeStay\fC [private]\fP"
 
-.SS "bool Person::m_changeDirection\fC [private]\fP"
+.SS "shared_ptr<\fBDisplace\fP> Person::m_displacementMethod\fC [private]\fP"
 
 .SS "\fBGender\fP Person::m_gender\fC [private]\fP"
 

@@ -1,12 +1,5 @@
 <map id="Agent" name="Agent">
-<area shape="rect" id="node1" title=" " alt="" coords="173,956,279,1136"/>
-<area shape="rect" id="node2" href="$class_map.html" title=" " alt="" coords="154,675,298,868"/>
-<area shape="rect" id="node3" href="$class_grid.html" title=" " alt="" coords="147,180,305,547"/>
-<area shape="rect" id="node4" title=" " alt="" coords="269,5,364,79"/>
-<area shape="rect" id="node5" title=" " alt="" coords="177,5,238,79"/>
-<area shape="rect" id="node6" title=" " alt="" coords="20,5,96,79"/>
-<area shape="rect" id="node7" title=" " alt="" coords="328,327,367,400"/>
-<area shape="rect" id="node8" title=" " alt="" coords="35,327,124,400"/>
-<area shape="rect" id="node9" href="$class_clock.html" title=" " alt="" coords="359,648,493,895"/>
-<area shape="rect" id="node10" title=" " alt="" coords="411,327,515,400"/>
+<area shape="rect" id="node2" href="$class_map.html" title="{Map\n||+ Map()\l+ Map()\l+ Map()\l+ ~Map()\l+ getGlobalFactory()\l+ getBoundary()\l+ setBoundary()\l+ getGrid()\l+ addGrid()\l&#45; create_rectangle()\l}" alt="" coords="157,593,299,803"/>
+<area shape="rect" id="node3" href="$class_grid.html" title="{Grid\n||+ Grid()\l+ ~Grid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ toString()\l+ getTileIndexX()\land 10 more...\l&#45; computeTileCenters()\l&#45; useNetworkPrior()\l&#45; useUniformPrior()\l}" alt="" coords="151,189,305,457"/>
+<area shape="rect" id="node9" href="$class_clock.html" title="{Clock\n||+ Clock()\l+ Clock()\l+ ~Clock()\l+ tick()\l+ getCurrentTime()\l+ setCurrentTime()\l+ getIncrement()\l+ setIncrement()\l+ getInitialTime()\l+ setInitialTime()\l+ realTime()\l+ getFinalTime()\l+ setFinalTime()\l+ reset()\l}" alt="" coords="360,564,491,832"/>
 </map>

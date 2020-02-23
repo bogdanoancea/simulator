@@ -23,22 +23,30 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <agent/Antenna.h>
+#include <agent/MobilePhone.h>
+#include <EMField.h>
+#include <EventType.h>
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Envelope.h>
 #include <geos/geom/GeometryFactory.h>
-#include <Map.h>
+#include <map/Map.h>
 #include <RandomNumberGenerator.h>
+#include <TinyXML2.h>
 #include <Utils.h>
+#include <cstdlib>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
-#include <exception>
-#include <geos/geom/Polygon.h>
+#include <iterator>
+#include <stdexcept>
+#include <string>
+#include <unordered_map>
 
 namespace utils {
 using namespace geos;
 using namespace geos::geom;
 using namespace std;
-
 
 //TODO it is a mess, this function should be written again.
 vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome, unsigned seed) {
@@ -47,9 +55,8 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
-	if (dynamic_cast<Polygon*>(g) != nullptr) {
-		Polygon* pol = dynamic_cast<Polygon*>(g);
-		const Envelope* env = pol->getEnvelopeInternal();
+	if (g != nullptr) {
+		const Envelope* env = g->getEnvelopeInternal();
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
@@ -69,7 +76,7 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -104,7 +111,7 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -135,9 +142,8 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
-	if (dynamic_cast<Polygon*>(g) != nullptr) {
-		Polygon* pol = dynamic_cast<Polygon*>(g);
-		const Envelope* env = pol->getEnvelopeInternal();
+	if (g != nullptr) {
+		const Envelope* env = g->getEnvelopeInternal();
 		double xmin = env->getMinX();
 		double xmax = env->getMaxX();
 		double ymin = env->getMinY();
@@ -153,7 +159,7 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 			c.z = 0;
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (pol->contains(p)) {
+			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
@@ -173,24 +179,6 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 
 	}
 	return (result);
-}
-
-void printPersonHeader() {
-	std::cout << left << std::setw(15) << "Person ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << "Speed" << setw(15) << " Age" << setw(15) << "Gender" << setw(15)
-			<< "Phone(s) ID" << endl;
-}
-
-void printAntennaHeader() {
-	cout << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15) << "Max Connections" << setw(20) << "Attenuation Factor"
-			<< setw(15) << "MNO ID" << endl;
-}
-
-void printMobileOperatorHeader() {
-	cout << left << setw(15) << "MNO ID" << setw(15) << " Name " << endl;
-}
-
-void printPhoneHeader() {
-	cout << left << setw(15) << "Phone ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Speed " << setw(15) << " Owner id " << setw(15) << "MNO Id" << endl;
 }
 
 XMLNode* getNode(XMLElement* el, const char* name) {
@@ -256,4 +244,83 @@ double getValue(XMLElement* el, const char* name) {
 	return result;
 }
 
+//vector<double> computeProbability(Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) {
+//	vector<double> result;
+//	// take the mobile phone and see which is the antenna connected to
+//	vector<AntennaInfo>::iterator ai;
+//	bool found = false;
+//	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
+//		ai = i;
+//		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
+//				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
+//			found = true;
+//			break;
+//		}
+//	}
+//	if (prior == PriorType::NETWORK)
+//		result = useNetworkPrior(map, found, ai, antennas_iterator);
+//	else if (prior == PriorType::UNIFORM)
+//		result = useUniformPrior(map, found, ai, antennas_iterator);
+//	return (result);
+//}
+
+//vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator)  {
+//	vector<double> result;
+//	double sum = 0.0;
+//	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
+//		double lh = 0.0;
+//		if (connected) {
+//			Coordinate c = map->getTileCenter(tileIndex);
+//			unsigned long antennaId = ai->getAntennaId();
+//			Antenna* a = nullptr;
+//			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
+//				a = dynamic_cast<Antenna*>(it->second);
+//				if (a->getId() == antennaId) {
+//					break;
+//				}
+//			}
+//			c.z = 0; //TODO tile elevation!
+//			if (a != nullptr) {
+//				lh = a->computeSignalQuality(c);
+//				sum += lh;
+//			}
+//		}
+//		result.push_back(lh);
+//	}
+//	for (auto& i : result) {
+//		if (sum != 0.0) {
+//			i /= sum;
+//		}
+//	}
+//	return result;
+//}
+
+//vector<double> useUniformPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator)  {
+//	vector<double> result;
+//
+//	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
+//		double lh = 0.0;
+//		if (connected) {
+//			unsigned long antennaId = ai->getAntennaId();
+//			Antenna* a = nullptr;
+//			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
+//				a = dynamic_cast<Antenna*>(it->second);
+//				if (a->getId() == antennaId) {
+//					break;
+//				}
+//			}
+//			if (a != nullptr) {
+//				lh = EMField::instance()->connectionLikelihoodGrid(a, map, tileIndex);
+//			}
+//		}
+//		result.push_back(lh);
+//	}
+//	for (auto& i : result) {
+//		if (i > 0.0)
+//			i /= (map->getNoTilesX() * map->getNoTilesY());
+//		else
+//			i = 1.0 / (map->getNoTilesX() * map->getNoTilesY());
+//	}
+//	return result;
+//}
 }
