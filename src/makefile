@@ -44,7 +44,7 @@ $(TARGET): $(OBJECTS)
 
 
 install: $(TARGET)
-	mkdir $(PROJ_HOME)/Release; cp $(TARGET) $(PROJ_HOME)/Release
+	mkdir $(PROJ_HOME)/Release; mv $(TARGET) $(PROJ_HOME)/Release
 
 
 .PHONY: clean
@@ -56,7 +56,8 @@ clean:
 cleanall:
 	rm -f *.o 
 	rm -f *.exe
-	rm -f $(TARGET)
+	rm -f $(PROJ_HOME)/Release/$(TARGET)
+	rmdir $(PROJ_HOME)/Release
 
 .PHONY: clbk
 clbk:

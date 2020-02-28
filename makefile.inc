@@ -1,7 +1,7 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = c:/c-projects/simulator
-GEOS_HOME = C:/msys64/mingw64/lib
+PROJ_HOME = /Users/bogdanoancea/c-projects//simulator
+GEOS_HOME = /usr/local/lib
 MSYS_HOME = C:/msys64/
 DEBUG     = 0
 
@@ -42,6 +42,7 @@ else
 		LDFLAGS = -L$(GEOS_HOME)
 		LIBS = $(GEOS_HOME)/libgeos.dylib
 		CXXFLAGS = -march=native
+		CLANG_CXXFLAGS = -march=native
     endif
 endif
 
@@ -49,6 +50,8 @@ endif
 #-------[ include path ]------------
 
 INCS   = -I$(PROJ_HOME)/include/
+INCS  += -I$(PROJ_HOME)/include/agent
+INCS  += -I$(PROJ_HOME)/include/map
 INCS  += -I$(GEOS_HOME)/../include
 
 #-------[ compiler flags ]----------
