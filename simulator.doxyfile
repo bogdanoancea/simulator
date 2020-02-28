@@ -2481,7 +2481,7 @@ GENERATE_LEGEND = YES
 # This tag requires that the tag HAVE_DOT is set to YES.
 
 DOT_CLEANUP = YES
-
+DOT_PATH = /usr/local/bin
 EXTRACT_ALL          = YES
 EXTRACT_STATIC         = YES
 CLASS_DIAGRAMS      = YES
