@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
+//	cout << " pe aici" << endl;
 //	const int threads_wanted = 8;
 //	omp_set_dynamic(false);
 //	omp_set_num_threads(threads_wanted);

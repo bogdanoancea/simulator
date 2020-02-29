@@ -56,7 +56,7 @@ clean:
 cleanall:
 	rm -f *.o 
 	rm -f *.exe
-	rm -f $(PROJ_HOME)/Release/$(TARGET)
+	rm -R $(PROJ_HOME)/Release/*
 	rmdir $(PROJ_HOME)/Release
 
 .PHONY: clbk
