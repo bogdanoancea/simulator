@@ -97,6 +97,12 @@ The output file is prob.csv.
 <br>$ make
 <br>$ make install
 
+<p>If you don't have rights to install the GEOS library to the default location (/usr/local/lib) run the last command as:
+<br>$sudo make install
+
+after you installed the library run:
+<br>$sudo ldconfig
+
 <p>2. Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator :
 <br>$git clone https://github.com/bogdanoancea/simulator.git
 
