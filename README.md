@@ -106,8 +106,7 @@ the following 2 variables:
 <br>GEOS_HOME
 
 <p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator 
-and GEOS_HOME should point to
-the folder where is your GEOS source code. 
+and GEOS_HOME should point to the folder where the GEOS library was installed (usually /usr/local/lib). 
 After changing these values, go to the directory where your micro-simulator source code is located and type the following commands in
 a shell:
 <br>$ make
