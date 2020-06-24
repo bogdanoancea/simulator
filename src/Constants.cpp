@@ -54,6 +54,7 @@ const char* Constants::GRID_FILE_NAME = "grid.csv";
 const char* Constants::PROB_FILE_NAME_PREFIX = "probabilities";
 const char* Constants::PERSONS_FILE_NAME = "persons.csv";
 const char* Constants::ANTENNAS_FILE_NAME = "antennas.csv";
+const char* Constants::OUTPUT_DIR = "output";
 
 //const unsigned long Constants::GRID_NO_TILES_X = 10;
 //const unsigned long Constants::GRID_NO_TILES_Y = 10;

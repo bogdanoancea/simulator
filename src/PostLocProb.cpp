@@ -107,7 +107,7 @@ std::map<unsigned long, vector<AntennaInfo>> PostLocProb::getAntennaInfo() {
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = static_cast<Antenna*>(it->second);
 			if (a->getMNO()->getId() == mo->getId()) {
-				string fileName = a->getAntennaOutputFileName();
+				string fileName = mo->getOutputDir()  + "/" + a->getAntennaOutputFileName();
 				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 				for (unsigned long i = 0; i < file.rowCount(); i++) {
 					Row s = file[i];
@@ -117,7 +117,7 @@ std::map<unsigned long, vector<AntennaInfo>> PostLocProb::getAntennaInfo() {
 			}
 			sort(tmp.begin(), tmp.end());
 			ofstream antennaInfoFile;
-			string name = string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
+			string name = mo->getOutputDir()  + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 			antennaInfoFile.open(name, ios::out);
 			antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
 			for (AntennaInfo& ai : tmp) {

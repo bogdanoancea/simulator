@@ -52,11 +52,11 @@ using namespace std;
 using namespace utils;
 
 Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type) :
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir) :
 		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
 				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
-	string fileName = getAntennaOutputFileName();
+	string fileName = outputDir + "/" + getAntennaOutputFileName();
 	char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
@@ -77,7 +77,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, string& outputDir) :
 		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
 
 	char sep = Constants::sep;
@@ -132,7 +132,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
 	}
-	string fileName = getAntennaOutputFileName();
+	string fileName = outputDir + "/" + getAntennaOutputFileName();
 	try {
 		m_file.open(fileName, ios::out);
 	}

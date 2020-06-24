@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
 			c->printAgents();
 		}
 		w.runSimulation();
-		w.getMap()->dumpGrid(w.getGridFilename());
+		w.getMap()->dumpGrid(w.getOutputDir() + "/" + w.getGridFilename());
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 		} else {

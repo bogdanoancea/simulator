@@ -133,6 +133,13 @@ public:
 	void setPostProbMethod(const std::shared_ptr<PostLocProb>& post);
 
 	PriorType getPrior();
+
+	/**
+	 * Returns the name of the output folder.
+	 * @return the name of the output folder.
+	 */
+	const string& getOutputDir() const;
+
 private:
 
 	Map* m_map;
@@ -156,6 +163,7 @@ private:
 	map<const unsigned long, const string> m_probFilenames;
 	string m_personsFilename;
 	string m_antennasFilename;
+	string m_outputDir;
 	double m_probSecMobilePhone;
 	shared_ptr<PostLocProb> m_postMethod;
 
