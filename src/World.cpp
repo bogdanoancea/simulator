@@ -24,6 +24,7 @@
  */
 
 #include <AntennaType.h>
+#include <bits/types/time_t.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <EMField.h>
@@ -40,9 +41,15 @@
 #include <World.h>
 #include <cstring>
 #include <ctime>
+#include <fstream>
+#include <map>
 #include <memory>
 #include <typeinfo>
 #include <unordered_map>
+#include <filesystem>
+#include <iostream>
+#include <sstream>
+
 
 using namespace std;
 using namespace utils;
@@ -95,7 +102,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
-		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
+		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
 	}
 
 	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
@@ -131,11 +138,11 @@ World::~World() {
 void World::runSimulation() noexcept(false) {
 	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
-	//unsigned long noTiles = m_map->getNoTiles();
+
 
 	try {
-		personsFile.open(m_personsFilename, ios::out);
-		antennaFile.open(m_antennasFilename, ios::out);
+		personsFile.open(m_outputDir + "/" + m_personsFilename, ios::out);
+		antennaFile.open(m_outputDir + "/" + m_antennasFilename, ios::out);
 	} catch (ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
@@ -245,8 +252,9 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	vector<Point*> positions = utils::generateFixedPoints(getMap(), numAntennas, m_seed);
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
+		string outDir = Constants::OUTPUT_DIR;
 		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
-				AntennaType::OMNIDIRECTIONAL);
+				AntennaType::OMNIDIRECTIONAL, outDir);
 		result.push_back(p);
 	}
 	return (result);
@@ -282,7 +290,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<M
 				continue;
 			}
 			unsigned long id = IDGenerator::instance()->next();
-			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos);
+			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos, m_outputDir);
 			result.push_back(a);
 		}
 	}
@@ -363,7 +371,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
 		m_stay = getValue(simEl, "time_stay", Constants::SIM_STAY_TIME);
 		m_intevalBetweenStays = getValue(simEl, "interval_between_stays", Constants::SIM_INTERVAL_BETWEEN_STAYS);
-
 		unsigned numMNO = 0;
 		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
 		if (mnoEl) {
@@ -372,7 +379,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 				const char* name = getValue(mnoEl, "mno_name", "UNKNOWN");
 				const double prob = getValue(mnoEl, "prob_mobile_phone");
 				unsigned long id = IDGenerator::instance()->next();
-				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob);
+				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob, m_outputDir);
 				result.push_back(mo);
 			}
 		} else {
@@ -408,6 +415,13 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
+		m_outputDir = getValue(simEl, "output_dir", Constants::OUTPUT_DIR);
+		try{
+			filesystem::create_directory(m_outputDir);
+		} catch(filesystem::filesystem_error& e) {
+			cerr << "Cannot create output folder :" << m_outputDir;
+			throw e;
+		}
 	}
 	return (result);
 }
@@ -582,6 +596,10 @@ string World::parseProbabilities(const string& probabilitiesFileName) {
 
 map<const unsigned long, const string> World::getProbFilenames() const {
 	return m_probFilenames;
+}
+
+const string& World::getOutputDir() const {
+	return m_outputDir;
 }
 
 HoldableAgent::CONNECTION_TYPE World::getConnectionType() const {

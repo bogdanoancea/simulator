@@ -53,7 +53,7 @@ public:
 	 * @param name the name of the Mobile Operator.
 	 * @param probMobilePhone represents the probability that a person will have a cell phone at this company.
 	 */
-	MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone);
+	MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone, string& outoupDir);
 
 	/**
 	 * Default destructor.
@@ -96,11 +96,14 @@ public:
 
 	void writeSignalFileHeader();
 
+	const string& getOutputDir() const;
+
 private:
 	const string m_name;
 	const double m_probMobilePhone;
 	ofstream m_antennaCellsFileName;
 	ofstream m_signalMeasureFileName;
+	string& m_outputDir;
 };
 
 #endif /* INCLUDE_MOBILEOPERATOR_H_ */

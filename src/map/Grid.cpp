@@ -158,7 +158,7 @@ void Grid::dumpGrid(const string& gridFileName) const {
 	try {
 		gridFile.open(gridFileName, ios::out);
 	} catch (ofstream::failure& e) {
-		cerr << "Error opening grid output files!" << endl;
+		cerr << "Error opening grid output file!" << endl;
 	}
 
 	gridFile << toString();

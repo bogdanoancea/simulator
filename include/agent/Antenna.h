@@ -67,7 +67,7 @@ class Antenna: public ImmovableAgent {
 		 * and AntennaType::DIRECTIONAL for directional antennas.
 		 */
 		explicit Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor,
-				double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type);
+				double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir);
 
 		/**
 		 * Constructor of the class. It builds an object taking the value of the antenna' parameters from an XML Element,
@@ -78,7 +78,7 @@ class Antenna: public ImmovableAgent {
 		 * @param el the XML Element containing the parameters of the Antenna
 		 * @param mnos a vector with pointers to MobileOperator objects.
 		 */
-		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos);
+		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos, string& outptuDir);
 
 		/**
 		 * Destructor of the class. It closes the file where the Antenna dumps the registered events during the simulation.

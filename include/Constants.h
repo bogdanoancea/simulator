@@ -155,6 +155,11 @@ public:
 	static const char* ANTENNAS_FILE_NAME;
 
 	/**
+	 * The name of the folder where the output fle will be saved
+	 */
+	static const char* OUTPUT_DIR;
+
+	/**
 	 * Indicates how the prior probability is computed: uniform, register, network
 	 */
 	static const PriorType PRIOR_PROBABILITY;

@@ -33,12 +33,12 @@
 
 using namespace std;
 
-MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone) :
-		Agent(m, id, clock), m_name { name }, m_probMobilePhone { probMobilePhone } {
+MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone, string& outputDir) :
+		Agent(m, id, clock), m_name { name }, m_probMobilePhone { probMobilePhone }, m_outputDir{outputDir} {
 
 	ostringstream cells;
 	char sep = Constants::sep;
-	cells << "AntennaCells_" << name << ".csv";
+	cells << outputDir << "/"<< "AntennaCells_" << name << ".csv";
 	try {
 		m_antennaCellsFileName.open(cells.str(), ios::out);
 	} catch (std::ofstream::failure& e) {
@@ -47,11 +47,11 @@ MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock
 	m_antennaCellsFileName << "AntennaId" << sep << "Cell Coordinates" << endl;
 
 	ostringstream quality;
-	quality << "SignalMeasure_" << name << ".csv";
+	quality << outputDir << "/"<< "SignalMeasure_" << name << ".csv";
 	try {
 		m_signalMeasureFileName.open(quality.str(), ios::out);
 	} catch (std::ofstream::failure& e) {
-		cerr << "Error opening signal quality output file!" << endl;
+		cerr << "Error opening signal strength/quality output file!" << endl;
 	}
 }
 
@@ -110,3 +110,8 @@ void MobileOperator::writeSignalFileHeader() {
 	}
 	m_signalMeasureFileName << "Tile" << noTiles - 1 << endl;
 }
+
+const string& MobileOperator::getOutputDir() const {
+	return m_outputDir;
+}
+
