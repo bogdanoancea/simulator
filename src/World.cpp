@@ -24,7 +24,6 @@
  */
 
 #include <AntennaType.h>
-#include <bits/types/time_t.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <EMField.h>
@@ -366,6 +365,13 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	if (!simEl)
 		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
+		m_outputDir = getValue(simEl, "output_dir", Constants::OUTPUT_DIR);
+		try{
+			std::filesystem::create_directory(filesystem::path(m_outputDir.c_str()));
+		} catch(filesystem::filesystem_error& e) {
+			cerr << "Cannot create output folder :" << m_outputDir;
+			throw e;
+		}
 		m_startTime = getValue(simEl, "start_time", Constants::SIM_START_TIME);
 		m_endTime = getValue(simEl, "end_time", Constants::SIM_END_TIME);
 		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
@@ -415,13 +421,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
-		m_outputDir = getValue(simEl, "output_dir", Constants::OUTPUT_DIR);
-		try{
-			filesystem::create_directory(m_outputDir);
-		} catch(filesystem::filesystem_error& e) {
-			cerr << "Cannot create output folder :" << m_outputDir;
-			throw e;
-		}
+
 	}
 	return (result);
 }
