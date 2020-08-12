@@ -30,17 +30,18 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
-#include <agent/AgentsCollection.h>
 #include <agent/Person.h>
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
-#include <PostLocProb.h>
-#include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
+
+class AgentsCollection;
+class PostLocProb;
 
 using namespace std;
 using namespace tinyxml2;
@@ -123,7 +124,7 @@ public:
 
 	Clock* getClock();
 
-	void computeProbabilities();
+		void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 	/**
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
@@ -139,6 +140,13 @@ public:
 	 * @return the name of the output folder.
 	 */
 	const string& getOutputDir() const;
+
+		/**
+		 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
+		 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+		 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
+		 */
+		std::map<unsigned long, vector<AntennaInfo>> getEvents();
 
 private:
 

@@ -24,8 +24,10 @@
  */
 
 #include <AntennaType.h>
+#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
+#include <CSVparser.hpp>
 #include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
@@ -38,16 +40,15 @@
 #include <UnifPriorPostLocProb.h>
 #include <Utils.h>
 #include <World.h>
+#include <algorithm>
 #include <cstring>
 #include <ctime>
+#include <filesystem>
 #include <fstream>
 #include <map>
 #include <memory>
 #include <typeinfo>
 #include <unordered_map>
-#include <filesystem>
-#include <iostream>
-#include <sstream>
 
 
 using namespace std;
@@ -97,11 +98,16 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	time_t tt = m_clock->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
-	string probsPrefix = parseProbabilities(probabilitiesFileName);
+	string probsPrefix;
+	if (!probabilitiesFileName.empty())
+		probsPrefix = parseProbabilities(probabilitiesFileName);
 
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
-		m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
+		if (!probabilitiesFileName.empty())
+		m_probFilenames.insert(
+					pair<const unsigned long, string>(mnos[i]->getId(),
+							m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
 	}
 
 	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
@@ -614,8 +620,42 @@ PriorType World::getPrior() {
 	return m_prior;
 }
 
-void World::computeProbabilities() {
-	m_postMethod->computeProbabilities();
+void World::computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data) {
+	m_postMethod->computeProbabilities(data);
+}
+
+std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
+	char sep = Constants::sep;
+	std::map<unsigned long, vector<AntennaInfo>> data;
+	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
+	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+
+		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+		MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
+		vector<AntennaInfo> tmp;
+		for (auto it = itra.first; it != itra.second; it++) {
+			Antenna* a = static_cast<Antenna*>(it->second);
+			if (a->getMNO()->getId() == mo->getId()) {
+				string fileName = mo->getOutputDir() + "/" + a->getAntennaOutputFileName();
+				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
+				for (unsigned long i = 0; i < file.rowCount(); i++) {
+					Row s = file[i];
+					AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
+					tmp.push_back(a);
+				}
+			}
+			sort(tmp.begin(), tmp.end());
+			ofstream antennaInfoFile;
+			string name = mo->getOutputDir() + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
+			antennaInfoFile.open(name, ios::out);
+			antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
+			for (AntennaInfo& ai : tmp) {
+				antennaInfoFile << ai.toString() << sep << m_map->getTileNo(ai.getX(), ai.getY()) << endl;
+			}
+			antennaInfoFile.close();
+		}
+	}
+	return (data);
 }
 
 //void World::computeProbabilities() {

@@ -42,7 +42,7 @@ public:
 
 	virtual ~PostLocProb();
 
-	virtual void computeProbabilities();
+		virtual void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 
 	virtual vector<double> prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) = 0;
 
@@ -52,13 +52,7 @@ protected:
 	AgentsCollection* m_agents;
 	map<const unsigned long, const string> m_probFilenames;
 
-	/**
-	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
-	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
-	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
-	 */
 
-	map<unsigned long, vector<AntennaInfo>> getAntennaInfo();
 	void writeProbFileHeader(ofstream& f);
 
 };
