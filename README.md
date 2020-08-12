@@ -131,6 +131,6 @@ In a terminal (command prompt) type:
 <br> persons.xml is the population configuration file
 <br> probabilities.xml is the file containing the parameters need to compute the location probabilities
 <br>
-<br>The location probabilities are computed only if -o parameter is given in the command line. If -v is given in the command line the simulator will output on console the set of persons, mobile phone operators, antennas and mobile phones.
+<br>The location probabilities are computed only if -pb parameter is given in the command line. If -v is given in the command line the simulator will output on console the set of persons, mobile phone operators, antennas and mobile phones.
 
 
