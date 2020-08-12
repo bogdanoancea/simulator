@@ -30,7 +30,7 @@ else
         CCFLAGS += -D LINUX
 		CXX		= g++
 		TARGET  = simulator
-		LDFLAGS = -L$(GEOS_HOME)/src/.libs/
+		LDFLAGS = -L$(GEOS_HOME) -lstdc++fs
 		LIBS = $(GEOS_HOME)/libgeos.a
 		CXXFLAGS = -march=native
 
@@ -40,7 +40,7 @@ else
 		CXX		= g++
 		TARGET	= simulator
 		LDFLAGS = -L$(GEOS_HOME)
-		LIBS = $(GEOS_HOME)/libgeos.dylib
+		LIBS = $(GEOS_HOME)/libgeos.dylib -lstdc++fs
 		CXXFLAGS = -march=native
 		CLANG_CXXFLAGS = -march=native
     endif
