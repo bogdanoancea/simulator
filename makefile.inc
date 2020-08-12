@@ -1,8 +1,8 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = /Users/bogdanoancea/c-projects//simulator
-GEOS_HOME = /usr/local/lib
-MSYS_HOME = C:/msys64/
+PROJ_HOME = D:/data-simulator/simulator
+GEOS_HOME = C:/msys64/mingw64/lib
+MSYS_HOME = C:/msys64
 DEBUG     = 0
 
 
@@ -21,7 +21,7 @@ ifeq ($(OS),Windows_NT)
 	CXX    = g++.exe
 	TARGET = simulator.exe
 	LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
-	LIBS = $(GEOS_HOME)/libgeos.dll.a
+	LIBS = $(GEOS_HOME)/libgeos.dll.a -lstdc++fs
 	CXXFLAGS = -march=native
 
 else
