@@ -169,6 +169,14 @@ namespace utils {
 	double getValue(XMLElement* el, const char* name);
 
 	/**
+	 * Computes the inverse of the normal CDF.
+	 * @param p
+	 * @param mu
+	 * @param sigma
+	 * @return
+	 */
+	double inverseNormalCDF(const double p, const double mu, const double sigma);
+	/**
 	 * Computes the posterior probability of a mobile device to be in a tile of the Grid according to the method
 	 * described in he paper "Deriving geographic location of mobile devices from network data"
 	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.

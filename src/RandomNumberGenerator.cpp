@@ -27,8 +27,10 @@
 #include <cmath>
 #include <ctgmath>
 #include <iostream>
+#include <Utils.h>
 
 using namespace std;
+using namespace utils;
 
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
@@ -191,7 +193,15 @@ double RandomNumberGenerator::normal_pdf(double x, double m, double s) {
 	return (inv_sqrt_2pi / s) * exp(-0.5 * a * a);
 }
 
-
+double* RandomNumberGenerator::generateLevy(const double mu, const double c, const int n) {
+	double* result = new double[n];
+	double* unif = generateUniformDouble(0, 1, n);
+	for (int i = 0; i < n; i++) {
+		double invNormCDF = utils::inverseNormalCDF(1-unif[i], 0, 1);
+		result[i] = c / (2 * invNormCDF * invNormCDF) + mu;
+	}
+	return (result);
+}
 ////------------------------------------------------------------
 //// Compute y_l from y_k
 //double RandomNumberGenerator::yl(int k) {

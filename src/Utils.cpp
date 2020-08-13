@@ -42,6 +42,7 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <limits>
 
 namespace utils {
 using namespace geos;
@@ -244,83 +245,83 @@ double getValue(XMLElement* el, const char* name) {
 	return result;
 }
 
-//vector<double> computeProbability(Map* map, unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> antennas_iterator, PriorType prior) {
-//	vector<double> result;
-//	// take the mobile phone and see which is the antenna connected to
-//	vector<AntennaInfo>::iterator ai;
-//	bool found = false;
-//	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
-//		ai = i;
-//		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-//				&& (ai->getEventCode() == static_cast<int>(EventType::ATTACH_DEVICE) || ai->getEventCode() == static_cast<int>(EventType::ALREADY_ATTACHED_DEVICE))) {
-//			found = true;
-//			break;
-//		}
-//	}
-//	if (prior == PriorType::NETWORK)
-//		result = useNetworkPrior(map, found, ai, antennas_iterator);
-//	else if (prior == PriorType::UNIFORM)
-//		result = useUniformPrior(map, found, ai, antennas_iterator);
-//	return (result);
-//}
+double inverseNormalCDF(const double p, const double mu, const double sigma) {
+    if (p < 0.0 || p > 1.0) {
+        std::stringstream os;
+        os << "Invalid input argument (" << p << "); must be larger than 0 but less than 1.";
+        throw std::invalid_argument(os.str());
+    }
 
-//vector<double> useNetworkPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator)  {
-//	vector<double> result;
-//	double sum = 0.0;
-//	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
-//		double lh = 0.0;
-//		if (connected) {
-//			Coordinate c = map->getTileCenter(tileIndex);
-//			unsigned long antennaId = ai->getAntennaId();
-//			Antenna* a = nullptr;
-//			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-//				a = dynamic_cast<Antenna*>(it->second);
-//				if (a->getId() == antennaId) {
-//					break;
-//				}
-//			}
-//			c.z = 0; //TODO tile elevation!
-//			if (a != nullptr) {
-//				lh = a->computeSignalQuality(c);
-//				sum += lh;
-//			}
-//		}
-//		result.push_back(lh);
-//	}
-//	for (auto& i : result) {
-//		if (sum != 0.0) {
-//			i /= sum;
-//		}
-//	}
-//	return result;
-//}
+	if(sigma < 0) {
+        std::stringstream os;
+        os << "Invalid input argument (" << sigma << "); must be greater than or equal to 0";
+        throw std::invalid_argument(os.str());
+	}
+	if(p == 0)
+		return std::numeric_limits<double>::min();
+   	if(p == 1)
+   		return std::numeric_limits<double>::max();
+   	if(sigma == 0)
+   		return mu;
 
-//vector<double> useUniformPrior(Map* map, bool connected, vector<AntennaInfo>::iterator ai, pair<um_iterator, um_iterator> antennas_iterator)  {
-//	vector<double> result;
-//
-//	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
-//		double lh = 0.0;
-//		if (connected) {
-//			unsigned long antennaId = ai->getAntennaId();
-//			Antenna* a = nullptr;
-//			for (auto it = antennas_iterator.first; it != antennas_iterator.second; it++) {
-//				a = dynamic_cast<Antenna*>(it->second);
-//				if (a->getId() == antennaId) {
-//					break;
-//				}
-//			}
-//			if (a != nullptr) {
-//				lh = EMField::instance()->connectionLikelihoodGrid(a, map, tileIndex);
-//			}
-//		}
-//		result.push_back(lh);
-//	}
-//	for (auto& i : result) {
-//		if (i > 0.0)
-//			i /= (map->getNoTilesX() * map->getNoTilesY());
-//		else
-//			i = 1.0 / (map->getNoTilesX() * map->getNoTilesY());
-//	}
-//	return result;
-//}
+   	double r, val;
+    const double q = p - 0.5;
+
+    if (std::abs(q) <= .425) {
+        r = .180625 - q * q;
+        val = q * (((((((r * 2509.0809287301226727 +
+                33430.575583588128105) * r + 67265.770927008700853) * r +
+                45921.953931549871457) * r + 13731.693765509461125) * r +
+                1971.5909503065514427) * r + 133.14166789178437745) * r +
+                3.387132872796366608)
+            / (((((((r * 5226.495278852854561 +
+                28729.085735721942674) * r + 39307.89580009271061) * r +
+                21213.794301586595867) * r + 5394.1960214247511077) * r +
+                687.1870074920579083) * r + 42.313330701600911252) * r + 1);
+    }
+    else {
+        if (q > 0) {
+            r = 1 - p;
+        }
+        else {
+            r = p;
+        }
+        r = std::sqrt(-std::log(r));
+        if (r <= 5) {
+            r += -1.6;
+            val = (((((((r * 7.7454501427834140764e-4 +
+                .0227238449892691845833) * r + .24178072517745061177) *
+                r + 1.27045825245236838258) * r +
+                3.64784832476320460504) * r + 5.7694972214606914055) *
+                r + 4.6303378461565452959) * r +
+                1.42343711074968357734)
+                / (((((((r *
+                    1.05075007164441684324e-9 + 5.475938084995344946e-4) *
+                    r + .0151986665636164571966) * r +
+                    .14810397642748007459) * r + .68976733498510000455) *
+                    r + 1.6763848301838038494) * r +
+                    2.05319162663775882187) * r + 1);
+        }
+        else { /* very close to  0 or 1 */
+            r += -5;
+            val = (((((((r * 2.01033439929228813265e-7 +
+                2.71155556874348757815e-5) * r +
+                .0012426609473880784386) * r + .026532189526576123093) *
+                r + .29656057182850489123) * r +
+                1.7848265399172913358) * r + 5.4637849111641143699) *
+                r + 6.6579046435011037772)
+                / (((((((r *
+                    2.04426310338993978564e-15 + 1.4215117583164458887e-7) *
+                    r + 1.8463183175100546818e-5) * r +
+                    7.868691311456132591e-4) * r + .0148753612908506148525)
+                    * r + .13692988092273580531) * r +
+                    .59983220655588793769) * r + 1);
+        }
+        if (q < 0.0) {
+            val = -val;
+        }
+    }
+    return mu + sigma * val;
 }
+}
+

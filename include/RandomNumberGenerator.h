@@ -172,6 +172,15 @@ public:
 	int* generateBernoulliInt(const double p, const int n);
 
 	/**
+	 * Generates n double random values from a Levy distribution
+	 * @param mu the displacement of the Levy distribution
+	 * @param c the scale parameter of the Levy distribution
+	 * @param n the number of values to be generated
+	 * @return an array with n double values from a Levy distribution
+	 */
+	double* generateLevy(const double mu, const double c, const int n);
+
+	/**
 	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.
 	 * @param m the mean of the normal distribution.
