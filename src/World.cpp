@@ -23,6 +23,7 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
+#include <agent/AgentsCollection.h>
 #include <AntennaType.h>
 #include <Clock.h>
 #include <Constants.h>
@@ -30,6 +31,7 @@
 #include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
+#include <LevyFlightDisplacement.h>
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
 #include <RandomNumberGenerator.h>
@@ -44,8 +46,8 @@
 #include <ctime>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <map>
-#include <memory>
 #include <typeinfo>
 #include <unordered_map>
 
@@ -104,7 +106,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		if (!probabilitiesFileName.empty())
-		m_probFilenames.insert(
+			m_probFilenames.insert(
 					pair<const unsigned long, string>(mnos[i]->getId(),
 							m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
 	}
@@ -406,7 +408,11 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
 		else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
 			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
-		} else
+		}
+		else if (!strcmp(mvType, "levy_flight")) {
+			m_mvType = MovementType::LEVY_FLIGHT;
+		}
+		else
 			m_mvType = MovementType::UNKNOWN;
 
 		const char* connType = getValue(simEl, "connection_type", "UNKNOWN");
@@ -504,8 +510,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	}
 
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
-	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
-	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
+	double *speeds_walk, *speeds_car;
+	speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
+	speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 
 	double* ages;
 	if (age_distribution == Person::AgeDistributions::UNIFORM)
@@ -559,6 +566,9 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 			p->setDisplacementMethod(displace);
 		} else if (m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
 			auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_map, m_clock, p->getSpeed());
+			p->setDisplacementMethod(displace);
+		} else if (m_mvType == MovementType::LEVY_FLIGHT) {
+			auto displace = std::make_shared<LevyFlightDisplacement>(m_map, m_clock, p->getSpeed());
 			p->setDisplacementMethod(displace);
 		}
 

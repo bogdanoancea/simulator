@@ -1,15 +1,17 @@
 #include <agent/AgentsCollection.h>
+#include <AntennaInfo.h>
 #include <geos/io/WKTWriter.h>
 #include <InputParser.h>
 #include <map/WKTMap.h>
-#include <NetPriorPostLocProb.h>
-#include <PriorType.h>
-#include <UnifPriorPostLocProb.h>
+#include <process.h>
+#include <RandomNumberGenerator.h>
 #include <World.h>
 #include <iostream>
-#include <memory>
+#include <map>
+#include <new>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
@@ -37,6 +39,7 @@ int main(int argc, char** argv) {
 //	__gnu_parallel::_Settings::set(s);
 //#endif
 //#endif
+
 
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {

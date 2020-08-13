@@ -179,7 +179,7 @@ public:
 	 * @return an array with n double values from a Levy distribution
 	 */
 	double* generateLevy(const double mu, const double c, const int n);
-
+	double generateLevy(const double mu, const double c);
 	/**
 	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.

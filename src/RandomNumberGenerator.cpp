@@ -202,6 +202,14 @@ double* RandomNumberGenerator::generateLevy(const double mu, const double c, con
 	}
 	return (result);
 }
+
+double RandomNumberGenerator::generateLevy(const double mu, const double c) {
+	double result;
+	double unif = generateUniformDouble(0, 1);
+	double invNormCDF = utils::inverseNormalCDF(1-unif, 0, 1);
+	result = c / (2 * invNormCDF * invNormCDF) + mu;
+	return (result);
+}
 ////------------------------------------------------------------
 //// Compute y_l from y_k
 //double RandomNumberGenerator::yl(int k) {

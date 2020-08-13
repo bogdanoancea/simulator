@@ -87,6 +87,9 @@ Point* Person::move() {
 
 		}
 	} else {
+//		setSpeed( RandomNumberGenerator::instance()->generateLevy(getSpeed()*0.75, 1, 1)[0] );
+//		if(getId() == 36)
+//			cout << getSpeed() << endl;
 		Point* pt = m_displacementMethod->generateNewLocation(currentLocation);
 		if (pt != currentLocation) {
 			this->getMap()->getGlobalFactory()->destroyGeometry(currentLocation);
