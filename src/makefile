@@ -12,6 +12,7 @@ Constants.o\
 Displace.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
+LevyFlightDisplacement.o\
 PostLocProb.o\
 NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\
