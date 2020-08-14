@@ -3,7 +3,6 @@
 #include <geos/io/WKTWriter.h>
 #include <InputParser.h>
 #include <map/WKTMap.h>
-#include <process.h>
 #include <RandomNumberGenerator.h>
 #include <World.h>
 #include <iostream>
