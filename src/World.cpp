@@ -154,13 +154,12 @@ void World::runSimulation() noexcept(false) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
-
+	////// write signal file and antenna cells - astea pot fi mutate dupa simulare
 	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	for (auto it = itr0.first; it != itr0.second; it++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
 		mo->writeSignalFileHeader();
 	}
-
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
 	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
@@ -170,12 +169,11 @@ void World::runSimulation() noexcept(false) {
 		f << a->getId() << sep << a->dumpCell();
 		a->dumpSignal();
 	}
-
+    /////////////////
 	time_t tt = m_clock->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
-
 	RandomNumberGenerator* r = RandomNumberGenerator::instance();
 	r->setSeed(time(0));
 
