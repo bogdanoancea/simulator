@@ -34,11 +34,15 @@
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
+#include <AgeDistribution.h>
 #include <map>
 #include <memory>
 #include <string>
 #include <utility>
 #include <vector>
+
+class AgeDistribution;
+class RandomNumberGenerator;
 
 class AgentsCollection;
 class PostLocProb;
@@ -177,7 +181,7 @@ private:
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
 			double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
@@ -188,6 +192,9 @@ private:
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
+	void setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk);
+	void generatePhones(vector<MobileOperator*> mnos);
+	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 
 	//TODO make it private
 	/**

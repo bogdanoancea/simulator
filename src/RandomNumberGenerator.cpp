@@ -149,6 +149,19 @@ double* RandomNumberGenerator::generateTruncatedNormalDouble(const double a, con
 	return (result);
 }
 
+int* RandomNumberGenerator::generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n){
+	int* result = new int[n];
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	unsigned long i = 0;
+	while (i < n) {
+		result[i] = (int)m_normal_double_distribution(m_generator);
+		if (result[i] >= a && result[i] <= b)
+			i++;
+	}
+	return (result);
+}
+
 double RandomNumberGenerator::generateNormalDouble(const double m, const double sd) {
 	double result;
 	normal_distribution<double>::param_type p1(m, sd);

@@ -25,6 +25,7 @@
 
 #include <agent/AgentsCollection.h>
 #include <AntennaType.h>
+#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
@@ -38,6 +39,8 @@
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
 #include <TinyXML2.h>
+#include <TruncatedNormalAgeDistribution.h>
+#include <UniformAgeDistribution.h>
 #include <UnifPriorPostLocProb.h>
 #include <Utils.h>
 #include <World.h>
@@ -324,31 +327,22 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
 			throw std::runtime_error("Unknown age distribution for population!");
 
-		Person::AgeDistributions d;
-		vector<double> params;
+		shared_ptr<AgeDistribution> ageDistr;
 		if (!strcmp(distrib, "normal")) {
 			double mean_age = getValue(ageDistribEl, "mean");
 			double sd = getValue(ageDistribEl, "sd");
-			d = Person::AgeDistributions::NORMAL;
-			params.push_back(mean_age);
-			params.push_back(sd);
-			params.push_back(min_age);
-			params.push_back(max_age);
+			ageDistr = make_shared<TruncatedNormalAgeDistribution>(TruncatedNormalAgeDistribution(min_age, max_age, mean_age, sd));
 		} else if (!strcmp(distrib, "uniform")) {
-			d = Person::AgeDistributions::UNIFORM;
-			params.push_back(min_age);
-			params.push_back(max_age);
+			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
 		} else {
-			d = Person::AgeDistributions::UNIFORM;
-			params.push_back(min_age);
-			params.push_back(max_age);
+			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
 		}
 
 		double male_share = getValue(personsEl, "male_share");
 		double speed_walk = getValue(personsEl, "speed_walk");
 		double speed_car = getValue(personsEl, "speed_car");
 		double percentHome = getValue(personsEl, "percent_home");
-		result = generatePopulation(numPersons, params, d, male_share, mnos, speed_walk, speed_car, percentHome);
+		result = generatePopulation(numPersons, ageDistr, male_share, mnos, speed_walk, speed_car, percentHome);
 	}
 	return (result);
 }
@@ -448,7 +442,7 @@ double World::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connT
 	return (result);
 
 }
-vector<Person*> World::generatePopulation(unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+vector<Person*> World::generatePopulation(unsigned long numPersons, shared_ptr<AgeDistribution> ageDistribution,
 		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
 
 	vector<Person*> result;
@@ -514,15 +508,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 	speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
 	speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 
-	double* ages;
-	if (age_distribution == Person::AgeDistributions::UNIFORM)
-		ages = random_generator->generateUniformDouble(params[0], params[1], numPersons);
-	else if (age_distribution == Person::AgeDistributions::NORMAL) {
-		ages = random_generator->generateTruncatedNormalDouble(params[2], params[3], params[0], params[1], numPersons);
-	} else {
-		ages = random_generator->generateUniformDouble(params[0], params[1], numPersons);
-	}
-
+	int* ages = generateAges(numPersons, ageDistribution,random_generator );
 	unsigned long cars = 0;
 	unsigned long walks = 0;
 	Person* p;
@@ -533,10 +519,10 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
 		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_intevalBetweenStays);
 		if (walk_car[i]) {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], (int) ages[i],
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		} else {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], (int) ages[i],
+			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
 		}
 		int np1 = phone1[i];
@@ -561,17 +547,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, vector<doubl
 				np2--;
 			}
 		}
-		if (m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP) {
-			auto displace = std::make_shared<RandomWalkDisplacement>(m_map, m_clock, p->getSpeed());
-			p->setDisplacementMethod(displace);
-		} else if (m_mvType == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
-			auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_map, m_clock, p->getSpeed());
-			p->setDisplacementMethod(displace);
-		} else if (m_mvType == MovementType::LEVY_FLIGHT) {
-			auto displace = std::make_shared<LevyFlightDisplacement>(m_map, m_clock, p->getSpeed());
-			p->setDisplacementMethod(displace);
-		}
-
+		setPersonDisplacementPattern(p, m_mvType, m_map, m_clock);
 		result.push_back(p);
 	}
 	delete[] walk_car;
@@ -667,56 +643,35 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 	return (data);
 }
 
-//void World::computeProbabilities() {
-//	char sep = Constants::sep;
-//	std::map<unsigned long, vector<AntennaInfo>> data = getAntennaInfo();
-//	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
-//	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-//
-//	time_t tt = m_clock->realTime();
-//	cout << "Computing probabilities started at " << ctime(&tt) << endl;
-//
-//	auto itrm = m_agentsCollection->getAgentListByType(typeid(MobilePhone).name());
-//	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-//		cout << "Sum signal quality" << " MNO : " << itmno->second->getId() << endl;
-//		EMField::instance()->sumSignalQuality(m_map, itmno->second->getId());
-//	}
-//
-//	ofstream p_file;
-//	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-//		Agent* mo = itmno->second;
-//		p_file.open(getProbFilenames()[mo->getId()], ios::out);
-//		writeProbFileHeader(p_file);
-//		m_clock->reset();
-//		for (unsigned long t = m_clock->getInitialTime(); t < m_clock->getFinalTime(); t = m_clock->tick()) {
-//			//iterate over all devices
-//			for (auto it = itrm.first; it != itrm.second; it++) {
-//				MobilePhone* m = dynamic_cast<MobilePhone*>(it->second);
-//				if (m->getMobileOperator()->getId() != mo->getId())
-//					continue;
-//				p_file << t << sep << m->getId() << sep;
-//
-//				ostringstream probs;
-//				vector<double> p = utils::computeProbability(m_map, t, m, data[mo->getId()], itra, m_prior);
-//				for (unsigned long i = 0; i < m_map->getNoTiles() - 1; i++) {
-//					probs << fixed << setprecision(15) << p[i] << sep;
-//					//cout << p[i] << ",";
-//				}
-//				probs << fixed << setprecision(15) << p[m_map->getNoTiles() - 1];
-//				//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
-//				p_file << probs.str() << endl;
-//			}
-//		}
-//		try {
-//			p_file.close();
-//		} catch (ofstream::failure& e) {
-//			cerr << "Error closing probs file!" << endl;
-//		}
-//	}
-//	tt = m_clock->realTime();
-//	cout << "Computing probabilities ended at " << ctime(&tt) << endl;
-//}
 
 Clock* World::getClock() {
 	return m_clock;
+}
+
+void World::setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk) {
+	if (type == MovementType::RANDOM_WALK_CLOSED_MAP) {
+		auto displace = std::make_shared<RandomWalkDisplacement>(map, clk, p->getSpeed());
+		p->setDisplacementMethod(displace);
+	} else if (type == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
+		auto displace = std::make_shared<RandomWalkDriftDisplacement>(map, clk, p->getSpeed());
+		p->setDisplacementMethod(displace);
+	} else if (type == MovementType::LEVY_FLIGHT) {
+		auto displace = std::make_shared<LevyFlightDisplacement>(map, clk, p->getSpeed());
+		p->setDisplacementMethod(displace);
+	}
+}
+
+
+int* World::generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng) {
+	int* ages = new int[n];
+
+	if(shared_ptr<UniformAgeDistribution> ageDistr = dynamic_pointer_cast<UniformAgeDistribution>(distr)){
+		ages = rng->generateUniformInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), n);
+	}
+	else if (shared_ptr<TruncatedNormalAgeDistribution> ageDistr = dynamic_pointer_cast<TruncatedNormalAgeDistribution>(distr)) {
+		ages = rng->generateTruncatedNormalInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), ageDistr->getMean(),ageDistr->getSd(), n);
+	} else {
+		ages = rng->generateUniformInt(distr->getMinAge(),distr->getMaxAge(), n);
+	}
+	return (ages);
 }
