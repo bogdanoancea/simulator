@@ -147,7 +147,6 @@ void World::runSimulation() noexcept(false) {
 	ofstream personsFile, antennaFile;
 	char sep = Constants::sep;
 
-
 	try {
 		personsFile.open(m_outputDir + "/" + m_personsFilename, ios::out);
 		antennaFile.open(m_outputDir + "/" + m_antennasFilename, ios::out);
@@ -447,72 +446,26 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, shared_ptr<A
 	vector<Person*> result;
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
-
-	double probIntersection = 1.0;
-	unsigned int numMno = mnos.size();
-	for (auto& n : mnos) {
-		probIntersection *= n->getProbMobilePhone();
-	}
-	if (numMno > 1 && probIntersection > m_probSecMobilePhone)
-		throw std::runtime_error(
-				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
-
-	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
-
 	int* phone1 = nullptr;
 	int* phone2 = nullptr;
-	if (numMno == 1) {
-		phone1 = random_generator->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
-		for (unsigned long j = 0; j < numPersons; j++) {
-			if (phone1[j] == 1)
-				phone1[j] += random_generator->generateBernoulliInt(m_probSecMobilePhone);
-		}
-	} else if (numMno == 2) {
-		double pSecPhoneDiffMNO = probIntersection;
-		double pSecPhoneMNO1 = (m_probSecMobilePhone - pSecPhoneDiffMNO) / 2.0;
-		double pSecPhoneMNO2 = pSecPhoneMNO1;
+	setPhones(phone1, phone2, m_probSecMobilePhone, numPersons, random_generator, mnos);
 
-		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
-		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 - pSecPhoneDiffMNO;
-
-		phone1 = random_generator->generateBernoulliInt(pOnePhoneMNO1, numPersons);
-		phone2 = random_generator->generateBernoulliInt(pOnePhoneMNO2, numPersons);
-		for (unsigned long i = 0; i < numPersons; i++) {
-			if (phone1[i] == 1 && phone2[i] == 1)
-				continue;
-			if (phone1[i] == 1) {
-				phone1[i] += random_generator->generateBernoulliInt(pSecPhoneMNO1);
-			}
-			if (phone2[i] == 1) {
-				if (phone1[i] == 0)
-					phone2[i] += random_generator->generateBernoulliInt(pSecPhoneMNO2);
-			}
-		}
-	} else {
-		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
-	}
-
+	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
 	int sum = 0;
-	unsigned long numPhones = 0;
 	for (unsigned long i = 0; i < numPersons; i++) {
 		sum += walk_car[i];
-		if (phone1 && phone2)
-			numPhones += (phone1[i] + phone2[i]);
-		else
-			numPhones += phone1[i];
 	}
 
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
-	double *speeds_walk, *speeds_car;
-	speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
-	speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
-
-	int* ages = generateAges(numPersons, ageDistribution,random_generator );
+	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
+	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
+	int* ages = generateAges(numPersons, ageDistribution, random_generator );
 	unsigned long cars = 0;
 	unsigned long walks = 0;
 	Person* p;
 
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
+	unsigned int numMno = mnos.size();
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_stay, 0.2 * m_stay);
@@ -673,4 +626,46 @@ int* World::generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberG
 		ages = rng->generateUniformInt(distr->getMinAge(),distr->getMaxAge(), n);
 	}
 	return (ages);
+}
+
+void World::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos ) {
+	int numMno = mnos.size();
+	double probIntersection = 1;
+	for (auto& n : mnos) {
+		probIntersection *= n->getProbMobilePhone();
+	}
+	if (numMno > 1 && probIntersection > probSecMobilePhone)
+		throw std::runtime_error(
+				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
+
+	if (numMno == 1) {
+		ph1 = rng->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
+		for (unsigned long j = 0; j < numPersons; j++) {
+			if (ph1[j] == 1)
+				ph1[j] += rng->generateBernoulliInt(probSecMobilePhone);
+		}
+	} else if (numMno == 2) {
+		double pSecPhoneDiffMNO = probIntersection;
+		double pSecPhoneMNO1 = (probSecMobilePhone - pSecPhoneDiffMNO) / 2.0;
+		double pSecPhoneMNO2 = pSecPhoneMNO1;
+
+		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
+		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 - pSecPhoneDiffMNO;
+
+		ph1 = rng->generateBernoulliInt(pOnePhoneMNO1, numPersons);
+		ph2 = rng->generateBernoulliInt(pOnePhoneMNO2, numPersons);
+		for (unsigned long i = 0; i < numPersons; i++) {
+			if (ph1[i] == 1 && ph2[i] == 1)
+				continue;
+			if (ph1[i] == 1) {
+				ph1[i] += rng->generateBernoulliInt(pSecPhoneMNO1);
+			}
+			if (ph2[i] == 1) {
+				if (ph1[i] == 0)
+					ph2[i] += rng->generateBernoulliInt(pSecPhoneMNO2);
+			}
+		}
+	} else {
+		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
+	}
 }
