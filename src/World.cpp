@@ -647,21 +647,19 @@ void World::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double nu
 		double pSecPhoneMNO1 = (probSecMobilePhone - pSecPhoneDiffMNO) / 2.0;
 		double pSecPhoneMNO2 = pSecPhoneMNO1;
 
-		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 - pSecPhoneDiffMNO;
-		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 - pSecPhoneDiffMNO;
+		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 ;
+		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 ;
 
 		ph1 = rng->generateBernoulliInt(pOnePhoneMNO1, numPersons);
 		ph2 = rng->generateBernoulliInt(pOnePhoneMNO2, numPersons);
 		for (unsigned long i = 0; i < numPersons; i++) {
-			if (ph1[i] == 1 && ph2[i] == 1)
+			if(ph1[i] == 1 && ph2[i] == 1)
 				continue;
-			if (ph1[i] == 1) {
-				ph1[i] += rng->generateBernoulliInt(pSecPhoneMNO1);
-			}
-			if (ph2[i] == 1) {
-				if (ph1[i] == 0)
-					ph2[i] += rng->generateBernoulliInt(pSecPhoneMNO2);
-			}
+			if(ph1[i] == 1)
+				ph1[i] += rng->generateBernoulliInt(pSecPhoneMNO1/pOnePhoneMNO1);
+			if(ph2[i] == 1)
+				ph2[i] += rng->generateBernoulliInt(pSecPhoneMNO2/pOnePhoneMNO2);
+
 		}
 	} else {
 		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
