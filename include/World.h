@@ -196,6 +196,7 @@ private:
 	void generatePhones(vector<MobileOperator*> mnos);
 	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
+	void writeSignalAndCells(ostream& antennaFile);
 	//TODO make it private
 	/**
 	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.

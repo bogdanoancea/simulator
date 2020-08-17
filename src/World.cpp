@@ -154,22 +154,8 @@ void World::runSimulation() noexcept(false) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
-	////// write signal file and antenna cells - astea pot fi mutate dupa simulare
-	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
-	for (auto it = itr0.first; it != itr0.second; it++) {
-		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
-		mo->writeSignalFileHeader();
-	}
-	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
-	for (auto it = itr2.first; it != itr2.second; it++) {
-		Antenna* a = static_cast<Antenna*>(it->second);
-		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << m_map->getTileNo(a->getLocation()) << endl;
-		ofstream& f = a->getMNO()->getAntennaCellsFile();
-		f << a->getId() << sep << a->dumpCell();
-		a->dumpSignal();
-	}
-    /////////////////
+
+	writeSignalAndCells(antennaFile);
 	time_t tt = m_clock->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 
@@ -185,8 +171,7 @@ void World::runSimulation() noexcept(false) {
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
-		int n = m_map->getTileNo(loc->getX(), loc->getY());
-		personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+		personsFile << p->dumpLocation() << sep << m_map->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 	}
 
 	//iterate over all persons and call move()
@@ -643,8 +628,7 @@ void World::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double nu
 				ph1[j] += rng->generateBernoulliInt(probSecMobilePhone);
 		}
 	} else if (numMno == 2) {
-		double pSecPhoneDiffMNO = probIntersection;
-		double pSecPhoneMNO1 = (probSecMobilePhone - pSecPhoneDiffMNO) / 2.0;
+		double pSecPhoneMNO1 = (probSecMobilePhone - probIntersection) / 2.0;
 		double pSecPhoneMNO2 = pSecPhoneMNO1;
 
 		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 ;
@@ -659,9 +643,26 @@ void World::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double nu
 				ph1[i] += rng->generateBernoulliInt(pSecPhoneMNO1/pOnePhoneMNO1);
 			if(ph2[i] == 1)
 				ph2[i] += rng->generateBernoulliInt(pSecPhoneMNO2/pOnePhoneMNO2);
-
 		}
 	} else {
 		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
+	}
+}
+
+void World::writeSignalAndCells(ostream& antennaFile) {
+	char sep = Constants::sep;
+	auto itr0 = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
+	for (auto it = itr0.first; it != itr0.second; it++) {
+		MobileOperator* mo = static_cast<MobileOperator*>(it->second);
+		mo->writeSignalFileHeader();
+	}
+	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
+	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "Tile ID" << endl;
+	for (auto it = itr2.first; it != itr2.second; it++) {
+		Antenna* a = static_cast<Antenna*>(it->second);
+		antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << m_map->getTileNo(a->getLocation()) << endl;
+		ofstream& f = a->getMNO()->getAntennaCellsFile();
+		f << a->getId() << sep << a->dumpCell();
+		a->dumpSignal();
 	}
 }
