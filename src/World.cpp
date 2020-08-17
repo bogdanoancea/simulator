@@ -157,7 +157,6 @@ void World::runSimulation() noexcept(false) {
 
 	writeSignalAndCells(antennaFile);
 	time_t tt = m_clock->realTime();
-	cout << "Simulation started at " << ctime(&tt) << endl;
 
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 	RandomNumberGenerator* r = RandomNumberGenerator::instance();
@@ -167,6 +166,7 @@ void World::runSimulation() noexcept(false) {
 	//initial time
 	unsigned long t = m_clock->getInitialTime();
 	tt = m_clock->realTime();
+	cout << "Simulation started at " << ctime(&tt) << endl;
 	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
@@ -183,8 +183,7 @@ void World::runSimulation() noexcept(false) {
 			Person* p = static_cast<Person*>(it->second);
 			p->move();
 			Point* loc = p->getLocation();
-			int n = m_map->getTileNo(loc->getX(), loc->getY());
-			personsFile << p->dumpLocation() << sep << n << p->dumpDevices() << endl;
+			personsFile << p->dumpLocation() << sep << m_map->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 		}
 	}
 	tt = m_clock->realTime();

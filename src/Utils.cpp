@@ -83,20 +83,21 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 			} else
 				m->getGlobalFactory()->destroyGeometry(p);
 			// we used all the numbers, generate others
-			if (i == n - 1) {
+			if (i > n - 1) {
 				delete[] x1;
 				delete[] y1;
 				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
 				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
-				if (x1[i] < 1e-15)
-					x1[i] = 0.0;
-				if (y1[i] < 1e-15)
-					y1[i] = 0.0;
 				i = 0;
+//				if (x1[i] < 1e-15)
+//					x1[i] = 0.0;
+//				if (y1[i] < 1e-15)
+//					y1[i] = 0.0;
 			}
 		}
 		delete[] x1;
 		delete[] y1;
+
 		random_generator->setSeed(time(0));
 		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n);
 		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n);
@@ -119,16 +120,16 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 				m->getGlobalFactory()->destroyGeometry(p);
 
 			// we used all the numbers, generate others
-			if (i == n - 1) {
+			if (i > n - 1) {
 				delete[] x2;
 				delete[] y2;
 				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
 				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-				if (x2[i] < 1e-15)
-					x2[i] = 0.0;
-				if (y2[i] < 1e-15)
-					y2[i] = 0.0;
 				i = 0;
+//				if (x2[i] < 1e-15)
+//					x2[i] = 0.0;
+//				if (y2[i] < 1e-15)
+//					y2[i] = 0.0;
 			}
 		}
 		delete[] x2;
