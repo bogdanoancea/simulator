@@ -12,6 +12,10 @@ Constants.o\
 Displace.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
+LevyFlightDisplacement.o\
+AgeDistribution.o\
+UniformAgeDistribution.o\
+TruncatedNormalAgeDistribution.o\
 PostLocProb.o\
 NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\

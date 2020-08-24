@@ -43,10 +43,6 @@ class Person: public MovableAgent {
 		enum Gender {
 			MALE, FEMALE
 		};
-		enum AgeDistributions {
-			NORMAL, UNIFORM
-		};
-
 		/**
 		 * Builds a new Person object with the characteristics given as parameters.
 		 * @param m a pointer to the Map object where this Person move.

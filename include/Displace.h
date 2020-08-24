@@ -65,7 +65,7 @@ protected:
 	Map* m_map;
 	Clock * m_clock;
 	double m_speed;
-	Point* computeNewLocation(Point* initLocation, double theta);
+	virtual Point* computeNewLocation(Point* initLocation, double theta);
 
 
 };

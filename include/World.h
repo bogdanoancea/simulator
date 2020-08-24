@@ -30,17 +30,23 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
-#include <agent/AgentsCollection.h>
 #include <agent/Person.h>
+#include <AgeDistribution.h>
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
-#include <PostLocProb.h>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
+
+class AgeDistribution;
+class RandomNumberGenerator;
+
+class AgentsCollection;
+class PostLocProb;
 
 using namespace std;
 using namespace tinyxml2;
@@ -123,7 +129,7 @@ public:
 
 	Clock* getClock();
 
-	void computeProbabilities();
+		void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 	/**
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
@@ -139,6 +145,13 @@ public:
 	 * @return the name of the output folder.
 	 */
 	const string& getOutputDir() const;
+
+		/**
+		 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
+		 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+		 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
+		 */
+		std::map<unsigned long, vector<AntennaInfo>> getEvents();
 
 private:
 
@@ -169,7 +182,7 @@ private:
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Person*> generatePopulation(const unsigned long numPersons, vector<double> params, Person::AgeDistributions age_distribution,
+	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
 			double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
@@ -180,7 +193,15 @@ private:
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
-
+	void setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk);
+	void generatePhones(vector<MobileOperator*> mnos);
+	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
+	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
+	void writeSignalAndCells(ostream& antennaFile);
+	void AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn );
+	MovementType parseMovement(XMLElement* el);
+	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
+	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	//TODO make it private
 	/**
 	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.

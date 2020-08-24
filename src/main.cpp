@@ -1,15 +1,16 @@
 #include <agent/AgentsCollection.h>
+#include <AntennaInfo.h>
 #include <geos/io/WKTWriter.h>
 #include <InputParser.h>
 #include <map/WKTMap.h>
-#include <NetPriorPostLocProb.h>
-#include <PriorType.h>
-#include <UnifPriorPostLocProb.h>
+#include <RandomNumberGenerator.h>
 #include <World.h>
 #include <iostream>
-#include <memory>
+#include <map>
+#include <new>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 //#if defined(__GNUC__) || defined(__GNUG__)
 //#ifndef __clang__
@@ -38,10 +39,11 @@ int main(int argc, char** argv) {
 //#endif
 //#endif
 
+
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
-				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -pb <probabilities.xml> -v -o"
+				<< "run this program like this: simulator -a <antennasConfigFile.xml> -m <mapFile.wkt> -p <personsConfigFile.xml> -s <simulationConfigFile> -pb <probabilities.xml> -v"
 				<< endl;
 		exit(0);
 	}
@@ -51,7 +53,7 @@ int main(int argc, char** argv) {
 	const string &simulationConfigFileName = parser.getCmdOption("-s");
 	const string & probabilitiesConfigFileName = parser.getCmdOption("-pb");
 	bool verbose = parser.cmdOptionExists("-v");
-	bool generate_probs = parser.cmdOptionExists("-o");
+	bool generate_probs = parser.cmdOptionExists("-pb");
 	cout << "Hello from our mobile phone network simulator!" << endl;
 	cout << "Now we are building the world!" << endl;
 
@@ -75,7 +77,6 @@ int main(int argc, char** argv) {
 		if (simulationConfigFileName.empty()) {
 			throw runtime_error("no simulation config file!");
 		}
-
 		World w(map, personsConfigFileName, antennasConfigFileName, simulationConfigFileName, probabilitiesConfigFileName);
 
 		AgentsCollection* c = w.getAgents();
@@ -86,8 +87,10 @@ int main(int argc, char** argv) {
 		w.getMap()->dumpGrid(w.getOutputDir() + "/" + w.getGridFilename());
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
+			w.getEvents();
 		} else {
-			w.computeProbabilities();
+			std::map<unsigned long, vector<AntennaInfo>> data = w.getEvents();
+			w.computeProbabilities(data);
 		}
 	} catch (const std::bad_alloc& e) {
 		cout << e.what() << endl;

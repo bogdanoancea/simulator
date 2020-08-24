@@ -98,6 +98,17 @@ public:
 	double* generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd, const unsigned long n);
 
 	/**
+	 * Generates n int values from a truncated normal distribution. All values will be in [a, b].
+	 * @param a the inferior limit of the truncated normal distribution.
+	 * @param b the superior limit of the truncated normal distribution.
+	 * @param m the mean of the normal distribution.
+	 * @param sd the standard deviation of the normal distribution.
+	 * @param n the number of values to be generated.
+	 * @return an array with n double values from a truncated normal distribution.
+	 */
+	int* generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n);
+
+	/**
 	 * Generates a random double value from a uniform distribution which lies inside [min, max].
 	 * @param min the lower limit of the value.
 	 * @param max the upper limit of the value.
@@ -171,6 +182,15 @@ public:
 	 */
 	int* generateBernoulliInt(const double p, const int n);
 
+	/**
+	 * Generates n double random values from a Levy distribution
+	 * @param mu the displacement of the Levy distribution
+	 * @param c the scale parameter of the Levy distribution
+	 * @param n the number of values to be generated
+	 * @return an array with n double values from a Levy distribution
+	 */
+	double* generateLevy(const double mu, const double c, const int n);
+	double generateLevy(const double mu, const double c);
 	/**
 	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.

@@ -27,8 +27,10 @@
 #include <cmath>
 #include <ctgmath>
 #include <iostream>
+#include <Utils.h>
 
 using namespace std;
+using namespace utils;
 
 RandomNumberGenerator* RandomNumberGenerator::m_instance = nullptr;
 
@@ -147,6 +149,19 @@ double* RandomNumberGenerator::generateTruncatedNormalDouble(const double a, con
 	return (result);
 }
 
+int* RandomNumberGenerator::generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n){
+	int* result = new int[n];
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	unsigned long i = 0;
+	while (i < n) {
+		result[i] = (int)m_normal_double_distribution(m_generator);
+		if (result[i] >= a && result[i] <= b)
+			i++;
+	}
+	return (result);
+}
+
 double RandomNumberGenerator::generateNormalDouble(const double m, const double sd) {
 	double result;
 	normal_distribution<double>::param_type p1(m, sd);
@@ -191,7 +206,23 @@ double RandomNumberGenerator::normal_pdf(double x, double m, double s) {
 	return (inv_sqrt_2pi / s) * exp(-0.5 * a * a);
 }
 
+double* RandomNumberGenerator::generateLevy(const double mu, const double c, const int n) {
+	double* result = new double[n];
+	double* unif = generateUniformDouble(0, 1, n);
+	for (int i = 0; i < n; i++) {
+		double invNormCDF = utils::inverseNormalCDF(1-unif[i], 0, 1);
+		result[i] = c / (2 * invNormCDF * invNormCDF) + mu;
+	}
+	return (result);
+}
 
+double RandomNumberGenerator::generateLevy(const double mu, const double c) {
+	double result;
+	double unif = generateUniformDouble(0, 1);
+	double invNormCDF = utils::inverseNormalCDF(1-unif, 0, 1);
+	result = c / (2 * invNormCDF * invNormCDF) + mu;
+	return (result);
+}
 ////------------------------------------------------------------
 //// Compute y_l from y_k
 //double RandomNumberGenerator::yl(int k) {
