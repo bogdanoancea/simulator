@@ -122,7 +122,7 @@ a shell:
 <b>How to run the simulator</b>
 <p>
 In a terminal (command prompt) type:
-<br>$Release/simulator -m ./data/dataset1/map.wkt -s ./data/dataset1/simulation.xml -a ./data/dataset1/antennas.xml -p ./data/dataset1/persons.xml -pb ./data/dataset1/probabilities.xml -v -o
+<br>$Release/simulator -m ./data/dataset1/map.wkt -s ./data/dataset1/simulation.xml -a ./data/dataset1/antennas.xml -p ./data/dataset1/persons.xml -pb ./data/dataset1/probabilities.xml -v
 <br>
 <br>where the following files provide input parameters:
 <br> map.wkt is the map of the simulation
