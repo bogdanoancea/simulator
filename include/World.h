@@ -31,10 +31,11 @@
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <agent/Person.h>
+#include <AgeDistribution.h>
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
-#include <AgeDistribution.h>
+#include <iostream>
 #include <map>
 #include <memory>
 #include <string>
@@ -197,6 +198,10 @@ private:
 	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
 	void writeSignalAndCells(ostream& antennaFile);
+	void AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn );
+	MovementType parseMovement(XMLElement* el);
+	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
+	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	//TODO make it private
 	/**
 	 * Returns the dimension of tiles on OX, this number is read from simulation configuration file.

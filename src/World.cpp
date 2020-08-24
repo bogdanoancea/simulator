@@ -94,9 +94,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	m_probSecMobilePhone = 0.0;
 	vector<MobileOperator*> mnos = parseSimulationFile(configSimulationFileName);
-
 	m_agentsCollection = new AgentsCollection();
-
 	m_clock = new Clock(m_startTime, m_endTime, m_timeIncrement);
 	time_t tt = m_clock->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
@@ -108,9 +106,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	for (unsigned long i = 0; i < mnos.size(); i++) {
 		m_agentsCollection->addAgent(mnos[i]);
 		if (!probabilitiesFileName.empty())
-			m_probFilenames.insert(
-					pair<const unsigned long, string>(mnos[i]->getId(),
-							m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
+			m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), m_outputDir + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
 	}
 
 	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
@@ -150,17 +146,13 @@ void World::runSimulation() noexcept(false) {
 	try {
 		personsFile.open(m_outputDir + "/" + m_personsFilename, ios::out);
 		antennaFile.open(m_outputDir + "/" + m_antennasFilename, ios::out);
+		writeSignalAndCells(antennaFile);
+		antennaFile.close();
 	} catch (ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
-
-	writeSignalAndCells(antennaFile);
 	time_t tt = m_clock->realTime();
-
-	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
-	RandomNumberGenerator* r = RandomNumberGenerator::instance();
-	r->setSeed(time(0));
 
 	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
@@ -168,12 +160,12 @@ void World::runSimulation() noexcept(false) {
 	tt = m_clock->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
+	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
 		personsFile << p->dumpLocation() << sep << m_map->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 	}
-
 	//iterate over all persons and call move()
 	t = m_clock->tick();
 	for (; t < m_clock->getFinalTime(); t = m_clock->tick()) {
@@ -191,7 +183,6 @@ void World::runSimulation() noexcept(false) {
 
 	try {
 		personsFile.close();
-		antennaFile.close();
 	} catch (std::ofstream::failure& e) {
 		cerr << "Error closing output files!" << endl;
 		throw e;
@@ -297,7 +288,6 @@ vector<Person*> World::parsePersons(const string& personsFileName, vector<Mobile
 	if (!personsEl)
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
-
 		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
 		unsigned long min_age = getValue(personsEl, "min_age");
 		unsigned long max_age = getValue(personsEl, "max_age");
@@ -358,47 +348,10 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
 		m_stay = getValue(simEl, "time_stay", Constants::SIM_STAY_TIME);
 		m_intevalBetweenStays = getValue(simEl, "interval_between_stays", Constants::SIM_INTERVAL_BETWEEN_STAYS);
-		unsigned numMNO = 0;
-		XMLElement* mnoEl = utils::getFirstChildElement(simEl, "mno");
-		if (mnoEl) {
-			for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
-				numMNO++;
-				const char* name = getValue(mnoEl, "mno_name", "UNKNOWN");
-				const double prob = getValue(mnoEl, "prob_mobile_phone");
-				unsigned long id = IDGenerator::instance()->next();
-				MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob, m_outputDir);
-				result.push_back(mo);
-			}
-		} else {
-			throw std::runtime_error("No MNO defined! At least one MNO should be defined for a valid simulation");
-		}
-		if (numMNO > 2)
-			throw std::runtime_error("Maximum 2 MNOs are supported!");
-
+		result = parseMNOs(simEl);
 		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::SIM_PROB_SECOND_MOBILE_PHONE);
-
-		const char* mvType = getValue(simEl, "movement_type", "UNKNOWN");
-		if (!strcmp(mvType, "random_walk_closed_map"))
-			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP;
-		else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
-			m_mvType = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
-		}
-		else if (!strcmp(mvType, "levy_flight")) {
-			m_mvType = MovementType::LEVY_FLIGHT;
-		}
-		else
-			m_mvType = MovementType::UNKNOWN;
-
-		const char* connType = getValue(simEl, "connection_type", "UNKNOWN");
-		if (!strcmp(connType, "power"))
-			m_connType = HoldableAgent::CONNECTION_TYPE::USING_POWER;
-		else if (!strcmp(connType, "quality"))
-			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
-		else if (!strcmp(connType, "strength"))
-			m_connType = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
-		else
-			throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
-
+		m_mvType = parseMovement(simEl);
+		m_connType = parseConnectionType(simEl);
 		m_connThreshold = getValue(simEl, "conn_threshold", getDefaultConnectionThreshold(m_connType));
 		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
 		m_personsFilename = getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME);
@@ -406,7 +359,6 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
-
 	}
 	return (result);
 }
@@ -420,32 +372,26 @@ double World::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connT
 	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 		result = Constants::PHONE_STRENGTH_THRESHOLD;
 	return (result);
-
 }
+
 vector<Person*> World::generatePopulation(unsigned long numPersons, shared_ptr<AgeDistribution> ageDistribution,
 		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
 
 	vector<Person*> result;
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_seed);
-	int* phone1 = nullptr;
-	int* phone2 = nullptr;
+	int *phone1 = nullptr, *phone2 = nullptr;
 	setPhones(phone1, phone2, m_probSecMobilePhone, numPersons, random_generator, mnos);
 
 	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
 	int sum = 0;
-	for (unsigned long i = 0; i < numPersons; i++) {
-		sum += walk_car[i];
-	}
-
+	sum = accumulate(walk_car, walk_car + numPersons, sum);
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
 	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
 	int* ages = generateAges(numPersons, ageDistribution, random_generator );
-	unsigned long cars = 0;
-	unsigned long walks = 0;
+	unsigned long cars = 0, walks = 0;
 	Person* p;
-
 	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_seed);
 	unsigned int numMno = mnos.size();
 	for (unsigned long i = 0; i < numPersons; i++) {
@@ -461,23 +407,13 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, shared_ptr<A
 		}
 		int np1 = phone1[i];
 		while (np1) {
-			id = IDGenerator::instance()->next();
-			MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, m_connThreshold, m_connType);
-			mp->setMobileOperator(mnos[0]);
-			mp->setHolder(p);
-			m_agentsCollection->addAgent(mp);
-			p->addDevice(typeid(MobilePhone).name(), mp);
+			AddMobilePhoneToPerson(p, mnos[0], m_agentsCollection, getMap(), m_clock, m_connThreshold, m_connType );
 			np1--;
 		}
 		if (numMno == 2) {
 			int np2 = phone2[i];
 			while (np2) {
-				id = IDGenerator::instance()->next();
-				MobilePhone* mp = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, m_connThreshold, m_connType);
-				mp->setMobileOperator(mnos[1]);
-				mp->setHolder(p);
-				m_agentsCollection->addAgent(mp);
-				p->addDevice(typeid(MobilePhone).name(), mp);
+				AddMobilePhoneToPerson(p, mnos[1], m_agentsCollection, getMap(), m_clock, m_connThreshold, m_connType );
 				np2--;
 			}
 		}
@@ -577,7 +513,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 	return (data);
 }
 
-
 Clock* World::getClock() {
 	return m_clock;
 }
@@ -594,7 +529,6 @@ void World::setPersonDisplacementPattern(Person* p, MovementType type, Map* map,
 		p->setDisplacementMethod(displace);
 	}
 }
-
 
 int* World::generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng) {
 	int* ages = new int[n];
@@ -664,4 +598,65 @@ void World::writeSignalAndCells(ostream& antennaFile) {
 		f << a->getId() << sep << a->dumpCell();
 		a->dumpSignal();
 	}
+}
+
+void World::AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn ) {
+	unsigned long id = IDGenerator::instance()->next();
+	MobilePhone* mp = new MobilePhone(map, id, nullptr, nullptr, clock, thres, conn);
+	mp->setMobileOperator(mno);
+	mp->setHolder(p);
+	ag->addAgent(mp);
+	p->addDevice(typeid(MobilePhone).name(), mp);
+}
+
+MovementType World::parseMovement(XMLElement* el) {
+	MovementType result;
+	const char* mvType = getValue(el, "movement_type", "UNKNOWN");
+	if (!strcmp(mvType, "random_walk_closed_map"))
+		result = MovementType::RANDOM_WALK_CLOSED_MAP;
+	else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
+		result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
+	}
+	else if (!strcmp(mvType, "levy_flight")) {
+		result = MovementType::LEVY_FLIGHT;
+	}
+	else
+		result = MovementType::UNKNOWN;
+	return (result);
+}
+
+HoldableAgent::CONNECTION_TYPE World::parseConnectionType(XMLElement* el) {
+	HoldableAgent::CONNECTION_TYPE result;
+	const char* connType = getValue(el, "connection_type", "UNKNOWN");
+	if (!strcmp(connType, "power"))
+		result = HoldableAgent::CONNECTION_TYPE::USING_POWER;
+	else if (!strcmp(connType, "quality"))
+		result = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+	else if (!strcmp(connType, "strength"))
+		result = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
+	else
+		throw runtime_error("Unknown connection mechanism! Available values: power, quality, strength");
+	return (result);
+}
+
+
+vector<MobileOperator*> World::parseMNOs(XMLElement* el) {
+	vector<MobileOperator*> result;
+	unsigned numMNO = 0;
+	XMLElement* mnoEl = utils::getFirstChildElement(el, "mno");
+	if (mnoEl) {
+		for (; mnoEl; mnoEl = mnoEl->NextSiblingElement("mno")) {
+			numMNO++;
+			const char* name = getValue(mnoEl, "mno_name", "UNKNOWN");
+			const double prob = getValue(mnoEl, "prob_mobile_phone");
+			unsigned long id = IDGenerator::instance()->next();
+			MobileOperator* mo = new MobileOperator(getMap(), id, m_clock, name, prob, m_outputDir);
+			result.push_back(mo);
+		}
+	} else {
+		throw std::runtime_error("No MNO defined! At least one MNO should be defined for a valid simulation");
+	}
+	if (numMNO > 2)
+		throw std::runtime_error("Maximum 2 MNOs are supported!");
+	return (result);
 }
