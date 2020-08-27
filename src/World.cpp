@@ -338,8 +338,8 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 	else {
 		m_outputDir = getValue(simEl, "output_dir", Constants::OUTPUT_DIR);
 		try{
-			std::filesystem::create_directory(filesystem::path(m_outputDir.c_str()));
-		} catch(filesystem::filesystem_error& e) {
+			std::__fs::filesystem::create_directory(std::__fs::filesystem::path(m_outputDir.c_str()));
+		} catch(std::__fs::filesystem::filesystem_error& e) {
 			cerr << "Cannot create output folder :" << m_outputDir;
 			throw e;
 		}
