@@ -31,6 +31,7 @@
 #include <AntennaInfo.h>
 #include <geos/geom/Point.h>
 #include <PriorType.h>
+#include <NetworkType.h>
 #include <cmath>
 #include <utility>
 #include <vector>
@@ -168,6 +169,10 @@ namespace utils {
 	 */
 	double getValue(XMLElement* el, const char* name);
 
+
+	NetworkType getValue(XMLElement* el, const char* name, NetworkType default_value);
+
+	bool getValue(XMLElement* el, const char* name, bool default_value);
 	/**
 	 * Computes the inverse of the normal CDF.
 	 * @param p the value of a probability.

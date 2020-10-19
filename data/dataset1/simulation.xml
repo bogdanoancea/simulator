@@ -15,6 +15,7 @@
 	<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
 	<movement_type>levy_flight</movement_type>
 	<connection_type>strength</connection_type>
+	<use_ta>false</use_ta>
 	<conn_threshold>-80</conn_threshold>
 	<grid_file>grid.csv</grid_file>
 	<grid_dim_tile_x>500</grid_dim_tile_x>

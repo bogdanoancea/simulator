@@ -62,6 +62,7 @@ const double Constants::GRID_DIM_TILE_X = 1000;
 const double Constants::GRID_DIM_TILE_Y = 1000;
 
 const PriorType Constants::PRIOR_PROBABILITY = PriorType::UNIFORM;
+const NetworkType Constants::NETWORK_TYPE = NetworkType::_3G;
 
 const double Constants::ANTENNA_HEIGHT = 0.0;
 const double Constants::ANTENNA_TILT = 0.0;
@@ -84,3 +85,9 @@ const char* Constants::SIM_DEFAULT_MNO_NAME = "MNO";
 
 const double Constants::SIM_TREND_ANGLE_1 = 3 * utils::PI / 4;
 const double Constants::SIM_TREND_ANGLE_2 = 5 * utils::PI / 4;
+
+const double Constants::ANNULUS_SIZE_3G = 554.0;
+const double Constants::ANNULUS_SIZE_4G = 78.07;
+
+const char* Constants::SOFTWARE_VERSION = "0.2.0";
+const bool Constants::USE_TA = false;

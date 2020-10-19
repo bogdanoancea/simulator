@@ -29,6 +29,7 @@
 #include <agent/HoldableAgent.h>
 #include <agent/ImmovableAgent.h>
 #include <agent/MobileOperator.h>
+#include <NetworkType.h>
 #include <AntennaType.h>
 #include <EventType.h>
 #include <geos/geom/Coordinate.h>
@@ -273,6 +274,7 @@ class Antenna: public ImmovableAgent {
 		double m_sd_elev;
 
 		HoldableAgent::CONNECTION_TYPE m_handoverMechanism;
+		NetworkType m_networkType;
 };
 
 #endif /* ANTENNA_H_ */

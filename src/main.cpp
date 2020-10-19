@@ -5,6 +5,7 @@
 #include <map/WKTMap.h>
 #include <RandomNumberGenerator.h>
 #include <World.h>
+#include <Constants.h>
 #include <iostream>
 #include <map>
 #include <new>
@@ -54,7 +55,11 @@ int main(int argc, char** argv) {
 	const string & probabilitiesConfigFileName = parser.getCmdOption("-pb");
 	bool verbose = parser.cmdOptionExists("-v");
 	bool generate_probs = parser.cmdOptionExists("-pb");
+	const bool version = parser.cmdOptionExists("-version");
+
 	cout << "Hello from our mobile phone network simulator!" << endl;
+	if (version)
+		cout << "You are using simulation software version " << Constants::SOFTWARE_VERSION << endl;
 	cout << "Now we are building the world!" << endl;
 
 	try {

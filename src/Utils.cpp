@@ -236,6 +236,34 @@ int getValue(XMLElement* el, const char* name, int default_value) {
 	return result;
 }
 
+bool getValue(XMLElement* el, const char* name, bool default_value) {
+	bool result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n) {
+		string ss(n->ToText()->Value());
+		if( ! (ss.compare("true") == 0 || ss.compare("false") == 0 )) {
+			string msg = string ( "invalid value for " ) + string ( name );
+			throw runtime_error(msg);
+		}
+		else if (!ss.compare("true"))
+			result = true;
+	}
+	return result;
+}
+
+NetworkType getValue(XMLElement* el, const char* name, NetworkType default_value) {
+	NetworkType result = default_value;
+	XMLNode* n = getNode(el, name);
+	if (n) {
+		const char* v = n->ToText()->Value();
+		if(strcmp(v, "3G"))
+			result = NetworkType::_3G;
+		else if(strcmp(v, "4G"))
+			result = NetworkType::_4G;
+	}
+	return result;
+}
+
 double getValue(XMLElement* el, const char* name) {
 	double result;
 	XMLNode* n = getNode(el, name);
@@ -326,5 +354,7 @@ double inverseNormalCDF(const double p, const double mu, const double sigma) {
     }
     return mu + sigma * val;
 }
+
+
 }
 

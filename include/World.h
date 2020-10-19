@@ -181,6 +181,7 @@ private:
 	string m_outputDir;
 	double m_probSecMobilePhone;
 	shared_ptr<PostLocProb> m_postMethod;
+	bool m_useTA;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,

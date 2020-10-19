@@ -368,6 +368,7 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
+		m_useTA = getValue(simEl, "use_ta", Constants::USE_TA);
 	}
 	return (result);
 }

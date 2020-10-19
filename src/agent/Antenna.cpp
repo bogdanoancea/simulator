@@ -75,6 +75,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	}
 	setLocationWithElevation();
 	m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
+	m_networkType = Constants::NETWORK_TYPE;
 }
 
 Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, string& outputDir) :
@@ -113,6 +114,7 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	double x = getValue(antennaEl, "x");
 	double y = getValue(antennaEl, "y");
 	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
+	m_networkType = getValue(antennaEl, "network_type", Constants::NETWORK_TYPE);
 
 //TODO get elevation from Grid
 	Coordinate c = Coordinate(x, y, m_height);

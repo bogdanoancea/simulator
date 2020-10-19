@@ -27,6 +27,7 @@
 #define CONSTANTS_H_
 
 #include <PriorType.h>
+#include <NetworkType.h>
 
 /**
  * These are some constants used in the process of the simulation, most of them are only used for testing and rapid development
@@ -165,6 +166,12 @@ public:
 	static const PriorType PRIOR_PROBABILITY;
 
 	/**
+	 * Indicates how the prior probability is computed: uniform, register, network
+	 */
+	static const NetworkType NETWORK_TYPE;
+
+
+	/**
 	 * the antenna height
 	 */
 	static const double ANTENNA_HEIGHT;
@@ -202,6 +209,11 @@ public:
 
 	static const int RANDOM_SEED;
 
+	static const double ANNULUS_SIZE_3G;
+	static const double ANNULUS_SIZE_4G;
+
+	static const char* SOFTWARE_VERSION;
+	static const bool USE_TA;
 };
 
 #endif /* CONSTANTS_H_ */
