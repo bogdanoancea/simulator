@@ -27,6 +27,9 @@
 #define ANTENNAINFO_H_
 
 #include <string>
+#include <events/EventType.h>
+#include <CSVParser.hpp>
+
 using namespace std;
 
 /**
@@ -36,6 +39,9 @@ using namespace std;
  */
 class AntennaInfo {
 public:
+
+	AntennaInfo(EventType evtType, Row r);
+
 	/**
 	 * Constructor of the class, builds an object with the values of the fields provided as arguments.
 	 * @param time the timestamp of the event.
@@ -45,25 +51,25 @@ public:
 	 * @param x x coordinate of the device when the event was generated.
 	 * @param y y coordinate of the device when the event was generated.
 	 */
-	AntennaInfo(const unsigned long time, const unsigned long antennaId,
-			const unsigned long event, const unsigned long deviceId, const double x, const double y);
+
+
 	/**
 	 * @return the id of the antenna that registered the event.
 	 */
-	unsigned long getAntennaId() const;
+	const unsigned long getAntennaId() const;
 
 
 	/**
 	 *@return the id of the device that generated the event.
 	 */
-	unsigned long getDeviceId() const;
+	const unsigned long getDeviceId() const;
 
 	/**
 	 * @return the event code. It could take the following values: 0 - a device is connected to an antenna, 1 - a devices is
 	 * disconnected from an antenna, 2 - a device is already connected to the antenna that registered the event,
 	 * 3 - a device was detected in the coverage area of an antenna but the connection to the antenna failed (from different reasons).
 	 */
-	unsigned long getEventCode() const;
+	const unsigned long getEventCode() const;
 
 	/**
 	 * @return the timestamp of the event.
@@ -96,13 +102,13 @@ public:
 	 */
 	bool operator < (const AntennaInfo& ai) const;
 
+
 private:
+
+
+	EventType m_eventType;
 	unsigned long m_time;
-	unsigned long m_antennaId;
-	unsigned long m_eventCode;
-	unsigned long m_deviceId;
-	double m_x;
-	double m_y;
+	vector<string> m_textRow;
 };
 
 #endif /* ANTENNAINFO_H_ */

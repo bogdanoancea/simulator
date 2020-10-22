@@ -25,8 +25,8 @@
 
 #include <agent/Antenna.h>
 #include <agent/MobilePhone.h>
+#include <events/EventCode.h>
 #include <EMField.h>
-#include <EventType.h>
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Envelope.h>
 #include <geos/geom/GeometryFactory.h>
@@ -236,17 +236,19 @@ int getValue(XMLElement* el, const char* name, int default_value) {
 	return result;
 }
 
-bool getValue(XMLElement* el, const char* name, bool default_value) {
-	bool result = default_value;
+EventType getValue(XMLElement* el, const char* name, EventType default_value) {
+	EventType result = default_value;
 	XMLNode* n = getNode(el, name);
 	if (n) {
 		string ss(n->ToText()->Value());
-		if( ! (ss.compare("true") == 0 || ss.compare("false") == 0 )) {
+		if( ! (ss.compare("cellID") == 0 || ss.compare("cellIDTA") == 0 )) {
 			string msg = string ( "invalid value for " ) + string ( name );
 			throw runtime_error(msg);
 		}
-		else if (!ss.compare("true"))
-			result = true;
+		else if (!ss.compare("cellID"))
+			result = EventType::CELLID;
+		else
+			result = EventType::CELLIDTA;
 	}
 	return result;
 }
@@ -256,9 +258,9 @@ NetworkType getValue(XMLElement* el, const char* name, NetworkType default_value
 	XMLNode* n = getNode(el, name);
 	if (n) {
 		const char* v = n->ToText()->Value();
-		if(strcmp(v, "3G"))
+		if(!strcmp(v, "3G"))
 			result = NetworkType::_3G;
-		else if(strcmp(v, "4G"))
+		else if(!strcmp(v, "4G"))
 			result = NetworkType::_4G;
 	}
 	return result;
@@ -355,6 +357,15 @@ double inverseNormalCDF(const double p, const double mu, const double sigma) {
     return mu + sigma * val;
 }
 
+string toString(NetworkType type) {
+	string result;
+	if(type == NetworkType::_3G)
+		result = "3G";
+	else if(type == NetworkType::_4G)
+		result = "4G";
+
+	return result;
+}
 
 }
 

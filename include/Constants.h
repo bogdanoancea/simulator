@@ -27,6 +27,7 @@
 #define CONSTANTS_H_
 
 #include <PriorType.h>
+#include <events/EventType.h>
 #include <NetworkType.h>
 
 /**
@@ -166,7 +167,7 @@ public:
 	static const PriorType PRIOR_PROBABILITY;
 
 	/**
-	 * Indicates how the prior probability is computed: uniform, register, network
+	 * Indicates the type of network 3G or 4G
 	 */
 	static const NetworkType NETWORK_TYPE;
 
@@ -213,7 +214,8 @@ public:
 	static const double ANNULUS_SIZE_4G;
 
 	static const char* SOFTWARE_VERSION;
-	static const bool USE_TA;
+
+	static const EventType EVENTTYPE;
 };
 
 #endif /* CONSTANTS_H_ */

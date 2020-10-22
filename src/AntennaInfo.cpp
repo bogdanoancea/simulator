@@ -27,44 +27,78 @@
 #include <string>
 #include <sstream>
 #include <Constants.h>
+#include <events/EventType.h>
+#include <iostream>
+
 
 using namespace std;
 
-AntennaInfo::AntennaInfo(const unsigned long time, const unsigned long antennaId, const unsigned long event, const unsigned long deviceId, const double x, const double y) :
-		m_time { time }, m_antennaId { antennaId }, m_eventCode { event }, m_deviceId { deviceId }, m_x { x }, m_y { y } {
+AntennaInfo::AntennaInfo(EventType evtType, Row r): m_eventType{evtType}  {
+	m_time = stoul(r[0]);
+	unsigned int size = r.size();
+	for(unsigned int i = 0; i < size; i++)
+		m_textRow.push_back(r[i]);
+
 }
 
-unsigned long AntennaInfo::getAntennaId() const {
-	return (m_antennaId);
+
+//AntennaInfo::AntennaInfo(const unsigned long time, const unsigned long antennaId, const unsigned long event, const unsigned long deviceId, const double x, const double y) :
+//		m_time { time }, m_antennaId { antennaId }, m_eventCode { event }, m_deviceId { deviceId }, m_x { x }, m_y { y } {
+//}
+
+const unsigned long AntennaInfo::getAntennaId() const {
+	unsigned long result =-1;
+	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
+		result = stoul(m_textRow[1]);
+	return result;
 }
 
-unsigned long AntennaInfo::getDeviceId() const {
-	return m_deviceId;
+const unsigned long AntennaInfo::getDeviceId() const {
+	unsigned long result =-1;
+	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
+		result = stoul(m_textRow[3]);
+
+	return result;
+
 }
 
-unsigned long AntennaInfo::getEventCode() const {
-	return m_eventCode;
+const unsigned long AntennaInfo::getEventCode() const {
+	unsigned long result =-1;
+	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
+		result = stoul(m_textRow[2]);
+	return result;
 }
 
 unsigned long AntennaInfo::getTime() const {
-	return m_time;
+	return (m_time);
 }
 
 double AntennaInfo::getX() const {
-	return m_x;
+	double result;
+	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
+		result = stod(m_textRow[5]);
+	return result;
 }
 
 double AntennaInfo::getY() const {
-	return m_y;
+	double result;
+	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
+		result = stod(m_textRow[6]);
+	return result;
 }
 
 const string AntennaInfo::toString() const {
 	ostringstream result;
 	const char sep = Constants::sep;
-	result << m_time << sep << m_antennaId << sep << m_eventCode << sep << m_deviceId << sep << fixed << m_x << sep << m_y;
+	for( unsigned int i = 0; i < m_textRow.size()-1; i++)
+		result << m_textRow[i] << sep;
+
+	result << m_textRow[m_textRow.size()-1];
+
 	return (result.str());
 }
 
 bool AntennaInfo::operator <(const AntennaInfo& ai) const {
 	return (m_time < ai.getTime());
 }
+

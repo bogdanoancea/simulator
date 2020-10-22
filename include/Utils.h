@@ -28,6 +28,7 @@
 
 #include <agent/AgentsCollection.h>
 #include <agent/MobilePhone.h>
+#include <events/EventType.h>
 #include <AntennaInfo.h>
 #include <geos/geom/Point.h>
 #include <PriorType.h>
@@ -172,7 +173,7 @@ namespace utils {
 
 	NetworkType getValue(XMLElement* el, const char* name, NetworkType default_value);
 
-	bool getValue(XMLElement* el, const char* name, bool default_value);
+	EventType getValue(XMLElement* el, const char* name, EventType default_value);
 	/**
 	 * Computes the inverse of the normal CDF.
 	 * @param p the value of a probability.
@@ -196,6 +197,9 @@ namespace utils {
 	 * @return a vector with the posterior probability of the mobile phone given by m to be localized in a tile. The index of a value
 	 * in this vector indicates the corresponding tile index. The size of this vector is equal to the total number of tiles in the Grid.
 	 */
+
+	string toString(NetworkType type);
+
 }
 
 #endif

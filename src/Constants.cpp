@@ -90,4 +90,4 @@ const double Constants::ANNULUS_SIZE_3G = 554.0;
 const double Constants::ANNULUS_SIZE_4G = 78.07;
 
 const char* Constants::SOFTWARE_VERSION = "0.2.0";
-const bool Constants::USE_TA = false;
+const EventType Constants::EVENTTYPE = EventType::CELLID;

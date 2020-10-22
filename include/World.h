@@ -31,10 +31,13 @@
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <agent/Person.h>
+#include <events/EventFactory.h>
+#include <events/EventType.h>
 #include <AgeDistribution.h>
 #include <AntennaInfo.h>
 #include <MovementType.h>
 #include <PriorType.h>
+#include <PostLocProb.h>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -42,11 +45,7 @@
 #include <utility>
 #include <vector>
 
-class AgeDistribution;
-class RandomNumberGenerator;
 
-class AgentsCollection;
-class PostLocProb;
 
 using namespace std;
 using namespace tinyxml2;
@@ -148,12 +147,12 @@ public:
 	 */
 	const string& getOutputDir() const;
 
-		/**
-		 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
-		 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
-		 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
-		 */
-		std::map<unsigned long, vector<AntennaInfo>> getEvents();
+	/**
+	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
+	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
+	 */
+	std::map<unsigned long, vector<AntennaInfo>> getEvents();
 
 private:
 
@@ -181,7 +180,8 @@ private:
 	string m_outputDir;
 	double m_probSecMobilePhone;
 	shared_ptr<PostLocProb> m_postMethod;
-	bool m_useTA;
+	EventType m_eventType;
+	EventFactory m_eventFactory;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,

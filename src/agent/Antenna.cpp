@@ -35,6 +35,9 @@
 #include <geos/io/WKTWriter.h>
 #include <geos/util/GeometricShapeFactory.h>
 #include <map/Map.h>
+#include <events/EventType.h>
+#include <events/CellIDEventConfig.h>
+#include <events/CellIDTAEventConfig.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
 #include <Utils.h>
@@ -52,19 +55,19 @@ using namespace std;
 using namespace utils;
 
 Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir) :
+		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir, EventFactory& factory, EventType evType) :
 		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
 				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
 
 	string fileName = outputDir + "/" + getAntennaOutputFileName();
-	char sep = Constants::sep;
+	//char sep = Constants::sep;
 	try {
 		m_file.open(fileName, ios::out);
 	}
 	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
-	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
+	m_file << getEventHeader(m_eventType) << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	if (type == AntennaType::DIRECTIONAL) {
 		m_beam_V = Constants::ANTENNA_BEAM_V;
@@ -76,12 +79,14 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	setLocationWithElevation();
 	m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
 	m_networkType = Constants::NETWORK_TYPE;
+	m_eventFactory = factory;
+	m_eventType = evType;
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, string& outputDir) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, string& outputDir, EventFactory& factory, EventType evType) :
 		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
 
-	char sep = Constants::sep;
+	//char sep = Constants::sep;
 	XMLNode* n = getNode(antennaEl, "mno_name");
 	if (n) {
 		const char* mno_name = n->ToText()->Value();
@@ -115,6 +120,8 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	double y = getValue(antennaEl, "y");
 	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
 	m_networkType = getValue(antennaEl, "network_type", Constants::NETWORK_TYPE);
+	m_eventType = evType;
+
 
 //TODO get elevation from Grid
 	Coordinate c = Coordinate(x, y, m_height);
@@ -141,8 +148,10 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
 	}
-	m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
+	m_file << getEventHeader(m_eventType) << endl;
+	//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 	m_S0 = 30 + 10 * log10(m_power);
+	m_eventFactory = factory;
 }
 
 Antenna::~Antenna() {
@@ -175,12 +184,18 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 			result = true;
 		}
 		else {
-			registerEvent(device, EventType::ALREADY_ATTACHED_DEVICE, false);
+			EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::ALREADY_ATTACHED_DEVICE, device);
+			Event* evt = m_eventFactory.createEvent(ecfg);
+			registerEvent(evt, device->getLocation());
+			//registerEvent(device, EventCode::ALREADY_ATTACHED_DEVICE, false);
 			result = true;
 		}
 	}
 	else {
-		registerEvent(device, EventType::IN_RANGE_NOT_ATTACHED_DEVICE, false);
+		EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::IN_RANGE_NOT_ATTACHED_DEVICE, device);
+		Event* evt = m_eventFactory.createEvent(ecfg);
+		registerEvent(evt, device->getLocation());
+		//registerEvent(device, EventCode::IN_RANGE_NOT_ATTACHED_DEVICE, false);
 	}
 
 	return (result);
@@ -188,7 +203,10 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 
 void Antenna::attachDevice(HoldableAgent* device) {
 	m_devices.push_back(device);
-	registerEvent(device, EventType::ATTACH_DEVICE, false);
+	EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::ATTACH_DEVICE, device);
+	Event* evt = m_eventFactory.createEvent(ecfg);
+	registerEvent(evt, device->getLocation());
+	//registerEvent(device, EventCode::ATTACH_DEVICE, false);
 }
 
 void Antenna::dettachDevice(HoldableAgent* device) {
@@ -196,7 +214,10 @@ void Antenna::dettachDevice(HoldableAgent* device) {
 	if (it != m_devices.end()) {
 		m_devices.erase(it);
 	}
-	registerEvent(device, EventType::DETACH_DEVICE, false);
+	EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::DETACH_DEVICE, device);
+	Event* evt = m_eventFactory.createEvent(ecfg);
+	registerEvent(evt, device->getLocation());
+//	registerEvent(device, EventCode::DETACH_DEVICE, false);
 }
 
 bool Antenna::alreadyRegistered(HoldableAgent * device) {
@@ -215,23 +236,27 @@ unsigned long Antenna::getNumActiveConections() {
 	return (m_devices.size());
 }
 
-void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const bool verbose) {
+void Antenna::registerEvent(HoldableAgent * ag, const EventCode event, const bool verbose) {
+//	EventConfig* cfg = new CellIDEventConfig(ag->getClock()->getCurrentTime(), getId(), event, ag->getID(), m_networkType);
+//	Event* ev = m_eventFactory.createEvent(cfg);
+//	cout << ev->toString() << endl;
+
 	char sep = Constants::sep;
 	Point* loc = ag->getLocation();
 	if (verbose) {
 		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
 				<< ag->getId() << sep;
 		switch (event) {
-			case EventType::ATTACH_DEVICE:
+			case EventCode::ATTACH_DEVICE:
 				cout << " Attached ";
 				break;
-			case EventType::DETACH_DEVICE:
+			case EventCode::DETACH_DEVICE:
 				cout << " Detached ";
 				break;
-			case EventType::ALREADY_ATTACHED_DEVICE:
+			case EventCode::ALREADY_ATTACHED_DEVICE:
 				cout << " In range, already attached ";
 				break;
-			case EventType::IN_RANGE_NOT_ATTACHED_DEVICE:
+			case EventCode::IN_RANGE_NOT_ATTACHED_DEVICE:
 				cout << " In range, not attached ";
 		}
 
@@ -252,6 +277,22 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventType event, const boo
 			cout << ss.str();
 	}
 }
+
+void Antenna::registerEvent(Event * ev, Point* evtLocation) {
+	cout << ev->toString() << endl;
+
+	char sep = Constants::sep;
+	stringstream ss;
+	if (getMap()->hasGrid())
+		ss << ev->toString() << sep << fixed << evtLocation->getX() << sep << evtLocation->getY() << sep << getMap()->getTileNo(evtLocation) << endl;
+	if (m_file.is_open()) {
+		m_file << ss.str();
+		m_file.flush();
+	}
+	else
+		cout << ss.str();
+}
+
 
 double Antenna::S0() const {
 	return (m_S0);
@@ -653,3 +694,52 @@ void Antenna::dumpSignal() const {
 	}
 	qualityFile << computeSignalMeasure(m_handoverMechanism, tileCenters[noTiles - 1]) << endl;
 }
+
+NetworkType Antenna::getNetworkType() {
+	return m_networkType;
+}
+
+string Antenna::getEventHeader(EventType evType) {
+	string result;
+	if(evType == EventType::CELLID) {
+		result = EventHeaderCellID;
+	}
+	else if(evType == EventType::CELLIDTA) {
+		result = EventHeaderCellIDTA;
+	}
+	return result;
+}
+
+EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, HoldableAgent* device) {
+	EventConfig* result = nullptr;
+cout << "in event builder1" << endl;
+	if(evType==EventType::CELLID) {
+		result = new CellIDEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType);
+	}
+	else if(evType == EventType::CELLIDTA) {
+		cout << "in event builder2" << endl;
+		double dist = getLocation()->distance(device->getLocation());
+		unsigned int ta = -1;
+		if(m_networkType == NetworkType::_3G) {
+			ta = (int) dist / Antenna::delta3G;
+			if(ta > Antenna::MAXTA3G)
+				ta = Antenna::MAXTA3G;
+		} else if (m_networkType == NetworkType::_4G) {
+			ta = (unsigned int) dist / Antenna::delta4G;
+			if(ta > Antenna::MAXTA4G)
+				ta = Antenna::MAXTA4G;
+		}
+		cout << "in event builder2: " << ta <<  endl;
+		result = new CellIDTAEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType, ta);
+	}
+	return result;
+}
+
+
+const string Antenna::EventHeaderCellID = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";
+const string Antenna::EventHeaderCellIDTA = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "TA" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";;
+const double Antenna::delta4G = 78.07;
+const double Antenna::delta3G = 554;
+const unsigned int Antenna::MAXTA4G = 1282;
+const unsigned int Antenna::MAXTA3G = 219;
+

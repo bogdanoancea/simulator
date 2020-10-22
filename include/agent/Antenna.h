@@ -31,8 +31,12 @@
 #include <agent/MobileOperator.h>
 #include <NetworkType.h>
 #include <AntennaType.h>
-#include <EventType.h>
+#include <events/EventCode.h>
+#include <events/EventFactory.h>
+#include <events/EventType.h>
+#include <events/Eventconfig.h>
 #include <geos/geom/Coordinate.h>
+#include <Constants.h>
 #include <iostream>
 #include <string>
 #include <utility>
@@ -68,7 +72,7 @@ class Antenna: public ImmovableAgent {
 		 * and AntennaType::DIRECTIONAL for directional antennas.
 		 */
 		explicit Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor,
-				double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir);
+				double power, unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir, EventFactory& factory, EventType evType);
 
 		/**
 		 * Constructor of the class. It builds an object taking the value of the antenna' parameters from an XML Element,
@@ -79,7 +83,7 @@ class Antenna: public ImmovableAgent {
 		 * @param el the XML Element containing the parameters of the Antenna
 		 * @param mnos a vector with pointers to MobileOperator objects.
 		 */
-		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos, string& outptuDir);
+		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos, string& outptuDir, EventFactory& factory, EventType evType);
 
 		/**
 		 * Destructor of the class. It closes the file where the Antenna dumps the registered events during the simulation.
@@ -188,10 +192,13 @@ class Antenna: public ImmovableAgent {
 
 		void dumpSignal() const;
 
+		NetworkType getNetworkType();
+		static string getEventHeader(EventType evType);
 	private:
 
 		bool alreadyRegistered(HoldableAgent * ag);
-		void registerEvent(HoldableAgent * ag, const EventType event, const bool verbose);
+		void registerEvent(HoldableAgent * ag, const EventCode event, const bool verbose);
+		void registerEvent(Event * ev, Point* evtLocation);
 		unsigned long getNumActiveConections();
 		double S0() const;
 		double SDist(double dist) const;
@@ -241,7 +248,7 @@ class Antenna: public ImmovableAgent {
 		 */
 		double computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const;
 
-
+		EventConfig* buildEventConfig(EventType evType, EventCode code, HoldableAgent* device);
 
 		double m_ple;
 		double m_power;
@@ -275,6 +282,14 @@ class Antenna: public ImmovableAgent {
 
 		HoldableAgent::CONNECTION_TYPE m_handoverMechanism;
 		NetworkType m_networkType;
+		EventFactory m_eventFactory;
+		EventType m_eventType;
+		static const string EventHeaderCellID;
+		static const string EventHeaderCellIDTA;
+		static const double delta4G;
+		static const double delta3G;
+		static const unsigned int  MAXTA4G;
+		static const unsigned int  MAXTA3G;
 };
 
 #endif /* ANTENNA_H_ */

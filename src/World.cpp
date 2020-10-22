@@ -234,7 +234,7 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 		id = IDGenerator::instance()->next();
 		string outDir = Constants::OUTPUT_DIR;
 		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
-				AntennaType::OMNIDIRECTIONAL, outDir);
+				AntennaType::OMNIDIRECTIONAL, outDir, m_eventFactory, m_eventType);
 		result.push_back(p);
 	}
 	return (result);
@@ -270,7 +270,7 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<M
 				continue;
 			}
 			unsigned long id = IDGenerator::instance()->next();
-			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos, m_outputDir);
+			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos, m_outputDir, m_eventFactory, m_eventType);
 			result.push_back(a);
 		}
 	}
@@ -368,7 +368,8 @@ vector<MobileOperator*> World::parseSimulationFile(const string& configSimulatio
 		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
-		m_useTA = getValue(simEl, "use_ta", Constants::USE_TA);
+		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
+		//cout << "event type" << static_cast<int>(m_eventType);
 	}
 	return (result);
 }
@@ -501,7 +502,7 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 				for (unsigned long i = 0; i < file.rowCount(); i++) {
 					Row s = file[i];
-					AntennaInfo a(stoul(s[0]), stoul(s[1]), stoul(s[2]), stoul(s[3]), stod(s[4]), stod(s[5]));
+					AntennaInfo a(m_eventType, s);
 					tmp.push_back(a);
 				}
 			}
@@ -509,9 +510,9 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 			ofstream antennaInfoFile;
 			string name = mo->getOutputDir() + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 			antennaInfoFile.open(name, ios::out);
-			antennaInfoFile << "t,Antenna ID,Event Code,Device ID,x,y, Tile ID" << endl;
+			antennaInfoFile << Antenna::getEventHeader(m_eventType) <<  endl;
 			for (AntennaInfo& ai : tmp) {
-				antennaInfoFile << ai.toString() << sep << m_map->getTileNo(ai.getX(), ai.getY()) << endl;
+				antennaInfoFile << ai.toString() <<  endl;
 			}
 			antennaInfoFile.close();
 		}
