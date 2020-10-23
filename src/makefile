@@ -28,7 +28,6 @@ NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\
 agent/MobileOperator.o\
 EMField.o\
-EventType.o\
 map/Grid.o\
 agent/HoldableAgent.o\
 IDGenerator.o\
@@ -40,7 +39,6 @@ map/WKTMap.o\
 agent/MobilePhone.o\
 agent/MovableAgent.o\
 agent/Person.o\
-PriorType.o\
 RandomNumberGenerator.o\
 agent/Tablet.o\
 Tinyxml2.o\
