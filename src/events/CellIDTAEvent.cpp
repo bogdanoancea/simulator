@@ -34,6 +34,6 @@ const string CellIDTAEvent::toString() {
 
 
 CellIDTAEvent::~CellIDTAEvent() {
-	// TODO Auto-generated destructor stub
+	delete m_config;
 }
 

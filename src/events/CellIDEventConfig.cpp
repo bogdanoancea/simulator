@@ -9,8 +9,6 @@
 
 CellIDEventConfig::CellIDEventConfig(unsigned long t, unsigned long cellID, EventCode code, unsigned long deviceID, NetworkType netType): m_timestamp{t},
 m_cellID{cellID}, m_code{code}, m_deviceID{deviceID}, m_networkType{netType} {
-	// TODO Auto-generated constructor stub
-
 }
 
 const unsigned long CellIDEventConfig::getCellID() {

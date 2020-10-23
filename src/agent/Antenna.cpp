@@ -237,10 +237,6 @@ unsigned long Antenna::getNumActiveConections() {
 }
 
 void Antenna::registerEvent(HoldableAgent * ag, const EventCode event, const bool verbose) {
-//	EventConfig* cfg = new CellIDEventConfig(ag->getClock()->getCurrentTime(), getId(), event, ag->getID(), m_networkType);
-//	Event* ev = m_eventFactory.createEvent(cfg);
-//	cout << ev->toString() << endl;
-
 	char sep = Constants::sep;
 	Point* loc = ag->getLocation();
 	if (verbose) {
@@ -279,8 +275,7 @@ void Antenna::registerEvent(HoldableAgent * ag, const EventCode event, const boo
 }
 
 void Antenna::registerEvent(Event * ev, Point* evtLocation) {
-	cout << ev->toString() << endl;
-
+//	cout << ev->toString() << endl;
 	char sep = Constants::sep;
 	stringstream ss;
 	if (getMap()->hasGrid())
@@ -712,12 +707,11 @@ string Antenna::getEventHeader(EventType evType) {
 
 EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, HoldableAgent* device) {
 	EventConfig* result = nullptr;
-cout << "in event builder1" << endl;
 	if(evType==EventType::CELLID) {
 		result = new CellIDEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType);
 	}
 	else if(evType == EventType::CELLIDTA) {
-		cout << "in event builder2" << endl;
+
 		double dist = getLocation()->distance(device->getLocation());
 		unsigned int ta = -1;
 		if(m_networkType == NetworkType::_3G) {
@@ -729,7 +723,6 @@ cout << "in event builder1" << endl;
 			if(ta > Antenna::MAXTA4G)
 				ta = Antenna::MAXTA4G;
 		}
-		cout << "in event builder2: " << ta <<  endl;
 		result = new CellIDTAEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType, ta);
 	}
 	return result;

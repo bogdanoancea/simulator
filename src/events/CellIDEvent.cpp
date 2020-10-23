@@ -34,5 +34,6 @@ EventConfig* CellIDEvent::getEventConfig() {
 
 CellIDEvent::~CellIDEvent() {
 	// TODO Auto-generated destructor stub
+	delete m_config;
 }
 
