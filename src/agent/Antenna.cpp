@@ -716,11 +716,11 @@ EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, Holdabl
 		double dist = getLocation()->distance(device->getLocation());
 		unsigned int ta = -1;
 		if(m_networkType == NetworkType::_3G) {
-			ta = (int) dist / Antenna::delta3G;
+			ta = (unsigned int) (dist / Antenna::delta3G);
 			if(ta > Antenna::MAXTA3G)
 				ta = Antenna::MAXTA3G;
 		} else if (m_networkType == NetworkType::_4G) {
-			ta = (unsigned int) dist / Antenna::delta4G;
+			ta = (unsigned int) (dist / Antenna::delta4G);
 			if(ta > Antenna::MAXTA4G)
 				ta = Antenna::MAXTA4G;
 		}
