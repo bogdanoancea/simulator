@@ -10,6 +10,13 @@ CSVParser.o\
 Clock.o\
 Constants.o\
 Displace.o\
+events/Event.o\
+events/EventConfig.o\
+events/CellIDEventConfig.o\
+events/CellIDTAEventConfig.o\
+events/CellIDEvent.o\
+events/CellIDTAEvent.o\
+events/EventFactory.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
 LevyFlightDisplacement.o\

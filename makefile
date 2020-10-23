@@ -18,6 +18,7 @@ clean:
 	cd src; $(MAKE) clean
 	cd src/agent; $(MAKE) clean
 	cd src/map; $(MAKE) clean
+	cd src/events; $(MAKE) clean
 
 .PHONY: cleanall
 cleanall: 
