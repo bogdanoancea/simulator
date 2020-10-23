@@ -34,7 +34,7 @@
 #include <events/EventCode.h>
 #include <events/EventFactory.h>
 #include <events/EventType.h>
-#include <events/Eventconfig.h>
+#include <events/EventConfig.h>
 #include <geos/geom/Coordinate.h>
 #include <Constants.h>
 #include <iostream>
