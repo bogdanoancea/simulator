@@ -51,6 +51,7 @@ NetPriorPostLocProb::~NetPriorPostLocProb() {
 vector<double> NetPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) {
 	vector<double> result;
 	// take the mobile phone and see which is the antenna connected to
+
 	vector<AntennaInfo>::iterator ai;
 	bool found = false;
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
@@ -59,6 +60,7 @@ vector<double> NetPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vector
 				&& (ai->getEventCode() == static_cast<int>(EventCode::ATTACH_DEVICE)
 						|| ai->getEventCode() == static_cast<int>(EventCode::ALREADY_ATTACHED_DEVICE))) {
 			found = true;
+
 			break;
 		}
 	}

@@ -80,7 +80,7 @@ void PostLocProb::computeProbabilities(std::map<unsigned long, vector<AntennaInf
 					//cout << p[i] << ",";
 				}
 				probs << fixed << setprecision(15) << p[m_map->getNoTiles() - 1];
-				//cout << p[map->getGrid()->getNoTiles() - 1] << endl;
+				//cout << p[m_map->getNoTiles() - 1] << endl;
 				p_file << probs.str() << endl;
 			}
 		}

@@ -286,6 +286,7 @@ void Antenna::registerEvent(Event * ev, Point* evtLocation) {
 	}
 	else
 		cout << ss.str();
+	delete ev;
 }
 
 

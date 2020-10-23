@@ -492,7 +492,7 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
 
-		for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
+	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 		vector<AntennaInfo> tmp;
 		for (auto it = itra.first; it != itra.second; it++) {
@@ -516,6 +516,7 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 			}
 			antennaInfoFile.close();
 		}
+		 data.insert ( std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}
 	return (data);
 }
