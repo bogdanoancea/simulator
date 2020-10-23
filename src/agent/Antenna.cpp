@@ -730,6 +730,7 @@ EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, Holdabl
 }
 
 
+
 const string Antenna::EventHeaderCellID = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";
 const string Antenna::EventHeaderCellIDTA = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "TA" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";
 const double Antenna::delta4G = 78.07;
