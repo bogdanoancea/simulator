@@ -47,12 +47,7 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 		}
 		if(!k)
 			pt = initLocation;
-		if(pt->getX()<0 || pt->getY()<0) {
-			cout << pt->getX() << ":" << pt->getY() <<":"<<k<<endl;
-			exit(-1);
-		}
 	}
-	//cout << "gogu";
 	return pt;
 }
 
