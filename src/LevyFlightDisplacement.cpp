@@ -41,14 +41,18 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 	Geometry* g = m_map->getBoundary();
 	if (!pt->within(g)) {
 		int k = 10;
-		while(k-- && !pt->within(g)) {
+		while(--k && !pt->within(g)) {
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 			pt = computeNewLocation(initLocation, theta);
 		}
 		if(!k)
 			pt = initLocation;
+		if(pt->getX()<0 || pt->getY()<0) {
+			cout << pt->getX() << ":" << pt->getY() <<":"<<k<<endl;
+			exit(-1);
+		}
 	}
-
+	//cout << "gogu";
 	return pt;
 }
 
