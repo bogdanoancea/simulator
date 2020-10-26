@@ -6,9 +6,6 @@ The output files are also saved in the subdirectory.
 
 To run a simulation, open a terminal and run the following commands:
 
-
-To run a simulation, open a terminal and run the following commands:
-
 $CURRENT_DIR=`pwd`
 $docker load -i simulator.tar
 $docker run  --rm -v $CURRENT_DIR/output:/repo/output -t -i simulator -m output/map.wkt -s output/simulation.xml -p output/persons.xml -a output/antennas.xml -v -pb output/probabilities.xml
