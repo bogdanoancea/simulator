@@ -66,8 +66,8 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	}
 	catch (std::ofstream::failure& e) {
 		cerr << "Error opening output files!" << endl;
+		m_file << getEventHeader(m_eventType) << endl;
 	}
-	m_file << getEventHeader(m_eventType) << endl;
 	m_S0 = 30 + 10 * log10(m_power);
 	if (type == AntennaType::DIRECTIONAL) {
 		m_beam_V = Constants::ANTENNA_BEAM_V;
