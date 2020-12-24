@@ -487,7 +487,7 @@ void World::computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> da
 }
 
 std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
-	char sep = Constants::sep;
+	//char sep = Constants::sep;
 	std::map<unsigned long, vector<AntennaInfo>> data;
 	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());

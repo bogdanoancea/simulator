@@ -74,14 +74,14 @@ unsigned long AntennaInfo::getTime() const {
 }
 
 double AntennaInfo::getX() const {
-	double result;
+	double result = -1;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
 		result = stod(m_textRow[5]);
 	return result;
 }
 
 double AntennaInfo::getY() const {
-	double result;
+	double result = -1;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
 		result = stod(m_textRow[6]);
 	return result;

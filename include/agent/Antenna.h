@@ -216,8 +216,8 @@ class Antenna: public ImmovableAgent {
 		double searchMin(double dg, vector<pair<double, double>> _3dBDegrees) const;
 		double findSD(double beamWidth, double dbBack, vector<pair<double, double>>& mapping) const;
 
-		Geometry* getCoverageAreaOmnidirectional();
-		Geometry* getCoverageAreaDirectional();
+		Geometry* getCoverageAreaOmnidirectional() const;
+		Geometry* getCoverageAreaDirectional() const;
 
 
 		/**

@@ -22,11 +22,9 @@ Event* EventFactory::createEvent(EventConfig* config) {
 	Event* result = nullptr;
 
 	if(dynamic_cast<CellIDTAEventConfig*>(config)!=nullptr) {
-		//cout << "am ajuns si aici" << endl;
 		result = new CellIDTAEvent(config);
 	} else{
 		if(dynamic_cast<CellIDEventConfig*>(config)!=nullptr) {
-			//cout << "am ajuns si aici 2" << endl;
 			result = new CellIDEvent(config);
 		}
 	}

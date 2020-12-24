@@ -554,7 +554,7 @@ Geometry* Antenna::getCoverageArea() {
 		throw runtime_error("Coverage area: unknown antenna type!");
 }
 
-Geometry* Antenna::getCoverageAreaOmnidirectional() {
+Geometry* Antenna::getCoverageAreaOmnidirectional() const {
 	double x = getLocation()->getX();
 	double y = getLocation()->getY();
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
@@ -563,8 +563,8 @@ Geometry* Antenna::getCoverageAreaOmnidirectional() {
 	return (shapefactory.createCircle());
 }
 
-Geometry* Antenna::getCoverageAreaDirectional() {
-	CoordinateSequence* cl = new CoordinateArraySequence();
+Geometry* Antenna::getCoverageAreaDirectional() const {
+	CoordinateArraySequence* cl = new CoordinateArraySequence();
 	Coordinate init;
 	double x = getLocation()->getX();
 	double y = getLocation()->getY();
