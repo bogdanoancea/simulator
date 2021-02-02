@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="simulation">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="start_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="end_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="time_increment" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="time_stay" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="interval_between_stays" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="mno" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mno_name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="prob_mobile_phone" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>	
+								<xs:restriction base="xs:decimal">
+									<xs:minInclusive value="0.0"/>
+									<xs:maxInclusive value="1.0"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>	
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="prob_sec_mobile_phone" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>	
+					<xs:restriction base="xs:decimal">
+						<xs:minInclusive value="0.0"/>
+						<xs:maxInclusive value="1.0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+			<xs:element name="movement_type" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>	
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="random_walk_closed_map_drift"/>
+						<xs:enumeration value="random_walk_closed_map"/>
+						<xs:enumeration value="levy_flight"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+			<xs:element name="connection_type" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>	
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="strength"/>
+						<xs:enumeration value="quality"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="conn_threshold" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="grid_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="grid_dim_tile_x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="grid_dim_tile_y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="persons_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="antennas_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="random_seed" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>
