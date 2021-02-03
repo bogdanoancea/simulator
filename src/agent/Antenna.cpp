@@ -128,8 +128,9 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 	Point* p = getMap()->getGlobalFactory()->createPoint(c);
 	setLocation(p);
 
-	m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
+
 	if (m_type == AntennaType::DIRECTIONAL) {
+		m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
 		m_azim_dB_Back = getValue(antennaEl, "azim_dB_back", Constants::ANTENNA_AZIM_DB_BACK);
 		m_elev_dB_Back = getValue(antennaEl, "elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
 		m_beam_H = getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
@@ -140,6 +141,13 @@ Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElem
 		m_mapping_elev = createMapping(m_elev_dB_Back);
 		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
 		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
+	}
+	else {
+		m_azim_dB_Back = 0;
+		m_elev_dB_Back = 0;
+		m_beam_H = 0;
+		m_beam_V = 0;
+		m_direction = 0;
 	}
 	string fileName = outputDir + "/" + getAntennaOutputFileName();
 	try {
@@ -230,6 +238,17 @@ bool Antenna::alreadyRegistered(HoldableAgent * device) {
 
 AntennaType Antenna::getType() const {
 	return (m_type);
+}
+
+string Antenna::getTypeName() const {
+	string result = "";
+	AntennaType type = getType();
+	if(type == AntennaType::OMNIDIRECTIONAL)
+		result = "omnidirectional";
+	else if(type == AntennaType::DIRECTIONAL)
+		result =  "directional";
+
+	return result;
 }
 
 unsigned long Antenna::getNumActiveConections() {
@@ -729,6 +748,123 @@ EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, Holdabl
 	return result;
 }
 
+unsigned long Antenna::getMaxConnections() const {
+	return m_maxConnections;
+}
+
+void Antenna::setMaxConnections(unsigned long maxConnections) {
+	m_maxConnections = maxConnections;
+}
+
+double Antenna::getPower() const {
+	return m_power;
+}
+
+void Antenna::setPower(double power) {
+	m_power = power;
+}
+
+double Antenna::getAttenuationFactor() const {
+	return m_ple;
+}
+
+void Antenna::setAttenuationFactor(double factor) {
+	m_ple = factor;
+}
+
+double Antenna::getSmin() const {
+	return m_Smin;
+}
+
+void Antenna::setSmin(double Smin) {
+	m_Smin = Smin;
+}
+
+double Antenna::getQmin() const {
+	return m_Qmin;
+}
+
+void Antenna::setQmin(double Qmin) {
+	m_Qmin = Qmin;
+}
+
+double Antenna::getSmid() const {
+	return m_Smid;
+}
+
+void Antenna::setSmid(double Smid) {
+	m_Smid = Smid;
+}
+
+
+double Antenna::getSSteep() const {
+	return m_SSteep;
+}
+
+void Antenna::setSSteep(double SSteep) {
+	m_SSteep = SSteep;
+}
+
+double Antenna::getTilt() const {
+	return m_tilt;
+}
+
+void Antenna::setTilt(double tilt) {
+	m_tilt = tilt;
+}
+
+
+double Antenna::getAzimDBBack() const {
+	return m_azim_dB_Back;
+}
+
+void Antenna::setAzimDBBack(double azimDBBack) {
+	m_azim_dB_Back = azimDBBack;
+}
+
+
+double Antenna::getElevDBBack() const {
+	return m_elev_dB_Back;
+}
+
+void Antenna::setElevDBBack(double elevDBBack) {
+	m_elev_dB_Back = elevDBBack;
+}
+
+double Antenna::getBeamH() const {
+	return m_beam_H;
+}
+
+void Antenna::setBeamH(double beamH) {
+	m_beam_H = beamH;
+}
+
+
+double Antenna::getBeamV() const {
+	return m_beam_V;
+}
+
+void Antenna::setBeamV(double beamV) {
+	m_beam_V = beamV;
+}
+
+double Antenna::getDirection() const {
+	return m_direction;
+}
+
+void Antenna::setDirection(double direction) {
+	m_direction = direction;
+}
+
+
+
+double Antenna::getHeight() const {
+	return m_height;
+}
+
+void Antenna::setHeight(double height) {
+	m_height = height;
+}
 
 
 const string Antenna::EventHeaderCellID = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";
@@ -737,4 +873,3 @@ const double Antenna::delta4G = 78.07;
 const double Antenna::delta3G = 554;
 const unsigned int Antenna::MAXTA4G = 1282;
 const unsigned int Antenna::MAXTA3G = 219;
-

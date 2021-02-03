@@ -194,6 +194,36 @@ class Antenna: public ImmovableAgent {
 
 		NetworkType getNetworkType();
 		static string getEventHeader(EventType evType);
+	unsigned long getMaxConnections() const;
+	void setMaxConnections(unsigned long maxConnections);
+	double getPower() const;
+	void setPower(double power);
+	double getAttenuationFactor() const;
+	void setAttenuationFactor(double factor);
+	string getTypeName() const;
+	double getSmin() const;
+	void setSmin(double Smin);
+	double getQmin() const;
+	void setQmin(double Qmin);
+	double getSmid() const;
+	void setSmid(double Smid);
+	double getSSteep() const;
+	void setSSteep(double SSteep);
+	double getTilt() const;
+	void setTilt(double tilt);
+	double getAzimDBBack() const;
+	void setAzimDBBack(double azimDBBack);
+	double getElevDBBack() const;
+	void setElevDBBack(double elevDBBack);
+	double getBeamH() const;
+	void setBeamH(double beamH);
+	double getBeamV() const;
+	void setBeamV(double beamV);
+	double getDirection() const;
+	void setDirection(double direction);
+	double getHeight() const;
+	void setHeight(double height);
+
 	private:
 
 		bool alreadyRegistered(HoldableAgent * ag);
