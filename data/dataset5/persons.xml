@@ -1,0 +1,14 @@
+<persons>
+        <num_persons>500</num_persons>
+        <min_age>10</min_age>
+        <max_age>87</max_age>
+        <age_distribution>
+            <type>normal</type>
+            <mean>42</mean>
+            <sd>25</sd>
+        </age_distribution>
+        <male_share>0.48</male_share>
+        <speed_walk>3</speed_walk>
+        <speed_car>16</speed_car>
+        <percent_home>0.10</percent_home>
+</persons>

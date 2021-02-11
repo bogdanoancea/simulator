@@ -1,0 +1,50 @@
+<simulation>
+        <start_time>0</start_time>
+        <end_time>900</end_time>
+		<time_increment>10</time_increment>
+		<time_stay>20</time_stay>
+        <interval_between_stays>120</interval_between_stays>
+		<mno>
+        	<mno_name>MNO1</mno_name>
+        	<prob_mobile_phone>0.35</prob_mobile_phone>
+		</mno>
+		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
+		<movement_type>home_work</movement_type>
+		<specs_home_work>
+			<home>
+				<x_home>... </x_home>
+				<y_home>... </y_home>
+				<x_sd_home>...  </x_sd_home>
+				<y_sd_home>...  </y_sd_home>
+			</home>
+			<home>
+				<x_home>... </x_home>
+				<y_home>... </y_home>
+				<x_sd_home>...  </x_sd_home>
+				<y_sd_home>...  </y_sd_home>
+			</home>
+			<work>
+				<x_work>... </x_work>
+				<y_work>... </y_work>
+				<x_sd_work>... </x_sd_work>
+				<y_sd_work>... </y_sd_work>
+			</work>
+			<work>
+				<x_work>... </x_work>
+				<y_work>... </y_work>
+				<x_sd_work>... </x_sd_work>
+				<y_sd_work>... </y_sd_work>
+			</work>
+			<percent_time_home>0.3</percent_time_home>
+			<percent_time_work>0.3</percent_time_work>
+			<percent_random_population>0.15</percent_random_population>
+		</specs_home_work>
+		<connection_type>strength</connection_type>
+		<conn_threshold>-85</conn_threshold>
+		<grid_file>grid.csv</grid_file>
+		<grid_dim_tile_x>250</grid_dim_tile_x>
+		<grid_dim_tile_y>250</grid_dim_tile_y>
+		<persons_file>persons.csv</persons_file>
+		<antennas_file>antennas.csv</antennas_file>
+		<random_seed>12</random_seed>
+</simulation>
