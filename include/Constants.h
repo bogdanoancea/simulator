@@ -29,6 +29,7 @@
 #include <PriorType.h>
 #include <events/EventType.h>
 #include <NetworkType.h>
+#include <string>
 
 /**
  * These are some constants used in the process of the simulation, most of them are only used for testing and rapid development

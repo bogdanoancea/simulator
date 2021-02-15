@@ -25,6 +25,7 @@
 
 #include <geos/geom/CoordinateSequence.h>
 #include <geos/geom/Geometry.h>
+#include <geos/version.h>
 #include <map/Map.h>
 #include <cmath>
 #include <iostream>
@@ -44,7 +45,15 @@ Map::~Map(){
 
 void Map::addGrid(double dimTileX, double dimTileY) {
 	Geometry* bbox = getEnvelope();
+#if GEOS_VERSION_MAJOR >= 3
+#if GEOS_VERSION_MINOR > 7
+	CoordinateSequence* seq = bbox->getCoordinates().release();
+#else
 	CoordinateSequence* seq = bbox->getCoordinates();
+#endif
+#else
+	throw throw std::runtime_error("unsupported geos version");
+#endif
 	double minX, minY, maxX, maxY;
 	minX = minY = numeric_limits<double>::max();
 	maxX = maxY = numeric_limits<double>::min();

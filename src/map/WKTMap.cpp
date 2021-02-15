@@ -23,28 +23,25 @@
  *      Email : bogdan.oancea@gmail.com
  */
 
-#include <geos/geom/Coordinate.h>
+#include <geos/geom/Geometry.h>
 #include <geos/geom/PrecisionModel.h>
-#include <geos/util/GeometricShapeFactory.h>
-
-#include <memory>
 #include <geos/io/WKTReader.h>
-#include <geos/io/WKTWriter.h>
+#include <geos/version.h>
 #include <map/WKTMap.h>
-#include <iostream>
-#include <iomanip>
 #include <fstream>
+#include <iostream>
+#include <memory>
 #include <sstream>
-#include <cmath>
+#include <string>
 
 using namespace std;
 using namespace geos;
 using namespace geos::geom;
 using namespace geos::io;
 
-
-WKTMap::WKTMap(string wktFileName): Map(wktFileName){
-	PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
+WKTMap::WKTMap(string wktFileName) :
+		Map(wktFileName) {
+	const PrecisionModel* pm = new PrecisionModel(2.0, 0.0, 0.0);
 	m_globalFactory = GeometryFactory::create(pm, -1);
 	delete pm;
 
@@ -59,7 +56,16 @@ WKTMap::WKTMap(string wktFileName): Map(wktFileName){
 
 	stringstream buffer;
 	buffer << wktFile.rdbuf();
-	m_boundary = reader.read(buffer.str());
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		m_boundary = reader.read(buffer.str()).release();
+	#else
+		m_boundary = reader.read(buffer.str());
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
+
 	try {
 		wktFile.close();
 	} catch (ofstream::failure& e) {
@@ -84,5 +90,13 @@ Geometry* WKTMap::getBoundary() const {
 }
 
 Geometry* WKTMap::getEnvelope() const {
-	return (m_boundary->getEnvelope());
+#if GEOS_VERSION_MAJOR >= 3
+#if GEOS_VERSION_MINOR > 7
+		return (m_boundary->getEnvelope().release());
+#else
+		return (m_boundary->getEnvelope());
+#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 }

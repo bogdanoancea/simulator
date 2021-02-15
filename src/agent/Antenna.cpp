@@ -33,6 +33,7 @@
 #include <geos/geom/Point.h>
 #include <geos/geom/Polygon.h>
 #include <geos/io/WKTWriter.h>
+#include <geos/version.h>
 #include <geos/util/GeometricShapeFactory.h>
 #include <map/Map.h>
 #include <events/EventType.h>
@@ -77,7 +78,15 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 		m_direction = Constants::ANTENNA_DIRECTION;
 	}
 	setLocationWithElevation();
-	m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry().release();
+	#else
+		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 	m_networkType = Constants::NETWORK_TYPE;
 	m_eventFactory = factory;
 	m_eventType = evType;
@@ -579,7 +588,15 @@ Geometry* Antenna::getCoverageAreaOmnidirectional() const {
 	geos::util::GeometricShapeFactory shapefactory(this->getMap()->getGlobalFactory().get());
 	shapefactory.setCentre(Coordinate(x, y));
 	shapefactory.setSize(2 * m_rmax);
-	return (shapefactory.createCircle());
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		return (shapefactory.createCircle().release());
+	#else
+		return (shapefactory.createCircle());
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 }
 
 Geometry* Antenna::getCoverageAreaDirectional() const {

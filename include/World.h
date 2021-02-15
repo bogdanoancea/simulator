@@ -39,6 +39,7 @@
 #include <PriorType.h>
 #include <PostLocProb.h>
 #include <iostream>
+#include <RandomNumberGenerator.h>
 #include <map>
 #include <memory>
 #include <string>
