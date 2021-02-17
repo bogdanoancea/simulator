@@ -162,27 +162,9 @@ private:
 	AgentsCollection* m_agentsCollection;
 	Clock* m_clock;
 	SimConfig* m_sp;
-	//unsigned long m_startTime; //SimConfig
-	//unsigned long m_endTime;   //SimConfig
-	//unsigned long m_timeIncrement; //SimConfig
-	//double m_GridDimTileX; //SimConfig
-	//double m_GridDimTileY; //simConfig
 	PriorType m_prior;
-	//unsigned m_seed; //simConfig
-	//unsigned long m_stay;  //SimConfig
-	//unsigned m_intevalBetweenStays; //SimConfig
-	//double m_connThreshold; //SimConfig
-
-	//HoldableAgent::CONNECTION_TYPE m_connType; //SimConfig
-	//MovementType m_mvType; //SimConfig
-	//string m_gridFilename; //SimConfig
 	map<const unsigned long, const string> m_probFilenames;
-	//string m_personsFilename; //SimConfig
-	//string m_antennasFilename; //SimConfig
-	//string m_outputDir;  //SimConfig
-	//double m_probSecMobilePhone; //SimConfig
 	shared_ptr<PostLocProb> m_postMethod;
-	//EventType m_eventType; // SimConfig
 	EventFactory m_eventFactory;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
@@ -193,19 +175,14 @@ private:
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
 	vector<Person*> parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false);
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
-	//vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
-	//double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType); //SimConfig
 	void setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk);
 	void generatePhones(vector<MobileOperator*> mnos);
 	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
 	void writeSignalAndCells(ostream& antennaFile);
 	void AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn );
-	//MovementType parseMovement(XMLElement* el); //SimConfig
-	//HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el); //SimConfig
-	//vector<MobileOperator*> parseMNOs(XMLElement* el); //SimConfig
 	double getGridDimTileX() const;
 	double getGridDimTileY() const;
 	HoldableAgent::CONNECTION_TYPE getConnectionType() const;

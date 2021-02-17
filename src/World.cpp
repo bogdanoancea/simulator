@@ -64,11 +64,10 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		const string& probabilitiesFileName) :
 		m_map { mmap } {
 
-	//m_probSecMobilePhone = 0.0;
 	m_sp = new SimConfig(configSimulationFileName, mmap) ;
-	vector<MobileOperator*> mnos = m_sp->getMnos();//parseSimulationFile(configSimulationFileName);
+	vector<MobileOperator*> mnos = m_sp->getMnos();
 	m_agentsCollection = new AgentsCollection();
-	m_clock = new Clock(m_sp->getStartTime(), m_sp->getEndTime(), m_sp->getTimeIncrement());
+	m_clock = m_sp->getClock();
 	time_t tt = m_clock->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
