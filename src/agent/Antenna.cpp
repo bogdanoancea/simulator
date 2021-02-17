@@ -92,7 +92,7 @@ Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, cons
 	m_eventType = evType;
 }
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, string& outputDir, EventFactory& factory, EventType evType) :
+Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, const string& outputDir, EventFactory& factory, EventType evType) :
 		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
 
 	//char sep = Constants::sep;

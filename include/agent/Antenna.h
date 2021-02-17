@@ -83,7 +83,7 @@ class Antenna: public ImmovableAgent {
 		 * @param el the XML Element containing the parameters of the Antenna
 		 * @param mnos a vector with pointers to MobileOperator objects.
 		 */
-		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos, string& outptuDir, EventFactory& factory, EventType evType);
+		explicit Antenna(const Map* m, const Clock* clock, const unsigned long id, XMLElement* el, vector<MobileOperator*> mnos, const string& outptuDir, EventFactory& factory, EventType evType);
 
 		/**
 		 * Destructor of the class. It closes the file where the Antenna dumps the registered events during the simulation.

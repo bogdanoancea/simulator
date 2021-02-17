@@ -27,24 +27,24 @@
 #define WORLD_H
 
 #include <agent/Antenna.h>
-#include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/MobilePhone.h>
 #include <agent/Person.h>
-#include <events/EventFactory.h>
-#include <events/EventType.h>
 #include <AgeDistribution.h>
 #include <AntennaInfo.h>
+#include <events/EventFactory.h>
+#include <RandomNumberGenerator.h>
+#include <PostLocProb.h>
 #include <MovementType.h>
 #include <PriorType.h>
-#include <PostLocProb.h>
 #include <iostream>
-#include <RandomNumberGenerator.h>
+#include <parsers/SimConfig.h>
 #include <map>
 #include <memory>
 #include <string>
 #include <utility>
 #include <vector>
+
 
 
 
@@ -73,7 +73,7 @@ public:
 	 * @param numAntennas the number of antennas to be generated.
 	 * @param numMobilePhones the number of mobile phones to be generated. These phones are randomly given to persons.
 	 */
-	World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
+	//World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
 
 	/**
 	 * Builds a new World object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files.
@@ -161,27 +161,28 @@ private:
 
 	AgentsCollection* m_agentsCollection;
 	Clock* m_clock;
-	unsigned long m_startTime;
-	unsigned long m_endTime;
-	unsigned long m_timeIncrement;
-	double m_GridDimTileX;
-	double m_GridDimTileY;
+	SimConfig* m_sp;
+	//unsigned long m_startTime; //SimConfig
+	//unsigned long m_endTime;   //SimConfig
+	//unsigned long m_timeIncrement; //SimConfig
+	//double m_GridDimTileX; //SimConfig
+	//double m_GridDimTileY; //simConfig
 	PriorType m_prior;
-	unsigned m_seed;
-	unsigned long m_stay;
-	unsigned m_intevalBetweenStays;
-	double m_connThreshold;
+	//unsigned m_seed; //simConfig
+	//unsigned long m_stay;  //SimConfig
+	//unsigned m_intevalBetweenStays; //SimConfig
+	//double m_connThreshold; //SimConfig
 
-	HoldableAgent::CONNECTION_TYPE m_connType;
-	MovementType m_mvType;
-	string m_gridFilename;
+	//HoldableAgent::CONNECTION_TYPE m_connType; //SimConfig
+	//MovementType m_mvType; //SimConfig
+	//string m_gridFilename; //SimConfig
 	map<const unsigned long, const string> m_probFilenames;
-	string m_personsFilename;
-	string m_antennasFilename;
-	string m_outputDir;
-	double m_probSecMobilePhone;
+	//string m_personsFilename; //SimConfig
+	//string m_antennasFilename; //SimConfig
+	//string m_outputDir;  //SimConfig
+	//double m_probSecMobilePhone; //SimConfig
 	shared_ptr<PostLocProb> m_postMethod;
-	EventType m_eventType;
+	//EventType m_eventType; // SimConfig
 	EventFactory m_eventFactory;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
@@ -192,19 +193,19 @@ private:
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
 	vector<Person*> parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false);
 	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
-	vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
+	//vector<MobileOperator*> parseSimulationFile(const string& configSimulationFileName) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
-	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
+	//double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType); //SimConfig
 	void setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk);
 	void generatePhones(vector<MobileOperator*> mnos);
 	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
 	void writeSignalAndCells(ostream& antennaFile);
 	void AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn );
-	MovementType parseMovement(XMLElement* el);
-	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
-	vector<MobileOperator*> parseMNOs(XMLElement* el);
+	//MovementType parseMovement(XMLElement* el); //SimConfig
+	//HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el); //SimConfig
+	//vector<MobileOperator*> parseMNOs(XMLElement* el); //SimConfig
 	double getGridDimTileX() const;
 	double getGridDimTileY() const;
 	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
