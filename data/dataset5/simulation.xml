@@ -12,28 +12,28 @@
 		<movement_type>home_work</movement_type>
 		<specs_home_work>
 			<home>
-				<x_home>... </x_home>
-				<y_home>... </y_home>
-				<x_sd_home>...  </x_sd_home>
-				<y_sd_home>...  </y_sd_home>
+				<x_home>2000</x_home>
+				<y_home>7500</y_home>
+				<x_sd_home>1000</x_sd_home>
+				<y_sd_home>1000</y_sd_home>
 			</home>
 			<home>
-				<x_home>... </x_home>
-				<y_home>... </y_home>
-				<x_sd_home>...  </x_sd_home>
-				<y_sd_home>...  </y_sd_home>
+				<x_home>8000</x_home>
+				<y_home>7500</y_home>
+				<x_sd_home>1000</x_sd_home>
+				<y_sd_home>1000</y_sd_home>
 			</home>
 			<work>
-				<x_work>... </x_work>
-				<y_work>... </y_work>
-				<x_sd_work>... </x_sd_work>
-				<y_sd_work>... </y_sd_work>
+				<x_work>2500</x_work>
+				<y_work>8500</y_work>
+				<x_sd_work>750</x_sd_work>
+				<y_sd_work>750</y_sd_work>
 			</work>
 			<work>
-				<x_work>... </x_work>
-				<y_work>... </y_work>
-				<x_sd_work>... </x_sd_work>
-				<y_sd_work>... </y_sd_work>
+				<x_work>5000</x_work>
+				<y_work>2000</y_work>
+				<x_sd_work>750</x_sd_work>
+				<y_sd_work>750</y_sd_work>
 			</work>
 			<percent_time_home>0.3</percent_time_home>
 			<percent_time_work>0.3</percent_time_work>
