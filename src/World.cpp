@@ -25,7 +25,6 @@
 
 #include <agent/AgentsCollection.h>
 #include <AntennaType.h>
-#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>

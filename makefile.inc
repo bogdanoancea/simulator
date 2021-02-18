@@ -1,7 +1,7 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = D:/c-projects/simulator
-GEOS_HOME = C:/rtools40/mingw64/lib
+PROJ_HOME = /Users/bogdanoancea/c-projects/simulator
+GEOS_HOME = /usr/local/lib
 MSYS_HOME = C:/rtools40
 DEBUG     = 0
 
