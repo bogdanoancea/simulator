@@ -25,33 +25,27 @@
 
 #include <agent/AgentsCollection.h>
 #include <AntennaType.h>
+#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <CSVparser.hpp>
+#include <events/EventType.h>
 #include <EMField.h>
 #include <geos/geom/Point.h>
 #include <IDGenerator.h>
-#include <LevyFlightDisplacement.h>
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
-#include <parsers/SimConfig.h>
-#include <RandomWalkDisplacement.h>
-#include <RandomWalkDriftDisplacement.h>
+#include <parsers/PersonsConfig.h>
 #include <TinyXML2.h>
-#include <TruncatedNormalAgeDistribution.h>
-#include <UniformAgeDistribution.h>
 #include <UnifPriorPostLocProb.h>
 #include <Utils.h>
 #include <World.h>
 #include <algorithm>
 #include <cstring>
 #include <ctime>
-#include <filesystem>
 #include <fstream>
 #include <map>
-#include <numeric>
 #include <typeinfo>
-#include <unordered_map>
 
 
 using namespace std;
@@ -60,14 +54,14 @@ using namespace tinyxml2;
 
 
 World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName,
-		const string& probabilitiesFileName) :
-		m_map { mmap } {
+		const string& probabilitiesFileName) {
 
 	m_sp = new SimConfig(configSimulationFileName, mmap) ;
 	vector<MobileOperator*> mnos = m_sp->getMnos();
 	m_agentsCollection = new AgentsCollection();
-	m_clock = m_sp->getClock();
-	time_t tt = m_clock->realTime();
+	m_persConfig = new PersonsConfig(configPersonsFileName, m_sp, m_agentsCollection);
+
+	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
 	string probsPrefix;
@@ -87,26 +81,26 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 		EMField::instance()->addAntenna(antennas[i]);
 	}
 
-	mmap->addGrid(getGridDimTileX(), getGridDimTileY());
-	vector<Person*> persons = parsePersons(configPersonsFileName, mnos);
+	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
+	vector<Person*> persons = m_persConfig->getPersons();
 	for (unsigned long i = 0; i < persons.size(); i++) {
 		m_agentsCollection->addAgent(persons[i]);
 	}
 
 	if (m_prior == PriorType::UNIFORM) {
-		auto postProb = std::make_shared<UnifPriorPostLocProb>(m_map, m_clock, m_agentsCollection, m_probFilenames);
+		auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
 		setPostProbMethod(postProb);
 	} else if (m_prior == PriorType::NETWORK) {
-		auto postProb = std::make_shared<NetPriorPostLocProb>(m_map, m_clock, m_agentsCollection, m_probFilenames);
+		auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
 		setPostProbMethod(postProb);
 	}
-	tt = m_clock->realTime();
+	tt = m_sp->getClock()->realTime();
 	cout << "Generating objects ended at " << ctime(&tt) << endl;
 }
 
 World::~World() {
-	delete m_clock;
 	delete m_agentsCollection;
+	delete m_persConfig;
 	delete m_sp;
 	cout << "End of simulation!" << endl;
 }
@@ -124,33 +118,33 @@ void World::runSimulation() noexcept(false) {
 		cerr << "Error opening output files!" << endl;
 		throw e;
 	}
-	time_t tt = m_clock->realTime();
+	time_t tt = m_sp->getClock()->realTime();
 
 	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
-	unsigned long t = m_clock->getInitialTime();
-	tt = m_clock->realTime();
+	unsigned long t = m_sp->getClock()->getInitialTime();
+	tt = m_sp->getClock()->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
-	cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
+	cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
 	for (auto it = itr.first; it != itr.second; it++) {
 		Person* p = static_cast<Person*>(it->second);
 		Point* loc = p->getLocation();
-		personsFile << p->dumpLocation() << sep << m_map->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
+		personsFile << p->dumpLocation() << sep << m_sp->getMap()->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 	}
 	//iterate over all persons and call move()
-	t = m_clock->tick();
-	for (; t < m_clock->getFinalTime(); t = m_clock->tick()) {
-		tt = m_clock->realTime();
-		cout << "Current simulation step: " << m_clock->getCurrentTime() << ":" << ctime(&tt) << endl;
+	t = m_sp->getClock()->tick();
+	for (; t < m_sp->getClock()->getFinalTime(); t = m_sp->getClock()->tick()) {
+		tt = m_sp->getClock()->realTime();
+		cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
 			p->move();
 			Point* loc = p->getLocation();
-			personsFile << p->dumpLocation() << sep << m_map->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
+			personsFile << p->dumpLocation() << sep << m_sp->getMap()->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 		}
 	}
-	tt = m_clock->realTime();
+	tt = m_sp->getClock()->realTime();
 	cout << "Simulation ended at " << ctime(&tt) << endl;
 
 	try {
@@ -166,7 +160,7 @@ AgentsCollection* World::getAgents() const {
 }
 
 const Map* World::getMap() const {
-	return (m_map);
+	return (m_sp->getMap());
 }
 
 const string& World::getGridFilename() const {
@@ -182,7 +176,7 @@ vector<Person*> World::generatePopulation(unsigned long numPersons, double perce
 	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_clock, speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME,
+		Person* p = new Person(getMap(), id, positions[i], m_sp->getClock(), speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME,
 				Constants::SIM_INTERVAL_BETWEEN_STAYS);
 		result.push_back(p);
 	}
@@ -205,21 +199,9 @@ vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
 	for (unsigned long i = 0; i < numAntennas; i++) {
 		id = IDGenerator::instance()->next();
 		string outDir = Constants::OUTPUT_DIR;
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_clock, attFactor, power, maxConnections, smid, ssteep,
+		Antenna* p = new Antenna(getMap(), id, positions[i], m_sp->getClock(), attFactor, power, maxConnections, smid, ssteep,
 				AntennaType::OMNIDIRECTIONAL, outDir, m_eventFactory, m_sp->getEventType());
 		result.push_back(p);
-	}
-	return (result);
-}
-
-vector<MobilePhone*> World::generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType) {
-	vector<MobilePhone*> result;
-	unsigned long id;
-	for (auto i = 0; i < numMobilePhones; i++) {
-		id = IDGenerator::instance()->next();
-		MobilePhone* p = new MobilePhone(getMap(), id, nullptr, nullptr, m_clock, Constants::PHONE_CONNECTION_THRESHOLD, connType);
-		result.push_back(p);
-		m_agentsCollection->addAgent(p);
 	}
 	return (result);
 }
@@ -242,115 +224,10 @@ vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<M
 				continue;
 			}
 			unsigned long id = IDGenerator::instance()->next();
-			Antenna* a = new Antenna(getMap(), m_clock, id, antennaEl, mnos, m_sp->getOutputDir(), m_eventFactory, m_sp->getEventType());
+			Antenna* a = new Antenna(getMap(), m_sp->getClock(), id, antennaEl, mnos, m_sp->getOutputDir(), m_eventFactory, m_sp->getEventType());
 			result.push_back(a);
 		}
 	}
-	return (result);
-}
-
-vector<Person*> World::parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false) {
-	vector<Person*> result;
-	XMLDocument doc;
-	XMLError err = doc.LoadFile(personsFileName.c_str());
-	if (err != XML_SUCCESS)
-		throw std::runtime_error("Error opening configuration file for persons ");
-
-	XMLElement* personsEl = doc.FirstChildElement("persons");
-	if (!personsEl)
-		throw std::runtime_error("Syntax error in the configuration file for persons ");
-	else {
-		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
-		unsigned long min_age = getValue(personsEl, "min_age");
-		unsigned long max_age = getValue(personsEl, "max_age");
-
-		XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
-		const char* distrib = getValue(ageDistribEl, "type", "UNKNOWN");
-		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
-			throw std::runtime_error("Unknown age distribution for population!");
-
-		shared_ptr<AgeDistribution> ageDistr;
-		if (!strcmp(distrib, "normal")) {
-			double mean_age = getValue(ageDistribEl, "mean");
-			double sd = getValue(ageDistribEl, "sd");
-			ageDistr = make_shared<TruncatedNormalAgeDistribution>(TruncatedNormalAgeDistribution(min_age, max_age, mean_age, sd));
-		} else if (!strcmp(distrib, "uniform")) {
-			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
-		} else {
-			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
-		}
-
-		double male_share = getValue(personsEl, "male_share");
-		double speed_walk = getValue(personsEl, "speed_walk");
-		double speed_car = getValue(personsEl, "speed_car");
-		double percentHome = getValue(personsEl, "percent_home");
-		result = generatePopulation(numPersons, ageDistr, male_share, mnos, speed_walk, speed_car, percentHome);
-	}
-	return (result);
-}
-
-double World::getGridDimTileX() const {
-	return (m_sp->getGridDimTileX());
-}
-
-double World::getGridDimTileY() const {
-	return (m_sp->getGridDimTileY());
-}
-
-
-vector<Person*> World::generatePopulation(unsigned long numPersons, shared_ptr<AgeDistribution> ageDistribution,
-		double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome) {
-
-	vector<Person*> result;
-	unsigned long id;
-	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_sp->getSeed());
-	int *phone1 = nullptr, *phone2 = nullptr;
-	setPhones(phone1, phone2, m_sp->getProbSecMobilePhone(), numPersons, random_generator, mnos);
-
-	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
-	int sum = 0;
-	sum = accumulate(walk_car, walk_car + numPersons, sum);
-	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
-	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
-	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
-	int* ages = generateAges(numPersons, ageDistribution, random_generator );
-	unsigned long cars = 0, walks = 0;
-	Person* p;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_sp->getSeed());
-	unsigned int numMno = mnos.size();
-	for (unsigned long i = 0; i < numPersons; i++) {
-		id = IDGenerator::instance()->next();
-		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_sp->getStay(), 0.2 * m_sp->getStay());
-		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_sp->getIntevalBetweenStays());
-		if (walk_car[i]) {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_car[cars++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
-		} else {
-			p = new Person(getMap(), id, positions[i], m_clock, speeds_walk[walks++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
-		}
-		int np1 = phone1[i];
-		while (np1) {
-			AddMobilePhoneToPerson(p, mnos[0], m_agentsCollection, getMap(), m_clock, m_sp->getConnThreshold(), m_sp->getConnType());
-			np1--;
-		}
-		if (numMno == 2) {
-			int np2 = phone2[i];
-			while (np2) {
-				AddMobilePhoneToPerson(p, mnos[1], m_agentsCollection, getMap(), m_clock, m_sp->getConnThreshold(), m_sp->getConnType() );
-				np2--;
-			}
-		}
-		setPersonDisplacementPattern(p, m_sp->getMvType(), m_map, m_clock);
-		result.push_back(p);
-	}
-	delete[] walk_car;
-	delete[] phone1;
-	delete[] phone2;
-	delete[] speeds_walk;
-	delete[] speeds_car;
-	delete[] ages;
-	delete[] gender;
 	return (result);
 }
 
@@ -434,74 +311,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 	return (data);
 }
 
-Clock* World::getClock() {
-	return m_clock;
-}
-
-void World::setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk) {
-	if (type == MovementType::RANDOM_WALK_CLOSED_MAP) {
-		auto displace = std::make_shared<RandomWalkDisplacement>(map, clk, p->getSpeed());
-		p->setDisplacementMethod(displace);
-	} else if (type == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
-		auto displace = std::make_shared<RandomWalkDriftDisplacement>(map, clk, p->getSpeed());
-		p->setDisplacementMethod(displace);
-	} else if (type == MovementType::LEVY_FLIGHT) {
-		auto displace = std::make_shared<LevyFlightDisplacement>(map, clk, p->getSpeed());
-		p->setDisplacementMethod(displace);
-	}
-}
-
-int* World::generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng) {
-	int* ages = new int[n];
-
-	if(shared_ptr<UniformAgeDistribution> ageDistr = dynamic_pointer_cast<UniformAgeDistribution>(distr)){
-		ages = rng->generateUniformInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), n);
-	}
-	else if (shared_ptr<TruncatedNormalAgeDistribution> ageDistr = dynamic_pointer_cast<TruncatedNormalAgeDistribution>(distr)) {
-		ages = rng->generateTruncatedNormalInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), ageDistr->getMean(),ageDistr->getSd(), n);
-	} else {
-		ages = rng->generateUniformInt(distr->getMinAge(),distr->getMaxAge(), n);
-	}
-	return (ages);
-}
-
-void World::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos ) {
-	int numMno = mnos.size();
-	double probIntersection = 1;
-	for (auto& n : mnos) {
-		probIntersection *= n->getProbMobilePhone();
-	}
-	if (numMno > 1 && probIntersection > probSecMobilePhone)
-		throw std::runtime_error(
-				"Error specifying probabilities of having mobile phones: the probability of having a second mobile phone should be greater than or equal to the product of the probabilities of having mobile phones at each MNO");
-
-	if (numMno == 1) {
-		ph1 = rng->generateBernoulliInt(mnos[0]->getProbMobilePhone(), numPersons);
-		for (unsigned long j = 0; j < numPersons; j++) {
-			if (ph1[j] == 1)
-				ph1[j] += rng->generateBernoulliInt(probSecMobilePhone);
-		}
-	} else if (numMno == 2) {
-		double pSecPhoneMNO1 = (probSecMobilePhone - probIntersection) / 2.0;
-		double pSecPhoneMNO2 = pSecPhoneMNO1;
-
-		double pOnePhoneMNO1 = mnos[0]->getProbMobilePhone() - pSecPhoneMNO1 ;
-		double pOnePhoneMNO2 = mnos[1]->getProbMobilePhone() - pSecPhoneMNO2 ;
-
-		ph1 = rng->generateBernoulliInt(pOnePhoneMNO1, numPersons);
-		ph2 = rng->generateBernoulliInt(pOnePhoneMNO2, numPersons);
-		for (unsigned long i = 0; i < numPersons; i++) {
-			if(ph1[i] == 1 && ph2[i] == 1)
-				continue;
-			if(ph1[i] == 1)
-				ph1[i] += rng->generateBernoulliInt(pSecPhoneMNO1/pOnePhoneMNO1);
-			if(ph2[i] == 1)
-				ph2[i] += rng->generateBernoulliInt(pSecPhoneMNO2/pOnePhoneMNO2);
-		}
-	} else {
-		throw std::runtime_error("Number of MNOs supported should be 1 or 2!");
-	}
-}
 
 void World::writeSignalAndCells(ostream& antennaFile) {
 	char sep = Constants::sep;
@@ -515,23 +324,14 @@ void World::writeSignalAndCells(ostream& antennaFile) {
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
 		if(a->getType() == AntennaType::DIRECTIONAL) {
-			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << a->getTilt() << sep << a->getAzimDBBack() << sep << a->getElevDBBack() << sep << a->getBeamH() << sep << a->getBeamV() << sep << a->getDirection() << sep << a->getHeight() << sep << m_map->getTileNo(a->getLocation()) << endl;
+			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << a->getTilt() << sep << a->getAzimDBBack() << sep << a->getElevDBBack() << sep << a->getBeamH() << sep << a->getBeamV() << sep << a->getDirection() << sep << a->getHeight() << sep << m_sp->getMap()->getTileNo(a->getLocation()) << endl;
 		}
 		else {
-			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << a->getHeight() << sep << m_map->getTileNo(a->getLocation()) << endl;
+			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << a->getHeight() << sep << m_sp->getMap()->getTileNo(a->getLocation()) << endl;
 		}
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
 		a->dumpSignal();
 	}
-}
-
-void World::AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn ) {
-	unsigned long id = IDGenerator::instance()->next();
-	MobilePhone* mp = new MobilePhone(map, id, nullptr, nullptr, clock, thres, conn);
-	mp->setMobileOperator(mno);
-	mp->setHolder(p);
-	ag->addAgent(mp);
-	p->addDevice(typeid(MobilePhone).name(), mp);
 }
 

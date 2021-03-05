@@ -1,4 +1,4 @@
-/*
+	/*
  * Copyright (C) 2019  Bogdan Oancea
 
  * This program is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@ SimConfig::SimConfig(const string& filename, Map* map) :
 }
 
 SimConfig::~SimConfig() {
-	// TODO Auto-generated destructor stub
+	delete m_clock;
 }
 
 void SimConfig::parse() {
@@ -85,7 +85,6 @@ void SimConfig::parse() {
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
-		//cout << "event type" << static_cast<int>(m_eventType);
 	}
 }
 
@@ -236,6 +235,12 @@ void SimConfig::setTimeIncrement(unsigned long timeIncrement) {
 Clock* SimConfig::getClock() {
 	return m_clock;
 }
+
+Map* SimConfig::getMap() {
+	return m_map;
+}
+
+
 vector<MobileOperator*> SimConfig::parseMNOs(XMLElement* el) {
 	vector<MobileOperator*> result;
 	unsigned numMNO = 0;

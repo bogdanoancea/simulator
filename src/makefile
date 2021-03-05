@@ -12,6 +12,7 @@ Constants.o\
 Displace.o\
 parsers/Config.o\
 parsers/SimConfig.o\
+parsers/PersonsConfig.o\
 events/Event.o\
 events/EventConfig.o\
 events/CellIDEventConfig.o\

@@ -27,22 +27,16 @@
 #define WORLD_H
 
 #include <agent/Antenna.h>
-#include <agent/MobileOperator.h>
-#include <agent/MobilePhone.h>
-#include <agent/Person.h>
-#include <AgeDistribution.h>
 #include <AntennaInfo.h>
 #include <events/EventFactory.h>
 #include <RandomNumberGenerator.h>
 #include <PostLocProb.h>
-#include <MovementType.h>
 #include <PriorType.h>
-#include <iostream>
 #include <parsers/SimConfig.h>
+#include <parsers/PersonsConfig.h>
 #include <map>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 
@@ -129,7 +123,7 @@ public:
 
 	Clock* getClock();
 
-		void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
+	void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 	/**
 	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
 	 * @return the name of the file where the probabilities of mobile phones locations are saved.
@@ -156,35 +150,22 @@ public:
 	std::map<unsigned long, vector<AntennaInfo>> getEvents();
 
 private:
-
-	Map* m_map;
-
 	AgentsCollection* m_agentsCollection;
-	Clock* m_clock;
 	SimConfig* m_sp;
+	PersonsConfig* m_persConfig;
+
 	PriorType m_prior;
 	map<const unsigned long, const string> m_probFilenames;
 	shared_ptr<PostLocProb> m_postMethod;
 	EventFactory m_eventFactory;
 
 	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
-	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
-			double male_share, vector<MobileOperator*> mnos, double speed_walk, double speed_car, double percentHome);
 
 	vector<Antenna*> generateAntennas(unsigned long numAntennas);
 	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
-	vector<Person*> parsePersons(const string& personsFileName, vector<MobileOperator*> mnos) noexcept(false);
-	vector<MobilePhone*> generateMobilePhones(int numMobilePhones, HoldableAgent::CONNECTION_TYPE connType);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
-	void setPersonDisplacementPattern(Person* p, MovementType type, Map* map, Clock* clk);
-	void generatePhones(vector<MobileOperator*> mnos);
-	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
-	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng, vector<MobileOperator*> mnos );
 	void writeSignalAndCells(ostream& antennaFile);
-	void AddMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag, const Map* map, Clock* clock, double thres, HoldableAgent::CONNECTION_TYPE conn );
-	double getGridDimTileX() const;
-	double getGridDimTileY() const;
 	HoldableAgent::CONNECTION_TYPE getConnectionType() const;
 };
 

@@ -79,6 +79,7 @@ public:
 	unsigned long getTimeIncrement() const;
 	void setTimeIncrement(unsigned long timeIncrement);
 	Clock* getClock();
+	Map* getMap();
 
 private:
 	void parse();
