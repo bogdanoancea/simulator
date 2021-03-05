@@ -219,66 +219,8 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 
 
 
-double PersonsConfig::getMaleShare() const {
-	return m_maleShare;
-}
-
-void PersonsConfig::setMaleShare(double maleShare) {
-	m_maleShare = maleShare;
-}
-
-unsigned PersonsConfig::getMaxAge() const {
-	return m_maxAge;
-}
-
-void PersonsConfig::setMaxAge(unsigned maxAge) {
-	m_maxAge = maxAge;
-}
-
-unsigned PersonsConfig::getMinAge() const {
-	return m_minAge;
-}
-
-void PersonsConfig::setMinAge(unsigned minAge) {
-	m_minAge = minAge;
-}
-
-unsigned PersonsConfig::getNumPersons() const {
-	return m_numPersons;
-}
-
-void PersonsConfig::setNumPersons(unsigned numPersons) {
-	m_numPersons = numPersons;
-}
-
-double PersonsConfig::getPercentHome() const {
-	return m_percentHome;
-}
-
-void PersonsConfig::setPercentHome(double percentHome) {
-	m_percentHome = percentHome;
-}
-
 const vector<Person*>& PersonsConfig::getPersons() const {
 	return m_persons;
 }
 
-void PersonsConfig::setPersons(const vector<Person*> &persons) {
-	m_persons = persons;
-}
 
-double PersonsConfig::getSpeedCar() const {
-	return m_speedCar;
-}
-
-void PersonsConfig::setSpeedCar(double speedCar) {
-	m_speedCar = speedCar;
-}
-
-double PersonsConfig::getSpeedWalk() const {
-	return m_speedWalk;
-}
-
-void PersonsConfig::setSpeedWalk(double speedWalk) {
-	m_speedWalk = speedWalk;
-}

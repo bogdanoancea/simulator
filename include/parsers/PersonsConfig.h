@@ -26,22 +26,7 @@ class PersonsConfig: public Config {
 public:
 	PersonsConfig(const string& fileName, SimConfig* sc, AgentsCollection* ag);
 	virtual ~PersonsConfig();
-	double getMaleShare() const;
-	void setMaleShare(double maleShare);
-	unsigned getMaxAge() const;
-	void setMaxAge(unsigned maxAge);
-	unsigned getMinAge() const;
-	void setMinAge(unsigned minAge);
-	unsigned getNumPersons() const;
-	void setNumPersons(unsigned numPersons);
-	double getPercentHome() const;
-	void setPercentHome(double percentHome);
 	const vector<Person*>& getPersons() const;
-	void setPersons(const vector<Person*> &persons);
-	double getSpeedCar() const;
-	void setSpeedCar(double speedCar);
-	double getSpeedWalk() const;
-	void setSpeedWalk(double speedWalk);
 
 private:
 	void parse();
@@ -56,13 +41,6 @@ private:
 	SimConfig* m_simConfig;
 	AgentsCollection* m_agents;
 
-	unsigned m_numPersons;
-	unsigned m_minAge;
-	unsigned m_maxAge;
-	double m_maleShare;
-	double m_speedWalk;
-	double m_speedCar;
-	double m_percentHome;
 };
 
 #endif /* INCLUDE_PERSONSCONFIG_H_ */
