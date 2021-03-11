@@ -6,6 +6,9 @@
  */
 
 #include <parsers/HomeWorkLocation.h>
+#include <sstream>
+
+using namespace std;
 
 HomeWorkLocation::HomeWorkLocation(double x, double y, double z, double sdx, double sdy, double sdz) {
 	m_x = x;
@@ -20,3 +23,8 @@ HomeWorkLocation::~HomeWorkLocation() {
 	// TODO Auto-generated destructor stub
 }
 
+string HomeWorkLocation::toString() {
+	ostringstream result;
+	result << "X:" << m_x <<" Y:"<< m_y << " Z:" << m_z << " Sd_x:" << m_sdx << " Sd_y:" << m_sdy << " Sd_z:" << m_sdz;
+	return (result.str());
+}

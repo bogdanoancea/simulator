@@ -113,6 +113,7 @@ private:
 	MovementType parseMovement(XMLElement* el);
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
+	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario& hws);
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */

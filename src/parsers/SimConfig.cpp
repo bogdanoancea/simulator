@@ -97,49 +97,93 @@ void SimConfig::parse() {
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
 		XMLElement* homeWork = simEl->FirstChildElement("specs_home_work");
 		if(homeWork) {
-			cout << "am gasit scenariul" << endl;
-
-			XMLElement* home = homeWork->FirstChildElement("home");
-			if(!home) {
-				throw std::runtime_error("Home  location missing!");
-			}
-			cout<<"am gasit un home" << endl;
-			double x = getValue(home, "x_home");
-			double y = getValue(home, "y_home");
-			double xSd = getValue(home, "x_sd_home");
-			double ySd = getValue(home, "y_sd_home");
-			HomeWorkLocation h(x,y,0,xSd,ySd,0);
-			m_homeWork.addHomeLocation(h);
-			while( home = home->NextSiblingElement("home") ) {
-				cout<<"am gasit un alt home:" << home->Name() << endl;
-				double x = getValue(home, "x_home");
-				double y = getValue(home, "y_home");
-				double xSd = getValue(home, "x_sd_home");
-				double ySd = getValue(home, "y_sd_home");
-				HomeWorkLocation h(x,y,0,xSd,ySd,0);
-				m_homeWork.addHomeLocation(h);
-			}
-
-			XMLElement* work = homeWork->FirstChildElement("work");
-			cout<<"am gasit un work" << endl;
-			x = getValue(work, "x_work");
-			y = getValue(work, "y_work");
-			xSd = getValue(work, "x_sd_work");
-			ySd = getValue(work, "y_sd_work");
-			HomeWorkLocation w(x,y,0,xSd,ySd,0);
-			m_homeWork.addWorkLocation(w);
-			while( work = work->NextSiblingElement("work") ) {
-				cout<<"am gasit un alt work:" << work->Name() << endl;
-				double x = getValue(work, "x_work");
-				double y = getValue(work, "y_work");
-				double xSd = getValue(work, "x_sd_work");
-				double ySd = getValue(work, "y_sd_work");
-				HomeWorkLocation w(x,y,0,xSd,ySd,0);
-				m_homeWork.addWorkLocation(w);
-			}
-
+			parseHomeWorkScenario(homeWork, m_homeWork);
+//			XMLElement* home = homeWork->FirstChildElement("home");
+//			if(!home) {
+//				throw std::runtime_error("Home  location missing!");
+//			}
+//
+//			double x = getValue(home, "x_home");
+//			double y = getValue(home, "y_home");
+//			double xSd = getValue(home, "x_sd_home");
+//			double ySd = getValue(home, "y_sd_home");
+//			HomeWorkLocation h(x,y,0,xSd,ySd,0);
+//			cout << h.toString() << endl;
+//			m_homeWork.addHomeLocation(h);
+//			while( home = home->NextSiblingElement("home") ) {
+//				double x = getValue(home, "x_home");
+//				double y = getValue(home, "y_home");
+//				double xSd = getValue(home, "x_sd_home");
+//				double ySd = getValue(home, "y_sd_home");
+//				HomeWorkLocation h(x,y,0,xSd,ySd,0);
+//				m_homeWork.addHomeLocation(h);
+//				cout << h.toString() << endl;
+//			}
+//
+//			XMLElement* work = homeWork->FirstChildElement("work");
+//			x = getValue(work, "x_work");
+//			y = getValue(work, "y_work");
+//			xSd = getValue(work, "x_sd_work");
+//			ySd = getValue(work, "y_sd_work");
+//			HomeWorkLocation w(x,y,0,xSd,ySd,0);
+//			m_homeWork.addWorkLocation(w);
+//			cout << w.toString() << endl;
+//			while( work = work->NextSiblingElement("work") ) {
+//				double x = getValue(work, "x_work");
+//				double y = getValue(work, "y_work");
+//				double xSd = getValue(work, "x_sd_work");
+//				double ySd = getValue(work, "y_sd_work");
+//				HomeWorkLocation w(x,y,0,xSd,ySd,0);
+//				m_homeWork.addWorkLocation(w);
+//				cout << w.toString() << endl;
+//			}
+//			m_homeWork.setPrecentTimeHome(getValue(homeWork, "percent_time_home"));
+//			m_homeWork.setPrecentTimeWork(getValue(homeWork, "percent_time_work"));
+//			m_homeWork.setRandomPopulation(getValue(homeWork, "percent_random_population"));
 		}
 	}
+}
+
+
+void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario& hws) {
+	XMLElement* home = homeWorkElement->FirstChildElement("home");
+	if(!home) {
+		throw std::runtime_error("Home  location missing!");
+	}
+
+	double x = getValue(home, "x_home");
+	double y = getValue(home, "y_home");
+	double xSd = getValue(home, "x_sd_home");
+	double ySd = getValue(home, "y_sd_home");
+	HomeWorkLocation h(x,y,0,xSd,ySd,0);
+	hws.addHomeLocation(h);
+	while( (home = home->NextSiblingElement("home")) != nullptr ) {
+		double x = getValue(home, "x_home");
+		double y = getValue(home, "y_home");
+		double xSd = getValue(home, "x_sd_home");
+		double ySd = getValue(home, "y_sd_home");
+		HomeWorkLocation h(x,y,0,xSd,ySd,0);
+		hws.addHomeLocation(h);
+	}
+
+	XMLElement* work = homeWorkElement->FirstChildElement("work");
+	x = getValue(work, "x_work");
+	y = getValue(work, "y_work");
+	xSd = getValue(work, "x_sd_work");
+	ySd = getValue(work, "y_sd_work");
+	HomeWorkLocation w(x,y,0,xSd,ySd,0);
+	hws.addWorkLocation(w);
+	while( (work = work->NextSiblingElement("work")) != nullptr ) {
+		double x = getValue(work, "x_work");
+		double y = getValue(work, "y_work");
+		double xSd = getValue(work, "x_sd_work");
+		double ySd = getValue(work, "y_sd_work");
+		HomeWorkLocation w(x,y,0,xSd,ySd,0);
+		hws.addWorkLocation(w);
+	}
+	hws.setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
+	hws.setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
+	hws.setRandomPopulation(getValue(homeWorkElement, "percent_random_population"));
 }
 
 const string& SimConfig::getAntennasFilename() const {

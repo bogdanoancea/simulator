@@ -8,8 +8,9 @@
 #include <parsers/HomeWorkScenario.h>
 
 HomeWorkScenario::HomeWorkScenario() {
-	// TODO Auto-generated constructor stub
-
+	m_precentTimeHome = -1;
+	m_precentTimeWork = -1;
+	m_percentRandomPopulation = -1;
 }
 
 HomeWorkScenario::~HomeWorkScenario() {
