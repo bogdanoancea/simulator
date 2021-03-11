@@ -24,6 +24,9 @@
  */
 
 #include <agent/AgentsCollection.h>
+#include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
+#include <agent/Person.h>
 #include <AntennaType.h>
 #include <crtdefs.h>
 #include <Clock.h>
@@ -32,74 +35,58 @@
 #include <events/EventType.h>
 #include <EMField.h>
 #include <geos/geom/Point.h>
-#include <IDGenerator.h>
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
-#include <parsers/PersonsConfig.h>
-#include <TinyXML2.h>
 #include <UnifPriorPostLocProb.h>
-#include <Utils.h>
 #include <World.h>
 #include <algorithm>
-#include <cstring>
 #include <ctime>
 #include <fstream>
+#include <iostream>
 #include <map>
 #include <typeinfo>
+#include <utility>
 
 
 using namespace std;
-using namespace utils;
 using namespace tinyxml2;
 
 
-World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFile, const string& configSimulationFileName,
+World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName,
 		const string& probabilitiesFileName) {
 
-	m_sp = new SimConfig(configSimulationFileName, mmap) ;
-	vector<MobileOperator*> mnos = m_sp->getMnos();
 	m_agentsCollection = new AgentsCollection();
-	m_persConfig = new PersonsConfig(configPersonsFileName, m_sp, m_agentsCollection);
-
+	m_eventFactory = new EventFactory();
+	m_sp = new SimConfig(configSimulationFileName, m_agentsCollection, mmap) ;
+	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
-	string probsPrefix;
-	if (!probabilitiesFileName.empty())
-		probsPrefix = parseProbabilities(probabilitiesFileName);
-
-	for (unsigned long i = 0; i < mnos.size(); i++) {
-		m_agentsCollection->addAgent(mnos[i]);
-		if (!probabilitiesFileName.empty())
-			m_probFilenames.insert(pair<const unsigned long, string>(mnos[i]->getId(), m_sp->getOutputDir() + "/" + probsPrefix + "_" + mnos[i]->getMNOName() + ".csv"));
+	m_persConfig = new PersonsConfig(configPersonsFileName, m_sp, m_agentsCollection);
+	m_antennaConfig = new AntennaConfig(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
+	if (!probabilitiesFileName.empty()) {
+		m_probabilitiesConfig = new ProbabilitiesConfig(probabilitiesFileName);
+		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)
+			m_probFilenames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + m_probabilitiesConfig->getProbsFileNamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
+		if (m_probabilitiesConfig->getPrior() == PriorType::UNIFORM) {
+			auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
+			setPostProbMethod(postProb);
+		} else if (m_probabilitiesConfig->getPrior() == PriorType::NETWORK) {
+			auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
+			setPostProbMethod(postProb);
+		}
 	}
 
-	vector<Antenna*> antennas = parseAntennas(configAntennasFile, mnos);
-	for (unsigned long i = 0; i < antennas.size(); i++) {
-		antennas[i]->setHandoverMechanism(getConnectionType());
-		m_agentsCollection->addAgent(antennas[i]);
-		EMField::instance()->addAntenna(antennas[i]);
-	}
-
-	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
-	vector<Person*> persons = m_persConfig->getPersons();
-	for (unsigned long i = 0; i < persons.size(); i++) {
-		m_agentsCollection->addAgent(persons[i]);
-	}
-
-	if (m_prior == PriorType::UNIFORM) {
-		auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
-		setPostProbMethod(postProb);
-	} else if (m_prior == PriorType::NETWORK) {
-		auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
-		setPostProbMethod(postProb);
-	}
 	tt = m_sp->getClock()->realTime();
 	cout << "Generating objects ended at " << ctime(&tt) << endl;
 }
 
 World::~World() {
 	delete m_agentsCollection;
+	delete m_eventFactory;
+	if(m_probabilitiesConfig)
+		delete m_probabilitiesConfig;
+	delete m_antennaConfig;
 	delete m_persConfig;
 	delete m_sp;
 	cout << "End of simulation!" << endl;
@@ -167,94 +154,6 @@ const string& World::getGridFilename() const {
 	return (m_sp->getGridFilename());
 }
 
-vector<Person*> World::generatePopulation(unsigned long numPersons, double percentHome) {
-	vector<Person*> result;
-	unsigned long id;
-	vector<Point*> positions = utils::generatePoints(getMap(), numPersons, percentHome, m_sp->getSeed());
-	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_sp->getSeed());
-	double* speeds = random_generator->generateNormal2Double(0.3, 0.1, 1.5, 0.1, numPersons);
-	int* ages = random_generator->generateUniformInt(1, 100, numPersons);
-	for (unsigned long i = 0; i < numPersons; i++) {
-		id = IDGenerator::instance()->next();
-		Person* p = new Person(getMap(), id, positions[i], m_sp->getClock(), speeds[i], ages[i], Person::Gender::MALE, Constants::SIM_STAY_TIME,
-				Constants::SIM_INTERVAL_BETWEEN_STAYS);
-		result.push_back(p);
-	}
-	delete[] speeds;
-	delete[] ages;
-
-	return (result);
-}
-
-vector<Antenna*> World::generateAntennas(unsigned long numAntennas) {
-	vector<Antenna*> result;
-	unsigned long id;
-	double power = Constants::ANTENNA_POWER;
-	double attFactor = Constants::ATT_FACTOR;
-	unsigned long maxConnections = Constants::ANTENNA_MAX_CONNECTIONS;
-	double smid = Constants::ANTENNA_S_MID;
-	double ssteep = Constants::ANTENNA_S_STEEP;
-
-	vector<Point*> positions = utils::generateFixedPoints(getMap(), numAntennas, m_sp->getSeed());
-	for (unsigned long i = 0; i < numAntennas; i++) {
-		id = IDGenerator::instance()->next();
-		string outDir = Constants::OUTPUT_DIR;
-		Antenna* p = new Antenna(getMap(), id, positions[i], m_sp->getClock(), attFactor, power, maxConnections, smid, ssteep,
-				AntennaType::OMNIDIRECTIONAL, outDir, m_eventFactory, m_sp->getEventType());
-		result.push_back(p);
-	}
-	return (result);
-}
-
-vector<Antenna*> World::parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false) {
-	vector<Antenna*> result;
-	XMLDocument doc;
-	XMLError err = doc.LoadFile(configAntennasFile.c_str());
-	if (err != XML_SUCCESS)
-		throw std::runtime_error("Error opening configuration file for antennas ");
-
-	XMLElement* antennasNode = doc.FirstChildElement("antennas");
-	if (!antennasNode)
-		throw std::runtime_error("Syntax error in the configuration file for antennas ");
-	else {
-		XMLElement* antennaEl = utils::getFirstChildElement(antennasNode, "antenna");
-		for (; antennaEl; antennaEl = antennaEl->NextSiblingElement()) {
-			if (antennaEl && strcmp(antennaEl->Name(), "antenna")) {
-				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
-				continue;
-			}
-			unsigned long id = IDGenerator::instance()->next();
-			Antenna* a = new Antenna(getMap(), m_sp->getClock(), id, antennaEl, mnos, m_sp->getOutputDir(), m_eventFactory, m_sp->getEventType());
-			result.push_back(a);
-		}
-	}
-	return (result);
-}
-
-string World::parseProbabilities(const string& probabilitiesFileName) {
-	XMLDocument doc;
-	string probsFileNamePrefix;
-	XMLError err = doc.LoadFile(probabilitiesFileName.c_str());
-	if (err != XML_SUCCESS)
-		throw std::runtime_error("Error opening configuration file for probabilities ");
-
-	XMLElement* probEl = doc.FirstChildElement("probabilities");
-	if (!probEl)
-		throw std::runtime_error("Syntax error in the configuration file for probabilities ");
-	else {
-		const char* prior = getValue(probEl, "prior", "UNKNOWN");
-		if (!strcmp(prior, "network"))
-			m_prior = PriorType::NETWORK;
-		else if (!strcmp(prior, "uniform"))
-			m_prior = PriorType::UNIFORM;
-		else if (!strcmp(prior, "register"))
-			m_prior = PriorType::REGISTER;
-		else
-			m_prior = Constants::PRIOR_PROBABILITY;
-		probsFileNamePrefix = getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX);
-	}
-	return probsFileNamePrefix;
-}
 
 map<const unsigned long, const string> World::getProbFilenames() const {
 	return m_probFilenames;
@@ -306,7 +205,7 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 			}
 			antennaInfoFile.close();
 		}
-		 data.insert ( std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
+		 data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}
 	return (data);
 }

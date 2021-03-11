@@ -11,16 +11,13 @@
 #include <agent/MobileOperator.h>
 #include <agent/Person.h>
 #include <AgeDistribution.h>
+#include <RandomNumberGenerator.h>
 #include <parsers/Config.h>
+#include <parsers/SimConfig.h>
 #include <memory>
 #include <string>
 #include <vector>
 
-class AgentsCollection;
-
-class RandomNumberGenerator;
-
-class SimConfig;
 
 class PersonsConfig: public Config {
 public:
@@ -31,7 +28,6 @@ public:
 private:
 	void parse();
 	vector<Person*> m_persons;
-	//vector<MobileOperator*> m_mnos;
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
 				double male_share, double speed_walk, double speed_car, double percentHome);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng );

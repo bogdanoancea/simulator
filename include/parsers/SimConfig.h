@@ -28,6 +28,8 @@
 #include <events/EventType.h>
 #include <MovementType.h>
 #include <parsers/Config.h>
+#include <parsers/HomeWorkScenario.h>
+#include <agent/AgentsCollection.h>
 #include <TinyXML2.h>
 #include <string>
 #include <vector>
@@ -39,7 +41,7 @@ using namespace tinyxml2;
 
 class SimConfig: public Config {
 public:
-	SimConfig(const string& fileName, Map* map);
+	SimConfig(const string& fileName, AgentsCollection* agents, Map* map);
 	virtual ~SimConfig();
 
 	const string& getAntennasFilename() const;
@@ -105,6 +107,7 @@ private:
 	EventType m_eventType; // SimConfig
 	Clock* m_clock;
 	Map* m_map;
+	HomeWorkScenario m_homeWork;
 
 	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	MovementType parseMovement(XMLElement* el);

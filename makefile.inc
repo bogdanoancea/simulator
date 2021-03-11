@@ -1,6 +1,6 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = /Users/bogdanoancea/c-projects/simulator
+PROJ_HOME = d:/c-projects/simulator
 GEOS_HOME = /usr/local/lib
 MSYS_HOME = C:/rtools40
 DEBUG     = 0

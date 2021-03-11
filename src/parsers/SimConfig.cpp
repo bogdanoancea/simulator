@@ -20,8 +20,16 @@
  *      Author: Bogdan.Oancea
  */
 
+#include <Clock.h>
 #include <Constants.h>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/Coordinate.inl>
+#include <geos/geom/CoordinateSequence.h>
+#include <geos/geom/GeometryFactory.h>
+#include <geos/geom/Point.h>
 #include <IDGenerator.h>
+#include <map/Map.h>
+#include <parsers/HomeWorkLocation.h>
 #include <parsers/SimConfig.h>
 #include <Utils.h>
 #include <cstring>
@@ -30,12 +38,14 @@
 
 using namespace utils;
 
-SimConfig::SimConfig(const string& filename, Map* map) :
+SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map) :
 		Config(filename) {
 
 	m_map = map;
 	parse();
 	m_clock = new Clock(getStartTime(), getEndTime(), getTimeIncrement());
+	for (unsigned long i = 0; i < m_mnos.size(); i++)
+		agents->addAgent(m_mnos[i]);
 }
 
 SimConfig::~SimConfig() {
@@ -85,6 +95,50 @@ void SimConfig::parse() {
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
+		XMLElement* homeWork = simEl->FirstChildElement("specs_home_work");
+		if(homeWork) {
+			cout << "am gasit scenariul" << endl;
+
+			XMLElement* home = homeWork->FirstChildElement("home");
+			if(!home) {
+				throw std::runtime_error("Home  location missing!");
+			}
+			cout<<"am gasit un home" << endl;
+			double x = getValue(home, "x_home");
+			double y = getValue(home, "y_home");
+			double xSd = getValue(home, "x_sd_home");
+			double ySd = getValue(home, "y_sd_home");
+			HomeWorkLocation h(x,y,0,xSd,ySd,0);
+			m_homeWork.addHomeLocation(h);
+			while( home = home->NextSiblingElement("home") ) {
+				cout<<"am gasit un alt home:" << home->Name() << endl;
+				double x = getValue(home, "x_home");
+				double y = getValue(home, "y_home");
+				double xSd = getValue(home, "x_sd_home");
+				double ySd = getValue(home, "y_sd_home");
+				HomeWorkLocation h(x,y,0,xSd,ySd,0);
+				m_homeWork.addHomeLocation(h);
+			}
+
+			XMLElement* work = homeWork->FirstChildElement("work");
+			cout<<"am gasit un work" << endl;
+			x = getValue(work, "x_work");
+			y = getValue(work, "y_work");
+			xSd = getValue(work, "x_sd_work");
+			ySd = getValue(work, "y_sd_work");
+			HomeWorkLocation w(x,y,0,xSd,ySd,0);
+			m_homeWork.addWorkLocation(w);
+			while( work = work->NextSiblingElement("work") ) {
+				cout<<"am gasit un alt work:" << work->Name() << endl;
+				double x = getValue(work, "x_work");
+				double y = getValue(work, "y_work");
+				double xSd = getValue(work, "x_sd_work");
+				double ySd = getValue(work, "y_sd_work");
+				HomeWorkLocation w(x,y,0,xSd,ySd,0);
+				m_homeWork.addWorkLocation(w);
+			}
+
+		}
 	}
 }
 
@@ -271,6 +325,8 @@ MovementType SimConfig::parseMovement(XMLElement* el) {
 		result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
 	} else if (!strcmp(mvType, "levy_flight")) {
 		result = MovementType::LEVY_FLIGHT;
+	} else if(!strcmp(mvType, "home_work")) {
+		result = MovementType::HOME_WORK;
 	} else
 		throw runtime_error("Unknown displacement mechanism!");
 	return (result);

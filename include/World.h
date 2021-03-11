@@ -34,6 +34,8 @@
 #include <PriorType.h>
 #include <parsers/SimConfig.h>
 #include <parsers/PersonsConfig.h>
+#include <parsers/AntennaConfig.h>
+#include <parsers/ProbabilitiesConfig.h>
 #include <map>
 #include <memory>
 #include <string>
@@ -153,16 +155,18 @@ private:
 	AgentsCollection* m_agentsCollection;
 	SimConfig* m_sp;
 	PersonsConfig* m_persConfig;
+	AntennaConfig* m_antennaConfig;
+	ProbabilitiesConfig* m_probabilitiesConfig;
 
-	PriorType m_prior;
+	//PriorType m_prior;
 	map<const unsigned long, const string> m_probFilenames;
 	shared_ptr<PostLocProb> m_postMethod;
-	EventFactory m_eventFactory;
+	EventFactory* m_eventFactory;
 
-	vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
+	//vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
 
-	vector<Antenna*> generateAntennas(unsigned long numAntennas);
-	vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
+	//vector<Antenna*> generateAntennas(unsigned long numAntennas);
+	//vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	void writeSignalAndCells(ostream& antennaFile);

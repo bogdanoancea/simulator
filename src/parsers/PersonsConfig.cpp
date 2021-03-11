@@ -36,6 +36,9 @@ PersonsConfig::PersonsConfig(const string& filename, SimConfig* sc, AgentsCollec
 	m_simConfig = sc;
 	m_agents = ag;
 	parse();
+	for (unsigned long i = 0; i < m_persons.size(); i++) {
+			m_agents->addAgent(m_persons[i]);
+	}
 }
 
 PersonsConfig::~PersonsConfig() {
