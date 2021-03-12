@@ -5,8 +5,8 @@
  *      Author: bogdan
  */
 
-#ifndef INCLUDE_PARSERS_HOMEWORKSCENARIO_H_
-#define INCLUDE_PARSERS_HOMEWORKSCENARIO_H_
+#ifndef INCLUDE_HOMEWORKSCENARIO_H_
+#define INCLUDE_HOMEWORKSCENARIO_H_
 
 
 #include <geos/geom/Point.h>
@@ -31,16 +31,13 @@ public:
 	void setPrecentTimeHome(double precentTimeHome);
 	double getPrecentTimeWork() const;
 	void setPrecentTimeWork(double precentTimeWork);
-	double getRandomPopulation() const;
-	void setRandomPopulation(double randomPopulation);
+	const string toString();
 
 private:
 	vector<HomeWorkLocation> m_homeLocations;
 	vector<HomeWorkLocation> m_workLocations;
 	double m_precentTimeHome;
 	double m_precentTimeWork;
-	double m_percentRandomPopulation;
-
 };
 
-#endif /* INCLUDE_PARSERS_HOMEWORKSCENARIO_H_ */
+#endif /* INCLUDE_HOMEWORKSCENARIO_H_ */

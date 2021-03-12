@@ -37,7 +37,6 @@
 			</work>
 			<percent_time_home>0.3</percent_time_home>
 			<percent_time_work>0.3</percent_time_work>
-			<percent_random_population>0.15</percent_random_population>
 		</specs_home_work>
 		<connection_type>strength</connection_type>
 		<conn_threshold>-85</conn_threshold>

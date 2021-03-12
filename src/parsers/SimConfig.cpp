@@ -42,6 +42,7 @@ SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map)
 		Config(filename) {
 
 	m_map = map;
+	m_homeWork = nullptr;
 	parse();
 	m_clock = new Clock(getStartTime(), getEndTime(), getTimeIncrement());
 	for (unsigned long i = 0; i < m_mnos.size(); i++)
@@ -49,6 +50,8 @@ SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map)
 }
 
 SimConfig::~SimConfig() {
+	if(m_homeWork)
+		delete m_homeWork;
 	delete m_clock;
 }
 
@@ -95,57 +98,17 @@ void SimConfig::parse() {
 		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
 		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
-		XMLElement* homeWork = simEl->FirstChildElement("specs_home_work");
-		if(homeWork) {
-			parseHomeWorkScenario(homeWork, m_homeWork);
-//			XMLElement* home = homeWork->FirstChildElement("home");
-//			if(!home) {
-//				throw std::runtime_error("Home  location missing!");
-//			}
-//
-//			double x = getValue(home, "x_home");
-//			double y = getValue(home, "y_home");
-//			double xSd = getValue(home, "x_sd_home");
-//			double ySd = getValue(home, "y_sd_home");
-//			HomeWorkLocation h(x,y,0,xSd,ySd,0);
-//			cout << h.toString() << endl;
-//			m_homeWork.addHomeLocation(h);
-//			while( home = home->NextSiblingElement("home") ) {
-//				double x = getValue(home, "x_home");
-//				double y = getValue(home, "y_home");
-//				double xSd = getValue(home, "x_sd_home");
-//				double ySd = getValue(home, "y_sd_home");
-//				HomeWorkLocation h(x,y,0,xSd,ySd,0);
-//				m_homeWork.addHomeLocation(h);
-//				cout << h.toString() << endl;
-//			}
-//
-//			XMLElement* work = homeWork->FirstChildElement("work");
-//			x = getValue(work, "x_work");
-//			y = getValue(work, "y_work");
-//			xSd = getValue(work, "x_sd_work");
-//			ySd = getValue(work, "y_sd_work");
-//			HomeWorkLocation w(x,y,0,xSd,ySd,0);
-//			m_homeWork.addWorkLocation(w);
-//			cout << w.toString() << endl;
-//			while( work = work->NextSiblingElement("work") ) {
-//				double x = getValue(work, "x_work");
-//				double y = getValue(work, "y_work");
-//				double xSd = getValue(work, "x_sd_work");
-//				double ySd = getValue(work, "y_sd_work");
-//				HomeWorkLocation w(x,y,0,xSd,ySd,0);
-//				m_homeWork.addWorkLocation(w);
-//				cout << w.toString() << endl;
-//			}
-//			m_homeWork.setPrecentTimeHome(getValue(homeWork, "percent_time_home"));
-//			m_homeWork.setPrecentTimeWork(getValue(homeWork, "percent_time_work"));
-//			m_homeWork.setRandomPopulation(getValue(homeWork, "percent_random_population"));
+		XMLElement* homeWorkEl = simEl->FirstChildElement("specs_home_work");
+		if(homeWorkEl) {
+			m_homeWork = new HomeWorkScenario();
+			parseHomeWorkScenario(homeWorkEl, m_homeWork);
+			cout << m_homeWork->toString() << endl;
 		}
 	}
 }
 
 
-void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario& hws) {
+void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
 	XMLElement* home = homeWorkElement->FirstChildElement("home");
 	if(!home) {
 		throw std::runtime_error("Home  location missing!");
@@ -156,14 +119,14 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	double xSd = getValue(home, "x_sd_home");
 	double ySd = getValue(home, "y_sd_home");
 	HomeWorkLocation h(x,y,0,xSd,ySd,0);
-	hws.addHomeLocation(h);
+	hws->addHomeLocation(h);
 	while( (home = home->NextSiblingElement("home")) != nullptr ) {
 		double x = getValue(home, "x_home");
 		double y = getValue(home, "y_home");
 		double xSd = getValue(home, "x_sd_home");
 		double ySd = getValue(home, "y_sd_home");
 		HomeWorkLocation h(x,y,0,xSd,ySd,0);
-		hws.addHomeLocation(h);
+		hws->addHomeLocation(h);
 	}
 
 	XMLElement* work = homeWorkElement->FirstChildElement("work");
@@ -172,18 +135,17 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	xSd = getValue(work, "x_sd_work");
 	ySd = getValue(work, "y_sd_work");
 	HomeWorkLocation w(x,y,0,xSd,ySd,0);
-	hws.addWorkLocation(w);
+	hws->addWorkLocation(w);
 	while( (work = work->NextSiblingElement("work")) != nullptr ) {
 		double x = getValue(work, "x_work");
 		double y = getValue(work, "y_work");
 		double xSd = getValue(work, "x_sd_work");
 		double ySd = getValue(work, "y_sd_work");
 		HomeWorkLocation w(x,y,0,xSd,ySd,0);
-		hws.addWorkLocation(w);
+		hws->addWorkLocation(w);
 	}
-	hws.setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
-	hws.setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
-	hws.setRandomPopulation(getValue(homeWorkElement, "percent_random_population"));
+	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
+	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
 }
 
 const string& SimConfig::getAntennasFilename() const {
@@ -399,4 +361,21 @@ double SimConfig::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE c
 	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 		result = Constants::PHONE_STRENGTH_THRESHOLD;
 	return (result);
+}
+
+bool SimConfig::isHomeWorkScenario() const {
+	return (m_homeWork != nullptr);
+}
+
+
+unsigned int SimConfig::getNumHomeLocations() const {
+	if(isHomeWorkScenario())
+		return m_homeWork->getHomeLocations().size();
+	else return -1;
+}
+
+unsigned int SimConfig::getNumworkLocations() const {
+	if(isHomeWorkScenario())
+		return m_homeWork->getWorkLocations().size();
+	else return -1;
 }

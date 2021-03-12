@@ -6,11 +6,13 @@
  */
 
 #include <parsers/HomeWorkScenario.h>
+#include <sstream>
+#include <string>
+
 
 HomeWorkScenario::HomeWorkScenario() {
 	m_precentTimeHome = -1;
 	m_precentTimeWork = -1;
-	m_percentRandomPopulation = -1;
 }
 
 HomeWorkScenario::~HomeWorkScenario() {
@@ -50,10 +52,19 @@ void HomeWorkScenario::setPrecentTimeWork(double precentTimeWork) {
 	m_precentTimeWork = precentTimeWork;
 }
 
-double HomeWorkScenario::getRandomPopulation() const {
-	return m_percentRandomPopulation;
-}
-
-void HomeWorkScenario::setRandomPopulation(double percentRandomPopulation) {
-	m_percentRandomPopulation = percentRandomPopulation;
+const string HomeWorkScenario::toString(){
+	ostringstream result;
+	//output home locations
+	result << "Home locations" << endl;
+	for(auto& l : m_homeLocations) {
+		result <<  l.toString() << endl;
+	}
+	//output works locations
+	result << "Work locations" << endl;
+	for(auto & w : m_workLocations) {
+		result << w.toString() << endl;
+	}
+	result << "Percent time at home: " << m_precentTimeHome << endl;
+	result << "Percent time at work: " << m_precentTimeWork << endl;
+	return result.str();
 }

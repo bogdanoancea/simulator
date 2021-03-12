@@ -82,6 +82,9 @@ public:
 	void setTimeIncrement(unsigned long timeIncrement);
 	Clock* getClock();
 	Map* getMap();
+	bool isHomeWorkScenario() const;
+	unsigned int getNumHomeLocations() const;
+	unsigned int getNumworkLocations() const;
 
 private:
 	void parse();
@@ -107,13 +110,13 @@ private:
 	EventType m_eventType; // SimConfig
 	Clock* m_clock;
 	Map* m_map;
-	HomeWorkScenario m_homeWork;
+	HomeWorkScenario* m_homeWork;
 
 	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	MovementType parseMovement(XMLElement* el);
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
-	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario& hws);
+	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */

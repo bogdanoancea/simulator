@@ -52,9 +52,23 @@ using namespace geos::geom;
 using namespace std;
 
 //TODO it is a mess, this function should be written again.
-vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome, unsigned seed) {
+vector<Point*> generatePoints(SimConfig* sc, unsigned long n, double percentHome) {
+	if(sc->isHomeWorkScenario()) {
+		return generateHomeWorkPoints(sc, n, percentHome);
+	}
+	else {
+		return generateRandomPoints(sc, n, percentHome);
+	}
+
+
+}
+
+
+vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double percentHome) {
 	vector<Point*> result;
+	Map* m = sc->getMap();
 	RandomNumberGenerator* random_generator;
+	unsigned int seed = sc->getSeed();
 	random_generator = RandomNumberGenerator::instance(seed);
 
 	Geometry* g = m->getBoundary();
@@ -139,6 +153,108 @@ vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome,
 	}
 	return (result);
 }
+
+vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double percentHome) {
+	vector<Point*> result;
+	Map* m = sc->getMap();
+	RandomNumberGenerator* random_generator;
+	unsigned int seed = sc->getSeed();
+	random_generator = RandomNumberGenerator::instance(seed);
+
+	Geometry* g = m->getBoundary();
+	if (g != nullptr) {
+		const Envelope* env = g->getEnvelopeInternal();
+		double xmin = env->getMinX();
+		double xmax = env->getMaxX();
+		double ymin = env->getMinY();
+		double ymax = env->getMaxY();
+
+		unsigned long nhome = (unsigned long) n * percentHome;
+		unsigned int nHomeLocations = sc->getNumHomeLocations();
+		unsigned int nPerLocation = nhome / nHomeLocations;
+		unsigned int nPerLastLocation = 0;
+		if( nHomeLocations * nPerLocation != nhome)
+			nPerLastLocation = nhome - (nHomeLocations - 1) * nPerLocation
+
+		for(unsigned int i = 0; i < nHomeLocations; i++) {
+
+		}
+		//TODO aici am ramas
+
+		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
+
+		unsigned long i = 0, k = 0;
+		while (k < nhome) {
+			if (x1[i] < 1e-15)
+				x1[i] = 0.0;
+			if (y1[i] < 1e-15)
+				y1[i] = 0.0;
+			Coordinate c = Coordinate(x1[i], y1[i]);
+			c.z = 0;
+			i++;
+			Point* p = m->getGlobalFactory()->createPoint(c);
+			if (g->contains(p)) {
+				result.push_back(p);
+				k++;
+			} else
+				m->getGlobalFactory()->destroyGeometry(p);
+			// we used all the numbers, generate others
+			if (i > n - 1) {
+				delete[] x1;
+				delete[] y1;
+				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
+				i = 0;
+//				if (x1[i] < 1e-15)
+//					x1[i] = 0.0;
+//				if (y1[i] < 1e-15)
+//					y1[i] = 0.0;
+			}
+		}
+		delete[] x1;
+		delete[] y1;
+
+		random_generator->setSeed(time(0));
+		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n);
+		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n);
+
+		k = 0;
+		i = 0;
+		while (k < n - nhome) {
+			if (x2[i] < 1e-15)
+				x2[i] = 0.0;
+			if (y2[i] < 1e-15)
+				y2[i] = 0.0;
+			Coordinate c = Coordinate(x2[i], y2[i]);
+			c.z = 0;
+			i++;
+			Point* p = m->getGlobalFactory()->createPoint(c);
+			if (g->contains(p)) {
+				result.push_back(p);
+				k++;
+			} else
+				m->getGlobalFactory()->destroyGeometry(p);
+
+			// we used all the numbers, generate others
+			if (i > n - 1) {
+				delete[] x2;
+				delete[] y2;
+				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
+				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
+				i = 0;
+//				if (x2[i] < 1e-15)
+//					x2[i] = 0.0;
+//				if (y2[i] < 1e-15)
+//					y2[i] = 0.0;
+			}
+		}
+		delete[] x2;
+		delete[] y2;
+	}
+	return (result);
+}
+
 
 vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed) {
 	vector<Point*> result;

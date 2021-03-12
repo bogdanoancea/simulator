@@ -103,7 +103,7 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 	int* ages = generateAges(numPersons, ageDistribution, random_generator );
 	unsigned long cars = 0, walks = 0;
 	Person* p;
-	vector<Point*> positions = utils::generatePoints(m_simConfig->getMap(), numPersons, percentHome, m_simConfig->getSeed());
+	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
 	unsigned int numMno =  m_simConfig->getMnos().size();
 	for (unsigned long i = 0; i < numPersons; i++) {
 		id = IDGenerator::instance()->next();

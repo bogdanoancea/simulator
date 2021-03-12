@@ -30,6 +30,7 @@
 #include <agent/MobilePhone.h>
 #include <events/EventType.h>
 #include <AntennaInfo.h>
+#include <parsers/SimConfig.h>
 #include <geos/geom/Point.h>
 #include <PriorType.h>
 #include <NetworkType.h>
@@ -62,7 +63,10 @@ namespace utils {
 	 * have the same values. The rest of the points differ from a simulation to another.
 	 * @return a vector of pointers to Point objects.
 	 */
-	vector<Point*> generatePoints(const Map* m, unsigned long n, double percentHome, unsigned seed);
+	vector<Point*> generatePoints(SimConfig* sc, unsigned long n, double percentHome);
+	vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double percentHome);
+	vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double percentHome);
+
 
 	/**
 	 * Generates n random points on a map. The points have the same locations in all simulations.
