@@ -26,6 +26,7 @@
 #include <agent/Antenna.h>
 #include <agent/MobilePhone.h>
 #include <events/EventCode.h>
+#include <parsers/HomeWorkLocation.h>
 #include <EMField.h>
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/Envelope.h>
@@ -44,7 +45,8 @@
 #include <unordered_map>
 #include <limits>
 #include <sstream>
-#include<filesystem>
+#include <filesystem>
+#include <vector>
 
 namespace utils {
 using namespace geos;
@@ -174,79 +176,96 @@ vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double per
 		unsigned int nPerLocation = nhome / nHomeLocations;
 		unsigned int nPerLastLocation = 0;
 		if( nHomeLocations * nPerLocation != nhome)
-			nPerLastLocation = nhome - (nHomeLocations - 1) * nPerLocation
+			nPerLastLocation = nhome - (nHomeLocations - 1) * nPerLocation;
 
+		//generate positions for home locations
+		double* x1;
+		double* y1;
 		for(unsigned int i = 0; i < nHomeLocations; i++) {
-
-		}
-		//TODO aici am ramas
-
-		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
-
-		unsigned long i = 0, k = 0;
-		while (k < nhome) {
-			if (x1[i] < 1e-15)
-				x1[i] = 0.0;
-			if (y1[i] < 1e-15)
-				y1[i] = 0.0;
-			Coordinate c = Coordinate(x1[i], y1[i]);
-			c.z = 0;
-			i++;
-			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (g->contains(p)) {
-				result.push_back(p);
-				k++;
-			} else
-				m->getGlobalFactory()->destroyGeometry(p);
-			// we used all the numbers, generate others
-			if (i > n - 1) {
-				delete[] x1;
-				delete[] y1;
-				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
-				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
-				i = 0;
-//				if (x1[i] < 1e-15)
-//					x1[i] = 0.0;
-//				if (y1[i] < 1e-15)
-//					y1[i] = 0.0;
+			HomeWorkLocation hLoc = sc->getHomeLocation(i);
+			if( i != nHomeLocations - 1) {
+				x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLocation);
+				y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLocation);
+				unsigned long j = 0, k = 0;
+				while (k < nPerLocation) {
+					if (x1[j] < 1e-15)
+						x1[j] = 0.0;
+					if (y1[j] < 1e-15)
+						y1[j] = 0.0;
+					Coordinate c = Coordinate(x1[i], y1[i], 0);
+					j++;
+					Point* p = m->getGlobalFactory()->createPoint(c);
+					if (g->contains(p)) {
+						result.push_back(p);
+						k++;
+					} else
+						m->getGlobalFactory()->destroyGeometry(p);
+						// we used all the numbers, generate others
+					if (j > nPerLocation - 1) {
+						delete[] x1;
+						delete[] y1;
+						x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLocation);
+						y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLocation);
+						j = 0;
+					}
+				}
+			}
+			//last home location
+			else {
+				x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLastLocation);
+				y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLastLocation);
+				unsigned long j = 0, k = 0;
+				while (k < nPerLastLocation) {
+					if (x1[j] < 1e-15)
+						x1[j] = 0.0;
+					if (y1[j] < 1e-15)
+						y1[j] = 0.0;
+					Coordinate c = Coordinate(x1[i], y1[i], 0);
+					j++;
+					Point* p = m->getGlobalFactory()->createPoint(c);
+					if (g->contains(p)) {
+						result.push_back(p);
+						k++;
+					} else
+						m->getGlobalFactory()->destroyGeometry(p);
+						// we used all the numbers, generate others
+					if (j > nPerLocation - 1) {
+						delete[] x1;
+						delete[] y1;
+						x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLastLocation);
+						y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLastLocation);
+						j = 0;
+					}
+				}
 			}
 		}
 		delete[] x1;
 		delete[] y1;
-
+		//aici generez aleatoare ( population not at home)
 		random_generator->setSeed(time(0));
-		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-
-		k = 0;
-		i = 0;
+		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n-nhome);
+		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n-nhome);
+		unsigned k = 0, j = 0;
 		while (k < n - nhome) {
-			if (x2[i] < 1e-15)
-				x2[i] = 0.0;
-			if (y2[i] < 1e-15)
-				y2[i] = 0.0;
-			Coordinate c = Coordinate(x2[i], y2[i]);
-			c.z = 0;
-			i++;
+			if (x2[j] < 1e-15)
+				x2[j] = 0.0;
+			if (y2[j] < 1e-15)
+				y2[j] = 0.0;
+			Coordinate c = Coordinate(x2[j], y2[j], 0);
+			j++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
 			if (g->contains(p)) {
 				result.push_back(p);
 				k++;
 			} else
 				m->getGlobalFactory()->destroyGeometry(p);
-
-			// we used all the numbers, generate others
-			if (i > n - 1) {
+				// we used all the numbers, generate others
+			if (j > n - nhome) {
 				delete[] x2;
 				delete[] y2;
 				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
 				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-				i = 0;
-//				if (x2[i] < 1e-15)
-//					x2[i] = 0.0;
-//				if (y2[i] < 1e-15)
-//					y2[i] = 0.0;
+				j = 0;
 			}
 		}
 		delete[] x2;

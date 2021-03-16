@@ -84,7 +84,8 @@ public:
 	Map* getMap();
 	bool isHomeWorkScenario() const;
 	unsigned int getNumHomeLocations() const;
-	unsigned int getNumworkLocations() const;
+	unsigned int getNumWorkLocations() const;
+	HomeWorkLocation getHomeLocation(unsigned int i) const;
 
 private:
 	void parse();

@@ -374,8 +374,15 @@ unsigned int SimConfig::getNumHomeLocations() const {
 	else return -1;
 }
 
-unsigned int SimConfig::getNumworkLocations() const {
+unsigned int SimConfig::getNumWorkLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWork->getWorkLocations().size();
 	else return -1;
+}
+
+HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
+	if(isHomeWorkScenario())
+		return m_homeWork->getHomeLocations().at(i);
+	else
+		return nullptr;
 }
