@@ -383,6 +383,7 @@ unsigned int SimConfig::getNumWorkLocations() const {
 HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
 		return m_homeWork->getHomeLocations().at(i);
-	else
-		return nullptr;
+	else {
+		throw std::runtime_error("No Home - Work scenario defined!");
+	}
 }

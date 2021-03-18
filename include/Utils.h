@@ -34,6 +34,7 @@
 #include <geos/geom/Point.h>
 #include <PriorType.h>
 #include <NetworkType.h>
+#include <RandomNumberGenerator.h>
 #include <cmath>
 #include <utility>
 #include <vector>
@@ -67,6 +68,7 @@ namespace utils {
 	vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double percentHome);
 	vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double percentHome);
 
+	void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_gernerator, vector<Point*>& result);
 
 	/**
 	 * Generates n random points on a map. The points have the same locations in all simulations.

@@ -61,8 +61,6 @@ vector<Point*> generatePoints(SimConfig* sc, unsigned long n, double percentHome
 	else {
 		return generateRandomPoints(sc, n, percentHome);
 	}
-
-
 }
 
 
@@ -91,8 +89,7 @@ vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double perce
 				x1[i] = 0.0;
 			if (y1[i] < 1e-15)
 				y1[i] = 0.0;
-			Coordinate c = Coordinate(x1[i], y1[i]);
-			c.z = 0;
+			Coordinate c = Coordinate(x1[i], y1[i], 0);
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
 			if (g->contains(p)) {
@@ -107,10 +104,6 @@ vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double perce
 				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
 				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
 				i = 0;
-//				if (x1[i] < 1e-15)
-//					x1[i] = 0.0;
-//				if (y1[i] < 1e-15)
-//					y1[i] = 0.0;
 			}
 		}
 		delete[] x1;
@@ -127,8 +120,7 @@ vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double perce
 				x2[i] = 0.0;
 			if (y2[i] < 1e-15)
 				y2[i] = 0.0;
-			Coordinate c = Coordinate(x2[i], y2[i]);
-			c.z = 0;
+			Coordinate c = Coordinate(x2[i], y2[i], 0);
 			i++;
 			Point* p = m->getGlobalFactory()->createPoint(c);
 			if (g->contains(p)) {
@@ -144,10 +136,6 @@ vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double perce
 				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
 				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
 				i = 0;
-//				if (x2[i] < 1e-15)
-//					x2[i] = 0.0;
-//				if (y2[i] < 1e-15)
-//					y2[i] = 0.0;
 			}
 		}
 		delete[] x2;
@@ -165,84 +153,32 @@ vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double per
 
 	Geometry* g = m->getBoundary();
 	if (g != nullptr) {
-		const Envelope* env = g->getEnvelopeInternal();
-		double xmin = env->getMinX();
-		double xmax = env->getMaxX();
-		double ymin = env->getMinY();
-		double ymax = env->getMaxY();
-
 		unsigned long nhome = (unsigned long) n * percentHome;
 		unsigned int nHomeLocations = sc->getNumHomeLocations();
 		unsigned int nPerLocation = nhome / nHomeLocations;
 		unsigned int nPerLastLocation = 0;
 		if( nHomeLocations * nPerLocation != nhome)
 			nPerLastLocation = nhome - (nHomeLocations - 1) * nPerLocation;
+		else
+			nPerLastLocation = nPerLocation;
 
 		//generate positions for home locations
-		double* x1;
-		double* y1;
 		for(unsigned int i = 0; i < nHomeLocations; i++) {
 			HomeWorkLocation hLoc = sc->getHomeLocation(i);
 			if( i != nHomeLocations - 1) {
-				x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLocation);
-				y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLocation);
-				unsigned long j = 0, k = 0;
-				while (k < nPerLocation) {
-					if (x1[j] < 1e-15)
-						x1[j] = 0.0;
-					if (y1[j] < 1e-15)
-						y1[j] = 0.0;
-					Coordinate c = Coordinate(x1[i], y1[i], 0);
-					j++;
-					Point* p = m->getGlobalFactory()->createPoint(c);
-					if (g->contains(p)) {
-						result.push_back(p);
-						k++;
-					} else
-						m->getGlobalFactory()->destroyGeometry(p);
-						// we used all the numbers, generate others
-					if (j > nPerLocation - 1) {
-						delete[] x1;
-						delete[] y1;
-						x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLocation);
-						y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLocation);
-						j = 0;
-					}
-				}
+				generateHomeLocation(m, hLoc, nPerLocation, random_generator, result);
 			}
 			//last home location
 			else {
-				x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLastLocation);
-				y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLastLocation);
-				unsigned long j = 0, k = 0;
-				while (k < nPerLastLocation) {
-					if (x1[j] < 1e-15)
-						x1[j] = 0.0;
-					if (y1[j] < 1e-15)
-						y1[j] = 0.0;
-					Coordinate c = Coordinate(x1[i], y1[i], 0);
-					j++;
-					Point* p = m->getGlobalFactory()->createPoint(c);
-					if (g->contains(p)) {
-						result.push_back(p);
-						k++;
-					} else
-						m->getGlobalFactory()->destroyGeometry(p);
-						// we used all the numbers, generate others
-					if (j > nPerLocation - 1) {
-						delete[] x1;
-						delete[] y1;
-						x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, nPerLastLocation);
-						y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, nPerLastLocation);
-						j = 0;
-					}
-				}
+				generateHomeLocation(m, hLoc, nPerLastLocation, random_generator, result);
 			}
 		}
-		delete[] x1;
-		delete[] y1;
 		//aici generez aleatoare ( population not at home)
-		random_generator->setSeed(time(0));
+		const Envelope* env = g->getEnvelopeInternal();
+		double xmin = env->getMinX();
+		double xmax = env->getMaxX();
+		double ymin = env->getMinY();
+		double ymax = env->getMaxY();
 		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n-nhome);
 		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n-nhome);
 		unsigned k = 0, j = 0;
@@ -274,6 +210,35 @@ vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double per
 	return (result);
 }
 
+void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_generator, vector<Point*>& result) {
+	double* x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, npers);
+	double* y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, npers);
+	unsigned long j = 0, k = 0;
+	while (k < npers) {
+		if (x1[j] < 1e-15)
+			x1[j] = 0.0;
+		if (y1[j] < 1e-15)
+			y1[j] = 0.0;
+		Coordinate c = Coordinate(x1[j], y1[j], 0);
+		j++;
+		Point* p = m->getGlobalFactory()->createPoint(c);
+		if (m->getBoundary()->contains(p)) {
+			result.push_back(p);
+			k++;
+		} else
+			m->getGlobalFactory()->destroyGeometry(p);
+			// we used all the numbers, generate others
+		if (j > npers - 1) {
+			delete[] x1;
+			delete[] y1;
+			x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, npers);
+			y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, npers);
+			j = 0;
+		}
+	}
+	delete[] x1;
+	delete[] y1;
+}
 
 vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed) {
 	vector<Point*> result;
@@ -315,7 +280,6 @@ vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed)
 		}
 		delete[] x1;
 		delete[] y1;
-
 	}
 	return (result);
 }

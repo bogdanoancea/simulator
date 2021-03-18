@@ -39,6 +39,7 @@
 			<percent_time_work>0.3</percent_time_work>
 		</specs_home_work>
 		<connection_type>strength</connection_type>
+		<event_type>cellIDTA</event_type>
 		<conn_threshold>-85</conn_threshold>
 		<grid_file>grid.csv</grid_file>
 		<grid_dim_tile_x>250</grid_dim_tile_x>
@@ -46,4 +47,5 @@
 		<persons_file>persons.csv</persons_file>
 		<antennas_file>antennas.csv</antennas_file>
 		<random_seed>12</random_seed>
+		<output_dir>output2</output_dir>
 </simulation>
