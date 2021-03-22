@@ -27,6 +27,7 @@ parsers/ProbabilitiesConfig.o\
 RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
 LevyFlightDisplacement.o\
+HomeWorkDisplacement.o\
 AgeDistribution.o\
 UniformAgeDistribution.o\
 TruncatedNormalAgeDistribution.o\

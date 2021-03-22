@@ -19,6 +19,7 @@
 #include <RandomNumberGenerator.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
+#include <HomeWorkDisplacement.h>
 #include <TinyXML2.h>
 #include <TruncatedNormalAgeDistribution.h>
 #include <UniformAgeDistribution.h>
@@ -216,6 +217,10 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 	} else if (type == MovementType::LEVY_FLIGHT) {
 		auto displace = std::make_shared<LevyFlightDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
 		p->setDisplacementMethod(displace);
+	}
+	else if (type == MovementType::HOME_WORK) {
+			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
+			p->setDisplacementMethod(displace);
 	}
 }
 
