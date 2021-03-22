@@ -70,15 +70,8 @@ namespace utils {
 
 	void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_gernerator, vector<Point*>& result);
 
-	/**
-	 * Generates n random points on a map. The points have the same locations in all simulations.
-	 * @param m a pointer to a Map object where the points have to be located.
-	 * @param n the number of points to generate.
-	 * @param seed the seed of the random number generator used to generate the points.
-	 * @return a vector of pointers to Point objects.
-	 */
-	vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed);
 
+	vector<Point*> generateFixedPoints(const Map* m, unsigned long n, RandomNumberGenerator* random_generator);
 	/**
 	 * Number PI.
 	 */

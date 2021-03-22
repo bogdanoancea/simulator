@@ -73,73 +73,12 @@ vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double perce
 
 	Geometry* g = m->getBoundary();
 	if (g != nullptr) {
-		const Envelope* env = g->getEnvelopeInternal();
-		double xmin = env->getMinX();
-		double xmax = env->getMaxX();
-		double ymin = env->getMinY();
-		double ymax = env->getMaxY();
-
 		unsigned long nhome = (unsigned long) n * percentHome;
-		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
-
-		unsigned long i = 0, k = 0;
-		while (k < nhome) {
-			if (x1[i] < 1e-15)
-				x1[i] = 0.0;
-			if (y1[i] < 1e-15)
-				y1[i] = 0.0;
-			Coordinate c = Coordinate(x1[i], y1[i], 0);
-			i++;
-			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (g->contains(p)) {
-				result.push_back(p);
-				k++;
-			} else
-				m->getGlobalFactory()->destroyGeometry(p);
-			// we used all the numbers, generate others
-			if (i > n - 1) {
-				delete[] x1;
-				delete[] y1;
-				x1 = random_generator->generateUniformDouble(xmin, xmax, n);
-				y1 = random_generator->generateUniformDouble(ymin, ymax, n);
-				i = 0;
-			}
-		}
-		delete[] x1;
-		delete[] y1;
-
+		vector<Point*> r = generateFixedPoints(m , nhome, random_generator);
+		std::move (r.begin(), r.end(), std::back_inserter(result));
 		random_generator->setSeed(time(0));
-		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-
-		k = 0;
-		i = 0;
-		while (k < n - nhome) {
-			if (x2[i] < 1e-15)
-				x2[i] = 0.0;
-			if (y2[i] < 1e-15)
-				y2[i] = 0.0;
-			Coordinate c = Coordinate(x2[i], y2[i], 0);
-			i++;
-			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (g->contains(p)) {
-				result.push_back(p);
-				k++;
-			} else
-				m->getGlobalFactory()->destroyGeometry(p);
-
-			// we used all the numbers, generate others
-			if (i > n - 1) {
-				delete[] x2;
-				delete[] y2;
-				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
-				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-				i = 0;
-			}
-		}
-		delete[] x2;
-		delete[] y2;
+		r = generateFixedPoints(m ,n-nhome, random_generator);
+		std::move (r.begin(), r.end(), std::back_inserter(result));
 	}
 	return (result);
 }
@@ -173,39 +112,8 @@ vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double per
 				generateHomeLocation(m, hLoc, nPerLastLocation, random_generator, result);
 			}
 		}
-		//aici generez aleatoare ( population not at home)
-		const Envelope* env = g->getEnvelopeInternal();
-		double xmin = env->getMinX();
-		double xmax = env->getMaxX();
-		double ymin = env->getMinY();
-		double ymax = env->getMaxY();
-		double* x2 = random_generator->generateUniformDouble(xmin, xmax, n-nhome);
-		double* y2 = random_generator->generateUniformDouble(ymin, ymax, n-nhome);
-		unsigned k = 0, j = 0;
-		while (k < n - nhome) {
-			if (x2[j] < 1e-15)
-				x2[j] = 0.0;
-			if (y2[j] < 1e-15)
-				y2[j] = 0.0;
-			Coordinate c = Coordinate(x2[j], y2[j], 0);
-			j++;
-			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (g->contains(p)) {
-				result.push_back(p);
-				k++;
-			} else
-				m->getGlobalFactory()->destroyGeometry(p);
-				// we used all the numbers, generate others
-			if (j > n - nhome) {
-				delete[] x2;
-				delete[] y2;
-				x2 = random_generator->generateUniformDouble(xmin, xmax, n);
-				y2 = random_generator->generateUniformDouble(ymin, ymax, n);
-				j = 0;
-			}
-		}
-		delete[] x2;
-		delete[] y2;
+		vector<Point*> r = generateFixedPoints(m ,n-nhome, random_generator);
+		std::move (r.begin(), r.end(), std::back_inserter(result));
 	}
 	return (result);
 }
@@ -240,49 +148,49 @@ void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, Ran
 	delete[] y1;
 }
 
-vector<Point*> generateFixedPoints(const Map* m, unsigned long n, unsigned seed) {
+vector<Point*> generateFixedPoints(const Map *m, unsigned long n, RandomNumberGenerator *random_generator) {
 	vector<Point*> result;
-	RandomNumberGenerator* random_generator;
-	random_generator = RandomNumberGenerator::instance(seed);
+	Geometry *g = m->getBoundary();
+	const Envelope *env = g->getEnvelopeInternal();
+	double xmin = env->getMinX();
+	double xmax = env->getMaxX();
+	double ymin = env->getMinY();
+	double ymax = env->getMaxY();
 
-	Geometry* g = m->getBoundary();
-	if (g != nullptr) {
-		const Envelope* env = g->getEnvelopeInternal();
-		double xmin = env->getMinX();
-		double xmax = env->getMaxX();
-		double ymin = env->getMinY();
-		double ymax = env->getMaxY();
+	//generate a pool of numbers to choose from
+	double *x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+	double *y1 = random_generator->generateUniformDouble(ymin, ymax, n);
 
-		//generate a pool of numbers to choose from
-		double* x1 = random_generator->generateUniformDouble(xmin, xmax, n);
-		double* y1 = random_generator->generateUniformDouble(ymin, ymax, n);
+	unsigned long i = 0, k = 0;
+	while (k < n) {
+		if (x1[i] < 1e-15)
+			x1[i] = 0.0;
+		if (y1[i] < 1e-15)
+			y1[i] = 0.0;
+		Coordinate c = Coordinate(x1[i], y1[i], 0);
+		i++;
+		Point *p = m->getGlobalFactory()->createPoint(c);
+		if (g->contains(p)) {
+			result.push_back(p);
+			k++;
+		} else
+			m->getGlobalFactory()->destroyGeometry(p);
 
-		unsigned long i = 0, k = 0;
-		while (n) {
-			Coordinate c = Coordinate(x1[i], y1[i]);
-			c.z = 0;
-			i++;
-			Point* p = m->getGlobalFactory()->createPoint(c);
-			if (g->contains(p)) {
-				result.push_back(p);
-				k++;
-			} else
-				m->getGlobalFactory()->destroyGeometry(p);
-
-			// we used all the numbers, generate others
-			if (i == n - 1) {
-				delete[] x1;
-				delete[] y1;
-				x1 = random_generator->generateUniformDouble(xmin, xmax, n - k + 50);
-				y1 = random_generator->generateUniformDouble(ymin, ymax, n - k + 50);
-				i = 0;
-			}
+		// we used all the numbers, generate others
+		if (i == n - 1) {
+			delete[] x1;
+			delete[] y1;
+			x1 = random_generator->generateUniformDouble(xmin, xmax, n);
+			y1 = random_generator->generateUniformDouble(ymin, ymax, n);
+			i = 0;
 		}
-		delete[] x1;
-		delete[] y1;
 	}
+	delete[] x1;
+	delete[] y1;
 	return (result);
 }
+
+
 
 XMLNode* getNode(XMLElement* el, const char* name) {
 	XMLNode* n = nullptr;
