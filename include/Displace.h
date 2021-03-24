@@ -27,6 +27,7 @@
 #define INCLUDE_DISPLACE_H_
 
 #include <geos/geom/Point.h>
+#include <parsers/SimConfig.h>
 #include <Clock.h>
 #include <map/Map.h>
 
@@ -43,11 +44,9 @@ public:
 
 	/**
 	 * Constructor of the class. Initializes members.
-	 * @param map a pointer to the Map object of the simulation.
-	 * @param clk a pointer to the Clock object of the simulation.
 	 * @param speed the speed of displacement.
 	 */
-	Displace(Map* map, Clock* clk, double speed);
+	Displace(SimConfig* simconfig, double speed);
 
 	/**
 	 * Default destructor.
@@ -62,8 +61,9 @@ public:
 
 
 protected:
-	Map* m_map;
-	Clock * m_clock;
+//	Map* m_map;
+//	Clock * m_clock;
+	SimConfig* m_simConfig;
 	double m_speed;
 	virtual Point* computeNewLocation(Point* initLocation, double theta);
 

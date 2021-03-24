@@ -41,11 +41,9 @@ class RandomWalkDisplacement: public Displace {
 public:
 	/**
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
-	 * @param map a pointer to the Map object of the simulation.
-	 * @param clk a pointer to the Clock object of the simulation.
 	 * @param speed the speed of displacement.
 	 */
-	RandomWalkDisplacement(Map* map, Clock* clk, double speed);
+	RandomWalkDisplacement(SimConfig* simConfig, double speed);
 
 	/**
 	 * Implements the random walk behaviour. It takes a pointer to the current location, generates a uniformly distributed value

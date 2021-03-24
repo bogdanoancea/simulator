@@ -209,17 +209,17 @@ void PersonsConfig::addMobilePhoneToPerson(Person* p, MobileOperator* mno, Agent
 void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 	MovementType type = m_simConfig->getMvType();
 	if (type == MovementType::RANDOM_WALK_CLOSED_MAP) {
-		auto displace = std::make_shared<RandomWalkDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
+		auto displace = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
 	} else if (type == MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT) {
-		auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
+		auto displace = std::make_shared<RandomWalkDriftDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
 	} else if (type == MovementType::LEVY_FLIGHT) {
-		auto displace = std::make_shared<LevyFlightDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
+		auto displace = std::make_shared<LevyFlightDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
 	}
 	else if (type == MovementType::HOME_WORK) {
-			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig->getMap(), m_simConfig->getClock(), p->getSpeed());
+			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed());
 			p->setDisplacementMethod(displace);
 	}
 }

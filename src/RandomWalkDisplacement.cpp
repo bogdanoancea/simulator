@@ -30,8 +30,8 @@
 using namespace utils;
 
 
-RandomWalkDisplacement::RandomWalkDisplacement(Map* map, Clock* clk,  double speed):
-		Displace(map, clk, speed) {
+RandomWalkDisplacement::RandomWalkDisplacement(SimConfig* simConfig,  double speed):
+		Displace(simConfig, speed) {
 }
 
 RandomWalkDisplacement::~RandomWalkDisplacement() {
@@ -42,7 +42,7 @@ Point* RandomWalkDisplacement::generateNewLocation(Point* initLocation) {
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 	Point* pt = computeNewLocation(initLocation, theta);
 
-	Geometry* g = m_map->getBoundary();
+	Geometry* g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g))
 		pt = initLocation;
 

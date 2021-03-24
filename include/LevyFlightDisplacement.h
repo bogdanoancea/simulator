@@ -33,11 +33,9 @@ class LevyFlightDisplacement: public Displace {
 public:
 	/**
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
-	 * @param map a pointer to the Map object of the simulation.
-	 * @param clk a pointer to the Clock object of the simulation.
 	 * @param speed the speed of displacement.
 	*/
-	LevyFlightDisplacement(Map* map, Clock* clk,  double speed);
+	LevyFlightDisplacement(SimConfig* simConfig,  double speed);
 
 	/**
 	 * Implements the Levy flight behavior. It takes a pointer to the current location, generates a uniformly distributed value

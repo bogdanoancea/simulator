@@ -38,11 +38,9 @@ public:
 
 	/**
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
-	 * @param map a pointer to the Map object of the simulation.
-	 * @param clk a pointer to the Clock object of the simulation.
 	 * @param speed the speed of displacement.
 	 */
-	RandomWalkDriftDisplacement(Map* map, Clock* clk, double speed);
+	RandomWalkDriftDisplacement(SimConfig* simConfig, double speed);
 
 	/**
 	 * Implements the random walk with drift behaviour. During the first half of the simulation it generates a displacement direction

@@ -27,8 +27,8 @@
 
 using namespace utils;
 
-RandomWalkDriftDisplacement::RandomWalkDriftDisplacement(Map* map, Clock* clk, double speed):
-		Displace(map, clk, speed), m_changeDirection{false} {
+RandomWalkDriftDisplacement::RandomWalkDriftDisplacement(SimConfig* simConfig, double speed):
+		Displace(simConfig, speed), m_changeDirection{false} {
 }
 
 RandomWalkDriftDisplacement::~RandomWalkDriftDisplacement() {
@@ -39,7 +39,7 @@ Point* RandomWalkDriftDisplacement::generateNewLocation(Point* initLocation) {
 	double theta = 0.0;
 	double trendAngle = Constants::SIM_TREND_ANGLE_1;
 
-	if (m_clock->getCurrentTime() >= m_clock->getFinalTime() / 2) {
+	if (m_simConfig->getClock()->getCurrentTime() >= m_simConfig->getClock()->getFinalTime() / 2) {
 		trendAngle = Constants::SIM_TREND_ANGLE_2;
 	}
 	theta = RandomNumberGenerator::instance()->generateNormalDouble(trendAngle, 0.1);
@@ -48,7 +48,7 @@ Point* RandomWalkDriftDisplacement::generateNewLocation(Point* initLocation) {
 	}
 	Point* pt = computeNewLocation(initLocation, theta);
 
-	Geometry* g = m_map->getBoundary();
+	Geometry* g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
 		m_changeDirection = !m_changeDirection;
 		pt = initLocation;

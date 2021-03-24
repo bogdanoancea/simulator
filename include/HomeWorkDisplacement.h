@@ -12,7 +12,7 @@
 
 class HomeWorkDisplacement: public Displace {
 public:
-	HomeWorkDisplacement(Map* map, Clock* clk, double speed	);
+	HomeWorkDisplacement(SimConfig* simConfig, double speed);
 	virtual ~HomeWorkDisplacement();
 
 	virtual Point* generateNewLocation(Point* p) override;

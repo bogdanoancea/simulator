@@ -32,7 +32,8 @@ using namespace geos;
 using namespace geos::geom;
 
 
-Displace::Displace(Map* map, Clock* clk, double speed): m_map{map}, m_clock{clk}, m_speed {speed} {
+Displace::Displace(SimConfig* simConfig, double speed): m_speed {speed} {
+	m_simConfig = simConfig;
 }
 
 Displace::~Displace() {
@@ -42,10 +43,10 @@ Point* Displace::computeNewLocation(Point* initLocation, double theta) {
 	double x = initLocation->getX();
 	double y = initLocation->getY();
 
-	unsigned long delta_t = m_clock->getIncrement();
+	unsigned long delta_t = m_simConfig->getClock()->getIncrement();
 	double newX = x + m_speed * cos(theta) * delta_t;
 	double newY = y + m_speed * sin(theta) * delta_t;
 	Coordinate c1 = Coordinate(newX, newY, 0);
-	Point* pt = m_map->getGlobalFactory()->createPoint(c1);
+	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 	return pt;
 }
