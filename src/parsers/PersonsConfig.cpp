@@ -113,9 +113,21 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 		if (walk_car[i]) {
 			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_car[cars++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			if(m_simConfig->isHomeWorkScenario()) {
+				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
+				 if( homePerson) {
+					 p->setHomeLocation(positions[i]);
+				 }
+			}
 		} else {
 			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_walk[walks++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+			if(m_simConfig->isHomeWorkScenario()) {
+				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
+				 if( homePerson) {
+					 p->setHomeLocation(positions[i]);
+				 }
+			}
 		}
 		int np1 = phone1[i];
 		while (np1) {
