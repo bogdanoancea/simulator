@@ -148,7 +148,10 @@ void Person::setHomeLocation(Point* hl) {
 	m_homeLocation = hl;
 }
 
-void Person::setWorkLocation(Point* hl) {
-	m_homeLocation = hl;
+void Person::setWorkLocation(Point* wl) {
+	m_workLocation = wl;
 }
 
+bool Person::isHomeLocationPerson() const {
+	return m_homeLocation != nullptr;
+}

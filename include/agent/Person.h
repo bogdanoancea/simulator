@@ -143,6 +143,7 @@ class Person: public MovableAgent {
 
 		void setHomeLocation(Point* hl);
 		void setWorkLocation(Point* hl);
+		bool isHomeLocationPerson() const;
 
 	private:
 		int m_age;
@@ -155,7 +156,6 @@ class Person: public MovableAgent {
 		shared_ptr<Displace> m_displacementMethod;
 		Point* m_homeLocation;
 		Point* m_workLocation;
-		bool m_homePerson;
 };
 
 #endif /* PERSON_H_ */
