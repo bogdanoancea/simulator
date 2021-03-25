@@ -39,8 +39,10 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 		unsigned long intervalBetweenStays) :
 		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays { intervalBetweenStays } {
 	m_displacementMethod = nullptr;
-	m_homeLocation = m_workLocation = nullptr;
+	m_homeLocation = nullptr;
+	m_workLocation = nullptr;
 	m_workLocationIndex = -1;
+	m_isHomePerson = false;
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
@@ -149,14 +151,26 @@ void Person::setHomeLocation(Point* hl) {
 	m_homeLocation = hl;
 }
 
+Point* Person::getHomeLocation() const{
+	return m_homeLocation;
+}
+
+
 void Person::setWorkLocation(Point* wl) {
 	m_workLocation = wl;
 }
 
-bool Person::isHomeLocationPerson() const {
-	return m_homeLocation != nullptr;
-}
-
 void Person::setWorkLocationIndex(unsigned index) {
 	m_workLocationIndex = index;
+}
+
+unsigned int Person::getWorkLocationIndex() const {
+	return m_workLocationIndex;
+}
+
+void Person::setHomePerson(bool home) {
+	m_isHomePerson = home;
+}
+bool Person::isHomePerson() const {
+	return m_isHomePerson;
 }

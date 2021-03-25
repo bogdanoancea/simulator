@@ -142,11 +142,18 @@ class Person: public MovableAgent {
 		void setDisplacementMethod(const shared_ptr<Displace>& displace);
 
 		void setHomeLocation(Point* hl);
+		Point* getHomeLocation() const;
 		void setWorkLocation(Point* hl);
-		bool isHomeLocationPerson() const;
+
 		void setWorkLocationIndex(unsigned int i);
+		unsigned int getWorkLocationIndex() const;
+
+		void setHomePerson(bool home);
+		bool isHomePerson() const;
 
 	private:
+
+
 		int m_age;
 		Gender m_gender;
 		unordered_multimap<string, Agent*> m_idDevices;
@@ -158,6 +165,7 @@ class Person: public MovableAgent {
 		Point* m_homeLocation;
 		Point* m_workLocation;
 		unsigned int m_workLocationIndex;
+		bool m_isHomePerson;
 };
 
 #endif /* PERSON_H_ */

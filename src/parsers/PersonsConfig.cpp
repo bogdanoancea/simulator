@@ -107,6 +107,7 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
 	unsigned int numMno =  m_simConfig->getMnos().size();
 	for (unsigned long i = 0; i < numPersons; i++) {
+		//cout << "home positions" << positions[i]->toString() << endl;
 		id = IDGenerator::instance()->next();
 		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_simConfig->getStay(), 0.2 * m_simConfig->getStay());
 		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_simConfig->getIntevalBetweenStays());
@@ -119,6 +120,7 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 p->setHomeLocation(positions[i]);
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 p->setWorkLocationIndex(workLocationIndex);
+					 p->setHomePerson(true);
 				 }
 			}
 		} else {
@@ -130,6 +132,7 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 p->setHomeLocation(positions[i]);
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 p->setWorkLocationIndex(workLocationIndex);
+					 p->setHomePerson(true);
 				 }
 			}
 		}
@@ -235,7 +238,7 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 		p->setDisplacementMethod(displace);
 	}
 	else if (type == MovementType::HOME_WORK) {
-			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed());
+			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocationIndex());
 			p->setDisplacementMethod(displace);
 	}
 }
