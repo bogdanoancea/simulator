@@ -25,7 +25,8 @@
 
 #include <agent/Antenna.h>
 #include <Clock.h>
-#include <Constants.h>
+#include <events/CellIDTAEventConfig.h>
+#include <events/Event.h>
 #include <EMField.h>
 #include <geos/geom/Coordinate.inl>
 #include <geos/geom/CoordinateArraySequence.h>
@@ -33,23 +34,18 @@
 #include <geos/geom/Point.h>
 #include <geos/geom/Polygon.h>
 #include <geos/io/WKTWriter.h>
-#include <geos/version.h>
 #include <geos/util/GeometricShapeFactory.h>
+#include <geos/version.h>
 #include <map/Map.h>
-#include <events/EventType.h>
-#include <events/CellIDEventConfig.h>
-#include <events/CellIDTAEventConfig.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <algorithm>
 #include <cmath>
 #include <cstring>
-#include <fstream>
 #include <iomanip>
 #include <iterator>
 #include <memory>
-#include <sstream>
 
 using namespace tinyxml2;
 using namespace std;

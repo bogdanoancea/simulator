@@ -22,11 +22,6 @@
 
 #include <Clock.h>
 #include <Constants.h>
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/Coordinate.inl>
-#include <geos/geom/CoordinateSequence.h>
-#include <geos/geom/GeometryFactory.h>
-#include <geos/geom/Point.h>
 #include <IDGenerator.h>
 #include <map/Map.h>
 #include <parsers/HomeWorkLocation.h>

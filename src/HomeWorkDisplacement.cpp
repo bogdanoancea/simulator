@@ -6,15 +6,16 @@
  */
 
 #include <Clock.h>
-#include <geos/geom/Coordinate.h>
-#include <geos/geom/Coordinate.inl>
-#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
 #include <HomeWorkDisplacement.h>
 #include <map/Map.h>
+#include <parsers/HomeWorkLocation.h>
+#include <parsers/HomeWorkScenario.h>
+#include <parsers/SimConfig.h>
 #include <RandomNumberGenerator.h>
 #include <Utils.h>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
