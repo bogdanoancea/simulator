@@ -86,6 +86,7 @@ public:
 	unsigned int getNumHomeLocations() const;
 	unsigned int getNumWorkLocations() const;
 	HomeWorkLocation getHomeLocation(unsigned int i) const;
+	HomeWorkScenario* getHomeWorkScenario();
 
 private:
 	void parse();
@@ -111,7 +112,7 @@ private:
 	EventType m_eventType; // SimConfig
 	Clock* m_clock;
 	Map* m_map;
-	HomeWorkScenario* m_homeWork;
+	HomeWorkScenario* m_homeWorkScenario;
 
 	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	MovementType parseMovement(XMLElement* el);

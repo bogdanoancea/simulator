@@ -17,7 +17,9 @@
 #include <cmath>
 
 HomeWorkDisplacement::HomeWorkDisplacement(SimConfig* simConfig, double speed): Displace(simConfig, speed) {
-	// TODO Auto-generated constructor stub
+	unsigned long simulationTime = simConfig->getEndTime() - simConfig->getStartTime();
+	m_deltaTStayHome = simConfig->getHomeWorkScenario()->getPrecentTimeHome() * simulationTime;
+	m_deltaTStayWork = simConfig->getHomeWorkScenario()->getPrecentTimeWork() * simulationTime;
 }
 
 

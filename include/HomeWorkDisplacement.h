@@ -19,6 +19,8 @@ public:
 
 private:
 	virtual Point* computeNewLocation(Point* initLocation, double theta) override;
+	unsigned long m_deltaTStayHome;
+	unsigned long m_deltaTStayWork;
 };
 
 #endif /* INCLUDE_HOMEWORKDISPLACEMENT_H_ */

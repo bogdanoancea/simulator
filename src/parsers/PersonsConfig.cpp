@@ -117,6 +117,8 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
 					 p->setHomeLocation(positions[i]);
+					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
+					 p->setWorkLocationIndex(workLocationIndex);
 				 }
 			}
 		} else {
@@ -126,6 +128,8 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
 					 p->setHomeLocation(positions[i]);
+					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
+					 p->setWorkLocationIndex(workLocationIndex);
 				 }
 			}
 		}

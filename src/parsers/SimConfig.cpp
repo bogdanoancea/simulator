@@ -42,7 +42,7 @@ SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map)
 		Config(filename) {
 
 	m_map = map;
-	m_homeWork = nullptr;
+	m_homeWorkScenario = nullptr;
 	parse();
 	m_clock = new Clock(getStartTime(), getEndTime(), getTimeIncrement());
 	for (unsigned long i = 0; i < m_mnos.size(); i++)
@@ -50,8 +50,8 @@ SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map)
 }
 
 SimConfig::~SimConfig() {
-	if(m_homeWork)
-		delete m_homeWork;
+	if(m_homeWorkScenario)
+		delete m_homeWorkScenario;
 	delete m_clock;
 }
 
@@ -100,9 +100,9 @@ void SimConfig::parse() {
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
 		XMLElement* homeWorkEl = simEl->FirstChildElement("specs_home_work");
 		if(homeWorkEl) {
-			m_homeWork = new HomeWorkScenario();
-			parseHomeWorkScenario(homeWorkEl, m_homeWork);
-			cout << m_homeWork->toString() << endl;
+			m_homeWorkScenario = new HomeWorkScenario();
+			parseHomeWorkScenario(homeWorkEl, m_homeWorkScenario);
+			cout << m_homeWorkScenario->toString() << endl;
 		}
 	}
 }
@@ -364,26 +364,34 @@ double SimConfig::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE c
 }
 
 bool SimConfig::isHomeWorkScenario() const {
-	return (m_homeWork != nullptr);
+	return (m_homeWorkScenario != nullptr);
 }
 
 
 unsigned int SimConfig::getNumHomeLocations() const {
 	if(isHomeWorkScenario())
-		return m_homeWork->getHomeLocations().size();
+		return m_homeWorkScenario->getHomeLocations().size();
 	else return -1;
 }
 
 unsigned int SimConfig::getNumWorkLocations() const {
 	if(isHomeWorkScenario())
-		return m_homeWork->getWorkLocations().size();
+		return m_homeWorkScenario->getWorkLocations().size();
 	else return -1;
 }
 
 HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
-		return m_homeWork->getHomeLocations().at(i);
+		return m_homeWorkScenario->getHomeLocations().at(i);
 	else {
 		throw std::runtime_error("No Home - Work scenario defined!");
 	}
+}
+HomeWorkScenario* SimConfig::getHomeWorkScenario() {
+	if(isHomeWorkScenario())
+		return m_homeWorkScenario;
+	else {
+		return nullptr;
+	}
+
 }
