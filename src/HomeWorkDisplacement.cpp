@@ -56,7 +56,16 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 
 //TODO
 Point* HomeWorkDisplacement::computeNewLocation(Point *initLocation, double theta) {
-	return initLocation;
+	//return initLocation;
+	double x = initLocation->getX();
+	double y = initLocation->getY();
+
+	unsigned long delta_t = m_simConfig->getClock()->getIncrement();
+	double newX = x + m_speed * cos(theta) * delta_t;
+	double newY = y + m_speed * sin(theta) * delta_t;
+	Coordinate c1 = Coordinate(newX, newY, 0);
+	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
+	return pt;
 }
 
 HomeWorkState HomeWorkDisplacement::stateTransition(Point *position) {

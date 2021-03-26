@@ -54,6 +54,13 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 }
 
 Person::~Person() {
+	if(m_homeLocation) {
+		getMap()->getGlobalFactory()->destroyGeometry(m_homeLocation);
+	}
+	if(m_workLocation) {
+		getMap()->getGlobalFactory()->destroyGeometry(m_workLocation);
+	}
+
 }
 
 
