@@ -42,6 +42,7 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 	if (!pt->within(g)) {
 		int k = 10;
 		while(--k && !pt->within(g)) {
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 			pt = computeNewLocation(initLocation, theta);
 		}

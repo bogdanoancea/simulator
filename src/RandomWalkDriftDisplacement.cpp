@@ -50,6 +50,7 @@ Point* RandomWalkDriftDisplacement::generateNewLocation(Point* initLocation) {
 
 	Geometry* g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
+		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 		m_changeDirection = !m_changeDirection;
 		pt = initLocation;
 	}

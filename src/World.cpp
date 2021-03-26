@@ -35,7 +35,6 @@
 #include <geos/geom/Point.h>
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
-#include <sys/_types/_time_t.h>
 #include <UnifPriorPostLocProb.h>
 #include <World.h>
 #include <algorithm>

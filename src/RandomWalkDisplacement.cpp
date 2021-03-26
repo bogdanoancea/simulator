@@ -43,8 +43,10 @@ Point* RandomWalkDisplacement::generateNewLocation(Point* initLocation) {
 	Point* pt = computeNewLocation(initLocation, theta);
 
 	Geometry* g = m_simConfig->getMap()->getBoundary();
-	if (!pt->within(g))
+	if (!pt->within(g)){
+		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 		pt = initLocation;
+	}
 
 	return pt;
 }
