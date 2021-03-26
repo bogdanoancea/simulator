@@ -49,7 +49,8 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		if (!k)
 			pt = initLocation;
 	}
-	m_state = stateTransition(pt);
+	if(m_homeLocation)
+		m_state = stateTransition(pt);
 
 	return pt;
 }

@@ -240,8 +240,13 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 		p->setDisplacementMethod(displace);
 	}
 	else if (type == MovementType::HOME_WORK) {
-			auto displace = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocationIndex());
-			p->setDisplacementMethod(displace);
+		auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocationIndex());
+		auto displace2 = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
+		if(p->isHomePerson())
+			p->setDisplacementMethod(displace1);
+		else
+			p->setDisplacementMethod(displace2);
+
 	}
 }
 

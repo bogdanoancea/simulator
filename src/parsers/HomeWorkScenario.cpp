@@ -55,16 +55,16 @@ void HomeWorkScenario::setPrecentTimeWork(double precentTimeWork) {
 const string HomeWorkScenario::toString(){
 	ostringstream result;
 	//output home locations
-	result << "Home locations" << endl;
+	//result << "Home locations" << endl;
 	for(auto& l : m_homeLocations) {
 		result <<  l.toString() << endl;
 	}
 	//output works locations
-	result << "Work locations" << endl;
+	//result << "Work locations" << endl;
 	for(auto & w : m_workLocations) {
 		result << w.toString() << endl;
 	}
-	result << "Percent time at home: " << m_precentTimeHome << endl;
-	result << "Percent time at work: " << m_precentTimeWork << endl;
+	//result << "Percent time at home: " << m_precentTimeHome << endl;
+	//result << "Percent time at work: " << m_precentTimeWork << endl;
 	return result.str();
 }
