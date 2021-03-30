@@ -167,6 +167,11 @@ void Person::setWorkLocation(Point* wl) {
 	m_workLocation = wl;
 }
 
+Point* Person::getWorkLocation() const{
+	return m_workLocation;
+}
+
+
 void Person::setWorkLocationIndex(unsigned index) {
 	m_workLocationIndex = index;
 }

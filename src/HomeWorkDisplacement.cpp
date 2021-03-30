@@ -19,12 +19,13 @@
 
 using namespace std;
 
-HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, Point *homeLocation, unsigned int workLocationIndex) :
+HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, Point *homeLocation, Point *workLocation, unsigned int workLocationIndex) :
 		Displace(simConfig, speed) {
 	m_deltaTStayHome = initDeltaTStayHome();
 	m_deltaTStayWork = initDeltaTStayWork();
 	m_state = HomeWorkState::STAY_HOME;
 	m_homeLocation = homeLocation;
+	m_workLocation = workLocation;
 	m_workLocationIndex = workLocationIndex;
 }
 
@@ -104,14 +105,12 @@ HomeWorkState HomeWorkDisplacement::stateTransition(Point *position) {
 
 unsigned long HomeWorkDisplacement::initDeltaTStayHome() {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
-	return m_simConfig->getHomeWorkScenario()->getPrecentTimeHome()
-			* simulationTime;
+	return m_simConfig->getHomeWorkScenario()->getPrecentTimeHome() * simulationTime;
 }
 
 unsigned long HomeWorkDisplacement::initDeltaTStayWork() {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
-	return m_simConfig->getHomeWorkScenario()->getPrecentTimeWork()
-			* simulationTime;
+	return m_simConfig->getHomeWorkScenario()->getPrecentTimeWork() * simulationTime;
 }
 
 bool HomeWorkDisplacement::posAtHome(Point *position) const {
@@ -125,15 +124,18 @@ bool HomeWorkDisplacement::posAtHome(Point *position) const {
 	return result;
 }
 
-bool HomeWorkDisplacement::posAtWork(Point *position) const {
+bool HomeWorkDisplacement::posAtWork(Point *position) {
 	if (m_homeLocation != nullptr) {
 		HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
 		double dist = sqrt(pow((position->getX() - wl.m_x), 2)
 						+ pow((position->getY() - wl.m_y), 2)
 						+ pow((position->getZ() - wl.m_z), 2));
 		double allowableDist = sqrt(pow(wl.m_sdx, 2) + pow(wl.m_sdy, 2) + pow(wl.m_sdz, 2));
-		if (dist < allowableDist)
+		if (dist < allowableDist) {
+			if(!m_workLocation)
+				m_workLocation = position;
 			return true;
+		}
 		else
 			return false;
 	} else

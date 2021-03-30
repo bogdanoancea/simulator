@@ -143,8 +143,9 @@ class Person: public MovableAgent {
 
 		void setHomeLocation(Point* hl);
 		Point* getHomeLocation() const;
-		void setWorkLocation(Point* hl);
 
+		void setWorkLocation(Point* hl);
+		Point* getWorkLocation() const;
 		void setWorkLocationIndex(unsigned int i);
 		unsigned int getWorkLocationIndex() const;
 
