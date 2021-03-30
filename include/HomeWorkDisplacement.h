@@ -19,12 +19,13 @@ public:
 
 
 private:
-	virtual Point* computeNewLocation(Point* initLocation, double theta) override;
+	//virtual Point* computeNewLocation(Point* initLocation, double theta) override;
 	HomeWorkState stateTransition(Point* position);
 	unsigned long initDeltaTStayHome();
 	unsigned long initDeltaTStayWork();
 	bool posAtHome(Point* position) const;
 	bool posAtWork(Point* position);
+	Point* makeRandomStepAtWork(Point* initLocation);
 
 	unsigned long m_deltaTStayHome;
 	unsigned long m_deltaTStayWork;

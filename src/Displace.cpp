@@ -50,3 +50,4 @@ Point* Displace::computeNewLocation(Point* initLocation, double theta) {
 	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 	return pt;
 }
+
