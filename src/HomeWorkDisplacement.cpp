@@ -150,8 +150,12 @@ bool HomeWorkDisplacement::posAtWork(Point *position) {
 Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 	double theta = 0.0;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
-	Point *pt = computeNewLocation(initLocation, theta);
-
+	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
+	double stepLength = 0.1 * sqrt(pow(wl.m_sdx,2) + pow(wl.m_sdy,2));
+	double newX = initLocation->getX() + stepLength * cos(theta);
+	double newY = initLocation->getY() + stepLength * sin(theta) ;
+	Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
+	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
 		int k = 10;
