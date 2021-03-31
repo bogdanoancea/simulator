@@ -77,7 +77,6 @@ const string Person::toString() const {
 			ss << setw(15) << (i.second->getId());
 		}
 	}
-
 	return (ss.str());
 }
 
