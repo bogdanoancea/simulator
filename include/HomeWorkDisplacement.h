@@ -13,7 +13,7 @@
 
 class HomeWorkDisplacement: public Displace {
 public:
-	HomeWorkDisplacement(SimConfig* simConfig, double speed, Point* homeLocation, Point* workLocation, unsigned int workLocationIndex);
+	HomeWorkDisplacement(SimConfig* simConfig, double speed, Point* homeLocation, unsigned int workLocationIndex);
 	virtual ~HomeWorkDisplacement();
 	virtual Point* generateNewLocation(Point* p) override;
 
@@ -25,7 +25,11 @@ private:
 	unsigned long initDeltaTStayWork();
 	bool posAtHome(Point* position) const;
 	bool posAtWork(Point* position);
+	bool arrivedAtWork(Point* position);
 	Point* makeRandomStepAtWork(Point* initLocation);
+	Point* toWork(Point* initLocation);
+	double computeTheta(Point* p1, Point* p2) const;
+	void setPosAtWork(Point* pt);
 
 	unsigned long m_deltaTStayHome;
 	unsigned long m_deltaTStayWork;
