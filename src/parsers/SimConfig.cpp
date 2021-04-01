@@ -95,6 +95,8 @@ void SimConfig::parse() {
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
 		XMLElement* homeWorkEl = simEl->FirstChildElement("specs_home_work");
 		if(homeWorkEl) {
+			m_stay = 0;
+			m_intevalBetweenStays = 0;
 			m_homeWorkScenario = new HomeWorkScenario();
 			parseHomeWorkScenario(homeWorkEl, m_homeWorkScenario);
 			cout << m_homeWorkScenario->toString() << endl;
