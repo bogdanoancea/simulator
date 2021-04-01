@@ -182,7 +182,7 @@ Point* HomeWorkDisplacement::toWork(Point *initLocation) {
 	double theta = computeTheta(initLocation, workLoc);
 	//no need of workLoc anymore
 
-	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/16.0, utils::PI/16.0);
+	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
 	pt = computeNewLocation(initLocation, theta);
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
@@ -190,14 +190,14 @@ Point* HomeWorkDisplacement::toWork(Point *initLocation) {
 		int k = 10;
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			theta = computeTheta(initLocation, workLoc);
-			theta += RandomNumberGenerator::instance()->generateUniformDouble(- 0.03, 0.03);
+			//theta = computeTheta(initLocation, workLoc);
+			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
 			pt = computeNewLocation(initLocation, theta);
 			//cout << "am cazut afara de la munca: " << k << endl;
 		}
 		if (!k) {
 			pt = initLocation;
-			//cout << "am cazut afara de la munca si stau pe loc " << theta << ":" << initLocation->toString() <<":" <<workLoc->toString() << endl;
+			cout << "am cazut afara de la munca si stau pe loc " << theta << ":" << initLocation->toString() <<":" <<workLoc->toString() << endl;
 		}
 	}
 	if(arrivedAtWork(pt)) {
