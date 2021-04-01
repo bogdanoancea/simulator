@@ -191,13 +191,13 @@ Point* HomeWorkDisplacement::toWork(Point *initLocation) {
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			theta = computeTheta(initLocation, workLoc);
-			theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/16.0, utils::PI/16.0);
+			theta += RandomNumberGenerator::instance()->generateUniformDouble(- 0.03, 0.03);
 			pt = computeNewLocation(initLocation, theta);
 			//cout << "am cazut afara de la munca: " << k << endl;
 		}
 		if (!k) {
 			pt = initLocation;
-			//cout << "am cazut afara de la munca si stau pe loc " << endl;
+			//cout << "am cazut afara de la munca si stau pe loc " << theta << ":" << initLocation->toString() <<":" <<workLoc->toString() << endl;
 		}
 	}
 	if(arrivedAtWork(pt)) {
