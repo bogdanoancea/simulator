@@ -30,6 +30,7 @@ private:
 	Point* toWork(Point* initLocation);
 	double computeTheta(Point* p1, Point* p2) const;
 	void setPosAtWork(Point* pt);
+	Point* generateWorkLocation();
 
 	unsigned long m_deltaTStayHome;
 	unsigned long m_deltaTStayWork;

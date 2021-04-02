@@ -25,33 +25,19 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, P
 	m_deltaTStayWork = initDeltaTStayWork();
 	m_state = HomeWorkState::STAY_HOME;
 	m_homeLocation = homeLocation;
-	m_workLocation = nullptr;
 	m_workLocationIndex = workLocationIndex;
+	m_workLocation = generateWorkLocation();
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
-	// TODO Auto-generated destructor stub
+	if(m_workLocation) {
+		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(m_workLocation);
+	}
+
 }
 
-//TODO
 Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 	Point* pt;
-	//	double theta = 0.0;
-//	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
-//	Point *pt = computeNewLocation(initLocation, theta);
-//
-//	Geometry *g = m_simConfig->getMap()->getBoundary();
-//	if (!pt->within(g)) {
-//		int k = 10;
-//		while (--k && !pt->within(g)) {
-//			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-//			theta = RandomNumberGenerator::instance()->generateUniformDouble( 0.0, 2 * utils::PI);
-//			pt = computeNewLocation(initLocation, theta);
-//		}
-//		if (!k)
-//			pt = initLocation;
-//	}
-
 	switch (m_state) {
 	case HomeWorkState::STAY_HOME:
 		pt = initLocation;
@@ -61,8 +47,8 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		pt = toWork(initLocation);
 		break;
 	case HomeWorkState::STAY_WORK:
-		//pt = makeRandomStepAtWork(initLocation);
-		pt = initLocation;
+		pt = makeRandomStepAtWork(initLocation);
+		//pt = initLocation;
 		break;
 	case HomeWorkState::GO_HOME:
 		//make a step toward home location
@@ -146,7 +132,7 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 	double theta = 0.0;
 	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
 	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
-	double stepLength = 0.1 * min(wl.m_sdx , wl.m_sdy);
+	double stepLength = 0.01 * min(wl.m_sdx , wl.m_sdy);
 	double newX = initLocation->getX() + stepLength * cos(theta);
 	double newY = initLocation->getY() + stepLength * sin(theta) ;
 	Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
@@ -170,42 +156,29 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 }
 
 Point* HomeWorkDisplacement::toWork(Point *initLocation) {
-	Point *pt, *workLoc;
-
-	if(m_workLocation)
-		workLoc = m_workLocation;
-	else {
-		HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
-		workLoc = m_simConfig->getMap()->getGlobalFactory()->createPoint(Coordinate(wl.m_x, wl.m_y, wl.m_z));
-	}
-
-	double theta = computeTheta(initLocation, workLoc);
-	//no need of workLoc anymore
+	Point* pt;
+	double theta = computeTheta(initLocation, m_workLocation);
 
 	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
 	pt = computeNewLocation(initLocation, theta);
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
-
 		int k = 10;
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			//theta = computeTheta(initLocation, workLoc);
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
 			pt = computeNewLocation(initLocation, theta);
-			//cout << "am cazut afara de la munca: " << k << endl;
+			cout << "am cazut afara de la munca: " << k << endl;
 		}
 		if (!k) {
 			pt = initLocation;
-			cout << "am cazut afara de la munca si stau pe loc " << theta << ":" << initLocation->toString() <<":" <<workLoc->toString() << endl;
+			cout << "am cazut afara de la munca si stau pe loc " << theta << ":" << initLocation->toString() <<":" <<m_workLocation->toString() << endl;
 		}
 	}
 	if(arrivedAtWork(pt)) {
 		//cout << "am ajuns la munca" << endl;
 		setPosAtWork(pt);
 	}
-	if(!m_workLocation)
-			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(workLoc);
 	return pt;
 }
 
@@ -213,7 +186,7 @@ bool HomeWorkDisplacement::arrivedAtWork(Point* position) {
 	bool result = false;
 	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
 	double dist = sqrt(pow((position->getX() - wl.m_x), 2)	+ pow((position->getY() - wl.m_y), 2) + pow((position->getZ() - wl.m_z), 2));
-	double allowableDist = sqrt(pow(wl.m_sdx, 2) + pow(wl.m_sdy, 2) + pow(wl.m_sdz, 2));
+	double allowableDist = min(wl.m_sdx,  wl.m_sdy);
 	if (dist < allowableDist) {
 		result = true;
 	}
@@ -248,3 +221,17 @@ double HomeWorkDisplacement::computeTheta(Point* p1, Point* p2) const {
 	return result;
 }
 
+
+Point* HomeWorkDisplacement::generateWorkLocation() {
+	Point* result = nullptr;
+	double angle = RandomNumberGenerator::instance()->generateUniformDouble(0, 2.0 * utils::PI);
+	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
+	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.m_sdx + pow(sin(angle),2)/wl.m_sdy) );
+	double l = RandomNumberGenerator::instance()->generateUniformDouble(0, L);
+	double x = wl.m_x + l * cos(angle);
+	double y = wl.m_y + l * sin(angle);
+	Coordinate c1(x, y, wl.m_z);
+	result = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
+
+	return result;
+}
