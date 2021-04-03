@@ -24,11 +24,13 @@ private:
 	unsigned long initDeltaTStayWork();
 	bool posAtHome(Point* position) const;
 	bool posAtWork(Point* position);
-	bool arrivedAtWork(Point* position);
-	bool arrivedAtHome(Point* position);
+	//bool arrivedAtWork(Point* position);
+	//bool arrivedAtHome(Point* position);
+	bool arrivedAtDestination(Point* position, Point* destination);
 	Point* makeRandomStepAtWork(Point* initLocation);
-	Point* toWork(Point* initLocation);
-	Point* toHome(Point* initLocation);
+	//Point* toWork(Point* initLocation);
+	//Point* toHome(Point* initLocation);
+	Point* toDestination(Point*  initLocation, Point* destination);
 	double computeTheta(Point* p1, Point* p2) const;
 	//void setPosAtWork(Point* pt);
 	Point* generateWorkLocation();

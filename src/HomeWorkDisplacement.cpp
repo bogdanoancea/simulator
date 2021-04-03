@@ -44,7 +44,7 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		break;
 	case HomeWorkState::GO_WORK:
 		//make a step toward the work location
-		pt = toWork(initLocation);
+		pt = toDestination(initLocation, m_workLocation);
 		break;
 	case HomeWorkState::STAY_WORK:
 		pt = makeRandomStepAtWork(initLocation);
@@ -52,13 +52,12 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		break;
 	case HomeWorkState::GO_HOME:
 		//make a step toward home location
-		pt = toHome(initLocation);
+		pt = toDestination(initLocation, m_homeLocation);
 		break;
 	default:
 		pt = initLocation;
 	}
-	if (m_homeLocation)
-		m_state = stateTransition(pt);
+	m_state = stateTransition(pt);
 
 	return pt;
 }
@@ -155,68 +154,6 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 	return pt;
 }
 
-Point* HomeWorkDisplacement::toWork(Point *initLocation) {
-	Point* pt;
-	double theta = computeTheta(initLocation, m_workLocation);
-	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
-	//m_theta = computeTheta(initLocation, m_workLocation);
-	//m_theta2 = 0;//RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
-	//m_theta +=m_theta2;
-	//pt = computeNewLocation(initLocation, m_theta);
-	pt = computeNewLocation(initLocation, theta);
-	Geometry *g = m_simConfig->getMap()->getBoundary();
-	if (!pt->within(g)) {
-		int k = 10;
-		while (--k && !pt->within(g)) {
-			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
-			//m_theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
-			pt = computeNewLocation(initLocation, theta);
-			//cout << "am cazut afara de la munca: " << k << endl;
-		}
-		if (!k) {
-			pt = initLocation;
-			//cout << "am cazut afara de la munca si stau pe loc " << m_theta << ":" << initLocation->toString() <<":" <<m_workLocation->toString() << endl;
-		}
-	}
-	if(arrivedAtWork(pt)) {
-		//cout << "am ajuns la munca" << endl;
-		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(m_workLocation->getCoordinates());
-	}
-	return pt;
-}
-
-bool HomeWorkDisplacement::arrivedAtWork(Point* position) {
-	bool result = false;
-	//HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
-	double dist = sqrt(pow((position->getX() - m_workLocation->getX()), 2)	+ pow((position->getY() - m_workLocation->getY()), 2) + pow((position->getZ() - m_workLocation->getZ()), 2));
-	// allowable dist is a step length
-	double allowableDist = m_speed * m_simConfig->getClock()->getIncrement();
-	if (dist < allowableDist) {
-		result = true;
-	}
-	return result;
-}
-
-bool HomeWorkDisplacement::arrivedAtHome(Point* position) {
-	bool result = false;
-	//HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
-	double dist = sqrt(pow((position->getX() - m_homeLocation->getX()), 2)	+ pow((position->getY() - m_homeLocation->getY()), 2) + pow((position->getZ() - m_homeLocation->getZ()), 2));
-	// allowable dist is a step length
-	double allowableDist = m_speed * m_simConfig->getClock()->getIncrement();
-	if (dist < allowableDist) {
-		result = true;
-	}
-	return result;
-}
-
-//void HomeWorkDisplacement::setPosAtWork(Point* pt) {
-//	if(!m_workLocation) {
-//		//cout << "am setat positia la munca" << endl;
-//		m_workLocation = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
-//	}
-//}
-
 
 double HomeWorkDisplacement::computeTheta(Point* p1, Point* p2) const {
 	double result = 0.0;
@@ -252,18 +189,12 @@ Point* HomeWorkDisplacement::generateWorkLocation() {
 	return result;
 }
 
-//Point* HomeWorkDisplacement::getWorkLocation() {
-//	return m_workLocation;
-//}
 
-Point* HomeWorkDisplacement::toHome(Point *initLocation) {
+
+Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destination) {
 	Point* pt;
-	double theta = computeTheta(initLocation, m_homeLocation);
+	double theta = computeTheta(initLocation, destination);
 	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
-	//m_theta = computeTheta(initLocation, m_workLocation);
-	//m_theta2 = 0;//RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
-	//m_theta +=m_theta2;
-	//pt = computeNewLocation(initLocation, m_theta);
 	pt = computeNewLocation(initLocation, theta);
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
@@ -271,7 +202,6 @@ Point* HomeWorkDisplacement::toHome(Point *initLocation) {
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
-			//m_theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
 			pt = computeNewLocation(initLocation, theta);
 			//cout << "am cazut afara de la munca: " << k << endl;
 		}
@@ -280,10 +210,20 @@ Point* HomeWorkDisplacement::toHome(Point *initLocation) {
 			//cout << "am cazut afara de la munca si stau pe loc " << m_theta << ":" << initLocation->toString() <<":" <<m_workLocation->toString() << endl;
 		}
 	}
-	if(arrivedAtHome(pt)) {
+	if(arrivedAtDestination(pt, destination)) {
 		//cout << "am ajuns la munca" << endl;
-		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(m_homeLocation->getCoordinates());
+		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
 	}
 	return pt;
 }
 
+bool HomeWorkDisplacement::arrivedAtDestination(Point* position, Point* destination) {
+	bool result = false;
+	double dist = sqrt(pow((position->getX() - destination->getX()), 2)	+ pow((position->getY() - destination->getY()), 2) + pow((position->getZ() - destination->getZ()), 2));
+	// allowable dist is a step length
+	double allowableDist = m_speed * m_simConfig->getClock()->getIncrement();
+	if (dist < allowableDist) {
+		result = true;
+	}
+	return result;
+}
