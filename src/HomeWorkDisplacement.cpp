@@ -232,7 +232,7 @@ double HomeWorkDisplacement::computeTheta(Point* p1, Point* p2) const {
 	if(x2 < x1 && y2 < y1)
 		result = atan((y2-y1)/(x2-x1)) + utils::PI;
 	if(x2 >= x1 && y2 < y1)
-		result = 3.0*utils::PI/2.0 + abs(atan((y2-y1)/(x2-x1)));
+		result = 2.0*utils::PI - abs(atan((y2-y1)/(x2-x1)));
 
 	return result;
 }
