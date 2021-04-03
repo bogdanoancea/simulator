@@ -42,8 +42,7 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 	m_displacementMethod = nullptr;
 	m_homeLocation = nullptr;
 	m_workLocation = nullptr;
-	m_workLocationIndex = -1;
-	m_isHomePerson = false;
+	//m_isHomePerson = false;
 	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
@@ -175,22 +174,11 @@ Point* Person::getWorkLocation() const{
 }
 
 
-void Person::setWorkLocationIndex(unsigned index) {
-	m_workLocationIndex = index;
-}
-
-unsigned int Person::getWorkLocationIndex() const {
-	return m_workLocationIndex;
-}
-
-void Person::setHomePerson(bool home) {
-	m_isHomePerson = home;
-}
 bool Person::isHomePerson() const {
-	return m_isHomePerson;
+	return m_homeLocation != nullptr;
 }
 
 
-std::shared_ptr<Displace> Person::getDisplace()  {
-	return m_displacementMethod;
-}
+//std::shared_ptr<Displace> Person::getDisplace()  {
+//	return m_displacementMethod;
+//}

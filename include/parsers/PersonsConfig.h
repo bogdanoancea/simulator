@@ -34,8 +34,10 @@ private:
 	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
 	void addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag);
 	void setPersonDisplacementPattern(Person* p);
+	Point* generateWorkLocation(unsigned int index);
 	SimConfig* m_simConfig;
 	AgentsCollection* m_agents;
+
 
 };
 

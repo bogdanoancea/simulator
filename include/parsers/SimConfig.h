@@ -86,6 +86,7 @@ public:
 	unsigned int getNumHomeLocations() const;
 	unsigned int getNumWorkLocations() const;
 	HomeWorkLocation getHomeLocation(unsigned int i) const;
+	HomeWorkLocation getWorkLocation(unsigned int i) const;
 	HomeWorkScenario* getHomeWorkScenario();
 
 private:

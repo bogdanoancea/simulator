@@ -146,12 +146,9 @@ class Person: public MovableAgent {
 
 		void setWorkLocation(Point* hl);
 		Point* getWorkLocation() const;
-		void setWorkLocationIndex(unsigned int i);
-		unsigned int getWorkLocationIndex() const;
 
-		void setHomePerson(bool home);
 		bool isHomePerson() const;
-		std::shared_ptr<Displace> getDisplace();
+		//std::shared_ptr<Displace> getDisplace();
 
 	private:
 
@@ -166,8 +163,8 @@ class Person: public MovableAgent {
 		shared_ptr<Displace> m_displacementMethod;
 		Point* m_homeLocation;
 		Point* m_workLocation;
-		unsigned int m_workLocationIndex;
-		bool m_isHomePerson;
+		//unsigned int m_workLocationIndex;
+		//bool m_isHomePerson;
 };
 
 #endif /* PERSON_H_ */

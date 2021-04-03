@@ -120,8 +120,9 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(positions[i]->getCoordinates());
 					 p->setHomeLocation(hl);
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-					 p->setWorkLocationIndex(workLocationIndex);
-					 p->setHomePerson(true);
+					 Point* workLocation = generateWorkLocation(workLocationIndex);
+					 p->setWorkLocation(workLocation);
+					 //p->setHomePerson(true);
 				 }
 			}
 		} else {
@@ -133,8 +134,9 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(positions[i]->getCoordinates());
 					 p->setHomeLocation(hl);
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-					 p->setWorkLocationIndex(workLocationIndex);
-					 p->setHomePerson(true);
+					 Point* workLocation = generateWorkLocation(workLocationIndex);
+					 p->setWorkLocation(workLocation);
+					 //p->setHomePerson(true);
 				 }
 			}
 		}
@@ -241,7 +243,7 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 	}
 	else if (type == MovementType::HOME_WORK) {
 		if(p->isHomePerson()) {
-			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocationIndex());
+			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation());
 			p->setDisplacementMethod(displace1);
 		}
 		else {
@@ -253,10 +255,22 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 }
 
 
-
-
 const vector<Person*>& PersonsConfig::getPersons() const {
 	return m_persons;
+}
+
+Point* PersonsConfig::generateWorkLocation(unsigned int index) {
+	Point* result = nullptr;
+	double angle = RandomNumberGenerator::instance()->generateUniformDouble(0, 2.0 * utils::PI);
+	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(index);
+	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.m_sdx + pow(sin(angle),2)/wl.m_sdy) );
+	double l = RandomNumberGenerator::instance()->generateUniformDouble(0, L);
+	double x = wl.m_x + l * cos(angle);
+	double y = wl.m_y + l * sin(angle);
+	Coordinate c1(x, y, wl.m_z);
+	result = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
+
+	return result;
 }
 
 

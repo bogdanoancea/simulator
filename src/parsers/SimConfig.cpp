@@ -384,6 +384,7 @@ HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
 		throw std::runtime_error("No Home - Work scenario defined!");
 	}
 }
+
 HomeWorkScenario* SimConfig::getHomeWorkScenario() {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario;
@@ -392,3 +393,12 @@ HomeWorkScenario* SimConfig::getHomeWorkScenario() {
 	}
 
 }
+
+HomeWorkLocation SimConfig::getWorkLocation(unsigned int i) const {
+	if(isHomeWorkScenario())
+		return m_homeWorkScenario->getWorkLocations().at(i);
+	else {
+		throw std::runtime_error("No Home - Work scenario defined!");
+	}
+}
+
