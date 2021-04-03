@@ -25,8 +25,10 @@ private:
 	bool posAtHome(Point* position) const;
 	bool posAtWork(Point* position);
 	bool arrivedAtWork(Point* position);
+	bool arrivedAtHome(Point* position);
 	Point* makeRandomStepAtWork(Point* initLocation);
 	Point* toWork(Point* initLocation);
+	Point* toHome(Point* initLocation);
 	double computeTheta(Point* p1, Point* p2) const;
 	//void setPosAtWork(Point* pt);
 	Point* generateWorkLocation();

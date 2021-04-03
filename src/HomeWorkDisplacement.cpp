@@ -52,7 +52,7 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		break;
 	case HomeWorkState::GO_HOME:
 		//make a step toward home location
-		pt = initLocation;
+		pt = toHome(initLocation);
 		break;
 	default:
 		pt = initLocation;
@@ -198,6 +198,17 @@ bool HomeWorkDisplacement::arrivedAtWork(Point* position) {
 	return result;
 }
 
+bool HomeWorkDisplacement::arrivedAtHome(Point* position) {
+	bool result = false;
+	//HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(m_workLocationIndex);
+	double dist = sqrt(pow((position->getX() - m_homeLocation->getX()), 2)	+ pow((position->getY() - m_homeLocation->getY()), 2) + pow((position->getZ() - m_homeLocation->getZ()), 2));
+	// allowable dist is a step length
+	double allowableDist = m_speed * m_simConfig->getClock()->getIncrement();
+	if (dist < allowableDist) {
+		result = true;
+	}
+	return result;
+}
 
 //void HomeWorkDisplacement::setPosAtWork(Point* pt) {
 //	if(!m_workLocation) {
@@ -244,3 +255,35 @@ Point* HomeWorkDisplacement::generateWorkLocation() {
 //Point* HomeWorkDisplacement::getWorkLocation() {
 //	return m_workLocation;
 //}
+
+Point* HomeWorkDisplacement::toHome(Point *initLocation) {
+	Point* pt;
+	double theta = computeTheta(initLocation, m_homeLocation);
+	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
+	//m_theta = computeTheta(initLocation, m_workLocation);
+	//m_theta2 = 0;//RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
+	//m_theta +=m_theta2;
+	//pt = computeNewLocation(initLocation, m_theta);
+	pt = computeNewLocation(initLocation, theta);
+	Geometry *g = m_simConfig->getMap()->getBoundary();
+	if (!pt->within(g)) {
+		int k = 10;
+		while (--k && !pt->within(g)) {
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
+			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
+			//m_theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
+			pt = computeNewLocation(initLocation, theta);
+			//cout << "am cazut afara de la munca: " << k << endl;
+		}
+		if (!k) {
+			pt = initLocation;
+			//cout << "am cazut afara de la munca si stau pe loc " << m_theta << ":" << initLocation->toString() <<":" <<m_workLocation->toString() << endl;
+		}
+	}
+	if(arrivedAtHome(pt)) {
+		//cout << "am ajuns la munca" << endl;
+		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(m_homeLocation->getCoordinates());
+	}
+	return pt;
+}
+
