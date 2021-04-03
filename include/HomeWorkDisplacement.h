@@ -28,7 +28,7 @@ private:
 	Point* makeRandomStepAtWork(Point* initLocation);
 	Point* toWork(Point* initLocation);
 	double computeTheta(Point* p1, Point* p2) const;
-	void setPosAtWork(Point* pt);
+	//void setPosAtWork(Point* pt);
 	Point* generateWorkLocation();
 
 
