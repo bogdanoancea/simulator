@@ -30,10 +30,6 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, P
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
-	if(m_workLocation) {
-		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(m_workLocation);
-	}
-
 }
 
 Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
