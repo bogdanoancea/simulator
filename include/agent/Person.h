@@ -151,6 +151,7 @@ class Person: public MovableAgent {
 
 		void setHomePerson(bool home);
 		bool isHomePerson() const;
+		std::shared_ptr<Displace> getDisplace();
 
 	private:
 

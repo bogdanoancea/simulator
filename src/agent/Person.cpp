@@ -31,6 +31,7 @@
 #include <iomanip>
 #include <sstream>
 #include <utility>
+#include <HomeWorkDisplacement.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -103,7 +104,10 @@ Point* Person::move() {
 		}
 		setLocation(pt);
 	}
-
+//	if(getId() == 414) {
+//		shared_ptr<Displace> dpl = getDisplace();
+//		cout << " unghiul: " << ((HomeWorkDisplacement*)dpl.get())->m_theta << ":" << ((HomeWorkDisplacement*)dpl.get())->m_theta2<< "locatia:" << getLocation()->toString() << " work location " <<((HomeWorkDisplacement*)dpl.get())->getWorkLocation()->toString() <<  endl;
+//	}
 	return (getLocation());
 }
 
@@ -184,4 +188,9 @@ void Person::setHomePerson(bool home) {
 }
 bool Person::isHomePerson() const {
 	return m_isHomePerson;
+}
+
+
+std::shared_ptr<Displace> Person::getDisplace()  {
+	return m_displacementMethod;
 }

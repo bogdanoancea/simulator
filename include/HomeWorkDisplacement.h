@@ -16,8 +16,7 @@ public:
 	HomeWorkDisplacement(SimConfig* simConfig, double speed, Point* homeLocation, unsigned int workLocationIndex);
 	virtual ~HomeWorkDisplacement();
 	virtual Point* generateNewLocation(Point* p) override;
-
-
+	//Point* getWorkLocation();
 private:
 	//virtual Point* computeNewLocation(Point* initLocation, double theta) override;
 	HomeWorkState stateTransition(Point* position);
@@ -31,6 +30,8 @@ private:
 	double computeTheta(Point* p1, Point* p2) const;
 	void setPosAtWork(Point* pt);
 	Point* generateWorkLocation();
+
+
 
 	unsigned long m_deltaTStayHome;
 	unsigned long m_deltaTStayWork;
