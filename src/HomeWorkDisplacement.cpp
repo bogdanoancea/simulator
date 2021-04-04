@@ -92,17 +92,17 @@ HomeWorkState HomeWorkDisplacement::stateTransition(Point *position) {
 	return result;
 }
 
-unsigned long HomeWorkDisplacement::initDeltaTStayHome() {
+unsigned long HomeWorkDisplacement::initDeltaTStayHome() const {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
 	return m_simConfig->getHomeWorkScenario()->getPrecentTimeHome() * simulationTime;
 }
 
-unsigned long HomeWorkDisplacement::initDeltaTStayWork() {
+unsigned long HomeWorkDisplacement::initDeltaTStayWork() const {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
 	return m_simConfig->getHomeWorkScenario()->getPrecentTimeWork()* simulationTime;
 }
 
-bool HomeWorkDisplacement::posAtDestination(Point* position, Point* destination) const {
+const bool HomeWorkDisplacement::posAtDestination(Point* position, Point* destination) const {
 	bool result = false;
 	if (destination != nullptr)
 		result = position->equals(destination);
@@ -187,7 +187,7 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 	return pt;
 }
 
-bool HomeWorkDisplacement::arrivedAtDestination(Point* position, Point* destination) {
+const bool HomeWorkDisplacement::arrivedAtDestination(Point* position, Point* destination) const {
 	bool result = false;
 	double dist = sqrt(pow((position->getX() - destination->getX()), 2)	+ pow((position->getY() - destination->getY()), 2) + pow((position->getZ() - destination->getZ()), 2));
 	// allowable dist is a step length

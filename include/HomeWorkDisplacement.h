@@ -19,10 +19,10 @@ public:
 	//Point* getWorkLocation();
 private:
 	HomeWorkState stateTransition(Point* position);
-	unsigned long initDeltaTStayHome();
-	unsigned long initDeltaTStayWork();
-	bool posAtDestination(Point* position, Point* destination) const;
-	bool arrivedAtDestination(Point* position, Point* destination);
+	unsigned long initDeltaTStayHome() const;
+	unsigned long initDeltaTStayWork() const;
+	const bool posAtDestination(Point* position, Point* destination) const;
+	const bool arrivedAtDestination(Point* position, Point* destination) const;
 	Point* makeRandomStepAtWork(Point* initLocation);
 	Point* toDestination(Point*  initLocation, Point* destination);
 	double computeTheta(Point* p1, Point* p2) const;
