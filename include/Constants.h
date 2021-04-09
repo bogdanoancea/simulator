@@ -217,6 +217,8 @@ public:
 	static const char* SOFTWARE_VERSION;
 
 	static const EventType EVENTTYPE;
+	static const char* DEFAULT_ANGLE_DISTRIBUTION;
+	static const double DEFAULT_SCALE_LAPLACE;
 };
 
 #endif /* CONSTANTS_H_ */

@@ -1,6 +1,6 @@
-<simulation>
+r<simulation>
         <start_time>0</start_time>
-        <end_time>900</end_time>
+        <end_time>1900</end_time>
 		<time_increment>10</time_increment>
 		<time_stay>20</time_stay>
         <interval_between_stays>120</interval_between_stays>
@@ -20,8 +20,8 @@
 			<home>
 				<x_home>8000</x_home>
 				<y_home>7500</y_home>
-				<x_sd_home>1000</x_sd_home>
-				<y_sd_home>1000</y_sd_home>
+				<x_sd_home>750</x_sd_home>
+				<y_sd_home>750</y_sd_home>
 			</home>
 			<work>
 				<x_work>2500</x_work>
@@ -35,8 +35,15 @@
 				<x_sd_work>750</x_sd_work>
 				<y_sd_work>750</y_sd_work>
 			</work>
-			<percent_time_home>0.3</percent_time_home>
-			<percent_time_work>0.3</percent_time_work>
+			<percent_time_home>0.1</percent_time_home>
+			<percent_time_work>0.1</percent_time_work>
+			<percent_time_travel>0.01</percent_time_travel>
+			<direction_angle_distribution>
+				<distribution_name>Laplace</distribution_name>
+				<distribution_params>
+					<scale>15</scale>
+				</distribution_params>
+			</direction_angle_distribution>
 		</specs_home_work>
 		<connection_type>strength</connection_type>
 		<event_type>cellIDTA</event_type>

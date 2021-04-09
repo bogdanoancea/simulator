@@ -33,6 +33,8 @@
 #include <TinyXML2.h>
 #include <string>
 #include <vector>
+#include <map>
+#include <DistributionType.h>
 
 
 using namespace tinyxml2;
@@ -120,6 +122,9 @@ private:
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
+	Distribution* parseDirectionAngleDistribution(XMLElement* homeWorkElement);
+	map<string, double> parseDistributionParams(XMLElement* distribution, DistributionType dType);
+	map<string, double> parseLaplaceParams(XMLElement* distribution);
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */

@@ -42,6 +42,7 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, P
 	m_state = HomeWorkState::STAY_HOME;
 	m_homeLocation = homeLocation;
 	m_workLocation = workLocation;
+	m_angleDistribution = simConfig->getHomeWorkScenario()->getAngleDistribution();
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
@@ -180,7 +181,14 @@ double HomeWorkDisplacement::computeTheta(Point* p1, Point* p2) const {
 Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destination) {
 	Point* pt;
 	double theta = computeTheta(initLocation, destination);
-	theta += RandomNumberGenerator::instance()->generateUniformDouble(- utils::PI/20.0, utils::PI/20.0);
+	DistributionType dType = m_angleDistribution->getType();
+	double eps = 0.0;
+	switch(dType) {
+	case DistributionType::LAPLACE:
+		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(m_angleDistribution->getParam("scale")) / 180.0;
+		break;
+	}
+	theta += eps;
 	pt = computeNewLocation(initLocation, theta);
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {

@@ -207,7 +207,7 @@ public:
 	 */
 	double normal_pdf(double x, double m, double s);
 
-
+	double generateLaplaceDouble(const double lambda);
 	/**
 	 * Sets the seed of the random number generator.
 	 * @param seed

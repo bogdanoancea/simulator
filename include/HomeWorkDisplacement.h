@@ -37,9 +37,9 @@ public:
 	virtual ~HomeWorkDisplacement();
 
 	/**
-	 *
-	 * @param p
-	 * @return
+	 * Implements the home - work behavior. It takes a pointer to the current location, and generates a new location according to the current status of the person.
+	 * @param p a pointer to the current location.
+	 * @return the new location.
 	 */
 	virtual Point* generateNewLocation(Point* p) override;
 
@@ -57,6 +57,7 @@ private:
 	HomeWorkState m_state;
 	Point* m_homeLocation;
 	Point* m_workLocation;
+	Distribution* m_angleDistribution;
 };
 
 #endif /* INCLUDE_HOMEWORKDISPLACEMENT_H_ */

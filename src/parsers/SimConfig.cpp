@@ -143,6 +143,45 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
+	hws->setAngleDistribution(parseDirectionAngleDistribution(homeWorkElement));
+}
+
+Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
+	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
+	const char* dname = getValue(distribution, "distribution_name", Constants::DEFAULT_ANGLE_DISTRIBUTION);
+	DistributionType dType;
+	if(!strcmp(dname, "Laplace")) {
+		dType = DistributionType::LAPLACE;
+	}
+	else {
+		dType = DistributionType::LAPLACE;
+	}
+	map<string, double> params = parseDistributionParams(distribution, dType);
+	return new Distribution(dType, params);
+	//cout << "am citit distr name " << dname << ":" << params["scale"] << endl;
+}
+
+map<string, double> SimConfig::parseDistributionParams(XMLElement* distribution, DistributionType dType) {
+	map<string, double> result;
+	switch(dType) {
+	case DistributionType::LAPLACE:
+		result = parseLaplaceParams(distribution);
+		break;
+	case DistributionType::UNIFORM:
+		break;
+	case DistributionType::NORMAL:
+		break;
+	}
+
+	return result;
+}
+
+map<string, double> SimConfig::parseLaplaceParams(XMLElement* distribution) {
+	map<string, double> result;
+	XMLElement* distributionParams = distribution->FirstChildElement("distribution_params");
+	double scale = getValue(distributionParams, "scale", Constants::DEFAULT_SCALE_LAPLACE);
+	result.insert(pair<string, double>("scale", scale));
+	return result;
 }
 
 const string& SimConfig::getAntennasFilename() const {

@@ -13,6 +13,7 @@
 HomeWorkScenario::HomeWorkScenario() {
 	m_precentTimeHome = -1;
 	m_precentTimeWork = -1;
+	m_angleDistribution = nullptr;
 }
 
 HomeWorkScenario::~HomeWorkScenario() {
@@ -50,6 +51,15 @@ double HomeWorkScenario::getPrecentTimeWork() const {
 
 void HomeWorkScenario::setPrecentTimeWork(double precentTimeWork) {
 	m_precentTimeWork = precentTimeWork;
+}
+
+
+void HomeWorkScenario::setAngleDistribution(Distribution* distr) {
+	m_angleDistribution = distr;
+}
+
+Distribution* HomeWorkScenario::getAngleDistribution() {
+	return m_angleDistribution;
 }
 
 const string HomeWorkScenario::toString(){

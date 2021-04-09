@@ -11,6 +11,7 @@
 
 #include <geos/geom/Point.h>
 #include <parsers/HomeWorkLocation.h>
+#include <parsers/Distribution.h>
 #include <vector>
 
 using namespace std;
@@ -32,12 +33,14 @@ public:
 	double getPrecentTimeWork() const;
 	void setPrecentTimeWork(double precentTimeWork);
 	const string toString();
-
+	void setAngleDistribution(Distribution* distr);
+	Distribution* getAngleDistribution();
 private:
 	vector<HomeWorkLocation> m_homeLocations;
 	vector<HomeWorkLocation> m_workLocations;
 	double m_precentTimeHome;
 	double m_precentTimeWork;
+	Distribution* m_angleDistribution;
 };
 
 #endif /* INCLUDE_HOMEWORKSCENARIO_H_ */

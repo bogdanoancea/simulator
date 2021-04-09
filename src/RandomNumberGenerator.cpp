@@ -179,7 +179,15 @@ double RandomNumberGenerator::generateExponentialDouble(const double lambda) {
 	return (result);
 }
 
-
+double RandomNumberGenerator::generateLaplaceDouble(const double lambda) {
+	double result;
+	exponential_distribution<double>::param_type p1(1.0/lambda);
+	m_exponential_double_distribution.param(p1);
+	double x = m_exponential_double_distribution(m_generator);
+	double y = m_exponential_double_distribution(m_generator);
+	result = x - y;
+	return (result);
+}
 
 int RandomNumberGenerator::generateBernoulliInt(const double p) {
 	int result = 0;

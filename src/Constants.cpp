@@ -91,3 +91,5 @@ const double Constants::ANNULUS_SIZE_4G = 78.07;
 
 const char* Constants::SOFTWARE_VERSION = "0.2.0";
 const EventType Constants::EVENTTYPE = EventType::CELLID;
+const char* Constants::DEFAULT_ANGLE_DISTRIBUTION = "Laplace";
+const double Constants::DEFAULT_SCALE_LAPLACE = 10.0;
