@@ -41,7 +41,7 @@ r<simulation>
 			<direction_angle_distribution>
 				<distribution_name>Laplace</distribution_name>
 				<distribution_params>
-					<scale>15</scale>
+					<scale>10</scale>
 				</distribution_params>
 			</direction_angle_distribution>
 		</specs_home_work>
