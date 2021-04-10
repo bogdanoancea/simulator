@@ -183,9 +183,10 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 	double theta = computeTheta(initLocation, destination);
 	DistributionType dType = m_angleDistribution->getType();
 	double eps = 0.0;
+	const char* paramName = "scale";
 	switch(dType) {
 	case DistributionType::LAPLACE:
-		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(m_angleDistribution->getParam("scale")) / 180.0;
+		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(m_angleDistribution->getParam(paramName)) / 180.0;
 		break;
 	}
 	theta += eps;

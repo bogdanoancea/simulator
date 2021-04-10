@@ -156,32 +156,30 @@ Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkEle
 	else {
 		dType = DistributionType::LAPLACE;
 	}
-	map<string, double> params = parseDistributionParams(distribution, dType);
+	map<const char *, double> params;
+	parseDistributionParams(distribution, dType, params);
 	return new Distribution(dType, params);
 	//cout << "am citit distr name " << dname << ":" << params["scale"] << endl;
 }
 
-map<string, double> SimConfig::parseDistributionParams(XMLElement* distribution, DistributionType dType) {
-	map<string, double> result;
+void SimConfig::parseDistributionParams(XMLElement* distribution, DistributionType dType,  map<const char*, double>& distrPars) {
 	switch(dType) {
 	case DistributionType::LAPLACE:
-		result = parseLaplaceParams(distribution);
+		parseLaplaceParams(distribution, distrPars);
 		break;
 	case DistributionType::UNIFORM:
 		break;
 	case DistributionType::NORMAL:
 		break;
 	}
-
-	return result;
 }
 
-map<string, double> SimConfig::parseLaplaceParams(XMLElement* distribution) {
-	map<string, double> result;
+ void SimConfig::parseLaplaceParams(XMLElement* distribution, map<const char*, double>& distrPars) {
+
 	XMLElement* distributionParams = distribution->FirstChildElement("distribution_params");
 	double scale = getValue(distributionParams, "scale", Constants::DEFAULT_SCALE_LAPLACE);
-	result.insert(pair<string, double>("scale", scale));
-	return result;
+	const char* paramName = "scale";
+	distrPars.insert(std::pair<const char*, double>(paramName, scale));
 }
 
 const string& SimConfig::getAntennasFilename() const {

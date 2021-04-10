@@ -7,9 +7,10 @@
 
 #include <parsers/Distribution.h>
 
-Distribution::Distribution(DistributionType type, map<string, double> params) {
+
+Distribution::Distribution(DistributionType type, std::map<const char*, double> &params) {
 	m_type = type;
-	m_params = params;
+	m_params= params;
 
 }
 
@@ -17,7 +18,7 @@ Distribution::~Distribution() {
 	// TODO Auto-generated destructor stub
 }
 
-double Distribution::getParam(string name) {
+double Distribution::getParam(const char* name) {
 	return m_params[name];
 }
 

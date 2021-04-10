@@ -10,19 +10,20 @@
 
 #include <DistributionType.h>
 #include <map>
+
 using namespace std;
 
 class Distribution {
 public:
 	Distribution() = delete;
-	Distribution(DistributionType type, map<string, double> params);
+	Distribution(DistributionType type, std::map<const char*, double> &params);
 	virtual ~Distribution();
-	double getParam(string name);
+	double getParam(const char* name);
 	DistributionType getType();
 
 private:
 	DistributionType m_type;
-	map<string, double> m_params;
+	map<const char*, double> m_params;
 
 };
 
