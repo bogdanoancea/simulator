@@ -43,10 +43,19 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, P
 	m_homeLocation = homeLocation;
 	m_workLocation = workLocation;
 	m_angleDistribution = simConfig->getHomeWorkScenario()->getAngleDistribution();
+
+	std::pair<const char*, double> p1 = std::make_pair("min", 0);
+	std::pair<const char*, double> p2 = std::make_pair("max", 2 * utils::PI);
+	vector<pair<const char *, double>> params;
+	params.push_back(p1);
+	params.push_back(p2);
+	m_uniform = new Distribution(DistributionType::UNIFORM, params);
 	//cout << m_angleDistribution << ":"<< (int)m_angleDistribution->getType() << ":" << m_angleDistribution->getParam("scale") << endl;
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
+	if(m_uniform)
+		delete m_uniform;
 }
 
 Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
@@ -133,7 +142,7 @@ const bool HomeWorkDisplacement::posAtDestination(Point* position, Point* destin
 
 Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
+	theta = RandomNumberGenerator::instance()->generateDouble(*m_uniform);
 	double stepLength = (m_speed / 10.0) * m_simConfig->getClock()->getIncrement();
 	double newX = initLocation->getX() + stepLength * cos(theta);
 	double newY = initLocation->getY() + stepLength * sin(theta) ;
@@ -145,7 +154,7 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 		//cout << "am cazut afara" << endl;
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			theta = RandomNumberGenerator::instance()->generateUniformDouble( 0.0, 2 * utils::PI);
+			theta = RandomNumberGenerator::instance()->generateDouble(*m_uniform);
 			double newX = initLocation->getX() + stepLength * cos(theta);
 			double newY = initLocation->getY() + stepLength * sin(theta) ;
 			Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());

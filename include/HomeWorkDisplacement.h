@@ -58,6 +58,7 @@ private:
 	Point* m_homeLocation;
 	Point* m_workLocation;
 	Distribution* m_angleDistribution;
+	Distribution* m_uniform;
 };
 
 #endif /* INCLUDE_HOMEWORKDISPLACEMENT_H_ */

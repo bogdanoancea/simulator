@@ -19,6 +19,7 @@ public:
 	Distribution(DistributionType type, vector<pair<const char*, double>> params);
 	virtual ~Distribution();
 	double getParam(const char* name);
+	void setParams(vector<pair<const char*, double>> params);
 	DistributionType getType();
 
 private:

@@ -32,6 +32,7 @@ using namespace utils;
 
 RandomWalkDisplacement::RandomWalkDisplacement(SimConfig* simConfig,  double speed):
 		Displace(simConfig, speed) {
+
 }
 
 RandomWalkDisplacement::~RandomWalkDisplacement() {
@@ -39,7 +40,8 @@ RandomWalkDisplacement::~RandomWalkDisplacement() {
 
 Point* RandomWalkDisplacement::generateNewLocation(Point* initLocation) {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateUniformDouble(0.0, 2 * utils::PI);
+
+	theta = RandomNumberGenerator::instance()->generateUniformDouble(0, 2 * utils::PI);
 	Point* pt = computeNewLocation(initLocation, theta);
 
 	Geometry* g = m_simConfig->getMap()->getBoundary();

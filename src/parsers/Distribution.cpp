@@ -30,3 +30,7 @@ double Distribution::getParam(const char* name) {
 DistributionType Distribution::getType() {
 	return m_type;
 }
+
+void Distribution::setParams(vector<pair<const char*, double>> params) {
+	m_params = params;
+}

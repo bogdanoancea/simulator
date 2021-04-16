@@ -163,8 +163,6 @@ class Person: public MovableAgent {
 		shared_ptr<Displace> m_displacementMethod;
 		Point* m_homeLocation;
 		Point* m_workLocation;
-		//unsigned int m_workLocationIndex;
-		//bool m_isHomePerson;
 };
 
 #endif /* PERSON_H_ */

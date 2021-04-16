@@ -92,12 +92,15 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 	vector<Person*> result;
 	unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_simConfig->getSeed());
+
 	int *phone1 = nullptr, *phone2 = nullptr;
 	setPhones(phone1, phone2, m_simConfig->getProbSecMobilePhone(), numPersons, random_generator);
 
 	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
+
 	int sum = 0;
 	sum = accumulate(walk_car, walk_car + numPersons, sum);
+
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
 	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);

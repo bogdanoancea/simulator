@@ -119,8 +119,21 @@ vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double per
 }
 
 void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_generator, vector<Point*>& result) {
-	double* x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, npers);
-	double* y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, npers);
+	vector<pair<const char*, double>> distrPars;
+	std::pair<const char*, double> p1 = std::make_pair("mean",hLoc.m_x );
+	std::pair<const char*, double> p2 = std::make_pair("sd", hLoc.m_sdx);
+	distrPars.push_back(p1);
+	distrPars.push_back(p2);
+	Distribution normalX(DistributionType::NORMAL, distrPars);
+	distrPars.clear();
+	p1 = std::make_pair("mean",hLoc.m_y );
+	p2 = std::make_pair("sd", hLoc.m_sdy);
+	distrPars.push_back(p1);
+	distrPars.push_back(p2);
+	Distribution normalY(DistributionType::NORMAL, distrPars);
+
+	double* x1 = random_generator->generateDouble(npers, normalX);
+	double* y1 = random_generator->generateDouble(npers, normalY);
 	unsigned long j = 0, k = 0;
 	while (k < npers) {
 		if (x1[j] < 1e-15)
@@ -139,8 +152,8 @@ void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, Ran
 		if (j > npers - 1) {
 			delete[] x1;
 			delete[] y1;
-			x1 = random_generator->generateNormalDouble(hLoc.m_x, hLoc.m_sdx, npers);
-			y1 = random_generator->generateNormalDouble(hLoc.m_y, hLoc.m_sdy, npers);
+			x1 = random_generator->generateDouble(npers, normalX);
+			y1 = random_generator->generateDouble(npers, normalY);
 			j = 0;
 		}
 	}

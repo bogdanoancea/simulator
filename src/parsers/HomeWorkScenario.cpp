@@ -18,6 +18,8 @@ HomeWorkScenario::HomeWorkScenario() {
 
 HomeWorkScenario::~HomeWorkScenario() {
 	// TODO Auto-generated destructor stub
+	if(m_angleDistribution)
+		delete m_angleDistribution;
 }
 
 void HomeWorkScenario::addHomeLocation(HomeWorkLocation h) {

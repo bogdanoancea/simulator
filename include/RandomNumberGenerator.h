@@ -59,174 +59,6 @@ public:
 		return m_instance;
 	}
 
-	/**
-	 * Generates n random numbers with a normal distribution. Half of them are N(m1,sd1), the other half N(m2,sd2).
-	 * @param m1 the mean of the first normal distribution.
-	 * @param sd1 the standard deviation of the first normal distribution.
-	 * @param m2 the mean of the second normal distribution.
-	 * @param sd2 the standard deviation of the second normal distribution.
-	 * @param n the total number of values to be generated.
-	 * @return an array with random numbers according to two normal distributions.
-	 */
-	double* generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, int n);
-
-	/**
-	 * Generates a random value, normally distributed with mean m and standard distribution sd
-	 * @param m the mean of the normal distribution.
-	 * @param sd the standard deviation of the normal distribution.
-	 * @return a random value, normally distributed with mean m and standard distribution sd.
-	 */
-	double generateNormalDouble(const double m, const double sd);
-	int generateNormalInt(const double m, const double sd);
-	/**
-	 * Generates an array with n double values normally distributed with mean m and standard deviation sd.
-	 * @param m the mean of the normal distribution.
-	 * @param sd the standard deviation of the normal distribution.
-	 * @param n the number of values to be generated.
-	 * @return an array with n double values normally distributed with mean m and standard deviation sd.
-	 */
-	double* generateNormalDouble(const double m, const double sd, const int n);
-	int* generateNormalInt(const double m, const double sd, const int n);
-
-	/**
-	 * Generates n double values from a truncated normal distribution. All values will be in [a, b].
-	 * @param a the inferior limit of the truncated normal distribution.
-	 * @param b the superior limit of the truncated normal distribution.
-	 * @param m the mean of the normal distribution.
-	 * @param sd the standard deviation of the normal distribution.
-	 * @param n the number of values to be generated.
-	 * @return an array with n double values from a truncated normal distribution.
-	 */
-	double* generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd, const unsigned long n);
-
-	double generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd);
-	/**
-	 * Generates n int values from a truncated normal distribution. All values will be in [a, b].
-	 * @param a the inferior limit of the truncated normal distribution.
-	 * @param b the superior limit of the truncated normal distribution.
-	 * @param m the mean of the normal distribution.
-	 * @param sd the standard deviation of the normal distribution.
-	 * @param n the number of values to be generated.
-	 * @return an array with n double values from a truncated normal distribution.
-	 */
-	int* generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n);
-	int generateTruncatedNormalInt(const int a, const int b, const double m, const double sd);
-
-	/**
-	 * Generates a random double value from a uniform distribution which lies inside [min, max].
-	 * @param min the lower limit of the value.
-	 * @param max the upper limit of the value.
-	 * @return a double value, uniformly distributed in [min, max].
-	 */
-	double generateUniformDouble(const double min, const double max);
-
-
-	/**
-	 * Generates n uniform distributed random values which lie inside [min, max].
-	 * @param min the lower limit of the values.
-	 * @param max the upper limit of the values.
-	 * @param n the number of values to be generated.
-	 * @return n array with n double values from a uniform distribution.
-	 */
-	double* generateUniformDouble(const double min, const double max, const int n);
-
-
-	/**
-	 * Generates a random value distributed according to an exponential distribution with parameter lambda.
-	 * @param lambda the parameter of the exponential distribution.
-	 * @return a random value distributed according to an exponential distribution with parameter lambda.
-	 */
-	double generateExponentialDouble(const double lambda);
-	double* generateExponentialDouble(const double lambda, const int n);
-
-
-	int generateExponentialInt(const double lambda);
-	int* generateExponentialInt(const double lambda, const int n);
-
-
-	/**
-	 * Generates a random int value from a uniform distribution which lies inside [min, max].
-	 * @param min the lower limit of the value.
-	 * @param max the upper limit of the value.
-	 * @return an int value, uniformly distributed in [min, max].
-	 */
-	int generateUniformInt(const int min, const int max);
-
-	/**
-	 * Generates n uniform distributed random values which lie inside [min, max].
-	 * @param min the lower limit of the values.
-	 * @param max the upper limit of the values.
-	 * @param n the number of values to be generated.
-	 * @return an array with n int values from a uniform distribution.
-	 */
-	int* generateUniformInt(const int min, const int max, const int n);
-
-	/**
-	 * Generates a int random value from a binomial distribution inside the interval [0, max].
-	 * @param max the upper limit of the value.
-	 * @param p the parameter of the binomial distribution.
-	 * @return a int random value from a binomial distribution inside the interval [0, max].
-	 */
-	int generateBinomialInt(const int max, const double p);
-
-	/**
-	 * Generates an int random value from a Bernoulli distribution.
-	 * @param p the parameter of the Bernoulli distribution.
-	 * @return an int random value from a Bernoulii distribution.
-	 */
-	int generateBernoulliInt(const double p);
-
-	/**
-	 * Generates n int random values from a binomial distribution inside the interval [0, max].
-	 * @param max the upper limit of the value.
-	 * @param p the parameter of the binomial distribution.
-	 * @param n the number of values to be generated.
-	 * @return array with n int values from a binomial distribution.
-	 */
-	int* generateBinomialInt(const int max, const double p, const int n);
-
-	/**
-	 * Generates n int random values from a Bernoulli distribution.
-	 * @param p the parameter of the Bernoulli distribution.
-	 * @param n the number of values to be generated.
-	 * @return array with n int values from a Bernoulli distribution.
-	 */
-	int* generateBernoulliInt(const double p, const int n);
-
-	/**
-	 * Generates n double random values from a Levy distribution
-	 * @param mu the displacement of the Levy distribution
-	 * @param c the scale parameter of the Levy distribution
-	 * @param n the number of values to be generated
-	 * @return an array with n double values from a Levy distribution
-	 */
-	double* generateLevyDouble(const double mu, const double c, const int n);
-	int* generateLevyInt(const double mu, const double c, const int n);
-
-	/**
-	 * Generates a double random value from a Levy distribution
-	 * @param mu the displacement of the Levy distribution
-	 * @param c the scale parameter of the Levy distribution
-	 * @return an array with n double values from a Levy distribution
-	 */
-	double generateLevyDouble(const double mu, const double c);
-	int generateLevyInt(const double mu, const double c);
-
-
-	/**
-	 * The value of the PDF of the normal distribution for x.
-	 * @param x the value for which we need the PDF.
-	 * @param m the mean of the normal distribution.
-	 * @param s the standard deviation of the normal distribution.
-	 * @return The value of the PDF of the normal distribution for x.
-	 */
-	double normal_pdf(double x, double m, double s);
-
-	double generateLaplaceDouble(const double lambda);
-	double* generateLaplaceDouble(const double lambda, const int n);
-
-	int generateLaplaceInt(const double lambda);
-	int* generateLaplaceInt(const double lambda, const int n);
 
 	/**
 	 * Sets the seed of the random number generator.
@@ -239,7 +71,175 @@ public:
 
 	int generateInt(Distribution distr);
 	int* generateInt(int n, Distribution distr);
+	/**
+	 * The value of the PDF of the normal distribution for x.
+	 * @param x the value for which we need the PDF.
+	 * @param m the mean of the normal distribution.
+	 * @param s the standard deviation of the normal distribution.
+	 * @return The value of the PDF of the normal distribution for x.
+	 */
+	double normal_pdf(double x, double m, double s);
+	/**
+		 * Generates n random numbers with a normal distribution. Half of them are N(m1,sd1), the other half N(m2,sd2).
+		 * @param m1 the mean of the first normal distribution.
+		 * @param sd1 the standard deviation of the first normal distribution.
+		 * @param m2 the mean of the second normal distribution.
+		 * @param sd2 the standard deviation of the second normal distribution.
+		 * @param n the total number of values to be generated.
+		 * @return an array with random numbers according to two normal distributions.
+		 */
+		double* generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, int n);
 
+		/**
+		 * Generates a random value, normally distributed with mean m and standard distribution sd
+		 * @param m the mean of the normal distribution.
+		 * @param sd the standard deviation of the normal distribution.
+		 * @return a random value, normally distributed with mean m and standard distribution sd.
+		 */
+		double generateNormalDouble(const double m, const double sd);
+		int generateNormalInt(const double m, const double sd);
+		/**
+		 * Generates an array with n double values normally distributed with mean m and standard deviation sd.
+		 * @param m the mean of the normal distribution.
+		 * @param sd the standard deviation of the normal distribution.
+		 * @param n the number of values to be generated.
+		 * @return an array with n double values normally distributed with mean m and standard deviation sd.
+		 */
+		double* generateNormalDouble(const double m, const double sd, const int n);
+		int* generateNormalInt(const double m, const double sd, const int n);
+
+		/**
+		 * Generates n double values from a truncated normal distribution. All values will be in [a, b].
+		 * @param a the inferior limit of the truncated normal distribution.
+		 * @param b the superior limit of the truncated normal distribution.
+		 * @param m the mean of the normal distribution.
+		 * @param sd the standard deviation of the normal distribution.
+		 * @param n the number of values to be generated.
+		 * @return an array with n double values from a truncated normal distribution.
+		 */
+		double* generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd, const unsigned long n);
+
+		double generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd);
+		/**
+		 * Generates n int values from a truncated normal distribution. All values will be in [a, b].
+		 * @param a the inferior limit of the truncated normal distribution.
+		 * @param b the superior limit of the truncated normal distribution.
+		 * @param m the mean of the normal distribution.
+		 * @param sd the standard deviation of the normal distribution.
+		 * @param n the number of values to be generated.
+		 * @return an array with n double values from a truncated normal distribution.
+		 */
+		int* generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n);
+		int generateTruncatedNormalInt(const int a, const int b, const double m, const double sd);
+
+		/**
+		 * Generates a random double value from a uniform distribution which lies inside [min, max].
+		 * @param min the lower limit of the value.
+		 * @param max the upper limit of the value.
+		 * @return a double value, uniformly distributed in [min, max].
+		 */
+		double generateUniformDouble(const double min, const double max);
+
+
+		/**
+		 * Generates n uniform distributed random values which lie inside [min, max].
+		 * @param min the lower limit of the values.
+		 * @param max the upper limit of the values.
+		 * @param n the number of values to be generated.
+		 * @return n array with n double values from a uniform distribution.
+		 */
+		double* generateUniformDouble(const double min, const double max, const int n);
+
+
+		/**
+		 * Generates a random value distributed according to an exponential distribution with parameter lambda.
+		 * @param lambda the parameter of the exponential distribution.
+		 * @return a random value distributed according to an exponential distribution with parameter lambda.
+		 */
+		double generateExponentialDouble(const double lambda);
+		double* generateExponentialDouble(const double lambda, const int n);
+
+
+		int generateExponentialInt(const double lambda);
+		int* generateExponentialInt(const double lambda, const int n);
+
+
+		/**
+		 * Generates a random int value from a uniform distribution which lies inside [min, max].
+		 * @param min the lower limit of the value.
+		 * @param max the upper limit of the value.
+		 * @return an int value, uniformly distributed in [min, max].
+		 */
+		int generateUniformInt(const int min, const int max);
+
+		/**
+		 * Generates n uniform distributed random values which lie inside [min, max].
+		 * @param min the lower limit of the values.
+		 * @param max the upper limit of the values.
+		 * @param n the number of values to be generated.
+		 * @return an array with n int values from a uniform distribution.
+		 */
+		int* generateUniformInt(const int min, const int max, const int n);
+
+		/**
+		 * Generates a int random value from a binomial distribution inside the interval [0, max].
+		 * @param max the upper limit of the value.
+		 * @param p the parameter of the binomial distribution.
+		 * @return a int random value from a binomial distribution inside the interval [0, max].
+		 */
+		int generateBinomialInt(const int max, const double p);
+
+		/**
+		 * Generates an int random value from a Bernoulli distribution.
+		 * @param p the parameter of the Bernoulli distribution.
+		 * @return an int random value from a Bernoulii distribution.
+		 */
+		int generateBernoulliInt(const double p);
+
+		/**
+		 * Generates n int random values from a binomial distribution inside the interval [0, max].
+		 * @param max the upper limit of the value.
+		 * @param p the parameter of the binomial distribution.
+		 * @param n the number of values to be generated.
+		 * @return array with n int values from a binomial distribution.
+		 */
+		int* generateBinomialInt(const int max, const double p, const int n);
+
+		/**
+		 * Generates n int random values from a Bernoulli distribution.
+		 * @param p the parameter of the Bernoulli distribution.
+		 * @param n the number of values to be generated.
+		 * @return array with n int values from a Bernoulli distribution.
+		 */
+		int* generateBernoulliInt(const double p, const int n);
+
+		/**
+		 * Generates n double random values from a Levy distribution
+		 * @param mu the displacement of the Levy distribution
+		 * @param c the scale parameter of the Levy distribution
+		 * @param n the number of values to be generated
+		 * @return an array with n double values from a Levy distribution
+		 */
+		double* generateLevyDouble(const double mu, const double c, const int n);
+		int* generateLevyInt(const double mu, const double c, const int n);
+
+		/**
+		 * Generates a double random value from a Levy distribution
+		 * @param mu the displacement of the Levy distribution
+		 * @param c the scale parameter of the Levy distribution
+		 * @return an array with n double values from a Levy distribution
+		 */
+		double generateLevyDouble(const double mu, const double c);
+		int generateLevyInt(const double mu, const double c);
+
+
+
+
+		double generateLaplaceDouble(const double lambda);
+		double* generateLaplaceDouble(const double lambda, const int n);
+
+		int generateLaplaceInt(const double lambda);
+		int* generateLaplaceInt(const double lambda, const int n);
 
 private:
 	RandomNumberGenerator();
@@ -261,6 +261,8 @@ private:
 	bernoulli_distribution m_bernoulli_distribution;
 
 	std::mt19937 m_generator;
+
+
 
 };
 
