@@ -43,6 +43,7 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, P
 	m_homeLocation = homeLocation;
 	m_workLocation = workLocation;
 	m_angleDistribution = simConfig->getHomeWorkScenario()->getAngleDistribution();
+	//cout << m_angleDistribution << ":"<< (int)m_angleDistribution->getType() << ":" << m_angleDistribution->getParam("scale") << endl;
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
@@ -183,10 +184,13 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 	double theta = computeTheta(initLocation, destination);
 	DistributionType dType = m_angleDistribution->getType();
 	double eps = 0.0;
-	const char* paramName = "scale";
+
 	switch(dType) {
 	case DistributionType::LAPLACE:
-		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(m_angleDistribution->getParam(paramName)) / 180.0;
+		const char* paramName = "scale";
+		double s = m_angleDistribution->getParam(paramName);
+		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(s) / 180.0;
+		//cout << eps << endl;
 		break;
 	}
 	theta += eps;

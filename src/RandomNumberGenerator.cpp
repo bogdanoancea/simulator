@@ -135,6 +135,32 @@ double* RandomNumberGenerator::generateNormalDouble(const double m, const double
 	return (result);
 }
 
+int* RandomNumberGenerator::generateNormalInt(const double m, const double sd, const int n) {
+	int* result = new int[n];
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	for (int i = 0; i < n; i++) {
+		result[i] = (int)m_normal_double_distribution(m_generator);
+	}
+	return (result);
+}
+
+double RandomNumberGenerator::generateNormalDouble(const double m, const double sd) {
+	double result;
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	result = m_normal_double_distribution(m_generator);
+	return (result);
+}
+
+int RandomNumberGenerator::generateNormalInt(const double m, const double sd) {
+	int result;
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	result = (int)m_normal_double_distribution(m_generator);
+	return (result);
+}
+
 double* RandomNumberGenerator::generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd,
 		const unsigned long n) {
 	double* result = new double[n];
@@ -149,6 +175,19 @@ double* RandomNumberGenerator::generateTruncatedNormalDouble(const double a, con
 	return (result);
 }
 
+
+double RandomNumberGenerator::generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd) {
+	double result = 0.0;
+	normal_distribution<double>::param_type p1(m, sd);
+	m_normal_double_distribution.param(p1);
+	result = m_normal_double_distribution(m_generator);
+	while(result < a || result > b){
+		result = m_normal_double_distribution(m_generator);
+	}
+	return result;
+}
+
+
 int* RandomNumberGenerator::generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n){
 	int* result = new int[n];
 	normal_distribution<double>::param_type p1(m, sd);
@@ -162,11 +201,16 @@ int* RandomNumberGenerator::generateTruncatedNormalInt(const int a, const int b,
 	return (result);
 }
 
-double RandomNumberGenerator::generateNormalDouble(const double m, const double sd) {
-	double result;
+
+int RandomNumberGenerator::generateTruncatedNormalInt(const int a, const int b, const double m, const double sd){
+	int result = 0;
 	normal_distribution<double>::param_type p1(m, sd);
 	m_normal_double_distribution.param(p1);
 	result = m_normal_double_distribution(m_generator);
+	while (result < a || result > b) {
+		result = (int)m_normal_double_distribution(m_generator);
+
+	}
 	return (result);
 }
 
@@ -179,6 +223,35 @@ double RandomNumberGenerator::generateExponentialDouble(const double lambda) {
 	return (result);
 }
 
+double* RandomNumberGenerator::generateExponentialDouble(const double lambda, const int n) {
+	double* result = new double[n];
+	exponential_distribution<double>::param_type p1(lambda);
+	m_exponential_double_distribution.param(p1);
+	for (int i = 0; i < n; i++) {
+		result[i] = m_exponential_double_distribution(m_generator);
+	}
+	return (result);
+}
+
+
+int RandomNumberGenerator::generateExponentialInt(const double lambda) {
+	int result;
+	exponential_distribution<double>::param_type p1(lambda);
+	m_exponential_double_distribution.param(p1);
+	result = (int)m_exponential_double_distribution(m_generator);
+	return (result);
+}
+
+int* RandomNumberGenerator::generateExponentialInt(const double lambda, const int n) {
+	int* result = new int[n];
+	exponential_distribution<double>::param_type p1(lambda);
+	m_exponential_double_distribution.param(p1);
+	for (int i = 0; i < n; i++) {
+		result[i] = (int)m_exponential_double_distribution(m_generator);
+	}
+	return (result);
+}
+
 double RandomNumberGenerator::generateLaplaceDouble(const double lambda) {
 	double result;
 	exponential_distribution<double>::param_type p1(1.0/lambda);
@@ -186,6 +259,45 @@ double RandomNumberGenerator::generateLaplaceDouble(const double lambda) {
 	double x = m_exponential_double_distribution(m_generator);
 	double y = m_exponential_double_distribution(m_generator);
 	result = x - y;
+	return (result);
+}
+
+double* RandomNumberGenerator::generateLaplaceDouble(const double lambda, const int n) {
+	double* result = new double[n];
+	exponential_distribution<double>::param_type p1(1.0/lambda);
+	m_exponential_double_distribution.param(p1);
+	double* x = generateExponentialDouble(1.0/lambda, n);
+	double* y = generateExponentialDouble(1.0/lambda, n);
+	for(int i =0; i < n; i++)
+		result[i] = x[i] - y[i];
+	delete(x);
+	delete(y);
+
+	return (result);
+}
+
+
+int RandomNumberGenerator::generateLaplaceInt(const double lambda) {
+	int result;
+	exponential_distribution<double>::param_type p1(1.0/lambda);
+	m_exponential_double_distribution.param(p1);
+	double x = m_exponential_double_distribution(m_generator);
+	double y = m_exponential_double_distribution(m_generator);
+	result = (int)(x - y);
+	return (result);
+}
+
+int* RandomNumberGenerator::generateLaplaceInt(const double lambda, const int n) {
+	int* result = new int[n];
+	exponential_distribution<double>::param_type p1(1.0/lambda);
+	m_exponential_double_distribution.param(p1);
+	int* x = generateExponentialInt(1.0/lambda, n);
+	int* y = generateExponentialInt(1.0/lambda, n);
+	for(int i =0; i < n; i++)
+		result[i] = (int)(x[i] - y[i]);
+	delete(x);
+	delete(y);
+
 	return (result);
 }
 
@@ -214,7 +326,7 @@ double RandomNumberGenerator::normal_pdf(double x, double m, double s) {
 	return (inv_sqrt_2pi / s) * exp(-0.5 * a * a);
 }
 
-double* RandomNumberGenerator::generateLevy(const double mu, const double c, const int n) {
+double* RandomNumberGenerator::generateLevyDouble(const double mu, const double c, const int n) {
 	double* result = new double[n];
 	double* unif = generateUniformDouble(0, 1, n);
 	for (int i = 0; i < n; i++) {
@@ -224,12 +336,154 @@ double* RandomNumberGenerator::generateLevy(const double mu, const double c, con
 	return (result);
 }
 
-double RandomNumberGenerator::generateLevy(const double mu, const double c) {
+double RandomNumberGenerator::generateLevyDouble(const double mu, const double c) {
 	double result;
 	double unif = generateUniformDouble(0, 1);
 	double invNormCDF = utils::inverseNormalCDF(1-unif, 0, 1);
 	result = c / (2 * invNormCDF * invNormCDF) + mu;
 	return (result);
+}
+
+int* RandomNumberGenerator::generateLevyInt(const double mu, const double c, const int n) {
+	int* result = new int[n];
+	int* unif = generateUniformInt(0, 1, n);
+	for (int i = 0; i < n; i++) {
+		double invNormCDF = utils::inverseNormalCDF(1-unif[i], 0, 1);
+		result[i] = c / (2 * invNormCDF * invNormCDF) + mu;
+	}
+	return (result);
+}
+
+int RandomNumberGenerator::generateLevyInt(const double mu, const double c) {
+	int result;
+	int unif = generateUniformInt(0, 1);
+	double invNormCDF = utils::inverseNormalCDF(1-unif, 0, 1);
+	result = c / (2 * invNormCDF * invNormCDF) + mu;
+	return (result);
+}
+
+
+double RandomNumberGenerator::generateDouble(Distribution distr) {
+double result = 0.0;
+	switch(distr.getType()) {
+	case DistributionType::NORMAL:
+		result = generateNormalDouble(distr.getParam("mean"), distr.getParam("sd"));
+		break;
+	case DistributionType::TRUNCATED_NORMAL:
+		result = generateTruncatedNormalDouble(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"));
+		break;
+	case DistributionType::LAPLACE:
+		result = generateLaplaceDouble(distr.getParam("scale"));
+		break;
+	case DistributionType::LEVY:
+		result = generateLevyDouble(distr.getParam("mean"), distr.getParam("c"));
+		break;
+	case DistributionType::EXPONENTIAL:
+		result = generateExponentialDouble(distr.getParam("lambda"));
+		break;
+	case DistributionType::UNIFORM:
+		result = generateUniformDouble(distr.getParam("min"), distr.getParam("max"));
+		break;
+	default:
+		break;
+	}
+	return result;
+}
+
+double* RandomNumberGenerator::generateDouble(const int n, Distribution distr) {
+	double *result = nullptr;
+	switch (distr.getType()) {
+	case DistributionType::NORMAL:
+		result = generateNormalDouble(distr.getParam("mean"), distr.getParam("sd"), n);
+		break;
+	case DistributionType::TRUNCATED_NORMAL:
+		result = generateTruncatedNormalDouble(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"), n);
+		break;
+	case DistributionType::LAPLACE:
+		result = generateLaplaceDouble(distr.getParam("scale"), n);
+		break;
+	case DistributionType::LEVY:
+		result = generateLevyDouble(distr.getParam("mean"), distr.getParam("c"), n);
+		break;
+	case DistributionType::EXPONENTIAL:
+		result = generateExponentialDouble(distr.getParam("lambda"), n);
+		break;
+	case DistributionType::UNIFORM:
+		result = generateUniformDouble(distr.getParam("min"), distr.getParam("max"), n);
+		break;
+	default:
+		break;
+	}
+return result;
+}
+
+int RandomNumberGenerator::generateInt(Distribution distr) {
+	int result = 0;
+		switch(distr.getType()) {
+		case DistributionType::NORMAL:
+			result = generateNormalInt(distr.getParam("mean"), distr.getParam("sd"));
+			break;
+		case DistributionType::TRUNCATED_NORMAL:
+			result = generateTruncatedNormalInt(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"));
+			break;
+		case DistributionType::LAPLACE:
+			result = generateLaplaceInt(distr.getParam("scale"));
+			break;
+		case DistributionType::LEVY:
+			result = generateLevyInt(distr.getParam("mean"), distr.getParam("c"));
+			break;
+		case DistributionType::EXPONENTIAL:
+			result = generateExponentialInt(distr.getParam("lambda"));
+			break;
+		case DistributionType::UNIFORM:
+			result = generateUniformInt(distr.getParam("min"), distr.getParam("max"));
+			break;
+		case DistributionType::BERNOULLI:
+			result = generateBernoulliInt(distr.getParam("p"));
+			break;
+		case DistributionType::BINOMIAL:
+			result = generateBinomialInt(distr.getParam("n"), distr.getParam("p"));
+			break;
+		default:
+			break;
+		}
+		return result;
+}
+
+
+
+
+int* RandomNumberGenerator::generateInt(int n, Distribution distr) {
+	int* result = nullptr;
+		switch(distr.getType()) {
+		case DistributionType::NORMAL:
+			result = generateNormalInt(distr.getParam("mean"), distr.getParam("sd"), n);
+			break;
+		case DistributionType::TRUNCATED_NORMAL:
+			result = generateTruncatedNormalInt(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"), n);
+			break;
+		case DistributionType::LAPLACE:
+			result = generateLaplaceInt(distr.getParam("scale"), n);
+			break;
+		case DistributionType::LEVY:
+			result = generateLevyInt(distr.getParam("mean"), distr.getParam("c"), n);
+			break;
+		case DistributionType::EXPONENTIAL:
+			result = generateExponentialInt(distr.getParam("lambda"), n);
+			break;
+		case DistributionType::UNIFORM:
+			result = generateUniformInt(distr.getParam("min"), distr.getParam("max"), n);
+			break;
+		case DistributionType::BERNOULLI:
+			result = generateBernoulliInt(distr.getParam("p"), n);
+			break;
+		case DistributionType::BINOMIAL:
+			result = generateBinomialInt(distr.getParam("n"), distr.getParam("p"), n);
+			break;
+		default:
+			break;
+		}
+		return result;
 }
 ////------------------------------------------------------------
 //// Compute y_l from y_k

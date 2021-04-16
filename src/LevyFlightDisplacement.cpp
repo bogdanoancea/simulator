@@ -55,7 +55,7 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 Point* LevyFlightDisplacement::computeNewLocation(Point* initLocation, double theta) {
 	double x = initLocation->getX();
 	double y = initLocation->getY();
-	double speed = RandomNumberGenerator::instance()->generateLevy(m_speed * 0.95, 10);
+	double speed = RandomNumberGenerator::instance()->generateLevyDouble(m_speed * 0.95, 10);
 	if (speed > m_speed *25)
 		speed = m_speed *25;
 	unsigned long delta_t = m_simConfig->getClock()->getIncrement();
