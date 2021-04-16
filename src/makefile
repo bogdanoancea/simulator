@@ -17,6 +17,7 @@ events/CellIDTAEventConfig.o\
 events/CellIDEvent.o\
 events/CellIDTAEvent.o\
 events/EventFactory.o\
+parsers/Distribution.o\
 parsers/HomeWorkLocation.o\
 parsers/HomeWorkScenario.o\
 parsers/Config.o\
