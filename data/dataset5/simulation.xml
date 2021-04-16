@@ -38,11 +38,8 @@ r<simulation>
 			<percent_time_home>0.1</percent_time_home>
 			<percent_time_work>0.1</percent_time_work>
 			<percent_time_travel>0.01</percent_time_travel>
-			<direction_angle_distribution>
-				<distribution_name>Laplace</distribution_name>
-				<distribution_params>
-					<scale>10</scale>
-				</distribution_params>
+			<direction_angle_distribution type = "Laplace">
+					<scale>15</scale>
 			</direction_angle_distribution>
 		</specs_home_work>
 		<connection_type>strength</connection_type>

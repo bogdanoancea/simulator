@@ -145,8 +145,6 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
 	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
-	//cout << "set : "<< p << endl;
-	//cout << p << ":"<< (int)p->getType() << ":" << p->getParam("scale") << endl;
 	hws->setAngleDistribution(p);
 }
 
@@ -155,14 +153,21 @@ Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkEle
 	DistributionType dType;
 	vector<pair<const char *, double>> params;
 	if(distribution) {
-		//const char* dname = getValue(distribution, "distribution_name", Constants::DEFAULT_ANGLE_DISTRIBUTION);
 		const XMLAttribute* type = distribution->FindAttribute("type");
 		if(type) {
 			const char* dname = type->Value();
-			cout <<"dname:" << dname << endl;
+			//cout <<"dname:" << dname << endl;
 			if(!strcmp(dname, "Laplace")) {
 				dType = DistributionType::LAPLACE;
 				parseLaplaceParams(distribution, params);
+			}
+			else if(!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+				parseNormalParams(distribution, params);
+			}
+			else if(!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+				parseUniformParams(distribution, params);
 			}
 			else {
 				//default
@@ -191,14 +196,31 @@ Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkEle
 }
 
  void SimConfig::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
-
-	//XMLElement* distributionParams = distribution->FirstChildElement("distribution_params");
 	double scale = getValue(distribution, "scale", Constants::DEFAULT_SCALE_LAPLACE);
 	const char* paramName = "scale";
 	//cout <<" parsed scale:" << scale << endl;
 	std::pair<const char*, double> p = std::make_pair(paramName, scale);
 	distrPars.push_back(p);
 }
+
+void SimConfig::parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+	double mean = getValue(distribution, "mean", Constants::DEFAULT_MEAN_NORMAL);
+	double sd = getValue(distribution, "sd", Constants::DEFAULT_SD_NORMAL);
+	std::pair<const char*, double> p1 = std::make_pair("mean", mean);
+	std::pair<const char*, double> p2 = std::make_pair("sd", sd);
+	distrPars.push_back(p1);
+	distrPars.push_back(p2);
+}
+
+void SimConfig::parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+	double min = getValue(distribution, "min", Constants::DEFAULT_MIN_UNIFORM);
+	double max = getValue(distribution, "max", Constants::DEFAULT_MAX_UNIFORM);
+	std::pair<const char*, double> p1 = std::make_pair("min", min);
+	std::pair<const char*, double> p2 = std::make_pair("max", max);
+	distrPars.push_back(p1);
+	distrPars.push_back(p2);
+}
+
 
 const string& SimConfig::getAntennasFilename() const {
 	return m_antennasFilename;

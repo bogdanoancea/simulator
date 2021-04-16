@@ -219,6 +219,11 @@ public:
 	static const EventType EVENTTYPE;
 	static const char* DEFAULT_ANGLE_DISTRIBUTION;
 	static const double DEFAULT_SCALE_LAPLACE;
+	static const double DEFAULT_MEAN_NORMAL;
+	static const double DEFAULT_SD_NORMAL;
+	static const double DEFAULT_MIN_UNIFORM;
+	static const double DEFAULT_MAX_UNIFORM;
+
 };
 
 #endif /* CONSTANTS_H_ */

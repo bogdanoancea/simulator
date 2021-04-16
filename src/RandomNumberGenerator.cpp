@@ -417,6 +417,7 @@ double* RandomNumberGenerator::generateDouble(const int n, Distribution distr) {
 return result;
 }
 
+
 int RandomNumberGenerator::generateInt(Distribution distr) {
 	int result = 0;
 		switch(distr.getType()) {

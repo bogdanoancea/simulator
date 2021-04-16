@@ -124,6 +124,8 @@ private:
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
 	Distribution* parseDirectionAngleDistribution(XMLElement* homeWorkElement);
 	void parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
+	void parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
+	void parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */

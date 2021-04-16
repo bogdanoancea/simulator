@@ -93,3 +93,8 @@ const char* Constants::SOFTWARE_VERSION = "0.2.0";
 const EventType Constants::EVENTTYPE = EventType::CELLID;
 const char* Constants::DEFAULT_ANGLE_DISTRIBUTION = "Laplace";
 const double Constants::DEFAULT_SCALE_LAPLACE = 10.0;
+
+const double Constants::DEFAULT_MEAN_NORMAL = 10.0;
+const double Constants::DEFAULT_SD_NORMAL = 0.10;
+const double Constants::DEFAULT_MIN_UNIFORM = -10.0;
+const double Constants::DEFAULT_MAX_UNIFORM = 10.0;
