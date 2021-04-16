@@ -9,21 +9,21 @@
 #define INCLUDE_PARSERS_DISTRIBUTION_H_
 
 #include <DistributionType.h>
-#include <map>
+#include <vector>
 
 using namespace std;
 
 class Distribution {
 public:
 	Distribution() = delete;
-	Distribution(DistributionType type, std::map<const char*, double> &params);
+	Distribution(DistributionType type, vector<pair<const char*, double>> params);
 	virtual ~Distribution();
 	double getParam(const char* name);
 	DistributionType getType();
 
 private:
 	DistributionType m_type;
-	map<const char*, double> m_params;
+	vector<pair<const char*, double>> m_params;
 
 };
 

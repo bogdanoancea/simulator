@@ -123,8 +123,7 @@ private:
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
 	Distribution* parseDirectionAngleDistribution(XMLElement* homeWorkElement);
-	void parseDistributionParams(XMLElement* distribution, DistributionType dType, map<const char*, double>& distrPar);
-	void parseLaplaceParams(XMLElement* distribution, map<const char*, double>& distrPar);
+	void parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */

@@ -6,9 +6,9 @@
  */
 
 #include <parsers/Distribution.h>
+#include <string.h>
 
-
-Distribution::Distribution(DistributionType type, std::map<const char*, double> &params) {
+Distribution::Distribution(DistributionType type, std::vector<pair<const char*, double>> params) {
 	m_type = type;
 	m_params= params;
 
@@ -19,7 +19,12 @@ Distribution::~Distribution() {
 }
 
 double Distribution::getParam(const char* name) {
-	return m_params[name];
+	double result = 0;
+	for(auto& x: m_params) {
+		if(!strcmp(x.first, name))
+			result = x.second;
+	}
+	return result;
 }
 
 DistributionType Distribution::getType() {

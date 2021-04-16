@@ -30,6 +30,7 @@
 #include <cstring>
 #include <filesystem>
 #include <iostream>
+#include <utility>
 
 using namespace utils;
 
@@ -143,43 +144,60 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
-	hws->setAngleDistribution(parseDirectionAngleDistribution(homeWorkElement));
+	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
+	//cout << "set : "<< p << endl;
+	//cout << p << ":"<< (int)p->getType() << ":" << p->getParam("scale") << endl;
+	hws->setAngleDistribution(p);
 }
 
 Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
-	const char* dname = getValue(distribution, "distribution_name", Constants::DEFAULT_ANGLE_DISTRIBUTION);
 	DistributionType dType;
-	if(!strcmp(dname, "Laplace")) {
-		dType = DistributionType::LAPLACE;
+	vector<pair<const char *, double>> params;
+	if(distribution) {
+		//const char* dname = getValue(distribution, "distribution_name", Constants::DEFAULT_ANGLE_DISTRIBUTION);
+		const XMLAttribute* type = distribution->FindAttribute("type");
+		if(type) {
+			const char* dname = type->Value();
+			cout <<"dname:" << dname << endl;
+			if(!strcmp(dname, "Laplace")) {
+				dType = DistributionType::LAPLACE;
+				parseLaplaceParams(distribution, params);
+			}
+			else {
+				//default
+				cerr << "Using default distribution for direction angle";
+				dType = DistributionType::LAPLACE;
+				std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
+				params.push_back(p);
+			}
+		}
+		else {
+			cerr << "Using default distribution for direction angle";
+			dType = DistributionType::LAPLACE;
+			std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
+			params.push_back(p);
+		}
 	}
 	else {
+		//default distribution;
+		cerr << "Using default distribution for direction angle";
 		dType = DistributionType::LAPLACE;
+		std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
+		params.push_back(p);
 	}
-	map<const char *, double> params;
-	parseDistributionParams(distribution, dType, params);
+
 	return new Distribution(dType, params);
-	//cout << "am citit distr name " << dname << ":" << params["scale"] << endl;
 }
 
-void SimConfig::parseDistributionParams(XMLElement* distribution, DistributionType dType,  map<const char*, double>& distrPars) {
-	switch(dType) {
-	case DistributionType::LAPLACE:
-		parseLaplaceParams(distribution, distrPars);
-		break;
-	case DistributionType::UNIFORM:
-		break;
-	case DistributionType::NORMAL:
-		break;
-	}
-}
+ void SimConfig::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
 
- void SimConfig::parseLaplaceParams(XMLElement* distribution, map<const char*, double>& distrPars) {
-
-	XMLElement* distributionParams = distribution->FirstChildElement("distribution_params");
-	double scale = getValue(distributionParams, "scale", Constants::DEFAULT_SCALE_LAPLACE);
+	//XMLElement* distributionParams = distribution->FirstChildElement("distribution_params");
+	double scale = getValue(distribution, "scale", Constants::DEFAULT_SCALE_LAPLACE);
 	const char* paramName = "scale";
-	distrPars.insert(std::pair<const char*, double>(paramName, scale));
+	//cout <<" parsed scale:" << scale << endl;
+	std::pair<const char*, double> p = std::make_pair(paramName, scale);
+	distrPars.push_back(p);
 }
 
 const string& SimConfig::getAntennasFilename() const {

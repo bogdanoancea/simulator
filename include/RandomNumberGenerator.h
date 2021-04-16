@@ -28,6 +28,7 @@
 
 #include <algorithm>
 #include <random>
+#include <parsers/Distribution.h>
 
 using namespace std;
 
@@ -76,7 +77,7 @@ public:
 	 * @return a random value, normally distributed with mean m and standard distribution sd.
 	 */
 	double generateNormalDouble(const double m, const double sd);
-
+	int generateNormalInt(const double m, const double sd);
 	/**
 	 * Generates an array with n double values normally distributed with mean m and standard deviation sd.
 	 * @param m the mean of the normal distribution.
@@ -85,6 +86,7 @@ public:
 	 * @return an array with n double values normally distributed with mean m and standard deviation sd.
 	 */
 	double* generateNormalDouble(const double m, const double sd, const int n);
+	int* generateNormalInt(const double m, const double sd, const int n);
 
 	/**
 	 * Generates n double values from a truncated normal distribution. All values will be in [a, b].
@@ -97,6 +99,7 @@ public:
 	 */
 	double* generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd, const unsigned long n);
 
+	double generateTruncatedNormalDouble(const double a, const double b, const double m, const double sd);
 	/**
 	 * Generates n int values from a truncated normal distribution. All values will be in [a, b].
 	 * @param a the inferior limit of the truncated normal distribution.
@@ -107,6 +110,7 @@ public:
 	 * @return an array with n double values from a truncated normal distribution.
 	 */
 	int* generateTruncatedNormalInt(const int a, const int b, const double m, const double sd, const unsigned long n);
+	int generateTruncatedNormalInt(const int a, const int b, const double m, const double sd);
 
 	/**
 	 * Generates a random double value from a uniform distribution which lies inside [min, max].
@@ -115,6 +119,7 @@ public:
 	 * @return a double value, uniformly distributed in [min, max].
 	 */
 	double generateUniformDouble(const double min, const double max);
+
 
 	/**
 	 * Generates n uniform distributed random values which lie inside [min, max].
@@ -132,6 +137,12 @@ public:
 	 * @return a random value distributed according to an exponential distribution with parameter lambda.
 	 */
 	double generateExponentialDouble(const double lambda);
+	double* generateExponentialDouble(const double lambda, const int n);
+
+
+	int generateExponentialInt(const double lambda);
+	int* generateExponentialInt(const double lambda, const int n);
+
 
 	/**
 	 * Generates a random int value from a uniform distribution which lies inside [min, max].
@@ -189,7 +200,8 @@ public:
 	 * @param n the number of values to be generated
 	 * @return an array with n double values from a Levy distribution
 	 */
-	double* generateLevy(const double mu, const double c, const int n);
+	double* generateLevyDouble(const double mu, const double c, const int n);
+	int* generateLevyInt(const double mu, const double c, const int n);
 
 	/**
 	 * Generates a double random value from a Levy distribution
@@ -197,7 +209,10 @@ public:
 	 * @param c the scale parameter of the Levy distribution
 	 * @return an array with n double values from a Levy distribution
 	 */
-	double generateLevy(const double mu, const double c);
+	double generateLevyDouble(const double mu, const double c);
+	int generateLevyInt(const double mu, const double c);
+
+
 	/**
 	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.
@@ -208,11 +223,23 @@ public:
 	double normal_pdf(double x, double m, double s);
 
 	double generateLaplaceDouble(const double lambda);
+	double* generateLaplaceDouble(const double lambda, const int n);
+
+	int generateLaplaceInt(const double lambda);
+	int* generateLaplaceInt(const double lambda, const int n);
+
 	/**
 	 * Sets the seed of the random number generator.
 	 * @param seed
 	 */
 	void setSeed(unsigned seed);
+
+	double generateDouble(Distribution distr);
+	double* generateDouble(int n, Distribution distr);
+
+	int generateInt(Distribution distr);
+	int* generateInt(int n, Distribution distr);
+
 
 private:
 	RandomNumberGenerator();
@@ -223,8 +250,13 @@ private:
 	static RandomNumberGenerator* m_instance;
 	uniform_int_distribution<int> m_unif_int_distribution;
 	uniform_real_distribution<double> m_unif_double_distribution;
+
 	normal_distribution<double> m_normal_double_distribution;
+	//normal_distribution<int> m_normal_int_distribution;
+
 	exponential_distribution<double> m_exponential_double_distribution;
+	//exponential_distribution<int> m_exponential_int_distribution;
+
 	binomial_distribution<int> m_binomial_distribution;
 	bernoulli_distribution m_bernoulli_distribution;
 
