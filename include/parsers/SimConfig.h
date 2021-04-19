@@ -210,9 +210,26 @@ public:
 	 */
 	void setMnos(const vector<MobileOperator*>& mnos);
 
-
+	/**
+	 * Returns the movement type of a person involved in a simulation, which can take one of the following values given by the enumeration \code{MovementType}:
+	 *  \code{RANDOM_WALK_CLOSED_MAP}, \code{RANDOM_WALK_CLOSED_MAP_WITH_DRIFT}, \code{LEVY_FLIGHT}, \code{HOME_WORK}. In the first three cases, all persons in a
+	 *  simulation have the same movement pattern while in the latest (\code{HOME_WORK}) there is a small percent having a random type of
+	 *  movement (\code{RANDOM_WALK_CLOSED_MAP}, \code{RANDOM_WALK_CLOSED_MAP_WITH_DRIFT}, \code{LEVY_FLIGHT}) while the rest
+	 *  follows a home-work pattern.
+	 * @return the movement type of a person.
+	 */
 	MovementType getMvType() const;
+
+	/**
+	 * Sets the movement type of a person involved in a simulation, which can take one of the following values given by the enumeration \code{MovementType}:
+	 *  \code{RANDOM_WALK_CLOSED_MAP}, \code{RANDOM_WALK_CLOSED_MAP_WITH_DRIFT}, \code{LEVY_FLIGHT}, \code{HOME_WORK}. In the first three cases, all persons in a
+	 *  simulation have the same movement pattern while in the latest (\code{HOME_WORK}) there is a small percent having a random type of
+	 *  movement (\code{RANDOM_WALK_CLOSED_MAP}, \code{RANDOM_WALK_CLOSED_MAP_WITH_DRIFT}, \code{LEVY_FLIGHT}) while the rest
+	 *  follows a home-work pattern.
+	 * @param mvType the movement type of a person involved in a simulation.
+	 */
 	void setMvType(MovementType mvType);
+
 	const string& getOutputDir() const;
 	void setOutputDir(const string& outputDir);
 	const string& getPersonsFilename() const;
