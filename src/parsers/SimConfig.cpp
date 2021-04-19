@@ -144,6 +144,7 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
+	hws->setPrecentTimeTravel(getValue(homeWorkElement, "percent_time_travel"));
 	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
 	hws->setAngleDistribution(p);
 }

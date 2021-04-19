@@ -1,7 +1,7 @@
 r<simulation>
         <start_time>0</start_time>
-        <end_time>1900</end_time>
-		<time_increment>10</time_increment>
+        <end_time>2400</end_time>
+		<time_increment>1</time_increment>
 		<time_stay>20</time_stay>
         <interval_between_stays>120</interval_between_stays>
 		<mno>
@@ -35,9 +35,9 @@ r<simulation>
 				<x_sd_work>750</x_sd_work>
 				<y_sd_work>750</y_sd_work>
 			</work>
-			<percent_time_home>0.1</percent_time_home>
-			<percent_time_work>0.1</percent_time_work>
-			<percent_time_travel>0.01</percent_time_travel>
+			<percent_time_home>0.5</percent_time_home>
+			<percent_time_work>0.3</percent_time_work>
+			<percent_time_travel>0.03</percent_time_travel>
 			<direction_angle_distribution type = "Laplace">
 					<scale>15</scale>
 			</direction_angle_distribution>

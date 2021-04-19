@@ -125,12 +125,12 @@ void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, Ran
 	distrPars.push_back(p1);
 	distrPars.push_back(p2);
 	Distribution normalX(DistributionType::NORMAL, distrPars);
-	distrPars.clear();
+	vector<pair<const char*, double>> distrPars2;
 	p1 = std::make_pair("mean",hLoc.m_y );
 	p2 = std::make_pair("sd", hLoc.m_sdy);
-	distrPars.push_back(p1);
-	distrPars.push_back(p2);
-	Distribution normalY(DistributionType::NORMAL, distrPars);
+	distrPars2.push_back(p1);
+	distrPars2.push_back(p2);
+	Distribution normalY(DistributionType::NORMAL, distrPars2);
 
 	double* x1 = random_generator->generateDouble(npers, normalX);
 	double* y1 = random_generator->generateDouble(npers, normalY);

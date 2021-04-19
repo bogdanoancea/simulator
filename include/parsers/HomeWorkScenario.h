@@ -32,6 +32,9 @@ public:
 	void setPrecentTimeHome(double precentTimeHome);
 	double getPrecentTimeWork() const;
 	void setPrecentTimeWork(double precentTimeWork);
+	double getPrecentTimeTravel() const;
+	void setPrecentTimeTravel(double precentTimetravel);
+
 	const string toString();
 	void setAngleDistribution(Distribution* distr);
 	Distribution* getAngleDistribution();
@@ -40,6 +43,7 @@ private:
 	vector<HomeWorkLocation> m_workLocations;
 	double m_precentTimeHome;
 	double m_precentTimeWork;
+	double m_precentTimeTravel;
 	Distribution* m_angleDistribution;
 };
 

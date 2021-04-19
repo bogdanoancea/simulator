@@ -125,7 +125,6 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 Point* workLocation = generateWorkLocation(workLocationIndex);
 					 p->setWorkLocation(workLocation);
-					 //p->setHomePerson(true);
 				 }
 			}
 		} else {
@@ -139,7 +138,6 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 Point* workLocation = generateWorkLocation(workLocationIndex);
 					 p->setWorkLocation(workLocation);
-					 //p->setHomePerson(true);
 				 }
 			}
 		}
