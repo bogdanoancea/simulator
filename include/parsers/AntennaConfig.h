@@ -16,7 +16,9 @@
 #include <vector>
 
 
-
+/**
+ * Parses the antenna.xml configuration file and builds the antenna objects
+ */
 
 class AntennaConfig: public Config {
 public:

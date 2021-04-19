@@ -92,7 +92,7 @@ public:
 	HomeWorkScenario* getHomeWorkScenario();
 
 private:
-	void parse();
+	void parse() override;
 
 
 	string m_outputDir;
