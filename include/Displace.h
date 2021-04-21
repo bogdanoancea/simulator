@@ -54,7 +54,7 @@ public:
 	virtual ~Displace();
 
 	/**
-	 * This pure virtual method is implemented in each of the concrete subclasses derived from \class Displace.
+	 * This pure virtual method is implemented in each of the concrete subclasses derived from \code{Displace}.
 	 * @return the new location where the object subject to the displacement operation has to move.
 	 */
 	virtual Point* generateNewLocation(Point * initLocation) = 0;

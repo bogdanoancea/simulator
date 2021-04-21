@@ -63,7 +63,7 @@ public:
 	/**
 	 * Removes an object from the collection.
 	 * @param a a pointer to the object to be removed from the collection.
-	 * @return
+	 * @return a pointer to the object removed from the collection
 	 */
 	Agent* deleteAgent(Agent* a);
 

@@ -43,7 +43,7 @@ class PostLocProb {
 public:
 	/**
 	 * Constructor of the class. It initializes the members according to the values given as parameters.
-	 * @param map a pointer to the Map object of the simulation.
+	 * @param m a pointer to the Map object of the simulation.
 	 * @param clk a pointer to the Clock object of the simulation.
 	 * @param agents a pointer to the AgentsCollection object (it contains all the agents in a simulation).
 	 * @param probFiles a map object containing the name of the files where the probabilities are saved, one file per MNO.
@@ -63,7 +63,7 @@ public:
 	virtual void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 
 	/**
-	 * A pure virtual function that is implemented in each of the concrete subclasses derived from \class PostLocProb.
+	 * A pure virtual function that is implemented in each of the concrete subclasses derived from \code{PostLocProb}.
 	 * @param t the time instant for which the location probabilities are computed.
 	 * @param m a pointer to a MobilePhone object for which the location probabilities are computed.
 	 * @param data a vector with network events registered during the simulation.

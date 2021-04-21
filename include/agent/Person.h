@@ -81,7 +81,7 @@ class Person: public MovableAgent {
 		//TODO make it private
 		/**
 		 * returns true if this person has at least a mobile device, false otherwise.
-		 * @return
+		 * @return true if this person has at least a mobile device, false otherwise.
 		 */
 		bool hasDevices();
 
