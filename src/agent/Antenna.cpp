@@ -24,6 +24,7 @@
  */
 
 #include <agent/Antenna.h>
+#include <parsers/AntennaConfig.h>
 #include <Clock.h>
 #include <events/CellIDTAEventConfig.h>
 #include <events/Event.h>
@@ -51,121 +52,152 @@ using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir, EventFactory& factory, EventType evType) :
-		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+//Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
+//		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir, EventFactory& factory, EventType evType) :
+//		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
+//				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
+//
+//	string fileName = outputDir + "/" + getAntennaOutputFileName();
+//	//char sep = Constants::sep;
+//	try {
+//		m_file.open(fileName, ios::out);
+//	}
+//	catch (std::ofstream::failure& e) {
+//		cerr << "Error opening output files!" << endl;
+//		m_file << getEventHeader(m_eventType) << endl;
+//	}
+//	m_S0 = 30 + 10 * log10(m_power);
+//	if (type == AntennaType::DIRECTIONAL) {
+//		m_beam_V = Constants::ANTENNA_BEAM_V;
+//		m_beam_H = Constants::ANTENNA_BEAM_H;
+//		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
+//		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
+//		m_direction = Constants::ANTENNA_DIRECTION;
+//	}
+//	setLocationWithElevation();
+//#if GEOS_VERSION_MAJOR >= 3
+//	#if GEOS_VERSION_MINOR > 7
+//		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry().release();
+//	#else
+//		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
+//	#endif
+//#else
+//		throw std::runtime_error("unsupported geos version");
+//#endif
+//	m_networkType = Constants::NETWORK_TYPE;
+//	m_eventFactory = factory;
+//	m_eventType = evType;
+//}
 
-	string fileName = outputDir + "/" + getAntennaOutputFileName();
-	//char sep = Constants::sep;
-	try {
-		m_file.open(fileName, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
-		cerr << "Error opening output files!" << endl;
-		m_file << getEventHeader(m_eventType) << endl;
-	}
-	m_S0 = 30 + 10 * log10(m_power);
-	if (type == AntennaType::DIRECTIONAL) {
-		m_beam_V = Constants::ANTENNA_BEAM_V;
-		m_beam_H = Constants::ANTENNA_BEAM_H;
-		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
-		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
-		m_direction = Constants::ANTENNA_DIRECTION;
-	}
-	setLocationWithElevation();
-#if GEOS_VERSION_MAJOR >= 3
-	#if GEOS_VERSION_MINOR > 7
-		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry().release();
-	#else
-		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
-	#endif
-#else
-		throw std::runtime_error("unsupported geos version");
-#endif
-	m_networkType = Constants::NETWORK_TYPE;
-	m_eventFactory = factory;
-	m_eventType = evType;
-}
+//Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, const string& outputDir, EventFactory& factory, EventType evType) :
+//		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
+//
+//
+//	XMLNode* n = getNode(antennaEl, "mno_name");
+//	if (n) {
+//		const char* mno_name = n->ToText()->Value();
+//		m_MNO = nullptr;
+//		for (unsigned int i = 0; i < mnos.size(); i++) {
+//			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
+//				m_MNO = mnos.at(i);
+//				break;
+//			}
+//		}
+//		if (m_MNO == nullptr)
+//			throw runtime_error("Unknown MNO " + string(mno_name));
+//	}
+//	else {
+//		m_MNO = mnos.at(0);
+//	}
+//
+//	m_maxConnections = getValue(antennaEl, "maxconnections", Constants::ANTENNA_MAX_CONNECTIONS);
+//	m_power = getValue(antennaEl, "power", Constants::ANTENNA_POWER);
+//	m_ple = getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
+//	const char* t = getValue(antennaEl, "type", "omnidirectional");
+//	m_type = AntennaType::OMNIDIRECTIONAL;
+//	if (!strcmp(t, "directional"))
+//		m_type = AntennaType::DIRECTIONAL;
+//
+//	m_Smin = getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN);
+//	m_Qmin = getValue(antennaEl, "Qmin", Constants::ANTENNA_QMIN);
+//	m_Smid = getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID);
+//	m_SSteep = getValue(antennaEl, "SSteep", Constants::ANTENNA_S_STEEP);
+//	double x = getValue(antennaEl, "x");
+//	double y = getValue(antennaEl, "y");
+//	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
+//	m_networkType = getValue(antennaEl, "network_type", Constants::NETWORK_TYPE);
+//	m_eventType = evType;
+//
+//
+////TODO get elevation from Grid
+//	Coordinate c = Coordinate(x, y, m_height);
+//	Point* p = getMap()->getGlobalFactory()->createPoint(c);
+//	setLocation(p);
+//
+//
+//	if (m_type == AntennaType::DIRECTIONAL) {
+//		m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
+//		m_azim_dB_Back = getValue(antennaEl, "azim_dB_back", Constants::ANTENNA_AZIM_DB_BACK);
+//		m_elev_dB_Back = getValue(antennaEl, "elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
+//		m_beam_H = getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
+//		m_beam_V = getValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
+//		m_direction = getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
+//
+//		m_mapping_azim = createMapping(m_azim_dB_Back);
+//		m_mapping_elev = createMapping(m_elev_dB_Back);
+//		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
+//		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
+//	}
+//	else {
+//		m_azim_dB_Back = 0;
+//		m_elev_dB_Back = 0;
+//		m_beam_H = 0;
+//		m_beam_V = 0;
+//		m_direction = 0;
+//	}
+//	m_S0 = 30 + 10 * log10(m_power);
+//	m_eventFactory = factory;
+//
+//	string fileName = outputDir + "/" + getAntennaOutputFileName();
+//	try {
+//		m_file.open(fileName, ios::out);
+//	}
+//	catch (std::ofstream::failure& e) {
+//		cerr << "Error opening output files!" << endl;
+//	}
+//	m_file << getEventHeader(m_eventType) << endl;
+//	//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
+//}
+//
 
-Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, const string& outputDir, EventFactory& factory, EventType evType) :
-		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
+Antenna::Antenna(const unsigned long id, SimConfig* sc, AntennaConfiguration ac, EventFactory* factory) :
+				ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell { nullptr }, m_rmax { 0 }  {
 
-	//char sep = Constants::sep;
-	XMLNode* n = getNode(antennaEl, "mno_name");
-	if (n) {
-		const char* mno_name = n->ToText()->Value();
-		m_MNO = nullptr;
-		for (unsigned int i = 0; i < mnos.size(); i++) {
-			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
-				m_MNO = mnos.at(i);
-				break;
+			m_antennaConfig = ac;
+			m_simConfig = sc;
+			setLocation(ac.getLocation());
+
+			if (ac.getType() == AntennaType::DIRECTIONAL) {
+				m_mapping_azim = createMapping(ac.getAzimDBBack());
+				m_mapping_elev = createMapping(ac.getElevDBBack());
+				m_sd_azim = findSD(ac.getBeamH(), ac.getAzimDBBack(), m_mapping_azim);
+				m_sd_elev = findSD(ac.getBeamV(), ac.getElevDBBack(), m_mapping_elev);
 			}
+
+			m_S0 = 30 + 10 * log10(m_antennaConfig.getPower());
+			m_eventFactory = factory;
+			setCell(sc->getConnType());
+			string fileName = sc->getOutputDir() + "/" + getAntennaOutputFileName();
+			try {
+				m_file.open(fileName, ios::out);
+			}
+			catch (std::ofstream::failure& e) {
+				cerr << "Error opening output files!" << endl;
+			}
+			m_file << getEventHeader(sc->getEventType()) << endl;
+			//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
 		}
-		if (m_MNO == nullptr)
-			throw runtime_error("Unknown MNO " + string(mno_name));
-	}
-	else {
-		m_MNO = mnos.at(0);
-	}
 
-	m_maxConnections = getValue(antennaEl, "maxconnections", Constants::ANTENNA_MAX_CONNECTIONS);
-	m_power = getValue(antennaEl, "power", Constants::ANTENNA_POWER);
-	m_ple = getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
-	const char* t = getValue(antennaEl, "type", "omnidirectional");
-	m_type = AntennaType::OMNIDIRECTIONAL;
-	if (!strcmp(t, "directional"))
-		m_type = AntennaType::DIRECTIONAL;
-
-	m_Smin = getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN);
-	m_Qmin = getValue(antennaEl, "Qmin", Constants::ANTENNA_QMIN);
-	m_Smid = getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID);
-	m_SSteep = getValue(antennaEl, "SSteep", Constants::ANTENNA_S_STEEP);
-	double x = getValue(antennaEl, "x");
-	double y = getValue(antennaEl, "y");
-	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
-	m_networkType = getValue(antennaEl, "network_type", Constants::NETWORK_TYPE);
-	m_eventType = evType;
-
-
-//TODO get elevation from Grid
-	Coordinate c = Coordinate(x, y, m_height);
-	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-	setLocation(p);
-
-
-	if (m_type == AntennaType::DIRECTIONAL) {
-		m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
-		m_azim_dB_Back = getValue(antennaEl, "azim_dB_back", Constants::ANTENNA_AZIM_DB_BACK);
-		m_elev_dB_Back = getValue(antennaEl, "elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
-		m_beam_H = getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
-		m_beam_V = getValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
-		m_direction = getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
-
-		m_mapping_azim = createMapping(m_azim_dB_Back);
-		m_mapping_elev = createMapping(m_elev_dB_Back);
-		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
-		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
-	}
-	else {
-		m_azim_dB_Back = 0;
-		m_elev_dB_Back = 0;
-		m_beam_H = 0;
-		m_beam_V = 0;
-		m_direction = 0;
-	}
-	string fileName = outputDir + "/" + getAntennaOutputFileName();
-	try {
-		m_file.open(fileName, ios::out);
-	}
-	catch (std::ofstream::failure& e) {
-		cerr << "Error opening output files!" << endl;
-	}
-	m_file << getEventHeader(m_eventType) << endl;
-	//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
-	m_S0 = 30 + 10 * log10(m_power);
-	m_eventFactory = factory;
-}
 
 Antenna::~Antenna() {
 	if (m_file.is_open()) {
@@ -183,30 +215,30 @@ Antenna::~Antenna() {
 
 const string Antenna::toString() const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_power << setw(25) << m_maxConnections << setw(15) << m_ple << setw(15)
-			<< m_MNO->getId();
+	result << ImmovableAgent::toString() << left << setw(15) << m_antennaConfig.getPower() << setw(25) << m_antennaConfig.getMaxConnections() << setw(15) << m_antennaConfig.getPle() << setw(15)
+			<< m_antennaConfig.getMno()->getId();
 	return (result.str());
 }
 
 bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 	bool result = false;
-	if (getNumActiveConections() < m_maxConnections) {
+	if (getNumActiveConections() < m_antennaConfig.getMaxConnections()) {
 		//if the device is not yet registered
 		if (!alreadyRegistered(device)) {
 			attachDevice(device);
 			result = true;
 		}
 		else {
-			EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::ALREADY_ATTACHED_DEVICE, device);
-			Event* evt = m_eventFactory.createEvent(ecfg);
+			EventConfig* ecfg = buildEventConfig(m_simConfig->getEventType(), EventCode::ALREADY_ATTACHED_DEVICE, device);
+			Event* evt = m_eventFactory->createEvent(ecfg);
 			registerEvent(evt, device->getLocation());
 			//registerEvent(device, EventCode::ALREADY_ATTACHED_DEVICE, false);
 			result = true;
 		}
 	}
 	else {
-		EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::IN_RANGE_NOT_ATTACHED_DEVICE, device);
-		Event* evt = m_eventFactory.createEvent(ecfg);
+		EventConfig* ecfg = buildEventConfig(m_simConfig->getEventType(), EventCode::IN_RANGE_NOT_ATTACHED_DEVICE, device);
+		Event* evt = m_eventFactory->createEvent(ecfg);
 		registerEvent(evt, device->getLocation());
 		//registerEvent(device, EventCode::IN_RANGE_NOT_ATTACHED_DEVICE, false);
 	}
@@ -216,8 +248,8 @@ bool Antenna::tryRegisterDevice(HoldableAgent* device) {
 
 void Antenna::attachDevice(HoldableAgent* device) {
 	m_devices.push_back(device);
-	EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::ATTACH_DEVICE, device);
-	Event* evt = m_eventFactory.createEvent(ecfg);
+	EventConfig* ecfg = buildEventConfig(m_simConfig->getEventType(), EventCode::ATTACH_DEVICE, device);
+	Event* evt = m_eventFactory->createEvent(ecfg);
 	registerEvent(evt, device->getLocation());
 	//registerEvent(device, EventCode::ATTACH_DEVICE, false);
 }
@@ -227,8 +259,8 @@ void Antenna::dettachDevice(HoldableAgent* device) {
 	if (it != m_devices.end()) {
 		m_devices.erase(it);
 	}
-	EventConfig* ecfg = buildEventConfig(m_eventType, EventCode::DETACH_DEVICE, device);
-	Event* evt = m_eventFactory.createEvent(ecfg);
+	EventConfig* ecfg = buildEventConfig(m_simConfig->getEventType(), EventCode::DETACH_DEVICE, device);
+	Event* evt = m_eventFactory->createEvent(ecfg);
 	registerEvent(evt, device->getLocation());
 //	registerEvent(device, EventCode::DETACH_DEVICE, false);
 }
@@ -242,7 +274,7 @@ bool Antenna::alreadyRegistered(HoldableAgent * device) {
 }
 
 AntennaType Antenna::getType() const {
-	return (m_type);
+	return (m_antennaConfig.getType());
 }
 
 string Antenna::getTypeName() const {
@@ -320,7 +352,7 @@ double Antenna::S0() const {
 
 double Antenna::SDist(double dist) const {
 	if (dist > 0)
-		return (10.0 * m_ple * log10(dist));
+		return (10.0 * m_antennaConfig.getPle() * log10(dist));
 	else
 		return (0.0);
 }
@@ -338,10 +370,10 @@ double Antenna::computeSignalQuality(const Point* p) const {
 
 double Antenna::computeSignalQuality(const Coordinate c) const {
 	double result = 0.0;
-	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL) {
 		result = computeSignalQualityOmnidirectional(c);
 	}
-	if (m_type == AntennaType::DIRECTIONAL) {
+	if (m_antennaConfig.getType() == AntennaType::DIRECTIONAL) {
 		result = computeSignalQualityDirectional(c);
 	}
 	return (result);
@@ -354,13 +386,14 @@ double Antenna::computeSignalStrengthOmnidirectional(const Coordinate c) const {
 	const double dx = c.x - p->getX();
 
 	const double dist = sqrt(dz * dz + dy * dy + dx * dx);
+	//cout << dist <<":" << S(dist) << endl;
 	return (S(dist));
 }
 
 double Antenna::computeSignalQualityOmnidirectional(const Coordinate c) const {
 	double result = 0.0;
 	double signalStrength = computeSignalStrengthOmnidirectional(c);
-	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	result = 1.0 / (1 + exp(-m_antennaConfig.getSSteep() * (signalStrength - m_antennaConfig.getSmid())));
 	return result;
 }
 
@@ -381,7 +414,7 @@ double Antenna::computeSignalStrengthDirectional(const Coordinate c) const {
 
 	//cout << "theta_azim = " << theta_azim << endl;
 
-	double azim = fmod(theta_azim - m_direction, 360);
+	double azim = fmod(theta_azim - m_antennaConfig.getDirection(), 360);
 	if (azim > 180)
 		azim -= 360;
 	if (azim < -180)
@@ -396,20 +429,20 @@ double Antenna::computeSignalStrengthDirectional(const Coordinate c) const {
 	double b = cos(r_azim) * distXY;
 	//cout << "a=" << a << " b=" << b << endl;
 
-	double e = projectToEPlane(b, m_height - c.z, m_tilt);
+	double e = projectToEPlane(b, m_antennaConfig.getHeight() - c.z, m_antennaConfig.getTilt());
 	double azim2 = r2d(atan2(a, e));
-	signalStrength += norm_dBLoss(azim2, m_azim_dB_Back, m_sd_azim);
+	signalStrength += norm_dBLoss(azim2, m_antennaConfig.getAzimDBBack(), m_sd_azim);
 
 	//cout << "2:" << signalStrength << endl;
 //vertical component
 	double gamma_elevation = r2d(atan2(-dz, distXY));
-	double elevation = (static_cast<int>(gamma_elevation - m_tilt)) % 360;
+	double elevation = (static_cast<int>(gamma_elevation - m_antennaConfig.getTilt())) % 360;
 	if (elevation > 180)
 		elevation -= 360;
 	if (elevation < -180)
 		elevation += 360;
 
-	signalStrength += norm_dBLoss(elevation, m_elev_dB_Back, m_sd_elev);
+	signalStrength += norm_dBLoss(elevation, m_antennaConfig.getElevDBBack(), m_sd_elev);
 	//cout << "3:" << signalStrength << endl;
 	return signalStrength;
 }
@@ -417,7 +450,7 @@ double Antenna::computeSignalStrengthDirectional(const Coordinate c) const {
 double Antenna::computeSignalQualityDirectional(const Coordinate c) const {
 	double result;
 	double signalStrength = computeSignalStrengthDirectional(c);
-	result = 1.0 / (1 + exp(-m_SSteep * (signalStrength - m_Smid)));
+	result = 1.0 / (1 + exp(-m_antennaConfig.getSSteep() * (signalStrength - m_antennaConfig.getSmid())));
 	return (result);
 }
 
@@ -529,8 +562,8 @@ double Antenna::projectToEPlane(double b, double c, double beta) const {
 //TODO see if it is really needed
 double Antenna::computePower(const Point* p) const {
 	double result = 0.0;
-	if (m_type == AntennaType::OMNIDIRECTIONAL)
-		result = m_power * pow(p->distance(getLocation()), -m_ple);
+	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL)
+		result = m_antennaConfig.getPower() * pow(p->distance(getLocation()), -m_antennaConfig.getPle());
 
 	return (result);
 }
@@ -538,24 +571,24 @@ double Antenna::computePower(const Point* p) const {
 double Antenna::computePower(const Coordinate c) const {
 	double result = 0.0;
 	const Coordinate dest = *(getLocation()->getCoordinate());
-	if (m_type == AntennaType::OMNIDIRECTIONAL)
-		result = m_power * pow(c.distance(dest), -m_ple);
+	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL)
+		result = m_antennaConfig.getPower() * pow(c.distance(dest), -m_antennaConfig.getPle());
 	return (result);
 }
 
 void Antenna::setLocationWithElevation() {
 	Point* p = getLocation();
-	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getX(), p->getY(), m_height));
+	Point* newP = getMap()->getGlobalFactory()->createPoint(Coordinate(p->getX(), p->getY(), m_antennaConfig.getHeight()));
 	setLocation(newP);
 	getMap()->getGlobalFactory()->destroyGeometry(p);
 }
 
 MobileOperator* Antenna::getMNO() const {
-	return (m_MNO);
+	return (m_antennaConfig.getMno());
 }
 
 string Antenna::getAntennaOutputFileName() const {
-	return (string("Antenna") + std::to_string(getId()) + "_MNO_" + m_MNO->getMNOName() + ".csv");
+	return (string("Antenna") + std::to_string(getId()) + "_MNO_" + m_antennaConfig.getMno()->getMNOName() + ".csv");
 }
 
 double Antenna::getRmax() const {
@@ -570,9 +603,9 @@ string Antenna::dumpCell() const {
 }
 
 Geometry* Antenna::getCoverageArea() {
-	if (m_type == AntennaType::OMNIDIRECTIONAL)
+	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL)
 		return getCoverageAreaOmnidirectional();
-	else if (m_type == AntennaType::DIRECTIONAL)
+	else if (m_antennaConfig.getType() == AntennaType::DIRECTIONAL)
 		return getCoverageAreaDirectional();
 	else
 		throw runtime_error("Coverage area: unknown antenna type!");
@@ -596,6 +629,7 @@ Geometry* Antenna::getCoverageAreaOmnidirectional() const {
 }
 
 Geometry* Antenna::getCoverageAreaDirectional() const {
+	HoldableAgent::CONNECTION_TYPE handoverMechanism = m_simConfig->getConnType();
 	CoordinateArraySequence* cl = new CoordinateArraySequence();
 	Coordinate init;
 	double x = getLocation()->getX();
@@ -609,27 +643,27 @@ Geometry* Antenna::getCoverageAreaDirectional() const {
 		double yy = y + dist * cos(angle);
 		double S_actual = 0.0;
 
-		if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+		if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 			S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
-		else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
 			S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
 
 		unsigned k = 0;
 		double min = 0.0;
 
-		if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
-			min = m_Smin;
-		else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
-			min = m_Qmin;
+		if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+			min = m_antennaConfig.getSmin();
+		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+			min = m_antennaConfig.getQmin();
 
 		while (S_actual <= min && k < N) {
 			dist -= delta_dist;
 			xx = x + dist * sin(angle);
 			yy = y + dist * cos(angle);
 
-			if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+			if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 				S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
-			else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+			else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
 				S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
 			k++;
 		}
@@ -666,10 +700,10 @@ double Antenna::computeSignalStrength(const Point* p) const {
 
 double Antenna::computeSignalStrength(const Coordinate c) const {
 	double result = 0.0;
-	if (m_type == AntennaType::OMNIDIRECTIONAL) {
+	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL) {
 		result = computeSignalStrengthOmnidirectional(c);
 	}
-	if (m_type == AntennaType::DIRECTIONAL) {
+	if (m_antennaConfig.getType() == AntennaType::DIRECTIONAL) {
 		result = computeSignalStrengthDirectional(c);
 	}
 	return (result);
@@ -695,12 +729,13 @@ double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType
 }
 
 
-void Antenna::setHandoverMechanism(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
-	m_handoverMechanism = handoverMechanism;
-	if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
-		m_rmax = pow(10, (3 - m_Smin / 10) / m_ple) * pow(m_power, 1 / m_ple);
-	else if (m_handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
-		m_rmax = pow(10, (m_S0 - m_Smid + (1.0 / m_SSteep) * log(1.0 / m_Qmin - 1)) / (10 * m_ple));
+void Antenna::setCell(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
+	double ple = m_antennaConfig.getPle();
+	//m_handoverMechanism = handoverMechanism;
+	if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
+		m_rmax = pow(10, (3 - m_antennaConfig.getSmin() / 10) / ple) * pow(m_antennaConfig.getPower(), 1 / ple);
+	else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		m_rmax = pow(10, (m_S0 - m_antennaConfig.getSmid() + (1.0 / m_antennaConfig.getSSteep()) * log(1.0 / m_antennaConfig.getQmin() - 1)) / (10 * ple));
 	m_cell = getCoverageArea();
 }
 
@@ -713,18 +748,18 @@ const string Antenna::getHeader() {
 
 void Antenna::dumpSignal() const {
 	char sep = Constants::sep;
-	ofstream& qualityFile = getMNO()->getSignalFile();
+	ofstream& qualityFile = m_antennaConfig.getMno()->getSignalFile();
 	qualityFile << getId() << sep;
 	unsigned long noTiles = getMap()->getNoTiles();
 	Coordinate* tileCenters = getMap()->getTileCenters();
 	for (unsigned long i = 0; i < noTiles - 1; i++) {
-		qualityFile << computeSignalMeasure(m_handoverMechanism, tileCenters[i]) << sep;
+		qualityFile << computeSignalMeasure(m_simConfig->getConnType(), tileCenters[i]) << sep;
 	}
-	qualityFile << computeSignalMeasure(m_handoverMechanism, tileCenters[noTiles - 1]) << endl;
+	qualityFile << computeSignalMeasure(m_simConfig->getConnType(), tileCenters[noTiles - 1]) << endl;
 }
 
 NetworkType Antenna::getNetworkType() {
-	return m_networkType;
+	return m_antennaConfig.getNetworkType();
 }
 
 string Antenna::getEventHeader(EventType evType) {
@@ -741,144 +776,83 @@ string Antenna::getEventHeader(EventType evType) {
 EventConfig* Antenna::buildEventConfig(EventType evType, EventCode code, HoldableAgent* device) {
 	EventConfig* result = nullptr;
 	if(evType==EventType::CELLID) {
-		result = new CellIDEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType);
+		result = new CellIDEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_antennaConfig.getNetworkType());
 	}
 	else if(evType == EventType::CELLIDTA) {
 
 		double dist = getLocation()->distance(device->getLocation());
 		unsigned int ta = -1;
-		if(m_networkType == NetworkType::_3G) {
+		if(m_antennaConfig.getNetworkType() == NetworkType::_3G) {
 			ta = (unsigned int) (dist / Antenna::delta3G);
 			if(ta > Antenna::MAXTA3G)
 				ta = Antenna::MAXTA3G;
-		} else if (m_networkType == NetworkType::_4G) {
+		} else if (m_antennaConfig.getNetworkType() == NetworkType::_4G) {
 			ta = (unsigned int) (dist / Antenna::delta4G);
 			if(ta > Antenna::MAXTA4G)
 				ta = Antenna::MAXTA4G;
 		}
-		result = new CellIDTAEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_networkType, ta);
+		result = new CellIDTAEventConfig(getClock()->getCurrentTime(), getId(), code, device->getId(), m_antennaConfig.getNetworkType(), ta);
 	}
 	return result;
 }
 
 unsigned long Antenna::getMaxConnections() const {
-	return m_maxConnections;
-}
-
-void Antenna::setMaxConnections(unsigned long maxConnections) {
-	m_maxConnections = maxConnections;
+	return m_antennaConfig.getMaxConnections();
 }
 
 double Antenna::getPower() const {
-	return m_power;
-}
-
-void Antenna::setPower(double power) {
-	m_power = power;
+	return m_antennaConfig.getPower();
 }
 
 double Antenna::getAttenuationFactor() const {
-	return m_ple;
-}
-
-void Antenna::setAttenuationFactor(double factor) {
-	m_ple = factor;
+	return m_antennaConfig.getPle();
 }
 
 double Antenna::getSmin() const {
-	return m_Smin;
-}
-
-void Antenna::setSmin(double Smin) {
-	m_Smin = Smin;
+	return m_antennaConfig.getSmin();
 }
 
 double Antenna::getQmin() const {
-	return m_Qmin;
+	return m_antennaConfig.getQmin();
 }
 
-void Antenna::setQmin(double Qmin) {
-	m_Qmin = Qmin;
-}
 
 double Antenna::getSmid() const {
-	return m_Smid;
-}
-
-void Antenna::setSmid(double Smid) {
-	m_Smid = Smid;
+	return m_antennaConfig.getSmid();
 }
 
 
 double Antenna::getSSteep() const {
-	return m_SSteep;
-}
-
-void Antenna::setSSteep(double SSteep) {
-	m_SSteep = SSteep;
+	return m_antennaConfig.getSSteep();
 }
 
 double Antenna::getTilt() const {
-	return m_tilt;
+	return m_antennaConfig.getTilt();
 }
-
-void Antenna::setTilt(double tilt) {
-	m_tilt = tilt;
-}
-
 
 double Antenna::getAzimDBBack() const {
-	return m_azim_dB_Back;
+	return m_antennaConfig.getAzimDBBack();
 }
-
-void Antenna::setAzimDBBack(double azimDBBack) {
-	m_azim_dB_Back = azimDBBack;
-}
-
 
 double Antenna::getElevDBBack() const {
-	return m_elev_dB_Back;
-}
-
-void Antenna::setElevDBBack(double elevDBBack) {
-	m_elev_dB_Back = elevDBBack;
+	return m_antennaConfig.getElevDBBack();
 }
 
 double Antenna::getBeamH() const {
-	return m_beam_H;
+	return m_antennaConfig.getBeamH();
 }
-
-void Antenna::setBeamH(double beamH) {
-	m_beam_H = beamH;
-}
-
 
 double Antenna::getBeamV() const {
-	return m_beam_V;
-}
-
-void Antenna::setBeamV(double beamV) {
-	m_beam_V = beamV;
+	return m_antennaConfig.getBeamV();
 }
 
 double Antenna::getDirection() const {
-	return m_direction;
+	return m_antennaConfig.getDirection();
 }
-
-void Antenna::setDirection(double direction) {
-	m_direction = direction;
-}
-
-
 
 double Antenna::getHeight() const {
-	return m_height;
+	return m_antennaConfig.getHeight();
 }
-
-void Antenna::setHeight(double height) {
-	m_height = height;
-}
-
 
 const string Antenna::EventHeaderCellID = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";
 const string Antenna::EventHeaderCellIDTA = string() + "t" + Constants::sep + "AntennaId" + Constants::sep + "EventCode" + Constants::sep + "PhoneId" + Constants::sep + "NetworkType" + Constants::sep + "TA" + Constants::sep + "x" + Constants::sep + "y" + Constants::sep + "TileId";

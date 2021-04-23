@@ -27,7 +27,7 @@ public:
 	const string& getProbsFileNamePrefix() const;
 
 private:
-	void parse();
+	void parse() override;
 	PriorType m_prior;
 	string m_probsFileNamePrefix;
 };
