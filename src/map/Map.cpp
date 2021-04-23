@@ -52,7 +52,7 @@ void Map::addGrid(double dimTileX, double dimTileY) {
 	CoordinateSequence* seq = bbox->getCoordinates();
 #endif
 #else
-	throw throw std::runtime_error("unsupported geos version");
+	throw std::runtime_error("unsupported geos version");
 #endif
 	double minX, minY, maxX, maxY;
 	minX = minY = numeric_limits<double>::max();

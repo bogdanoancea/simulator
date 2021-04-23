@@ -230,10 +230,28 @@ public:
 	 */
 	void setMvType(MovementType mvType);
 
+	/**
+	 * Returns the name of the directory where the output files are saved. If this directory
+	 * doesn't exists, it is created by the simulation software.
+	 * @return the name of the directory where the output files are saved.
+	 */
 	const string& getOutputDir() const;
+
+	/**
+	 * Set the name of the directory where the output files are saved. If this directory
+	 * doesn't exists, it is created by the simulation software.
+	 * @param outputDir the name of the directory where the output files are saved.
+	 */
 	void setOutputDir(const string& outputDir);
+
+	/**
+	 *
+	 * @return
+	 */
 	const string& getPersonsFilename() const;
+
 	void setPersonsFilename(const string& personsFilename);
+
 	double getProbSecMobilePhone() const;
 	void setProbSecMobilePhone(double probSecMobilePhone);
 	unsigned getSeed() const;
