@@ -64,7 +64,7 @@ public:
 
 	/**
 	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
-	 * @return
+	 * @return a pointer to the Clock object used for simulation.
 	 */
 	const virtual Clock* getClock() const;
 

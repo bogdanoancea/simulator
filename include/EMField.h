@@ -153,7 +153,7 @@ public:
 	 * @param tileIndex the index of the tile where we want to compute the connection likelihood.
 	 * @return the connection likelihood for Antenna  a in the center of the tile with the index tileIndex.
 	 */
-	double connectionLikelihoodGrid(Antenna* a, const Map* , unsigned long tileIndex);
+	double connectionLikelihoodGrid(Antenna* a, const Map* map, unsigned long tileIndex);
 
 	const double* getAntennaMin3DbArray() const;
 

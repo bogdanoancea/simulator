@@ -117,7 +117,7 @@ class Antenna: public ImmovableAgent {
 		/**
 		 * Disconnects a mobile device from the antenna and outputs an event EventType::DEATACH_DEVICE in the output file. Internally,
 		 * the mobile device is removed from the vector of the connected mobile devices.
-		 * @param device
+		 * @param device a pointer  to the device to be disconnected.
 		 */
 		void dettachDevice(HoldableAgent* device);
 

@@ -62,7 +62,7 @@ public:
 
 	/**
 	 * Sets the seed of the random number generator.
-	 * @param seed
+	 * @param seed the value of the seed used to initialize the random  number generator
 	 */
 	void setSeed(unsigned seed);
 

@@ -57,9 +57,7 @@ namespace utils {
 
 	/**
 	 * Generates n random points on a map.
-	 * @param m a pointer to a Map object where the points have to be located.
 	 * @param n the number of points to generate.
-	 * @param seed the seed of the random number generator used to generate the points.
 	 * @param percentHome a percent of the total number of points considered to be "home locations", i.e. each time they
 	 * have the same values. The rest of the points differ from a simulation to another.
 	 * @return a vector of pointers to Point objects.
@@ -186,7 +184,7 @@ namespace utils {
 	 * described in he paper "Deriving geographic location of mobile devices from network data"
 	 * by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah.
 	 * @param t the time instant when the posterior localization probability is computed.
-	 * @param m a pointer to a MobilePhone object for which the posterior localization probability is computed.
+     * @paratype m a pointer to a MobilePhone object for which the posterior localization probability is computed.
 	 * @param data a vector of AntennaInfo objects generated and recorded by each antenna during the simulation.
 	 * It contains the events recorder by each antenna during the simulation.
 	 * @param it an iterator to access all objects of type Antenna from the AgentsCollection container.
