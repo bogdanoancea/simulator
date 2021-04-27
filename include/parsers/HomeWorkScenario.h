@@ -9,9 +9,9 @@
 #define INCLUDE_HOMEWORKSCENARIO_H_
 
 
+#include <Distribution.h>
 #include <geos/geom/Point.h>
 #include <parsers/HomeWorkLocation.h>
-#include <parsers/Distribution.h>
 #include <vector>
 
 using namespace std;

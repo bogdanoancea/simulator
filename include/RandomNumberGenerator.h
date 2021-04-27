@@ -26,9 +26,9 @@
 #ifndef RANDOMNUMBERGENERATOR_H_
 #define RANDOMNUMBERGENERATOR_H_
 
+#include <Distribution.h>
 #include <algorithm>
 #include <random>
-#include <parsers/Distribution.h>
 
 using namespace std;
 

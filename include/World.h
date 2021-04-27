@@ -29,7 +29,7 @@
 #include <agent/Antenna.h>
 #include <AntennaInfo.h>
 #include <events/EventFactory.h>
-#include <parsers/AntennaConfigParserParser.h>
+#include <parsers/AntennaConfigParser.h>
 #include <parsers/PersonsConfigParser.h>
 #include <parsers/ProbabilitiesConfigParser.h>
 #include <parsers/SimConfigParser.h>

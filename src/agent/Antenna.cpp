@@ -37,7 +37,7 @@
 #include <geos/util/GeometricShapeFactory.h>
 #include <geos/version.h>
 #include <map/Map.h>
-#include <parsers/AntennaConfigParserParser.h>
+#include <parsers/AntennaConfigParser.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
 #include <Utils.h>

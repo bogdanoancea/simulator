@@ -12,7 +12,7 @@
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <EMField.h>
-#include <parsers/AntennaConfigParserParser.h>
+#include <parsers/AntennaConfigParser.h>
 #include <cstring>
 #include <iostream>
 #include <stdexcept>

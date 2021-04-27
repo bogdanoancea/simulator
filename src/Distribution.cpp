@@ -5,7 +5,7 @@
  *      Author: bogdan
  */
 
-#include <parsers/Distribution.h>
+#include <Distribution.h>
 #include <string.h>
 
 Distribution::Distribution(DistributionType type, std::vector<pair<const char*, double>> params) {

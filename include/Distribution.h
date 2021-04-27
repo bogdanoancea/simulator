@@ -5,8 +5,8 @@
  *      Author: bogdan
  */
 
-#ifndef INCLUDE_PARSERS_DISTRIBUTION_H_
-#define INCLUDE_PARSERS_DISTRIBUTION_H_
+#ifndef INCLUDE_DISTRIBUTION_H_
+#define INCLUDE_DISTRIBUTION_H_
 
 #include <DistributionType.h>
 #include <vector>
@@ -28,4 +28,4 @@ private:
 
 };
 
-#endif /* INCLUDE_PARSERS_DISTRIBUTION_H_ */
+#endif /* INCLUDE_DISTRIBUTION_H_ */
