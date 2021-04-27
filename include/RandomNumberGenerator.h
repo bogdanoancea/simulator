@@ -66,11 +66,11 @@ public:
 	 */
 	void setSeed(unsigned seed);
 
-	double generateDouble(Distribution distr);
-	double* generateDouble(int n, Distribution distr);
+	double generateDouble(Distribution* distr);
+	double* generateDouble(int n, Distribution* distr);
 
-	int generateInt(Distribution distr);
-	int* generateInt(int n, Distribution distr);
+	int generateInt(Distribution* distr);
+	int* generateInt(int n, Distribution* distr);
 	/**
 	 * The value of the PDF of the normal distribution for x.
 	 * @param x the value for which we need the PDF.
@@ -88,7 +88,7 @@ public:
 		 * @param n the total number of values to be generated.
 		 * @return an array with random numbers according to two normal distributions.
 		 */
-		double* generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, int n);
+	double* generateNormal2Double(const double m1, const double sd1, const double m2, const double sd2, int n);
 
 		/**
 		 * Generates a random value, normally distributed with mean m and standard distribution sd

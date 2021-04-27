@@ -150,6 +150,7 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 }
 
 Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
+	Distribution* result = nullptr;
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
 	DistributionType dType;
 	vector<pair<const char *, double>> params;
@@ -157,70 +158,56 @@ Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeW
 		const XMLAttribute* type = distribution->FindAttribute("type");
 		if(type) {
 			const char* dname = type->Value();
-			//cout <<"dname:" << dname << endl;
 			if(!strcmp(dname, "Laplace")) {
 				dType = DistributionType::LAPLACE;
-				parseLaplaceParams(distribution, params);
 			}
 			else if(!strcmp(dname, "Normal")) {
 				dType = DistributionType::NORMAL;
-				parseNormalParams(distribution, params);
 			}
 			else if(!strcmp(dname, "Uniform")) {
 				dType = DistributionType::UNIFORM;
-				parseUniformParams(distribution, params);
 			}
 			else {
 				//default
-				cerr << "Using default distribution for direction angle";
-				dType = DistributionType::LAPLACE;
-				std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
-				params.push_back(p);
+				throw std::runtime_error("Direction angle distribution type not supported");
 			}
+			result = new Distribution(dType, distribution);
 		}
 		else {
-			cerr << "Using default distribution for direction angle";
-			dType = DistributionType::LAPLACE;
-			std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
-			params.push_back(p);
+			throw std::runtime_error("Direction angle distribution type not specified");
 		}
 	}
 	else {
-		//default distribution;
-		cerr << "Using default distribution for direction angle";
-		dType = DistributionType::LAPLACE;
-		std::pair<const char*, double> p = std::make_pair("scale", Constants::DEFAULT_SCALE_LAPLACE);
-		params.push_back(p);
+		throw std::runtime_error("Direction angle distribution not specified");
 	}
 
-	return new Distribution(dType, params);
+	return result;
 }
 
- void SimConfigParser::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
-	double scale = getValue(distribution, "scale", Constants::DEFAULT_SCALE_LAPLACE);
-	const char* paramName = "scale";
-	//cout <<" parsed scale:" << scale << endl;
-	std::pair<const char*, double> p = std::make_pair(paramName, scale);
-	distrPars.push_back(p);
-}
-
-void SimConfigParser::parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
-	double mean = getValue(distribution, "mean", Constants::DEFAULT_MEAN_NORMAL);
-	double sd = getValue(distribution, "sd", Constants::DEFAULT_SD_NORMAL);
-	std::pair<const char*, double> p1 = std::make_pair("mean", mean);
-	std::pair<const char*, double> p2 = std::make_pair("sd", sd);
-	distrPars.push_back(p1);
-	distrPars.push_back(p2);
-}
-
-void SimConfigParser::parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
-	double min = getValue(distribution, "min", Constants::DEFAULT_MIN_UNIFORM);
-	double max = getValue(distribution, "max", Constants::DEFAULT_MAX_UNIFORM);
-	std::pair<const char*, double> p1 = std::make_pair("min", min);
-	std::pair<const char*, double> p2 = std::make_pair("max", max);
-	distrPars.push_back(p1);
-	distrPars.push_back(p2);
-}
+// void SimConfigParser::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+//	double scale = getValue(distribution, "scale", Constants::DEFAULT_SCALE_LAPLACE);
+//	const char* paramName = "scale";
+//	std::pair<const char*, double> p = std::make_pair(paramName, scale);
+//	distrPars.push_back(p);
+//}
+//
+//void SimConfigParser::parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+//	double mean = getValue(distribution, "mean", Constants::DEFAULT_MEAN_NORMAL);
+//	double sd = getValue(distribution, "sd", Constants::DEFAULT_SD_NORMAL);
+//	std::pair<const char*, double> p1 = std::make_pair("mean", mean);
+//	std::pair<const char*, double> p2 = std::make_pair("sd", sd);
+//	distrPars.push_back(p1);
+//	distrPars.push_back(p2);
+//}
+//
+//void SimConfigParser::parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+//	double min = getValue(distribution, "min", Constants::DEFAULT_MIN_UNIFORM);
+//	double max = getValue(distribution, "max", Constants::DEFAULT_MAX_UNIFORM);
+//	std::pair<const char*, double> p1 = std::make_pair("min", min);
+//	std::pair<const char*, double> p2 = std::make_pair("max", max);
+//	distrPars.push_back(p1);
+//	distrPars.push_back(p2);
+//}
 
 
 const string& SimConfigParser::getAntennasFilename() const {

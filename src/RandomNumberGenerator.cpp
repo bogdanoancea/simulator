@@ -363,26 +363,26 @@ int RandomNumberGenerator::generateLevyInt(const double mu, const double c) {
 }
 
 
-double RandomNumberGenerator::generateDouble(Distribution distr) {
+double RandomNumberGenerator::generateDouble(Distribution* distr) {
 double result = 0.0;
-	switch(distr.getType()) {
+	switch(distr->getType()) {
 	case DistributionType::NORMAL:
-		result = generateNormalDouble(distr.getParam("mean"), distr.getParam("sd"));
+		result = generateNormalDouble(distr->getParam("mean"), distr->getParam("sd"));
 		break;
 	case DistributionType::TRUNCATED_NORMAL:
-		result = generateTruncatedNormalDouble(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"));
+		result = generateTruncatedNormalDouble(distr->getParam("min"), distr->getParam("max"), distr->getParam("mean"), distr->getParam("sd"));
 		break;
 	case DistributionType::LAPLACE:
-		result = generateLaplaceDouble(distr.getParam("scale"));
+		result = generateLaplaceDouble(distr->getParam("scale"));
 		break;
 	case DistributionType::LEVY:
-		result = generateLevyDouble(distr.getParam("mean"), distr.getParam("c"));
+		result = generateLevyDouble(distr->getParam("mean"), distr->getParam("c"));
 		break;
 	case DistributionType::EXPONENTIAL:
-		result = generateExponentialDouble(distr.getParam("lambda"));
+		result = generateExponentialDouble(distr->getParam("lambda"));
 		break;
 	case DistributionType::UNIFORM:
-		result = generateUniformDouble(distr.getParam("min"), distr.getParam("max"));
+		result = generateUniformDouble(distr->getParam("min"), distr->getParam("max"));
 		break;
 	default:
 		break;
@@ -390,26 +390,26 @@ double result = 0.0;
 	return result;
 }
 
-double* RandomNumberGenerator::generateDouble(const int n, Distribution distr) {
+double* RandomNumberGenerator::generateDouble(const int n, Distribution* distr) {
 	double *result = nullptr;
-	switch (distr.getType()) {
+	switch (distr->getType()) {
 	case DistributionType::NORMAL:
-		result = generateNormalDouble(distr.getParam("mean"), distr.getParam("sd"), n);
+		result = generateNormalDouble(distr->getParam("mean"), distr->getParam("sd"), n);
 		break;
 	case DistributionType::TRUNCATED_NORMAL:
-		result = generateTruncatedNormalDouble(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"), n);
+		result = generateTruncatedNormalDouble(distr->getParam("min"), distr->getParam("max"), distr->getParam("mean"), distr->getParam("sd"), n);
 		break;
 	case DistributionType::LAPLACE:
-		result = generateLaplaceDouble(distr.getParam("scale"), n);
+		result = generateLaplaceDouble(distr->getParam("scale"), n);
 		break;
 	case DistributionType::LEVY:
-		result = generateLevyDouble(distr.getParam("mean"), distr.getParam("c"), n);
+		result = generateLevyDouble(distr->getParam("mean"), distr->getParam("c"), n);
 		break;
 	case DistributionType::EXPONENTIAL:
-		result = generateExponentialDouble(distr.getParam("lambda"), n);
+		result = generateExponentialDouble(distr->getParam("lambda"), n);
 		break;
 	case DistributionType::UNIFORM:
-		result = generateUniformDouble(distr.getParam("min"), distr.getParam("max"), n);
+		result = generateUniformDouble(distr->getParam("min"), distr->getParam("max"), n);
 		break;
 	default:
 		break;
@@ -418,32 +418,32 @@ return result;
 }
 
 
-int RandomNumberGenerator::generateInt(Distribution distr) {
+int RandomNumberGenerator::generateInt(Distribution* distr) {
 	int result = 0;
-		switch(distr.getType()) {
+		switch(distr->getType()) {
 		case DistributionType::NORMAL:
-			result = generateNormalInt(distr.getParam("mean"), distr.getParam("sd"));
+			result = generateNormalInt(distr->getParam("mean"), distr->getParam("sd"));
 			break;
 		case DistributionType::TRUNCATED_NORMAL:
-			result = generateTruncatedNormalInt(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"));
+			result = generateTruncatedNormalInt(distr->getParam("min"), distr->getParam("max"), distr->getParam("mean"), distr->getParam("sd"));
 			break;
 		case DistributionType::LAPLACE:
-			result = generateLaplaceInt(distr.getParam("scale"));
+			result = generateLaplaceInt(distr->getParam("scale"));
 			break;
 		case DistributionType::LEVY:
-			result = generateLevyInt(distr.getParam("mean"), distr.getParam("c"));
+			result = generateLevyInt(distr->getParam("mean"), distr->getParam("c"));
 			break;
 		case DistributionType::EXPONENTIAL:
-			result = generateExponentialInt(distr.getParam("lambda"));
+			result = generateExponentialInt(distr->getParam("lambda"));
 			break;
 		case DistributionType::UNIFORM:
-			result = generateUniformInt(distr.getParam("min"), distr.getParam("max"));
+			result = generateUniformInt(distr->getParam("min"), distr->getParam("max"));
 			break;
 		case DistributionType::BERNOULLI:
-			result = generateBernoulliInt(distr.getParam("p"));
+			result = generateBernoulliInt(distr->getParam("p"));
 			break;
 		case DistributionType::BINOMIAL:
-			result = generateBinomialInt(distr.getParam("n"), distr.getParam("p"));
+			result = generateBinomialInt(distr->getParam("n"), distr->getParam("p"));
 			break;
 		default:
 			break;
@@ -454,32 +454,32 @@ int RandomNumberGenerator::generateInt(Distribution distr) {
 
 
 
-int* RandomNumberGenerator::generateInt(int n, Distribution distr) {
+int* RandomNumberGenerator::generateInt(int n, Distribution* distr) {
 	int* result = nullptr;
-		switch(distr.getType()) {
+		switch(distr->getType()) {
 		case DistributionType::NORMAL:
-			result = generateNormalInt(distr.getParam("mean"), distr.getParam("sd"), n);
+			result = generateNormalInt(distr->getParam("mean"), distr->getParam("sd"), n);
 			break;
 		case DistributionType::TRUNCATED_NORMAL:
-			result = generateTruncatedNormalInt(distr.getParam("min"), distr.getParam("max"), distr.getParam("mean"), distr.getParam("sd"), n);
+			result = generateTruncatedNormalInt(distr->getParam("min"), distr->getParam("max"), distr->getParam("mean"), distr->getParam("sd"), n);
 			break;
 		case DistributionType::LAPLACE:
-			result = generateLaplaceInt(distr.getParam("scale"), n);
+			result = generateLaplaceInt(distr->getParam("scale"), n);
 			break;
 		case DistributionType::LEVY:
-			result = generateLevyInt(distr.getParam("mean"), distr.getParam("c"), n);
+			result = generateLevyInt(distr->getParam("mean"), distr->getParam("c"), n);
 			break;
 		case DistributionType::EXPONENTIAL:
-			result = generateExponentialInt(distr.getParam("lambda"), n);
+			result = generateExponentialInt(distr->getParam("lambda"), n);
 			break;
 		case DistributionType::UNIFORM:
-			result = generateUniformInt(distr.getParam("min"), distr.getParam("max"), n);
+			result = generateUniformInt(distr->getParam("min"), distr->getParam("max"), n);
 			break;
 		case DistributionType::BERNOULLI:
-			result = generateBernoulliInt(distr.getParam("p"), n);
+			result = generateBernoulliInt(distr->getParam("p"), n);
 			break;
 		case DistributionType::BINOMIAL:
-			result = generateBinomialInt(distr.getParam("n"), distr.getParam("p"), n);
+			result = generateBinomialInt(distr->getParam("n"), distr->getParam("p"), n);
 			break;
 		default:
 			break;

@@ -146,7 +146,7 @@ const bool HomeWorkDisplacement::posAtDestination(Point* position, Point* destin
 
 Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 	double theta = 0.0;
-	theta = RandomNumberGenerator::instance()->generateDouble(*m_uniform);
+	theta = RandomNumberGenerator::instance()->generateDouble(m_uniform);
 	double newX = initLocation->getX() + m_stepLength * cos(theta);
 	double newY = initLocation->getY() + m_stepLength * sin(theta) ;
 	Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
@@ -156,7 +156,7 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 		int k = 10;
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			theta = RandomNumberGenerator::instance()->generateDouble(*m_uniform);
+			theta = RandomNumberGenerator::instance()->generateDouble(m_uniform);
 			double newX = initLocation->getX() + m_stepLength * cos(theta);
 			double newY = initLocation->getY() + m_stepLength * sin(theta) ;
 			Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
@@ -195,12 +195,12 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 	double theta = computeTheta(initLocation, destination);
 	DistributionType dType = m_angleDistribution->getType();
 	double eps = 0.0;
-
 	switch(dType) {
 	case DistributionType::LAPLACE:
-		const char* paramName = "scale";
-		double s = m_angleDistribution->getParam(paramName);
-		eps = utils::PI* RandomNumberGenerator::instance()->generateLaplaceDouble(s) / 180.0;
+//		const char* paramName = "scale";
+//		double s = m_angleDistribution->getParam(paramName);
+		eps = utils::PI* RandomNumberGenerator::instance()->generateDouble(m_angleDistribution) / 180.0;
+
 		//cout << eps << endl;
 		break;
 	}
@@ -213,15 +213,12 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
 			pt = computeNewLocation(initLocation, theta);
-			//cout << "am cazut afara de la munca: " << k << endl;
 		}
 		if (!k) {
 			pt = initLocation;
-			//cout << "am cazut afara de la munca si stau pe loc " << m_theta << ":" << initLocation->toString() <<":" <<m_workLocation->toString() << endl;
 		}
 	}
 	if(arrivedAtDestination(pt, destination)) {
-		//cout << "am ajuns la munca" << endl;
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
 	}
 	return pt;

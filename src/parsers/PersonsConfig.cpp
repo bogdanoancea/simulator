@@ -60,43 +60,69 @@ void PersonsConfig::parse() noexcept(false) {
 		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
 		unsigned long min_age = getValue(personsEl, "min_age");
 		unsigned long max_age = getValue(personsEl, "max_age");
-
-		XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
-		const char* distrib = getValue(ageDistribEl, "type", "UNKNOWN");
-		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
-			throw std::runtime_error("Unknown age distribution for population!");
-
+		const char* distribType = nullptr;
 		shared_ptr<Distribution> ageDistr;
-		if (!strcmp(distrib, "normal")) {
-			double mean_age = getValue(ageDistribEl, "mean");
-			double sd = getValue(ageDistribEl, "sd");
-			vector<pair<const char *, double>> ageDistrParams;
-			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
-			std::pair<const char*, double> p2 = std::make_pair("max", max_age);
-			std::pair<const char*, double> p3 = std::make_pair("mean", mean_age);
-			std::pair<const char*, double> p4 = std::make_pair("sd", sd);
-			ageDistrParams.push_back(p1);
-			ageDistrParams.push_back(p2);
-			ageDistrParams.push_back(p3);
-			ageDistrParams.push_back(p4);
-			DistributionType type = DistributionType::TRUNCATED_NORMAL;
-			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
-		} else if (!strcmp(distrib, "uniform")) {
-			DistributionType type = DistributionType::UNIFORM;
-			vector<pair<const char *, double>> ageDistrParams;
-			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
-			std::pair<const char*, double> p2 = std::make_pair("max", min_age);
-			ageDistrParams.push_back(p1);
-			ageDistrParams.push_back(p2);
-			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
-		} else { // default distribution
-			DistributionType type = DistributionType::UNIFORM;
-			vector<pair<const char *, double>> ageDistrParams;
-			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
-			std::pair<const char*, double> p2 = std::make_pair("max", min_age);
-			ageDistrParams.push_back(p1);
-			ageDistrParams.push_back(p2);
-			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
+		try{
+			XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
+			distribType = getValue(ageDistribEl, "type", "UNKNOWN");
+			if (strcmp(distribType, "normal") && strcmp(distribType, "uniform"))
+				throw std::runtime_error("Unknown age distribution for population!");
+			if (!strcmp(distribType, "normal")) {
+				double mean_age = getValue(ageDistribEl, "mean");
+				double sd = getValue(ageDistribEl, "sd");
+				vector<pair<const char *, double>> ageDistrParams;
+				std::pair<const char*, double> p1 = std::make_pair("min", min_age);
+				std::pair<const char*, double> p2 = std::make_pair("max", max_age);
+				std::pair<const char*, double> p3 = std::make_pair("mean", mean_age);
+				std::pair<const char*, double> p4 = std::make_pair("sd", sd);
+				ageDistrParams.push_back(p1);
+				ageDistrParams.push_back(p2);
+				ageDistrParams.push_back(p3);
+				ageDistrParams.push_back(p4);
+				DistributionType type = DistributionType::TRUNCATED_NORMAL;
+				ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
+			} else if (!strcmp(distribType, "uniform")) {
+				DistributionType type = DistributionType::UNIFORM;
+				vector<pair<const char *, double>> ageDistrParams;
+				std::pair<const char*, double> p1 = std::make_pair("min", min_age);
+				std::pair<const char*, double> p2 = std::make_pair("max", max_age);
+				ageDistrParams.push_back(p1);
+				ageDistrParams.push_back(p2);
+				ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
+			} else { // default distribution
+				throw std::runtime_error("Unknown age distribution for population!");
+			}
+
+		} catch(std::runtime_error &e) {
+			//try to parse version 2 config file
+			XMLElement* distributionEl = personsEl->FirstChildElement("age");
+			if(distributionEl) {
+				const XMLAttribute* type = distributionEl->FindAttribute("distributionType");
+				DistributionType dType;
+				if(type) {
+					const char* dname = type->Value();
+					if(!strcmp(dname, "Uniform")) {
+						dType = DistributionType::UNIFORM;
+					}
+					else if(!strcmp(dname, "Normal")) {
+						dType = DistributionType::TRUNCATED_NORMAL;
+					}
+					else {
+						throw std::runtime_error("Unknown age distribution");
+					}
+				}
+				else {
+					throw std::runtime_error("Age distribution type not specified ");
+				}
+				ageDistr = make_shared<Distribution>(Distribution(dType, distributionEl));
+				if(dType == DistributionType::TRUNCATED_NORMAL) {
+					ageDistr->getParams().push_back(std::make_pair("min", min_age));
+					ageDistr->getParams().push_back(std::make_pair("max", max_age));
+				}
+			}
+			else {
+				throw std::runtime_error("Age distribution not specified ");
+			}
 		}
 		double male_share = getValue(personsEl, "male_share");
 		double speed_walk = getValue(personsEl, "speed_walk");
@@ -229,7 +255,7 @@ void PersonsConfig::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, d
 
 int* PersonsConfig::generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng) {
 	int* ages = new int[n];
-	ages = rng->generateInt(n, *distr.get());
+	ages = rng->generateInt(n, distr.get());
 	return (ages);
 }
 

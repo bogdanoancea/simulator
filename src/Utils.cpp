@@ -132,8 +132,8 @@ void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, Ran
 	distrPars2.push_back(p2);
 	Distribution normalY(DistributionType::NORMAL, distrPars2);
 
-	double* x1 = random_generator->generateDouble(npers, normalX);
-	double* y1 = random_generator->generateDouble(npers, normalY);
+	double* x1 = random_generator->generateDouble(npers, &normalX);
+	double* y1 = random_generator->generateDouble(npers, &normalY);
 	unsigned long j = 0, k = 0;
 	while (k < npers) {
 		if (x1[j] < 1e-15)
@@ -152,8 +152,8 @@ void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, Ran
 		if (j > npers - 1) {
 			delete[] x1;
 			delete[] y1;
-			x1 = random_generator->generateDouble(npers, normalX);
-			y1 = random_generator->generateDouble(npers, normalY);
+			x1 = random_generator->generateDouble(npers, &normalX);
+			y1 = random_generator->generateDouble(npers, &normalY);
 			j = 0;
 		}
 	}

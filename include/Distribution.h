@@ -9,23 +9,37 @@
 #define INCLUDE_DISTRIBUTION_H_
 
 #include <DistributionType.h>
+#include <utility>
 #include <vector>
 
+namespace tinyxml2 {
+class XMLElement;
+class XMLNode;
+} /* namespace tinyxml2 */
+
+using namespace tinyxml2;
 using namespace std;
 
 class Distribution {
 public:
 	Distribution() = delete;
 	Distribution(DistributionType type, vector<pair<const char*, double>> params);
+	Distribution(DistributionType type, XMLElement* element);
 	virtual ~Distribution();
 	double getParam(const char* name);
+	vector<pair<const char*, double>>& getParams();
 	void setParams(vector<pair<const char*, double>> params);
 	DistributionType getType();
+
 
 private:
 	DistributionType m_type;
 	vector<pair<const char*, double>> m_params;
-
+	void parseParams(DistributionType type, XMLElement* element);
+	void parseNormalDistributionParams(XMLElement* el);
+	void parseTruncatedNormalDistributionParams(XMLElement* el);
+	void parseUniformDistributionParams(XMLElement* el);
+	void parseLaplaceDistributionParams(XMLElement* el);
 };
 
 #endif /* INCLUDE_DISTRIBUTION_H_ */
