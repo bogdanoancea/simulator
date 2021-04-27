@@ -43,7 +43,7 @@ public:
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
 	 * @param speed the speed of displacement.
 	 */
-	RandomWalkDisplacement(SimConfig* simConfig, double speed);
+	RandomWalkDisplacement(SimConfigParser* simConfig, double speed);
 
 	/**
 	 * Implements the random walk behaviour. It takes a pointer to the current location, generates a uniformly distributed value

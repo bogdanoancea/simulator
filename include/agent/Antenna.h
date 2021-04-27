@@ -86,7 +86,7 @@ public:
 //			XMLElement *el, vector<MobileOperator*> mnos,
 //			const string &outptuDir, EventFactory &factory, EventType evType);
 
-	explicit Antenna(const unsigned long id, SimConfig* sc, AntennaConfiguration ac, EventFactory* factory);
+	explicit Antenna(const unsigned long id, SimConfigParser* sc, AntennaConfiguration ac, EventFactory* factory);
 
 	/**
 	 * Destructor of the class. It closes the file where the Antenna dumps the registered events during the simulation.
@@ -282,7 +282,7 @@ private:
 	EventFactory* m_eventFactory;
 
 	AntennaConfiguration m_antennaConfig;
-	SimConfig* m_simConfig;
+	SimConfigParser* m_simConfig;
 
 	static const string EventHeaderCellID;
 	static const string EventHeaderCellIDTA;

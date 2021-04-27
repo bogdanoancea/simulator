@@ -44,7 +44,7 @@ using namespace tinyxml2;
  * This class parses the simulation configuration file, given in the command line with the prefix -s.
  * It provides getters for all fields parsed from the xml file.
  */
-class SimConfig: public ConfigParser {
+class SimConfigParser: public ConfigParser {
 public:
 	/**
 	 * The constructor of the class. It takes the simulation file name as a parameter and it passes it to the constructor of its superclass.
@@ -57,14 +57,14 @@ public:
 	 * @param map a pointer to the map of the simulation. Even the map file is parsed elsewhere, this pointer is also stored here
 	 * to be passed to other objects that need it.
 	 */
-	SimConfig(const string& fileName, AgentsCollection* agents, Map* map);
+	SimConfigParser(const string& fileName, AgentsCollection* agents, Map* map);
 
 	/**
 	 * Destructor of the class. It frees the memory allocated for the \code{m_clock} member, (the \code{Clock}
 	 * object of the simulation}, and for the
 	 * \code{m_homeWorkScenario} member in case this simulation is a home-work type of simulation.
 	 */
-	virtual ~SimConfig();
+	virtual ~SimConfigParser();
 
 	/**
 	 * Returns the name of the \code{csv} file where all the details of the antennas are saved.

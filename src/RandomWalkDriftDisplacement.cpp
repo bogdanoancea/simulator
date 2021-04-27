@@ -27,7 +27,7 @@
 
 using namespace utils;
 
-RandomWalkDriftDisplacement::RandomWalkDriftDisplacement(SimConfig* simConfig, double speed):
+RandomWalkDriftDisplacement::RandomWalkDriftDisplacement(SimConfigParser* simConfig, double speed):
 		Displace(simConfig, speed), m_changeDirection{false} {
 
 }

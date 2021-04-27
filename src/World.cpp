@@ -54,7 +54,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	m_agentsCollection = new AgentsCollection();
 	m_eventFactory = new EventFactory();
-	m_sp = new SimConfig(configSimulationFileName, m_agentsCollection, mmap) ;
+	m_sp = new SimConfigParser(configSimulationFileName, m_agentsCollection, mmap) ;
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;

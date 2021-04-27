@@ -34,7 +34,7 @@
 
 using namespace utils;
 
-SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map) :
+SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agents, Map* map) :
 		ConfigParser(filename) {
 
 	m_map = map;
@@ -45,13 +45,13 @@ SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map)
 		agents->addAgent(m_mnos[i]);
 }
 
-SimConfig::~SimConfig() {
+SimConfigParser::~SimConfigParser() {
 	if(m_homeWorkScenario)
 		delete m_homeWorkScenario;
 	delete m_clock;
 }
 
-void SimConfig::parse() {
+void SimConfigParser::parse() {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(getFileName().c_str());
 	if (err != XML_SUCCESS)
@@ -106,7 +106,7 @@ void SimConfig::parse() {
 }
 
 
-void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
+void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
 	XMLElement* home = homeWorkElement->FirstChildElement("home");
 	if(!home) {
 		throw std::runtime_error("Home  location missing!");
@@ -149,7 +149,7 @@ void SimConfig::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScena
 	hws->setAngleDistribution(p);
 }
 
-Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
+Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
 	DistributionType dType;
 	vector<pair<const char *, double>> params;
@@ -196,7 +196,7 @@ Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkEle
 	return new Distribution(dType, params);
 }
 
- void SimConfig::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+ void SimConfigParser::parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
 	double scale = getValue(distribution, "scale", Constants::DEFAULT_SCALE_LAPLACE);
 	const char* paramName = "scale";
 	//cout <<" parsed scale:" << scale << endl;
@@ -204,7 +204,7 @@ Distribution* SimConfig::parseDirectionAngleDistribution(XMLElement* homeWorkEle
 	distrPars.push_back(p);
 }
 
-void SimConfig::parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+void SimConfigParser::parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
 	double mean = getValue(distribution, "mean", Constants::DEFAULT_MEAN_NORMAL);
 	double sd = getValue(distribution, "sd", Constants::DEFAULT_SD_NORMAL);
 	std::pair<const char*, double> p1 = std::make_pair("mean", mean);
@@ -213,7 +213,7 @@ void SimConfig::parseNormalParams(XMLElement* distribution, vector<pair<const ch
 	distrPars.push_back(p2);
 }
 
-void SimConfig::parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
+void SimConfigParser::parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPars) {
 	double min = getValue(distribution, "min", Constants::DEFAULT_MIN_UNIFORM);
 	double max = getValue(distribution, "max", Constants::DEFAULT_MAX_UNIFORM);
 	std::pair<const char*, double> p1 = std::make_pair("min", min);
@@ -223,160 +223,160 @@ void SimConfig::parseUniformParams(XMLElement* distribution, vector<pair<const c
 }
 
 
-const string& SimConfig::getAntennasFilename() const {
+const string& SimConfigParser::getAntennasFilename() const {
 	return m_antennasFilename;
 }
 
-void SimConfig::setAntennasFilename(const string& antennasFilename) {
+void SimConfigParser::setAntennasFilename(const string& antennasFilename) {
 	m_antennasFilename = antennasFilename;
 }
 
-double SimConfig::getConnThreshold() const {
+double SimConfigParser::getConnThreshold() const {
 	return m_connThreshold;
 }
 
-void SimConfig::setConnThreshold(double connThreshold) {
+void SimConfigParser::setConnThreshold(double connThreshold) {
 	m_connThreshold = connThreshold;
 }
 
-HoldableAgent::CONNECTION_TYPE SimConfig::getConnType() const {
+HoldableAgent::CONNECTION_TYPE SimConfigParser::getConnType() const {
 	return m_connType;
 }
 
-void SimConfig::setConnType(HoldableAgent::CONNECTION_TYPE connType) {
+void SimConfigParser::setConnType(HoldableAgent::CONNECTION_TYPE connType) {
 	m_connType = connType;
 }
 
-unsigned long SimConfig::getEndTime() const {
+unsigned long SimConfigParser::getEndTime() const {
 	return m_endTime;
 }
 
-void SimConfig::setEndTime(unsigned long endTime) {
+void SimConfigParser::setEndTime(unsigned long endTime) {
 	m_endTime = endTime;
 }
 
-EventType SimConfig::getEventType() const {
+EventType SimConfigParser::getEventType() const {
 	return m_eventType;
 }
 
-void SimConfig::setEventType(EventType eventType) {
+void SimConfigParser::setEventType(EventType eventType) {
 	m_eventType = eventType;
 }
 
-double SimConfig::getGridDimTileX() const {
+double SimConfigParser::getGridDimTileX() const {
 	return m_GridDimTileX;
 }
 
-void SimConfig::setGridDimTileX(double gridDimTileX) {
+void SimConfigParser::setGridDimTileX(double gridDimTileX) {
 	m_GridDimTileX = gridDimTileX;
 }
 
-double SimConfig::getGridDimTileY() const {
+double SimConfigParser::getGridDimTileY() const {
 	return m_GridDimTileY;
 }
 
-void SimConfig::setGridDimTileY(double gridDimTileY) {
+void SimConfigParser::setGridDimTileY(double gridDimTileY) {
 	m_GridDimTileY = gridDimTileY;
 }
 
-const string& SimConfig::getGridFilename() const {
+const string& SimConfigParser::getGridFilename() const {
 	return m_gridFilename;
 }
 
-void SimConfig::setGridFilename(const string& gridFilename) {
+void SimConfigParser::setGridFilename(const string& gridFilename) {
 	m_gridFilename = gridFilename;
 }
 
-unsigned SimConfig::getIntevalBetweenStays() const {
+unsigned SimConfigParser::getIntevalBetweenStays() const {
 	return m_intevalBetweenStays;
 }
 
-void SimConfig::setIntevalBetweenStays(unsigned intevalBetweenStays) {
+void SimConfigParser::setIntevalBetweenStays(unsigned intevalBetweenStays) {
 	m_intevalBetweenStays = intevalBetweenStays;
 }
 
-const vector<MobileOperator*>& SimConfig::getMnos() const {
+const vector<MobileOperator*>& SimConfigParser::getMnos() const {
 	return m_mnos;
 }
 
-void SimConfig::setMnos(const vector<MobileOperator*>& mnos) {
+void SimConfigParser::setMnos(const vector<MobileOperator*>& mnos) {
 	m_mnos = mnos;
 }
 
-MovementType SimConfig::getMvType() const {
+MovementType SimConfigParser::getMvType() const {
 	return m_mvType;
 }
 
-void SimConfig::setMvType(MovementType mvType) {
+void SimConfigParser::setMvType(MovementType mvType) {
 	m_mvType = mvType;
 }
 
-const string& SimConfig::getOutputDir() const {
+const string& SimConfigParser::getOutputDir() const {
 	return m_outputDir;
 }
 
-void SimConfig::setOutputDir(const string& outputDir) {
+void SimConfigParser::setOutputDir(const string& outputDir) {
 	m_outputDir = outputDir;
 }
 
-const string& SimConfig::getPersonsFilename() const {
+const string& SimConfigParser::getPersonsFilename() const {
 	return m_personsFilename;
 }
 
-void SimConfig::setPersonsFilename(const string& personsFilename) {
+void SimConfigParser::setPersonsFilename(const string& personsFilename) {
 	m_personsFilename = personsFilename;
 }
 
-double SimConfig::getProbSecMobilePhone() const {
+double SimConfigParser::getProbSecMobilePhone() const {
 	return m_probSecMobilePhone;
 }
 
-void SimConfig::setProbSecMobilePhone(double probSecMobilePhone) {
+void SimConfigParser::setProbSecMobilePhone(double probSecMobilePhone) {
 	m_probSecMobilePhone = probSecMobilePhone;
 }
 
-unsigned SimConfig::getSeed() const {
+unsigned SimConfigParser::getSeed() const {
 	return m_seed;
 }
 
-void SimConfig::setSeed(unsigned seed) {
+void SimConfigParser::setSeed(unsigned seed) {
 	m_seed = seed;
 }
 
-unsigned long SimConfig::getStartTime() const {
+unsigned long SimConfigParser::getStartTime() const {
 	return m_startTime;
 }
 
-void SimConfig::setStartTime(unsigned long startTime) {
+void SimConfigParser::setStartTime(unsigned long startTime) {
 	m_startTime = startTime;
 }
 
-unsigned long SimConfig::getStay() const {
+unsigned long SimConfigParser::getStay() const {
 	return m_stay;
 }
 
-void SimConfig::setStay(unsigned long stay) {
+void SimConfigParser::setStay(unsigned long stay) {
 	m_stay = stay;
 }
 
-unsigned long SimConfig::getTimeIncrement() const {
+unsigned long SimConfigParser::getTimeIncrement() const {
 	return m_timeIncrement;
 }
 
-void SimConfig::setTimeIncrement(unsigned long timeIncrement) {
+void SimConfigParser::setTimeIncrement(unsigned long timeIncrement) {
 	m_timeIncrement = timeIncrement;
 }
 
-Clock* SimConfig::getClock() {
+Clock* SimConfigParser::getClock() {
 	return m_clock;
 }
 
-Map* SimConfig::getMap() {
+Map* SimConfigParser::getMap() {
 	return m_map;
 }
 
 
-vector<MobileOperator*> SimConfig::parseMNOs(XMLElement* el) {
+vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
 	vector<MobileOperator*> result;
 	unsigned numMNO = 0;
 	XMLElement* mnoEl = utils::getFirstChildElement(el, "mno");
@@ -397,7 +397,7 @@ vector<MobileOperator*> SimConfig::parseMNOs(XMLElement* el) {
 	return (result);
 }
 
-MovementType SimConfig::parseMovement(XMLElement* el) {
+MovementType SimConfigParser::parseMovement(XMLElement* el) {
 	MovementType result;
 	const char* mvType = getValue(el, "movement_type", "UNKNOWN");
 	if (!strcmp(mvType, "random_walk_closed_map"))
@@ -413,7 +413,7 @@ MovementType SimConfig::parseMovement(XMLElement* el) {
 	return (result);
 }
 
-HoldableAgent::CONNECTION_TYPE SimConfig::parseConnectionType(XMLElement* el) {
+HoldableAgent::CONNECTION_TYPE SimConfigParser::parseConnectionType(XMLElement* el) {
 	HoldableAgent::CONNECTION_TYPE result;
 	const char* connType = getValue(el, "connection_type", "UNKNOWN");
 	if (!strcmp(connType, "power"))
@@ -427,7 +427,7 @@ HoldableAgent::CONNECTION_TYPE SimConfig::parseConnectionType(XMLElement* el) {
 	return (result);
 }
 
-double SimConfig::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType) {
+double SimConfigParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType) {
 	double result = -1;
 	if (connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
 		result = Constants::PHONE_POWER_THRESHOLD;
@@ -438,24 +438,24 @@ double SimConfig::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE c
 	return (result);
 }
 
-bool SimConfig::isHomeWorkScenario() const {
+bool SimConfigParser::isHomeWorkScenario() const {
 	return (m_homeWorkScenario != nullptr);
 }
 
 
-unsigned int SimConfig::getNumHomeLocations() const {
+unsigned int SimConfigParser::getNumHomeLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getHomeLocations().size();
 	else return -1;
 }
 
-unsigned int SimConfig::getNumWorkLocations() const {
+unsigned int SimConfigParser::getNumWorkLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getWorkLocations().size();
 	else return -1;
 }
 
-HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
+HomeWorkLocation SimConfigParser::getHomeLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getHomeLocations().at(i);
 	else {
@@ -463,7 +463,7 @@ HomeWorkLocation SimConfig::getHomeLocation(unsigned int i) const {
 	}
 }
 
-HomeWorkScenario* SimConfig::getHomeWorkScenario() {
+HomeWorkScenario* SimConfigParser::getHomeWorkScenario() {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario;
 	else {
@@ -472,7 +472,7 @@ HomeWorkScenario* SimConfig::getHomeWorkScenario() {
 
 }
 
-HomeWorkLocation SimConfig::getWorkLocation(unsigned int i) const {
+HomeWorkLocation SimConfigParser::getWorkLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getWorkLocations().at(i);
 	else {

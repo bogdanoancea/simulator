@@ -24,7 +24,7 @@ using namespace tinyxml2;
 using namespace utils;
 
 
-AntennaConfigParser::AntennaConfigParser(const string& fileName, SimConfig* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
+AntennaConfigParser::AntennaConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
 	m_simConfig = sc;
 	m_eventFactory = evFactory;
 	parse();

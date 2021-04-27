@@ -22,7 +22,7 @@
 
 class AntennaConfigParser: public ConfigParser {
 public:
-	AntennaConfigParser(const string& fileName, SimConfig* sc, AgentsCollection* ag, EventFactory* evFactory);
+	AntennaConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* ag, EventFactory* evFactory);
 	virtual ~AntennaConfigParser();
 	const vector<Antenna*>& getAntennas() const;
 
@@ -30,7 +30,7 @@ private:
 	void parse() override;
 
 	vector<Antenna*> m_antennas;
-	SimConfig* m_simConfig;
+	SimConfigParser* m_simConfig;
 	EventFactory* m_eventFactory;
 };
 

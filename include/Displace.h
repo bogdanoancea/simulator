@@ -46,7 +46,7 @@ public:
 	 * Constructor of the class. Initializes members.
 	 * @param speed the speed of displacement.
 	 */
-	Displace(SimConfig* simconfig, double speed);
+	Displace(SimConfigParser* simconfig, double speed);
 
 	/**
 	 * Default destructor.
@@ -63,7 +63,7 @@ public:
 protected:
 //	Map* m_map;
 //	Clock * m_clock;
-	SimConfig* m_simConfig;
+	SimConfigParser* m_simConfig;
 	double m_speed;
 	virtual Point* computeNewLocation(Point* initLocation, double theta);
 

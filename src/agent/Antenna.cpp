@@ -170,7 +170,7 @@ using namespace utils;
 //}
 //
 
-Antenna::Antenna(const unsigned long id, SimConfig *sc, AntennaConfiguration ac,
+Antenna::Antenna(const unsigned long id, SimConfigParser *sc, AntennaConfiguration ac,
 		EventFactory *factory) :
 		ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell {
 				nullptr }, m_rmax { 0 } {

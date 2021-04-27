@@ -35,7 +35,7 @@
 
 using namespace std;
 
-HomeWorkDisplacement::HomeWorkDisplacement(SimConfig *simConfig, double speed, Point *homeLocation, Point* workLocation) :
+HomeWorkDisplacement::HomeWorkDisplacement(SimConfigParser *simConfig, double speed, Point *homeLocation, Point* workLocation) :
 		Displace(simConfig, speed) {
 	m_deltaTStayHome = initDeltaTStayHome();
 	m_deltaTStayWork = initDeltaTStayWork();

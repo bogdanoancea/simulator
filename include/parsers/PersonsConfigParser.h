@@ -10,7 +10,7 @@
 
 #include <agent/MobileOperator.h>
 #include <agent/Person.h>
-#include <AgeDistribution.h>
+#include <Distribution.h>
 #include <parsers/ConfigParser.h>
 #include <parsers/SimConfigParser.h>
 #include <RandomNumberGenerator.h>
@@ -21,21 +21,21 @@
 
 class PersonsConfig: public ConfigParser {
 public:
-	PersonsConfig(const string& fileName, SimConfig* sc, AgentsCollection* ag);
+	PersonsConfig(const string& fileName, SimConfigParser* sc, AgentsCollection* ag);
 	virtual ~PersonsConfig();
 	const vector<Person*>& getPersons() const;
 
 private:
 	void parse() override;
 	vector<Person*> m_persons;
-	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
+	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<Distribution> age_distribution,
 				double male_share, double speed_walk, double speed_car, double percentHome);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng );
-	int* generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng);
+	int* generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng);
 	void addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag);
 	void setPersonDisplacementPattern(Person* p);
 	Point* generateWorkLocation(unsigned int index);
-	SimConfig* m_simConfig;
+	SimConfigParser* m_simConfig;
 	AgentsCollection* m_agents;
 
 

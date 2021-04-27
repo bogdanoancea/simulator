@@ -25,7 +25,7 @@
 #include <Utils.h>
 
 
-LevyFlightDisplacement::LevyFlightDisplacement(SimConfig* simConfig,  double speed):
+LevyFlightDisplacement::LevyFlightDisplacement(SimConfigParser* simConfig,  double speed):
 	Displace(simConfig, speed) {
 }
 

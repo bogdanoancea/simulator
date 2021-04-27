@@ -29,7 +29,7 @@ public:
 	 * generated from a normal distribution with the parameters read from the simulation configuration file. If there are several work locations in this file,
 	 * a work location is assigned for each person using a uniform distribution.
 	 */
-	HomeWorkDisplacement(SimConfig* simConfig, double speed, Point* homeLocation, Point* workLocation);
+	HomeWorkDisplacement(SimConfigParser* simConfig, double speed, Point* homeLocation, Point* workLocation);
 
 	/**
 	 * This is the destructor of the class. It does notihng.

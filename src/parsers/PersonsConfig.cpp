@@ -32,7 +32,7 @@
 using namespace tinyxml2;
 using namespace utils;
 
-PersonsConfig::PersonsConfig(const string& filename, SimConfig* sc, AgentsCollection* ag) : ConfigParser(filename) {
+PersonsConfig::PersonsConfig(const string& filename, SimConfigParser* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	//m_mnos = mnos;
 	m_simConfig = sc;
 	m_agents = ag;
@@ -66,17 +66,38 @@ void PersonsConfig::parse() noexcept(false) {
 		if (strcmp(distrib, "normal") && strcmp(distrib, "uniform"))
 			throw std::runtime_error("Unknown age distribution for population!");
 
-		shared_ptr<AgeDistribution> ageDistr;
+		shared_ptr<Distribution> ageDistr;
 		if (!strcmp(distrib, "normal")) {
 			double mean_age = getValue(ageDistribEl, "mean");
 			double sd = getValue(ageDistribEl, "sd");
-			ageDistr = make_shared<TruncatedNormalAgeDistribution>(TruncatedNormalAgeDistribution(min_age, max_age, mean_age, sd));
+			vector<pair<const char *, double>> ageDistrParams;
+			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
+			std::pair<const char*, double> p2 = std::make_pair("max", max_age);
+			std::pair<const char*, double> p3 = std::make_pair("mean", mean_age);
+			std::pair<const char*, double> p4 = std::make_pair("sd", sd);
+			ageDistrParams.push_back(p1);
+			ageDistrParams.push_back(p2);
+			ageDistrParams.push_back(p3);
+			ageDistrParams.push_back(p4);
+			DistributionType type = DistributionType::TRUNCATED_NORMAL;
+			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
 		} else if (!strcmp(distrib, "uniform")) {
-			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
-		} else {
-			ageDistr = make_shared<UniformAgeDistribution>(UniformAgeDistribution(min_age, max_age));
+			DistributionType type = DistributionType::UNIFORM;
+			vector<pair<const char *, double>> ageDistrParams;
+			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
+			std::pair<const char*, double> p2 = std::make_pair("max", min_age);
+			ageDistrParams.push_back(p1);
+			ageDistrParams.push_back(p2);
+			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
+		} else { // default distribution
+			DistributionType type = DistributionType::UNIFORM;
+			vector<pair<const char *, double>> ageDistrParams;
+			std::pair<const char*, double> p1 = std::make_pair("min", min_age);
+			std::pair<const char*, double> p2 = std::make_pair("max", min_age);
+			ageDistrParams.push_back(p1);
+			ageDistrParams.push_back(p2);
+			ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
 		}
-
 		double male_share = getValue(personsEl, "male_share");
 		double speed_walk = getValue(personsEl, "speed_walk");
 		double speed_car = getValue(personsEl, "speed_car");
@@ -86,7 +107,7 @@ void PersonsConfig::parse() noexcept(false) {
 }
 
 
-vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shared_ptr<AgeDistribution> ageDistribution,
+vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shared_ptr<Distribution> ageDistribution,
 		double male_share, double speed_walk, double speed_car, double percentHome) {
 
 	vector<Person*> result;
@@ -206,17 +227,9 @@ void PersonsConfig::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, d
 }
 
 
-int* PersonsConfig::generateAges(int n, shared_ptr<AgeDistribution> distr, RandomNumberGenerator* rng) {
+int* PersonsConfig::generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng) {
 	int* ages = new int[n];
-
-	if(shared_ptr<UniformAgeDistribution> ageDistr = dynamic_pointer_cast<UniformAgeDistribution>(distr)){
-		ages = rng->generateUniformInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), n);
-	}
-	else if (shared_ptr<TruncatedNormalAgeDistribution> ageDistr = dynamic_pointer_cast<TruncatedNormalAgeDistribution>(distr)) {
-		ages = rng->generateTruncatedNormalInt(ageDistr->getMinAge(),ageDistr->getMaxAge(), ageDistr->getMean(),ageDistr->getSd(), n);
-	} else {
-		ages = rng->generateUniformInt(distr->getMinAge(),distr->getMaxAge(), n);
-	}
+	ages = rng->generateInt(n, *distr.get());
 	return (ages);
 }
 

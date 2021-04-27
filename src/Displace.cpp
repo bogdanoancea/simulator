@@ -32,7 +32,7 @@ using namespace geos;
 using namespace geos::geom;
 
 
-Displace::Displace(SimConfig* simConfig, double speed): m_speed {speed} {
+Displace::Displace(SimConfigParser* simConfig, double speed): m_speed {speed} {
 	m_simConfig = simConfig;
 }
 

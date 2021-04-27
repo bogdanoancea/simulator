@@ -62,9 +62,9 @@ namespace utils {
 	 * have the same values. The rest of the points differ from a simulation to another.
 	 * @return a vector of pointers to Point objects.
 	 */
-	vector<Point*> generatePoints(SimConfig* sc, unsigned long n, double percentHome);
-	vector<Point*> generateRandomPoints(SimConfig* sc, unsigned long n, double percentHome);
-	vector<Point*> generateHomeWorkPoints(SimConfig* sc, unsigned long n, double percentHome);
+	vector<Point*> generatePoints(SimConfigParser* sc, unsigned long n, double percentHome);
+	vector<Point*> generateRandomPoints(SimConfigParser* sc, unsigned long n, double percentHome);
+	vector<Point*> generateHomeWorkPoints(SimConfigParser* sc, unsigned long n, double percentHome);
 
 	void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_gernerator, vector<Point*>& result);
 
