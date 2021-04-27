@@ -58,7 +58,6 @@ private:
 	Point* m_homeLocation;
 	Point* m_workLocation;
 	Distribution* m_angleDistribution;
-	Distribution* m_uniform;
 	double m_stepLength;
 };
 
