@@ -27,7 +27,7 @@
 #include <map/Map.h>
 #include <parsers/HomeWorkLocation.h>
 #include <parsers/HomeWorkScenario.h>
-#include <parsers/SimConfig.h>
+#include <parsers/SimConfigParser.h>
 #include <RandomNumberGenerator.h>
 #include <Utils.h>
 #include <cmath>

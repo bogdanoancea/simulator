@@ -59,7 +59,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
 
-	m_antennaConfig = new AntennaConfig(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
+	m_antennaConfig = new AntennaConfigParser(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
 	m_persConfig = new PersonsConfig(configPersonsFileName, m_sp, m_agentsCollection);
 	if (!probabilitiesFileName.empty()) {
 		m_probabilitiesConfig = new ProbabilitiesConfig(probabilitiesFileName);

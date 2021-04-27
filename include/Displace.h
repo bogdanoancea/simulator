@@ -27,9 +27,9 @@
 #define INCLUDE_DISPLACE_H_
 
 #include <geos/geom/Point.h>
-#include <parsers/SimConfig.h>
 #include <Clock.h>
 #include <map/Map.h>
+#include <parsers/SimConfigParser.h>
 
 
 using namespace geos;

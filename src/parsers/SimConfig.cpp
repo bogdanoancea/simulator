@@ -25,7 +25,7 @@
 #include <IDGenerator.h>
 #include <map/Map.h>
 #include <parsers/HomeWorkLocation.h>
-#include <parsers/SimConfig.h>
+#include <parsers/SimConfigParser.h>
 #include <Utils.h>
 #include <cstring>
 #include <filesystem>
@@ -35,7 +35,7 @@
 using namespace utils;
 
 SimConfig::SimConfig(const string& filename, AgentsCollection* agents, Map* map) :
-		Config(filename) {
+		ConfigParser(filename) {
 
 	m_map = map;
 	m_homeWorkScenario = nullptr;

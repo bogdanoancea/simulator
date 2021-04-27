@@ -39,7 +39,7 @@
 #include <utility>
 #include <vector>
 #include <parsers/AntennaConfiguration.h>
-#include <parsers/SimConfig.h>
+#include <parsers/SimConfigParser.h>
 
 
 using namespace geos;

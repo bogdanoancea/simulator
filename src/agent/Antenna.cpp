@@ -24,7 +24,6 @@
  */
 
 #include <agent/Antenna.h>
-#include <parsers/AntennaConfig.h>
 #include <Clock.h>
 #include <events/CellIDTAEventConfig.h>
 #include <events/Event.h>
@@ -38,6 +37,7 @@
 #include <geos/util/GeometricShapeFactory.h>
 #include <geos/version.h>
 #include <map/Map.h>
+#include <parsers/AntennaConfigParserParser.h>
 #include <RandomNumberGenerator.h>
 #include <TinyXML2.h>
 #include <Utils.h>
@@ -170,33 +170,34 @@ using namespace utils;
 //}
 //
 
-Antenna::Antenna(const unsigned long id, SimConfig* sc, AntennaConfiguration ac, EventFactory* factory) :
-				ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell { nullptr }, m_rmax { 0 }  {
+Antenna::Antenna(const unsigned long id, SimConfig *sc, AntennaConfiguration ac,
+		EventFactory *factory) :
+		ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell {
+				nullptr }, m_rmax { 0 } {
 
-			m_antennaConfig = ac;
-			m_simConfig = sc;
-			setLocation(ac.getLocation());
+	m_antennaConfig = ac;
+	m_simConfig = sc;
+	setLocation(ac.getLocation());
 
-			if (ac.getType() == AntennaType::DIRECTIONAL) {
-				m_mapping_azim = createMapping(ac.getAzimDBBack());
-				m_mapping_elev = createMapping(ac.getElevDBBack());
-				m_sd_azim = findSD(ac.getBeamH(), ac.getAzimDBBack(), m_mapping_azim);
-				m_sd_elev = findSD(ac.getBeamV(), ac.getElevDBBack(), m_mapping_elev);
-			}
+	if (ac.getType() == AntennaType::DIRECTIONAL) {
+		m_mapping_azim = createMapping(ac.getAzimDBBack());
+		m_mapping_elev = createMapping(ac.getElevDBBack());
+		m_sd_azim = findSD(ac.getBeamH(), ac.getAzimDBBack(), m_mapping_azim);
+		m_sd_elev = findSD(ac.getBeamV(), ac.getElevDBBack(), m_mapping_elev);
+	}
 
-			m_S0 = 30 + 10 * log10(m_antennaConfig.getPower());
-			m_eventFactory = factory;
-			setCell(sc->getConnType());
-			string fileName = sc->getOutputDir() + "/" + getAntennaOutputFileName();
-			try {
-				m_file.open(fileName, ios::out);
-			}
-			catch (std::ofstream::failure& e) {
-				cerr << "Error opening output files!" << endl;
-			}
-			m_file << getEventHeader(sc->getEventType()) << endl;
-			//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
-		}
+	m_S0 = 30 + 10 * log10(m_antennaConfig.getPower());
+	m_eventFactory = factory;
+	setCell(sc->getConnType());
+	string fileName = sc->getOutputDir() + "/" + getAntennaOutputFileName();
+	try {
+		m_file.open(fileName, ios::out);
+	} catch (std::ofstream::failure &e) {
+		cerr << "Error opening output files!" << endl;
+	}
+	m_file << getEventHeader(sc->getEventType()) << endl;
+	//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
+}
 
 
 Antenna::~Antenna() {

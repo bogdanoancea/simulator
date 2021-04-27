@@ -9,8 +9,8 @@
 #define INCLUDE_PROBABILITIESCONFIG_H_
 
 #include <agent/Person.h>
-#include <parsers/Config.h>
-#include <parsers/SimConfig.h>
+#include <parsers/ConfigParser.h>
+#include <parsers/SimConfigParser.h>
 #include <PriorType.h>
 #include <string>
 #include <vector>
@@ -19,7 +19,7 @@
 
 
 
-class ProbabilitiesConfig: public Config {
+class ProbabilitiesConfig: public ConfigParser {
 public:
 	ProbabilitiesConfig(const string& fileName);
 	virtual ~ProbabilitiesConfig();

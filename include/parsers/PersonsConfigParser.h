@@ -11,22 +11,22 @@
 #include <agent/MobileOperator.h>
 #include <agent/Person.h>
 #include <AgeDistribution.h>
+#include <parsers/ConfigParser.h>
+#include <parsers/SimConfigParser.h>
 #include <RandomNumberGenerator.h>
-#include <parsers/Config.h>
-#include <parsers/SimConfig.h>
 #include <memory>
 #include <string>
 #include <vector>
 
 
-class PersonsConfig: public Config {
+class PersonsConfig: public ConfigParser {
 public:
 	PersonsConfig(const string& fileName, SimConfig* sc, AgentsCollection* ag);
 	virtual ~PersonsConfig();
 	const vector<Person*>& getPersons() const;
 
 private:
-	void parse();
+	void parse() override;
 	vector<Person*> m_persons;
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<AgeDistribution> age_distribution,
 				double male_share, double speed_walk, double speed_car, double percentHome);

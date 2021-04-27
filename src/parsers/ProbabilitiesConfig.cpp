@@ -8,7 +8,7 @@
 
 
 #include <Constants.h>
-#include <parsers/ProbabilitiesConfig.h>
+#include <parsers/ProbabilitiesConfigParser.h>
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <cstring>
@@ -16,7 +16,7 @@
 
 using namespace utils;
 
-ProbabilitiesConfig::ProbabilitiesConfig(const string& fileName): Config(fileName) {
+ProbabilitiesConfig::ProbabilitiesConfig(const string& fileName): ConfigParser(fileName) {
 	parse();
 }
 

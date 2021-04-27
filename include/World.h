@@ -29,13 +29,13 @@
 #include <agent/Antenna.h>
 #include <AntennaInfo.h>
 #include <events/EventFactory.h>
+#include <parsers/AntennaConfigParserParser.h>
+#include <parsers/PersonsConfigParser.h>
+#include <parsers/ProbabilitiesConfigParser.h>
+#include <parsers/SimConfigParser.h>
 #include <RandomNumberGenerator.h>
 #include <PostLocProb.h>
 #include <PriorType.h>
-#include <parsers/SimConfig.h>
-#include <parsers/PersonsConfig.h>
-#include <parsers/AntennaConfig.h>
-#include <parsers/ProbabilitiesConfig.h>
 #include <map>
 #include <memory>
 #include <string>
@@ -155,7 +155,7 @@ private:
 	AgentsCollection* m_agentsCollection;
 	SimConfig* m_sp;
 	PersonsConfig* m_persConfig;
-	AntennaConfig* m_antennaConfig;
+	AntennaConfigParser* m_antennaConfig;
 	ProbabilitiesConfig* m_probabilitiesConfig;
 
 	//PriorType m_prior;

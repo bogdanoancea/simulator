@@ -10,8 +10,8 @@
 
 #include <agent/Antenna.h>
 #include <events/EventFactory.h>
-#include <parsers/Config.h>
-#include <parsers/SimConfig.h>
+#include <parsers/ConfigParser.h>
+#include <parsers/SimConfigParser.h>
 #include <string>
 #include <vector>
 
@@ -20,14 +20,14 @@
  * Parses the antenna.xml configuration file and builds the antenna objects
  */
 
-class AntennaConfig: public Config {
+class AntennaConfigParser: public ConfigParser {
 public:
-	AntennaConfig(const string& fileName, SimConfig* sc, AgentsCollection* ag, EventFactory* evFactory);
-	virtual ~AntennaConfig();
+	AntennaConfigParser(const string& fileName, SimConfig* sc, AgentsCollection* ag, EventFactory* evFactory);
+	virtual ~AntennaConfigParser();
 	const vector<Antenna*>& getAntennas() const;
 
 private:
-	void parse();
+	void parse() override;
 
 	vector<Antenna*> m_antennas;
 	SimConfig* m_simConfig;

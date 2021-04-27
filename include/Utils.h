@@ -30,10 +30,10 @@
 #include <agent/MobilePhone.h>
 #include <events/EventType.h>
 #include <AntennaInfo.h>
-#include <parsers/SimConfig.h>
 #include <geos/geom/Point.h>
 #include <PriorType.h>
 #include <NetworkType.h>
+#include <parsers/SimConfigParser.h>
 #include <RandomNumberGenerator.h>
 #include <cmath>
 #include <utility>

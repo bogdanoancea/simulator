@@ -8,11 +8,11 @@
 #include <agent/Antenna.h>
 #include <agent/AgentsCollection.h>
 #include <IDGenerator.h>
-#include <parsers/AntennaConfig.h>
 #include <parsers/AntennaConfiguration.h>
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <EMField.h>
+#include <parsers/AntennaConfigParserParser.h>
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
@@ -24,7 +24,7 @@ using namespace tinyxml2;
 using namespace utils;
 
 
-AntennaConfig::AntennaConfig(const string& fileName, SimConfig* sc, AgentsCollection* agents, EventFactory* evFactory): Config(fileName) {
+AntennaConfigParser::AntennaConfigParser(const string& fileName, SimConfig* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
 	m_simConfig = sc;
 	m_eventFactory = evFactory;
 	parse();
@@ -36,11 +36,11 @@ AntennaConfig::AntennaConfig(const string& fileName, SimConfig* sc, AgentsCollec
 
 }
 
-AntennaConfig::~AntennaConfig(){
+AntennaConfigParser::~AntennaConfigParser(){
 	// TODO Auto-generated destructor stub
 }
 
-void AntennaConfig::parse() {
+void AntennaConfigParser::parse() {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(getFileName().c_str());
 	if (err != XML_SUCCESS)
@@ -117,6 +117,6 @@ void AntennaConfig::parse() {
 	}
 }
 
-const vector<Antenna*>& AntennaConfig::getAntennas() const {
+const vector<Antenna*>& AntennaConfigParser::getAntennas() const {
 	return m_antennas;
 }

@@ -14,12 +14,12 @@
 #include <LevyFlightDisplacement.h>
 #include <map/Map.h>
 #include <MovementType.h>
-#include <parsers/PersonsConfig.h>
-#include <parsers/SimConfig.h>
 #include <RandomNumberGenerator.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
 #include <HomeWorkDisplacement.h>
+#include <parsers/PersonsConfigParser.h>
+#include <parsers/SimConfigParser.h>
 #include <TinyXML2.h>
 #include <TruncatedNormalAgeDistribution.h>
 #include <UniformAgeDistribution.h>
@@ -32,7 +32,7 @@
 using namespace tinyxml2;
 using namespace utils;
 
-PersonsConfig::PersonsConfig(const string& filename, SimConfig* sc, AgentsCollection* ag) : Config(filename) {
+PersonsConfig::PersonsConfig(const string& filename, SimConfig* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	//m_mnos = mnos;
 	m_simConfig = sc;
 	m_agents = ag;

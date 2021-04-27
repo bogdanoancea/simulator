@@ -27,7 +27,6 @@
 #include <agent/MobileOperator.h>
 #include <events/EventType.h>
 #include <MovementType.h>
-#include <parsers/Config.h>
 #include <parsers/HomeWorkScenario.h>
 #include <agent/AgentsCollection.h>
 #include <TinyXML2.h>
@@ -35,6 +34,7 @@
 #include <vector>
 #include <map>
 #include <DistributionType.h>
+#include <parsers/ConfigParser.h>
 
 
 using namespace tinyxml2;
@@ -44,7 +44,7 @@ using namespace tinyxml2;
  * This class parses the simulation configuration file, given in the command line with the prefix -s.
  * It provides getters for all fields parsed from the xml file.
  */
-class SimConfig: public Config {
+class SimConfig: public ConfigParser {
 public:
 	/**
 	 * The constructor of the class. It takes the simulation file name as a parameter and it passes it to the constructor of its superclass.
@@ -282,17 +282,17 @@ private:
 	unsigned long m_stay;
 	unsigned m_intevalBetweenStays;
 	vector<MobileOperator*> m_mnos;
-	double m_probSecMobilePhone; //SimConfig
-	MovementType m_mvType; //SimConfig
-	HoldableAgent::CONNECTION_TYPE m_connType; //SimConfig
-	double m_connThreshold; //SimConfig
-	string m_gridFilename; //SimConfig
-	string m_personsFilename; //SimConfig
-	string m_antennasFilename; //SimConfig
-	double m_GridDimTileX; //SimConfig
-	double m_GridDimTileY; //simConfig
-	unsigned m_seed; //simConfig
-	EventType m_eventType; // SimConfig
+	double m_probSecMobilePhone;
+	MovementType m_mvType;
+	HoldableAgent::CONNECTION_TYPE m_connType;
+	double m_connThreshold;
+	string m_gridFilename;
+	string m_personsFilename;
+	string m_antennasFilename;
+	double m_GridDimTileX;
+	double m_GridDimTileY;
+	unsigned m_seed;
+	EventType m_eventType;
 	Clock* m_clock;
 	Map* m_map;
 	HomeWorkScenario* m_homeWorkScenario;

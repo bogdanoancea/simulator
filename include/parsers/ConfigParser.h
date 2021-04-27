@@ -34,13 +34,13 @@ using namespace std;
  * parameters. This is an abstract class since it contains one pure virtual function, \code{parse()}
  * that has to be implemented by subclasses.
  */
-class Config {
+class ConfigParser {
 public:
 	/**
 	 * Constructor of the class. It takes the filename of the configuration file as a parameter.
 	 * @param fileName the name of configuration file to be parsed.
 	 */
-	Config(string fileName);
+	ConfigParser(string fileName);
 
 	/**
 	 * Returns the name of the configuration file.
@@ -51,7 +51,7 @@ public:
 	/**
 	 * Virtual destructor of the class.
 	 */
-	virtual ~Config();
+	virtual ~ConfigParser();
 
 protected:
 	/**

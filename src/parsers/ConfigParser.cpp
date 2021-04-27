@@ -20,16 +20,16 @@
  *      Author: Bogdan.Oancea
  */
 
-#include <parsers/Config.h>
+#include <parsers/ConfigParser.h>
 
-Config::Config(string fileName): m_fileName(fileName) {
+ConfigParser::ConfigParser(string fileName): m_fileName(fileName) {
 }
 
 
-Config::~Config() {
+ConfigParser::~ConfigParser() {
 	// TODO Auto-generated destructor stub
 }
 
-string Config::getFileName() const {
+string ConfigParser::getFileName() const {
 	return (m_fileName);
 }
