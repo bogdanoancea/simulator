@@ -11,11 +11,11 @@
 #include <DistributionType.h>
 #include <utility>
 #include <vector>
+#include <TinyXML2.h>
+#include <string>
 
-namespace tinyxml2 {
-class XMLElement;
-class XMLNode;
-} /* namespace tinyxml2 */
+using namespace tinyxml2;
+
 
 using namespace tinyxml2;
 using namespace std;
@@ -30,7 +30,7 @@ public:
 	vector<pair<const char*, double>>& getParams();
 	void setParams(vector<pair<const char*, double>> params);
 	DistributionType getType();
-
+	string paramsToString();
 
 private:
 	DistributionType m_type;

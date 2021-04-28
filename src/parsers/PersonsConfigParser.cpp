@@ -21,8 +21,6 @@
 #include <parsers/PersonsConfigParser.h>
 #include <parsers/SimConfigParser.h>
 #include <TinyXML2.h>
-#include <TruncatedNormalAgeDistribution.h>
-#include <UniformAgeDistribution.h>
 #include <Utils.h>
 #include <cstring>
 #include <numeric>
@@ -32,7 +30,7 @@
 using namespace tinyxml2;
 using namespace utils;
 
-PersonsConfig::PersonsConfig(const string& filename, SimConfigParser* sc, AgentsCollection* ag) : ConfigParser(filename) {
+PersonsConfigParser::PersonsConfigParser(const string& filename, SimConfigParser* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	//m_mnos = mnos;
 	m_simConfig = sc;
 	m_agents = ag;
@@ -42,11 +40,11 @@ PersonsConfig::PersonsConfig(const string& filename, SimConfigParser* sc, Agents
 	}
 }
 
-PersonsConfig::~PersonsConfig() {
+PersonsConfigParser::~PersonsConfigParser() {
 	// TODO Auto-generated destructor stub
 }
 
-void PersonsConfig::parse() noexcept(false) {
+void PersonsConfigParser::parse() noexcept(false) {
 
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(getFileName().c_str());
@@ -58,83 +56,94 @@ void PersonsConfig::parse() noexcept(false) {
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
 		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
-		unsigned long min_age = getValue(personsEl, "min_age");
-		unsigned long max_age = getValue(personsEl, "max_age");
-		const char* distribType = nullptr;
-		shared_ptr<Distribution> ageDistr;
-		try{
-			XMLElement* ageDistribEl = getFirstChildElement(personsEl, "age_distribution");
-			distribType = getValue(ageDistribEl, "type", "UNKNOWN");
-			if (strcmp(distribType, "normal") && strcmp(distribType, "uniform"))
-				throw std::runtime_error("Unknown age distribution for population!");
-			if (!strcmp(distribType, "normal")) {
-				double mean_age = getValue(ageDistribEl, "mean");
-				double sd = getValue(ageDistribEl, "sd");
-				vector<pair<const char *, double>> ageDistrParams;
-				std::pair<const char*, double> p1 = std::make_pair("min", min_age);
-				std::pair<const char*, double> p2 = std::make_pair("max", max_age);
-				std::pair<const char*, double> p3 = std::make_pair("mean", mean_age);
-				std::pair<const char*, double> p4 = std::make_pair("sd", sd);
-				ageDistrParams.push_back(p1);
-				ageDistrParams.push_back(p2);
-				ageDistrParams.push_back(p3);
-				ageDistrParams.push_back(p4);
-				DistributionType type = DistributionType::TRUNCATED_NORMAL;
-				ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
-			} else if (!strcmp(distribType, "uniform")) {
-				DistributionType type = DistributionType::UNIFORM;
-				vector<pair<const char *, double>> ageDistrParams;
-				std::pair<const char*, double> p1 = std::make_pair("min", min_age);
-				std::pair<const char*, double> p2 = std::make_pair("max", max_age);
-				ageDistrParams.push_back(p1);
-				ageDistrParams.push_back(p2);
-				ageDistr = make_shared<Distribution>(Distribution(type, ageDistrParams));
-			} else { // default distribution
-				throw std::runtime_error("Unknown age distribution for population!");
-			}
-
-		} catch(std::runtime_error &e) {
-			//try to parse version 2 config file
-			XMLElement* distributionEl = personsEl->FirstChildElement("age");
-			if(distributionEl) {
-				const XMLAttribute* type = distributionEl->FindAttribute("distributionType");
-				DistributionType dType;
-				if(type) {
-					const char* dname = type->Value();
-					if(!strcmp(dname, "Uniform")) {
-						dType = DistributionType::UNIFORM;
-					}
-					else if(!strcmp(dname, "Normal")) {
-						dType = DistributionType::TRUNCATED_NORMAL;
-					}
-					else {
-						throw std::runtime_error("Unknown age distribution");
-					}
-				}
-				else {
-					throw std::runtime_error("Age distribution type not specified ");
-				}
-				ageDistr = make_shared<Distribution>(Distribution(dType, distributionEl));
-				if(dType == DistributionType::TRUNCATED_NORMAL) {
-					ageDistr->getParams().push_back(std::make_pair("min", min_age));
-					ageDistr->getParams().push_back(std::make_pair("max", max_age));
-				}
-			}
-			else {
-				throw std::runtime_error("Age distribution not specified ");
-			}
-		}
+		shared_ptr<Distribution> ageDistr = parseAgeDistribution(personsEl);
+		shared_ptr<Distribution> speedWalkDistribution = parseSpeedWalkDistribution(personsEl);
+		shared_ptr<Distribution> speedCarDistribution = parseSpeedCarDistribution(personsEl);
 		double male_share = getValue(personsEl, "male_share");
-		double speed_walk = getValue(personsEl, "speed_walk");
-		double speed_car = getValue(personsEl, "speed_car");
 		double percentHome = getValue(personsEl, "percent_home");
-		m_persons = generatePopulation(numPersons, ageDistr, male_share, speed_walk, speed_car, percentHome);
+		m_persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
 	}
 }
 
 
-vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shared_ptr<Distribution> ageDistribution,
-		double male_share, double speed_walk, double speed_car, double percentHome) {
+shared_ptr<Distribution> PersonsConfigParser::parseAgeDistribution(XMLElement* parent) {
+	shared_ptr<Distribution> ageDistr;
+	XMLElement *distributionEl = parent->FirstChildElement("age");
+	if (distributionEl) {
+		const XMLAttribute *type = distributionEl->FindAttribute("distributionType");
+		DistributionType dType;
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else if (!strcmp(dname, "TruncatedNormal")) {
+				dType = DistributionType::TRUNCATED_NORMAL;
+			} else {
+				throw std::runtime_error("Unknown/unsupported age distribution");
+			}
+		} else {
+			throw std::runtime_error("Age distribution type not specified ");
+		}
+		ageDistr = make_shared<Distribution>(Distribution(dType, distributionEl));
+	} else {
+		throw std::runtime_error("Age distribution not specified ");
+	}
+	return ageDistr;
+}
+
+shared_ptr<Distribution> PersonsConfigParser::parseSpeedWalkDistribution(XMLElement* parent) {
+	shared_ptr<Distribution> result;
+	XMLElement *speedWEl = parent->FirstChildElement("speed_walk");
+	if (speedWEl) {
+		const XMLAttribute *type = speedWEl->FindAttribute("distributionType");
+		DistributionType dType;
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else if (!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+			} else {
+				throw std::runtime_error("Unknown/unsupported speed distribution");
+			}
+		} else {
+			throw std::runtime_error("Speed distribution type not specified ");
+		}
+		result = make_shared<Distribution>(Distribution(dType, speedWEl));
+	} else {
+		throw std::runtime_error("Speed distribution not specified ");
+	}
+	return result;
+}
+
+shared_ptr<Distribution> PersonsConfigParser::parseSpeedCarDistribution(XMLElement *parent) {
+	shared_ptr<Distribution> result;
+	XMLElement *speedCEl = parent->FirstChildElement("speed_car");
+	if (speedCEl) {
+		const XMLAttribute *type = speedCEl->FindAttribute("distributionType");
+		DistributionType dType;
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else if (!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+			} else {
+				throw std::runtime_error("Unknown/unsupported speed distribution");
+			}
+		} else {
+			throw std::runtime_error("Speed distribution type not specified ");
+		}
+		result = make_shared<Distribution>(Distribution(dType, speedCEl));
+	} else {
+		throw std::runtime_error("Speed distribution not specified ");
+	}
+	return result;
+}
+
+
+vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons, shared_ptr<Distribution> ageDistribution,
+		double male_share, shared_ptr<Distribution> speed_walk, shared_ptr<Distribution> speed_car, double percentHome) {
 
 	vector<Person*> result;
 	unsigned long id;
@@ -149,8 +158,8 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 	sum = accumulate(walk_car, walk_car + numPersons, sum);
 
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
-	double* speeds_walk = random_generator->generateNormalDouble(speed_walk, 0.1 * speed_walk, numPersons - sum);
-	double* speeds_car = random_generator->generateNormalDouble(speed_car, 0.1 * speed_car, sum);
+	double* speeds_walk = random_generator->generateDouble(numPersons - sum, speed_walk.get());
+	double* speeds_car = random_generator->generateDouble(sum, speed_car.get());
 	int* ages = generateAges(numPersons, ageDistribution, random_generator );
 	unsigned long cars = 0, walks = 0;
 	Person* p;
@@ -214,7 +223,7 @@ vector<Person*> PersonsConfig::generatePopulation(unsigned long numPersons, shar
 }
 
 
-void PersonsConfig::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng ) {
+void PersonsConfigParser::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng ) {
 	int numMno = m_simConfig->getMnos().size();
 	double probIntersection = 1;
 	for (auto& n : m_simConfig->getMnos()) {
@@ -253,13 +262,13 @@ void PersonsConfig::setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, d
 }
 
 
-int* PersonsConfig::generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng) {
+int* PersonsConfigParser::generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng) {
 	int* ages = new int[n];
 	ages = rng->generateInt(n, distr.get());
 	return (ages);
 }
 
-void PersonsConfig::addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag) {
+void PersonsConfigParser::addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag) {
 	unsigned long id = IDGenerator::instance()->next();
 	MobilePhone* mp = new MobilePhone(m_simConfig->getMap(), id, nullptr, nullptr, m_simConfig->getClock(), m_simConfig->getConnThreshold(), m_simConfig->getConnType());
 	mp->setMobileOperator(mno);
@@ -269,7 +278,7 @@ void PersonsConfig::addMobilePhoneToPerson(Person* p, MobileOperator* mno, Agent
 }
 
 
-void PersonsConfig::setPersonDisplacementPattern(Person* p) {
+void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 	MovementType type = m_simConfig->getMvType();
 	if (type == MovementType::RANDOM_WALK_CLOSED_MAP) {
 		auto displace = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
@@ -295,11 +304,11 @@ void PersonsConfig::setPersonDisplacementPattern(Person* p) {
 }
 
 
-const vector<Person*>& PersonsConfig::getPersons() const {
+const vector<Person*>& PersonsConfigParser::getPersons() const {
 	return m_persons;
 }
 
-Point* PersonsConfig::generateWorkLocation(unsigned int index) {
+Point* PersonsConfigParser::generateWorkLocation(unsigned int index) {
 	Point* result = nullptr;
 	double angle = RandomNumberGenerator::instance()->generateUniformDouble(0, 2.0 * utils::PI);
 	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(index);

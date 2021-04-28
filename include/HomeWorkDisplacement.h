@@ -32,7 +32,7 @@ public:
 	HomeWorkDisplacement(SimConfigParser* simConfig, double speed, Point* homeLocation, Point* workLocation);
 
 	/**
-	 * This is the destructor of the class. It does notihng.
+	 * This is the destructor of the class. It does nothing.
 	 */
 	virtual ~HomeWorkDisplacement();
 

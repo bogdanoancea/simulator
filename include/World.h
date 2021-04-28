@@ -154,7 +154,7 @@ public:
 private:
 	AgentsCollection* m_agentsCollection;
 	SimConfigParser* m_sp;
-	PersonsConfig* m_persConfig;
+	PersonsConfigParser* m_persConfig;
 	AntennaConfigParser* m_antennaConfig;
 	ProbabilitiesConfig* m_probabilitiesConfig;
 

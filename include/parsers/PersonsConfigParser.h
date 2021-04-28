@@ -19,22 +19,25 @@
 #include <vector>
 
 
-class PersonsConfig: public ConfigParser {
+class PersonsConfigParser: public ConfigParser {
 public:
-	PersonsConfig(const string& fileName, SimConfigParser* sc, AgentsCollection* ag);
-	virtual ~PersonsConfig();
+	PersonsConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* ag);
+	virtual ~PersonsConfigParser();
 	const vector<Person*>& getPersons() const;
 
 private:
 	void parse() override;
 	vector<Person*> m_persons;
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<Distribution> age_distribution,
-				double male_share, double speed_walk, double speed_car, double percentHome);
+				double male_share, shared_ptr<Distribution> speed_walk, shared_ptr<Distribution> speed_car, double percentHome);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng );
 	int* generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng);
 	void addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag);
 	void setPersonDisplacementPattern(Person* p);
 	Point* generateWorkLocation(unsigned int index);
+	shared_ptr<Distribution> parseAgeDistribution(XMLElement* parent);
+	shared_ptr<Distribution> parseSpeedWalkDistribution(XMLElement* parent);
+	shared_ptr<Distribution> parseSpeedCarDistribution(XMLElement* parent);
 	SimConfigParser* m_simConfig;
 	AgentsCollection* m_agents;
 
