@@ -56,7 +56,7 @@ class Person: public MovableAgent {
 		 * @param intervalBetweenStays the average time between two consecutive stops.
 		 */
 		explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age,
-				Gender gender, unsigned long timeStay, unsigned long intervalBetweenStays);
+				Gender gender, shared_ptr<Distribution> timeStayDistribution, shared_ptr<Distribution> intervalBetweenStaysDistribution);
 
 		/**
 		 * The default destructor.
@@ -148,6 +148,17 @@ class Person: public MovableAgent {
 		Point* getWorkLocation() const;
 
 		bool isHomePerson() const;
+		const shared_ptr<Distribution>& getIntervalBetweenStaysDistribution() const;
+		void setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution);
+		const shared_ptr<Distribution>& getTimeStayDistribution() const;
+		void setTimeStayDistribution(const shared_ptr<Distribution> &timeStayDistribution);
+
+//		unsigned long getAvgIntervalBetweenStays() const;
+//		void setAvgIntervalBetweenStays(unsigned long avgIntervalBetweenStays);
+//
+//		unsigned long getAvgTimeStay() const;
+//		void setAvgTimeStay(unsigned long avgTimeStay);
+
 		//std::shared_ptr<Displace> getDisplace();
 
 	private:
@@ -156,9 +167,9 @@ class Person: public MovableAgent {
 		int m_age;
 		Gender m_gender;
 		unordered_multimap<string, Agent*> m_idDevices;
-		unsigned long m_avgTimeStay;
+		shared_ptr<Distribution> m_timeStayDistribution;
 		unsigned long m_timeStay;
-		unsigned long m_avgIntervalBetweenStays;
+		shared_ptr<Distribution> m_intervalBetweenStaysDistribution;
 		unsigned long m_nextStay;
 		shared_ptr<Displace> m_displacementMethod;
 		Point* m_homeLocation;

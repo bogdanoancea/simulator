@@ -36,21 +36,24 @@
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, unsigned long timeStay,
-		unsigned long intervalBetweenStays) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_avgTimeStay { timeStay }, m_avgIntervalBetweenStays { intervalBetweenStays } {
+Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, shared_ptr<Distribution> timeStayDistribution,
+		shared_ptr<Distribution> intervalBetweenStaysDistribution) :
+		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_timeStayDistribution { timeStayDistribution }, m_intervalBetweenStaysDistribution { intervalBetweenStaysDistribution } {
 	m_displacementMethod = nullptr;
 	m_homeLocation = nullptr;
 	m_workLocation = nullptr;
-	//m_isHomePerson = false;
-	m_nextStay = getClock()->getCurrentTime() + intervalBetweenStays;
+	unsigned long interval = 0;
+	if(m_intervalBetweenStaysDistribution)
+		interval = (unsigned long )abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
+	m_nextStay = getClock()->getCurrentTime() + interval;
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
 
-	m_timeStay = timeStay;
+	m_timeStay = 0;
+	if(m_timeStayDistribution)
+		m_timeStay = (unsigned long) abs(RandomNumberGenerator::instance()->generateInt(m_timeStayDistribution.get()));
 	while (m_timeStay % getClock()->getIncrement() != 0)
 		m_timeStay++;
-
 }
 
 Person::~Person() {
@@ -86,15 +89,18 @@ Point* Person::move() {
 	if (currentTime >= m_nextStay && currentTime <= m_nextStay + m_timeStay) {
 		setLocation(currentLocation);
 		if (currentTime == m_nextStay + m_timeStay) {
-			unsigned long nextInterval = (unsigned long) RandomNumberGenerator::instance()->generateExponentialDouble(1.0 / this->m_avgIntervalBetweenStays);
+			unsigned long nextInterval = 0;
+			if(m_intervalBetweenStaysDistribution)
+				nextInterval = (unsigned long) abs( RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()) );
 			while (nextInterval % getClock()->getIncrement() != 0)
 				nextInterval++;
-
 			m_nextStay = currentTime + nextInterval;
-			m_timeStay = (unsigned long) RandomNumberGenerator::instance()->generateNormalDouble(m_avgTimeStay, 0.2 * m_avgTimeStay);
+			if(m_timeStayDistribution)
+				m_timeStay = (unsigned long) abs(RandomNumberGenerator::instance()->generateDouble(m_timeStayDistribution.get()));
+			else
+				m_timeStay = 0;
 			while (m_timeStay % getClock()->getIncrement() != 0)
 				m_timeStay++;
-
 		}
 	} else {
 		Point* pt = m_displacementMethod->generateNewLocation(currentLocation);
@@ -178,7 +184,23 @@ bool Person::isHomePerson() const {
 	return m_homeLocation != nullptr;
 }
 
+const shared_ptr<Distribution>& Person::getIntervalBetweenStaysDistribution() const {
+	return m_intervalBetweenStaysDistribution;
+}
 
-//std::shared_ptr<Displace> Person::getDisplace()  {
-//	return m_displacementMethod;
-//}
+void Person::setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution) {
+	m_intervalBetweenStaysDistribution = intervalBetweenStaysDistribution;
+	if(!m_intervalBetweenStaysDistribution)  {
+		m_nextStay = 0;
+	}
+}
+
+const shared_ptr<Distribution>& Person::getTimeStayDistribution() const {
+	return m_timeStayDistribution;
+}
+
+void Person::setTimeStayDistribution(const shared_ptr<Distribution> &timeStayDistribution) {
+	m_timeStayDistribution = timeStayDistribution;
+	if(!m_timeStayDistribution)
+		m_timeStay = 0;
+}

@@ -80,8 +80,13 @@ void SimConfigParser::parse() {
 		m_startTime = getValue(simEl, "start_time", Constants::SIM_START_TIME);
 		m_endTime = getValue(simEl, "end_time", Constants::SIM_END_TIME);
 		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
-		m_stay = getValue(simEl, "time_stay", Constants::SIM_STAY_TIME);
-		m_intevalBetweenStays = getValue(simEl, "interval_between_stays", Constants::SIM_INTERVAL_BETWEEN_STAYS);
+
+		// aflu tipul apoi parsez distribution
+		//m_stay = getValue(simEl, "time_stay", Constants::SIM_STAY_TIME);
+		m_stay = parseStayTimeDistribution(simEl);
+		// aflu tipul apoi parsez distribution
+		//m_intevalBetweenStays = getValue(simEl, "interval_between_stays", Constants::SIM_INTERVAL_BETWEEN_STAYS);
+		m_intevalBetweenStays = parseIntervalBetweenStaysDistribution(simEl);
 		m_mnos = parseMNOs(simEl);
 		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::SIM_PROB_SECOND_MOBILE_PHONE);
 		m_mvType = parseMovement(simEl);
@@ -96,13 +101,61 @@ void SimConfigParser::parse() {
 		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
 		XMLElement* homeWorkEl = simEl->FirstChildElement("specs_home_work");
 		if(homeWorkEl) {
-			m_stay = 0;
-			m_intevalBetweenStays = 0;
 			m_homeWorkScenario = new HomeWorkScenario();
 			parseHomeWorkScenario(homeWorkEl, m_homeWorkScenario);
 			cout << m_homeWorkScenario->toString() << endl;
 		}
 	}
+}
+shared_ptr<Distribution> SimConfigParser::parseStayTimeDistribution(XMLElement* parent) {
+	shared_ptr<Distribution> result;
+	XMLElement *ts = parent->FirstChildElement("time_stay");
+	if (ts) {
+		const XMLAttribute *type = ts->FindAttribute("distributionType");
+		DistributionType dType;
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else if (!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+			} else {
+				throw std::runtime_error("Unknown/unsupported time stay distribution");
+			}
+		} else {
+			throw std::runtime_error("Time stay distribution type not specified ");
+		}
+		result = make_shared<Distribution>(Distribution(dType, ts));
+	} else {
+		throw std::runtime_error("Time stay distribution not specified ");
+	}
+	return result;
+
+}
+
+
+shared_ptr<Distribution> SimConfigParser::parseIntervalBetweenStaysDistribution(XMLElement* parent) {
+	shared_ptr<Distribution> result;
+	XMLElement *its = parent->FirstChildElement("interval_between_stays");
+	if (its) {
+		const XMLAttribute *type = its->FindAttribute("distributionType");
+		DistributionType dType;
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Exponential")) {
+				dType = DistributionType::EXPONENTIAL;
+			}
+			else {
+				throw std::runtime_error("Unknown/unsupported interval between stays distribution");
+			}
+		} else {
+			throw std::runtime_error("Interval between stays distribution type not specified ");
+		}
+		result = make_shared<Distribution>(Distribution(dType, its));
+	} else {
+		throw std::runtime_error("Interval between stays distribution not specified ");
+	}
+	return result;
 }
 
 
@@ -153,7 +206,6 @@ Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeW
 	Distribution* result = nullptr;
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
 	DistributionType dType;
-	vector<pair<const char *, double>> params;
 	if(distribution) {
 		const XMLAttribute* type = distribution->FindAttribute("type");
 		if(type) {
@@ -246,11 +298,11 @@ void SimConfigParser::setGridFilename(const string& gridFilename) {
 	m_gridFilename = gridFilename;
 }
 
-unsigned SimConfigParser::getIntevalBetweenStays() const {
+shared_ptr<Distribution> SimConfigParser::getIntevalBetweenStays() const {
 	return m_intevalBetweenStays;
 }
 
-void SimConfigParser::setIntevalBetweenStays(unsigned intevalBetweenStays) {
+void SimConfigParser::setIntevalBetweenStays(shared_ptr<Distribution> intevalBetweenStays) {
 	m_intevalBetweenStays = intevalBetweenStays;
 }
 
@@ -310,11 +362,11 @@ void SimConfigParser::setStartTime(unsigned long startTime) {
 	m_startTime = startTime;
 }
 
-unsigned long SimConfigParser::getStay() const {
+shared_ptr<Distribution> SimConfigParser::getStay() const {
 	return m_stay;
 }
 
-void SimConfigParser::setStay(unsigned long stay) {
+void SimConfigParser::setStay(shared_ptr<Distribution> stay) {
 	m_stay = stay;
 }
 

@@ -2,8 +2,13 @@ r<simulation>
         <start_time>0</start_time>
         <end_time>2400</end_time>
 		<time_increment>1</time_increment>
-		<time_stay>20</time_stay>
-        <interval_between_stays>120</interval_between_stays>
+		<time_stay distributionType = "Normal">
+			<mean>20</mean>
+			<sd>2</sd>
+		</time_stay>
+        <interval_between_stays distributionType = "Exponential">
+        	<mean>120</mean>
+        </interval_between_stays>
 		<mno>
         	<mno_name>MNO1</mno_name>
         	<prob_mobile_phone>0.35</prob_mobile_phone>

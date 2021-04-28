@@ -41,6 +41,16 @@ double Distribution::getParam(const char* name) {
 }
 
 
+bool Distribution::hasParam(const char* name) const {
+	bool result = false;
+	for(auto& x: m_params) {
+		if(!strcmp(x.first, name))
+			result = true;
+	}
+	return result;
+}
+
+
 string Distribution::paramsToString() {
 	ostringstream result;
 	for(auto& x: m_params) {
@@ -72,6 +82,9 @@ void Distribution::parseParams(DistributionType type, XMLElement* element) {
 	case DistributionType::LAPLACE:
 		parseLaplaceDistributionParams(element);
 		break;
+	case DistributionType::EXPONENTIAL:
+		parseExponentialDistributionParams(element);
+		break;
 	default:
 		throw std::runtime_error("Unknown distribution");
 	}
@@ -100,7 +113,6 @@ void Distribution::parseTruncatedNormalDistributionParams(XMLElement* el) {
 	m_params.push_back(p2);
 	m_params.push_back(p3);
 	m_params.push_back(p4);
-	cout << "Truncated normal" << min << endl;
 }
 
 void Distribution::parseUniformDistributionParams(XMLElement* el) {
@@ -119,6 +131,19 @@ void Distribution::parseLaplaceDistributionParams(XMLElement* el) {
 	m_params.push_back(p);
 }
 
+void Distribution::parseExponentialDistributionParams(XMLElement* el) {
+	double param_value;
+	const char* param_name;
+	try {
+		param_value = getValue(el, "scale");
+		param_name = "scale";
+	} catch (runtime_error& e) {
+		param_value = getValue(el, "mean");
+		param_name = "mean";
+	}
+	std::pair<const char*, double> p = std::make_pair(param_name, param_value);
+	m_params.push_back(p);
+}
 vector<pair<const char*, double>>& Distribution::getParams() {
 	return m_params;
 }

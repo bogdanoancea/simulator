@@ -168,11 +168,11 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 	for (unsigned long i = 0; i < numPersons; i++) {
 		//cout << "home positions" << positions[i]->toString() << endl;
 		id = IDGenerator::instance()->next();
-		unsigned long stay = (unsigned long) random_generator->generateNormalDouble(m_simConfig->getStay(), 0.2 * m_simConfig->getStay());
-		unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_simConfig->getIntevalBetweenStays());
+		//unsigned long stay = (unsigned long) random_generator->generateDouble(m_simConfig->getStay().get());
+		//unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_simConfig->getIntevalBetweenStays());
 		if (walk_car[i]) {
 			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_car[cars++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
 			if(m_simConfig->isHomeWorkScenario()) {
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
@@ -181,11 +181,13 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 Point* workLocation = generateWorkLocation(workLocationIndex);
 					 p->setWorkLocation(workLocation);
+					 p->setIntervalBetweenStaysDistribution(nullptr);
+					 p->setTimeStayDistribution(nullptr);
 				 }
 			}
 		} else {
 			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_walk[walks++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, stay, interval);
+					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
 			if(m_simConfig->isHomeWorkScenario()) {
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
@@ -194,6 +196,8 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 					 Point* workLocation = generateWorkLocation(workLocationIndex);
 					 p->setWorkLocation(workLocation);
+					 p->setIntervalBetweenStaysDistribution(nullptr);
+					 p->setTimeStayDistribution(nullptr);
 				 }
 			}
 		}

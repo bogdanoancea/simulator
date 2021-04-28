@@ -31,6 +31,7 @@ public:
 	void setParams(vector<pair<const char*, double>> params);
 	DistributionType getType();
 	string paramsToString();
+	bool hasParam(const char* name) const;
 
 private:
 	DistributionType m_type;
@@ -40,6 +41,7 @@ private:
 	void parseTruncatedNormalDistributionParams(XMLElement* el);
 	void parseUniformDistributionParams(XMLElement* el);
 	void parseLaplaceDistributionParams(XMLElement* el);
+	void parseExponentialDistributionParams(XMLElement* el);
 };
 
 #endif /* INCLUDE_DISTRIBUTION_H_ */

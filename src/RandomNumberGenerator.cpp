@@ -379,7 +379,13 @@ double result = 0.0;
 		result = generateLevyDouble(distr->getParam("mean"), distr->getParam("c"));
 		break;
 	case DistributionType::EXPONENTIAL:
-		result = generateExponentialDouble(distr->getParam("lambda"));
+		if(distr->hasParam("scale"))
+			result = generateExponentialDouble(distr->getParam("scale"));
+		else if (distr->hasParam("mean")) {
+			result = generateExponentialDouble(1.0/distr->getParam("mean"));
+		}
+		break;
+
 		break;
 	case DistributionType::UNIFORM:
 		result = generateUniformDouble(distr->getParam("min"), distr->getParam("max"));
@@ -406,7 +412,10 @@ double* RandomNumberGenerator::generateDouble(const int n, Distribution* distr) 
 		result = generateLevyDouble(distr->getParam("mean"), distr->getParam("c"), n);
 		break;
 	case DistributionType::EXPONENTIAL:
-		result = generateExponentialDouble(distr->getParam("lambda"), n);
+		if(distr->hasParam("scale"))
+			result = generateExponentialDouble(distr->getParam("scale"), n);
+		else if (distr->hasParam("mean"))
+			result = generateExponentialDouble(1.0/distr->getParam("mean"), n);
 		break;
 	case DistributionType::UNIFORM:
 		result = generateUniformDouble(distr->getParam("min"), distr->getParam("max"), n);
@@ -434,7 +443,10 @@ int RandomNumberGenerator::generateInt(Distribution* distr) {
 			result = generateLevyInt(distr->getParam("mean"), distr->getParam("c"));
 			break;
 		case DistributionType::EXPONENTIAL:
-			result = generateExponentialInt(distr->getParam("lambda"));
+			if(distr->hasParam("scale"))
+				result = generateExponentialInt(distr->getParam("scale"));
+			else if (distr->hasParam("mean"))
+				result = generateExponentialInt(1.0/distr->getParam("mean"));
 			break;
 		case DistributionType::UNIFORM:
 			result = generateUniformInt(distr->getParam("min"), distr->getParam("max"));
@@ -470,7 +482,10 @@ int* RandomNumberGenerator::generateInt(int n, Distribution* distr) {
 			result = generateLevyInt(distr->getParam("mean"), distr->getParam("c"), n);
 			break;
 		case DistributionType::EXPONENTIAL:
-			result = generateExponentialInt(distr->getParam("lambda"), n);
+			if(distr->hasParam("scale"))
+				result = generateExponentialInt(distr->getParam("scale"), n);
+			else if (distr->hasParam("mean"))
+				result = generateExponentialInt(1.0/distr->getParam("mean"), n);
 			break;
 		case DistributionType::UNIFORM:
 			result = generateUniformInt(distr->getParam("min"), distr->getParam("max"), n);

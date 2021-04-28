@@ -188,7 +188,7 @@ public:
 	 * between two consecutive stops are generated from an exponential distribution with the mean given by the value returned by this function.
 	 * @return the mean time between two stops of a person.
 	 */
-	unsigned getIntevalBetweenStays() const;
+	shared_ptr<Distribution> getIntevalBetweenStays() const;
 
 	/**
 	 * Sets the mean time between two stops of a person. Some of the movement patterns (random_walk, random_walk_with_drift, levy_flight) consist
@@ -196,7 +196,7 @@ public:
 	 * between two consecutive stops are generated from an exponential distribution with the mean given by the value set by this function.
 	 * @param intevalBetweenStays the mean time between two stops of a person.
 	 */
-	void setIntevalBetweenStays(unsigned intevalBetweenStays);
+	void setIntevalBetweenStays(shared_ptr<Distribution> intevalBetweenStays);
 
 	/**
 	 * Returns a vector with pointers to MNO objects. The number and the name of each MNO are given in the simulation configuration file.
@@ -258,8 +258,8 @@ public:
 	void setSeed(unsigned seed);
 	unsigned long getStartTime() const;
 	void setStartTime(unsigned long startTime);
-	unsigned long getStay() const;
-	void setStay(unsigned long stay);
+	shared_ptr<Distribution> getStay() const;
+	void setStay(shared_ptr<Distribution> stay);
 	unsigned long getTimeIncrement() const;
 	void setTimeIncrement(unsigned long timeIncrement);
 	Clock* getClock();
@@ -279,8 +279,10 @@ private:
 	unsigned long m_startTime;
 	unsigned long m_endTime;
 	unsigned long m_timeIncrement;
-	unsigned long m_stay;
-	unsigned m_intevalBetweenStays;
+	//unsigned long m_stay;
+	shared_ptr<Distribution> m_stay;
+	//unsigned m_intevalBetweenStays;
+	shared_ptr<Distribution> m_intevalBetweenStays;
 	vector<MobileOperator*> m_mnos;
 	double m_probSecMobilePhone;
 	MovementType m_mvType;
@@ -306,6 +308,9 @@ private:
 	void parseLaplaceParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
 	void parseNormalParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
 	void parseUniformParams(XMLElement* distribution, vector<pair<const char*, double>>& distrPar);
+	shared_ptr<Distribution> parseStayTimeDistribution(XMLElement* parent);
+	shared_ptr<Distribution> parseIntervalBetweenStaysDistribution(XMLElement* parent);
+
 };
 
 #endif /* INCLUDE_SIMCONFIG_H_ */
