@@ -9,10 +9,10 @@
 #define INCLUDE_ANTENNACONFIG_H_
 
 #include <agent/Antenna.h>
+#include <agent/AgentsCollection.h>
 #include <events/EventFactory.h>
 #include <parsers/ConfigParser.h>
-#include <parsers/SimConfigParser.h>
-#include <string>
+#include <parsers/SimulationConfiguration.h>
 #include <vector>
 
 
@@ -22,7 +22,7 @@
 
 class AntennaConfigParser: public ConfigParser {
 public:
-	AntennaConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* ag, EventFactory* evFactory);
+	AntennaConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag, EventFactory* evFactory);
 	virtual ~AntennaConfigParser();
 	const vector<Antenna*>& getAntennas() const;
 
@@ -30,7 +30,7 @@ private:
 	void parse() override;
 
 	vector<Antenna*> m_antennas;
-	SimConfigParser* m_simConfig;
+	SimulationConfiguration* m_simConfig;
 	EventFactory* m_eventFactory;
 };
 

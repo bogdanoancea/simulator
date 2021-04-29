@@ -20,8 +20,12 @@
  *      Author: Bogdan.Oancea
  */
 
+#include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
 #include <Clock.h>
 #include <Constants.h>
+#include <Distribution.h>
+#include <events/EventType.h>
 #include <IDGenerator.h>
 #include <map/Map.h>
 #include <parsers/HomeWorkLocation.h>
@@ -30,25 +34,23 @@
 #include <cstring>
 #include <filesystem>
 #include <iostream>
-#include <utility>
+#include <memory>
 
 using namespace utils;
 
 SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agents, Map* map) :
 		ConfigParser(filename) {
 
-	m_map = map;
-	m_homeWorkScenario = nullptr;
+	m_simConfig = new SimulationConfiguration();
+	m_simConfig->setMap(map);
+	m_simConfig->setHomeWorkScenario(nullptr);
 	parse();
-	m_clock = new Clock(getStartTime(), getEndTime(), getTimeIncrement());
-	for (unsigned long i = 0; i < m_mnos.size(); i++)
-		agents->addAgent(m_mnos[i]);
+	m_simConfig->setClock();
+	for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
+		agents->addAgent(m_simConfig->getMnos()[i]);
 }
 
 SimConfigParser::~SimConfigParser() {
-	if(m_homeWorkScenario)
-		delete m_homeWorkScenario;
-	delete m_clock;
 }
 
 void SimConfigParser::parse() {
@@ -61,50 +63,39 @@ void SimConfigParser::parse() {
 	if (!simEl)
 		throw std::runtime_error("Syntax error in the configuration file for simulation ");
 	else {
-		m_outputDir = getValue(simEl, "output_dir", Constants::OUTPUT_DIR);
+		m_simConfig->setOutputDir(getValue(simEl, "output_dir", Constants::OUTPUT_DIR));
 #ifdef OSX
 		try {
-			std::__fs::filesystem::create_directory(std::__fs::filesystem::path(m_outputDir.c_str()));
+			std::__fs::filesystem::create_directory(std::__fs::filesystem::path(m_simConfig->getOutputDir().c_str()));
 		} catch(std::__fs::filesystem::filesystem_error& e) {
-			cout << "Cannot create output folder :" << m_outputDir;
+			cout << "Cannot create output folder :" << m_simConfig->getOutputDir();
 			throw e;
 		}
 #else
 		try {
-			std::filesystem::create_directory(std::filesystem::path(m_outputDir.c_str()));
+			std::filesystem::create_directory(std::filesystem::path(m_simConfig->getOutputDir().c_str()));
 		} catch (std::filesystem::filesystem_error& e) {
-			cout << "Cannot create output folder :" << m_outputDir;
+			cout << "Cannot create output folder :" << m_simConfig->getOutputDir();
 			throw e;
 		}
 #endif
-		m_startTime = getValue(simEl, "start_time", Constants::SIM_START_TIME);
-		m_endTime = getValue(simEl, "end_time", Constants::SIM_END_TIME);
-		m_timeIncrement = getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME);
-
-		// aflu tipul apoi parsez distribution
-		//m_stay = getValue(simEl, "time_stay", Constants::SIM_STAY_TIME);
-		m_stay = parseStayTimeDistribution(simEl);
-		// aflu tipul apoi parsez distribution
-		//m_intevalBetweenStays = getValue(simEl, "interval_between_stays", Constants::SIM_INTERVAL_BETWEEN_STAYS);
-		m_intevalBetweenStays = parseIntervalBetweenStaysDistribution(simEl);
-		m_mnos = parseMNOs(simEl);
-		m_probSecMobilePhone = getValue(simEl, "prob_sec_mobile_phone", Constants::SIM_PROB_SECOND_MOBILE_PHONE);
-		m_mvType = parseMovement(simEl);
-		m_connType = parseConnectionType(simEl);
-		m_connThreshold = getValue(simEl, "conn_threshold", getDefaultConnectionThreshold(m_connType));
-		m_gridFilename = getValue(simEl, "grid_file", Constants::GRID_FILE_NAME);
-		m_personsFilename = getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME);
-		m_antennasFilename = getValue(simEl, "antennas_file", Constants::ANTENNAS_FILE_NAME);
-		m_GridDimTileX = getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X);
-		m_GridDimTileY = getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y);
-		m_seed = getValue(simEl, "random_seed", Constants::RANDOM_SEED);
-		m_eventType = getValue(simEl, "event_type", Constants::EVENTTYPE);
-		XMLElement* homeWorkEl = simEl->FirstChildElement("specs_home_work");
-		if(homeWorkEl) {
-			m_homeWorkScenario = new HomeWorkScenario();
-			parseHomeWorkScenario(homeWorkEl, m_homeWorkScenario);
-			cout << m_homeWorkScenario->toString() << endl;
-		}
+		m_simConfig->setStartTime(getValue(simEl, "start_time", Constants::SIM_START_TIME));
+		m_simConfig->setEndTime(getValue(simEl, "end_time", Constants::SIM_END_TIME));
+		m_simConfig->setTimeIncrement(getValue(simEl, "time_increment", Constants::SIM_INCREMENT_TIME));
+		m_simConfig->setStay(parseStayTimeDistribution(simEl));
+		m_simConfig->setIntevalBetweenStays(parseIntervalBetweenStaysDistribution(simEl));
+		m_simConfig->setMnos(parseMNOs(simEl));
+		m_simConfig->setProbSecMobilePhone(getValue(simEl, "prob_sec_mobile_phone", Constants::SIM_PROB_SECOND_MOBILE_PHONE));
+		m_simConfig->setMvType(parseMovement(simEl));
+		m_simConfig->setConnType(parseConnectionType(simEl));
+		m_simConfig->setConnThreshold(getValue(simEl, "conn_threshold", getDefaultConnectionThreshold(m_simConfig->getConnType())));
+		m_simConfig->setGridFilename(getValue(simEl, "grid_file", Constants::GRID_FILE_NAME));
+		m_simConfig->setPersonsFilename(getValue(simEl, "persons_file", Constants::PERSONS_FILE_NAME));
+		m_simConfig->setAntennasFilename(getValue(simEl, "antennas_file", Constants::ANTENNAS_FILE_NAME));
+		m_simConfig->setGridDimTileX(getValue(simEl, "grid_dim_tile_x", Constants::GRID_DIM_TILE_X));
+		m_simConfig->setGridDimTileY(getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y));
+		m_simConfig->setSeed(getValue(simEl, "random_seed", Constants::RANDOM_SEED));
+		m_simConfig->setEventType(getValue(simEl, "event_type", Constants::EVENTTYPE));
 	}
 }
 shared_ptr<Distribution> SimConfigParser::parseStayTimeDistribution(XMLElement* parent) {
@@ -234,157 +225,6 @@ Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeW
 	return result;
 }
 
-const string& SimConfigParser::getAntennasFilename() const {
-	return m_antennasFilename;
-}
-
-void SimConfigParser::setAntennasFilename(const string& antennasFilename) {
-	m_antennasFilename = antennasFilename;
-}
-
-double SimConfigParser::getConnThreshold() const {
-	return m_connThreshold;
-}
-
-void SimConfigParser::setConnThreshold(double connThreshold) {
-	m_connThreshold = connThreshold;
-}
-
-HoldableAgent::CONNECTION_TYPE SimConfigParser::getConnType() const {
-	return m_connType;
-}
-
-void SimConfigParser::setConnType(HoldableAgent::CONNECTION_TYPE connType) {
-	m_connType = connType;
-}
-
-unsigned long SimConfigParser::getEndTime() const {
-	return m_endTime;
-}
-
-void SimConfigParser::setEndTime(unsigned long endTime) {
-	m_endTime = endTime;
-}
-
-EventType SimConfigParser::getEventType() const {
-	return m_eventType;
-}
-
-void SimConfigParser::setEventType(EventType eventType) {
-	m_eventType = eventType;
-}
-
-double SimConfigParser::getGridDimTileX() const {
-	return m_GridDimTileX;
-}
-
-void SimConfigParser::setGridDimTileX(double gridDimTileX) {
-	m_GridDimTileX = gridDimTileX;
-}
-
-double SimConfigParser::getGridDimTileY() const {
-	return m_GridDimTileY;
-}
-
-void SimConfigParser::setGridDimTileY(double gridDimTileY) {
-	m_GridDimTileY = gridDimTileY;
-}
-
-const string& SimConfigParser::getGridFilename() const {
-	return m_gridFilename;
-}
-
-void SimConfigParser::setGridFilename(const string& gridFilename) {
-	m_gridFilename = gridFilename;
-}
-
-shared_ptr<Distribution> SimConfigParser::getIntevalBetweenStays() const {
-	return m_intevalBetweenStays;
-}
-
-void SimConfigParser::setIntevalBetweenStays(shared_ptr<Distribution> intevalBetweenStays) {
-	m_intevalBetweenStays = intevalBetweenStays;
-}
-
-const vector<MobileOperator*>& SimConfigParser::getMnos() const {
-	return m_mnos;
-}
-
-void SimConfigParser::setMnos(const vector<MobileOperator*>& mnos) {
-	m_mnos = mnos;
-}
-
-MovementType SimConfigParser::getMvType() const {
-	return m_mvType;
-}
-
-void SimConfigParser::setMvType(MovementType mvType) {
-	m_mvType = mvType;
-}
-
-const string& SimConfigParser::getOutputDir() const {
-	return m_outputDir;
-}
-
-void SimConfigParser::setOutputDir(const string& outputDir) {
-	m_outputDir = outputDir;
-}
-
-const string& SimConfigParser::getPersonsFilename() const {
-	return m_personsFilename;
-}
-
-void SimConfigParser::setPersonsFilename(const string& personsFilename) {
-	m_personsFilename = personsFilename;
-}
-
-double SimConfigParser::getProbSecMobilePhone() const {
-	return m_probSecMobilePhone;
-}
-
-void SimConfigParser::setProbSecMobilePhone(double probSecMobilePhone) {
-	m_probSecMobilePhone = probSecMobilePhone;
-}
-
-unsigned SimConfigParser::getSeed() const {
-	return m_seed;
-}
-
-void SimConfigParser::setSeed(unsigned seed) {
-	m_seed = seed;
-}
-
-unsigned long SimConfigParser::getStartTime() const {
-	return m_startTime;
-}
-
-void SimConfigParser::setStartTime(unsigned long startTime) {
-	m_startTime = startTime;
-}
-
-shared_ptr<Distribution> SimConfigParser::getStay() const {
-	return m_stay;
-}
-
-void SimConfigParser::setStay(shared_ptr<Distribution> stay) {
-	m_stay = stay;
-}
-
-unsigned long SimConfigParser::getTimeIncrement() const {
-	return m_timeIncrement;
-}
-
-void SimConfigParser::setTimeIncrement(unsigned long timeIncrement) {
-	m_timeIncrement = timeIncrement;
-}
-
-Clock* SimConfigParser::getClock() {
-	return m_clock;
-}
-
-Map* SimConfigParser::getMap() {
-	return m_map;
-}
 
 
 vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
@@ -397,7 +237,7 @@ vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
 			const char* name = getValue(mnoEl, "mno_name", "UNKNOWN");
 			const double prob = getValue(mnoEl, "prob_mobile_phone");
 			unsigned long id = IDGenerator::instance()->next();
-			MobileOperator* mo = new MobileOperator(m_map, id, m_clock, name, prob, m_outputDir);
+			MobileOperator* mo = new MobileOperator(m_simConfig->getMap(), id, m_simConfig->getClock(), name, prob, m_simConfig->getOutputDir());
 			result.push_back(mo);
 		}
 	} else {
@@ -409,18 +249,35 @@ vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
 }
 
 MovementType SimConfigParser::parseMovement(XMLElement* el) {
-	MovementType result;
-	const char* mvType = getValue(el, "movement_type", "UNKNOWN");
-	if (!strcmp(mvType, "random_walk_closed_map"))
-		result = MovementType::RANDOM_WALK_CLOSED_MAP;
-	else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
-		result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
-	} else if (!strcmp(mvType, "levy_flight")) {
-		result = MovementType::LEVY_FLIGHT;
-	} else if(!strcmp(mvType, "home_work")) {
-		result = MovementType::HOME_WORK;
-	} else
-		throw runtime_error("Unknown displacement mechanism!");
+	MovementType result = MovementType::UNKNOWN;
+	XMLElement* mvEl = el->FirstChildElement("movement_pattern");
+	if(mvEl) {
+		const XMLAttribute* type = mvEl->FindAttribute("type");
+		if(type) {
+			const char* mvType = type->Value();
+			if (!strcmp(mvType, "random_walk_closed_map"))
+				result = MovementType::RANDOM_WALK_CLOSED_MAP;
+			else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
+				//parseRandomWalkDrift();
+				result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
+			} else if (!strcmp(mvType, "levy_flight")) {
+				//parseLevyFlight();
+				result = MovementType::LEVY_FLIGHT;
+			} else if(!strcmp(mvType, "home_work")) {
+				m_simConfig->setHomeWorkScenario(new HomeWorkScenario());
+				parseHomeWorkScenario(mvEl, m_simConfig->getHomeWorkScenario());
+				cout << m_simConfig->getHomeWorkScenario()->toString() << endl;
+				result = MovementType::HOME_WORK;
+			} else
+				throw runtime_error("Unknown movement mechanism!");
+		}
+		else {
+			throw runtime_error("Movement mechanism type not specified!");
+		}
+	}
+	else {
+		throw runtime_error("Movement mechanism not specified!");
+	}
 	return (result);
 }
 
@@ -449,45 +306,6 @@ double SimConfigParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_
 	return (result);
 }
 
-bool SimConfigParser::isHomeWorkScenario() const {
-	return (m_homeWorkScenario != nullptr);
+SimulationConfiguration* SimConfigParser::getSimulationConfiguration() {
+	return m_simConfig;
 }
-
-
-unsigned int SimConfigParser::getNumHomeLocations() const {
-	if(isHomeWorkScenario())
-		return m_homeWorkScenario->getHomeLocations().size();
-	else return -1;
-}
-
-unsigned int SimConfigParser::getNumWorkLocations() const {
-	if(isHomeWorkScenario())
-		return m_homeWorkScenario->getWorkLocations().size();
-	else return -1;
-}
-
-HomeWorkLocation SimConfigParser::getHomeLocation(unsigned int i) const {
-	if(isHomeWorkScenario())
-		return m_homeWorkScenario->getHomeLocations().at(i);
-	else {
-		throw std::runtime_error("No Home - Work scenario defined!");
-	}
-}
-
-HomeWorkScenario* SimConfigParser::getHomeWorkScenario() {
-	if(isHomeWorkScenario())
-		return m_homeWorkScenario;
-	else {
-		return nullptr;
-	}
-
-}
-
-HomeWorkLocation SimConfigParser::getWorkLocation(unsigned int i) const {
-	if(isHomeWorkScenario())
-		return m_homeWorkScenario->getWorkLocations().at(i);
-	else {
-		throw std::runtime_error("No Home - Work scenario defined!");
-	}
-}
-

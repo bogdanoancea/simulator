@@ -25,13 +25,16 @@
 #include <agent/Person.h>
 #include <Clock.h>
 #include <Constants.h>
+#include <Distribution.h>
+#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
 #include <map/Map.h>
 #include <RandomNumberGenerator.h>
+#include <cmath>
+#include <cstdlib>
 #include <iomanip>
 #include <sstream>
 #include <utility>
-#include <HomeWorkDisplacement.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -46,6 +49,7 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 	if(m_intervalBetweenStaysDistribution)
 		interval = (unsigned long )abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
 	m_nextStay = getClock()->getCurrentTime() + interval;
+
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
 
@@ -54,6 +58,7 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 		m_timeStay = (unsigned long) abs(RandomNumberGenerator::instance()->generateInt(m_timeStayDistribution.get()));
 	while (m_timeStay % getClock()->getIncrement() != 0)
 		m_timeStay++;
+
 }
 
 Person::~Person() {

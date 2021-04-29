@@ -5,26 +5,31 @@
  *      Author: bogdan
  */
 
-#include <agent/Antenna.h>
-#include <agent/AgentsCollection.h>
+#include <agent/MobileOperator.h>
+#include <AntennaType.h>
+#include <Constants.h>
+#include <EMField.h>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/Coordinate.inl>
+#include <geos/geom/GeometryFactory.h>
 #include <IDGenerator.h>
+#include <map/Map.h>
+#include <NetworkType.h>
+#include <parsers/AntennaConfigParser.h>
 #include <parsers/AntennaConfiguration.h>
 #include <TinyXML2.h>
 #include <Utils.h>
-#include <EMField.h>
-#include <parsers/AntennaConfigParser.h>
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 
 using namespace tinyxml2;
 using namespace utils;
 
 
-AntennaConfigParser::AntennaConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
+AntennaConfigParser::AntennaConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
 	m_simConfig = sc;
 	m_eventFactory = evFactory;
 	parse();

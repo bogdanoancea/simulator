@@ -30,7 +30,7 @@
 using namespace utils;
 
 
-RandomWalkDisplacement::RandomWalkDisplacement(SimConfigParser* simConfig,  double speed):
+RandomWalkDisplacement::RandomWalkDisplacement(SimulationConfiguration* simConfig,  double speed):
 		Displace(simConfig, speed) {
 
 }

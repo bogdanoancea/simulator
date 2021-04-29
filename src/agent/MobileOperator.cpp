@@ -24,16 +24,15 @@
  */
 
 #include <agent/MobileOperator.h>
-#include <string>
-#include <string.h>
-#include <sstream>
-#include <iomanip>
-#include <fstream>
 #include <Constants.h>
+#include <map/Map.h>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
-MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone, string& outputDir) :
+MobileOperator::MobileOperator(const Map* m, const unsigned long id, const Clock* clock, const char* name, const double probMobilePhone, const string& outputDir) :
 		Agent(m, id, clock), m_name { name }, m_probMobilePhone { probMobilePhone }, m_outputDir{outputDir} {
 
 	ostringstream cells;

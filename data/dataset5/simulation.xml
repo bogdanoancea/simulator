@@ -14,8 +14,7 @@ r<simulation>
         	<prob_mobile_phone>0.35</prob_mobile_phone>
 		</mno>
 		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
-		<movement_type>home_work</movement_type>
-		<specs_home_work>
+		<movement_pattern type = "home_work">
 			<home>
 				<x_home>2000</x_home>
 				<y_home>7500</y_home>
@@ -46,7 +45,7 @@ r<simulation>
 			<direction_angle_distribution type = "Laplace">
 					<scale>15</scale>
 			</direction_angle_distribution>
-		</specs_home_work>
+		</movement_pattern>
 		<connection_type>strength</connection_type>
 		<event_type>cellIDTA</event_type>
 		<conn_threshold>-85</conn_threshold>

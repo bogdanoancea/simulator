@@ -9,19 +9,23 @@
 #include <agent/MobilePhone.h>
 #include <Clock.h>
 #include <Constants.h>
+#include <DistributionType.h>
+#include <geos/geom/Coordinate.h>
+#include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
+#include <HomeWorkDisplacement.h>
 #include <IDGenerator.h>
 #include <LevyFlightDisplacement.h>
 #include <map/Map.h>
 #include <MovementType.h>
-#include <RandomNumberGenerator.h>
+#include <parsers/HomeWorkLocation.h>
+#include <parsers/HomeWorkScenario.h>
+#include <parsers/PersonsConfigParser.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
-#include <HomeWorkDisplacement.h>
-#include <parsers/PersonsConfigParser.h>
-#include <parsers/SimConfigParser.h>
 #include <TinyXML2.h>
 #include <Utils.h>
+#include <cmath>
 #include <cstring>
 #include <numeric>
 #include <stdexcept>
@@ -30,11 +34,11 @@
 using namespace tinyxml2;
 using namespace utils;
 
-PersonsConfigParser::PersonsConfigParser(const string& filename, SimConfigParser* sc, AgentsCollection* ag) : ConfigParser(filename) {
-	//m_mnos = mnos;
+PersonsConfigParser::PersonsConfigParser(const string& filename, SimulationConfiguration* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	m_simConfig = sc;
 	m_agents = ag;
 	parse();
+
 	for (unsigned long i = 0; i < m_persons.size(); i++) {
 			m_agents->addAgent(m_persons[i]);
 	}
@@ -165,11 +169,10 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 	Person* p;
 	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
 	unsigned int numMno =  m_simConfig->getMnos().size();
+
 	for (unsigned long i = 0; i < numPersons; i++) {
 		//cout << "home positions" << positions[i]->toString() << endl;
 		id = IDGenerator::instance()->next();
-		//unsigned long stay = (unsigned long) random_generator->generateDouble(m_simConfig->getStay().get());
-		//unsigned long interval = (unsigned long) random_generator->generateExponentialDouble(1.0 / m_simConfig->getIntevalBetweenStays());
 		if (walk_car[i]) {
 			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_car[cars++], ages[i],
 					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
@@ -293,8 +296,7 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 	} else if (type == MovementType::LEVY_FLIGHT) {
 		auto displace = std::make_shared<LevyFlightDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
-	}
-	else if (type == MovementType::HOME_WORK) {
+	} else if (type == MovementType::HOME_WORK) {
 		if(p->isHomePerson()) {
 			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation());
 			p->setDisplacementMethod(displace1);
@@ -303,7 +305,6 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 			auto displace2 = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
 			p->setDisplacementMethod(displace2);
 		}
-
 	}
 }
 

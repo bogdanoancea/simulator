@@ -26,13 +26,14 @@
 
 #include <Displace.h>
 #include <geos/geom/Coordinate.h>
+#include <geos/geom/GeometryFactory.h>
 #include <cmath>
 
 using namespace geos;
 using namespace geos::geom;
 
 
-Displace::Displace(SimConfigParser* simConfig, double speed): m_speed {speed} {
+Displace::Displace(SimulationConfiguration* simConfig, double speed): m_speed {speed} {
 	m_simConfig = simConfig;
 }
 

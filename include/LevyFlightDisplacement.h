@@ -35,7 +35,7 @@ public:
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
 	 * @param speed the speed of displacement.
 	*/
-	LevyFlightDisplacement(SimConfigParser* simConfig,  double speed);
+	LevyFlightDisplacement(SimulationConfiguration* simConfig,  double speed);
 
 	/**
 	 * Implements the Levy flight behavior. It takes a pointer to the current location, generates a uniformly distributed value

@@ -27,7 +27,7 @@
 #define INCLUDE_RANDOMWALKDISPLACEMENT_H_
 
 #include <Displace.h>
-#include <geos/geom/Point.h>
+
 
 using namespace geos;
 using namespace geos::geom;
@@ -43,7 +43,7 @@ public:
 	 * Constructor of the class. It only passes the arguments to the superclass, Displace.
 	 * @param speed the speed of displacement.
 	 */
-	RandomWalkDisplacement(SimConfigParser* simConfig, double speed);
+	RandomWalkDisplacement(SimulationConfiguration* simConfig, double speed);
 
 	/**
 	 * Implements the random walk behaviour. It takes a pointer to the current location, generates a uniformly distributed value

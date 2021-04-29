@@ -54,7 +54,7 @@ using namespace geos::geom;
 using namespace std;
 
 //TODO it is a mess, this function should be written again.
-vector<Point*> generatePoints(SimConfigParser* sc, unsigned long n, double percentHome) {
+vector<Point*> generatePoints(SimulationConfiguration* sc, unsigned long n, double percentHome) {
 	if(sc->isHomeWorkScenario()) {
 		return generateHomeWorkPoints(sc, n, percentHome);
 	}
@@ -64,7 +64,7 @@ vector<Point*> generatePoints(SimConfigParser* sc, unsigned long n, double perce
 }
 
 
-vector<Point*> generateRandomPoints(SimConfigParser* sc, unsigned long n, double percentHome) {
+vector<Point*> generateRandomPoints(SimulationConfiguration* sc, unsigned long n, double percentHome) {
 	vector<Point*> result;
 	Map* m = sc->getMap();
 	RandomNumberGenerator* random_generator;
@@ -83,7 +83,7 @@ vector<Point*> generateRandomPoints(SimConfigParser* sc, unsigned long n, double
 	return (result);
 }
 
-vector<Point*> generateHomeWorkPoints(SimConfigParser* sc, unsigned long n, double percentHome) {
+vector<Point*> generateHomeWorkPoints(SimulationConfiguration* sc, unsigned long n, double percentHome) {
 	vector<Point*> result;
 	Map* m = sc->getMap();
 	RandomNumberGenerator* random_generator;

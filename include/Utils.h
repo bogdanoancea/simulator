@@ -33,17 +33,12 @@
 #include <geos/geom/Point.h>
 #include <PriorType.h>
 #include <NetworkType.h>
-#include <parsers/SimConfigParser.h>
+#include <parsers/SimulationConfiguration.h>
 #include <RandomNumberGenerator.h>
 #include <cmath>
 #include <utility>
 #include <vector>
-
-
-namespace tinyxml2 {
-class XMLElement;
-class XMLNode;
-} /* namespace tinyxml2 */
+#include <TinyXML2.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -62,9 +57,9 @@ namespace utils {
 	 * have the same values. The rest of the points differ from a simulation to another.
 	 * @return a vector of pointers to Point objects.
 	 */
-	vector<Point*> generatePoints(SimConfigParser* sc, unsigned long n, double percentHome);
-	vector<Point*> generateRandomPoints(SimConfigParser* sc, unsigned long n, double percentHome);
-	vector<Point*> generateHomeWorkPoints(SimConfigParser* sc, unsigned long n, double percentHome);
+	vector<Point*> generatePoints(SimulationConfiguration* sc, unsigned long n, double percentHome);
+	vector<Point*> generateRandomPoints(SimulationConfiguration* sc, unsigned long n, double percentHome);
+	vector<Point*> generateHomeWorkPoints(SimulationConfiguration* sc, unsigned long n, double percentHome);
 
 	void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_gernerator, vector<Point*>& result);
 

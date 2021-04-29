@@ -23,6 +23,7 @@ map/Map.o\
 map/WKTMap.o\
 parsers/HomeWorkLocation.o\
 parsers/HomeWorkScenario.o\
+parsers/SimulationConfiguration.o\
 parsers/ConfigParser.o\
 parsers/SimConfigParser.o\
 parsers/PersonsConfigParser.o\

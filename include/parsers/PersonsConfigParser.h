@@ -12,7 +12,7 @@
 #include <agent/Person.h>
 #include <Distribution.h>
 #include <parsers/ConfigParser.h>
-#include <parsers/SimConfigParser.h>
+#include <parsers/SimulationConfiguration.h>
 #include <RandomNumberGenerator.h>
 #include <memory>
 #include <string>
@@ -21,7 +21,7 @@
 
 class PersonsConfigParser: public ConfigParser {
 public:
-	PersonsConfigParser(const string& fileName, SimConfigParser* sc, AgentsCollection* ag);
+	PersonsConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag);
 	virtual ~PersonsConfigParser();
 	const vector<Person*>& getPersons() const;
 
@@ -38,7 +38,7 @@ private:
 	shared_ptr<Distribution> parseAgeDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedWalkDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedCarDistribution(XMLElement* parent);
-	SimConfigParser* m_simConfig;
+	SimulationConfiguration* m_simConfig;
 	AgentsCollection* m_agents;
 
 

@@ -54,13 +54,14 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	m_agentsCollection = new AgentsCollection();
 	m_eventFactory = new EventFactory();
-	m_sp = new SimConfigParser(configSimulationFileName, m_agentsCollection, mmap) ;
+	SimConfigParser* sConfigParser = new SimConfigParser(configSimulationFileName, m_agentsCollection, mmap);
+	m_sp = sConfigParser->getSimulationConfiguration();
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
-
 	m_antennaConfig = new AntennaConfigParser(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
 	m_persConfig = new PersonsConfigParser(configPersonsFileName, m_sp, m_agentsCollection);
+
 	if (!probabilitiesFileName.empty()) {
 		m_probabilitiesConfig = new ProbabilitiesConfig(probabilitiesFileName);
 		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)

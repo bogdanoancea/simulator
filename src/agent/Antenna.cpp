@@ -25,10 +25,11 @@
 
 #include <agent/Antenna.h>
 #include <Clock.h>
+#include <Constants.h>
 #include <events/CellIDTAEventConfig.h>
 #include <events/Event.h>
+#include <events/EventCode.h>
 #include <EMField.h>
-#include <geos/geom/Coordinate.inl>
 #include <geos/geom/CoordinateArraySequence.h>
 #include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
@@ -37,143 +38,23 @@
 #include <geos/util/GeometricShapeFactory.h>
 #include <geos/version.h>
 #include <map/Map.h>
-#include <parsers/AntennaConfigParser.h>
 #include <RandomNumberGenerator.h>
-#include <TinyXML2.h>
 #include <Utils.h>
 #include <algorithm>
 #include <cmath>
-#include <cstring>
+#include <fstream>
 #include <iomanip>
 #include <iterator>
 #include <memory>
+#include <sstream>
 
 using namespace tinyxml2;
 using namespace std;
 using namespace utils;
 
-//Antenna::Antenna(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double attenuationFactor, double power,
-//		unsigned long maxConnections, double smid, double ssteep, AntennaType type, string& outputDir, EventFactory& factory, EventType evType) :
-//		ImmovableAgent(m, id, initPosition, clock), m_ple { attenuationFactor }, m_power { power }, m_maxConnections { maxConnections }, m_Smid {
-//				smid }, m_SSteep { ssteep }, m_type { type }, m_height { Constants::ANTENNA_HEIGHT }, m_tilt { Constants::ANTENNA_TILT } {
-//
-//	string fileName = outputDir + "/" + getAntennaOutputFileName();
-//	//char sep = Constants::sep;
-//	try {
-//		m_file.open(fileName, ios::out);
-//	}
-//	catch (std::ofstream::failure& e) {
-//		cerr << "Error opening output files!" << endl;
-//		m_file << getEventHeader(m_eventType) << endl;
-//	}
-//	m_S0 = 30 + 10 * log10(m_power);
-//	if (type == AntennaType::DIRECTIONAL) {
-//		m_beam_V = Constants::ANTENNA_BEAM_V;
-//		m_beam_H = Constants::ANTENNA_BEAM_H;
-//		m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
-//		m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
-//		m_direction = Constants::ANTENNA_DIRECTION;
-//	}
-//	setLocationWithElevation();
-//#if GEOS_VERSION_MAJOR >= 3
-//	#if GEOS_VERSION_MINOR > 7
-//		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry().release();
-//	#else
-//		m_cell = this->getMap()->getGlobalFactory()->createEmptyGeometry();
-//	#endif
-//#else
-//		throw std::runtime_error("unsupported geos version");
-//#endif
-//	m_networkType = Constants::NETWORK_TYPE;
-//	m_eventFactory = factory;
-//	m_eventType = evType;
-//}
 
-//Antenna::Antenna(const Map* m, const Clock* clk, const unsigned long id, XMLElement* antennaEl, vector<MobileOperator*> mnos, const string& outputDir, EventFactory& factory, EventType evType) :
-//		ImmovableAgent(m, id, nullptr, clk), m_cell { nullptr }, m_rmax { 0 }, m_handoverMechanism { HoldableAgent::CONNECTION_TYPE::UNKNOWN } {
-//
-//
-//	XMLNode* n = getNode(antennaEl, "mno_name");
-//	if (n) {
-//		const char* mno_name = n->ToText()->Value();
-//		m_MNO = nullptr;
-//		for (unsigned int i = 0; i < mnos.size(); i++) {
-//			if (mnos.at(i)->getMNOName().compare(mno_name) == 0) {
-//				m_MNO = mnos.at(i);
-//				break;
-//			}
-//		}
-//		if (m_MNO == nullptr)
-//			throw runtime_error("Unknown MNO " + string(mno_name));
-//	}
-//	else {
-//		m_MNO = mnos.at(0);
-//	}
-//
-//	m_maxConnections = getValue(antennaEl, "maxconnections", Constants::ANTENNA_MAX_CONNECTIONS);
-//	m_power = getValue(antennaEl, "power", Constants::ANTENNA_POWER);
-//	m_ple = getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR);
-//	const char* t = getValue(antennaEl, "type", "omnidirectional");
-//	m_type = AntennaType::OMNIDIRECTIONAL;
-//	if (!strcmp(t, "directional"))
-//		m_type = AntennaType::DIRECTIONAL;
-//
-//	m_Smin = getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN);
-//	m_Qmin = getValue(antennaEl, "Qmin", Constants::ANTENNA_QMIN);
-//	m_Smid = getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID);
-//	m_SSteep = getValue(antennaEl, "SSteep", Constants::ANTENNA_S_STEEP);
-//	double x = getValue(antennaEl, "x");
-//	double y = getValue(antennaEl, "y");
-//	m_height = getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT);
-//	m_networkType = getValue(antennaEl, "network_type", Constants::NETWORK_TYPE);
-//	m_eventType = evType;
-//
-//
-////TODO get elevation from Grid
-//	Coordinate c = Coordinate(x, y, m_height);
-//	Point* p = getMap()->getGlobalFactory()->createPoint(c);
-//	setLocation(p);
-//
-//
-//	if (m_type == AntennaType::DIRECTIONAL) {
-//		m_tilt = getValue(antennaEl, "tilt", Constants::ANTENNA_TILT);
-//		m_azim_dB_Back = getValue(antennaEl, "azim_dB_back", Constants::ANTENNA_AZIM_DB_BACK);
-//		m_elev_dB_Back = getValue(antennaEl, "elev_dB_back", Constants::ANTENNA_ELEV_DB_BACK);
-//		m_beam_H = getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H);
-//		m_beam_V = getValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V);
-//		m_direction = getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION);
-//
-//		m_mapping_azim = createMapping(m_azim_dB_Back);
-//		m_mapping_elev = createMapping(m_elev_dB_Back);
-//		m_sd_azim = findSD(m_beam_H, m_azim_dB_Back, m_mapping_azim);
-//		m_sd_elev = findSD(m_beam_V, m_elev_dB_Back, m_mapping_elev);
-//	}
-//	else {
-//		m_azim_dB_Back = 0;
-//		m_elev_dB_Back = 0;
-//		m_beam_H = 0;
-//		m_beam_V = 0;
-//		m_direction = 0;
-//	}
-//	m_S0 = 30 + 10 * log10(m_power);
-//	m_eventFactory = factory;
-//
-//	string fileName = outputDir + "/" + getAntennaOutputFileName();
-//	try {
-//		m_file.open(fileName, ios::out);
-//	}
-//	catch (std::ofstream::failure& e) {
-//		cerr << "Error opening output files!" << endl;
-//	}
-//	m_file << getEventHeader(m_eventType) << endl;
-//	//m_file << "t" << sep << "AntennaId" << sep << "EventCode" << sep << "PhoneId" << sep << "x" << sep << "y" << sep << "TileId" << endl;
-//}
-//
-
-Antenna::Antenna(const unsigned long id, SimConfigParser *sc, AntennaConfiguration ac,
-		EventFactory *factory) :
-		ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell {
-				nullptr }, m_rmax { 0 } {
+Antenna::Antenna(const unsigned long id, SimulationConfiguration *sc, AntennaConfiguration ac,EventFactory *factory) :
+		ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell {	nullptr }, m_rmax { 0 } {
 
 	m_antennaConfig = ac;
 	m_simConfig = sc;

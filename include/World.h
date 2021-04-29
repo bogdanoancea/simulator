@@ -33,6 +33,7 @@
 #include <parsers/PersonsConfigParser.h>
 #include <parsers/ProbabilitiesConfigParser.h>
 #include <parsers/SimConfigParser.h>
+#include <parsers/SimulationConfiguration.h>
 #include <RandomNumberGenerator.h>
 #include <PostLocProb.h>
 #include <PriorType.h>
@@ -153,7 +154,7 @@ public:
 
 private:
 	AgentsCollection* m_agentsCollection;
-	SimConfigParser* m_sp;
+	SimulationConfiguration* m_sp;
 	PersonsConfigParser* m_persConfig;
 	AntennaConfigParser* m_antennaConfig;
 	ProbabilitiesConfig* m_probabilitiesConfig;
