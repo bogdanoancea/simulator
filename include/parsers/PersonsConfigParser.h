@@ -38,6 +38,7 @@ private:
 	shared_ptr<Distribution> parseAgeDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedWalkDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedCarDistribution(XMLElement* parent);
+	void setHomePersonHWLocations(Person* p, Point* pt);
 	SimulationConfiguration* m_simConfig;
 	AgentsCollection* m_agents;
 

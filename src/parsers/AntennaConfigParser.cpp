@@ -58,7 +58,7 @@ void AntennaConfigParser::parse() {
 		XMLElement* antennaEl = utils::getFirstChildElement(antennasNode, "antenna");
 		for (; antennaEl; antennaEl = antennaEl->NextSiblingElement()) {
 			if (antennaEl && strcmp(antennaEl->Name(), "antenna")) {
-				cout << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
+				cerr << "unknown element: " << antennaEl->Name() << " ignoring it" << endl;
 				continue;
 			}
 			AntennaConfiguration configuration;
@@ -79,15 +79,12 @@ void AntennaConfigParser::parse() {
 			else {
 				configuration.setMno(m_simConfig->getMnos().at(0));
 			}
-
 			configuration.setMaxConnections(getValue(antennaEl, "maxconnections", Constants::ANTENNA_MAX_CONNECTIONS));
 			configuration.setPower(getValue(antennaEl, "power", Constants::ANTENNA_POWER));
 			configuration.setPle(getValue(antennaEl, "attenuationfactor", Constants::ATT_FACTOR));
-			//cout << m_ple << " citit" << endl;
 			const char* t = getValue(antennaEl, "type", "omnidirectional");
 			if (!strcmp(t, "directional"))
 				configuration.setType(AntennaType::DIRECTIONAL);
-
 			configuration.setSmin(getValue(antennaEl, "Smin", Constants::ANTENNA_SMIN));
 			configuration.setQmin(getValue(antennaEl, "Qmin", Constants::ANTENNA_QMIN));
 			configuration.setSmid(getValue(antennaEl, "Smid", Constants::ANTENNA_S_MID));
@@ -96,11 +93,9 @@ void AntennaConfigParser::parse() {
 			double y = getValue(antennaEl, "y");
 			configuration.setHeight(getValue(antennaEl, "z", Constants::ANTENNA_HEIGHT));
 			configuration.setNetworkType(getValue(antennaEl, "network_type", Constants::NETWORK_TYPE));
-
 		//TODO get elevation from Grid
 			Coordinate c = Coordinate(x, y, configuration.getHeight());
 			configuration.setLocation(m_simConfig->getMap()->getGlobalFactory()->createPoint(c));
-
 			if (configuration.getType() == AntennaType::DIRECTIONAL) {
 				configuration.setTilt(getValue(antennaEl, "tilt", Constants::ANTENNA_TILT));
 				configuration.setAzimDBBack(getValue(antennaEl, "azim_dB_back", Constants::ANTENNA_AZIM_DB_BACK));
@@ -108,13 +103,6 @@ void AntennaConfigParser::parse() {
 				configuration.setBeamH(getValue(antennaEl, "beam_h", Constants::ANTENNA_BEAM_H));
 				configuration.setBeamV(getValue(antennaEl, "beam_v", Constants::ANTENNA_BEAM_V));
 				configuration.setDirection(getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION));
-			}
-			else {
-				configuration.setAzimDBBack(0);
-				configuration.setElevDBBack(0);
-				configuration.setBeamH(0);
-				configuration.setBeamV(0);
-				configuration.setDirection(0);
 			}
 			Antenna* a = new Antenna(id, m_simConfig, configuration, m_eventFactory);
 			m_antennas.push_back(a);

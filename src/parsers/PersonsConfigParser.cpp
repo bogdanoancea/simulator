@@ -160,7 +160,6 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 
 	int sum = 0;
 	sum = accumulate(walk_car, walk_car + numPersons, sum);
-
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
 	double* speeds_walk = random_generator->generateDouble(numPersons - sum, speed_walk.get());
 	double* speeds_car = random_generator->generateDouble(sum, speed_car.get());
@@ -179,13 +178,7 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 			if(m_simConfig->isHomeWorkScenario()) {
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
-					 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(positions[i]->getCoordinates());
-					 p->setHomeLocation(hl);
-					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-					 Point* workLocation = generateWorkLocation(workLocationIndex);
-					 p->setWorkLocation(workLocation);
-					 p->setIntervalBetweenStaysDistribution(nullptr);
-					 p->setTimeStayDistribution(nullptr);
+					 setHomePersonHWLocations(p, positions[i]);
 				 }
 			}
 		} else {
@@ -194,13 +187,7 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 			if(m_simConfig->isHomeWorkScenario()) {
 				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 				 if( homePerson) {
-					 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(positions[i]->getCoordinates());
-					 p->setHomeLocation(hl);
-					 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-					 Point* workLocation = generateWorkLocation(workLocationIndex);
-					 p->setWorkLocation(workLocation);
-					 p->setIntervalBetweenStaysDistribution(nullptr);
-					 p->setTimeStayDistribution(nullptr);
+					 setHomePersonHWLocations(p, positions[i]);
 				 }
 			}
 		}
@@ -327,4 +314,12 @@ Point* PersonsConfigParser::generateWorkLocation(unsigned int index) {
 	return result;
 }
 
-
+void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
+	 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
+	 p->setHomeLocation(hl);
+	 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
+	 Point* workLocation = generateWorkLocation(workLocationIndex);
+	 p->setWorkLocation(workLocation);
+	 p->setIntervalBetweenStaysDistribution(nullptr);
+	 p->setTimeStayDistribution(nullptr);
+}

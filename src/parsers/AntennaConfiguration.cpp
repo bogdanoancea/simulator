@@ -17,11 +17,11 @@ AntennaConfiguration::AntennaConfiguration() {
 	m_type = AntennaType::OMNIDIRECTIONAL;
 	m_height = Constants::ANTENNA_HEIGHT;
 	m_tilt = Constants::ANTENNA_TILT;
-	m_beam_V = Constants::ANTENNA_BEAM_V;
-	m_beam_H = Constants::ANTENNA_BEAM_H;
-	m_azim_dB_Back = Constants::ANTENNA_AZIM_DB_BACK;
-	m_elev_dB_Back = Constants::ANTENNA_ELEV_DB_BACK;
-	m_direction = Constants::ANTENNA_DIRECTION;
+	m_beam_V = 0;
+	m_beam_H = 0;
+	m_azim_dB_Back = 0;
+	m_elev_dB_Back = 0;
+	m_direction = 0;
 	m_Smin = Constants::ANTENNA_SMIN;
 	m_Qmin = Constants::ANTENNA_QMIN;
 	m_networkType = Constants::NETWORK_TYPE;
