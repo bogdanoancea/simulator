@@ -167,36 +167,25 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 	unsigned long cars = 0, walks = 0;
 	Person* p;
 	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
-	unsigned int numMno =  m_simConfig->getMnos().size();
 
 	for (unsigned long i = 0; i < numPersons; i++) {
-		//cout << "home positions" << positions[i]->toString() << endl;
 		id = IDGenerator::instance()->next();
-		if (walk_car[i]) {
-			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_car[cars++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
-			if(m_simConfig->isHomeWorkScenario()) {
-				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
-				 if( homePerson) {
-					 setHomePersonHWLocations(p, positions[i]);
-				 }
-			}
-		} else {
-			p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speeds_walk[walks++], ages[i],
-					gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
-			if(m_simConfig->isHomeWorkScenario()) {
-				 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
-				 if( homePerson) {
-					 setHomePersonHWLocations(p, positions[i]);
-				 }
-			}
+		double speed = walk_car[i] ? speeds_car[cars++] : speeds_walk[walks++];
+		p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speed, ages[i],
+				gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
+		if(m_simConfig->isHomeWorkScenario()) {
+			 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
+			 if( homePerson) {
+				 setHomePersonHWLocations(p, positions[i]);
+			 }
 		}
+
 		int np1 = phone1[i];
 		while (np1) {
 			addMobilePhoneToPerson(p, m_simConfig->getMnos()[0], m_agents);
 			np1--;
 		}
-		if (numMno == 2) {
+		if ( m_simConfig->getMnos().size() == 2) {
 			int np2 = phone2[i];
 			while (np2) {
 				addMobilePhoneToPerson(p, m_simConfig->getMnos()[1], m_agents);
