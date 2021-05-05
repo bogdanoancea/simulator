@@ -13,6 +13,7 @@
 #include <parsers/HomeWorkLocation.h>
 #include <parsers/HomeWorkScenario.h>
 #include <parsers/RandomWalkDriftScenario.h>
+#include <parsers/LevyFlightScenario.h>
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <events/EventType.h>
@@ -232,6 +233,8 @@ public:
 	void setHomeWorkScenario(HomeWorkScenario* hws);
 	RandomWalkDriftScenario* getRandomWalkDriftScenario() const;
 	void setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario);
+	LevyFlightScenario* getLevyFlightScenario() const;
+	void setLevyFlightScenario(LevyFlightScenario *levyFlightScenario);
 
 private:
 	string m_outputDir;
@@ -257,6 +260,7 @@ private:
 
 	HomeWorkScenario *m_homeWorkScenario;
 	RandomWalkDriftScenario* m_randomWalkDriftScenario;
+	LevyFlightScenario* m_levyFlightScenario;
 };
 
 #endif /* INCLUDE_PARSERS_SIMULATIONCONFIGURATION_H_ */

@@ -32,6 +32,7 @@ public:
 	DistributionType getType();
 	string paramsToString();
 	bool hasParam(const char* name) const;
+	void setParam(const char* name, double value);
 
 private:
 	DistributionType m_type;
@@ -42,6 +43,7 @@ private:
 	void parseUniformDistributionParams(XMLElement* el);
 	void parseLaplaceDistributionParams(XMLElement* el);
 	void parseExponentialDistributionParams(XMLElement* el);
+	void parseLevyDistributionParams(XMLElement* el);
 };
 
 #endif /* INCLUDE_DISTRIBUTION_H_ */

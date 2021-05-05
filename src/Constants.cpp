@@ -98,3 +98,7 @@ const double Constants::DEFAULT_MEAN_NORMAL = 10.0;
 const double Constants::DEFAULT_SD_NORMAL = 0.10;
 const double Constants::DEFAULT_MIN_UNIFORM = -10.0;
 const double Constants::DEFAULT_MAX_UNIFORM = 10.0;
+const double Constants::CUTOFFSPEED = 25.0;
+const double Constants::DEFAULT_MEAN_LEVY = 15.0;
+const double Constants::DEFAULT_C_LEVY = 10.0;
+

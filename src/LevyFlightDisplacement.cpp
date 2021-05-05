@@ -27,6 +27,7 @@
 
 LevyFlightDisplacement::LevyFlightDisplacement(SimulationConfiguration* simConfig,  double speed):
 	Displace(simConfig, speed) {
+	m_levyFlightScenario = simConfig->getLevyFlightScenario();
 }
 
 LevyFlightDisplacement::~LevyFlightDisplacement() {
@@ -55,9 +56,10 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 Point* LevyFlightDisplacement::computeNewLocation(Point* initLocation, double theta) {
 	double x = initLocation->getX();
 	double y = initLocation->getY();
-	double speed = RandomNumberGenerator::instance()->generateLevyDouble(m_speed * 0.95, 10);
-	if (speed > m_speed *25)
-		speed = m_speed *25;
+	m_levyFlightScenario->getSpeedDistribution()->setParam("mean", m_speed);
+	double speed = RandomNumberGenerator::instance()->generateDouble(m_levyFlightScenario->getSpeedDistribution());
+	if (speed > m_speed * m_levyFlightScenario->getCutOffPoint())
+		speed = m_speed *m_levyFlightScenario->getCutOffPoint();
 	unsigned long delta_t = m_simConfig->getClock()->getIncrement();
 	double newX = x + speed * cos(theta) * delta_t;
 	double newY = y + speed * sin(theta) * delta_t;

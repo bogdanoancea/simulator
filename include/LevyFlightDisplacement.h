@@ -55,7 +55,7 @@ public:
 	virtual ~LevyFlightDisplacement();
 private:
 	virtual Point* computeNewLocation(Point* initLocation, double theta) override;
-
+	LevyFlightScenario* m_levyFlightScenario;
 };
 
 #endif /* INCLUDE_LEVYFLIGHTDISPLACEMENT_H_ */

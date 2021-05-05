@@ -31,6 +31,7 @@ parsers/AntennaConfiguration.o\
 parsers/AntennaConfigParser.o\
 parsers/ProbabilitiesConfigParser.o\
 parsers/RandomWalkDriftScenario.o\
+parsers/LevyFlightScenario.o\
 AntennaInfo.o\
 CSVParser.o\
 SimException.o\

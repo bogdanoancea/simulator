@@ -47,10 +47,8 @@ SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agent
 	m_simConfig->setMap(map);
 	m_simConfig->setHomeWorkScenario(nullptr);
 	m_agents = agents;
-	//parse();
-	m_simConfig->setClock();
-	for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
-		agents->addAgent(m_simConfig->getMnos()[i]);
+//	for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
+//		agents->addAgent(m_simConfig->getMnos()[i]);
 }
 
 SimConfigParser::~SimConfigParser() {
@@ -270,7 +268,8 @@ MovementType SimConfigParser::parseMovement(XMLElement* el) {
 				parseRandomWalkDrift(mvEl, m_simConfig->getRandomWalkDriftScenario());
 				result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
 			} else if (!strcmp(mvType, "levy_flight")) {
-				//parseLevyFlight();
+				m_simConfig->setLevyFlightScenario(new LevyFlightScenario());
+				parseLevyFlight(mvEl, m_simConfig->getLevyFlightScenario());
 				result = MovementType::LEVY_FLIGHT;
 			} else if(!strcmp(mvType, "home_work")) {
 				m_simConfig->setHomeWorkScenario(new HomeWorkScenario());
@@ -290,11 +289,39 @@ MovementType SimConfigParser::parseMovement(XMLElement* el) {
 	return (result);
 }
 
+void SimConfigParser::parseLevyFlight(XMLElement* mvEl, LevyFlightScenario* lfs) {
+	lfs->setSpeedDistribution(parseSpeedDistribution(mvEl));
+	lfs->setCutOffPoint(getValue(mvEl, "cutOffSpeed", Constants::CUTOFFSPEED));
+}
+
 void SimConfigParser::parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws) {
 	rws->setTrendAngle1Distribution(parseTrendAngleDistribution(mvEl,1));
 	rws->setTrendAngle2Distribution(parseTrendAngleDistribution(mvEl,2));
 	Distribution* retAngle = parseReturnAngleDistribution(mvEl);
 	rws->setReturnAngleDistribution(retAngle);
+}
+
+Distribution* SimConfigParser::parseSpeedDistribution(XMLElement* mvEl) {
+	Distribution *result = nullptr;
+	XMLElement *distribution = mvEl->FirstChildElement("speed_distribution");
+	DistributionType dType;
+	if (distribution) {
+		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Levy")) {
+				dType = DistributionType::LEVY;
+			} else {
+				throw std::runtime_error("Speed distribution type not supported");
+			}
+			result = new Distribution(dType, distribution);
+		} else {
+			throw std::runtime_error("Speed distribution type not specified");
+		}
+	} else {
+		throw std::runtime_error("Speed distribution not specified");
+	}
+	return result;
 }
 
 

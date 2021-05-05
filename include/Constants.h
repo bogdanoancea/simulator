@@ -223,7 +223,9 @@ public:
 	static const double DEFAULT_SD_NORMAL;
 	static const double DEFAULT_MIN_UNIFORM;
 	static const double DEFAULT_MAX_UNIFORM;
-
+	static const double CUTOFFSPEED;
+	static const double DEFAULT_MEAN_LEVY;
+	static const double DEFAULT_C_LEVY;
 };
 
 #endif /* CONSTANTS_H_ */

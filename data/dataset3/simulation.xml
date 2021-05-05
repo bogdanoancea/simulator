@@ -14,7 +14,12 @@
 		<prob_mobile_phone>0.35</prob_mobile_phone>
 	</mno>
 	<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
-	<movement_pattern type="random_walk_closed_map_drift">
+	<movement_pattern type="levy_flight">
+		<cutOffSpeed>25</cutOffSpeed>
+		<speed_distribution distributionType = "Levy">
+			<mean/>
+			<c>10</c>
+		</speed_distribution>
 	</movement_pattern>
 	<connection_type>quality</connection_type>
 	<qual_min>0.3</qual_min>

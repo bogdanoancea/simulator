@@ -231,3 +231,12 @@ RandomWalkDriftScenario* SimulationConfiguration::getRandomWalkDriftScenario() c
 void SimulationConfiguration::setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario) {
 	m_randomWalkDriftScenario = randomWalkDriftScenario;
 }
+
+LevyFlightScenario* SimulationConfiguration::getLevyFlightScenario() const {
+	return m_levyFlightScenario;
+}
+
+void SimulationConfiguration::setLevyFlightScenario(LevyFlightScenario *levyFlightScenario) {
+	m_levyFlightScenario = levyFlightScenario;
+}
+

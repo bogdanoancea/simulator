@@ -68,6 +68,20 @@ void Distribution::setParams(vector<pair<const char*, double>> params) {
 	m_params = params;
 }
 
+void Distribution::setParam(const char* name, double value) {
+	if(!hasParam(name)) {
+		std::pair<const char*, double> p1 = std::make_pair(name, value);
+		m_params.push_back(p1);
+	}
+	else {
+		for(auto& x: m_params) {
+			if(!strcmp(x.first, name)) {
+				x.second = value;
+			}
+		}
+	}
+}
+
 void Distribution::parseParams(DistributionType type, XMLElement* element) {
 	switch(type) {
 	case DistributionType::NORMAL:
@@ -84,6 +98,9 @@ void Distribution::parseParams(DistributionType type, XMLElement* element) {
 		break;
 	case DistributionType::EXPONENTIAL:
 		parseExponentialDistributionParams(element);
+		break;
+	case DistributionType::LEVY:
+		parseLevyDistributionParams(element);
 		break;
 	default:
 		throw std::runtime_error("Unknown distribution");
@@ -122,6 +139,21 @@ void Distribution::parseUniformDistributionParams(XMLElement* el) {
 	std::pair<const char*, double> p2 = std::make_pair("max", max);
 	m_params.push_back(p1);
 	m_params.push_back(p2);
+}
+
+
+void Distribution::parseLevyDistributionParams(XMLElement* el) {
+	double mean = Constants::DEFAULT_MEAN_LEVY;
+	double c = getValue(el, "c", Constants::DEFAULT_C_LEVY);
+	std::pair<const char*, double> p2 = std::make_pair("c", c);
+	m_params.push_back(p2);
+	try {
+		mean = getValue(el, "mean", Constants::DEFAULT_MEAN_LEVY);
+		std::pair<const char*, double> p1 = std::make_pair("mean", mean);
+		m_params.push_back(p1);
+	} catch(std::runtime_error &e) {
+		// ignore, no mean, it will be set later
+	}
 }
 
 void Distribution::parseLaplaceDistributionParams(XMLElement* el) {
