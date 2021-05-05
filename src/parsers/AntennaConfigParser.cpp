@@ -32,12 +32,13 @@ using namespace utils;
 AntennaConfigParser::AntennaConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* agents, EventFactory* evFactory): ConfigParser(fileName) {
 	m_simConfig = sc;
 	m_eventFactory = evFactory;
-	parse();
-	for (unsigned long i = 0; i < m_antennas.size(); i++) {
-		//m_antennas[i]->setCell(m_simConfig->getConnType());
-		agents->addAgent(m_antennas[i]);
-		EMField::instance()->addAntenna(m_antennas[i]);
-	}
+	m_agents = agents;
+	//parse();
+//	for (unsigned long i = 0; i < m_antennas.size(); i++) {
+//		//m_antennas[i]->setCell(m_simConfig->getConnType());
+//		agents->addAgent(m_antennas[i]);
+//		EMField::instance()->addAntenna(m_antennas[i]);
+//	}
 
 }
 
@@ -105,11 +106,17 @@ void AntennaConfigParser::parse() {
 				configuration.setDirection(getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION));
 			}
 			Antenna* a = new Antenna(id, m_simConfig, configuration, m_eventFactory);
-			m_antennas.push_back(a);
+			//m_antennas.push_back(a);
+			//for (unsigned long i = 0; i < m_antennas.size(); i++) {
+				//m_antennas[i]->setCell(m_simConfig->getConnType());
+			m_agents->addAgent(a);
+			EMField::instance()->addAntenna(a);
+			//}
+
 		}
 	}
 }
 
-const vector<Antenna*>& AntennaConfigParser::getAntennas() const {
-	return m_antennas;
-}
+//const vector<Antenna*>& AntennaConfigParser::getAntennas() const {
+//	return m_antennas;
+//}

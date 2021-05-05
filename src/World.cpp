@@ -54,23 +54,29 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	m_agentsCollection = new AgentsCollection();
 	m_eventFactory = new EventFactory();
-	SimConfigParser* sConfigParser = new SimConfigParser(configSimulationFileName, m_agentsCollection, mmap);
-	m_sp = sConfigParser->getSimulationConfiguration();
+	SimConfigParser sConfigParser(configSimulationFileName, m_agentsCollection, mmap);
+	sConfigParser.parse();
+	m_sp = sConfigParser.getSimulationConfiguration();
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
-	m_antennaConfig = new AntennaConfigParser(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
-	m_persConfig = new PersonsConfigParser(configPersonsFileName, m_sp, m_agentsCollection);
+	AntennaConfigParser antennaConfig(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
+	antennaConfig.parse();
+	PersonsConfigParser persConfig(configPersonsFileName, m_sp, m_agentsCollection);
+	persConfig.parse();
 
 	if (!probabilitiesFileName.empty()) {
-		m_probabilitiesConfig = new ProbabilitiesConfig(probabilitiesFileName);
+		ProbabilitiesConfig probabilitiesConfig(probabilitiesFileName);
+		probabilitiesConfig.parse();
+		map<const unsigned long, const string> probFileNames;
 		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)
-			m_probFilenames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + m_probabilitiesConfig->getProbsFileNamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
-		if (m_probabilitiesConfig->getPrior() == PriorType::UNIFORM) {
-			auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
+			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + probabilitiesConfig.getProbsFileNamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
+
+		if (probabilitiesConfig.getPrior() == PriorType::UNIFORM) {
+			auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 			setPostProbMethod(postProb);
-		} else if (m_probabilitiesConfig->getPrior() == PriorType::NETWORK) {
-			auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, m_probFilenames);
+		} else if (probabilitiesConfig.getPrior() == PriorType::NETWORK) {
+			auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 			setPostProbMethod(postProb);
 		}
 	}
@@ -82,10 +88,6 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 World::~World() {
 	delete m_agentsCollection;
 	delete m_eventFactory;
-	if(m_probabilitiesConfig)
-		delete m_probabilitiesConfig;
-	delete m_antennaConfig;
-	delete m_persConfig;
 	delete m_sp;
 	cout << "End of simulation!" << endl;
 }
@@ -152,11 +154,6 @@ const string& World::getGridFilename() const {
 	return (m_sp->getGridFilename());
 }
 
-
-map<const unsigned long, const string> World::getProbFilenames() const {
-	return m_probFilenames;
-}
-
 const string& World::getOutputDir() const {
 	return m_sp->getOutputDir();
 }
@@ -174,7 +171,6 @@ void World::computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> da
 }
 
 std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
-	//char sep = Constants::sep;
 	std::map<unsigned long, vector<AntennaInfo>> data;
 	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());

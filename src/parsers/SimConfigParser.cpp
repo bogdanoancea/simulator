@@ -44,7 +44,8 @@ SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agent
 	m_simConfig = new SimulationConfiguration();
 	m_simConfig->setMap(map);
 	m_simConfig->setHomeWorkScenario(nullptr);
-	parse();
+	m_agents = agents;
+	//parse();
 	m_simConfig->setClock();
 	for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
 		agents->addAgent(m_simConfig->getMnos()[i]);
@@ -96,8 +97,13 @@ void SimConfigParser::parse() {
 		m_simConfig->setGridDimTileY(getValue(simEl, "grid_dim_tile_y", Constants::GRID_DIM_TILE_Y));
 		m_simConfig->setSeed(getValue(simEl, "random_seed", Constants::RANDOM_SEED));
 		m_simConfig->setEventType(getValue(simEl, "event_type", Constants::EVENTTYPE));
+		m_simConfig->setClock();
+		for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
+			m_agents->addAgent(m_simConfig->getMnos()[i]);
+
 	}
 }
+
 shared_ptr<Distribution> SimConfigParser::parseStayTimeDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
 	XMLElement *ts = parent->FirstChildElement("time_stay");

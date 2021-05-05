@@ -37,11 +37,11 @@ using namespace utils;
 PersonsConfigParser::PersonsConfigParser(const string& filename, SimulationConfiguration* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	m_simConfig = sc;
 	m_agents = ag;
-	parse();
-
-	for (unsigned long i = 0; i < m_persons.size(); i++) {
-			m_agents->addAgent(m_persons[i]);
-	}
+//	parse();
+//
+//	for (unsigned long i = 0; i < m_persons.size(); i++) {
+//			m_agents->addAgent(m_persons[i]);
+//	}
 }
 
 PersonsConfigParser::~PersonsConfigParser() {
@@ -66,6 +66,10 @@ void PersonsConfigParser::parse() noexcept(false) {
 		double male_share = getValue(personsEl, "male_share");
 		double percentHome = getValue(personsEl, "percent_home");
 		m_persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
+		for (unsigned long i = 0; i < m_persons.size(); i++) {
+				m_agents->addAgent(m_persons[i]);
+		}
+
 	}
 }
 

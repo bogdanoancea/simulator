@@ -24,14 +24,14 @@ class AntennaConfigParser: public ConfigParser {
 public:
 	AntennaConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag, EventFactory* evFactory);
 	virtual ~AntennaConfigParser();
-	const vector<Antenna*>& getAntennas() const;
-
-private:
+	//const vector<Antenna*>& getAntennas() const;
 	void parse() override;
+private:
 
-	vector<Antenna*> m_antennas;
+	//vector<Antenna*> m_antennas;
 	SimulationConfiguration* m_simConfig;
 	EventFactory* m_eventFactory;
+	AgentsCollection* m_agents;
 };
 
 #endif /* INCLUDE_ANTENNACONFIG_H_ */

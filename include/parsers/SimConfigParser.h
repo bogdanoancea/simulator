@@ -67,13 +67,13 @@ public:
 
 	SimulationConfiguration* getSimulationConfiguration();
 
-
-private:
 	void parse() override;
+private:
+
 
 
 	SimulationConfiguration* m_simConfig;
-
+	AgentsCollection* m_agents;
 	vector<MobileOperator*> parseMNOs(XMLElement* el);
 	MovementType parseMovement(XMLElement* el);
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);

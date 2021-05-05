@@ -25,9 +25,9 @@ public:
 	virtual ~ProbabilitiesConfig();
 	const PriorType getPrior() const;
 	const string& getProbsFileNamePrefix() const;
-
-private:
 	void parse() override;
+private:
+
 	PriorType m_prior;
 	string m_probsFileNamePrefix;
 };

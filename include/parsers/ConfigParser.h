@@ -53,7 +53,6 @@ public:
 	 */
 	virtual ~ConfigParser();
 
-protected:
 	/**
 	 * This pure virtual function has to be implemented by specific subclasses. Each subclass
 	 * will be specialized to parse one of the configuration file used by this simulation software:

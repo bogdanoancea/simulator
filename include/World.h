@@ -127,11 +127,7 @@ public:
 	Clock* getClock();
 
 	void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
-	/**
-	 * Returns the name of the file where the probabilities of mobile phones locations are saved.
-	 * @return the name of the file where the probabilities of mobile phones locations are saved.
-	 */
-	map<const unsigned long, const string> getProbFilenames() const;
+
 
 	/**
 	 * Sets the posterior location probability method
@@ -155,19 +151,9 @@ public:
 private:
 	AgentsCollection* m_agentsCollection;
 	SimulationConfiguration* m_sp;
-	PersonsConfigParser* m_persConfig;
-	AntennaConfigParser* m_antennaConfig;
-	ProbabilitiesConfig* m_probabilitiesConfig;
-
-	//PriorType m_prior;
-	map<const unsigned long, const string> m_probFilenames;
 	shared_ptr<PostLocProb> m_postMethod;
 	EventFactory* m_eventFactory;
 
-	//vector<Person*> generatePopulation(unsigned long numPersons, double percentHome);
-
-	//vector<Antenna*> generateAntennas(unsigned long numAntennas);
-	//vector<Antenna*> parseAntennas(const string& configAntennasFile, vector<MobileOperator*> mnos) noexcept(false);
 	int whichMNO(vector<pair<string, double>> probs, vector<MobileOperator*> mnos);
 	string parseProbabilities(const string& probabilitiesFileName);
 	void writeSignalAndCells(ostream& antennaFile);
