@@ -34,7 +34,7 @@
 #include <DistributionType.h>
 #include <parsers/ConfigParser.h>
 #include <parsers/SimulationConfiguration.h>
-
+#include <parsers/RandomWalkDriftScenario.h>
 
 using namespace tinyxml2;
 
@@ -79,7 +79,10 @@ private:
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
+	void parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws);
 	Distribution* parseDirectionAngleDistribution(XMLElement* homeWorkElement);
+	Distribution* parseReturnAngleDistribution(XMLElement* mvElement);
+	Distribution* parseTrendAngleDistribution(XMLElement* mvEl, int noAngle);
 	shared_ptr<Distribution> parseStayTimeDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseIntervalBetweenStaysDistribution(XMLElement* parent);
 

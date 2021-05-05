@@ -35,8 +35,10 @@
 #include <filesystem>
 #include <iostream>
 #include <memory>
+#include <sstream>
 
 using namespace utils;
+using namespace std;
 
 SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agents, Map* map) :
 		ConfigParser(filename) {
@@ -264,7 +266,8 @@ MovementType SimConfigParser::parseMovement(XMLElement* el) {
 			if (!strcmp(mvType, "random_walk_closed_map"))
 				result = MovementType::RANDOM_WALK_CLOSED_MAP;
 			else if (!strcmp(mvType, "random_walk_closed_map_drift")) {
-				//parseRandomWalkDrift();
+				m_simConfig->setRandomWalkDriftScenario(new RandomWalkDriftScenario());
+				parseRandomWalkDrift(mvEl, m_simConfig->getRandomWalkDriftScenario());
 				result = MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT;
 			} else if (!strcmp(mvType, "levy_flight")) {
 				//parseLevyFlight();
@@ -286,6 +289,67 @@ MovementType SimConfigParser::parseMovement(XMLElement* el) {
 	}
 	return (result);
 }
+
+void SimConfigParser::parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws) {
+	rws->setTrendAngle1Distribution(parseTrendAngleDistribution(mvEl,1));
+	rws->setTrendAngle2Distribution(parseTrendAngleDistribution(mvEl,2));
+	Distribution* retAngle = parseReturnAngleDistribution(mvEl);
+	rws->setReturnAngleDistribution(retAngle);
+}
+
+
+Distribution* SimConfigParser::parseTrendAngleDistribution(XMLElement* mvEl, int noAngle) {
+	Distribution *result = nullptr;
+	ostringstream elem;
+	elem << "trend_angle_" << noAngle << "_distribution";
+	XMLElement *distribution = mvEl->FirstChildElement(elem.str().c_str());
+	DistributionType dType;
+	if (distribution) {
+		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+			} else if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else {
+				throw std::runtime_error("Trend angle distribution type not supported");
+			}
+			result = new Distribution(dType, distribution);
+		} else {
+			throw std::runtime_error("Trend angle distribution type not specified");
+		}
+	} else {
+		throw std::runtime_error("Trend angle distribution not specified");
+	}
+	return result;
+}
+
+Distribution* SimConfigParser::parseReturnAngleDistribution(XMLElement* mvEl) {
+	Distribution *result = nullptr;
+	XMLElement *distribution = mvEl->FirstChildElement("return_angle_distribution");
+	DistributionType dType;
+	if (distribution) {
+		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		if (type) {
+			const char *dname = type->Value();
+			if (!strcmp(dname, "Normal")) {
+				dType = DistributionType::NORMAL;
+			} else if (!strcmp(dname, "Uniform")) {
+				dType = DistributionType::UNIFORM;
+			} else {
+				throw std::runtime_error("Return angle distribution type not supported");
+			}
+			result = new Distribution(dType, distribution);
+		} else {
+			throw std::runtime_error("Return angle distribution type not specified");
+		}
+	} else {
+		throw std::runtime_error("Return angle distribution not specified");
+	}
+	return result;
+}
+
 
 HoldableAgent::CONNECTION_TYPE SimConfigParser::parseConnectionType(XMLElement* el) {
 	HoldableAgent::CONNECTION_TYPE result;

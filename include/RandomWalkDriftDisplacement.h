@@ -27,11 +27,11 @@
 #define INCLUDE_RANDOMWALKDRIFTDISPLACEMENT_H_
 
 #include <Displace.h>
-
+#include <parsers/RandomWalkDriftScenario.h>
 
 /**
  * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
- * the random walk with drift behaviour, overriding the generateNewLocation() method from its superclass, Displace.
+ * the random walk with drift behavior, overriding the generateNewLocation() method from its superclass, Displace.
  */
 class RandomWalkDriftDisplacement: public Displace {
 public:
@@ -43,7 +43,7 @@ public:
 	RandomWalkDriftDisplacement(SimulationConfiguration* simConfig, double speed);
 
 	/**
-	 * Implements the random walk with drift behaviour. During the first half of the simulation it generates a displacement direction
+	 * Implements the random walk with drift behavior. During the first half of the simulation it generates a displacement direction
 	 * as a random value normally distributed with the mean equals to SIM_TREND_ANGLE_1 (a predefined constant) and sd equals
 	 * to 0.1 and during the second half the mean of the distribution is changed to SIM_TREND_ANGLE_2. The step length of the displacement along
 	 * this direction is computed using the speed and the time duration of a simulation step. If the new location is outside the map,
@@ -62,6 +62,7 @@ public:
 
 private:
 	bool m_changeDirection;
+	RandomWalkDriftScenario* m_randomWalkDriftScenario;
 };
 
 #endif /* INCLUDE_RANDOMWALKDRIFTDISPLACEMENT_H_ */

@@ -385,8 +385,6 @@ double result = 0.0;
 			result = generateExponentialDouble(1.0/distr->getParam("mean"));
 		}
 		break;
-
-		break;
 	case DistributionType::UNIFORM:
 		result = generateUniformDouble(distr->getParam("min"), distr->getParam("max"));
 		break;

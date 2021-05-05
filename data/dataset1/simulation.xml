@@ -18,7 +18,13 @@
 		<prob_mobile_phone>0.35</prob_mobile_phone>
 	</mno>
 	<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
-	<movement_pattern type = "random_walk_closed_map">
+	<movement_pattern type = "random_walk_closed_map_drift">
+		<trend_angle_1>135</trend_angle_1>
+		<trend_angle_2>225</trend_angle_2>
+		<return_angle_distribution distributionType = "Uniform">
+			<min>120</min>
+			<max>240</max>
+		</return_angle distributionType = "Uniform">
 	</movement_pattern>
 	<connection_type>strength</connection_type>
 	<event_type>cellIDTA</event_type>

@@ -223,3 +223,11 @@ void SimulationConfiguration::setHomeWorkScenario(HomeWorkScenario* hws) {
 void SimulationConfiguration::setClock() {
 	m_clock = new Clock(getStartTime(), getEndTime(), getTimeIncrement());
 }
+
+RandomWalkDriftScenario* SimulationConfiguration::getRandomWalkDriftScenario() const {
+	return m_randomWalkDriftScenario;
+}
+
+void SimulationConfiguration::setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario) {
+	m_randomWalkDriftScenario = randomWalkDriftScenario;
+}

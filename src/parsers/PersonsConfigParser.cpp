@@ -65,9 +65,9 @@ void PersonsConfigParser::parse() noexcept(false) {
 		shared_ptr<Distribution> speedCarDistribution = parseSpeedCarDistribution(personsEl);
 		double male_share = getValue(personsEl, "male_share");
 		double percentHome = getValue(personsEl, "percent_home");
-		m_persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
-		for (unsigned long i = 0; i < m_persons.size(); i++) {
-				m_agents->addAgent(m_persons[i]);
+		vector<Person* >persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
+		for (unsigned long i = 0; i < persons.size(); i++) {
+				m_agents->addAgent(persons[i]);
 		}
 
 	}
@@ -289,9 +289,9 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 }
 
 
-const vector<Person*>& PersonsConfigParser::getPersons() const {
-	return m_persons;
-}
+//const vector<Person*>& PersonsConfigParser::getPersons() const {
+//	return m_persons;
+//}
 
 Point* PersonsConfigParser::generateWorkLocation(unsigned int index) {
 	Point* result = nullptr;

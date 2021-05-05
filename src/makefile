@@ -30,6 +30,7 @@ parsers/PersonsConfigParser.o\
 parsers/AntennaConfiguration.o\
 parsers/AntennaConfigParser.o\
 parsers/ProbabilitiesConfigParser.o\
+parsers/RandomWalkDriftScenario.o\
 AntennaInfo.o\
 CSVParser.o\
 SimException.o\

@@ -12,10 +12,12 @@
 #include <MovementType.h>
 #include <parsers/HomeWorkLocation.h>
 #include <parsers/HomeWorkScenario.h>
+#include <parsers/RandomWalkDriftScenario.h>
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <events/EventType.h>
 #include <MovementType.h>
+
 class SimulationConfiguration {
 public:
 	SimulationConfiguration();
@@ -228,6 +230,8 @@ public:
 	HomeWorkLocation getWorkLocation(unsigned int i) const;
 	HomeWorkScenario* getHomeWorkScenario();
 	void setHomeWorkScenario(HomeWorkScenario* hws);
+	RandomWalkDriftScenario* getRandomWalkDriftScenario() const;
+	void setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario);
 
 private:
 	string m_outputDir;
@@ -250,7 +254,9 @@ private:
 	EventType m_eventType;
 	Clock *m_clock;
 	Map *m_map;
+
 	HomeWorkScenario *m_homeWorkScenario;
+	RandomWalkDriftScenario* m_randomWalkDriftScenario;
 };
 
 #endif /* INCLUDE_PARSERS_SIMULATIONCONFIGURATION_H_ */

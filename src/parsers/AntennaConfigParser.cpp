@@ -117,6 +117,4 @@ void AntennaConfigParser::parse() {
 	}
 }
 
-//const vector<Antenna*>& AntennaConfigParser::getAntennas() const {
-//	return m_antennas;
-//}
+

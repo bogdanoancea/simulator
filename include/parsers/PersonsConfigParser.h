@@ -23,11 +23,11 @@ class PersonsConfigParser: public ConfigParser {
 public:
 	PersonsConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag);
 	virtual ~PersonsConfigParser();
-	const vector<Person*>& getPersons() const;
+	//const vector<Person*>& getPersons() const;
 	void parse() override;
 private:
 
-	vector<Person*> m_persons;
+	//vector<Person*> m_persons;
 	vector<Person*> generatePopulation(const unsigned long numPersons, shared_ptr<Distribution> age_distribution,
 				double male_share, shared_ptr<Distribution> speed_walk, shared_ptr<Distribution> speed_car, double percentHome);
 	void setPhones(int* &ph1, int* &ph2, double probSecMobilePhone, double numPersons, RandomNumberGenerator* rng );
