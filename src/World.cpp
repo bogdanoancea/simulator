@@ -66,7 +66,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	persConfig.parse();
 
 	if (!probabilitiesFileName.empty()) {
-		ProbabilitiesConfig probabilitiesConfig(probabilitiesFileName);
+		ProbabilitiesConfigParser probabilitiesConfig(probabilitiesFileName);
 		probabilitiesConfig.parse();
 		map<const unsigned long, const string> probFileNames;
 		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)

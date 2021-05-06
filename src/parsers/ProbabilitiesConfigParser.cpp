@@ -16,15 +16,15 @@
 
 using namespace utils;
 
-ProbabilitiesConfig::ProbabilitiesConfig(const string& fileName): ConfigParser(fileName) {
-	parse();
+ProbabilitiesConfigParser::ProbabilitiesConfigParser(const string& fileName): ConfigParser(fileName) {
+	//parse();
 }
 
-ProbabilitiesConfig::~ProbabilitiesConfig(){
+ProbabilitiesConfigParser::~ProbabilitiesConfigParser(){
 	// TODO Auto-generated destructor stub
 }
 
-void ProbabilitiesConfig::parse() {
+void ProbabilitiesConfigParser::parse() {
 	XMLDocument doc;
 	string probsFileNamePrefix;
 	XMLError err = doc.LoadFile(getFileName().c_str());
@@ -49,11 +49,11 @@ void ProbabilitiesConfig::parse() {
 }
 
 
-const PriorType ProbabilitiesConfig::getPrior() const {
+const PriorType ProbabilitiesConfigParser::getPrior() const {
 	return m_prior;
 }
 
-const string& ProbabilitiesConfig::getProbsFileNamePrefix() const {
+const string& ProbabilitiesConfigParser::getProbsFileNamePrefix() const {
 	return m_probsFileNamePrefix;
 }
 

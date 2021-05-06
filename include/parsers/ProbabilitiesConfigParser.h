@@ -19,10 +19,10 @@
 
 
 
-class ProbabilitiesConfig: public ConfigParser {
+class ProbabilitiesConfigParser: public ConfigParser {
 public:
-	ProbabilitiesConfig(const string& fileName);
-	virtual ~ProbabilitiesConfig();
+	ProbabilitiesConfigParser(const string& fileName);
+	virtual ~ProbabilitiesConfigParser();
 	const PriorType getPrior() const;
 	const string& getProbsFileNamePrefix() const;
 	void parse() override;

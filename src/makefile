@@ -43,7 +43,6 @@ RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
 LevyFlightDisplacement.o\
 HomeWorkDisplacement.o\
-TruncatedNormalAgeDistribution.o\
 PostLocProb.o\
 NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\
