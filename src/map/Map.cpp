@@ -44,12 +44,12 @@ Map::~Map(){
 }
 
 void Map::addGrid(double dimTileX, double dimTileY) {
-	Geometry* bbox = getEnvelope();
+
 #if GEOS_VERSION_MAJOR >= 3
 #if GEOS_VERSION_MINOR > 7
-	CoordinateSequence* seq = bbox->getCoordinates().release();
+	CoordinateSequence* seq = getEnvelope()->getCoordinates().release();
 #else
-	CoordinateSequence* seq = bbox->getCoordinates();
+	CoordinateSequence* seq = getEnvelope()->getCoordinates();
 #endif
 #else
 	throw std::runtime_error("unsupported geos version");

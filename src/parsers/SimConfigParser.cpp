@@ -169,12 +169,12 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 	HomeWorkLocation h(x,y,0,xSd,ySd,0);
 	hws->addHomeLocation(h);
 	while( (home = home->NextSiblingElement("home")) != nullptr ) {
-		double x = getValue(home, "x_home");
-		double y = getValue(home, "y_home");
-		double xSd = getValue(home, "x_sd_home");
-		double ySd = getValue(home, "y_sd_home");
-		HomeWorkLocation h(x,y,0,xSd,ySd,0);
-		hws->addHomeLocation(h);
+		x = getValue(home, "x_home");
+		y = getValue(home, "y_home");
+		xSd = getValue(home, "x_sd_home");
+		ySd = getValue(home, "y_sd_home");
+		HomeWorkLocation h1(x,y,0,xSd,ySd,0);
+		hws->addHomeLocation(h1);
 	}
 
 	XMLElement* work = homeWorkElement->FirstChildElement("work");
@@ -185,12 +185,12 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 	HomeWorkLocation w(x,y,0,xSd,ySd,0);
 	hws->addWorkLocation(w);
 	while( (work = work->NextSiblingElement("work")) != nullptr ) {
-		double x = getValue(work, "x_work");
-		double y = getValue(work, "y_work");
-		double xSd = getValue(work, "x_sd_work");
-		double ySd = getValue(work, "y_sd_work");
-		HomeWorkLocation w(x,y,0,xSd,ySd,0);
-		hws->addWorkLocation(w);
+		x = getValue(work, "x_work");
+		y = getValue(work, "y_work");
+		xSd = getValue(work, "x_sd_work");
+		ySd = getValue(work, "y_sd_work");
+		HomeWorkLocation w1(x,y,0,xSd,ySd,0);
+		hws->addWorkLocation(w1);
 	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));

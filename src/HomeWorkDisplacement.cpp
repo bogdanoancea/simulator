@@ -151,9 +151,9 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, 2 * utils::PI);
-			double newX = initLocation->getX() + m_stepLength * cos(theta);
-			double newY = initLocation->getY() + m_stepLength * sin(theta) ;
-			Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
+			newX = initLocation->getX() + m_stepLength * cos(theta);
+			newY = initLocation->getY() + m_stepLength * sin(theta) ;
+			c1 = Coordinate(newX, newY, initLocation->getZ());
 			pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 		}
 		if (!k)

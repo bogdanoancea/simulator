@@ -110,7 +110,7 @@ void World::runSimulation() noexcept(false) {
 	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
 	unsigned long t = m_sp->getClock()->getInitialTime();
-	tt = m_sp->getClock()->realTime();
+	//tt = m_sp->getClock()->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 	cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());
@@ -185,8 +185,8 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 				for (unsigned long i = 0; i < file.rowCount(); i++) {
 					Row s = file[i];
-					AntennaInfo a(m_sp->getEventType(), s);
-					tmp.push_back(a);
+					AntennaInfo ai(m_sp->getEventType(), s);
+					tmp.push_back(ai);
 				}
 			}
 			sort(tmp.begin(), tmp.end());
