@@ -192,9 +192,26 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 		HomeWorkLocation w1(x,y,0,xSd,ySd,0);
 		hws->addWorkLocation(w1);
 	}
+	XMLElement* anchor = homeWorkElement->FirstChildElement("anchor_point");
+	x = getValue(anchor, "x_anchor");
+	y = getValue(anchor, "y_anchor");
+	xSd = getValue(anchor, "x_sd_anchor");
+	ySd = getValue(anchor, "y_sd_anchor");
+	HomeWorkLocation a(x,y,0,xSd,ySd,0);
+	hws->addAnchorLocation(a);
+	while( (anchor = anchor->NextSiblingElement("anchor_point")) != nullptr ) {
+		x = getValue(anchor, "x_anchor");
+		y = getValue(anchor, "y_anchor");
+		xSd = getValue(anchor, "x_sd_anchor");
+		ySd = getValue(anchor, "y_sd_anchor");
+		HomeWorkLocation a1(x,y,0,xSd,ySd,0);
+		hws->addAnchorLocation(a1);
+	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
+	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
 	hws->setPrecentTimeTravel(getValue(homeWorkElement, "percent_time_travel"));
+	hws->setProbAnchorPoint(getValue(homeWorkElement, "prob_anchor_point"));
 	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
 	hws->setAngleDistribution(p);
 }

@@ -35,7 +35,7 @@
 #include <iomanip>
 #include <sstream>
 #include <utility>
-
+#include <HomeWorkDisplacement.h>
 using namespace geos;
 using namespace geos::geom;
 
@@ -45,6 +45,7 @@ Person::Person(const Map* m, const unsigned long id, Point* initPosition, const 
 	m_displacementMethod = nullptr;
 	m_homeLocation = nullptr;
 	m_workLocation = nullptr;
+	m_anchorLocation = nullptr;
 	unsigned long interval = 0;
 	if(m_intervalBetweenStaysDistribution)
 		interval = (unsigned long )abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
@@ -114,9 +115,9 @@ Point* Person::move() {
 		}
 		setLocation(pt);
 	}
-//	if(getId() == 414) {
-//		shared_ptr<Displace> dpl = getDisplace();
-//		cout << " unghiul: " << ((HomeWorkDisplacement*)dpl.get())->m_theta << ":" << ((HomeWorkDisplacement*)dpl.get())->m_theta2<< "locatia:" << getLocation()->toString() << " work location " <<((HomeWorkDisplacement*)dpl.get())->getWorkLocation()->toString() <<  endl;
+//	if(getId() == 426) {
+//		shared_ptr<Displace> dpl = m_displacementMethod;
+//		cout << "locatia:" << getLocation()->toString() << "state " << static_cast<int>(((HomeWorkDisplacement*)dpl.get())->getState()) << "delta stay anchor: " << ((HomeWorkDisplacement*)dpl.get())->getDeltaTStayAnchor() <<  endl;
 //	}
 	return (getLocation());
 }
@@ -179,6 +180,15 @@ Point* Person::getHomeLocation() const{
 void Person::setWorkLocation(Point* wl) {
 	m_workLocation = wl;
 }
+
+void Person::setAnchorLocation(Point* al) {
+	m_anchorLocation = al;
+}
+
+Point* Person::getAnchorLocation() const{
+	return m_anchorLocation;
+}
+
 
 Point* Person::getWorkLocation() const{
 	return m_workLocation;

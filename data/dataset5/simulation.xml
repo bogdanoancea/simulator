@@ -39,12 +39,26 @@ r<simulation>
 				<x_sd_work>750</x_sd_work>
 				<y_sd_work>750</y_sd_work>
 			</work>
+			<anchor_point>
+				<x_anchor>8000</x_anchor>
+				<y_anchor>4000</y_anchor>
+				<x_sd_anchor>700</x_sd_anchor>
+				<y_sd_anchor>700</y_sd_anchor>
+			</anchor_point>
+			<anchor_point>
+				<x_anchor>3000</x_anchor>
+				<y_anchor>5000</y_anchor>
+				<x_sd_anchor>700</x_sd_anchor>
+				<y_sd_anchor>700</y_sd_anchor>
+			</anchor_point>
 			<percent_time_home>0.5</percent_time_home>
 			<percent_time_work>0.3</percent_time_work>
+			<percent_time_anchor_point>0.1</percent_time_anchor_point>
 			<percent_time_travel>0.03</percent_time_travel>
 			<direction_angle_distribution type = "Laplace">
 					<scale>15</scale>
 			</direction_angle_distribution>
+			<prob_anchor_point>0.8</prob_anchor_point>
 		</movement_pattern>
 		<connection_type>strength</connection_type>
 		<event_type>cellIDTA</event_type>

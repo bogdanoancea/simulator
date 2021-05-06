@@ -191,6 +191,12 @@ unsigned int SimulationConfiguration::getNumWorkLocations() const {
 	else return -1;
 }
 
+unsigned int SimulationConfiguration::getNumAnchorLocations() const {
+	if(isHomeWorkScenario())
+		return m_homeWorkScenario->getAnchorLocations().size();
+	else return -1;
+}
+
 HomeWorkLocation SimulationConfiguration::getHomeLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getHomeLocations().at(i);

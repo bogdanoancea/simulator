@@ -37,13 +37,15 @@
 
 using namespace std;
 
-HomeWorkDisplacement::HomeWorkDisplacement(SimulationConfiguration *simConfig, double speed, Point *homeLocation, Point* workLocation) :
+HomeWorkDisplacement::HomeWorkDisplacement(SimulationConfiguration *simConfig, double speed, Point *homeLocation, Point* workLocation, Point* anchorLocation) :
 		Displace(simConfig, speed) {
 	m_deltaTStayHome = initDeltaTStayHome();
 	m_deltaTStayWork = initDeltaTStayWork();
+	m_deltaTStayAnchor = initDeltaTStayAnchor();
 	m_state = HomeWorkState::STAY_HOME;
 	m_homeLocation = homeLocation;
 	m_workLocation = workLocation;
+	m_anchorLocation = anchorLocation;
 	m_angleDistribution = simConfig->getHomeWorkScenario()->getAngleDistribution();
 
 	//compute estimated speed
@@ -69,6 +71,12 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 		break;
 	case HomeWorkState::STAY_WORK:
 		pt = makeRandomStepAtWork(initLocation);
+		break;
+	case HomeWorkState::GO_ANCHOR:
+		pt = toDestination(initLocation, m_anchorLocation);
+		break;
+	case HomeWorkState::STAY_ANCHOR:
+		pt = initLocation;
 		break;
 	case HomeWorkState::GO_HOME:
 		//make a step toward home location
@@ -103,9 +111,22 @@ HomeWorkState HomeWorkDisplacement::stateTransition(Point *position) {
 		//cout << " state: STAY_WORK "  << endl;
 		m_deltaTStayWork -= m_simConfig->getClock()->getIncrement();
 		if (m_deltaTStayWork <= 0) {
-			result = HomeWorkState::GO_HOME;
+			result = m_anchorLocation? HomeWorkState::GO_ANCHOR: HomeWorkState::GO_HOME;
 			m_deltaTStayWork = initDeltaTStayWork();
 			//cout << " STAY_WORK time: " <<m_deltaTStayWork << endl;
+		}
+		break;
+	case HomeWorkState::GO_ANCHOR:
+		if (posAtDestination(position, m_anchorLocation))
+			result = HomeWorkState::STAY_ANCHOR;
+		break;
+	case HomeWorkState::STAY_ANCHOR:
+		m_deltaTStayAnchor -= m_simConfig->getClock()->getIncrement();
+		if (m_deltaTStayAnchor <= 0) {
+			result = HomeWorkState::GO_HOME;
+			m_deltaTStayAnchor = initDeltaTStayAnchor();
+			//cout << " STAY_ANCHOR time: " <<m_deltaTStayAnchor << endl;
+			//cout << " new state: " << static_cast<int>(result) << endl;
 		}
 		break;
 	case HomeWorkState::GO_HOME:
@@ -117,14 +138,19 @@ HomeWorkState HomeWorkDisplacement::stateTransition(Point *position) {
 	return result;
 }
 
-unsigned long HomeWorkDisplacement::initDeltaTStayHome() const {
+long HomeWorkDisplacement::initDeltaTStayHome() const {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
 	return m_simConfig->getHomeWorkScenario()->getPrecentTimeHome() * simulationTime;
 }
 
-unsigned long HomeWorkDisplacement::initDeltaTStayWork() const {
+long HomeWorkDisplacement::initDeltaTStayWork() const {
 	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
 	return m_simConfig->getHomeWorkScenario()->getPrecentTimeWork()* simulationTime;
+}
+
+long HomeWorkDisplacement::initDeltaTStayAnchor() const {
+	unsigned long simulationTime = m_simConfig->getEndTime() - m_simConfig->getStartTime();
+	return m_simConfig->getHomeWorkScenario()->getPrecentTimeAnchorPoint() * simulationTime;
 }
 
 const bool HomeWorkDisplacement::posAtDestination(Point* position, Point* destination) const {
@@ -227,4 +253,8 @@ const bool HomeWorkDisplacement::arrivedAtDestination(Point* position, Point* de
 		result = true;
 	}
 	return result;
+}
+
+HomeWorkState HomeWorkDisplacement::getState() const {
+	return m_state;
 }

@@ -29,7 +29,7 @@ public:
 	 * generated from a normal distribution with the parameters read from the simulation configuration file. If there are several work locations in this file,
 	 * a work location is assigned for each person using a uniform distribution.
 	 */
-	HomeWorkDisplacement(SimulationConfiguration* simConfig, double speed, Point* homeLocation, Point* workLocation);
+	HomeWorkDisplacement(SimulationConfiguration* simConfig, double speed, Point* homeLocation, Point* workLocation, Point* anchorLocation);
 
 	/**
 	 * This is the destructor of the class. It does nothing.
@@ -43,20 +43,26 @@ public:
 	 */
 	virtual Point* generateNewLocation(Point* p) override;
 
+	HomeWorkState getState() const;
+	unsigned long getDeltaTStayAnchor() const {return m_deltaTStayAnchor;}
+
 private:
 	HomeWorkState stateTransition(Point* position);
-	unsigned long initDeltaTStayHome() const;
-	unsigned long initDeltaTStayWork() const;
+	long initDeltaTStayHome() const;
+	long initDeltaTStayWork() const;
+	long initDeltaTStayAnchor() const;
 	const bool posAtDestination(Point* position, Point* destination) const;
 	const bool arrivedAtDestination(Point* position, Point* destination) const;
 	Point* makeRandomStepAtWork(Point* initLocation);
 	Point* toDestination(Point*  initLocation, Point* destination);
 	double computeTheta(Point* p1, Point* p2) const;
-	unsigned long m_deltaTStayHome;
-	unsigned long m_deltaTStayWork;
+	long m_deltaTStayHome;
+	long m_deltaTStayWork;
+	long m_deltaTStayAnchor;
 	HomeWorkState m_state;
 	Point* m_homeLocation;
 	Point* m_workLocation;
+	Point* m_anchorLocation;
 	Distribution* m_angleDistribution;
 	double m_stepLength;
 };

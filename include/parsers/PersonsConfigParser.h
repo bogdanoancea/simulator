@@ -34,7 +34,7 @@ private:
 	int* generateAges(int n, shared_ptr<Distribution> distr, RandomNumberGenerator* rng);
 	void addMobilePhoneToPerson(Person* p, MobileOperator* mno, AgentsCollection* ag);
 	void setPersonDisplacementPattern(Person* p);
-	Point* generateWorkLocation(unsigned int index);
+	Point* generateLocation(unsigned int index, vector<HomeWorkLocation> locations);
 	shared_ptr<Distribution> parseAgeDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedWalkDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseSpeedCarDistribution(XMLElement* parent);

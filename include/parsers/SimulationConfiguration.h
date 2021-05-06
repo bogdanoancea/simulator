@@ -227,6 +227,7 @@ public:
 	bool isHomeWorkScenario() const;
 	unsigned int getNumHomeLocations() const;
 	unsigned int getNumWorkLocations() const;
+	unsigned int getNumAnchorLocations() const;
 	HomeWorkLocation getHomeLocation(unsigned int i) const;
 	HomeWorkLocation getWorkLocation(unsigned int i) const;
 	HomeWorkScenario* getHomeWorkScenario();

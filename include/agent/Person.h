@@ -144,9 +144,11 @@ class Person: public MovableAgent {
 		void setHomeLocation(Point* hl);
 		Point* getHomeLocation() const;
 
-		void setWorkLocation(Point* hl);
+		void setWorkLocation(Point* wl);
 		Point* getWorkLocation() const;
 
+		void setAnchorLocation(Point* al);
+		Point* getAnchorLocation() const;
 		bool isHomePerson() const;
 		const shared_ptr<Distribution>& getIntervalBetweenStaysDistribution() const;
 		void setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution);
@@ -174,6 +176,7 @@ class Person: public MovableAgent {
 		shared_ptr<Displace> m_displacementMethod;
 		Point* m_homeLocation;
 		Point* m_workLocation;
+		Point* m_anchorLocation;
 };
 
 #endif /* PERSON_H_ */

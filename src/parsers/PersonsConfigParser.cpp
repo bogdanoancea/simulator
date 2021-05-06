@@ -154,14 +154,11 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 		double male_share, shared_ptr<Distribution> speed_walk, shared_ptr<Distribution> speed_car, double percentHome) {
 
 	vector<Person*> result;
-	//unsigned long id;
 	RandomNumberGenerator* random_generator = RandomNumberGenerator::instance(m_simConfig->getSeed());
 
 	int *phone1 = nullptr, *phone2 = nullptr;
 	setPhones(phone1, phone2, m_simConfig->getProbSecMobilePhone(), numPersons, random_generator);
-
 	int* walk_car = random_generator->generateBernoulliInt(0.5, numPersons);
-
 	int sum = 0;
 	sum = accumulate(walk_car, walk_car + numPersons, sum);
 	int* gender = random_generator->generateBinomialInt(1, male_share, numPersons);
@@ -169,7 +166,6 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 	double* speeds_car = random_generator->generateDouble(sum, speed_car.get());
 	int* ages = generateAges(numPersons, ageDistribution, random_generator );
 	unsigned long cars = 0, walks = 0;
-	//Person* p;
 	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
 
 	for (unsigned long i = 0; i < numPersons; i++) {
@@ -183,7 +179,6 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 				 setHomePersonHWLocations(p, positions[i]);
 			 }
 		}
-
 		int np1 = phone1[i];
 		while (np1) {
 			addMobilePhoneToPerson(p, m_simConfig->getMnos()[0], m_agents);
@@ -278,7 +273,7 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 		p->setDisplacementMethod(displace);
 	} else if (type == MovementType::HOME_WORK) {
 		if(p->isHomePerson()) {
-			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation());
+			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
 			p->setDisplacementMethod(displace1);
 		}
 		else {
@@ -289,14 +284,10 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 }
 
 
-//const vector<Person*>& PersonsConfigParser::getPersons() const {
-//	return m_persons;
-//}
-
-Point* PersonsConfigParser::generateWorkLocation(unsigned int index) {
+Point* PersonsConfigParser::generateLocation(unsigned int index, vector<HomeWorkLocation> locations) {
 	Point* result = nullptr;
 	double angle = RandomNumberGenerator::instance()->generateUniformDouble(0, 2.0 * utils::PI);
-	HomeWorkLocation wl = m_simConfig->getHomeWorkScenario()->getWorkLocations().at(index);
+	HomeWorkLocation wl = locations.at(index);
 	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.m_sdx + pow(sin(angle),2)/wl.m_sdy) );
 	double l = RandomNumberGenerator::instance()->generateUniformDouble(0, L);
 	double x = wl.m_x + l * cos(angle);
@@ -311,8 +302,16 @@ void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
 	 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
 	 p->setHomeLocation(hl);
 	 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-	 Point* workLocation = generateWorkLocation(workLocationIndex);
+	 Point* workLocation = generateLocation(workLocationIndex, m_simConfig->getHomeWorkScenario()->getWorkLocations());
 	 p->setWorkLocation(workLocation);
+	 int goAnchor = RandomNumberGenerator::instance()->generateBernoulliInt(m_simConfig->getHomeWorkScenario()->getProbAnchorPoint());
+	 if(goAnchor) {
+		 int anchorLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumAnchorLocations() - 1);
+		 Point* anchorLocation = generateLocation(anchorLocationIndex, m_simConfig->getHomeWorkScenario()->getAnchorLocations());
+		 ///cout << "anchor point: " << anchorLocation->toString() << "person id: " << p->getId() << endl;
+		 p->setAnchorLocation(anchorLocation);
+	 }
+
 	 p->setIntervalBetweenStaysDistribution(nullptr);
 	 p->setTimeStayDistribution(nullptr);
 }
