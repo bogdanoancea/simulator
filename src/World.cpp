@@ -185,21 +185,22 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
 				for (unsigned long i = 0; i < file.rowCount(); i++) {
 					Row s = file[i];
-					AntennaInfo ai(m_sp->getEventType(), s);
-					tmp.push_back(ai);
+					AntennaInfo a(m_sp->getEventType(), s);
+					tmp.push_back(a);
 				}
 			}
-			sort(tmp.begin(), tmp.end());
-			ofstream antennaInfoFile;
-			string name = mo->getOutputDir() + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
-			antennaInfoFile.open(name, ios::out);
-			antennaInfoFile << Antenna::getEventHeader(m_sp->getEventType()) <<  endl;
-			for (AntennaInfo& ai : tmp) {
-				antennaInfoFile << ai.toString() <<  endl;
-			}
-			antennaInfoFile.close();
+
 		}
-		 data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
+		sort(tmp.begin(), tmp.end());
+		ofstream antennaInfoFile;
+		string name = mo->getOutputDir() + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
+		antennaInfoFile.open(name, ios::out);
+		antennaInfoFile << Antenna::getEventHeader(m_sp->getEventType()) <<  endl;
+		for (AntennaInfo& ai : tmp) {
+			antennaInfoFile << ai.toString() <<  endl;
+		}
+		antennaInfoFile.close();
+		data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}
 	return (data);
 }
