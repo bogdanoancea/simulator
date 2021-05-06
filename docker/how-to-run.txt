@@ -2,7 +2,7 @@ Here are some simple commands to run the docker image of the mobile network simu
 If you work under Windows, simply replace CURRENT_DIR variable with the current working directory. Under a Unix-like OS the name of the working directory
 can be obtained with the command below.
 In the working directory you should have a subdirectory named "output" where the configuration files simulation.xml, persons.xml, antennas.xml, probabilities.xml and map.wkt can be found. 
-The output files are also saved in the subdirectory.
+The output files are also saved in this subdirectory.
 
 To run a simulation, open a terminal and run the following commands:
 
