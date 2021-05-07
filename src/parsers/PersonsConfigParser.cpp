@@ -304,14 +304,15 @@ void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
 	 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 	 Point* workLocation = generateLocation(workLocationIndex, m_simConfig->getHomeWorkScenario()->getWorkLocations());
 	 p->setWorkLocation(workLocation);
-	 int goAnchor = RandomNumberGenerator::instance()->generateBernoulliInt(m_simConfig->getHomeWorkScenario()->getProbAnchorPoint());
-	 if(goAnchor) {
-		 int anchorLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumAnchorLocations() - 1);
-		 Point* anchorLocation = generateLocation(anchorLocationIndex, m_simConfig->getHomeWorkScenario()->getAnchorLocations());
-		 ///cout << "anchor point: " << anchorLocation->toString() << "person id: " << p->getId() << endl;
-		 p->setAnchorLocation(anchorLocation);
-	 }
-
+	if (m_simConfig->getNumAnchorLocations() > 0) {
+		int goAnchor = RandomNumberGenerator::instance()->generateBernoulliInt(m_simConfig->getHomeWorkScenario()->getProbAnchorPoint());
+		if (goAnchor) {
+			int anchorLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0, m_simConfig->getNumAnchorLocations() - 1);
+			Point *anchorLocation = generateLocation(anchorLocationIndex, m_simConfig->getHomeWorkScenario()->getAnchorLocations());
+			///cout << "anchor point: " << anchorLocation->toString() << "person id: " << p->getId() << endl;
+			p->setAnchorLocation(anchorLocation);
+		}
+	}
 	 p->setIntervalBetweenStaysDistribution(nullptr);
 	 p->setTimeStayDistribution(nullptr);
 }

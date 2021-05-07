@@ -159,7 +159,7 @@ shared_ptr<Distribution> SimConfigParser::parseIntervalBetweenStaysDistribution(
 void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
 	XMLElement* home = homeWorkElement->FirstChildElement("home");
 	if(!home) {
-		throw std::runtime_error("Home  location missing!");
+		throw std::runtime_error("Home location missing!");
 	}
 
 	double x = getValue(home, "x_home");
@@ -178,6 +178,9 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 	}
 
 	XMLElement* work = homeWorkElement->FirstChildElement("work");
+	if(!work) {
+		throw std::runtime_error("Work location missing!");
+	}
 	x = getValue(work, "x_work");
 	y = getValue(work, "y_work");
 	xSd = getValue(work, "x_sd_work");
@@ -193,19 +196,21 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 		hws->addWorkLocation(w1);
 	}
 	XMLElement* anchor = homeWorkElement->FirstChildElement("anchor_point");
-	x = getValue(anchor, "x_anchor");
-	y = getValue(anchor, "y_anchor");
-	xSd = getValue(anchor, "x_sd_anchor");
-	ySd = getValue(anchor, "y_sd_anchor");
-	HomeWorkLocation a(x,y,0,xSd,ySd,0);
-	hws->addAnchorLocation(a);
-	while( (anchor = anchor->NextSiblingElement("anchor_point")) != nullptr ) {
+	if (anchor) {
 		x = getValue(anchor, "x_anchor");
 		y = getValue(anchor, "y_anchor");
 		xSd = getValue(anchor, "x_sd_anchor");
 		ySd = getValue(anchor, "y_sd_anchor");
-		HomeWorkLocation a1(x,y,0,xSd,ySd,0);
-		hws->addAnchorLocation(a1);
+		HomeWorkLocation a(x, y, 0, xSd, ySd, 0);
+		hws->addAnchorLocation(a);
+		while ((anchor = anchor->NextSiblingElement("anchor_point")) != nullptr) {
+			x = getValue(anchor, "x_anchor");
+			y = getValue(anchor, "y_anchor");
+			xSd = getValue(anchor, "x_sd_anchor");
+			ySd = getValue(anchor, "y_sd_anchor");
+			HomeWorkLocation a1(x, y, 0, xSd, ySd, 0);
+			hws->addAnchorLocation(a1);
+		}
 	}
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
