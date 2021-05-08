@@ -27,8 +27,10 @@ parsers/SimulationConfiguration.o\
 parsers/ConfigParser.o\
 parsers/SimConfigParser.o\
 parsers/PersonsConfigParser.o\
+parsers/PersonConfiguration.o\
 parsers/AntennaConfiguration.o\
 parsers/AntennaConfigParser.o\
+parsers/ProbabilitiesConfiguration.o\
 parsers/ProbabilitiesConfigParser.o\
 parsers/RandomWalkDriftScenario.o\
 parsers/LevyFlightScenario.o\

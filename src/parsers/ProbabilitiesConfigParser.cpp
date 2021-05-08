@@ -17,7 +17,6 @@
 using namespace utils;
 
 ProbabilitiesConfigParser::ProbabilitiesConfigParser(const string& fileName): ConfigParser(fileName) {
-	//parse();
 }
 
 ProbabilitiesConfigParser::~ProbabilitiesConfigParser(){
@@ -37,23 +36,17 @@ void ProbabilitiesConfigParser::parse() {
 	else {
 		const char* prior = getValue(probEl, "prior", "UNKNOWN");
 		if (!strcmp(prior, "network"))
-			m_prior = PriorType::NETWORK;
+			m_configuration.setPrior(PriorType::NETWORK);
 		else if (!strcmp(prior, "uniform"))
-			m_prior = PriorType::UNIFORM;
+			m_configuration.setPrior(PriorType::UNIFORM);
 		else if (!strcmp(prior, "register"))
-			m_prior = PriorType::REGISTER;
+			m_configuration.setPrior(PriorType::REGISTER);
 		else
-			m_prior = Constants::PRIOR_PROBABILITY;
-		m_probsFileNamePrefix = getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX);
+			m_configuration.setPrior(Constants::PRIOR_PROBABILITY);
+		m_configuration.setPrefix(getValue(probEl, "prob_file_name_prefix", Constants::PROB_FILE_NAME_PREFIX));
 	}
 }
 
-
-const PriorType ProbabilitiesConfigParser::getPrior() const {
-	return m_prior;
+ProbabilitiesConfiguration ProbabilitiesConfigParser::getConfiguration() const {
+	return m_configuration;
 }
-
-const string& ProbabilitiesConfigParser::getProbsFileNamePrefix() const {
-	return m_probsFileNamePrefix;
-}
-

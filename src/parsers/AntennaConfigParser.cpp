@@ -33,13 +33,6 @@ AntennaConfigParser::AntennaConfigParser(const string& fileName, SimulationConfi
 	m_simConfig = sc;
 	m_eventFactory = evFactory;
 	m_agents = agents;
-	//parse();
-//	for (unsigned long i = 0; i < m_antennas.size(); i++) {
-//		//m_antennas[i]->setCell(m_simConfig->getConnType());
-//		agents->addAgent(m_antennas[i]);
-//		EMField::instance()->addAntenna(m_antennas[i]);
-//	}
-
 }
 
 AntennaConfigParser::~AntennaConfigParser(){
@@ -106,13 +99,8 @@ void AntennaConfigParser::parse() {
 				configuration.setDirection(getValue(antennaEl, "direction", Constants::ANTENNA_DIRECTION));
 			}
 			Antenna* a = new Antenna(id, m_simConfig, configuration, m_eventFactory);
-			//m_antennas.push_back(a);
-			//for (unsigned long i = 0; i < m_antennas.size(); i++) {
-				//m_antennas[i]->setCell(m_simConfig->getConnType());
 			m_agents->addAgent(a);
 			EMField::instance()->addAntenna(a);
-			//}
-
 		}
 	}
 }

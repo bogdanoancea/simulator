@@ -60,22 +60,24 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
 	cout << "Generating objects started at " << ctime(&tt) << endl;
-	AntennaConfigParser antennaConfig(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
-	antennaConfig.parse();
-	PersonsConfigParser persConfig(configPersonsFileName, m_sp, m_agentsCollection);
-	persConfig.parse();
+	std::unique_ptr<ConfigParser> antennaConfig(new AntennaConfigParser(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory));
+	antennaConfig->parse();
+	std::unique_ptr<ConfigParser> persConfig( new PersonsConfigParser(configPersonsFileName, m_sp, m_agentsCollection));
+	persConfig->parse();
 
 	if (!probabilitiesFileName.empty()) {
-		ProbabilitiesConfigParser probabilitiesConfig(probabilitiesFileName);
-		probabilitiesConfig.parse();
+		std::unique_ptr<ConfigParser> probabilitiesConfig(new ProbabilitiesConfigParser(probabilitiesFileName));
+		probabilitiesConfig->parse();
 		map<const unsigned long, const string> probFileNames;
+		ProbabilitiesConfigParser* tmp = (ProbabilitiesConfigParser*)(probabilitiesConfig.get());
+		ProbabilitiesConfiguration cfg = tmp->getConfiguration();
 		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)
-			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + probabilitiesConfig.getProbsFileNamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
+			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + cfg.getProbsFilenamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
 
-		if (probabilitiesConfig.getPrior() == PriorType::UNIFORM) {
+		if (cfg.getPriorType() == PriorType::UNIFORM) {
 			auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 			setPostProbMethod(postProb);
-		} else if (probabilitiesConfig.getPrior() == PriorType::NETWORK) {
+		} else if (cfg.getPriorType() == PriorType::NETWORK) {
 			auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 			setPostProbMethod(postProb);
 		}
