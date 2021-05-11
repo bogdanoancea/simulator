@@ -27,7 +27,7 @@
 #define LOCATABLEAGENT_H_
 
 #include <agent/Agent.h>
-#include <string>
+
 
 using namespace geos;
 using namespace geos::geom;
