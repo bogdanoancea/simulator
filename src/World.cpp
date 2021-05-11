@@ -59,14 +59,16 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	m_sp = sConfigParser.getSimulationConfiguration();
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());
 	time_t tt = m_sp->getClock()->realTime();
+
 	cout << "Generating objects started at " << ctime(&tt) << endl;
-	std::unique_ptr<ConfigParser> antennaConfig(new AntennaConfigParser(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory));
+
+	std::unique_ptr<ConfigParser> antennaConfig = make_unique<AntennaConfigParser>(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
 	antennaConfig->parse();
-	std::unique_ptr<ConfigParser> persConfig( new PersonsConfigParser(configPersonsFileName, m_sp, m_agentsCollection));
+	std::unique_ptr<ConfigParser> persConfig = make_unique<PersonsConfigParser>(configPersonsFileName, m_sp, m_agentsCollection);
 	persConfig->parse();
 
 	if (!probabilitiesFileName.empty()) {
-		std::unique_ptr<ConfigParser> probabilitiesConfig(new ProbabilitiesConfigParser(probabilitiesFileName));
+		std::unique_ptr<ConfigParser> probabilitiesConfig = make_unique<ProbabilitiesConfigParser>(probabilitiesFileName);
 		probabilitiesConfig->parse();
 		map<const unsigned long, const string> probFileNames;
 		ProbabilitiesConfigParser* tmp = (ProbabilitiesConfigParser*)(probabilitiesConfig.get());
@@ -75,11 +77,9 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + cfg.getProbsFilenamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
 
 		if (cfg.getPriorType() == PriorType::UNIFORM) {
-			auto postProb = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
-			setPostProbMethod(postProb);
+			m_postMethod = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 		} else if (cfg.getPriorType() == PriorType::NETWORK) {
-			auto postProb = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
-			setPostProbMethod(postProb);
+			m_postMethod = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 		}
 	}
 
@@ -161,10 +161,6 @@ const string& World::getOutputDir() const {
 
 HoldableAgent::CONNECTION_TYPE World::getConnectionType() const {
 	return (m_sp->getConnType());
-}
-
-void World::setPostProbMethod(const std::shared_ptr<PostLocProb>& post) {
-	m_postMethod = post;
 }
 
 void World::computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data) {

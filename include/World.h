@@ -130,12 +130,6 @@ public:
 
 
 	/**
-	 * Sets the posterior location probability method
-	 * @param post a pointer to an object implementing the method to compute the posterior location probabilities.
-	 */
-	void setPostProbMethod(const std::shared_ptr<PostLocProb>& post);
-
-	/**
 	 * Returns the name of the output folder.
 	 * @return the name of the output folder.
 	 */
