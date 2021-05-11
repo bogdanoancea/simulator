@@ -18,6 +18,7 @@
  *
  *  Created on: Aug 13, 2020
  *      Author: Bogdan.Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef INCLUDE_LEVYFLIGHTDISPLACEMENT_H_

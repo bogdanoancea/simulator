@@ -112,7 +112,6 @@ void World::runSimulation() noexcept(false) {
 	personsFile << "t" << sep << "Person ID" << sep << "x" << sep << "y" << sep << "Tile ID" << sep << "Mobile Phone(s) ID" << endl;
 	//initial time
 	unsigned long t = m_sp->getClock()->getInitialTime();
-	//tt = m_sp->getClock()->realTime();
 	cout << "Simulation started at " << ctime(&tt) << endl;
 	cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 	auto itr = m_agentsCollection->getAgentListByType(typeid(Person).name());

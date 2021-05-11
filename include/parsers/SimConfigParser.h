@@ -14,10 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/> and 
  * <https://ec.europa.eu/info/european-union-public-licence_en>
  *
+ * A data simulator for mobile phone network events
+ *
  * SimConfig.h
  *
  *  Created on: Feb 17, 2021
- *      Author: Bogdan.Oancea
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef INCLUDE_SIMCONFIG_H_
