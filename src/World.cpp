@@ -68,17 +68,15 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 	persConfig->parse();
 
 	if (!probabilitiesFileName.empty()) {
-		std::unique_ptr<ConfigParser> probabilitiesConfig = make_unique<ProbabilitiesConfigParser>(probabilitiesFileName);
+		std::unique_ptr<ProbabilitiesConfigParser> probabilitiesConfig = make_unique<ProbabilitiesConfigParser>(probabilitiesFileName);
 		probabilitiesConfig->parse();
 		map<const unsigned long, const string> probFileNames;
-		ProbabilitiesConfigParser* tmp = (ProbabilitiesConfigParser*)(probabilitiesConfig.get());
-		ProbabilitiesConfiguration cfg = tmp->getConfiguration();
 		for (unsigned long i = 0; i < m_sp->getMnos().size(); i++)
-			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + cfg.getProbsFilenamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
+			probFileNames.insert(pair<const unsigned long, string>(m_sp->getMnos()[i]->getId(), m_sp->getOutputDir() + "/" + probabilitiesConfig->getConfiguration().getProbsFilenamePrefix() + "_" + m_sp->getMnos()[i]->getMNOName() + ".csv"));
 
-		if (cfg.getPriorType() == PriorType::UNIFORM) {
+		if (probabilitiesConfig->getConfiguration().getPriorType() == PriorType::UNIFORM) {
 			m_postMethod = std::make_shared<UnifPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
-		} else if (cfg.getPriorType() == PriorType::NETWORK) {
+		} else if (probabilitiesConfig->getConfiguration().getPriorType() == PriorType::NETWORK) {
 			m_postMethod = std::make_shared<NetPriorPostLocProb>(m_sp->getMap(), m_sp->getClock(), m_agentsCollection, probFileNames);
 		}
 	}

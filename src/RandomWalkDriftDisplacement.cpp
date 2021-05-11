@@ -17,7 +17,8 @@
  *
  * RandomWalkDriftDisplacement.cpp
  *  Created on: Nov 21, 2019
- *      Author: bogdanoancea
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <RandomWalkDriftDisplacement.h>

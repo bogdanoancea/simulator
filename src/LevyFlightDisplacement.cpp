@@ -17,7 +17,8 @@
  * LevyFlightDisplacement.cpp
  *
  *  Created on: Aug 13, 2020
- *      Author: Bogdan.Oancea
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <LevyFlightDisplacement.h>

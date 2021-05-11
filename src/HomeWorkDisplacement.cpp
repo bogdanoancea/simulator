@@ -18,7 +18,8 @@
  * HomeWorkDisplacement.cpp
  *
  *  Created on: Mar 22, 2021
- *      Author: bogdan
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #include <Clock.h>
