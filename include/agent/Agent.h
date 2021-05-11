@@ -31,6 +31,24 @@
 
 /**
  * This is an abstract class, the base class for all agents involved in a simulation.
+ * A simulation involves different types of agents implemented by specific subclasses:
+ * \li
+ * 	\item \code{Antenna}
+ * 	\item \code{MobilePhone}
+ * 	\item \code{MobileOperator}
+ * 	\item \code{Person}
+ * \li
+ * All agents are stored in a container: an \code{AgentsCollection} object.
+ * Some of the agents have a fixed location and they are derived from the \code{LocatableAgent}
+ * class that adds a location of the agent on the map. There are two type of \code{LocatableAgent}s:
+ * some of them have a fixed location on the map and during the simulation and this type of behavior is
+ * defined by the \code{ImmovableAgent} class and some of them can change their location during the
+ * simulation and they are subclasses of the \code{MovableAgent} class.
+ * \code{MovableAgent} objects can be either a \code{Person} instance or a \code{HoldableAgent}
+ * subclass which means a device: a \code{MobilePhone} object or a \code{Tablet} object.
+ * \code{LocatableAgent}, \code{ImmovableAgent}, \code{HoldableAgent} are abstract classes. The only classes
+ * that can be instantiated are \code{Antenna}, \code{MobilePhone}, \code{MobileOperator}, \code{Person}
+ * \code{Tablet}.
  */
 class Agent {
 public:
