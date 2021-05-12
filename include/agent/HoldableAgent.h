@@ -33,33 +33,28 @@
 #include <vector>
 class Antenna;
 /**
- * This is the superclass for all agents that represent a device that can by held by a person.
+ * This is the superclass for all agents that represent a device (\code{MobilePhone} or \code{Tablet}) that can by held by a person
+ * and can interact with the network. The interaction is triggered every time the location of this agent is set.
  */
 class HoldableAgent: public MovableAgent {
 public:
 	/**
-	 * Constructor of the class. It builds an HoldableAgent object with the parameters provided by user.
-	 * @param m a pointer to a Map object used for this simulation.
+	 * Constructor of the class. It builds a \code{HoldableAgent} object with the parameters provided by user.
+	 * @param m a pointer to a \code{Map} object used for this simulation.
 	 * @param id the id of the object.
 	 * @param initPosition the initial location on the map of the object.
-	 * @param holder a pointer to an Agent that owns this device.
-	 * @param clock a pointer to a Clock object used by this simulation.
+	 * @param holder a pointer to an \code{Agent} object that owns (and carries) this device.
+	 * @param clock a pointer to a \code{Clock} object used by this simulation.
 	 */
-	explicit HoldableAgent(const Map* m, const unsigned long id, Point* initPosition, Agent* holder,
-			const Clock* clock);
+	explicit HoldableAgent(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock);
+
 
 	/**
-	 * Copy constructor.
-	 * @param h another object of the same type.
-	 */
-	HoldableAgent(const HoldableAgent &h);
-
-	/**
-	 * an enumeration of the modes used by the device to connect to an antenna:
-	 * USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device.
-	 * USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device.
-	 * USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device.
-	 * UNKNOWN - this should by an error.
+	 * An enumeration of the modes used by the device to connect to an antenna:
+	 * \li USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device.
+	 * \li USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device.
+	 * \li USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device.
+	 * \li UNKNOWN - this should by an error.
 	 */
 	enum CONNECTION_TYPE {
 		USING_POWER, USING_SIGNAL_QUALITY, USING_SIGNAL_STRENGTH, UNKNOWN
