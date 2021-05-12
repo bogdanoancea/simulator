@@ -108,12 +108,14 @@ public:
 	const string toString(bool detailed = false) const override;
 
 	/**
-	 * Builds a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString()} method. Each value in the
-	 * \code{string} returned by \code{toString} method has a column name in the \code{string} object returned by this function.  This is a static method since
+	 * Builds a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString(detailed)} method. Each value in the
+	 * \code{string} returned by \code{toString(detailed)} method has a column name in the \code{string} object returned by this function.  This is a static method since
 	 * the header should be the same for all antennas.
-	 * @return a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString()} method
+	 * @param detailed if false, the header is build for the string representation returned by \code{toString(false)}, otherwise
+	 * the header corresponds to the string returned by \code{toString(true)}.
+	 * @return a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString(detailed)} method
 	 */
-	static const string getHeader();
+	static const string getHeader(bool detailed = false);
 
 	/**
 	 * Tries to register a mobile device as being connected to this antenna. An \code{Antenna} object maintains an internal list keeping
@@ -215,39 +217,29 @@ public:
 
 
 	/**
-	 * Writes the signal strength/dominance in a .csv file. These values are computed in the center of each tile covering the map.
+	 * Writes the values of the signal strength/dominance in a .csv file.
+	 * These values are computed in the center of each tile covering the map. The name of the file is obtained
+	 * from the \code{MobileOperator} object that owns this antenna, by calling \code{getSignalFile()}. The strength or dominance
+	 * is chosen according to the handover mechanism specified in the simulation configuration file.
 	 */
 	void dumpSignal() const;
 
-	NetworkType getNetworkType();
+	/**
+	 * Builds a \code{string} object representing the header of the events file. Since the structure of the events files is the same
+	 * for all \{Antenna} objects, this is a static method. The fields included in the header depend of the type of events used in
+	 * a simulation.
+	 * @param evType the event type, which can be \code{EventType::CELLID} or \code{EventType::CELLIDTA}.
+	 * @return a \code{string} object with the header of the events file.
+	 */
 	static string getEventHeader(EventType evType);
-	unsigned long getMaxConnections() const;
-	double getPower() const;
-	double getAttenuationFactor() const;
-	string getTypeName() const;
-	double getSmin() const;
-	double getQmin() const;
-	double getSmid() const;
-	double getSSteep() const;
-	double getTilt() const;
-	double getAzimDBBack() const;
-	double getElevDBBack() const;
-	double getBeamH() const;
-	double getBeamV() const;
-	double getDirection() const;
-	double getHeight() const;
+
+
 
 private:
-	/**
-		 * Connects a new mobile device and outputs an event EventType::ATTACH_DEVICE in the output file. Internally,
-		 * the antenna keeps a vector with all connected mobile devices.
-		 * devices. When a new mobile device is connected it is added to this vector.
-		 * @param device a pointer to the object that represents the mobile device connected to this antenna.
-		 */
+
 	void attachDevice(HoldableAgent *device);
 	bool alreadyRegistered(HoldableAgent *ag);
-	void registerEvent(HoldableAgent *ag, const EventCode event,
-			const bool verbose);
+	//void registerEvent(HoldableAgent *ag, const EventCode event, const bool verbose);
 	void registerEvent(Event *ev, Point *evtLocation);
 	unsigned long getNumActiveConections();
 	double S0() const;
@@ -298,6 +290,21 @@ private:
 	double computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const;
 
 	EventConfig* buildEventConfig(EventType evType, EventCode code,	HoldableAgent *device);
+	unsigned long getMaxConnections() const;
+	double getPower() const;
+	double getAttenuationFactor() const;
+	string getTypeName() const;
+	double getSmin() const;
+	double getQmin() const;
+	double getSmid() const;
+	double getSSteep() const;
+	double getTilt() const;
+	double getAzimDBBack() const;
+	double getElevDBBack() const;
+	double getBeamH() const;
+	double getBeamV() const;
+	double getDirection() const;
+	double getHeight() const;
 
 	Geometry *m_cell;
 	vector<HoldableAgent*> m_devices;

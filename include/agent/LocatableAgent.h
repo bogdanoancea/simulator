@@ -75,7 +75,7 @@ public:
 	 * Builds a human readable string representation of the location
 	 * @return a human readable string representation of the location
 	 */
-	const string dumpLocation();
+	const string dumpLocation() const;
 
 private:
 

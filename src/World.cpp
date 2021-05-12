@@ -209,15 +209,10 @@ void World::writeSignalAndCells(ostream& antennaFile) {
 		mo->writeSignalFileHeader();
 	}
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-	antennaFile << "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "mno_name" << sep << "maxconnection"<< sep<< "power" <<sep <<"attentuationfactor"<< sep << "type" << sep << "Smin" << sep << "Qmin" << sep << "Smid" << sep << "SSteep" << sep << "tilt" <<sep <<  "azim_dB_back" << sep << "elev_dB_back" << sep << "beam_h" << sep << "beam_v" << sep << "direction" << sep << "z" << sep <<"Tile ID" << endl;
+	antennaFile << (static_cast<Antenna*>(itr2.first->second))->getHeader(true);//"t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "mno_name" << sep << "maxconnection"<< sep<< "power" <<sep <<"attentuationfactor"<< sep << "type" << sep << "Smin" << sep << "Qmin" << sep << "Smid" << sep << "SSteep" << sep << "tilt" <<sep <<  "azim_dB_back" << sep << "elev_dB_back" << sep << "beam_h" << sep << "beam_v" << sep << "direction" << sep << "z" << sep <<"Tile ID" << endl;
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
-		if(a->getType() == AntennaType::DIRECTIONAL) {
-			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << a->getTilt() << sep << a->getAzimDBBack() << sep << a->getElevDBBack() << sep << a->getBeamH() << sep << a->getBeamV() << sep << a->getDirection() << sep << a->getHeight() << sep << m_sp->getMap()->getTileNo(a->getLocation()) << endl;
-		}
-		else {
-			antennaFile << a->dumpLocation() << sep << a->getMNO()->getId() << sep << a->getMNO()->getMNOName() << sep << a->getMaxConnections() << sep << a->getPower() << sep << a->getAttenuationFactor() << sep << a->getTypeName() << sep << a->getSmin() << sep << a->getQmin() << sep << a->getSmid() << sep << a->getSSteep() << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << a->getHeight() << sep << m_sp->getMap()->getTileNo(a->getLocation()) << endl;
-		}
+		antennaFile << a->toString(true);
 		ofstream& f = a->getMNO()->getAntennaCellsFile();
 		f << a->getId() << sep << a->dumpCell();
 		a->dumpSignal();

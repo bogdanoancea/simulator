@@ -59,7 +59,7 @@ const string LocatableAgent::toString(bool detailed) const {
 
 }
 
-const string LocatableAgent::dumpLocation() {
+const string LocatableAgent::dumpLocation() const {
 	ostringstream ss;
 	char sep = Constants::sep;
 	if (getClock() != nullptr)

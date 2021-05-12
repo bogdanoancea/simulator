@@ -97,7 +97,17 @@ Antenna::~Antenna() {
 
 const string Antenna::toString(bool detailed) const {
 	ostringstream result;
-	result << ImmovableAgent::toString() << left << setw(15) << m_antennaConfig.getPower() << setw(25) << m_antennaConfig.getMaxConnections() << setw(15) << m_antennaConfig.getPle() << setw(15)
+	char sep = Constants::sep;
+	if(detailed)
+		if(getType() == AntennaType::DIRECTIONAL) {
+			result << dumpLocation() << sep << getMNO()->getId() << sep << getMNO()->getMNOName() << sep << getMaxConnections() << sep << getPower() << sep << getAttenuationFactor() << sep << getTypeName() << sep << getSmin() << sep << getQmin() << sep << getSmid() << sep << getSSteep() << sep << getTilt() << sep << getAzimDBBack() << sep << getElevDBBack() << sep << getBeamH() << sep << getBeamV() << sep << getDirection() << sep << getHeight() << sep << m_simConfig->getMap()->getTileNo(getLocation()) << endl;
+		}
+		else {
+			result << dumpLocation() << sep << getMNO()->getId() << sep << getMNO()->getMNOName() << sep << getMaxConnections() << sep << getPower() << sep << getAttenuationFactor() << sep << getTypeName() << sep << getSmin() << sep << getQmin() << sep << getSmid() << sep << getSSteep() << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << "" << sep << getHeight() << sep << m_simConfig->getMap()->getTileNo(getLocation()) << endl;
+		}
+	else
+
+		result << ImmovableAgent::toString() << left << setw(15) << m_antennaConfig.getPower() << setw(25) << m_antennaConfig.getMaxConnections() << setw(15) << m_antennaConfig.getPle() << setw(15)
 			<< m_antennaConfig.getMno()->getId();
 	return (result.str());
 }
@@ -174,43 +184,43 @@ unsigned long Antenna::getNumActiveConections() {
 	return (m_devices.size());
 }
 
-void Antenna::registerEvent(HoldableAgent * ag, const EventCode event, const bool verbose) {
-	char sep = Constants::sep;
-	Point* loc = ag->getLocation();
-	if (verbose) {
-		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
-				<< ag->getId() << sep;
-		switch (event) {
-			case EventCode::ATTACH_DEVICE:
-				cout << " Attached ";
-				break;
-			case EventCode::DETACH_DEVICE:
-				cout << " Detached ";
-				break;
-			case EventCode::ALREADY_ATTACHED_DEVICE:
-				cout << " In range, already attached ";
-				break;
-			case EventCode::IN_RANGE_NOT_ATTACHED_DEVICE:
-				cout << " In range, not attached ";
-		}
-
-		cout << sep << " Location: " << loc->getX() << sep << loc->getY() << ag->getMap()->getTileNo(loc);
-		cout << endl;
-	}
-	else {
-		stringstream ss;
-		if (getMap()->hasGrid())
-			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
-					<< loc->getX() << sep << loc->getY() << sep << getMap()->getTileNo(loc) << endl;
-
-		if (m_file.is_open()) {
-			m_file << ss.str();
-			m_file.flush();
-		}
-		else
-			cout << ss.str();
-	}
-}
+//void Antenna::registerEvent(HoldableAgent * ag, const EventCode event, const bool verbose) {
+//	char sep = Constants::sep;
+//	Point* loc = ag->getLocation();
+//	if (verbose) {
+//		cout << " Time: " << getClock()->getCurrentTime() << sep << " Antenna id: " << getId() << sep << " Event registered for device: "
+//				<< ag->getId() << sep;
+//		switch (event) {
+//			case EventCode::ATTACH_DEVICE:
+//				cout << " Attached ";
+//				break;
+//			case EventCode::DETACH_DEVICE:
+//				cout << " Detached ";
+//				break;
+//			case EventCode::ALREADY_ATTACHED_DEVICE:
+//				cout << " In range, already attached ";
+//				break;
+//			case EventCode::IN_RANGE_NOT_ATTACHED_DEVICE:
+//				cout << " In range, not attached ";
+//		}
+//
+//		cout << sep << " Location: " << loc->getX() << sep << loc->getY() << ag->getMap()->getTileNo(loc);
+//		cout << endl;
+//	}
+//	else {
+//		stringstream ss;
+//		if (getMap()->hasGrid())
+//			ss << getClock()->getCurrentTime() << sep << getId() << sep << static_cast<int>(event) << sep << ag->getId() << sep << fixed
+//					<< loc->getX() << sep << loc->getY() << sep << getMap()->getTileNo(loc) << endl;
+//
+//		if (m_file.is_open()) {
+//			m_file << ss.str();
+//			m_file.flush();
+//		}
+//		else
+//			cout << ss.str();
+//	}
+//}
 
 void Antenna::registerEvent(Event * ev, Point* evtLocation) {
 //	cout << ev->toString() << endl;
@@ -621,8 +631,13 @@ void Antenna::setCell(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
 	m_cell = getCoverageArea();
 }
 
-const string Antenna::getHeader() {
+const string Antenna::getHeader(bool detailed) {
 	ostringstream result;
+	char sep = Constants::sep;
+	if(detailed)
+		result <<  "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "mno_name" << sep << "maxconnection"<< sep<< "power" <<sep <<"attentuationfactor"<< sep << "type" << sep << "Smin" << sep << "Qmin" << sep << "Smid" << sep << "SSteep" << sep << "tilt" <<sep <<  "azim_dB_back" << sep << "elev_dB_back" << sep << "beam_h" << sep << "beam_v" << sep << "direction" << sep << "z" << sep <<"Tile ID" << endl;
+	else
+
 	result << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)
 			<< "Max Connections" << setw(20) << "Attenuation Factor" << setw(15) << "MNO ID" << endl;
 	return (result.str());
@@ -638,10 +653,6 @@ void Antenna::dumpSignal() const {
 		qualityFile << computeSignalMeasure(m_simConfig->getConnType(), tileCenters[i]) << sep;
 	}
 	qualityFile << computeSignalMeasure(m_simConfig->getConnType(), tileCenters[noTiles - 1]) << endl;
-}
-
-NetworkType Antenna::getNetworkType() {
-	return m_antennaConfig.getNetworkType();
 }
 
 string Antenna::getEventHeader(EventType evType) {
