@@ -1,4 +1,4 @@
-.TH "InputParser" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "InputParser" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -36,7 +36,7 @@ Utility class used to parse the command line and extract the parameters and thei
 .SS "InputParser::InputParser (int & argc, char ** argv)"
 Constructor of the class\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIargc\fP the number of the arguments from the command line\&. 
 .br
@@ -49,12 +49,12 @@ Constructor of the class\&.
 .SS "bool InputParser::cmdOptionExists (const string & option) const"
 Checks if an option was passed as a command line parameter\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIoption\fP the option that we are checking\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 true if the option is present in the command line, false otherwise\&. 
 .RE
@@ -63,12 +63,12 @@ true if the option is present in the command line, false otherwise\&.
 .SS "const string& InputParser::getCmdOption (const string & option) const"
 Returns the value of an option passed as a command line parameter\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIoption\fP an option from the command line\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of the option passed as a command line parameter\&. 
 .RE

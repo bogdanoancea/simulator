@@ -72,7 +72,7 @@ void HoldableAgent::setLocation(Point* location) {
 	tryConnect();
 }
 
-const string HoldableAgent::toString() const {
+const string HoldableAgent::toString(bool detailed) const {
 	ostringstream result;
 	if (m_holder != nullptr)
 		result << MovableAgent::toString() << left << setw(15) << m_holder->getId();

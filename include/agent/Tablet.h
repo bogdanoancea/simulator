@@ -55,7 +55,7 @@ public:
 	 * Builds a human readable representation of this class.
 	 * @return a human readable representation of this class.
 	 */
-	const string toString() const override;
+	const string toString(bool detailed = false) const override;
 
 	/**
 	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the

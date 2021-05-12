@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c_3c',['operator&lt;&lt;',['../class_row.html#a8962fdc6373687757234a811e803a1da',1,'Row::operator&lt;&lt;()'],['../class_row.html#ad4e8b6c4b0238a50bde8e99ec8a0dcb0',1,'Row::operator&lt;&lt;()']]]
+  ['eventfactory_1389',['EventFactory',['../class_cell_i_d_event.html#a15a654df414d419094eb2167ae16c7dd',1,'CellIDEvent::EventFactory()'],['../class_cell_i_d_t_a_event.html#a15a654df414d419094eb2167ae16c7dd',1,'CellIDTAEvent::EventFactory()']]]
 ];

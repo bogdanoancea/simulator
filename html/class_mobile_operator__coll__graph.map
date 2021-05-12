@@ -1,6 +1,8 @@
 <map id="MobileOperator" name="MobileOperator">
-<area shape="rect" id="node2" href="$class_agent.html" title="{Agent\n||+ Agent()\l+ Agent()\l+ ~Agent()\l+ operator==()\l+ getMap()\l+ getClock()\l+ getId()\l+ toString()\l}" alt="" coords="250,1071,355,1251"/>
-<area shape="rect" id="node3" href="$class_map.html" title="{Map\n||+ ~Map()\l+ getBoundary()\l+ getEnvelope()\l+ getGlobalFactory()\l+ addGrid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ getNoTiles()\l+ getTileCenter()\l+ getTileNo()\l+ getTileNo()\l+ dumpGrid()\l+ getTileCenters()\l+ hasGrid()\l# Map()\l}" alt="" coords="232,652,373,993"/>
-<area shape="rect" id="node5" href="$class_grid.html" title="{Grid\n||+ Grid()\l+ ~Grid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ getNoTiles()\l+ getTileCenter()\l+ getTileNo()\l+ getTileNo()\l+ dumpGrid()\l+ getTileCenters()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; toString()\l&#45; computeTileCenters()\l}" alt="" coords="238,189,391,545"/>
-<area shape="rect" id="node9" href="$class_clock.html" title="{Clock\n||+ Clock()\l+ Clock()\l+ ~Clock()\l+ tick()\l+ getCurrentTime()\l+ setCurrentTime()\l+ getIncrement()\l+ setIncrement()\l+ getInitialTime()\l+ setInitialTime()\l+ realTime()\l+ getFinalTime()\l+ setFinalTime()\l+ reset()\l}" alt="" coords="472,689,603,957"/>
+<area shape="rect" id="node1" title=" " alt="" coords="190,160,357,369"/>
+<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="5,5,61,83"/>
+<area shape="rect" id="node3" title=" " alt="" coords="86,5,146,83"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,5,309,83"/>
+<area shape="rect" id="node5" title=" " alt="" coords="420,5,511,83"/>
+<area shape="rect" id="node6" title=" " alt="" coords="535,5,638,83"/>
 </map>

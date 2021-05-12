@@ -60,7 +60,7 @@ public:
 	 * Builds and returns a human readable string representation of the agent.
 	 * @return a human readable string representation of the agent.
 	 */
-	const string toString() const override;
+	const string toString(bool detailed = false) const override;
 
 	/**
 	 * A pure virtual method used to move the agent to a new location on the map. All the classes that inherit MovableAgent implement

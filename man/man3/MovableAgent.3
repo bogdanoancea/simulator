@@ -1,4 +1,4 @@
-.TH "MovableAgent" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "MovableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -49,7 +49,7 @@ This class represents an \fBAgent\fP that can move inside the map\&. This is an 
 .SS "MovableAgent::MovableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed)\fC [explicit]\fP"
 Constructor of the class\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP a pointer to a \fBMap\fP object used by the simulation\&. 
 .br
@@ -70,7 +70,7 @@ The default destructor\&.
 .SS "double MovableAgent::getSpeed () const"
 Returns the speed of this agent\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the speed of this agent\&. 
 .RE
@@ -79,7 +79,7 @@ the speed of this agent\&.
 .SS "virtual Point* MovableAgent::move ()\fC [pure virtual]\fP"
 A pure virtual method used to move the agent to a new location on the map\&. All the classes that inherit \fBMovableAgent\fP implement this function\&. The actual implementation is based on a Strategy design pattern\&. \fBDisplace\fP defines the displacement strategy interface and the classes that inherits it implements the interface defining concrete displacement methods\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the final location after displacement\&. 
 .RE
@@ -90,25 +90,21 @@ Implemented in \fBPerson\fP, \fBMobilePhone\fP, and \fBTablet\fP\&.
 .SS "void MovableAgent::setSpeed (double speed)"
 Sets the speed of this agent\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIspeed\fP the speed of this agent\&. 
 .RE
 .PP
 
-.SS "const string MovableAgent::toString () const\fC [override]\fP, \fC [virtual]\fP"
+.SS "const string MovableAgent::toString () const\fC [override]\fP"
 Builds and returns a human readable string representation of the agent\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a human readable string representation of the agent\&. 
 .RE
 .PP
 
-.PP
-Reimplemented from \fBLocatableAgent\fP\&.
-.PP
-Reimplemented in \fBPerson\fP, and \fBTablet\fP\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "double MovableAgent::m_speed\fC [private]\fP"

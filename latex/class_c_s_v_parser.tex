@@ -1,5 +1,5 @@
-\hypertarget{class_c_s_v_parser}{}\section{C\+S\+V\+Parser Class Reference}
-\label{class_c_s_v_parser}\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}}
+\hypertarget{class_c_s_v_parser}{}\doxysection{C\+S\+V\+Parser Class Reference}
+\label{class_c_s_v_parser}\index{CSVParser@{CSVParser}}
 
 
 {\ttfamily \#include $<$C\+S\+Vparser.\+hpp$>$}
@@ -13,68 +13,68 @@ Collaboration diagram for C\+S\+V\+Parser\+:\nopagebreak
 \includegraphics[width=350pt]{class_c_s_v_parser__coll__graph}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_c_s_v_parser_aba4d9ee88285f39766e7cc810f46d9d9}{C\+S\+V\+Parser} (const string \&data, const \hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type} \&type=\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6a99e2aefa5a03705fd10b8b72e081349f}{e\+F\+I\+LE}, char sep=\textquotesingle{},\textquotesingle{}, bool has\+Header=true)
+\mbox{\hyperlink{class_c_s_v_parser_aba4d9ee88285f39766e7cc810f46d9d9}{C\+S\+V\+Parser}} (const string \&data, const \mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type}} \&type=\mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6a99e2aefa5a03705fd10b8b72e081349f}{e\+F\+I\+LE}}, char sep=\textquotesingle{},\textquotesingle{}, bool has\+Header=true)
 \item 
-\hyperlink{class_c_s_v_parser_a43f06e2e24a260b80e83821c70f91f56}{$\sim$\+C\+S\+V\+Parser} (void)
+\mbox{\hyperlink{class_c_s_v_parser_a43f06e2e24a260b80e83821c70f91f56}{$\sim$\+C\+S\+V\+Parser}} (void)
 \item 
-\hyperlink{class_row}{Row} \& \hyperlink{class_c_s_v_parser_a93789f318f0abd972860c507b89d4587}{get\+Row} (unsigned int row) const
+\mbox{\hyperlink{class_row}{Row}} \& \mbox{\hyperlink{class_c_s_v_parser_a93789f318f0abd972860c507b89d4587}{get\+Row}} (unsigned int row) const
 \item 
-unsigned int \hyperlink{class_c_s_v_parser_ab7596d8458539a585908d41638672f4c}{row\+Count} (void) const
+unsigned int \mbox{\hyperlink{class_c_s_v_parser_ab7596d8458539a585908d41638672f4c}{row\+Count}} (void) const
 \item 
-unsigned int \hyperlink{class_c_s_v_parser_a1e30268d574a0c1911de002a893d7a7e}{column\+Count} (void) const
+unsigned int \mbox{\hyperlink{class_c_s_v_parser_a1e30268d574a0c1911de002a893d7a7e}{column\+Count}} (void) const
 \item 
-vector$<$ string $>$ \hyperlink{class_c_s_v_parser_a95b7d4b188facfec7ebab65413f0130b}{get\+Header} (void) const
+vector$<$ string $>$ \mbox{\hyperlink{class_c_s_v_parser_a95b7d4b188facfec7ebab65413f0130b}{get\+Header}} (void) const
 \item 
-const string \hyperlink{class_c_s_v_parser_ad58dc7b467216ecb75f3bea681af3051}{get\+Header\+Element} (unsigned int pos) const
+const string \mbox{\hyperlink{class_c_s_v_parser_ad58dc7b467216ecb75f3bea681af3051}{get\+Header\+Element}} (unsigned int pos) const
 \item 
-const string \& \hyperlink{class_c_s_v_parser_ad9a559d1c8de2a7d88a18170c9e11b80}{get\+File\+Name} (void) const
+const string \& \mbox{\hyperlink{class_c_s_v_parser_ad9a559d1c8de2a7d88a18170c9e11b80}{get\+File\+Name}} (void) const
 \item 
-bool \hyperlink{class_c_s_v_parser_a1bc14d9edecb802c19ad25bd5cab23b3}{delete\+Row} (unsigned int row)
+bool \mbox{\hyperlink{class_c_s_v_parser_a1bc14d9edecb802c19ad25bd5cab23b3}{delete\+Row}} (unsigned int row)
 \item 
-bool \hyperlink{class_c_s_v_parser_a7e742c5123efa0a49d576776f8832ddb}{add\+Row} (unsigned int pos, const vector$<$ string $>$ \&r)
+bool \mbox{\hyperlink{class_c_s_v_parser_a7e742c5123efa0a49d576776f8832ddb}{add\+Row}} (unsigned int pos, const vector$<$ string $>$ \&r)
 \item 
-void \hyperlink{class_c_s_v_parser_aa0b2494094eb2ce657787ae830b3cc52}{sync} (void) const
+void \mbox{\hyperlink{class_c_s_v_parser_aa0b2494094eb2ce657787ae830b3cc52}{sync}} (void) const
 \item 
-\hyperlink{class_row}{Row} \& \hyperlink{class_c_s_v_parser_a7d3d0c3f994b825aaba25625f0b01612}{operator\mbox{[}$\,$\mbox{]}} (unsigned int row) const
+\mbox{\hyperlink{class_row}{Row}} \& \mbox{\hyperlink{class_c_s_v_parser_a7d3d0c3f994b825aaba25625f0b01612}{operator\mbox{[}$\,$\mbox{]}}} (unsigned int row) const
 \end{DoxyCompactItemize}
-\subsection*{Protected Member Functions}
+\doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_c_s_v_parser_a8b556e47ecfea188d4c6c630616f5667}{parse\+Header} (void)
+void \mbox{\hyperlink{class_c_s_v_parser_a8b556e47ecfea188d4c6c630616f5667}{parse\+Header}} (void)
 \item 
-void \hyperlink{class_c_s_v_parser_aa403f7d8238903aa0e046a9a091ab968}{parse\+Content} (void)
+void \mbox{\hyperlink{class_c_s_v_parser_aa403f7d8238903aa0e046a9a091ab968}{parse\+Content}} (void)
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{class_c_s_v_parser_a1db17c9285f8fdcaed2499747582e4a9}{\+\_\+file}
+string \mbox{\hyperlink{class_c_s_v_parser_a1db17c9285f8fdcaed2499747582e4a9}{\+\_\+file}}
 \item 
-const \hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type} \hyperlink{class_c_s_v_parser_a27cff8e618160b2685f1e05b8a7da9cf}{\+\_\+type}
+const \mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type}} \mbox{\hyperlink{class_c_s_v_parser_a27cff8e618160b2685f1e05b8a7da9cf}{\+\_\+type}}
 \item 
-const char \hyperlink{class_c_s_v_parser_a9d778da8bd668d2393d4402ce7eae9cd}{\+\_\+sep}
+const char \mbox{\hyperlink{class_c_s_v_parser_a9d778da8bd668d2393d4402ce7eae9cd}{\+\_\+sep}}
 \item 
-vector$<$ string $>$ \hyperlink{class_c_s_v_parser_afa0c154dd897b5ddcbf8364a9df28eeb}{\+\_\+original\+File}
+vector$<$ string $>$ \mbox{\hyperlink{class_c_s_v_parser_afa0c154dd897b5ddcbf8364a9df28eeb}{\+\_\+original\+File}}
 \item 
-vector$<$ string $>$ \hyperlink{class_c_s_v_parser_a9b35b0a143febb8fb388769417fa0777}{\+\_\+header}
+vector$<$ string $>$ \mbox{\hyperlink{class_c_s_v_parser_a9b35b0a143febb8fb388769417fa0777}{\+\_\+header}}
 \item 
-vector$<$ \hyperlink{class_row}{Row} $\ast$ $>$ \hyperlink{class_c_s_v_parser_adff6872f7e93cbc10797bac6173671d4}{\+\_\+content}
+vector$<$ \mbox{\hyperlink{class_row}{Row}} $\ast$ $>$ \mbox{\hyperlink{class_c_s_v_parser_adff6872f7e93cbc10797bac6173671d4}{\+\_\+content}}
 \item 
-bool \hyperlink{class_c_s_v_parser_a4dcb7bb113b65d0abf816dd899395545}{m\+\_\+header}
+bool \mbox{\hyperlink{class_c_s_v_parser_a4dcb7bb113b65d0abf816dd899395545}{m\+\_\+header}}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 This class is used to read and parse a csv file or to write some values as a csv file. 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_c_s_v_parser_aba4d9ee88285f39766e7cc810f46d9d9}\label{class_c_s_v_parser_aba4d9ee88285f39766e7cc810f46d9d9}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{C\+S\+V\+Parser()}{CSVParser()}}
-{\footnotesize\ttfamily C\+S\+V\+Parser\+::\+C\+S\+V\+Parser (\begin{DoxyParamCaption}\item[{const string \&}]{data,  }\item[{const \hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type} \&}]{type = {\ttfamily \hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6a99e2aefa5a03705fd10b8b72e081349f}{e\+F\+I\+LE}},  }\item[{char}]{sep = {\ttfamily \textquotesingle{},\textquotesingle{}},  }\item[{bool}]{has\+Header = {\ttfamily true} }\end{DoxyParamCaption})}
+\index{CSVParser@{CSVParser}!CSVParser@{CSVParser}}
+\index{CSVParser@{CSVParser}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{CSVParser()}{CSVParser()}}
+{\footnotesize\ttfamily C\+S\+V\+Parser\+::\+C\+S\+V\+Parser (\begin{DoxyParamCaption}\item[{const string \&}]{data,  }\item[{const \mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type}} \&}]{type = {\ttfamily \mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6a99e2aefa5a03705fd10b8b72e081349f}{e\+F\+I\+LE}}},  }\item[{char}]{sep = {\ttfamily \textquotesingle{},\textquotesingle{}},  }\item[{bool}]{has\+Header = {\ttfamily true} }\end{DoxyParamCaption})}
 
 Constructor of the class. It need the name of the csv file, the file type, the separator and a boolean that indicates if the file has header or not. 
 \begin{DoxyParams}{Parameters}
@@ -88,43 +88,43 @@ Constructor of the class. It need the name of the csv file, the file type, the s
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_c_s_v_parser_a43f06e2e24a260b80e83821c70f91f56}\label{class_c_s_v_parser_a43f06e2e24a260b80e83821c70f91f56}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!````~C\+S\+V\+Parser@{$\sim$\+C\+S\+V\+Parser}}
-\index{````~C\+S\+V\+Parser@{$\sim$\+C\+S\+V\+Parser}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{$\sim$\+C\+S\+V\+Parser()}{~CSVParser()}}
+\index{CSVParser@{CSVParser}!````~CSVParser@{$\sim$CSVParser}}
+\index{````~CSVParser@{$\sim$CSVParser}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{$\sim$CSVParser()}{~CSVParser()}}
 {\footnotesize\ttfamily C\+S\+V\+Parser\+::$\sim$\+C\+S\+V\+Parser (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 Destructor 
 
-\subsection{Member Function Documentation}
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_c_s_v_parser_a7e742c5123efa0a49d576776f8832ddb}\label{class_c_s_v_parser_a7e742c5123efa0a49d576776f8832ddb}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!add\+Row@{add\+Row}}
-\index{add\+Row@{add\+Row}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{add\+Row()}{addRow()}}
+\index{CSVParser@{CSVParser}!addRow@{addRow}}
+\index{addRow@{addRow}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{addRow()}{addRow()}}
 {\footnotesize\ttfamily bool C\+S\+V\+Parser\+::add\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{pos,  }\item[{const vector$<$ string $>$ \&}]{r }\end{DoxyParamCaption})}
 
-Inserts a \hyperlink{class_row}{Row} object at a given position 
+Inserts a \mbox{\hyperlink{class_row}{Row}} object at a given position 
 \begin{DoxyParams}{Parameters}
-{\em pos} & the position where we want to insert the \hyperlink{class_row}{Row} object \\
+{\em pos} & the position where we want to insert the \mbox{\hyperlink{class_row}{Row}} object \\
 \hline
-{\em r} & a vector containing the values in the \hyperlink{class_row}{Row}. \\
+{\em r} & a vector containing the values in the \mbox{\hyperlink{class_row}{Row}}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 true if the insertion is successful, false otherwise (i.\+e. the pos parameter is outside the limits of the container that stores the Rows of the csv file. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_a1e30268d574a0c1911de002a893d7a7e}\label{class_c_s_v_parser_a1e30268d574a0c1911de002a893d7a7e}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!column\+Count@{column\+Count}}
-\index{column\+Count@{column\+Count}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{column\+Count()}{columnCount()}}
+\index{CSVParser@{CSVParser}!columnCount@{columnCount}}
+\index{columnCount@{columnCount}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{columnCount()}{columnCount()}}
 {\footnotesize\ttfamily unsigned int C\+S\+V\+Parser\+::column\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Returns the number of the columns of the csv file. \begin{DoxyReturn}{Returns}
 the number of the columns of the csv file. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_a1bc14d9edecb802c19ad25bd5cab23b3}\label{class_c_s_v_parser_a1bc14d9edecb802c19ad25bd5cab23b3}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!delete\+Row@{delete\+Row}}
-\index{delete\+Row@{delete\+Row}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{delete\+Row()}{deleteRow()}}
+\index{CSVParser@{CSVParser}!deleteRow@{deleteRow}}
+\index{deleteRow@{deleteRow}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{deleteRow()}{deleteRow()}}
 {\footnotesize\ttfamily bool C\+S\+V\+Parser\+::delete\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption})}
 
 Removes a row specified by its number 
@@ -136,27 +136,27 @@ Removes a row specified by its number
 true if the removal succeeded, false otherwise 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_ad9a559d1c8de2a7d88a18170c9e11b80}\label{class_c_s_v_parser_ad9a559d1c8de2a7d88a18170c9e11b80}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!get\+File\+Name@{get\+File\+Name}}
-\index{get\+File\+Name@{get\+File\+Name}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{get\+File\+Name()}{getFileName()}}
+\index{CSVParser@{CSVParser}!getFileName@{getFileName}}
+\index{getFileName@{getFileName}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{getFileName()}{getFileName()}}
 {\footnotesize\ttfamily const string\& C\+S\+V\+Parser\+::get\+File\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Returns the name of the csv file \begin{DoxyReturn}{Returns}
 the name of the csv file 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_a95b7d4b188facfec7ebab65413f0130b}\label{class_c_s_v_parser_a95b7d4b188facfec7ebab65413f0130b}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!get\+Header@{get\+Header}}
-\index{get\+Header@{get\+Header}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{get\+Header()}{getHeader()}}
+\index{CSVParser@{CSVParser}!getHeader@{getHeader}}
+\index{getHeader@{getHeader}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{getHeader()}{getHeader()}}
 {\footnotesize\ttfamily vector$<$string$>$ C\+S\+V\+Parser\+::get\+Header (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Returns a vector containing the names of the columns as they are specified in the header line of the csv file. \begin{DoxyReturn}{Returns}
 a vector containing the names of the columns as they are specified in the header line of the csv file. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_ad58dc7b467216ecb75f3bea681af3051}\label{class_c_s_v_parser_ad58dc7b467216ecb75f3bea681af3051}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!get\+Header\+Element@{get\+Header\+Element}}
-\index{get\+Header\+Element@{get\+Header\+Element}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{get\+Header\+Element()}{getHeaderElement()}}
+\index{CSVParser@{CSVParser}!getHeaderElement@{getHeaderElement}}
+\index{getHeaderElement@{getHeaderElement}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{getHeaderElement()}{getHeaderElement()}}
 {\footnotesize\ttfamily const string C\+S\+V\+Parser\+::get\+Header\+Element (\begin{DoxyParamCaption}\item[{unsigned int}]{pos }\end{DoxyParamCaption}) const}
 
 Returns the name of a specific column given by its position in the header line 
@@ -168,24 +168,24 @@ Returns the name of a specific column given by its position in the header line
 the name of a specific column given by its position in the header line 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_a93789f318f0abd972860c507b89d4587}\label{class_c_s_v_parser_a93789f318f0abd972860c507b89d4587}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!get\+Row@{get\+Row}}
-\index{get\+Row@{get\+Row}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{get\+Row()}{getRow()}}
-{\footnotesize\ttfamily \hyperlink{class_row}{Row}\& C\+S\+V\+Parser\+::get\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
+\index{CSVParser@{CSVParser}!getRow@{getRow}}
+\index{getRow@{getRow}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{getRow()}{getRow()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_row}{Row}}\& C\+S\+V\+Parser\+::get\+Row (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
 
-Returns a \hyperlink{class_row}{Row} object specified by its number in the file 
+Returns a \mbox{\hyperlink{class_row}{Row}} object specified by its number in the file 
 \begin{DoxyParams}{Parameters}
-{\em row} & the number of the line that was used to build the \hyperlink{class_row}{Row} object \\
+{\em row} & the number of the line that was used to build the \mbox{\hyperlink{class_row}{Row}} object \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-a \hyperlink{class_row}{Row} object specified by its number in the file 
+a \mbox{\hyperlink{class_row}{Row}} object specified by its number in the file 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_a7d3d0c3f994b825aaba25625f0b01612}\label{class_c_s_v_parser_a7d3d0c3f994b825aaba25625f0b01612}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!operator\mbox{[}\mbox{]}@{operator[]}}
-\index{operator\mbox{[}\mbox{]}@{operator[]}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
-{\footnotesize\ttfamily \hyperlink{class_row}{Row}\& C\+S\+V\+Parser\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
+\index{CSVParser@{CSVParser}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_row}{Row}}\& C\+S\+V\+Parser\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{unsigned int}]{row }\end{DoxyParamCaption}) const}
 
 Overloaded operator 
 \begin{DoxyParams}{Parameters}
@@ -193,82 +193,82 @@ Overloaded operator
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the \hyperlink{class_row}{Row} object at the position specified by row 
+the \mbox{\hyperlink{class_row}{Row}} object at the position specified by row 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_aa403f7d8238903aa0e046a9a091ab968}\label{class_c_s_v_parser_aa403f7d8238903aa0e046a9a091ab968}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!parse\+Content@{parse\+Content}}
-\index{parse\+Content@{parse\+Content}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{parse\+Content()}{parseContent()}}
+\index{CSVParser@{CSVParser}!parseContent@{parseContent}}
+\index{parseContent@{parseContent}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{parseContent()}{parseContent()}}
 {\footnotesize\ttfamily void C\+S\+V\+Parser\+::parse\+Content (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a8b556e47ecfea188d4c6c630616f5667}\label{class_c_s_v_parser_a8b556e47ecfea188d4c6c630616f5667}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!parse\+Header@{parse\+Header}}
-\index{parse\+Header@{parse\+Header}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{parse\+Header()}{parseHeader()}}
+\index{CSVParser@{CSVParser}!parseHeader@{parseHeader}}
+\index{parseHeader@{parseHeader}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{parseHeader()}{parseHeader()}}
 {\footnotesize\ttfamily void C\+S\+V\+Parser\+::parse\+Header (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_ab7596d8458539a585908d41638672f4c}\label{class_c_s_v_parser_ab7596d8458539a585908d41638672f4c}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!row\+Count@{row\+Count}}
-\index{row\+Count@{row\+Count}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{row\+Count()}{rowCount()}}
+\index{CSVParser@{CSVParser}!rowCount@{rowCount}}
+\index{rowCount@{rowCount}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{rowCount()}{rowCount()}}
 {\footnotesize\ttfamily unsigned int C\+S\+V\+Parser\+::row\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Returns the number of lines in the csv file without counting the header line, if it exists \begin{DoxyReturn}{Returns}
 the number of lines in the csv file without counting the header line, if it exists 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_c_s_v_parser_aa0b2494094eb2ce657787ae830b3cc52}\label{class_c_s_v_parser_aa0b2494094eb2ce657787ae830b3cc52}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!sync@{sync}}
-\index{sync@{sync}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{sync()}{sync()}}
+\index{CSVParser@{CSVParser}!sync@{sync}}
+\index{sync@{sync}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{sync()}{sync()}}
 {\footnotesize\ttfamily void C\+S\+V\+Parser\+::sync (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Flushes the content to a file on disk and then closes the file. 
 
-\subsection{Member Data Documentation}
+\doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_c_s_v_parser_adff6872f7e93cbc10797bac6173671d4}\label{class_c_s_v_parser_adff6872f7e93cbc10797bac6173671d4}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+content@{\+\_\+content}}
-\index{\+\_\+content@{\+\_\+content}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+content}{\_content}}
-{\footnotesize\ttfamily vector$<$\hyperlink{class_row}{Row} $\ast$$>$ C\+S\+V\+Parser\+::\+\_\+content\hspace{0.3cm}{\ttfamily [private]}}
+\index{CSVParser@{CSVParser}!\_content@{\_content}}
+\index{\_content@{\_content}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_content}{\_content}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_row}{Row}} $\ast$$>$ C\+S\+V\+Parser\+::\+\_\+content\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a1db17c9285f8fdcaed2499747582e4a9}\label{class_c_s_v_parser_a1db17c9285f8fdcaed2499747582e4a9}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+file@{\+\_\+file}}
-\index{\+\_\+file@{\+\_\+file}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+file}{\_file}}
+\index{CSVParser@{CSVParser}!\_file@{\_file}}
+\index{\_file@{\_file}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_file}{\_file}}
 {\footnotesize\ttfamily string C\+S\+V\+Parser\+::\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a9b35b0a143febb8fb388769417fa0777}\label{class_c_s_v_parser_a9b35b0a143febb8fb388769417fa0777}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+header@{\+\_\+header}}
-\index{\+\_\+header@{\+\_\+header}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+header}{\_header}}
+\index{CSVParser@{CSVParser}!\_header@{\_header}}
+\index{\_header@{\_header}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_header}{\_header}}
 {\footnotesize\ttfamily vector$<$string$>$ C\+S\+V\+Parser\+::\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_afa0c154dd897b5ddcbf8364a9df28eeb}\label{class_c_s_v_parser_afa0c154dd897b5ddcbf8364a9df28eeb}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+original\+File@{\+\_\+original\+File}}
-\index{\+\_\+original\+File@{\+\_\+original\+File}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+original\+File}{\_originalFile}}
+\index{CSVParser@{CSVParser}!\_originalFile@{\_originalFile}}
+\index{\_originalFile@{\_originalFile}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_originalFile}{\_originalFile}}
 {\footnotesize\ttfamily vector$<$string$>$ C\+S\+V\+Parser\+::\+\_\+original\+File\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a9d778da8bd668d2393d4402ce7eae9cd}\label{class_c_s_v_parser_a9d778da8bd668d2393d4402ce7eae9cd}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+sep@{\+\_\+sep}}
-\index{\+\_\+sep@{\+\_\+sep}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+sep}{\_sep}}
+\index{CSVParser@{CSVParser}!\_sep@{\_sep}}
+\index{\_sep@{\_sep}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_sep}{\_sep}}
 {\footnotesize\ttfamily const char C\+S\+V\+Parser\+::\+\_\+sep\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a27cff8e618160b2685f1e05b8a7da9cf}\label{class_c_s_v_parser_a27cff8e618160b2685f1e05b8a7da9cf}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!\+\_\+type@{\+\_\+type}}
-\index{\+\_\+type@{\+\_\+type}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{\+\_\+type}{\_type}}
-{\footnotesize\ttfamily const \hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type} C\+S\+V\+Parser\+::\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+\index{CSVParser@{CSVParser}!\_type@{\_type}}
+\index{\_type@{\_type}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{\_type}{\_type}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{_c_s_vparser_8hpp_ad8ed01ff3ff33333d8e19db4d2818bb6}{Data\+Type}} C\+S\+V\+Parser\+::\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_c_s_v_parser_a4dcb7bb113b65d0abf816dd899395545}\label{class_c_s_v_parser_a4dcb7bb113b65d0abf816dd899395545}} 
-\index{C\+S\+V\+Parser@{C\+S\+V\+Parser}!m\+\_\+header@{m\+\_\+header}}
-\index{m\+\_\+header@{m\+\_\+header}!C\+S\+V\+Parser@{C\+S\+V\+Parser}}
-\subsubsection{\texorpdfstring{m\+\_\+header}{m\_header}}
+\index{CSVParser@{CSVParser}!m\_header@{m\_header}}
+\index{m\_header@{m\_header}!CSVParser@{CSVParser}}
+\doxysubsubsection{\texorpdfstring{m\_header}{m\_header}}
 {\footnotesize\ttfamily bool C\+S\+V\+Parser\+::m\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\hyperlink{_c_s_vparser_8hpp}{C\+S\+Vparser.\+hpp}\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_c_s_vparser_8hpp}{C\+S\+Vparser.\+hpp}}\end{DoxyCompactItemize}

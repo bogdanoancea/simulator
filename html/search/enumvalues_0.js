@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['already_5fattached_5fdevice',['ALREADY_ATTACHED_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faaea76d50440d9cdc0ad1cac6ab9ac4f27',1,'EventType.h']]],
-  ['attach_5fdevice',['ATTACH_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faa9893a3a649e7100d87b1560bd8202ec2',1,'EventType.h']]]
+  ['_5f3g_1351',['_3G',['../_network_type_8h.html#a3a159600500d5d7248be5bd1ca1f8d83ac88ee8f01394dbabf5c4487986d04971',1,'NetworkType.h']]],
+  ['_5f4g_1352',['_4G',['../_network_type_8h.html#a3a159600500d5d7248be5bd1ca1f8d83ae5ee9782bb207b843ba97eaa2d0fe26b',1,'NetworkType.h']]]
 ];

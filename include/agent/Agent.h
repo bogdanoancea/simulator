@@ -49,16 +49,19 @@
  * \code{LocatableAgent}, \code{ImmovableAgent}, \code{HoldableAgent} are abstract classes. The only classes
  * that can be instantiated are \code{Antenna}, \code{MobilePhone}, \code{MobileOperator}, \code{Person}
  * \code{Tablet}.
+ * An agent object has a unique id in the whole set of agents.
  */
 class Agent {
 public:
 	Agent();
 	/**
-	 * Constructor of the class. Agent is the base class for all agents used in the simulator: persons, antennas, devices, mnos. Agent is an abstract class,
-	 * users should build specific subclasses.
-	 * @param m - a pointer to the Map object where the simulation take place.
+	 * Constructor of the class. \code{Agent} is the base class for all agents used in the simulator: persons,
+	 * antennas, mobile devices, mobile network operators. \code{Agent} is an abstract class,
+	 * users should build specific subclasses. An \code{Agent} keeps a pointer to the map of the simulation,
+	 * and pointer to the simulation clock.
+	 * @param m - a pointer to the \code{Map} object where the simulation take place.
 	 * @param id - the id of this agent, it uniquely identifies the agent.
-	 * @param clock - a pointer to a Clock object used by the simulator, the Clock is the same for all agents.
+	 * @param clock - a pointer to a \code{Clock} object used by the simulator, the \code{Clock} object is the same for all agents.
 	 */
 	Agent(const Map* m, const unsigned long id, const Clock* clock);
 
@@ -75,14 +78,14 @@ public:
 	bool operator==(const Agent& a);
 
 	/**
-	 * Getter that returns a pointer to the Map object passed to the constructor when an object was build.
-	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
+	 * Getter function that returns a pointer to the \code{Map} object passed to the constructor when an \code{Agent} object was build.
+	 * @return a pointer to the \code{Map} object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
 	const virtual Map* getMap() const;
 
 	/**
-	 * Returns a pointer to the Clock object used for simulation. All Agents use the same Clock object for a simulation.
-	 * @return a pointer to the Clock object used for simulation.
+	 * Returns a pointer to the \code{Clock} object used for simulation. All agents use the same \code{Clock} object for a simulation.
+	 * @return a pointer to the \code{Clock} object used for simulation.
 	 */
 	const virtual Clock* getClock() const;
 
@@ -93,11 +96,15 @@ public:
 	const virtual unsigned long getId() const;
 
 	/**
-	 * Builds a string with of the relevant information of the class. It is useful to output on the console or in a file
-	 * the description of concrete agents.
-	 * @return a string representation of the class content. The values of the members are written in this string.
+	 * Builds a \code{string} with the most relevant or all information of the class. It is useful to output to the console or to a file
+	 * the description of concrete agents. Depending on the value of the \param{detailed} parameter, the string can contain only the values of the
+	 * the most important members (\code{detailed = false} or all members of the class.
+	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most important ones are outputed.
+	 * @return a \code{string} representation of the class content containing the most important or all parameters of the agent.
+	 * The values of some members are written in this string.
 	 */
-	const virtual string toString() const = 0;
+	const virtual string toString(bool detailed = false) const = 0;
+
 
 private:
 	const Map* m_map;

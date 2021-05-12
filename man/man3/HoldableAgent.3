@@ -1,4 +1,4 @@
-.TH "HoldableAgent" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "HoldableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -86,7 +86,7 @@ an enumeration of the modes used by the device to connect to an antenna: USING_P
 .SS "HoldableAgent::HoldableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, \fBAgent\fP * holder, const \fBClock\fP * clock)\fC [explicit]\fP"
 Constructor of the class\&. It builds an \fBHoldableAgent\fP object with the parameters provided by user\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP a pointer to a \fBMap\fP object used for this simulation\&. 
 .br
@@ -103,7 +103,7 @@ Constructor of the class\&. It builds an \fBHoldableAgent\fP object with the par
 .SS "HoldableAgent::HoldableAgent (const \fBHoldableAgent\fP & h)"
 Copy constructor\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIh\fP another object of the same type\&. 
 .RE
@@ -116,7 +116,7 @@ Destructor
 .SS "vector<\fBAntenna\fP*> HoldableAgent::getAntennas () const"
 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a vector with pointers to antennas where this device is connected 
 .RE
@@ -125,7 +125,7 @@ a vector with pointers to antennas where this device is connected
 .SS "\fBAgent\fP* HoldableAgent::getHolder () const"
 Returns a pointer to an \fBAgent\fP object that owns this device 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a pointer to an \fBAgent\fP object that owns this device 
 .RE
@@ -134,7 +134,7 @@ a pointer to an \fBAgent\fP object that owns this device
 .SS "virtual bool HoldableAgent::isConnected () const\fC [virtual]\fP"
 check if this device is connected to an antenna 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 true if the device is conneted to an antenna, false otherwise\&. 
 .RE
@@ -143,7 +143,7 @@ true if the device is conneted to an antenna, false otherwise\&.
 .SS "void HoldableAgent::setHolder (\fBAgent\fP * holder)"
 Sets the owner of this device 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIholder\fP a pointer to the owner of this device 
 .RE
@@ -152,7 +152,7 @@ Sets the owner of this device
 .SS "void HoldableAgent::setLocation (Point * location)\fC [override]\fP, \fC [virtual]\fP"
 Sets the location of this device\&. After a new location is set, the device tries to connect to an antenna, i\&.e\&. the \fBtryConnect()\fP method is called\&. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override this method and provide the correct mode of connection\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIlocation\fP a point on the \fBMap\fP of the simulation 
 .RE
@@ -160,23 +160,19 @@ Sets the location of this device\&. After a new location is set, the device trie
 
 .PP
 Reimplemented from \fBLocatableAgent\fP\&.
-.SS "const string HoldableAgent::toString () const\fC [override]\fP, \fC [virtual]\fP"
+.SS "const string HoldableAgent::toString () const\fC [override]\fP"
 Returns a string representation of this class, useful to print it to the console or in a file\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string representation of this class, useful to print it to the console or in a file\&. 
 .RE
 .PP
 
-.PP
-Implements \fBAgent\fP\&.
-.PP
-Reimplemented in \fBMobilePhone\fP, and \fBTablet\fP\&.
 .SS "virtual bool HoldableAgent::tryConnect ()\fC [pure virtual]\fP"
 Called when a device wants to connect to an antenna 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 true if the connection succeeds, false otherwise\&. 
 .RE

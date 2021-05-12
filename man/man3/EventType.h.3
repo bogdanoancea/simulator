@@ -1,8 +1,8 @@
-.TH "include/EventType.h" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "include/events/EventType.h" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-include/EventType.h
+include/events/EventType.h
 .SH SYNOPSIS
 .br
 .PP
@@ -10,7 +10,7 @@ include/EventType.h
 
 .in +1c
 .ti -1c
-.RI "enum \fBEventType\fP { \fBEventType::ATTACH_DEVICE\fP, \fBEventType::DETACH_DEVICE\fP, \fBEventType::ALREADY_ATTACHED_DEVICE\fP, \fBEventType::IN_RANGE_NOT_ATTACHED_DEVICE\fP }"
+.RI "enum \fBEventType\fP { \fBEventType::CELLID\fP, \fBEventType::CELLIDTA\fP }"
 .br
 .in -1c
 .SH "Enumeration Type Documentation"
@@ -21,13 +21,9 @@ This class is an enumeration of network events currently registered: ATTACH_DEVI
 \fBEnumerator\fP
 .in +1c
 .TP
-\fB\fIATTACH_DEVICE \fP\fP
+\fB\fICELLID \fP\fP
 .TP
-\fB\fIDETACH_DEVICE \fP\fP
-.TP
-\fB\fIALREADY_ATTACHED_DEVICE \fP\fP
-.TP
-\fB\fIIN_RANGE_NOT_ATTACHED_DEVICE \fP\fP
+\fB\fICELLIDTA \fP\fP
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Simulator from the source code\&.

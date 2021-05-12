@@ -68,7 +68,7 @@ class MobilePhone: public HoldableAgent {
 		 * Returns a human readable string representation of this class useful to output it to a file or console.
 		 * @return a human readable string representation of this class.
 		 */
-		const string toString() const override;
+		const string toString(bool detailed = false) const override;
 
 
 		static const string getHeader();

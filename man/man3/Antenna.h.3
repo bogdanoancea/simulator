@@ -1,4 +1,4 @@
-.TH "include/agent/Antenna.h" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "include/agent/Antenna.h" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,9 +14,13 @@ include/agent/Antenna.h
 .br
 \fC#include <AntennaType\&.h>\fP
 .br
-\fC#include <EventType\&.h>\fP
+\fC#include <events/EventFactory\&.h>\fP
+.br
+\fC#include <events/EventType\&.h>\fP
 .br
 \fC#include <geos/geom/Coordinate\&.h>\fP
+.br
+\fC#include <NetworkType\&.h>\fP
 .br
 \fC#include <iostream>\fP
 .br
@@ -26,19 +30,16 @@ include/agent/Antenna.h
 .br
 \fC#include <vector>\fP
 .br
+\fC#include <parsers/AntennaConfiguration\&.h>\fP
+.br
+\fC#include <parsers/SimulationConfiguration\&.h>\fP
+.br
 
 .SS "Classes"
 
 .in +1c
 .ti -1c
 .RI "class \fBAntenna\fP"
-.br
-.in -1c
-.SS "Namespaces"
-
-.in +1c
-.ti -1c
-.RI " \fBtinyxml2\fP"
 .br
 .in -1c
 .SH "Author"

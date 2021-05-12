@@ -1,12 +1,18 @@
 <map id="MobilePhone" name="MobilePhone">
-<area shape="rect" id="node2" href="$class_holdable_agent.html" title="{HoldableAgent\n||+ HoldableAgent()\l+ HoldableAgent()\l+ ~HoldableAgent()\l+ getHolder()\l+ setHolder()\l+ toString()\l+ tryConnect()\l+ isConnected()\l+ setLocation()\l+ getAntennas()\l}" alt="" coords="363,2114,498,2323"/>
-<area shape="rect" id="node3" href="$class_movable_agent.html" title="{MovableAgent\n||+ MovableAgent()\l+ ~MovableAgent()\l+ toString()\l+ move()\l+ getSpeed()\l+ setSpeed()\l}" alt="" coords="43,1600,173,1751"/>
-<area shape="rect" id="node4" href="$class_locatable_agent.html" title="{LocatableAgent\n||+ LocatableAgent()\l+ ~LocatableAgent()\l+ toString()\l+ getLocation()\l+ setLocation()\l+ dumpLocation()\l}" alt="" coords="411,1357,551,1508"/>
-<area shape="rect" id="node20" href="$class_immovable_agent.html" title="{ImmovableAgent\n||+ ImmovableAgent()\l+ ~ImmovableAgent()\l+ toString()\l}" alt="" coords="411,1622,557,1729"/>
-<area shape="rect" id="node5" href="$class_agent.html" title="{Agent\n||+ Agent()\l+ Agent()\l+ ~Agent()\l+ operator==()\l+ getMap()\l+ getClock()\l+ getId()\l+ toString()\l}" alt="" coords="743,1071,849,1251"/>
-<area shape="rect" id="node16" href="$class_mobile_operator.html" title="{MobileOperator\n||+ MobileOperator()\l+ ~MobileOperator()\l+ toString()\l+ getMNOName()\l+ getProbMobilePhone()\l+ getAntennaCellsFile()\l+ getSignalFile()\l+ writeSignalFileHeader()\l+ getOutputDir()\l+ getHeader()\l}" alt="" coords="1065,1328,1231,1537"/>
-<area shape="rect" id="node6" href="$class_map.html" title="{Map\n||+ ~Map()\l+ getBoundary()\l+ getEnvelope()\l+ getGlobalFactory()\l+ addGrid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ getNoTiles()\l+ getTileCenter()\l+ getTileNo()\l+ getTileNo()\l+ dumpGrid()\l+ getTileCenters()\l+ hasGrid()\l# Map()\l}" alt="" coords="884,652,1025,993"/>
-<area shape="rect" id="node8" href="$class_grid.html" title="{Grid\n||+ Grid()\l+ ~Grid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ getNoTiles()\l+ getTileCenter()\l+ getTileNo()\l+ getTileNo()\l+ dumpGrid()\l+ getTileCenters()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; toString()\l&#45; computeTileCenters()\l}" alt="" coords="894,189,1047,545"/>
-<area shape="rect" id="node19" href="$class_antenna.html" title="{Antenna\n|&#45; m_SSteep\l&#45; m_S0\l&#45; m_beam_V\l&#45; m_azim_dB_Back\l&#45; m_elev_dB_Back\l&#45; m_rmax\l&#45; m_sd_azim\l|+ Antenna()\l+ Antenna()\l+ ~Antenna()\l+ toString()\l+ tryRegisterDevice()\l+ attachDevice()\l+ dettachDevice()\l+ getType()\l+ computeSignalQuality()\l+ computeSignalQuality()\l+ computePower()\l+ computePower()\l+ getMNO()\l+ getAntennaOutputFileName()\l+ getRmax()\l+ dumpCell()\l+ computeSignalStrength()\l+ setHandoverMechanism()\l+ dumpSignal()\l+ getHeader()\l&#45; alreadyRegistered()\l&#45; registerEvent()\l&#45; getNumActiveConections()\l&#45; S0()\l&#45; SDist()\l&#45; computeSignalQualityOmnidirectional()\l&#45; computeSignalQualityDirectional()\l&#45; computeSignalStrengthDirectional()\l&#45; computeSignalStrengthOmnidirectional()\l&#45; setLocationWithElevation()\l&#45; projectToEPlane()\l&#45; createMapping()\l&#45; getMin3db()\l&#45; norm_dBLoss()\l&#45; normalizeAngle()\l&#45; searchMin()\l&#45; findSD()\l&#45; getCoverageAreaOmnidirectional()\l&#45; getCoverageAreaDirectional()\l&#45; S()\l&#45; getCoverageArea()\l&#45; computeSignalStrength()\l&#45; computeSignalMeasure()\l}" alt="" coords="962,1828,1225,2609"/>
-<area shape="rect" id="node12" href="$class_clock.html" title="{Clock\n||+ Clock()\l+ Clock()\l+ ~Clock()\l+ tick()\l+ getCurrentTime()\l+ setCurrentTime()\l+ getIncrement()\l+ setIncrement()\l+ getInitialTime()\l+ setInitialTime()\l+ realTime()\l+ getFinalTime()\l+ setFinalTime()\l+ reset()\l}" alt="" coords="679,689,809,957"/>
+<area shape="rect" id="node1" title=" " alt="" coords="503,917,685,1112"/>
+<area shape="rect" id="node2" href="$class_holdable_agent.html" title=" " alt="" coords="332,645,467,855"/>
+<area shape="rect" id="node3" href="$class_movable_agent.html" title=" " alt="" coords="426,403,557,553"/>
+<area shape="rect" id="node4" href="$class_locatable_agent.html" title=" " alt="" coords="399,145,539,296"/>
+<area shape="rect" id="node16" href="$class_immovable_agent.html" title=" " alt="" coords="5,425,151,531"/>
+<area shape="rect" id="node5" href="$class_agent.html" title=" " alt="" coords="841,5,897,83"/>
+<area shape="rect" id="node10" href="$class_mobile_operator.html" title=" " alt="" coords="787,373,953,583"/>
+<area shape="rect" id="node6" title=" " alt="" coords="438,5,499,83"/>
+<area shape="rect" id="node7" title=" " alt="" coords="564,182,624,259"/>
+<area shape="rect" id="node8" title=" " alt="" coords="175,439,312,517"/>
+<area shape="rect" id="node9" title=" " alt="" coords="336,439,401,517"/>
+<area shape="rect" id="node11" title=" " alt="" coords="1021,182,1093,259"/>
+<area shape="rect" id="node12" title=" " alt="" coords="722,182,813,259"/>
+<area shape="rect" id="node13" title=" " alt="" coords="837,182,940,259"/>
+<area shape="rect" id="node14" title=" " alt="" coords="631,711,778,789"/>
+<area shape="rect" id="node15" href="$class_antenna.html" title=" " alt="" coords="187,711,257,789"/>
 </map>

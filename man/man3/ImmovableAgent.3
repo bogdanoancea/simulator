@@ -1,4 +1,4 @@
-.TH "ImmovableAgent" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "ImmovableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -33,7 +33,7 @@ This is a class that represents an agent that can have a location on map but it 
 .SS "ImmovableAgent::ImmovableAgent (const \fBMap\fP * m, const unsigned long id, Point * initialPosition, const \fBClock\fP * clock)\fC [explicit]\fP"
 Constructor of the class\&. Build an \fBImmovableAgent\fP object with the parameters provided by the user\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP a pointer to a \fBMap\fP object used in this simulation\&. 
 .br
@@ -49,17 +49,15 @@ Constructor of the class\&. Build an \fBImmovableAgent\fP object with the parame
 Default destructor\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "const string ImmovableAgent::toString () const\fC [override]\fP, \fC [virtual]\fP"
+.SS "const string ImmovableAgent::toString () const\fC [override]\fP"
 Builds a string representation of this class\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string representation of this class\&. It is used to write details of the \fBImmovableAgent\fP objects in a file or on console\&. 
 .RE
 .PP
 
-.PP
-Implements \fBAgent\fP\&.
 
 .SH "Author"
 .PP 

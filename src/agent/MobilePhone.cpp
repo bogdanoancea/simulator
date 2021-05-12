@@ -43,7 +43,7 @@ MobilePhone::MobilePhone(const Map* m, const unsigned long id, Point* initPositi
 MobilePhone::~MobilePhone() {
 }
 
-const string MobilePhone::toString() const {
+const string MobilePhone::toString(bool detailed) const {
 	ostringstream result;
 
 	result << HoldableAgent::toString();

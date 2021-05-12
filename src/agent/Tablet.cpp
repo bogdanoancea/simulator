@@ -37,7 +37,7 @@ Tablet::~Tablet() {
 	// TODO Auto-generated destructor stub
 }
 
-const string Tablet::toString() const {
+const string Tablet::toString(bool detailed) const {
 	return (HoldableAgent::toString());
 }
 

@@ -57,7 +57,7 @@ public:
 	 * Builds a human readable string representation of this class useful to output it to a file or on the screen.
 	 * @return a string representation of this class.
 	 */
-	const string toString() const override;
+	const string toString(bool detailed = false) const override;
 
 	/**
 	 *

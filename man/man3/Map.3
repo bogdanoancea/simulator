@@ -1,4 +1,4 @@
-.TH "Map" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "Map" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,7 +23,7 @@ Inherited by \fBWKTMap\fP\&.
 .RI "virtual Geometry * \fBgetEnvelope\fP () const =0"
 .br
 .ti -1c
-.RI "virtual const GeometryFactory::Ptr & \fBgetGlobalFactory\fP () const =0"
+.RI "const virtual GeometryFactory::Ptr & \fBgetGlobalFactory\fP () const =0"
 .br
 .ti -1c
 .RI "virtual void \fBaddGrid\fP (double dimTileX, double dimTileY)"
@@ -47,7 +47,7 @@ Inherited by \fBWKTMap\fP\&.
 .RI "virtual double \fBgetYOrigin\fP () const"
 .br
 .ti -1c
-.RI "virtual const unsigned long \fBgetNoTiles\fP () const"
+.RI "const virtual unsigned long \fBgetNoTiles\fP () const"
 .br
 .ti -1c
 .RI "virtual Coordinate \fBgetTileCenter\fP (unsigned long tileIndex) const"
@@ -105,11 +105,11 @@ Implemented in \fBWKTMap\fP\&.
 
 .PP
 Implemented in \fBWKTMap\fP\&.
-.SS "virtual const GeometryFactory::Ptr& Map::getGlobalFactory () const\fC [pure virtual]\fP"
+.SS "const virtual GeometryFactory::Ptr& Map::getGlobalFactory () const\fC [pure virtual]\fP"
 
 .PP
 Implemented in \fBWKTMap\fP\&.
-.SS "virtual const unsigned long Map::getNoTiles () const\fC [virtual]\fP"
+.SS "const virtual unsigned long Map::getNoTiles () const\fC [virtual]\fP"
 
 .SS "virtual unsigned long Map::getNoTilesX () const\fC [virtual]\fP"
 

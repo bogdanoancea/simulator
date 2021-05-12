@@ -67,7 +67,7 @@ class Person: public MovableAgent {
 		 * Builds and returns a human readable string representation of the person.
 		 * @return a human readable string representation of the person.
 		 */
-		const string toString() const override;
+		const string toString(bool detailed = false) const override;
 
 
 		static const string getHeader();

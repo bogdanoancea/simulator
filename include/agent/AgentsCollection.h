@@ -29,7 +29,6 @@
 #include <agent/Agent.h>
 #include <string>
 #include <unordered_map>
-#include <utility>
 
 using namespace std;
 
@@ -92,7 +91,7 @@ public:
 	 * Iterator to the past-the-end object of the collection. It does not point to any agent,
 	 * and thus shall not be dereferenced.
 	 * @return an iterator referring to the past-the-end element in the agents container. If the container
-	 * is empty, this function returns the same as \code{AgentsColletion::begin()}.
+	 * is empty, this function returns the same as \code{AgentsCollection::begin()}.
 	 */
 	um_iterator end();
 
@@ -104,6 +103,7 @@ public:
 	um_iterator begin();
 
 	/**
+	 * Returns the number of elements in the container.
 	 * @return the number of elements in the container. This is the number of actual objects
 	 * held in the container,which is not necessarily equal to its storage capacity.
 	 */

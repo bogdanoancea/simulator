@@ -1,4 +1,4 @@
-.TH "World" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "World" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,9 +12,6 @@ World
 
 .in +1c
 .ti -1c
-.RI "\fBWorld\fP (\fBMap\fP *map, int numPersons, int numAntennas, int numMobilePhones)"
-.br
-.ti -1c
 .RI "\fBWorld\fP (\fBMap\fP *map, const string &configPersonsFileName, const string &configAntennasFileName, const string &configSimulationFileName, const string &probabilitiesFileName) noexcept(false)"
 .br
 .ti -1c
@@ -24,7 +21,7 @@ World
 .RI "void \fBrunSimulation\fP () noexcept(false)"
 .br
 .ti -1c
-.RI "\fBAgentsCollection\fP * \fBgetAgents\fP () const"
+.RI "AgentsCollection * \fBgetAgents\fP () const"
 .br
 .ti -1c
 .RI "const \fBMap\fP * \fBgetMap\fP () const"
@@ -39,15 +36,6 @@ World
 .RI "void \fBcomputeProbabilities\fP (std::map< unsigned long, vector< \fBAntennaInfo\fP >> data)"
 .br
 .ti -1c
-.RI "map< const unsigned long, const string > \fBgetProbFilenames\fP () const"
-.br
-.ti -1c
-.RI "void \fBsetPostProbMethod\fP (const std::shared_ptr< \fBPostLocProb\fP > &post)"
-.br
-.ti -1c
-.RI "\fBPriorType\fP \fBgetPrior\fP ()"
-.br
-.ti -1c
 .RI "const string & \fBgetOutputDir\fP () const"
 .br
 .ti -1c
@@ -58,67 +46,13 @@ World
 
 .in +1c
 .ti -1c
-.RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (unsigned long numPersons, double percentHome)"
-.br
-.ti -1c
-.RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (const unsigned long numPersons, shared_ptr< \fBAgeDistribution\fP > age_distribution, double male_share, vector< \fBMobileOperator\fP *> mnos, double speed_walk, double speed_car, double percentHome)"
-.br
-.ti -1c
-.RI "vector< \fBAntenna\fP * > \fBgenerateAntennas\fP (unsigned long numAntennas)"
-.br
-.ti -1c
-.RI "vector< \fBAntenna\fP * > \fBparseAntennas\fP (const string &configAntennasFile, vector< \fBMobileOperator\fP *> mnos) noexcept(false)"
-.br
-.ti -1c
-.RI "vector< \fBPerson\fP * > \fBparsePersons\fP (const string &personsFileName, vector< \fBMobileOperator\fP *> mnos) noexcept(false)"
-.br
-.ti -1c
-.RI "vector< \fBMobilePhone\fP * > \fBgenerateMobilePhones\fP (int numMobilePhones, \fBHoldableAgent::CONNECTION_TYPE\fP connType)"
-.br
-.ti -1c
-.RI "vector< \fBMobileOperator\fP * > \fBparseSimulationFile\fP (const string &configSimulationFileName) noexcept(false)"
-.br
-.ti -1c
-.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP *> mnos)"
+.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)"
 .br
 .ti -1c
 .RI "string \fBparseProbabilities\fP (const string &probabilitiesFileName)"
 .br
 .ti -1c
-.RI "double \fBgetDefaultConnectionThreshold\fP (\fBHoldableAgent::CONNECTION_TYPE\fP connType)"
-.br
-.ti -1c
-.RI "void \fBsetPersonDisplacementPattern\fP (\fBPerson\fP *p, \fBMovementType\fP type, \fBMap\fP *map, \fBClock\fP *clk)"
-.br
-.ti -1c
-.RI "void \fBgeneratePhones\fP (vector< \fBMobileOperator\fP *> mnos)"
-.br
-.ti -1c
-.RI "int * \fBgenerateAges\fP (int n, shared_ptr< \fBAgeDistribution\fP > distr, \fBRandomNumberGenerator\fP *rng)"
-.br
-.ti -1c
-.RI "void \fBsetPhones\fP (int *&ph1, int *&ph2, double probSecMobilePhone, double numPersons, \fBRandomNumberGenerator\fP *rng, vector< \fBMobileOperator\fP *> mnos)"
-.br
-.ti -1c
 .RI "void \fBwriteSignalAndCells\fP (ostream &antennaFile)"
-.br
-.ti -1c
-.RI "void \fBAddMobilePhoneToPerson\fP (\fBPerson\fP *p, \fBMobileOperator\fP *mno, \fBAgentsCollection\fP *ag, const \fBMap\fP *map, \fBClock\fP *clock, double thres, \fBHoldableAgent::CONNECTION_TYPE\fP conn)"
-.br
-.ti -1c
-.RI "\fBMovementType\fP \fBparseMovement\fP (XMLElement *el)"
-.br
-.ti -1c
-.RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBparseConnectionType\fP (XMLElement *el)"
-.br
-.ti -1c
-.RI "vector< \fBMobileOperator\fP * > \fBparseMNOs\fP (XMLElement *el)"
-.br
-.ti -1c
-.RI "double \fBgetGridDimTileX\fP () const"
-.br
-.ti -1c
-.RI "double \fBgetGridDimTileY\fP () const"
 .br
 .ti -1c
 .RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBgetConnectionType\fP () const"
@@ -128,70 +62,16 @@ World
 
 .in +1c
 .ti -1c
-.RI "\fBMap\fP * \fBm_map\fP"
+.RI "AgentsCollection * \fBm_agentsCollection\fP"
 .br
 .ti -1c
-.RI "\fBAgentsCollection\fP * \fBm_agentsCollection\fP"
-.br
-.ti -1c
-.RI "\fBClock\fP * \fBm_clock\fP"
-.br
-.ti -1c
-.RI "unsigned long \fBm_startTime\fP"
-.br
-.ti -1c
-.RI "unsigned long \fBm_endTime\fP"
-.br
-.ti -1c
-.RI "unsigned long \fBm_timeIncrement\fP"
-.br
-.ti -1c
-.RI "double \fBm_GridDimTileX\fP"
-.br
-.ti -1c
-.RI "double \fBm_GridDimTileY\fP"
-.br
-.ti -1c
-.RI "\fBPriorType\fP \fBm_prior\fP"
-.br
-.ti -1c
-.RI "unsigned \fBm_seed\fP"
-.br
-.ti -1c
-.RI "unsigned long \fBm_stay\fP"
-.br
-.ti -1c
-.RI "unsigned \fBm_intevalBetweenStays\fP"
-.br
-.ti -1c
-.RI "double \fBm_connThreshold\fP"
-.br
-.ti -1c
-.RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBm_connType\fP"
-.br
-.ti -1c
-.RI "\fBMovementType\fP \fBm_mvType\fP"
-.br
-.ti -1c
-.RI "string \fBm_gridFilename\fP"
-.br
-.ti -1c
-.RI "map< const unsigned long, const string > \fBm_probFilenames\fP"
-.br
-.ti -1c
-.RI "string \fBm_personsFilename\fP"
-.br
-.ti -1c
-.RI "string \fBm_antennasFilename\fP"
-.br
-.ti -1c
-.RI "string \fBm_outputDir\fP"
-.br
-.ti -1c
-.RI "double \fBm_probSecMobilePhone\fP"
+.RI "\fBSimulationConfiguration\fP * \fBm_sp\fP"
 .br
 .ti -1c
 .RI "shared_ptr< \fBPostLocProb\fP > \fBm_postMethod\fP"
+.br
+.ti -1c
+.RI "\fBEventFactory\fP * \fBm_eventFactory\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -199,10 +79,10 @@ World
 This is the class where the simulation process takes place\&. A \fBWorld\fP object has a \fBMap\fP, a \fBClock\fP, a set of Agents than can be persons, mobile phones, antennas, mobile operators etc\&. After generating all the required objects for simulation by reading the parameters from the input configuration files \fBrunSimulation()\fP method is called to perform the actual simulation\&. The output of the simulation process is written in several files\&. \fBAntenna\fP objects output their registered events in a \&.csv file and after the simulation ends, these files are merged in a single file that is used to compute the posterior localization probabilities for each mobile device\&. These probabilities are computed using a \fBGrid\fP that is overlapped on the \fBMap\fP, i\&.e\&. we compute the probability of a mobile phone to be in a tile of the grid\&. A finer the grid means more accurate localization but this come with an important computational cost\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "World::World (\fBMap\fP * map, int numPersons, int numAntennas, int numMobilePhones)"
+.SS "World::World (\fBMap\fP * map, const string & configPersonsFileName, const string & configAntennasFileName, const string & configSimulationFileName, const string & probabilitiesFileName)\fC [noexcept]\fP"
 Builds a new \fBWorld\fP object, randomly generating a set of persons, antennas and mobile devices with the default parameters\&. This class is used only for testing and developing new features\&. For a real simulation the user should build the Wolrd object using the other constructor that takes the name of the input files as params\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImap\fP a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .br
@@ -210,12 +90,7 @@ Builds a new \fBWorld\fP object, randomly generating a set of persons, antennas 
 .br
 \fInumAntennas\fP the number of antennas to be generated\&. 
 .br
-\fInumMobilePhones\fP the number of mobile phones to be generated\&. These phones are randomly given to persons\&. 
-.RE
-.PP
-
-.SS "World::World (\fBMap\fP * map, const string & configPersonsFileName, const string & configAntennasFileName, const string & configSimulationFileName, const string & probabilitiesFileName)\fC [noexcept]\fP"
-Builds a new \fBWorld\fP object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files\&. The configuration files are in XML format and they should be provided as command line parameters\&. The general parameters of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc\&. are also read from a configuration file:
+\fInumMobilePhones\fP the number of mobile phones to be generated\&. These phones are randomly given to persons\&. Builds a new \fBWorld\fP object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files\&. The configuration files are in XML format and they should be provided as command line parameters\&. The general parameters of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc\&. are also read from a configuration file:
 .IP "\(bu" 2
 the persons configuration file is provided through the -p parameter in the command line\&.
 .IP "\(bu" 2
@@ -225,9 +100,7 @@ the simulation configuration file is provided through the -s parameter in the co
 .IP "\(bu" 2
 the posterior probabilities configuration file is provided through the -pb parameter in the command line\&.
 .PP
-.PP
-\fBParameters:\fP
-.RS 4
+.br
 \fImap\fP a pointer to a \fBMap\fP object where the simulation takes place 
 .br
 \fIconfigPersonsFileName\fP the configuration file name for the persons objects\&. 
@@ -244,75 +117,34 @@ the posterior probabilities configuration file is provided through the -pb param
 Destructor It releases the memory allocated for the agents collection and the \fBClock\fP object\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "void World::AddMobilePhoneToPerson (\fBPerson\fP * p, \fBMobileOperator\fP * mno, \fBAgentsCollection\fP * ag, const \fBMap\fP * map, \fBClock\fP * clock, double thres, \fBHoldableAgent::CONNECTION_TYPE\fP conn)\fC [private]\fP"
-
 .SS "void World::computeProbabilities (std::map< unsigned long, vector< \fBAntennaInfo\fP >> data)"
 
-.SS "int* World::generateAges (int n, shared_ptr< \fBAgeDistribution\fP > distr, \fBRandomNumberGenerator\fP * rng)\fC [private]\fP"
-
-.SS "vector<\fBAntenna\fP*> World::generateAntennas (unsigned long numAntennas)\fC [private]\fP"
-
-.SS "vector<\fBMobilePhone\fP*> World::generateMobilePhones (int numMobilePhones, \fBHoldableAgent::CONNECTION_TYPE\fP connType)\fC [private]\fP"
-
-.SS "void World::generatePhones (vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP"
-
-.SS "vector<\fBPerson\fP*> World::generatePopulation (unsigned long numPersons, double percentHome)\fC [private]\fP"
-
-.SS "vector<\fBPerson\fP*> World::generatePopulation (const unsigned long numPersons, shared_ptr< \fBAgeDistribution\fP > age_distribution, double male_share, vector< \fBMobileOperator\fP *> mnos, double speed_walk, double speed_car, double percentHome)\fC [private]\fP"
-
-.SS "\fBAgentsCollection\fP* World::getAgents () const"
-Returns the \fBAgentsCollection\fP used in simulation\&. 
+.SS "AgentsCollection* World::getAgents () const"
+Returns the AgentsCollection used in simulation\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-a pointer to \fBAgentsCollection\fP object\&. 
+a pointer to AgentsCollection object\&. 
 .RE
 .PP
 
 .SS "\fBClock\fP* World::getClock ()"
 
 .SS "\fBHoldableAgent::CONNECTION_TYPE\fP World::getConnectionType () const\fC [private]\fP"
-Returns the type of the handover mechanism 
-.PP
-\fBReturns:\fP
-.RS 4
-the type of the handover mechanism: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY, HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH, HoldableAgent::CONNECTION_TYPE::USING_POWER 
-.RE
-.PP
-
-.SS "double World::getDefaultConnectionThreshold (\fBHoldableAgent::CONNECTION_TYPE\fP connType)\fC [private]\fP"
 
 .SS "std::map<unsigned long, vector<\fBAntennaInfo\fP> > World::getEvents ()"
 At the end of a simulation this method merges all the events saved by individual antennas in a single data structure\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has vector of all events saved by all antennas belonging to that MNO\&. This map is needed for computation of location probabilities\&. 
-.RE
-.PP
-
-.SS "double World::getGridDimTileX () const\fC [private]\fP"
-Returns the dimension of tiles on OX, this number is read from simulation configuration file\&. 
-.PP
-\fBReturns:\fP
-.RS 4
-the dimension of tiles on OX, this number is read from simulation configuration file\&. 
-.RE
-.PP
-
-.SS "double World::getGridDimTileY () const\fC [private]\fP"
-Returns the dimension of tiles on OY, this number is read from simulation configuration file\&. 
-.PP
-\fBReturns:\fP
-.RS 4
-the dimension of tiles on OY, this number is read from simulation configuration file\&. 
 .RE
 .PP
 
 .SS "const string& World::getGridFilename () const"
 Returns the file name where the grid parameters are saved\&. They are needed for the visualization software\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the file name where the grid parameters are saved\&. 
 .RE
@@ -321,7 +153,7 @@ the file name where the grid parameters are saved\&.
 .SS "const \fBMap\fP* World::getMap () const"
 Returns a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .RE
@@ -330,94 +162,29 @@ a pointer to a \fBMap\fP object where the simulation takes place\&.
 .SS "const string& World::getOutputDir () const"
 Returns the name of the output folder\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the name of the output folder\&. 
 .RE
 .PP
 
-.SS "\fBPriorType\fP World::getPrior ()"
-
-.SS "map<const unsigned long, const string> World::getProbFilenames () const"
-Returns the name of the file where the probabilities of mobile phones locations are saved\&. 
-.PP
-\fBReturns:\fP
-.RS 4
-the name of the file where the probabilities of mobile phones locations are saved\&. 
-.RE
-.PP
-
-.SS "vector<\fBAntenna\fP*> World::parseAntennas (const string & configAntennasFile, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP, \fC [noexcept]\fP"
-
-.SS "\fBHoldableAgent::CONNECTION_TYPE\fP World::parseConnectionType (XMLElement * el)\fC [private]\fP"
-
-.SS "vector<\fBMobileOperator\fP*> World::parseMNOs (XMLElement * el)\fC [private]\fP"
-
-.SS "\fBMovementType\fP World::parseMovement (XMLElement * el)\fC [private]\fP"
-
-.SS "vector<\fBPerson\fP*> World::parsePersons (const string & personsFileName, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP, \fC [noexcept]\fP"
-
 .SS "string World::parseProbabilities (const string & probabilitiesFileName)\fC [private]\fP"
-
-.SS "vector<\fBMobileOperator\fP*> World::parseSimulationFile (const string & configSimulationFileName)\fC [private]\fP, \fC [noexcept]\fP"
 
 .SS "void World::runSimulation ()\fC [noexcept]\fP"
 This method is called to perform the actual simulation\&. During the simulation it outputs the exact positions of all persons in a \&.csv file and the positions of antennas at the starting time of the simulation\&. A simulation means a number of time steps, at each step every person move to another position and after arriving at their new positions the mobile phones that they carry try to connect to one of the available antennas\&. The antennas record these events and output them in a file\&. 
-.SS "void World::setPersonDisplacementPattern (\fBPerson\fP * p, \fBMovementType\fP type, \fBMap\fP * map, \fBClock\fP * clk)\fC [private]\fP"
-
-.SS "void World::setPhones (int *& ph1, int *& ph2, double probSecMobilePhone, double numPersons, \fBRandomNumberGenerator\fP * rng, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP"
-
-.SS "void World::setPostProbMethod (const std::shared_ptr< \fBPostLocProb\fP > & post)"
-
-.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP *> mnos)\fC [private]\fP"
+.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)\fC [private]\fP"
 
 .SS "void World::writeSignalAndCells (ostream & antennaFile)\fC [private]\fP"
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBAgentsCollection\fP* World::m_agentsCollection\fC [private]\fP"
+.SS "AgentsCollection* World::m_agentsCollection\fC [private]\fP"
 
-.SS "string World::m_antennasFilename\fC [private]\fP"
-
-.SS "\fBClock\fP* World::m_clock\fC [private]\fP"
-
-.SS "double World::m_connThreshold\fC [private]\fP"
-
-.SS "\fBHoldableAgent::CONNECTION_TYPE\fP World::m_connType\fC [private]\fP"
-
-.SS "unsigned long World::m_endTime\fC [private]\fP"
-
-.SS "double World::m_GridDimTileX\fC [private]\fP"
-
-.SS "double World::m_GridDimTileY\fC [private]\fP"
-
-.SS "string World::m_gridFilename\fC [private]\fP"
-
-.SS "unsigned World::m_intevalBetweenStays\fC [private]\fP"
-
-.SS "\fBMap\fP* World::m_map\fC [private]\fP"
-
-.SS "\fBMovementType\fP World::m_mvType\fC [private]\fP"
-
-.SS "string World::m_outputDir\fC [private]\fP"
-
-.SS "string World::m_personsFilename\fC [private]\fP"
+.SS "\fBEventFactory\fP* World::m_eventFactory\fC [private]\fP"
 
 .SS "shared_ptr<\fBPostLocProb\fP> World::m_postMethod\fC [private]\fP"
 
-.SS "\fBPriorType\fP World::m_prior\fC [private]\fP"
-
-.SS "map<const unsigned long, const string> World::m_probFilenames\fC [private]\fP"
-
-.SS "double World::m_probSecMobilePhone\fC [private]\fP"
-
-.SS "unsigned World::m_seed\fC [private]\fP"
-
-.SS "unsigned long World::m_startTime\fC [private]\fP"
-
-.SS "unsigned long World::m_stay\fC [private]\fP"
-
-.SS "unsigned long World::m_timeIncrement\fC [private]\fP"
+.SS "\fBSimulationConfiguration\fP* World::m_sp\fC [private]\fP"
 
 
 .SH "Author"

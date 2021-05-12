@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['in_5frange_5fnot_5fattached_5fdevice',['IN_RANGE_NOT_ATTACHED_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faa6ac0995df1d7ce888368dccf7af3e737',1,'EventType.h']]]
+  ['detach_5fdevice_1359',['DETACH_DEVICE',['../_event_code_8h.html#a080ee5c80bcb8b9f3fda41b5e4eb0ef8ad4d5a45ac3a7a538879a9525fed18ddf',1,'EventCode.h']]],
+  ['directional_1360',['DIRECTIONAL',['../_antenna_type_8h.html#a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9',1,'AntennaType.h']]]
 ];

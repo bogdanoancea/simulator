@@ -65,7 +65,7 @@ public:
 	 * Mobile Operator to a file or to console.
 	 * @return a string that describes the parameters of the MobieOperator.
 	 */
-	const string toString() const override;
+	const string toString(bool detailed = false) const override;
 
 	static const string getHeader();
 

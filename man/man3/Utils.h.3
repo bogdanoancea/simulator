@@ -1,4 +1,4 @@
-.TH "include/Utils.h" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "include/Utils.h" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -10,11 +10,19 @@ include/Utils.h
 .br
 \fC#include <agent/MobilePhone\&.h>\fP
 .br
+\fC#include <events/EventType\&.h>\fP
+.br
 \fC#include <AntennaInfo\&.h>\fP
 .br
 \fC#include <geos/geom/Point\&.h>\fP
 .br
 \fC#include <PriorType\&.h>\fP
+.br
+\fC#include <NetworkType\&.h>\fP
+.br
+\fC#include <parsers/SimulationConfiguration\&.h>\fP
+.br
+\fC#include <RandomNumberGenerator\&.h>\fP
 .br
 \fC#include <cmath>\fP
 .br
@@ -22,13 +30,12 @@ include/Utils.h
 .br
 \fC#include <vector>\fP
 .br
+\fC#include <TinyXML2\&.h>\fP
+.br
 
 .SS "Namespaces"
 
 .in +1c
-.ti -1c
-.RI " \fBtinyxml2\fP"
-.br
 .ti -1c
 .RI " \fButils\fP"
 .br
@@ -37,10 +44,19 @@ include/Utils.h
 
 .in +1c
 .ti -1c
-.RI "vector< Point * > \fButils::generatePoints\fP (const \fBMap\fP *m, unsigned long n, double percentHome, unsigned seed)"
+.RI "vector< Point * > \fButils::generatePoints\fP (\fBSimulationConfiguration\fP *sc, unsigned long n, double percentHome)"
 .br
 .ti -1c
-.RI "vector< Point * > \fButils::generateFixedPoints\fP (const \fBMap\fP *m, unsigned long n, unsigned seed)"
+.RI "vector< Point * > \fButils::generateRandomPoints\fP (\fBSimulationConfiguration\fP *sc, unsigned long n, double percentHome)"
+.br
+.ti -1c
+.RI "vector< Point * > \fButils::generateHomeWorkPoints\fP (\fBSimulationConfiguration\fP *sc, unsigned long n, double percentHome)"
+.br
+.ti -1c
+.RI "void \fButils::generateHomeLocation\fP (\fBMap\fP *m, \fBHomeWorkLocation\fP hLoc, unsigned int npers, \fBRandomNumberGenerator\fP *random_gernerator, vector< Point * > &result)"
+.br
+.ti -1c
+.RI "vector< Point * > \fButils::generateFixedPoints\fP (const \fBMap\fP *m, unsigned long n, \fBRandomNumberGenerator\fP *random_generator)"
 .br
 .ti -1c
 .RI "double \fButils::r2d\fP (double x)"
@@ -70,7 +86,16 @@ include/Utils.h
 .RI "double \fButils::getValue\fP (XMLElement *el, const char *name)"
 .br
 .ti -1c
+.RI "\fBNetworkType\fP \fButils::getValue\fP (XMLElement *el, const char *name, \fBNetworkType\fP default_value)"
+.br
+.ti -1c
+.RI "\fBEventType\fP \fButils::getValue\fP (XMLElement *el, const char *name, \fBEventType\fP default_value)"
+.br
+.ti -1c
 .RI "double \fButils::inverseNormalCDF\fP (const double p, const double mu, const double sigma)"
+.br
+.ti -1c
+.RI "string \fButils::toString\fP (\fBNetworkType\fP type)"
 .br
 .in -1c
 .SS "Variables"

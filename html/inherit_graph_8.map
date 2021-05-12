@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_e_m_field.html" title="EMField" alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node1" href="$class_displace.html" title=" " alt="" coords="5,81,77,108"/>
+<area shape="rect" id="node2" href="$class_home_work_displacement.html" title=" " alt="" coords="143,5,310,32"/>
+<area shape="rect" id="node3" href="$class_levy_flight_displacement.html" title=" " alt="" coords="147,56,306,83"/>
+<area shape="rect" id="node4" href="$class_random_walk_displacement.html" title=" " alt="" coords="137,107,316,133"/>
+<area shape="rect" id="node5" href="$class_random_walk_drift_displacement.html" title=" " alt="" coords="125,157,328,184"/>
 </map>

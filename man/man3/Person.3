@@ -1,4 +1,4 @@
-.TH "Person" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "Person" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,7 +21,7 @@ Inherits \fBMovableAgent\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBPerson\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double initSpeed, int age, \fBGender\fP gender, unsigned long timeStay, unsigned long intervalBetweenStays)"
+.RI "\fBPerson\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double initSpeed, int age, \fBGender\fP gender, shared_ptr< \fBDistribution\fP > timeStayDistribution, shared_ptr< \fBDistribution\fP > intervalBetweenStaysDistribution)"
 .br
 .ti -1c
 .RI "virtual \fB~Person\fP ()"
@@ -53,6 +53,39 @@ Inherits \fBMovableAgent\fP\&.
 .ti -1c
 .RI "void \fBsetDisplacementMethod\fP (const shared_ptr< \fBDisplace\fP > &displace)"
 .br
+.ti -1c
+.RI "void \fBsetHomeLocation\fP (Point *hl)"
+.br
+.ti -1c
+.RI "Point * \fBgetHomeLocation\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetWorkLocation\fP (Point *wl)"
+.br
+.ti -1c
+.RI "Point * \fBgetWorkLocation\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetAnchorLocation\fP (Point *al)"
+.br
+.ti -1c
+.RI "Point * \fBgetAnchorLocation\fP () const"
+.br
+.ti -1c
+.RI "bool \fBisHomePerson\fP () const"
+.br
+.ti -1c
+.RI "const shared_ptr< \fBDistribution\fP > & \fBgetIntervalBetweenStaysDistribution\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetIntervalBetweenStaysDistribution\fP (const shared_ptr< \fBDistribution\fP > &intervalBetweenStaysDistribution)"
+.br
+.ti -1c
+.RI "const shared_ptr< \fBDistribution\fP > & \fBgetTimeStayDistribution\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetTimeStayDistribution\fP (const shared_ptr< \fBDistribution\fP > &timeStayDistribution)"
+.br
 .in -1c
 .SS "Static Public Member Functions"
 
@@ -74,19 +107,28 @@ Inherits \fBMovableAgent\fP\&.
 .RI "unordered_multimap< string, \fBAgent\fP * > \fBm_idDevices\fP"
 .br
 .ti -1c
-.RI "unsigned long \fBm_avgTimeStay\fP"
+.RI "shared_ptr< \fBDistribution\fP > \fBm_timeStayDistribution\fP"
 .br
 .ti -1c
 .RI "unsigned long \fBm_timeStay\fP"
 .br
 .ti -1c
-.RI "unsigned long \fBm_avgIntervalBetweenStays\fP"
+.RI "shared_ptr< \fBDistribution\fP > \fBm_intervalBetweenStaysDistribution\fP"
 .br
 .ti -1c
 .RI "unsigned long \fBm_nextStay\fP"
 .br
 .ti -1c
 .RI "shared_ptr< \fBDisplace\fP > \fBm_displacementMethod\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_homeLocation\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_workLocation\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_anchorLocation\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -105,10 +147,10 @@ This class represents a person that can have 0,1 or 2 mobile phone(s)\&. During 
 \fB\fIFEMALE \fP\fP
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "Person::Person (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed, int age, \fBGender\fP gender, unsigned long timeStay, unsigned long intervalBetweenStays)\fC [explicit]\fP"
+.SS "Person::Person (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed, int age, \fBGender\fP gender, shared_ptr< \fBDistribution\fP > timeStayDistribution, shared_ptr< \fBDistribution\fP > intervalBetweenStaysDistribution)\fC [explicit]\fP"
 Builds a new \fBPerson\fP object with the characteristics given as parameters\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP a pointer to the \fBMap\fP object where this \fBPerson\fP move\&. 
 .br
@@ -137,7 +179,7 @@ The default destructor\&.
 .SS "void Person::addDevice (string type, \fBAgent\fP * agent)"
 Add a mobile device to this person\&. Internally, all mobile devices are kept in an unordered_multimap as pairs <name of the device class, pointer to the device object> 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fItype\fP the name of the device's class\&. 
 .br
@@ -148,7 +190,7 @@ Add a mobile device to this person\&. Internally, all mobile devices are kept in
 .SS "string Person::dumpDevices ()"
 Builds a string containing a list with the ids of the mobile devices that this person owns\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string containing a list with the ids of the mobile devices that this person owns\&. 
 .RE
@@ -157,27 +199,39 @@ a string containing a list with the ids of the mobile devices that this person o
 .SS "int Person::getAge () const"
 Returns the age of the person\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the age of the person\&. 
 .RE
 .PP
 
+.SS "Point* Person::getAnchorLocation () const"
+
 .SS "static const string Person::getHeader ()\fC [static]\fP"
+
+.SS "Point* Person::getHomeLocation () const"
+
+.SS "const shared_ptr<\fBDistribution\fP>& Person::getIntervalBetweenStaysDistribution () const"
+
+.SS "const shared_ptr<\fBDistribution\fP>& Person::getTimeStayDistribution () const"
+
+.SS "Point* Person::getWorkLocation () const"
 
 .SS "bool Person::hasDevices ()"
 returns true if this person has at least a mobile device, false otherwise\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-
+true if this person has at least a mobile device, false otherwise\&. 
 .RE
 .PP
+
+.SS "bool Person::isHomePerson () const"
 
 .SS "virtual Point* Person::move ()\fC [override]\fP, \fC [virtual]\fP"
 Makes a step on the map according to an algorithm\&. The direction and the length of the step is determined by the displacement strategy set at the \fBPerson\fP creation moment and currently two strategies are supported: \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP\&. \fBRandomWalkDisplacement\fP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. If a step projects it outside the map, it stops on the boundary\&. \fBRandomWalkDriftDisplacement\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, any kind of \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the final location after the displacement\&. 
 .RE
@@ -188,25 +242,31 @@ Implements \fBMovableAgent\fP\&.
 .SS "void Person::setAge (int age)"
 Sets the age of the person\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIage\fP the age of the person\&. 
 .RE
 .PP
 
+.SS "void Person::setAnchorLocation (Point * al)"
+
 .SS "void Person::setDisplacementMethod (const shared_ptr< \fBDisplace\fP > & displace)"
 Sets the displacement algorithm\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIdisplace\fP a reference to an implementation of the displacement method\&. Currently two displacement methods are supported and they are implemented in \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP classes\&. 
 .RE
 .PP
 
+.SS "void Person::setHomeLocation (Point * hl)"
+
+.SS "void Person::setIntervalBetweenStaysDistribution (const shared_ptr< \fBDistribution\fP > & intervalBetweenStaysDistribution)"
+
 .SS "virtual void Person::setLocation (Point * pt)\fC [override]\fP, \fC [virtual]\fP"
 Sets the location of the person on the map\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIpt\fP a pointer to a Point object that represent the location of the person on the map\&. If the person has mobile devices (phone, tablets) this function calls \fBsetLocation()\fP for all mobile devices too\&. 
 .RE
@@ -214,34 +274,42 @@ Sets the location of the person on the map\&.
 
 .PP
 Reimplemented from \fBLocatableAgent\fP\&.
-.SS "const string Person::toString () const\fC [override]\fP, \fC [virtual]\fP"
+.SS "void Person::setTimeStayDistribution (const shared_ptr< \fBDistribution\fP > & timeStayDistribution)"
+
+.SS "void Person::setWorkLocation (Point * wl)"
+
+.SS "const string Person::toString () const\fC [override]\fP"
 Builds and returns a human readable string representation of the person\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a human readable string representation of the person\&. 
 .RE
 .PP
 
-.PP
-Reimplemented from \fBMovableAgent\fP\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "int Person::m_age\fC [private]\fP"
 
-.SS "unsigned long Person::m_avgIntervalBetweenStays\fC [private]\fP"
-
-.SS "unsigned long Person::m_avgTimeStay\fC [private]\fP"
+.SS "Point* Person::m_anchorLocation\fC [private]\fP"
 
 .SS "shared_ptr<\fBDisplace\fP> Person::m_displacementMethod\fC [private]\fP"
 
 .SS "\fBGender\fP Person::m_gender\fC [private]\fP"
 
+.SS "Point* Person::m_homeLocation\fC [private]\fP"
+
 .SS "unordered_multimap<string, \fBAgent\fP*> Person::m_idDevices\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> Person::m_intervalBetweenStaysDistribution\fC [private]\fP"
 
 .SS "unsigned long Person::m_nextStay\fC [private]\fP"
 
 .SS "unsigned long Person::m_timeStay\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> Person::m_timeStayDistribution\fC [private]\fP"
+
+.SS "Point* Person::m_workLocation\fC [private]\fP"
 
 
 .SH "Author"

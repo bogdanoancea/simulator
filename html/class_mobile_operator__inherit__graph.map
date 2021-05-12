@@ -1,3 +1,4 @@
 <map id="MobileOperator" name="MobileOperator">
-<area shape="rect" id="node2" href="$class_agent.html" title="{Agent\n|&#45; m_map\l&#45; m_id\l&#45; m_clock\l|+ Agent()\l+ Agent()\l+ ~Agent()\l+ operator==()\l+ getMap()\l+ getClock()\l+ getId()\l+ toString()\l}" alt="" coords="46,5,151,215"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,131,192,399"/>
+<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="71,5,127,83"/>
 </map>

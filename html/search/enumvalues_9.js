@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['random_5fwalk_5fclosed_5fmap',['RANDOM_WALK_CLOSED_MAP',['../_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a1260a39bdcc19395a0085be09746f9d0',1,'MovementType.h']]],
-  ['random_5fwalk_5fclosed_5fmap_5fwith_5fdrift',['RANDOM_WALK_CLOSED_MAP_WITH_DRIFT',['../_movement_type_8h.html#a8a93b61bc797a7d1907f42796a252493a19d5a14b0e46bf765f243b7e2b7b8810',1,'MovementType.h']]],
-  ['register',['REGISTER',['../_prior_type_8h.html#a61286c562e68de246982fc393a7c23a5ad17455cfcb88a53f1603fb817e09c2d6',1,'PriorType.h']]]
+  ['in_5frange_5fnot_5fattached_5fdevice_1369',['IN_RANGE_NOT_ATTACHED_DEVICE',['../_event_code_8h.html#a080ee5c80bcb8b9f3fda41b5e4eb0ef8a6ac0995df1d7ce888368dccf7af3e737',1,'EventCode.h']]]
 ];

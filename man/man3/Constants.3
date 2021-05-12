@@ -1,4 +1,4 @@
-.TH "Constants" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "Constants" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -96,6 +96,9 @@ Constants
 .RI "static const \fBPriorType\fP \fBPRIOR_PROBABILITY\fP"
 .br
 .ti -1c
+.RI "static const \fBNetworkType\fP \fBNETWORK_TYPE\fP"
+.br
+.ti -1c
 .RI "static const double \fBANTENNA_HEIGHT\fP"
 .br
 .ti -1c
@@ -149,12 +152,55 @@ Constants
 .ti -1c
 .RI "static const int \fBRANDOM_SEED\fP"
 .br
+.ti -1c
+.RI "static const double \fBANNULUS_SIZE_3G\fP"
+.br
+.ti -1c
+.RI "static const double \fBANNULUS_SIZE_4G\fP"
+.br
+.ti -1c
+.RI "static const char * \fBSOFTWARE_VERSION\fP"
+.br
+.ti -1c
+.RI "static const \fBEventType\fP \fBEVENTTYPE\fP"
+.br
+.ti -1c
+.RI "static const char * \fBDEFAULT_ANGLE_DISTRIBUTION\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_SCALE_LAPLACE\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_MEAN_NORMAL\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_SD_NORMAL\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_MIN_UNIFORM\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_MAX_UNIFORM\fP"
+.br
+.ti -1c
+.RI "static const double \fBCUTOFFSPEED\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_MEAN_LEVY\fP"
+.br
+.ti -1c
+.RI "static const double \fBDEFAULT_C_LEVY\fP"
+.br
 .in -1c
 .SH "Detailed Description"
 .PP 
 These are some constants used in the process of the simulation, most of them are only used for testing and rapid development of some methods, the real values of the parameters being read from the configuration files\&. 
 .SH "Member Data Documentation"
 .PP 
+.SS "const double Constants::ANNULUS_SIZE_3G\fC [static]\fP"
+
+.SS "const double Constants::ANNULUS_SIZE_4G\fC [static]\fP"
+
 .SS "const double Constants::ANTENNA_AZIM_DB_BACK\fC [static]\fP"
 
 .SS "const double Constants::ANTENNA_BEAM_H\fC [static]\fP"
@@ -189,6 +235,26 @@ The Sstepp parameter of an antenna
 The name of the file where the exact positions of the antennas are saved during simulation\&. They are needed for later analysis\&. 
 .SS "const double Constants::ATT_FACTOR\fC [static]\fP"
 Attenuation factor of the signal\&. It usually takes values between 2 in open field and 6 inside buildings 
+.SS "const double Constants::CUTOFFSPEED\fC [static]\fP"
+
+.SS "const char* Constants::DEFAULT_ANGLE_DISTRIBUTION\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_C_LEVY\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_MAX_UNIFORM\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_MEAN_LEVY\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_MEAN_NORMAL\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_MIN_UNIFORM\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_SCALE_LAPLACE\fC [static]\fP"
+
+.SS "const double Constants::DEFAULT_SD_NORMAL\fC [static]\fP"
+
+.SS "const \fBEventType\fP Constants::EVENTTYPE\fC [static]\fP"
+
 .SS "const double Constants::GRID_DIM_TILE_X\fC [static]\fP"
 
 .SS "const double Constants::GRID_DIM_TILE_Y\fC [static]\fP"
@@ -199,6 +265,8 @@ The name of the file where the description of the grid is saved
 
 .SS "const unsigned long Constants::GRID_Y_ORIG\fC [static]\fP"
 
+.SS "const \fBNetworkType\fP Constants::NETWORK_TYPE\fC [static]\fP"
+Indicates the type of network 3G or 4G 
 .SS "const char* Constants::OUTPUT_DIR\fC [static]\fP"
 The name of the folder where the output fle will be saved 
 .SS "const char* Constants::PERSONS_FILE_NAME\fC [static]\fP"
@@ -254,6 +322,8 @@ Default starting time of a simulation
 .SS "const double Constants::SIM_TREND_ANGLE_1\fC [static]\fP"
 
 .SS "const double Constants::SIM_TREND_ANGLE_2\fC [static]\fP"
+
+.SS "const char* Constants::SOFTWARE_VERSION\fC [static]\fP"
 
 
 .SH "Author"

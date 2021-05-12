@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['detach_5fdevice',['DETACH_DEVICE',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6faad4d5a45ac3a7a538879a9525fed18ddf',1,'EventType.h']]],
-  ['directional',['DIRECTIONAL',['../_antenna_type_8h.html#a7b678b5cb9dedc607131200119d96b16ab6f2249394a4def60a78b342dcc925b9',1,'AntennaType.h']]]
+  ['already_5fattached_5fdevice_1353',['ALREADY_ATTACHED_DEVICE',['../_event_code_8h.html#a080ee5c80bcb8b9f3fda41b5e4eb0ef8aea76d50440d9cdc0ad1cac6ab9ac4f27',1,'EventCode.h']]],
+  ['attach_5fdevice_1354',['ATTACH_DEVICE',['../_event_code_8h.html#a080ee5c80bcb8b9f3fda41b5e4eb0ef8a9893a3a649e7100d87b1560bd8202ec2',1,'EventCode.h']]]
 ];

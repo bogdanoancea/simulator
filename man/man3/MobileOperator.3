@@ -1,4 +1,4 @@
-.TH "MobileOperator" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "MobileOperator" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -14,7 +14,7 @@ Inherits \fBAgent\fP\&.
 
 .in +1c
 .ti -1c
-.RI "\fBMobileOperator\fP (const \fBMap\fP *m, const unsigned long id, const \fBClock\fP *clock, const char *name, const double probMobilePhone, string &outoupDir)"
+.RI "\fBMobileOperator\fP (const \fBMap\fP *m, const unsigned long id, const \fBClock\fP *clock, const char *name, const double probMobilePhone, const string &outputDir)"
 .br
 .ti -1c
 .RI "virtual \fB~MobileOperator\fP ()"
@@ -64,7 +64,7 @@ Inherits \fBAgent\fP\&.
 .RI "ofstream \fBm_signalMeasureFileName\fP"
 .br
 .ti -1c
-.RI "string & \fBm_outputDir\fP"
+.RI "const string & \fBm_outputDir\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -72,10 +72,10 @@ Inherits \fBAgent\fP\&.
 This class represents a Mobile Operator company\&. Currently a simulation can be run with 1 or 2 mobile operators\&. A mobile operator own a set of antennas and has a set of mobile phone subscribed\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "MobileOperator::MobileOperator (const \fBMap\fP * m, const unsigned long id, const \fBClock\fP * clock, const char * name, const double probMobilePhone, string & outoupDir)"
+.SS "MobileOperator::MobileOperator (const \fBMap\fP * m, const unsigned long id, const \fBClock\fP * clock, const char * name, const double probMobilePhone, const string & outputDir)"
 Constructor of this class\&. It builds a \fBMobileOperator\fP object with the characteristics provided by user through parameters\&. It builds a string representing the name of the file where the coverage area of all the antennas that belong to this \fBMobileOperator\fP are saved in \&.csv format and then open this file and writes the header of the file\&. The name of this file is built concatenating 'AntennaCells_' with the name of the Mobile Operator\&. The extension of the file is '\&.csv'\&. A line of this file contains the antenna id followed by a wkt text representing the coverage area of antenna\&. It also builds another string representing the name of a file where the signal quality values for all antennas that belong to this \fBMobileOperator\fP are saved\&. The signal quality is computed in the center of each tile of the \fBGrid\fP object set for a simulation\&. The file is opened and then it writes the header of the file\&. The name of this file is built concatenating 'SignalQuality_' with the name of the Mobile Operator\&. The extension of the file is '\&.csv'\&. A line of this file contains the antenna id followed by a set of values for the signal quality computed in the center of each tile of the grid\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP a pointer to a \fBMap\fP object where the simulation take place\&. 
 .br
@@ -96,7 +96,7 @@ Default destructor\&.
 .SS "ofstream& MobileOperator::getAntennaCellsFile ()"
 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a file where the coverage area of all the antennas that belong to this \fBMobileOperator\fP are saved in csv format\&. 
 .RE
@@ -107,7 +107,7 @@ a file where the coverage area of all the antennas that belong to this \fBMobile
 .SS "const string MobileOperator::getMNOName () const"
 The name of the Mobile Operator\&. It should be provided as a parameter to the constructor of the class\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 The name of the Mobile Operator 
 .RE
@@ -118,7 +118,7 @@ The name of the Mobile Operator
 .SS "const double MobileOperator::getProbMobilePhone () const"
 The probability that a person will have a cell phone at this company\&. It should be provided as a parameter to the constructor of the class\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the probability that a person will have a cell phone at this company\&. 
 .RE
@@ -127,23 +127,21 @@ the probability that a person will have a cell phone at this company\&.
 .SS "ofstream& MobileOperator::getSignalFile ()"
 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a file where the signal quality/strength/power values for all antennas belonging to this mobile Operator and all tiles of the grid are saved\&. 
 .RE
 .PP
 
-.SS "const string MobileOperator::toString () const\fC [override]\fP, \fC [virtual]\fP"
+.SS "const string MobileOperator::toString () const\fC [override]\fP"
 Overrides the same method from the superclass\&. It is used to write the characteristics of the Mobile Operator to a file or to console\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string that describes the parameters of the MobieOperator\&. 
 .RE
 .PP
 
-.PP
-Implements \fBAgent\fP\&.
 .SS "void MobileOperator::writeSignalFileHeader ()"
 
 .SH "Member Data Documentation"
@@ -152,7 +150,7 @@ Implements \fBAgent\fP\&.
 
 .SS "const string MobileOperator::m_name\fC [private]\fP"
 
-.SS "string& MobileOperator::m_outputDir\fC [private]\fP"
+.SS "const string& MobileOperator::m_outputDir\fC [private]\fP"
 
 .SS "const double MobileOperator::m_probMobilePhone\fC [private]\fP"
 

@@ -36,7 +36,7 @@ ImmovableAgent::ImmovableAgent(const Map* m, const unsigned long id, Point* init
 ImmovableAgent::~ImmovableAgent() {
 }
 
-const string ImmovableAgent::toString() const {
+const string ImmovableAgent::toString(bool detailed) const {
 	return (LocatableAgent::toString());
 }
 

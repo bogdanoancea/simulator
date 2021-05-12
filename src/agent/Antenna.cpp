@@ -95,7 +95,7 @@ Antenna::~Antenna() {
 	}
 }
 
-const string Antenna::toString() const {
+const string Antenna::toString(bool detailed) const {
 	ostringstream result;
 	result << ImmovableAgent::toString() << left << setw(15) << m_antennaConfig.getPower() << setw(25) << m_antennaConfig.getMaxConnections() << setw(15) << m_antennaConfig.getPle() << setw(15)
 			<< m_antennaConfig.getMno()->getId();
@@ -243,14 +243,14 @@ double Antenna::S(double dist) const {
 	return (S0() - SDist(dist));
 }
 
-double Antenna::computeSignalQuality(const Point* p) const {
+double Antenna::computeSignalDominance(const Point* p) const {
 	double result = 0.0;
 	const Coordinate* c = p->getCoordinate();
-	result = computeSignalQuality(*c);
+	result = computeSignalDominance(*c);
 	return (result);
 }
 
-double Antenna::computeSignalQuality(const Coordinate c) const {
+double Antenna::computeSignalDominance(const Coordinate c) const {
 	double result = 0.0;
 	if (m_antennaConfig.getType() == AntennaType::OMNIDIRECTIONAL) {
 		result = computeSignalQualityOmnidirectional(c);
@@ -595,7 +595,7 @@ double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType
 	double result = 0.0;
 	switch (handoverType) {
 		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
-			result = computeSignalQuality(c);
+			result = computeSignalDominance(c);
 			break;
 		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
 			result = computeSignalStrength(c);

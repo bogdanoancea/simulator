@@ -58,7 +58,7 @@ public:
 	 * Builds a string representation of this class.
 	 * @return a string representation of this class. It is used to write details of the ImmovableAgent objects in a file or on console.
 	 */
-	const string toString() const override;
+	const string toString(bool detailed = false) const override;
 
 };
 

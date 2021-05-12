@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['persons_5ffile_5fname',['PERSONS_FILE_NAME',['../class_constants.html#a2388516c40960223c0aef1610fd72312',1,'Constants']]],
-  ['phone_5fconnection_5fthreshold',['PHONE_CONNECTION_THRESHOLD',['../class_constants.html#a1cbf0a4e111b9d2e13b33e771a342b4f',1,'Constants']]],
-  ['phone_5fpower_5fthreshold',['PHONE_POWER_THRESHOLD',['../class_constants.html#a1e95cbdc2db02f6147ddf8ac61a428ab',1,'Constants']]],
-  ['phone_5fquality_5fthreshold',['PHONE_QUALITY_THRESHOLD',['../class_constants.html#a2c8a9d965bae29c19ff18c8b80260982',1,'Constants']]],
-  ['phone_5fstrength_5fthreshold',['PHONE_STRENGTH_THRESHOLD',['../class_constants.html#a24b6069c3365fb95c4b853129e4d4a3e',1,'Constants']]],
-  ['pi',['PI',['../namespaceutils.html#a92ce7d254229929886551de7417e1912',1,'utils']]],
-  ['prior_5fprobability',['PRIOR_PROBABILITY',['../class_constants.html#a7b31976adc7ad0f3dbed86b205e1773d',1,'Constants']]],
-  ['prob_5ffile_5fname_5fprefix',['PROB_FILE_NAME_PREFIX',['../class_constants.html#a3b2d3fc0ccc4636a51190bf5b297d72d',1,'Constants']]]
+  ['grid_5fdim_5ftile_5fx_1188',['GRID_DIM_TILE_X',['../class_constants.html#a4400d3f97fa2e2be6091a8005efedd7f',1,'Constants']]],
+  ['grid_5fdim_5ftile_5fy_1189',['GRID_DIM_TILE_Y',['../class_constants.html#a08f9273d844b68a74fd979d5a46d4918',1,'Constants']]],
+  ['grid_5ffile_5fname_1190',['GRID_FILE_NAME',['../class_constants.html#aa2fd1c5551c8dab10dc1bd4c0cd0db8f',1,'Constants']]],
+  ['grid_5fx_5forig_1191',['GRID_X_ORIG',['../class_constants.html#ac09062322e1ab9b6e1ca3a568b11c376',1,'Constants']]],
+  ['grid_5fy_5forig_1192',['GRID_Y_ORIG',['../class_constants.html#ace48b30468931aaf452ab7a6daf573e0',1,'Constants']]]
 ];

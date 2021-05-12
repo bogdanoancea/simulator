@@ -1,3 +1,8 @@
 <map id="Map" name="Map">
-<area shape="rect" id="node3" href="$class_grid.html" title="{Grid\n||+ Grid()\l+ ~Grid()\l+ getNoTilesX()\l+ getNoTilesY()\l+ getXTileDim()\l+ getYTileDim()\l+ getXOrigin()\l+ getYOrigin()\l+ getNoTiles()\l+ getTileCenter()\l+ getTileNo()\l+ getTileNo()\l+ dumpGrid()\l+ getTileCenters()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; getTileIndexX()\l&#45; getTileIndexY()\l&#45; toString()\l&#45; computeTileCenters()\l}" alt="" coords="96,189,249,545"/>
+<area shape="rect" id="node1" title=" " alt="" coords="31,608,173,949"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,329,60,406"/>
+<area shape="rect" id="node3" href="$class_grid.html" title=" " alt="" coords="96,189,249,545"/>
+<area shape="rect" id="node4" title=" " alt="" coords="6,5,99,83"/>
+<area shape="rect" id="node5" title=" " alt="" coords="143,5,203,83"/>
+<area shape="rect" id="node6" title=" " alt="" coords="257,5,304,83"/>
 </map>

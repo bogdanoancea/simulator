@@ -80,7 +80,7 @@ vector<double> NetPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vector
 			}
 			c.z = 0; //TODO tile elevation!
 			if (a != nullptr) {
-				lh = a->computeSignalQuality(c);
+				lh = a->computeSignalDominance(c);
 				sum += lh;
 			}
 		}

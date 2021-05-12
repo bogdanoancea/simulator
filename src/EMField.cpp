@@ -82,7 +82,7 @@ pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned
 			if (a->getMNO()->getId() != mnoId)
 				continue;
 			if (a->getLocation()->distance(p) <= a->getRmax()) {
-				double quality = a->computeSignalQuality(p);
+				double quality = a->computeSignalDominance(p);
 				if (quality > max) {
 					max = quality;
 					result = make_pair(a, quality);
@@ -121,10 +121,10 @@ pair<Antenna*, double> EMField::computeMaxStrength(const Point* p, const unsigne
 
 
 double EMField::connectionLikelihood(Antenna* a, const Point * p) {
-	double s_quality = a->computeSignalQuality(p);
+	double s_quality = a->computeSignalDominance(p);
 	double result = 0.0, sum = 0.0;
 	for (Antenna*& a : m_antennas) {
-		sum += a->computeSignalQuality(p);
+		sum += a->computeSignalDominance(p);
 	}
 	if (sum)
 		result = s_quality / sum;
@@ -135,7 +135,7 @@ double EMField::connectionLikelihood(Antenna* a, const Point * p) {
 double EMField::connectionLikelihoodGrid(Antenna* a, const Map* m, unsigned long tileIndex) {
 	Coordinate c = m->getTileCenter(tileIndex);
 	c.z = 0; //TODO z = tile elevation
-	double s_quality = a->computeSignalQuality(c);
+	double s_quality = a->computeSignalDominance(c);
 	unsigned long mnoID = a->getMNO()->getId();
 	double result = 0.0;
 	vector<double> sumQuality = m_sumQuality[mnoID];
@@ -159,7 +159,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 				if (connType == HoldableAgent::USING_POWER)
 					x = a->computePower(p);
 				else if(connType == HoldableAgent::USING_SIGNAL_QUALITY)
-					x = a->computeSignalQuality(p);
+					x = a->computeSignalDominance(p);
 				else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH)
 					x = a->computeSignalStrength(p);
 
@@ -183,7 +183,7 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 		ps = a->computePower(p);
 	else if(connType == HoldableAgent::USING_SIGNAL_QUALITY) {
 		if (a->getRmax() >= a->getLocation()->distance(p))
-			ps = a->computeSignalQuality(p);
+			ps = a->computeSignalDominance(p);
 	}
 	else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH) {
 		if(a->getRmax() >= a->getLocation()->distance(p))
@@ -207,7 +207,7 @@ vector<double> EMField::sumSignalQuality(const Map* map, const unsigned long mno
 		for (Antenna* a : m_antennas) {
 			if (a->getMNO()->getId() != mnoID)
 				continue;
-			sum += a->computeSignalQuality(c);
+			sum += a->computeSignalDominance(c);
 		}
 		tmp.push_back(sum);
 		//cout << "tileIndex " << tileIndex << " tile center " << grid->getTileCenter(tileIndex) << " sum signal quality " << sum  << endl;

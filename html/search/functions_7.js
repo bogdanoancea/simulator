@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hasdevices',['hasDevices',['../class_person.html#a40d6f2c716dd3c9794067817a3fb9165',1,'Person']]],
-  ['hasgrid',['hasGrid',['../class_map.html#aca471e63e8f9f9a892a5491aee94eada',1,'Map']]],
-  ['holdableagent',['HoldableAgent',['../class_holdable_agent.html#a04f50f7e7cd8efa7666657de6d5ef22c',1,'HoldableAgent::HoldableAgent(const Map *m, const unsigned long id, Point *initPosition, Agent *holder, const Clock *clock)'],['../class_holdable_agent.html#a9b7c1494266c0a807d809461b59ced80',1,'HoldableAgent::HoldableAgent(const HoldableAgent &amp;h)']]]
+  ['levyflightdisplacement_983',['LevyFlightDisplacement',['../class_levy_flight_displacement.html#ae807b06a0d81cf1f703c41c480a5a02f',1,'LevyFlightDisplacement']]],
+  ['levyflightscenario_984',['LevyFlightScenario',['../class_levy_flight_scenario.html#a62d4c67e6263c33820148a41b2c3e8c9',1,'LevyFlightScenario']]],
+  ['locatableagent_985',['LocatableAgent',['../class_locatable_agent.html#ab4939cf1ef1352acdac76736bfe47fc7',1,'LocatableAgent']]]
 ];

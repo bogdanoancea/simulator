@@ -1,6 +1,7 @@
 <map id="MobilePhone" name="MobilePhone">
-<area shape="rect" id="node2" href="$class_holdable_agent.html" title="{HoldableAgent\n|&#45; m_holder\l&#45; m_antennas\l|+ HoldableAgent()\l+ HoldableAgent()\l+ ~HoldableAgent()\l+ getHolder()\l+ setHolder()\l+ toString()\l+ tryConnect()\l+ isConnected()\l+ setLocation()\l+ getAntennas()\l}" alt="" coords="29,660,163,884"/>
-<area shape="rect" id="node3" href="$class_movable_agent.html" title="{MovableAgent\n|&#45; m_speed\l|+ MovableAgent()\l+ ~MovableAgent()\l+ toString()\l+ move()\l+ getSpeed()\l+ setSpeed()\l}" alt="" coords="31,461,161,612"/>
-<area shape="rect" id="node4" href="$class_locatable_agent.html" title="{LocatableAgent\n|&#45; m_location\l|+ LocatableAgent()\l+ ~LocatableAgent()\l+ toString()\l+ getLocation()\l+ setLocation()\l+ dumpLocation()\l}" alt="" coords="26,263,166,413"/>
-<area shape="rect" id="node5" href="$class_agent.html" title="{Agent\n|&#45; m_map\l&#45; m_id\l&#45; m_clock\l|+ Agent()\l+ Agent()\l+ ~Agent()\l+ operator==()\l+ getMap()\l+ getClock()\l+ getId()\l+ toString()\l}" alt="" coords="43,5,149,215"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,800,187,1039"/>
+<area shape="rect" id="node2" href="$class_holdable_agent.html" title=" " alt="" coords="29,528,163,752"/>
+<area shape="rect" id="node3" href="$class_movable_agent.html" title=" " alt="" coords="31,329,161,480"/>
+<area shape="rect" id="node4" href="$class_locatable_agent.html" title=" " alt="" coords="26,131,166,281"/>
+<area shape="rect" id="node5" href="$class_agent.html" title=" " alt="" coords="68,5,124,83"/>
 </map>

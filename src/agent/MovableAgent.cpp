@@ -42,7 +42,7 @@ void MovableAgent::setSpeed(double val) {
 	m_speed = val;
 }
 
-const string MovableAgent::toString() const {
+const string MovableAgent::toString(bool detailed) const {
 	ostringstream ss;
 	ss << LocatableAgent::toString() << left << setw(15) << m_speed;
 	return (ss.str());
