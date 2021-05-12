@@ -33,8 +33,9 @@
 #include <vector>
 class Antenna;
 /**
- * This is the superclass for all agents that represent a device (\code{MobilePhone} or \code{Tablet}) that can by held by a person
+ * This is the superclass for all agents that represent a device (\code{MobilePhone} or \code{Tablet}), can by held by a person
  * and can interact with the network. The interaction is triggered every time the location of this agent is set.
+ *
  */
 class HoldableAgent: public MovableAgent {
 public:
@@ -42,7 +43,7 @@ public:
 	 * Constructor of the class. It builds a \code{HoldableAgent} object with the parameters provided by user.
 	 * @param m a pointer to a \code{Map} object used for this simulation.
 	 * @param id the id of the object.
-	 * @param initPosition the initial location on the map of the object.
+	 * @param initPosition a pointer to a \code{Point} object representing the initial location on the map of this object.
 	 * @param holder a pointer to an \code{Agent} object that owns (and carries) this device.
 	 * @param clock a pointer to a \code{Clock} object used by this simulation.
 	 */
@@ -55,59 +56,61 @@ public:
 	 * \li USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device.
 	 * \li USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device.
 	 * \li UNKNOWN - this should by an error.
+	 * The actual handover mechanism is set in the simulation configuration file.
 	 */
 	enum CONNECTION_TYPE {
 		USING_POWER, USING_SIGNAL_QUALITY, USING_SIGNAL_STRENGTH, UNKNOWN
 	};
 
 	/**
-	 * Destructor
+	 * Destructor of the class.
 	 */
 	virtual ~HoldableAgent();
 
 	/**
-	 * Returns a pointer to an Agent object that owns this device
-	 * @return a pointer to an Agent object that owns this device
+	 * Returns a pointer to an \code{Agent} object that owns this device. Actually, the holder can be  a \code{Person} object.
+	 * @return a pointer to an \code{Agent} object that owns this device.
 	 */
 	Agent* getHolder() const;
 
 	/**
-	 * Sets the owner of this device
-	 * @param holder a pointer to the owner of this device
+	 * Sets the owner agent of this device.
+	 * @param holder a pointer to an \code{Agent} object which is the owner of this device.
 	 */
 	void setHolder(Agent* holder);
 
 	/**
-	 * Returns a string representation of this class, useful to print it to the console or in a file.
-	 * @return a string representation of this class, useful to print it to the console or in a file.
+	 * Builds a \code{string} with the most relevant or all information of the class. It is useful to output to the console or to a file
+	 * the description of concrete agents. Depending on the value of the \param{detailed} parameter, the string can contain only the values of the
+	 * the most important members (\code{detailed = false} or all members of the class.
+	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most
+	 * important ones are written in the output string. Each derived class will decide which are the most important members.
+	 * @return a \code{string} object containing the most important or all parameters/members of the agent.
 	 */
 	const string toString(bool detailed = false) const override;
 
 	/**
-	 * Called when a device wants to connect to an antenna
+	 * A pure virtual method which is called when a device interacts with an antenna. This function is called every time when \code{setLocation()} was called,
+	 * i.e. the location of the device on the map was updated. If the connection was successful, i.e. an antenna accepted and connected this device,
+	 * the id of the antenna is saved in an internal list.
 	 * @return true if the connection succeeds, false otherwise.
 	 */
 	virtual bool tryConnect() = 0;
 
 	/**
-	 * check if this device is connected to an antenna
-	 * @return true if the device is conneted to an antenna, false otherwise.
+	 * Check if this device is connected to an antenna.
+	 * @return true if the device is connected to an antenna, false otherwise.
 	 */
 	virtual bool isConnected() const;
 
 	/**
 	 * Sets the location of this device. After a new location is set, the device tries to connect to an antenna, i.e. the
 	 * tryConnect() method is called. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses
-	 * to override this method and provide the correct mode of connection.
-	 * @param location a point on the Map of the simulation
+	 * to override the \code{tryConnect()} method and provide the correct mode of connection.
+	 * @param location a pointer to a \code{Point} object that represent the new position on the map.
 	 */
 	void setLocation(Point* location) override;
 
-	/**
-	 *
-	 * @return a vector with pointers to antennas where this device is connected
-	 */
-	vector<Antenna*> getAntennas() const;
 
 private:
 	Agent* m_holder;

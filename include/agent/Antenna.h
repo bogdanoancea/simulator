@@ -96,14 +96,36 @@ public:
 	/**
 	 * Overrides the same method from the superclass. It is used to write the parameters of the \code{Antenna}
 	 * object to a \code{string} object.
-	 * @return a \code{string} object that describes the parameters of the Antenna. The string representation of an \code{Antenna} object contains:
+	 * @param detailed if false the output string will contain the following values:
 	 * \li location on map
 	 * \li id
 	 * \li power
 	 * \li the maximum number of mobile devices that can be handled by this antenna
 	 * \li the path loss exponent
 	 * \li the Mobile Network Operator that owns this antenna
+	 * otherwise it will contain:
+	 * \li location on map
+	 * \li id
+	 * \li Mobile Operator name
+	 * \li the maximum number of mobile devices that can be handled by this antenna
+	 * \li the power of this antenna
+	 * \li the path loss exponent (attenuation factor)
+	 * \li the antenna type (directional, omnidirectional)
+	 * \li the S_min value (minimum signal strength detectable by mobile devices)
+	 * \li the Q_min value (minimum signal dominance usable by mobile devices)
+	 * \li the Ssteep parameter value
+	 * \li the Smid parameter value
+	 * \li the tilt value (only for directional antennas)
+	 * \li the azimDBback parameter value (only for directional antennas)
+	 * \li the elevDBback parameter value (only for directional antennas)
+	 * \li the beamH parameter value (only for directional antennas)
+	 * \li the beamH parameter value (only for directional antennas)
+	 * \li the  direction angle  (only for directional antennas)
+	 * \li the height of the antenna
+	 * \li the tile number of the location where this antenna is placed on the map.
 	 *
+	 * @return a \code{string} object that describes the parameters of the Antenna. The string representation of an \code{Antenna} object depends o the value of the
+	 * \param{detailed} param (see the above explanation).
 	 */
 	const string toString(bool detailed = false) const override;
 

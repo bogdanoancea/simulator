@@ -99,9 +99,9 @@ public:
 	 * Builds a \code{string} with the most relevant or all information of the class. It is useful to output to the console or to a file
 	 * the description of concrete agents. Depending on the value of the \param{detailed} parameter, the string can contain only the values of the
 	 * the most important members (\code{detailed = false} or all members of the class.
-	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most important ones are outputed.
-	 * @return a \code{string} representation of the class content containing the most important or all parameters of the agent.
-	 * The values of some members are written in this string.
+	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most
+	 * important ones are written in the output string. Each derived class will decide which are the most important members.
+	 * @return a \code{string} object containing the most important or all parameters/members of the agent.
 	 */
 	const virtual string toString(bool detailed = false) const = 0;
 
