@@ -33,21 +33,20 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This is a class that represents an agent that can have a location on map but it cannot move.
- * The only subclass of it is Antenna.
+ * This is a class that represents an agent with has a fixed location on the map.
+ * The only subclass of it is \code{Antenna}.
  */
 class ImmovableAgent: public LocatableAgent {
 public:
 
 	/**
-	 * Constructor of the class. Build an ImmovableAgent object with the parameters provided by the user.
-	 * @param m a pointer to a Map object used in this simulation.
+	 * Constructor of the class. Build an \code{ImmovableAgent} object with the parameters provided by the user.
+	 * @param m a pointer to a Map object used for a simulation.
 	 * @param id the id of this object.
 	 * @param initialPosition the initial location on map.
-	 * @param clock a pointer to a Clock object used in this simulation.
+	 * @param clock a pointer to a Clock object used for a simulation.
 	 */
-	explicit ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition,
-			const Clock* clock);
+	explicit ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock);
 
 	/**
 	 * Default destructor.
