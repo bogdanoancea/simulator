@@ -138,9 +138,11 @@ public:
 	void setDisplacementMethod(const shared_ptr<Displace>& displace);
 
 	void setHomeLocation(Point* hl);
+
 	Point* getHomeLocation() const;
 
 	void setWorkLocation(Point* wl);
+
 	Point* getWorkLocation() const;
 
 	void setAnchorLocation(Point* al);
