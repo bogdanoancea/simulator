@@ -33,18 +33,18 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This is a class that represents an agent with has a fixed location on the map.
+ * This is a class that represents an agent which has a fixed location on the map.
  * The only subclass of it is \code{Antenna}.
  */
 class ImmovableAgent: public LocatableAgent {
 public:
 
 	/**
-	 * Constructor of the class. Build an \code{ImmovableAgent} object with the parameters provided by the user.
-	 * @param m a pointer to a Map object used for a simulation.
+	 * Constructor of the class. It builds an \code{ImmovableAgent} object with the parameters provided by the user.
+	 * @param m a pointer to a \code{Map} object used for a simulation.
 	 * @param id the id of this object.
 	 * @param initialPosition the initial location on map.
-	 * @param clock a pointer to a Clock object used for a simulation.
+	 * @param clock a pointer to a \code{Clock} object used for a simulation.
 	 */
 	explicit ImmovableAgent(const Map* m, const unsigned long id, Point* initialPosition, const Clock* clock);
 
@@ -53,9 +53,15 @@ public:
 	 */
 	virtual ~ImmovableAgent();
 
+
+
 	/**
-	 * Builds a string representation of this class.
-	 * @return a string representation of this class. It is used to write details of the ImmovableAgent objects in a file or on console.
+	 * Builds a \code{string} with the most relevant or all information of the class. It is useful to output the description of concrete agents
+	 * to the console or to a file. Depending on the value of the \param{detailed} parameter, the string can contain only the values of the
+	 * the most important members (\code{detailed = false}) or all members of the class.
+	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most
+	 * important ones are written to the output string. Each derived class will decide which are the most important members.
+	 * @return a \code{string} object containing the most important or all parameters/members of the agent.
 	 */
 	const string toString(bool detailed = false) const override;
 
