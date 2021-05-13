@@ -86,22 +86,22 @@ void AgentsCollection::printAgents() {
 	cout << MobileOperator::getHeader();
 	auto itr0 = getAgentListByType(typeid(MobileOperator).name());
 	for (auto it = itr0.first; it != itr0.second; it++) {
-		cout << it->second->toString() << endl;
+		cout << it->second->toString(false) << endl;
 	}
 	cout << Person::getHeader();
 	auto itr = getAgentListByType(typeid(Person).name());
 	for (auto it = itr.first; it != itr.second; it++) {
-		cout << it->second->toString() << endl;
+		cout << it->second->toString(false) << endl;
 	}
 	cout << Antenna::getHeader();
 	auto itr2 = getAgentListByType(typeid(Antenna).name());
 	for (auto it = itr2.first; it != itr2.second; it++) {
-		cout << it->second->toString() << endl;
+		cout << it->second->toString(false) << endl;
 	}
 	cout << MobilePhone::getHeader();
 	auto itr3 = getAgentListByType(typeid(MobilePhone).name());
 	for (auto it = itr3.first; it != itr3.second; it++) {
-		cout << it->second->toString() << endl;
+		cout << it->second->toString(false) << endl;
 	}
 }
 
