@@ -71,7 +71,7 @@ bool MobilePhone::tryConnect() {
 	pair<Antenna*, double> antenna;
 	if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
 		antenna = EMField::instance()->computeMaxPower(p, getMobileOperator()->getId());
-	else if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY) {
+	else if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE) {
 		antenna = EMField::instance()->computeMaxQuality(p, getMobileOperator()->getId());
 	} else if (m_connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH) {
 		antenna = EMField::instance()->computeMaxStrength(p, getMobileOperator()->getId());

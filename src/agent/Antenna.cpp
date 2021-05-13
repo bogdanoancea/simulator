@@ -537,7 +537,7 @@ Geometry* Antenna::getCoverageAreaDirectional() const {
 
 		if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 			S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
-		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE)
 			S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
 
 		unsigned k = 0;
@@ -545,7 +545,7 @@ Geometry* Antenna::getCoverageAreaDirectional() const {
 
 		if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 			min = m_antennaConfig.getSmin();
-		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+		else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE)
 			min = m_antennaConfig.getQmin();
 
 		while (S_actual <= min && k < N) {
@@ -555,7 +555,7 @@ Geometry* Antenna::getCoverageAreaDirectional() const {
 
 			if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 				S_actual = computeSignalStrengthDirectional(Coordinate(xx, yy, 0));
-			else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+			else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE)
 				S_actual = computeSignalQualityDirectional(Coordinate(xx, yy, 0));
 			k++;
 		}
@@ -604,7 +604,7 @@ double Antenna::computeSignalStrength(const Coordinate c) const {
 double Antenna::computeSignalMeasure(HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const {
 	double result = 0.0;
 	switch (handoverType) {
-		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY:
+		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE:
 			result = computeSignalDominance(c);
 			break;
 		case HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH:
@@ -626,7 +626,7 @@ void Antenna::setCell(HoldableAgent::CONNECTION_TYPE handoverMechanism) {
 	//m_handoverMechanism = handoverMechanism;
 	if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 		m_rmax = pow(10, (3 - m_antennaConfig.getSmin() / 10) / ple) * pow(m_antennaConfig.getPower(), 1 / ple);
-	else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+	else if (handoverMechanism == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE)
 		m_rmax = pow(10, (m_S0 - m_antennaConfig.getSmid() + (1.0 / m_antennaConfig.getSSteep()) * log(1.0 / m_antennaConfig.getQmin() - 1)) / (10 * ple));
 	m_cell = getCoverageArea();
 }

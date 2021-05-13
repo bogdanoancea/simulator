@@ -27,106 +27,104 @@
 #define MOBILEPHONE_H_
 
 #include <agent/HoldableAgent.h>
+#include <agent/MobileOperator.h>
 #include <string>
-
-class MobileOperator;
 
 using namespace geos;
 using namespace geos::geom;
 
 /**
- * This class represents a mobile phone. A mobile phone is own by a Person and it moves on the map together with its owner.
- * While moving, at every time step it tries to connect to an antenna. The connection event is triggered by setLocation().
- * The connection to antenna is determined by the signal emitted by antennas. A parameter in the simulation configuration file
- * set the criterion used to connect: the power of the signal, the signal strength or the signal quality.
- *
+ * This class represents a mobile phone. A mobile phone is owned by a \code{Person} object and it moves on the map
+ * together with its owner.
+ * While moving, at every time step, when a new location is set, it interacts with surrounding antennas, trying to connect
+ * to the antenna that provides the best signal in terms of signal strength/dominance, according to the handover mechanism read from the
+ * simulation configuration file. The connection event is triggered by the call of \code{setLocation()}.
  */
 class MobilePhone: public HoldableAgent {
-	public:
-		/**
-		 * Builds a new MobilewPhone object with the parameters provided by the user.
-		 * @param m a pointer to the Map object where the simulation takes place.
-		 * @param id the id of the mobile phone.
-		 * @param initPosition the initial location of the phone on the map.
-		 * @param holder a pointer to the Agent object that owns this mobile phone.
-		 * @param clock a pointer to the Clock object used in this simulation.
-		 * @param threshold the minimum power, signal qaulity or signal strength of the field below which the mobile phone cannot connect to an antenna.
-		 * @param connType the criterion used for the connection to an antenna: based on the power of the signal or based on the signal quality. It could
-		 * take three values: HoldableAgent::CONNECTION_TYPE::USING_POWER, HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY or
-		 * HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH.
-		 *
-		 */
-		explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double threshold,
-				HoldableAgent::CONNECTION_TYPE connType);
+public:
+	/**
+	 * Builds a new \code{MobilePhone} object with the parameters provided by the user.
+	 * @param m a pointer to the \code{Map} object where the simulation takes place.
+	 * @param id the id of the \code{MobilePhone} object.
+	 * @param initPosition the initial location of the mobile phone on the map.
+	 * @param holder a pointer to the \code{Agent} object that owns this mobile phone.
+	 * @param clock a pointer to the \code{Clock} object used in this simulation.
+	 * @param threshold the minimum signal dominance or signal strength of the field below which the mobile phone cannot
+	 * connect to an antenna.
+	 * @param connType the type of the handover mechanism : based on the signal strength or signal dominance. It could
+	 * take one of the following values: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE or
+	 * HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH.
+	 *
+	 */
+	explicit MobilePhone(const Map* m, const unsigned long id, Point* initPosition, Agent* holder, const Clock* clock, double threshold, HoldableAgent::CONNECTION_TYPE connType);
 
-		/**
-		 * The default destructor.
-		 */
-		virtual ~MobilePhone();
+	/**
+	 * The default destructor of the class.
+	 */
+	virtual ~MobilePhone();
 
-		/**
-		 * Returns a human readable string representation of this class useful to output it to a file or console.
-		 * @return a human readable string representation of this class.
-		 */
-		const string toString(bool detailed = false) const override;
+	/**
+	 * Builds a \code{string} with the most relevant information of the class. It is useful to output the description of the mobile phone
+	 * to the console or to a file. The parameter\param{detailed} is currently ignored.
+	 * @param detailed is currently ignored.
+	 * @return a \code{string} object containing the id of the mobile phone, the coordinates of the location, the current speed of movement,
+	 * the id f the \code{Person} object that owns this mobile phone and the id of the mobile network operator where this mobile phone has a
+	 * subscription.
+	 */
+	const string toString(bool detailed = false) const override;
 
+	/**
+	 * Returns a \code{string} with the header line of the description of the mobile phones returned by the \code(toString()) method.
+	 * It is a static method, the header line being the same for all mobile phone regardless the owner.
+	 * @return a \code{string} with the header line of the description of the mobile phones returned by the \code(toString()) method.
+	 */
+	static const string getHeader();
 
-		static const string getHeader();
+	/**
+	 * Makes a step on the map according to the movement strategy set to the \code{Person} object which owns this mobile phone.
+	 * The displacement strategy is set at the \code{Person}  object creation and currently the following strategies are supported:
+	 *  \code{RandomWalkDisplacement},\code{RandomWalkDriftDisplacement}, \code{LevyFlightDisplacement} and \code{HomeWorkDisplacement}.
+	 * @return the final location after the displacement. The mobile phone moves together with the \code{Person} which owns it.
+	 */
+	Point* move() override {
+		return (this->getLocation());
+	}
 
-		/**
-		 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
-		 * displacement strategy and by the Person object who owns this phone. The displacement strategy is set at the Person
-		 * object creation and currently two strategies are supported: RandomWalkDisplacement and RandomWalkDriftDisplacement.
-		 *  RandomWalkDisplacement means
-		 * that at each time instant the direction is generated as a uniformly distributed random value and the
-		 * step length is computed multiplying the speed with the time interval set in the simulation configuration file.
-		 * If a step projects it outside the map, it stops on the boundary.
-		 * RandomWalkDriftDisplacement means that there is a preference in the direction of the movement.
-		 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
-		 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
-		 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
-		 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, any kind of MovableAgent can only move inside the map boundary.
-		 * If a step projects it outside the map, it stops on the boundary.
-		 * @return the final location after the displacement.
-		 */
-		Point* move() override {
-			return (this->getLocation());
-		}
+	/**
+	 * This method is called after the mobile phone moves (together with its owner) to a new location.
+	 * It tries to connect the mobile phone to an antenna.
+	 * The connection method is determined by inspecting the \code{m_connType} member: using the signal dominance or using the signal strength.
+	 * The value of the \code{m_connType} member is set by the constructor of the class.
+	 * If the connection is successfully, a pointer to the Antenna object where this mobile phone was connected is stored internally.
+	 * First, if the mobile phone is already connected to an antenna, this method checks if the mobile phone is still providing a signal
+	 * strong enough for a connection and if not it detaches from that antenna.
+	 * Then it selects the antenna providing the best signal (in terms of signal strength or dominance) and tries to connect to it. If the
+	 * connection is successful it saves a pointer to that \code{Antenna} object. If this antenna reject the connection( for example it reached
+	 * its maximum number of simultaneous connections) then a list of all other antennas is build, ordered by the signal strength/dominance.
+	 * The mobile phone iterates through this list and tries to connect to an antenna. If one antenna accepts the incoming connection
+	 * the method returns true, otherwise it returns false.
+	 *  When a connection is established, the pointer to the \code{Antenna} object is updated accordingly.
+	 * @return true if the connection succeeds, false otherwise.
+	 */
+	bool tryConnect() override;
 
-		/**
-		 * This method is called after the phone moves (together with its owner) to a new location. It tries to connect the mobile phone to an antenna.
-		 * The connection method is determined by inspecting the m_connType: using the power of the signal,
-		 * using the quality of the signal or using the signal strength. The value of the m_connType is set by the constructor of the class.
-		 * If the connection is successfully a pointer to the Antenna object where this mobile phone was connected is stored internally.
-		 * @return true if the connection succeeds, false otherwise.
-		 */
-		bool tryConnect() override;
+	/**
+	 * Returns the \code{MobileOperator} object that owns this mobile phone. Each mobile phone should belong to a Mobile Operator.
+	 * @return the \code{MobileOperator} object that owns this mobile phone. Each mobile phone should belong to a Mobile Operator.
+	 */
+	const MobileOperator* getMobileOperator() const;
 
-		/**
-		 * Returns the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
-		 * @return the MobileOperator object of this mobile phone. Each MobilePhone should belong to a Mobile Operator.
-		 */
-		const MobileOperator* getMobileOperator() const;
+	/**
+	 * Sets the \code{MobileOperator} object which owns this mobile phone.
+	 * @param mno a pointer to the \code{MobileOperator} object which owns this mobile phone.
+	 */
+	void setMobileOperator(MobileOperator* mno);
 
-		/**
-		 * Sets the MobileOperator object which owns this phone.
-		 * @param mno the MobileOperator object which owns this phone.
-		 */
-		void setMobileOperator(MobileOperator* mno);
-
-		//TODO remove it - never called
-		/**
-		 * Returns the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.e. the signal is considered noise).
-		 * The returned value is interpreted as signal strength, power or quality according to the connection type.
-		 * @return the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i.e. the signal is considered noise).
-		 */
-		double getConnectionThreshold() const;
-
-	private:
-		double m_threshold;
-		Antenna* m_connectedTo;
-		HoldableAgent::CONNECTION_TYPE m_connType;
-		MobileOperator* m_mno;
+private:
+	double m_threshold;
+	Antenna* m_connectedTo;
+	HoldableAgent::CONNECTION_TYPE m_connType;
+	MobileOperator* m_mno;
 };
 
 #endif /* MOBILEPHONE_H_ */

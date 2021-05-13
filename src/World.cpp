@@ -209,7 +209,7 @@ void World::writeSignalAndCells(ostream& antennaFile) {
 		mo->writeSignalFileHeader();
 	}
 	auto itr2 = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-	antennaFile << (static_cast<Antenna*>(itr2.first->second))->getHeader(true);
+	antennaFile << Antenna::getHeader(true);
 	for (auto it = itr2.first; it != itr2.second; it++) {
 		Antenna* a = static_cast<Antenna*>(it->second);
 		antennaFile << a->toString(true);

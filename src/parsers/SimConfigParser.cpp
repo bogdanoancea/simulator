@@ -409,7 +409,7 @@ HoldableAgent::CONNECTION_TYPE SimConfigParser::parseConnectionType(XMLElement* 
 	if (!strcmp(connType, "power"))
 		result = HoldableAgent::CONNECTION_TYPE::USING_POWER;
 	else if (!strcmp(connType, "quality"))
-		result = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY;
+		result = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE;
 	else if (!strcmp(connType, "strength"))
 		result = HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH;
 	else
@@ -421,7 +421,7 @@ double SimConfigParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_
 	double result = -1;
 	if (connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
 		result = Constants::PHONE_POWER_THRESHOLD;
-	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY)
+	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE)
 		result = Constants::PHONE_QUALITY_THRESHOLD;
 	else if (connType == HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH)
 		result = Constants::PHONE_STRENGTH_THRESHOLD;

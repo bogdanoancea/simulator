@@ -59,7 +59,7 @@ public:
 	 * The actual handover mechanism is set in the simulation configuration file.
 	 */
 	enum CONNECTION_TYPE {
-		USING_POWER, USING_SIGNAL_QUALITY, USING_SIGNAL_STRENGTH, UNKNOWN
+		USING_POWER, USING_SIGNAL_DOMINANCE, USING_SIGNAL_STRENGTH, UNKNOWN
 	};
 
 	/**

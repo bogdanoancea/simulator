@@ -158,7 +158,7 @@ vector<pair<Antenna*, double>> EMField::getInRangeAntennas(const Point* p, const
 				double x = 0.0;
 				if (connType == HoldableAgent::USING_POWER)
 					x = a->computePower(p);
-				else if(connType == HoldableAgent::USING_SIGNAL_QUALITY)
+				else if(connType == HoldableAgent::USING_SIGNAL_DOMINANCE)
 					x = a->computeSignalDominance(p);
 				else if(connType == HoldableAgent::USING_SIGNAL_STRENGTH)
 					x = a->computeSignalStrength(p);
@@ -181,7 +181,7 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	double ps = 0.0;
 	if (connType == HoldableAgent::USING_POWER)
 		ps = a->computePower(p);
-	else if(connType == HoldableAgent::USING_SIGNAL_QUALITY) {
+	else if(connType == HoldableAgent::USING_SIGNAL_DOMINANCE) {
 		if (a->getRmax() >= a->getLocation()->distance(p))
 			ps = a->computeSignalDominance(p);
 	}
