@@ -147,17 +147,33 @@ public:
 	/**
 	 * Returns the home location of the person in case a home-work displacement pattern is used for simulation and \code{nullptr}
 	 * otherwise.
-	 * @return
+	 * @return the home location of the person in case a home-work displacement pattern is used for simulation and \code{nullptr}
+	 * otherwise.
 	 */
 	Point* getHomeLocation() const;
 
+	/**
+	 * Sets the work location of the person when a home-work displacement pattern is used for simulation. For other displacement
+	 * patterns this method is not used.
+	 * @param wl a pointer to a \code{Point} object representing the work location of the person.
+	 * */
 	void setWorkLocation(Point* wl);
 
+	/**
+	 * Returns the work location of the person in case a home-work displacement pattern is used for simulation and \code{nullptr}
+	 * otherwise.
+	 * @return the work location of the person in case a home-work displacement pattern is used for simulation and \code{nullptr}
+	 * otherwise.
+	 */
 	Point* getWorkLocation() const;
 
 	void setAnchorLocation(Point* al);
+
 	Point* getAnchorLocation() const;
+
+
 	bool isHomePerson() const;
+
 	const shared_ptr<Distribution>& getIntervalBetweenStaysDistribution() const;
 	void setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution);
 	const shared_ptr<Distribution>& getTimeStayDistribution() const;
