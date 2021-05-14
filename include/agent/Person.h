@@ -131,14 +131,24 @@ public:
 	void addDevice(string type, Agent* agent);
 
 	/**
-	 * Sets the displacement pattern.
-	 * @param displace a reference to a \code{shared_ptr<Displace>} pointer to the displacement pattern class. The \code{Displace}
-	 * is an abstract class, this method being actually called with a concrete implementation of it.
+	 * Sets the displacement pattern of the person.
+	 * @param displace a reference to a \code{shared_ptr<Displace>} pointer to the displacement pattern object. code{Displace}
+	 * is an abstract class, and this method is actually called with a concrete implementation of it.
 	 */
 	void setDisplacementMethod(const shared_ptr<Displace>& displace);
 
+	/**
+	 * Sets the home location of the person when a home-work displacement pattern is used for simulation. For other displacement
+	 * patterns this method is not used.
+	 * @param hl a pointer to a \code{Point} object representing the home location of the person.
+	 */
 	void setHomeLocation(Point* hl);
 
+	/**
+	 * Returns the home location of the person in case a home-work displacement pattern is used for simulation and \code{nullptr}
+	 * otherwise.
+	 * @return
+	 */
 	Point* getHomeLocation() const;
 
 	void setWorkLocation(Point* wl);
