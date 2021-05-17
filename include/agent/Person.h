@@ -167,16 +167,54 @@ public:
 	 */
 	Point* getWorkLocation() const;
 
+	/**
+	 * Sets the anchor location of the person when a home-work displacement pattern is used for simulation. For other displacement
+	 * patterns this method is not used. An anchor point is optional in the home-work displacement pattern and is a place visited by a person
+	 * in his/her trip from the work location to the home location. Once reached this point, the person will stay here for a period of
+	 * time and then goes toward the home location. Information about the anchor points are read from the simulation configuration file. The
+	 * details about how to anchor point locations are generated, the trajectory work location - anchor location - home location can be
+	 * found in the documentation of the \code{HomeWorkScenario}.
+	 * @param al a pointer to a \code{Point} object representing the anchor location of the person.
+	 * */
 	void setAnchorLocation(Point* al);
 
+	/**
+	 * Returns the anchor location of the person when a home-work displacement pattern is used for simulation. For other displacement
+	 * patterns this method return \code{nullptr}. An anchor point is optional in the home-work displacement pattern and is a place
+	 * visited by a person in his/her trip from the work location to the home location. Once reached this point, the person will stay
+	 * here for a period of time and then goes toward the home location. Information about the anchor points are read from the
+	 * simulation configuration file. The details about how to anchor point locations are generated, the trajectory
+	 * work location - anchor location - home location can be found in the documentation of the \code{HomeWorkScenario}.
+	 *
+	 * @return a pointer to a \code{Point} object representing the anchor location of the person.
+	 */
 	Point* getAnchorLocation() const;
 
-
+	/**
+	 * Returns \code{true} if this person is a person who follows a home-work trajectory. Even for the home-work simulation scenario, a number
+	 * of persons wil move randomly on the map. For there persons, the method will return \code{false}.  The number of such persons who
+	 * move randomly is given (as a proportion) in the simulation configuration file.
+	 * @return \code{true} if the person follow a home-work trajectory, \code{false} otherwise.
+	 */
 	bool isHomePerson() const;
 
+	/**
+	 * Returns a shared pointer to a \code{Distribution} object representing the probability distribution of the time interval between two consecutive
+	 * stops of a person. This time interval is generated as a random value using a distribution specified by the user in the simulation
+	 * configuration file. Currently, only the exponential distribution is accepted.
+	 * @return a \code{shared_ptr<Distribution>&} object representing the probability distribution of the time interval between two consecutive
+	 * stops of a person.
+	 */
 	const shared_ptr<Distribution>& getIntervalBetweenStaysDistribution() const;
+
+	/**
+	 *
+	 * @param intervalBetweenStaysDistribution
+	 */
 	void setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution);
+
 	const shared_ptr<Distribution>& getTimeStayDistribution() const;
+
 	void setTimeStayDistribution(const shared_ptr<Distribution> &timeStayDistribution);
 
 private:
