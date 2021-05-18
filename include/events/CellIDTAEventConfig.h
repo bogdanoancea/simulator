@@ -2,7 +2,8 @@
  * CellIDTAEventConfig.h
  *
  *  Created on: Oct 21, 2020
- *      Author: bogdan
+ *      Author: Bogdan Oancea
+ *      Email : bogdan.oancea@gmail.com
  */
 
 #ifndef INCLUDE_EVENTS_CELLIDTAEVENTCONFIG_H_
