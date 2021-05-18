@@ -208,13 +208,31 @@ public:
 	const shared_ptr<Distribution>& getIntervalBetweenStaysDistribution() const;
 
 	/**
-	 *
-	 * @param intervalBetweenStaysDistribution
+	 * Sets the probability distribution of the time interval between two consecutive stops of a person.
+	 * @param intervalBetweenStaysDistribution a shared pointer to a \code{Distribution} object representing the probability distribution of the
+	 * time interval between two consecutive stops of a person. This time interval is generated as a random value using a distribution
+	 * specified by the user in the simulation configuration file. Currently, only the exponential distribution is accepted. This method is currently
+	 * used to set this pointer to \code{nullptr} for a home-work displacement scenario, for the persons that move randomly on the map. For the other
+	 *  displacement patterns this distribution is set by the constructor of the \code{Person} class.
 	 */
 	void setIntervalBetweenStaysDistribution(const shared_ptr<Distribution> &intervalBetweenStaysDistribution);
 
+	/**
+	 * Returns a shared pointer to a \code{Distribution} object representing the probability distribution of the time interval a person stays
+	 * in the same location. This time interval is generated as a random value using a distribution specified by the user in the simulation
+	 * configuration file. Currently, only the normal and uniform distributions are accepted.
+	 * @return a \code{shared_ptr<Distribution>&} object representing the probability distribution of the time interval a person stops in the same location.
+	 */
 	const shared_ptr<Distribution>& getTimeStayDistribution() const;
 
+	/**
+	 * Sets the probability distribution of the  time interval a person stops in the same location.
+	 * @param timeStayDistribution a shared pointer to a \code{Distribution} object representing the probability distribution of the
+	 * time interval a person stops in the same location. This time interval is generated as a random value using a distribution
+	 * specified by the user in the simulation configuration file. Currently, only the normal and uniform distributions are accepted. This method is currently
+	 * used to set this pointer to \code{nullptr} for a home-work displacement scenario, for the persons that move randomly on the map. For the other
+	 *  displacement patterns this distribution is set by the constructor of the \code{Person} class.
+	 */
 	void setTimeStayDistribution(const shared_ptr<Distribution> &timeStayDistribution);
 
 private:
