@@ -42,14 +42,17 @@ public:
 	friend class EventFactory;
 
 	/**
-	 *
-	 * @return
+	 * Builds and returns a csv string with the information of the event. This this contains the timestamp of the event,
+	 * the cell id (antenna id), the event code (see \link{EventType} enumeration for the possible values), the device id
+	 * and the network type (one of the \code{NetworkType::_3G} or \code{NetworkType::_4G} values).
+	 * @return a csv string with the information of the event.
 	 */
 	virtual const string toString() override;
 
 	/**
-	 *
-	 * @return
+	 * Returns a pointer to the \code{EventConfig} object containing the information used by the factory class to create this event object.
+	 * This pointer actually points to a \code{CellIDEventconfig} object.
+	 * @return a pointer to the \code{EventConfig} object containing the information used by the factory class to create this event object.
 	 */
 	virtual EventConfig* getEventConfig() override;
 
