@@ -30,18 +30,21 @@
 #include <string>
 
 
-/*
- * This class represents a mobile device, i.e. a tablet that can have a SIM card and can connect to the mobile
- * phone network. Actually it is not used but it is intended for futures developments.
+/**
+ * This class represents a mobile device (tablet). A mobile device is owned by a \code{Person} object and it moves on the map
+ * together with its owner.
+ * While moving, at every time step, when a new location is set, it interacts with surrounding antennas, trying to connect
+ * to the antenna that provides the best signal in terms of signal strength/dominance, according to the handover mechanism read from the
+ * simulation configuration file. The connection event is triggered by the call of \code{setLocation()}.
  */
 class Tablet: public HoldableAgent {
 public:
 	/**
-	 * Builds a new Tablet object with the parameters provided by the user.
-	 * @param m a pointer to a Map object used for simulation.
-	 * @param id the id of the tablet.
+	 * Builds a new \code{Tablet} object with the parameters provided by the user.
+	 * @param m a pointer to a \code{Map} object used for simulation.
+	 * @param id the id of this object.
 	 * @param initPosition the initial location on map.
-	 * @param clock a pointer to a Clock object used for simulation..
+	 * @param clock a pointer to a \code{Clock} object used for simulation..
 	 */
 	explicit Tablet(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock);
 
@@ -52,38 +55,49 @@ public:
 
 
 	/**
-	 * Builds a human readable representation of this class.
-	 * @return a human readable representation of this class.
+	 * Builds a \code{string} with the most relevant information of the class. It is useful to output the description of the mobile device
+	 * to the console or to a file. The parameter\param{detailed} is currently ignored.
+	 * @param detailed is currently ignored.
+	 * @return a \code{string} object containing the id of the mobile device, the coordinates of the location, the current speed of movement,
+	 * the id of the \code{Person} object that owns this mobile device and the id of the mobile network operator where this mobile device has a
+	 * subscription.
 	 */
 	const string toString(bool detailed = false) const override;
 
 	/**
-	 * Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the
-	 * displacement strategy and by the Person object who owns this phone. The displacement strategy is set at the Person
-	 * object creation and currently two strategies are supported: RandomWalkDisplacement and RandomWalkDriftDisplacement.
-	 *  RandomWalkDisplacement means
-	 * that at each time instant the direction is generated as a uniformly distributed random value and the
-	 * step length is computed multiplying the speed with the time interval set in the simulation configuration file.
-	 * If a step projects it outside the map, it stops on the boundary.
-	 * RandomWalkDriftDisplacement means that there is a preference in the direction of the movement.
-	 * There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half
-	 * of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and
-	 * sd = 0.1 while during the second half of the simulation it is generated as a normal distributed random value
-	 * with the mean equals to SIM_TREND_ANGLE_2 and the same sd. Again, any kind of MovableAgent can only move inside the map boundary.
-	 * If a step projects it outside the map, it stops on the boundary.
-	 * @return the final location after the displacement.
+	 * Makes a step on the map according to the movement strategy set to the \code{Person} object which owns this mobile device.
+	 * The displacement strategy is set at the \code{Person} object creation and currently the following strategies are supported:
+	 *  \code{RandomWalkDisplacement},\code{RandomWalkDriftDisplacement}, \code{LevyFlightDisplacement} and \code{HomeWorkDisplacement}.
+	 * @return the final location after the displacement. The mobile device moves together with the \code{Person} which owns it.
 	 */
 	Point* move() override {
 		return getLocation();
 	}
 
 	/**
-	 * Called after the tablet changes location on the map, tries to connect to an antenna.
+	 * This method is called after the mobile device moves (together with its owner) to a new location.
+	 * It tries to connect the mobile frvice to an antenna.
+	 * The connection method is determined by inspecting the \code{m_connType} member: using the signal dominance or using the signal strength.
+	 * The value of the \code{m_connType} member is set by the constructor of the class.
+	 * If the connection is successfully, a pointer to the Antenna object where this mobile phone was connected is stored internally.
+	 * First, if the mobile phone is already connected to an antenna, this method checks if the mobile phone is still providing a signal
+	 * strong enough for a connection and if not it detaches from that antenna.
+	 * Then it selects the antenna providing the best signal (in terms of signal strength or dominance) and tries to connect to it. If the
+	 * connection is successful it saves a pointer to that \code{Antenna} object. If this antenna reject the connection( for example it reached
+	 * its maximum number of simultaneous connections) then a list of all other antennas is build, ordered by the signal strength/dominance.
+	 * The mobile phone iterates through this list and tries to connect to an antenna. If one antenna accepts the incoming connection
+	 * the method returns true, otherwise it returns false.
+	 *  When a connection is established, the pointer to the \code{Antenna} object is updated accordingly.
 	 * @return true if the connection succeeds, false otherwise.
 	 */
 	bool tryConnect() override;
 
-		static const string getHeader();
+	/**
+	 * Returns a \code{string} with the header line of the description of the mobile device returned by the \code(toString()) method.
+	 * It is a static method, the header line being the same for all mobile devices regardless the owner.
+	 * @return a \code{string} with the header line of the description of the mobile device returned by the \code(toString()) method.
+	 */
+	static const string getHeader();
 
 private:
 

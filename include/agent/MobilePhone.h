@@ -68,15 +68,15 @@ public:
 	 * to the console or to a file. The parameter\param{detailed} is currently ignored.
 	 * @param detailed is currently ignored.
 	 * @return a \code{string} object containing the id of the mobile phone, the coordinates of the location, the current speed of movement,
-	 * the id f the \code{Person} object that owns this mobile phone and the id of the mobile network operator where this mobile phone has a
+	 * the id of the \code{Person} object that owns this mobile phone and the id of the mobile network operator where this mobile phone has a
 	 * subscription.
 	 */
 	const string toString(bool detailed = false) const override;
 
 	/**
-	 * Returns a \code{string} with the header line of the description of the mobile phones returned by the \code(toString()) method.
-	 * It is a static method, the header line being the same for all mobile phone regardless the owner.
-	 * @return a \code{string} with the header line of the description of the mobile phones returned by the \code(toString()) method.
+	 * Returns a \code{string} with the header line of the description of the mobile phone returned by the \code(toString()) method.
+	 * It is a static method, the header line being the same for all mobile phones regardless the owner.
+	 * @return a \code{string} with the header line of the description of the mobile phone returned by the \code(toString()) method.
 	 */
 	static const string getHeader();
 
