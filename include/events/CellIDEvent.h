@@ -45,7 +45,7 @@ public:
 	 * Builds and returns a csv string with the information of the event. This this contains the timestamp of the event,
 	 * the cell id (antenna id), the event code (see \link{EventType} enumeration for the possible values), the device id
 	 * and the network type (one of the \code{NetworkType::_3G} or \code{NetworkType::_4G} values).
-	 * @return a csv string with the information of the event.
+	 * @return a csv string with the parameters of the event.
 	 */
 	virtual const string toString() override;
 
