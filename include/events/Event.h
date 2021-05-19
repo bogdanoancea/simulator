@@ -34,19 +34,19 @@ using namespace std;
 
 /**
  * This is the interface of an event object. All types of events should implement the functions declared here.
- * An \code{Event} object is to be created by the \code{EventFactory} \link{EventFactory}.
+ * An Event object is to be created by the EventFactory.
  */
 class Event {
 public:
 	/**
-	 * Returns the string representation of an \code{Event} object.
-	 * @return the string representation of an \code{Event} object. The content of the string depends on the concrete type of the event.
+	 * Returns the string representation of an Event object.
+	 * @return the string representation of an Event object. The content of the string depends on the concrete type of the event.
 	 */
 	virtual const string toString() = 0;
 
 	/**
-	 * Returns a pointer to the \code{EventConfig} \link{EventConfig} object used to create the \code{Event} object by the factory method.
-	 * return a pointer to the \code{EventConfig} \link{EventConfig} object used to create the \code{Event} object by the factory method.
+	 * Returns a pointer to the EventConfig object used to create the Event object by the factory method.
+	 * return a pointer to the EventConfig object used to create the Event object by the factory method.
 	 */
 	virtual EventConfig* getEventConfig() = 0;
 

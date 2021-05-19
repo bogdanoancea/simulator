@@ -30,8 +30,8 @@
 #include <agent/HoldableAgent.h>
 
 /**
- * This is the base class of the \code{EventConfig} objects. It defines the interface that all derived classes should implement. An \code{EventConfig} object
- * is used by the \code{EventFactory} to build a specific \code{Event} object and it contains the parameters of the specific event.
+ * This is the base class of the EventConfig objects. It defines the interface that all derived classes should implement. An EventConfig object
+ * is used by the EventFactory to build a specific Event object and it contains the parameters of the specific event.
  */
 class EventConfig {
 public:
@@ -61,7 +61,7 @@ public:
 
 	/**
 	 * This is a  pure virtual method that should be implemented by all derived classes. It returns the type of the event recorded by the network.
-	 * @return one of the following values defined in the \code{EventCode} class:
+	 * @return one of the following values defined in the EventCode class:
 	 * \li ATTACH_DEVICE
 	 * \li DETACH_DEVICE
 	 * \li ALREADY_ATTACHED_DEVICE

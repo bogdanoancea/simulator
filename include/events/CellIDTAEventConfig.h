@@ -28,15 +28,15 @@
 #include <events/CellIDEventConfig.h>
 
 /**
- * This class encapsulated the parameters needed by the factory class to build a  \code{CEllIDTAEvent} object.
+ * This class encapsulated the parameters needed by the factory class to build a CellIDTAEvent object.
  */
 class CellIDTAEventConfig: public CellIDEventConfig {
 
 public:
 	/**
-	 * Constructor of the class. Builds a \code{CellIDTAEventConfig} object.
+	 * Constructor of the class. Builds a CellIDTAEventConfig object.
 	 * @param t the timestamp of the event. This is the time measured by the simulation clock.
-	 * @param cellID the id of the \code{Antenna} object which generated the event.
+	 * @param cellID the id of the Antenna object which generated the event.
 	 * @param code - the event code. It can take one of the following values:
 	 * \li EventCode::ATTACH_DEVICE
 	 * \li EventCode::DETACH_DEVICE
@@ -46,13 +46,13 @@ public:
 	 * @param netType the network type (a parameter of the antenna). It can take one of the following values:
 	 * \li NetworkType::_3G
 	 * \li NetworkType::_4G
-	 * @param ta the timing advance value. For an explanation of this variable see \link{CellIDTAEvent}.
+	 * @param ta the timing advance value. For an explanation of this variable @see CellIDTAEvent.
 	 */
 	CellIDTAEventConfig(unsigned long t, unsigned long cellID, EventCode code, unsigned long deviceID, NetworkType netType, unsigned int ta);
 
 	/**
 	 * Returns the timing advance value.
-	 * @return the timing advance value. For an explanation of this variable see \link{CellIDTAEvent}.
+	 * @return the timing advance value. For an explanation of this variable @see CellIDTAEvent.
 	 */
 	const unsigned int getTA();
 
