@@ -39,12 +39,20 @@ public:
 	EventFactory();
 
 	/**
-	 * Creates a concrete Event object according to the type of the EventConfig type. Two types of events are implemented: CellIDEvent and CellIDTAEvent.
-	 * CellIDEvent contains the IDD of the cell where a mobile device was detected at a time instant, the network type and the timestamp of the event and the CellIDTAEvent additionally
-	 * contains the time advancing value of the event.
-	 * @return a pointer to a concrete Event object according to the type of the EventConfig type. The two type of event objects supported are CellIDEvent and CellIDTAEvent.
+	 * Creates a concrete \code{Event} object according to the actual type of the \param{config} argument.
+	 * Two types of events are implemented: \code{CellIDEvent} and \code{CellIDTAEvent}.
+	 * \code{CellIDEvent} contains the ID of the cell where a mobile device was detected at a time instant, the network type and the timestamp of the event
+	 * and the CellIDTAEvent additionally contains the timing advance value of the event.
+	 * @return a pointer to a concrete \code{Event} object created according to the actual type of the of the \param{config} argument.
+	 * The two types of event objects supported are:
+	 * \li \code{CellIDEvent} and in this case the \param{config} should point to a \code{CellIDEventconfig} object
+	 * \li \code{CellIDTAEvent} and in this case the \param{config} should point to a \code{CellIDTAEventconfig} object.
 	 */
 	Event* createEvent(EventConfig* config);
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~EventFactory();
 };
 
