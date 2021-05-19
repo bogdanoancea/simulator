@@ -149,6 +149,7 @@ private:
 
 	unsigned long getTileIndexX(double x) const;
 	unsigned long getTileIndexY(double y) const;
+
 	/**
 	 * Returns the tile index on X axis that contains a given point in space, specified by p.
 	 * @param p a pointer to the point for which we need the tile index.
@@ -164,7 +165,7 @@ private:
 	unsigned long getTileIndexY(const Point* p) const;
 
 	/**
-	 * @return a string representation of an object of type Grid. This is useful to write a textual description of the grid in a file
+	 * @return a string representation of a \code{Grid} object. This is useful to write a textual description of the grid to a file
 	 * for later processing.
 	 */
 	string toString() const;

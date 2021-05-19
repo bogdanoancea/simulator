@@ -28,14 +28,66 @@
 #include <events/EventConfig.h>
 #include <NetworkType.h>
 
+/**
+ * This class encapsulated the parameters needed by the factory class to build a \code{CellIDEvent}.
+ */
 class CellIDEventConfig: public EventConfig {
 public:
+	/**
+	 * Constructor of the class. Builds a \code{CellIDEventConfig} object.
+	 * @param t the timestamp of the event. This is the time measured by the simulation clock.
+	 * @param cellID the id of the \code{Antenna} object which generated the event.
+	 * @param code - the event code. It can take one of the following values:
+	 * \li EventCode::ATTACH_DEVICE
+	 * \li EventCode::DETACH_DEVICE
+	 * \li EventCode::ALREADY_ATTACHED_DEVICE
+	 * \li EventCode::IN_RANGE_NOT_ATTACHED_DEVICE
+	 * @param deviceID the id of the mobile device which generated the event.
+	 * @param netType the network type (a parameter of the antenna). It can take one of the following values:
+	 * \li NetworkType::_3G
+	 * \li NetworkType::_4G
+	 */
 	CellIDEventConfig(unsigned long t, unsigned long cellID, EventCode code, unsigned long deviceID, NetworkType netType);
+
+	/**
+	 * Returns the id of the \code{Antenna} object which generated the event.
+	 * @return the id of the \code{Antenna} object which generated the event.
+	 */
 	virtual const unsigned long getCellID() override;
+
+	/**
+	 * Returns the id of the mobile device which generated the event.
+	 * @return the id of the mobile device which generated the event.
+	 */
 	virtual const unsigned long getDeviceID() override;
+
+	/**
+	 * Returns the timestamp of the event (measured by the simulation clock).
+	 * @return the timestamp of the event (measured by the simulation clock).
+	 */
 	virtual const unsigned long getTimestamp() override;
+
+	/**
+	 * Returns the event code.
+	 * @return the event code. It can take one of the following values:
+	 * \li EventCode::ATTACH_DEVICE
+	 * \li EventCode::DETACH_DEVICE
+	 * \li EventCode::ALREADY_ATTACHED_DEVICE
+	 * \li EventCode::IN_RANGE_NOT_ATTACHED_DEVICE
+	 */
 	virtual const EventCode getEventCode() override;
+
+	/**
+	 * Returns the network type of the \code{Antenna} object which generated this event.
+	 * @return the network type of the \code{Antenna} object which generated this event. It can take one of the following values:
+	 * \li NetworkType::_3G
+	 * \li NetworkType::_4G
+	 */
 	virtual const NetworkType getNetworkType() override;
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~CellIDEventConfig();
 
 private:
