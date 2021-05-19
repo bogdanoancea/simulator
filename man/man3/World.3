@@ -1,4 +1,4 @@
-.TH "World" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "World" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,7 +21,7 @@ World
 .RI "void \fBrunSimulation\fP () noexcept(false)"
 .br
 .ti -1c
-.RI "AgentsCollection * \fBgetAgents\fP () const"
+.RI "\fBAgentsCollection\fP * \fBgetAgents\fP () const"
 .br
 .ti -1c
 .RI "const \fBMap\fP * \fBgetMap\fP () const"
@@ -46,7 +46,7 @@ World
 
 .in +1c
 .ti -1c
-.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)"
+.RI "int \fBwhichMNO\fP (vector< pair< string, double >> probs, vector< MobileOperator *> mnos)"
 .br
 .ti -1c
 .RI "string \fBparseProbabilities\fP (const string &probabilitiesFileName)"
@@ -55,14 +55,14 @@ World
 .RI "void \fBwriteSignalAndCells\fP (ostream &antennaFile)"
 .br
 .ti -1c
-.RI "\fBHoldableAgent::CONNECTION_TYPE\fP \fBgetConnectionType\fP () const"
+.RI "HoldableAgent::CONNECTION_TYPE \fBgetConnectionType\fP () const"
 .br
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
 .ti -1c
-.RI "AgentsCollection * \fBm_agentsCollection\fP"
+.RI "\fBAgentsCollection\fP * \fBm_agentsCollection\fP"
 .br
 .ti -1c
 .RI "\fBSimulationConfiguration\fP * \fBm_sp\fP"
@@ -82,7 +82,7 @@ This is the class where the simulation process takes place\&. A \fBWorld\fP obje
 .SS "World::World (\fBMap\fP * map, const string & configPersonsFileName, const string & configAntennasFileName, const string & configSimulationFileName, const string & probabilitiesFileName)\fC [noexcept]\fP"
 Builds a new \fBWorld\fP object, randomly generating a set of persons, antennas and mobile devices with the default parameters\&. This class is used only for testing and developing new features\&. For a real simulation the user should build the Wolrd object using the other constructor that takes the name of the input files as params\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fImap\fP a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .br
@@ -119,23 +119,23 @@ Destructor It releases the memory allocated for the agents collection and the \f
 .PP 
 .SS "void World::computeProbabilities (std::map< unsigned long, vector< \fBAntennaInfo\fP >> data)"
 
-.SS "AgentsCollection* World::getAgents () const"
-Returns the AgentsCollection used in simulation\&. 
+.SS "\fBAgentsCollection\fP* World::getAgents () const"
+Returns the \fBAgentsCollection\fP used in simulation\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
-a pointer to AgentsCollection object\&. 
+a pointer to \fBAgentsCollection\fP object\&. 
 .RE
 .PP
 
 .SS "\fBClock\fP* World::getClock ()"
 
-.SS "\fBHoldableAgent::CONNECTION_TYPE\fP World::getConnectionType () const\fC [private]\fP"
+.SS "HoldableAgent::CONNECTION_TYPE World::getConnectionType () const\fC [private]\fP"
 
 .SS "std::map<unsigned long, vector<\fBAntennaInfo\fP> > World::getEvents ()"
 At the end of a simulation this method merges all the events saved by individual antennas in a single data structure\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has vector of all events saved by all antennas belonging to that MNO\&. This map is needed for computation of location probabilities\&. 
 .RE
@@ -144,7 +144,7 @@ a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID ha
 .SS "const string& World::getGridFilename () const"
 Returns the file name where the grid parameters are saved\&. They are needed for the visualization software\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the file name where the grid parameters are saved\&. 
 .RE
@@ -153,7 +153,7 @@ the file name where the grid parameters are saved\&.
 .SS "const \fBMap\fP* World::getMap () const"
 Returns a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a pointer to a \fBMap\fP object where the simulation takes place\&. 
 .RE
@@ -162,7 +162,7 @@ a pointer to a \fBMap\fP object where the simulation takes place\&.
 .SS "const string& World::getOutputDir () const"
 Returns the name of the output folder\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the name of the output folder\&. 
 .RE
@@ -172,13 +172,13 @@ the name of the output folder\&.
 
 .SS "void World::runSimulation ()\fC [noexcept]\fP"
 This method is called to perform the actual simulation\&. During the simulation it outputs the exact positions of all persons in a \&.csv file and the positions of antennas at the starting time of the simulation\&. A simulation means a number of time steps, at each step every person move to another position and after arriving at their new positions the mobile phones that they carry try to connect to one of the available antennas\&. The antennas record these events and output them in a file\&. 
-.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< \fBMobileOperator\fP * > mnos)\fC [private]\fP"
+.SS "int World::whichMNO (vector< pair< string, double >> probs, vector< MobileOperator *> mnos)\fC [private]\fP"
 
 .SS "void World::writeSignalAndCells (ostream & antennaFile)\fC [private]\fP"
 
 .SH "Member Data Documentation"
 .PP 
-.SS "AgentsCollection* World::m_agentsCollection\fC [private]\fP"
+.SS "\fBAgentsCollection\fP* World::m_agentsCollection\fC [private]\fP"
 
 .SS "\fBEventFactory\fP* World::m_eventFactory\fC [private]\fP"
 

@@ -36,8 +36,8 @@ typedef unordered_multimap<string, Agent*>::iterator um_iterator;
 
 /**
  * This is actually a container for all the agents used for simulation. An agent could
- * be an object of one the the derived classes of \code{Agent}. The Agents are kept
- * in an unordered_multimap as pairs of \code{ <string, Agent*>} where the first element of the pair is
+ * be an object of one the the derived classes of Agent. The Agents are kept
+ * in an unordered_multimap as pairs of <string, Agent*> where the first element of the pair is
  * the name of the concrete agent (a person, a mobile device, an antenna, a mobile network operator, etc.)
  * and the second element is a pointer to the actual object (agent).
  */
@@ -56,9 +56,9 @@ public:
 	virtual ~AgentsCollection();
 
 	/**
-	 * Adds a new \code{Agent} to the collection. For performance reasons the \code{AgentsCollection}
-	 * class keep only a pointer to actual agents (objects).
-	 * @param ag a pointer to the object (one of the derived classes of the \code{Agent}) to be added to the collection.
+	 * Adds a new Agent object to the collection. For performance reasons the AgentsCollection class keep
+	 * only a pointer to actual agents (objects).
+	 * @param ag a pointer to the object (one of the derived classes of the Agent) to be added to the collection.
 	 */
 	void addAgent(Agent* ag);
 
@@ -72,17 +72,17 @@ public:
 
 	/**
 	 * Returns a pointer to an agent from the collection. The agent/object is identified by its
-	 * \code{id} which is unique throughout the collection.
-	 * @param id the \code{id} of the agent to be returned.
-	 * @return a pointer to the agent with the \code{id} equals to the parameter \param{id}.
-	 * If there is no agent with the provided \code{id}, this method returns \code{nullptr}.
+	 * id which is unique throughout the collection.
+	 * @param id the id of the agent to be returned.
+	 * @return a pointer to the agent with the id equals to the parameter <tt>id</tt>.
+	 * If there is no agent with the provided id, this method returns <tt>nullptr</tt>.
 	 */
 	Agent* getAgent(const unsigned long id) const;
 
 	/**
 	 * This method is used to retrieve a subset of agents with a certain type: persons, mobile phones etc.
 	 * @param agentType is the name of the class of agents that the user wants to retrieve from the collection of all agents.
-	 * @return a \code{std::pair} of iterators of type \code{unordered_multimap<string, Agent*>::iterator}
+	 * @return a std::pair of iterators of type unordered_multimap<string, Agent*>::iterator
 	 * that can be used to iterate through to subset of the agents.
 	 */
 	pair<um_iterator, um_iterator> getAgentListByType(const string& agentType);
@@ -91,7 +91,7 @@ public:
 	 * Iterator to the past-the-end object of the collection. It does not point to any agent,
 	 * and thus shall not be dereferenced.
 	 * @return an iterator referring to the past-the-end element in the agents container. If the container
-	 * is empty, this function returns the same as \code{AgentsCollection::begin()}.
+	 * is empty, this function returns the same as AgentsCollection::begin().
 	 */
 	um_iterator end();
 
@@ -110,7 +110,7 @@ public:
 	unsigned long size();
 
 	/**
-	 * Prints out all agents in the collection calling \code{toString()} method of each agent.
+	 * Prints out all agents in the collection calling toString() method for each agent.
 	 */
 	void printAgents();
 

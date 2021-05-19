@@ -1,4 +1,4 @@
-.TH "ImmovableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "ImmovableAgent" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,57 +7,7 @@ ImmovableAgent
 .br
 .PP
 .PP
-\fC#include <ImmovableAgent\&.h>\fP
-.PP
-Inherits \fBLocatableAgent\fP\&.
-.PP
 Inherited by \fBAntenna\fP\&.
-.SS "Public Member Functions"
-
-.in +1c
-.ti -1c
-.RI "\fBImmovableAgent\fP (const \fBMap\fP *m, const unsigned long id, Point *initialPosition, const \fBClock\fP *clock)"
-.br
-.ti -1c
-.RI "virtual \fB~ImmovableAgent\fP ()"
-.br
-.ti -1c
-.RI "const string \fBtoString\fP () const override"
-.br
-.in -1c
-.SH "Detailed Description"
-.PP 
-This is a class that represents an agent that can have a location on map but it cannot move\&. The only subclass of it is \fBAntenna\fP\&. 
-.SH "Constructor & Destructor Documentation"
-.PP 
-.SS "ImmovableAgent::ImmovableAgent (const \fBMap\fP * m, const unsigned long id, Point * initialPosition, const \fBClock\fP * clock)\fC [explicit]\fP"
-Constructor of the class\&. Build an \fBImmovableAgent\fP object with the parameters provided by the user\&. 
-.PP
-\fBParameters\fP
-.RS 4
-\fIm\fP a pointer to a \fBMap\fP object used in this simulation\&. 
-.br
-\fIid\fP the id of this object\&. 
-.br
-\fIinitialPosition\fP the initial location on map\&. 
-.br
-\fIclock\fP a pointer to a \fBClock\fP object used in this simulation\&. 
-.RE
-.PP
-
-.SS "virtual ImmovableAgent::~ImmovableAgent ()\fC [virtual]\fP"
-Default destructor\&. 
-.SH "Member Function Documentation"
-.PP 
-.SS "const string ImmovableAgent::toString () const\fC [override]\fP"
-Builds a string representation of this class\&. 
-.PP
-\fBReturns\fP
-.RS 4
-a string representation of this class\&. It is used to write details of the \fBImmovableAgent\fP objects in a file or on console\&. 
-.RE
-.PP
-
 
 .SH "Author"
 .PP 

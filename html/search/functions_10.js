@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['what_1101',['what',['../class_sim_exception.html#a7b759030340d1299a2eeb40c6f67a926',1,'SimException']]],
-  ['whichmno_1102',['whichMNO',['../class_world.html#adf473b1600b41a11c7ef1f0251abb5b7',1,'World']]],
-  ['wktmap_1103',['WKTMap',['../class_w_k_t_map.html#ab13a3608dd7415e61fba63fbaad9283e',1,'WKTMap']]],
-  ['world_1104',['World',['../class_world.html#adeb8454b3713d9dc1d05ca1f901e7b77',1,'World']]],
-  ['writesignalandcells_1105',['writeSignalAndCells',['../class_world.html#a3f069fb694d8f17b23bda291bea47446',1,'World']]],
-  ['writesignalfileheader_1106',['writeSignalFileHeader',['../class_mobile_operator.html#acbb238161ef223f7862e1ad19d2ede56',1,'MobileOperator']]]
+  ['tick',['tick',['../class_clock.html#ab7c857c5b43cf98d991435ba9ce46b2c',1,'Clock']]],
+  ['todestination',['toDestination',['../class_home_work_displacement.html#a88335e3c66951079c690afe0df1e64a0',1,'HomeWorkDisplacement']]],
+  ['tostring',['toString',['../class_agent.html#a3baaa62a8d3f0fa990eac2ed06c2c241',1,'Agent::toString()'],['../class_antenna.html#afc5cb8c8fae1a251cf8c5bc6c43ff692',1,'Antenna::toString()'],['../class_antenna_info.html#ae1ba7432ca7aef9a4f79a422ee195a58',1,'AntennaInfo::toString()'],['../class_home_work_location.html#aa70985fa1a1601cc15be60d8762de586',1,'HomeWorkLocation::toString()'],['../class_home_work_scenario.html#a099fe2cf41a05087752efb96a3c8f068',1,'HomeWorkScenario::toString()'],['../namespaceutils.html#a38505d06d647192484ebea7d650bd92f',1,'utils::toString()']]],
+  ['truncatednormalagedistribution',['TruncatedNormalAgeDistribution',['../class_truncated_normal_age_distribution.html#aed2d6c65cc84d58f2bf7c673b9b76ce2',1,'TruncatedNormalAgeDistribution']]],
+  ['tryregisterdevice',['tryRegisterDevice',['../class_antenna.html#a4455f5c804e1ea520dd849dc9fd7b0b4',1,'Antenna']]]
 ];

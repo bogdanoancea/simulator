@@ -36,7 +36,7 @@ using namespace geos;
 using namespace geos::geom;
 
 /**
- * This class represents a person that can have 0, 1 or 2  mobile phone(s). During the simulation, the person move
+ * This class represents a person that can have 0, 1 or 2 mobile phone(s). During the simulation, the person move
  * around the map, carrying his/her mobile device(s). At every time step, a new location is computed according to a movement
  * strategy.
  */
@@ -46,7 +46,7 @@ public:
 		MALE, FEMALE
 	};
 	/**
-	 * Builds a new \code{Person} object with the characteristics given as parameters.
+	 * Builds a new Person object with the characteristics given as parameters.
 	 * @param m a pointer to the \code{Map} object where this Person move.
 	 * @param id the id of the \code{Person} object.
 	 * @param initPosition the initial location of the person on the map.

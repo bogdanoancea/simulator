@@ -1,4 +1,4 @@
-\hypertarget{class_person}{}\doxysection{Person Class Reference}
+\hypertarget{class_person}{}\section{Person Class Reference}
 \label{class_person}\index{Person@{Person}}
 
 
@@ -22,393 +22,37 @@ Collaboration diagram for Person\+:\nopagebreak
 \includegraphics[width=350pt]{class_person__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Types}
+\subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender}} \{ \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}{M\+A\+LE}}, 
-\mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}{F\+E\+M\+A\+LE}}
+enum \hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender} \{ \hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}{M\+A\+LE}, 
+\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}{F\+E\+M\+A\+LE}
  \}
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{class_person_afe423944473e3eb5b52f30ee2a084f71}{Person}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Position, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock, double init\+Speed, int age, \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender}} gender, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ time\+Stay\+Distribution, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ interval\+Between\+Stays\+Distribution)
-\item 
-virtual \mbox{\hyperlink{class_person_a6b5729bb56531c93312b1179c8ee4b71}{$\sim$\+Person}} ()
-\item 
-const string \mbox{\hyperlink{class_person_a68872538da519d0a04297f43376db27c}{to\+String}} () const override
-\item 
-string \mbox{\hyperlink{class_person_a0bc06f77b3e8a151f8c5cc77459895c9}{dump\+Devices}} ()
-\item 
-bool \mbox{\hyperlink{class_person_a40d6f2c716dd3c9794067817a3fb9165}{has\+Devices}} ()
-\item 
-int \mbox{\hyperlink{class_person_a4b66dbee570398920b8fb6aacddd2559}{get\+Age}} () const
-\item 
-void \mbox{\hyperlink{class_person_ac8ade54c27a0657c987c395ff04a9d46}{set\+Age}} (int age)
-\item 
-virtual Point $\ast$ \mbox{\hyperlink{class_person_a922e0462a1e7eac6523a9a864ce27afc}{move}} () override
-\item 
-virtual void \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location}} (Point $\ast$pt) override
-\item 
-void \mbox{\hyperlink{class_person_a3ce0a72a98c2e723e48dcd7b4d9af599}{add\+Device}} (string type, \mbox{\hyperlink{class_agent}{Agent}} $\ast$agent)
-\item 
-void \mbox{\hyperlink{class_person_a89ada26d3541bc82e514dae833dc959d}{set\+Displacement\+Method}} (const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \&displace)
-\item 
-void \mbox{\hyperlink{class_person_adec201127069d8641b1a9c631982e2b5}{set\+Home\+Location}} (Point $\ast$hl)
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_aec5061097976b57412964fcfc203a0a4}{get\+Home\+Location}} () const
-\item 
-void \mbox{\hyperlink{class_person_a2dcf5c090e1191096497a716dde1e5b9}{set\+Work\+Location}} (Point $\ast$wl)
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_a52647a49c2efde4983dfb1667227cad6}{get\+Work\+Location}} () const
-\item 
-void \mbox{\hyperlink{class_person_a872e8a5ac7610d5b518323338d5c6e6f}{set\+Anchor\+Location}} (Point $\ast$al)
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_a3ead25787039169027f392f09122a33b}{get\+Anchor\+Location}} () const
-\item 
-bool \mbox{\hyperlink{class_person_a7c14f732bc1bf8fa981906ee505300a5}{is\+Home\+Person}} () const
-\item 
-const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \& \mbox{\hyperlink{class_person_ad8d03204dc96ac5eb03042be33ffcac9}{get\+Interval\+Between\+Stays\+Distribution}} () const
-\item 
-void \mbox{\hyperlink{class_person_a0ee6d8c78f596a3dbe7ce3013772864a}{set\+Interval\+Between\+Stays\+Distribution}} (const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \&interval\+Between\+Stays\+Distribution)
-\item 
-const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \& \mbox{\hyperlink{class_person_a3d0731eb8962e17c815a3b480b6b44e1}{get\+Time\+Stay\+Distribution}} () const
-\item 
-void \mbox{\hyperlink{class_person_a2a920bf3a1e90355f393b5f4d0c14a7c}{set\+Time\+Stay\+Distribution}} (const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \&time\+Stay\+Distribution)
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-static const string \mbox{\hyperlink{class_person_a6bebe59c354f26f4cb983185d6084181}{get\+Header}} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-int \mbox{\hyperlink{class_person_a743e071da10a5ac9150f61df919cfbb4}{m\+\_\+age}}
-\item 
-\mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender}} \mbox{\hyperlink{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}{m\+\_\+gender}}
-\item 
-unordered\+\_\+multimap$<$ string, \mbox{\hyperlink{class_agent}{Agent}} $\ast$ $>$ \mbox{\hyperlink{class_person_a95b2e60a54b72aea51a7600048e76291}{m\+\_\+id\+Devices}}
-\item 
-shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \mbox{\hyperlink{class_person_a20c309fb76477a0040c61e8fb1ab55d2}{m\+\_\+time\+Stay\+Distribution}}
-\item 
-unsigned long \mbox{\hyperlink{class_person_a5554109f1f3a7c466f02346d0061c6e7}{m\+\_\+time\+Stay}}
-\item 
-shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \mbox{\hyperlink{class_person_a7fe9a2ce5b7cbebcfcc4a2f15acecd01}{m\+\_\+interval\+Between\+Stays\+Distribution}}
-\item 
-unsigned long \mbox{\hyperlink{class_person_ad8809184fc32b28b1bcc115b10493b55}{m\+\_\+next\+Stay}}
-\item 
-shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \mbox{\hyperlink{class_person_a92ceead10a7ca858d2151391e4421843}{m\+\_\+displacement\+Method}}
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_a9137e6d5f054e53799c66d354d403711}{m\+\_\+home\+Location}}
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_aa8cf5339fd9eec3cb584d35f4faf8e5f}{m\+\_\+work\+Location}}
-\item 
-Point $\ast$ \mbox{\hyperlink{class_person_a6c18c99510c569a00c301447771e7388}{m\+\_\+anchor\+Location}}
-\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-This class represents a person that can have 0,1 or 2 mobile phone(s). During the simulation the person move around the map, carrying his/her mobile devices. 
+\subsection{Detailed Description}
+This class represents a person that can have 0, 1 or 2 mobile phone(s). During the simulation, the person move around the map, carrying his/her mobile device(s). At every time step, a new location is computed according to a movement strategy. 
 
-\doxysubsection{Member Enumeration Documentation}
+\subsection{Member Enumeration Documentation}
 \mbox{\Hypertarget{class_person_aff84ca16bd4dbf364614d86f20b29dd2}\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2}} 
 \index{Person@{Person}!Gender@{Gender}}
 \index{Gender@{Gender}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{Gender}{Gender}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Person\+::\+Gender}}}
+\subsubsection{\texorpdfstring{Gender}{Gender}}
+{\footnotesize\ttfamily enum \hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Person\+::\+Gender}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MALE@{MALE}!Person@{Person}}\index{Person@{Person}!MALE@{MALE}}}\mbox{\Hypertarget{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+A\+LE@{M\+A\+LE}!Person@{Person}}\index{Person@{Person}!M\+A\+LE@{M\+A\+LE}}}\mbox{\Hypertarget{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a16691f7cc6595f87b71d9b43ad23fcb4}} 
 M\+A\+LE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FEMALE@{FEMALE}!Person@{Person}}\index{Person@{Person}!FEMALE@{FEMALE}}}\mbox{\Hypertarget{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+E\+M\+A\+LE@{F\+E\+M\+A\+LE}!Person@{Person}}\index{Person@{Person}!F\+E\+M\+A\+LE@{F\+E\+M\+A\+LE}}}\mbox{\Hypertarget{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}\label{class_person_aff84ca16bd4dbf364614d86f20b29dd2a8ee21010fb2d8e8794ef72be368da064}} 
 F\+E\+M\+A\+LE&\\
 \hline
 
 \end{DoxyEnumFields}
 
 
-\doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_person_afe423944473e3eb5b52f30ee2a084f71}\label{class_person_afe423944473e3eb5b52f30ee2a084f71}} 
-\index{Person@{Person}!Person@{Person}}
-\index{Person@{Person}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{Person()}{Person()}}
-{\footnotesize\ttfamily Person\+::\+Person (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock,  }\item[{double}]{init\+Speed,  }\item[{int}]{age,  }\item[{\mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender}}}]{gender,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$}]{time\+Stay\+Distribution,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$}]{interval\+Between\+Stays\+Distribution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
-
-Builds a new \mbox{\hyperlink{class_person}{Person}} object with the characteristics given as parameters. 
-\begin{DoxyParams}{Parameters}
-{\em m} & a pointer to the \mbox{\hyperlink{class_map}{Map}} object where this \mbox{\hyperlink{class_person}{Person}} move. \\
-\hline
-{\em id} & the id of the \mbox{\hyperlink{class_person}{Person}}. \\
-\hline
-{\em init\+Position} & the initial location of the person on the map. \\
-\hline
-{\em clock} & a pointer to a \mbox{\hyperlink{class_clock}{Clock}} object used for this simulation. \\
-\hline
-{\em init\+Speed} & the initial speed of this person. It is provided in the configuration file. \\
-\hline
-{\em age} & the age of the person. The age is generated using a uniform or a normal distribution. \\
-\hline
-{\em gender} & the gender of the person. \\
-\hline
-{\em time\+Stay} & the average time of a stop \\
-\hline
-{\em interval\+Between\+Stays} & the average time between two consecutive stops. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_person_a6b5729bb56531c93312b1179c8ee4b71}\label{class_person_a6b5729bb56531c93312b1179c8ee4b71}} 
-\index{Person@{Person}!````~Person@{$\sim$Person}}
-\index{````~Person@{$\sim$Person}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{$\sim$Person()}{~Person()}}
-{\footnotesize\ttfamily virtual Person\+::$\sim$\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-The default destructor. 
-
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_person_a3ce0a72a98c2e723e48dcd7b4d9af599}\label{class_person_a3ce0a72a98c2e723e48dcd7b4d9af599}} 
-\index{Person@{Person}!addDevice@{addDevice}}
-\index{addDevice@{addDevice}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{addDevice()}{addDevice()}}
-{\footnotesize\ttfamily void Person\+::add\+Device (\begin{DoxyParamCaption}\item[{string}]{type,  }\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{agent }\end{DoxyParamCaption})}
-
-Add a mobile device to this person. Internally, all mobile devices are kept in an unordered\+\_\+multimap as pairs $<$name of the device class, pointer to the device object$>$ 
-\begin{DoxyParams}{Parameters}
-{\em type} & the name of the device\textquotesingle{}s class. \\
-\hline
-{\em agent} & a pointer to the device object. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_person_a0bc06f77b3e8a151f8c5cc77459895c9}\label{class_person_a0bc06f77b3e8a151f8c5cc77459895c9}} 
-\index{Person@{Person}!dumpDevices@{dumpDevices}}
-\index{dumpDevices@{dumpDevices}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{dumpDevices()}{dumpDevices()}}
-{\footnotesize\ttfamily string Person\+::dump\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-Builds a string containing a list with the ids of the mobile devices that this person owns. \begin{DoxyReturn}{Returns}
-a string containing a list with the ids of the mobile devices that this person owns. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_person_a4b66dbee570398920b8fb6aacddd2559}\label{class_person_a4b66dbee570398920b8fb6aacddd2559}} 
-\index{Person@{Person}!getAge@{getAge}}
-\index{getAge@{getAge}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getAge()}{getAge()}}
-{\footnotesize\ttfamily int Person\+::get\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-Returns the age of the person. \begin{DoxyReturn}{Returns}
-the age of the person. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_person_a3ead25787039169027f392f09122a33b}\label{class_person_a3ead25787039169027f392f09122a33b}} 
-\index{Person@{Person}!getAnchorLocation@{getAnchorLocation}}
-\index{getAnchorLocation@{getAnchorLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getAnchorLocation()}{getAnchorLocation()}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::get\+Anchor\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_a6bebe59c354f26f4cb983185d6084181}\label{class_person_a6bebe59c354f26f4cb983185d6084181}} 
-\index{Person@{Person}!getHeader@{getHeader}}
-\index{getHeader@{getHeader}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getHeader()}{getHeader()}}
-{\footnotesize\ttfamily static const string Person\+::get\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
-\mbox{\Hypertarget{class_person_aec5061097976b57412964fcfc203a0a4}\label{class_person_aec5061097976b57412964fcfc203a0a4}} 
-\index{Person@{Person}!getHomeLocation@{getHomeLocation}}
-\index{getHomeLocation@{getHomeLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getHomeLocation()}{getHomeLocation()}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::get\+Home\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_ad8d03204dc96ac5eb03042be33ffcac9}\label{class_person_ad8d03204dc96ac5eb03042be33ffcac9}} 
-\index{Person@{Person}!getIntervalBetweenStaysDistribution@{getIntervalBetweenStaysDistribution}}
-\index{getIntervalBetweenStaysDistribution@{getIntervalBetweenStaysDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getIntervalBetweenStaysDistribution()}{getIntervalBetweenStaysDistribution()}}
-{\footnotesize\ttfamily const shared\+\_\+ptr$<$\mbox{\hyperlink{class_distribution}{Distribution}}$>$\& Person\+::get\+Interval\+Between\+Stays\+Distribution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_a3d0731eb8962e17c815a3b480b6b44e1}\label{class_person_a3d0731eb8962e17c815a3b480b6b44e1}} 
-\index{Person@{Person}!getTimeStayDistribution@{getTimeStayDistribution}}
-\index{getTimeStayDistribution@{getTimeStayDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getTimeStayDistribution()}{getTimeStayDistribution()}}
-{\footnotesize\ttfamily const shared\+\_\+ptr$<$\mbox{\hyperlink{class_distribution}{Distribution}}$>$\& Person\+::get\+Time\+Stay\+Distribution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_a52647a49c2efde4983dfb1667227cad6}\label{class_person_a52647a49c2efde4983dfb1667227cad6}} 
-\index{Person@{Person}!getWorkLocation@{getWorkLocation}}
-\index{getWorkLocation@{getWorkLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{getWorkLocation()}{getWorkLocation()}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::get\+Work\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_a40d6f2c716dd3c9794067817a3fb9165}\label{class_person_a40d6f2c716dd3c9794067817a3fb9165}} 
-\index{Person@{Person}!hasDevices@{hasDevices}}
-\index{hasDevices@{hasDevices}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{hasDevices()}{hasDevices()}}
-{\footnotesize\ttfamily bool Person\+::has\+Devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-returns true if this person has at least a mobile device, false otherwise. \begin{DoxyReturn}{Returns}
-true if this person has at least a mobile device, false otherwise. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{class_person_a7c14f732bc1bf8fa981906ee505300a5}\label{class_person_a7c14f732bc1bf8fa981906ee505300a5}} 
-\index{Person@{Person}!isHomePerson@{isHomePerson}}
-\index{isHomePerson@{isHomePerson}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{isHomePerson()}{isHomePerson()}}
-{\footnotesize\ttfamily bool Person\+::is\+Home\+Person (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\mbox{\Hypertarget{class_person_a922e0462a1e7eac6523a9a864ce27afc}\label{class_person_a922e0462a1e7eac6523a9a864ce27afc}} 
-\index{Person@{Person}!move@{move}}
-\index{move@{move}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{move()}{move()}}
-{\footnotesize\ttfamily virtual Point$\ast$ Person\+::move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-Makes a step on the map according to an algorithm. The direction and the length of the step is determined by the displacement strategy set at the \mbox{\hyperlink{class_person}{Person}} creation moment and currently two strategies are supported\+: \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}}. \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file. If a step projects it outside the map, it stops on the boundary. \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} means that there is a preference in the direction of the movement. There are two constants defined, S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 (3P\+I/4 and 5P\+I/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+1 and sd = 0.\+1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to S\+I\+M\+\_\+\+T\+R\+E\+N\+D\+\_\+\+A\+N\+G\+L\+E\+\_\+2 and the same sd. Again, any kind of \mbox{\hyperlink{class_movable_agent}{Movable\+Agent}} can only move inside the map boundary. If a step projects it outside the map, it stops on the boundary. \begin{DoxyReturn}{Returns}
-the final location after the displacement. 
-\end{DoxyReturn}
-
-
-Implements \mbox{\hyperlink{class_movable_agent_a88b617f0e78c817634e5b587da045ab0}{Movable\+Agent}}.
-
-\mbox{\Hypertarget{class_person_ac8ade54c27a0657c987c395ff04a9d46}\label{class_person_ac8ade54c27a0657c987c395ff04a9d46}} 
-\index{Person@{Person}!setAge@{setAge}}
-\index{setAge@{setAge}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setAge()}{setAge()}}
-{\footnotesize\ttfamily void Person\+::set\+Age (\begin{DoxyParamCaption}\item[{int}]{age }\end{DoxyParamCaption})}
-
-Sets the age of the person. 
-\begin{DoxyParams}{Parameters}
-{\em age} & the age of the person. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_person_a872e8a5ac7610d5b518323338d5c6e6f}\label{class_person_a872e8a5ac7610d5b518323338d5c6e6f}} 
-\index{Person@{Person}!setAnchorLocation@{setAnchorLocation}}
-\index{setAnchorLocation@{setAnchorLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setAnchorLocation()}{setAnchorLocation()}}
-{\footnotesize\ttfamily void Person\+::set\+Anchor\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{al }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{class_person_a89ada26d3541bc82e514dae833dc959d}\label{class_person_a89ada26d3541bc82e514dae833dc959d}} 
-\index{Person@{Person}!setDisplacementMethod@{setDisplacementMethod}}
-\index{setDisplacementMethod@{setDisplacementMethod}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setDisplacementMethod()}{setDisplacementMethod()}}
-{\footnotesize\ttfamily void Person\+::set\+Displacement\+Method (\begin{DoxyParamCaption}\item[{const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_displace}{Displace}} $>$ \&}]{displace }\end{DoxyParamCaption})}
-
-Sets the displacement algorithm. 
-\begin{DoxyParams}{Parameters}
-{\em displace} & a reference to an implementation of the displacement method. Currently two displacement methods are supported and they are implemented in \mbox{\hyperlink{class_random_walk_displacement}{Random\+Walk\+Displacement}} and \mbox{\hyperlink{class_random_walk_drift_displacement}{Random\+Walk\+Drift\+Displacement}} classes. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_person_adec201127069d8641b1a9c631982e2b5}\label{class_person_adec201127069d8641b1a9c631982e2b5}} 
-\index{Person@{Person}!setHomeLocation@{setHomeLocation}}
-\index{setHomeLocation@{setHomeLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setHomeLocation()}{setHomeLocation()}}
-{\footnotesize\ttfamily void Person\+::set\+Home\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{hl }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{class_person_a0ee6d8c78f596a3dbe7ce3013772864a}\label{class_person_a0ee6d8c78f596a3dbe7ce3013772864a}} 
-\index{Person@{Person}!setIntervalBetweenStaysDistribution@{setIntervalBetweenStaysDistribution}}
-\index{setIntervalBetweenStaysDistribution@{setIntervalBetweenStaysDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setIntervalBetweenStaysDistribution()}{setIntervalBetweenStaysDistribution()}}
-{\footnotesize\ttfamily void Person\+::set\+Interval\+Between\+Stays\+Distribution (\begin{DoxyParamCaption}\item[{const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \&}]{interval\+Between\+Stays\+Distribution }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{class_person_a05f4ac2107d59e03f0f336eda08aa358}\label{class_person_a05f4ac2107d59e03f0f336eda08aa358}} 
-\index{Person@{Person}!setLocation@{setLocation}}
-\index{setLocation@{setLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setLocation()}{setLocation()}}
-{\footnotesize\ttfamily virtual void Person\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
-
-Sets the location of the person on the map. 
-\begin{DoxyParams}{Parameters}
-{\em pt} & a pointer to a Point object that represent the location of the person on the map. If the person has mobile devices (phone, tablets) this function calls \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{set\+Location()}} for all mobile devices too. \\
-\hline
-\end{DoxyParams}
-
-
-Reimplemented from \mbox{\hyperlink{class_locatable_agent_a754b237c404b77714fedd397f214bc02}{Locatable\+Agent}}.
-
-\mbox{\Hypertarget{class_person_a2a920bf3a1e90355f393b5f4d0c14a7c}\label{class_person_a2a920bf3a1e90355f393b5f4d0c14a7c}} 
-\index{Person@{Person}!setTimeStayDistribution@{setTimeStayDistribution}}
-\index{setTimeStayDistribution@{setTimeStayDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setTimeStayDistribution()}{setTimeStayDistribution()}}
-{\footnotesize\ttfamily void Person\+::set\+Time\+Stay\+Distribution (\begin{DoxyParamCaption}\item[{const shared\+\_\+ptr$<$ \mbox{\hyperlink{class_distribution}{Distribution}} $>$ \&}]{time\+Stay\+Distribution }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{class_person_a2dcf5c090e1191096497a716dde1e5b9}\label{class_person_a2dcf5c090e1191096497a716dde1e5b9}} 
-\index{Person@{Person}!setWorkLocation@{setWorkLocation}}
-\index{setWorkLocation@{setWorkLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{setWorkLocation()}{setWorkLocation()}}
-{\footnotesize\ttfamily void Person\+::set\+Work\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{wl }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{class_person_a68872538da519d0a04297f43376db27c}\label{class_person_a68872538da519d0a04297f43376db27c}} 
-\index{Person@{Person}!toString@{toString}}
-\index{toString@{toString}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
-{\footnotesize\ttfamily const string Person\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
-
-Builds and returns a human readable string representation of the person. \begin{DoxyReturn}{Returns}
-a human readable string representation of the person. 
-\end{DoxyReturn}
-
-
-\doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{class_person_a743e071da10a5ac9150f61df919cfbb4}\label{class_person_a743e071da10a5ac9150f61df919cfbb4}} 
-\index{Person@{Person}!m\_age@{m\_age}}
-\index{m\_age@{m\_age}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_age}{m\_age}}
-{\footnotesize\ttfamily int Person\+::m\+\_\+age\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a6c18c99510c569a00c301447771e7388}\label{class_person_a6c18c99510c569a00c301447771e7388}} 
-\index{Person@{Person}!m\_anchorLocation@{m\_anchorLocation}}
-\index{m\_anchorLocation@{m\_anchorLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_anchorLocation}{m\_anchorLocation}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::m\+\_\+anchor\+Location\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a92ceead10a7ca858d2151391e4421843}\label{class_person_a92ceead10a7ca858d2151391e4421843}} 
-\index{Person@{Person}!m\_displacementMethod@{m\_displacementMethod}}
-\index{m\_displacementMethod@{m\_displacementMethod}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_displacementMethod}{m\_displacementMethod}}
-{\footnotesize\ttfamily shared\+\_\+ptr$<$\mbox{\hyperlink{class_displace}{Displace}}$>$ Person\+::m\+\_\+displacement\+Method\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}\label{class_person_ade9cdf49acde95c75f19f0b0d24c8c9a}} 
-\index{Person@{Person}!m\_gender@{m\_gender}}
-\index{m\_gender@{m\_gender}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_gender}{m\_gender}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_person_aff84ca16bd4dbf364614d86f20b29dd2}{Gender}} Person\+::m\+\_\+gender\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a9137e6d5f054e53799c66d354d403711}\label{class_person_a9137e6d5f054e53799c66d354d403711}} 
-\index{Person@{Person}!m\_homeLocation@{m\_homeLocation}}
-\index{m\_homeLocation@{m\_homeLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_homeLocation}{m\_homeLocation}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::m\+\_\+home\+Location\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a95b2e60a54b72aea51a7600048e76291}\label{class_person_a95b2e60a54b72aea51a7600048e76291}} 
-\index{Person@{Person}!m\_idDevices@{m\_idDevices}}
-\index{m\_idDevices@{m\_idDevices}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_idDevices}{m\_idDevices}}
-{\footnotesize\ttfamily unordered\+\_\+multimap$<$string, \mbox{\hyperlink{class_agent}{Agent}}$\ast$$>$ Person\+::m\+\_\+id\+Devices\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a7fe9a2ce5b7cbebcfcc4a2f15acecd01}\label{class_person_a7fe9a2ce5b7cbebcfcc4a2f15acecd01}} 
-\index{Person@{Person}!m\_intervalBetweenStaysDistribution@{m\_intervalBetweenStaysDistribution}}
-\index{m\_intervalBetweenStaysDistribution@{m\_intervalBetweenStaysDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_intervalBetweenStaysDistribution}{m\_intervalBetweenStaysDistribution}}
-{\footnotesize\ttfamily shared\+\_\+ptr$<$\mbox{\hyperlink{class_distribution}{Distribution}}$>$ Person\+::m\+\_\+interval\+Between\+Stays\+Distribution\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_ad8809184fc32b28b1bcc115b10493b55}\label{class_person_ad8809184fc32b28b1bcc115b10493b55}} 
-\index{Person@{Person}!m\_nextStay@{m\_nextStay}}
-\index{m\_nextStay@{m\_nextStay}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_nextStay}{m\_nextStay}}
-{\footnotesize\ttfamily unsigned long Person\+::m\+\_\+next\+Stay\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a5554109f1f3a7c466f02346d0061c6e7}\label{class_person_a5554109f1f3a7c466f02346d0061c6e7}} 
-\index{Person@{Person}!m\_timeStay@{m\_timeStay}}
-\index{m\_timeStay@{m\_timeStay}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_timeStay}{m\_timeStay}}
-{\footnotesize\ttfamily unsigned long Person\+::m\+\_\+time\+Stay\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_a20c309fb76477a0040c61e8fb1ab55d2}\label{class_person_a20c309fb76477a0040c61e8fb1ab55d2}} 
-\index{Person@{Person}!m\_timeStayDistribution@{m\_timeStayDistribution}}
-\index{m\_timeStayDistribution@{m\_timeStayDistribution}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_timeStayDistribution}{m\_timeStayDistribution}}
-{\footnotesize\ttfamily shared\+\_\+ptr$<$\mbox{\hyperlink{class_distribution}{Distribution}}$>$ Person\+::m\+\_\+time\+Stay\+Distribution\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{class_person_aa8cf5339fd9eec3cb584d35f4faf8e5f}\label{class_person_aa8cf5339fd9eec3cb584d35f4faf8e5f}} 
-\index{Person@{Person}!m\_workLocation@{m\_workLocation}}
-\index{m\_workLocation@{m\_workLocation}!Person@{Person}}
-\doxysubsubsection{\texorpdfstring{m\_workLocation}{m\_workLocation}}
-{\footnotesize\ttfamily Point$\ast$ Person\+::m\+\_\+work\+Location\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/agent/\mbox{\hyperlink{_person_8h}{Person.\+h}}\end{DoxyCompactItemize}
+include/agent/\hyperlink{_person_8h}{Person.\+h}\end{DoxyCompactItemize}

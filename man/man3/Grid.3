@@ -1,4 +1,4 @@
-.TH "Grid" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "Grid" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -69,12 +69,6 @@ Grid
 .ti -1c
 .RI "unsigned long \fBgetTileIndexY\fP (const Point *p) const"
 .br
-.ti -1c
-.RI "string \fBtoString\fP () const"
-.br
-.ti -1c
-.RI "Coordinate * \fBcomputeTileCenters\fP ()"
-.br
 .in -1c
 .SS "Private Attributes"
 
@@ -109,7 +103,7 @@ This class implements a grid of rectangular tiles overlapped on the map of the s
 .SS "Grid::Grid (double xOrig, double yOrig, double xTiledim, double yTiledim, unsigned long noTilesX, unsigned long noTilesY)"
 Constructor of the class\&. Build a \fBGrid\fP object with the specified parameters\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIxOrig\fP the x coordinate of the origin of the grid (i\&.e\&. the x coordinate of the bottom left corner of the grid)\&. 
 .br
@@ -129,12 +123,10 @@ Constructor of the class\&. Build a \fBGrid\fP object with the specified paramet
 Default destructor\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "Coordinate* Grid::computeTileCenters ()\fC [private]\fP"
-
 .SS "void Grid::dumpGrid (const string & gridFileName) const"
 Writes the grid description in a \&.csv file for later processing\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIgridFileName\fP the name of the output file\&. 
 .RE
@@ -143,7 +135,7 @@ Writes the grid description in a \&.csv file for later processing\&.
 .SS "const unsigned long Grid::getNoTiles () const"
 Computes the total number of tiles in the grid\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the total number of tiles in the grid\&. 
 .RE
@@ -152,7 +144,7 @@ the total number of tiles in the grid\&.
 .SS "unsigned long Grid::getNoTilesX () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the number of tiles of the grid on X axis direction\&. 
 .RE
@@ -161,7 +153,7 @@ the number of tiles of the grid on X axis direction\&.
 .SS "unsigned long Grid::getNoTilesY () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the number of tiles of the grid on Y axis direction\&. 
 .RE
@@ -170,12 +162,12 @@ the number of tiles of the grid on Y axis direction\&.
 .SS "Coordinate Grid::getTileCenter (unsigned long tileIndex) const"
 Computes the coordinates of the tile center given by its index in the grid\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fItileIndex\fP the tile index\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the coordinates of the center of the tile\&. 
 .RE
@@ -184,53 +176,53 @@ the coordinates of the center of the tile\&.
 .SS "Coordinate* Grid::getTileCenters () const"
 Returns a vector containing the coordinates of the tile centers\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a vector containing the coordinates of the tile centers\&. 
 .RE
 .PP
 
+.SS "unsigned long Grid::getTileIndexX (double x) const\fC [private]\fP"
+
 .SS "unsigned long Grid::getTileIndexX (const Point * p) const\fC [private]\fP"
 Returns the tile index on X axis that contains a given point in space, specified by p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP a pointer to the point for which we need the tile index\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the tile index on X axis that contains the point specified by p, i\&.e\&. a number between 0 and \fBgetNoTilesX()\fP - 1\&. 
 .RE
 .PP
 
-.SS "unsigned long Grid::getTileIndexX (double x) const\fC [private]\fP"
+.SS "unsigned long Grid::getTileIndexY (double y) const\fC [private]\fP"
 
 .SS "unsigned long Grid::getTileIndexY (const Point * p) const\fC [private]\fP"
 Returns the tile index on Y axis that contains a given point in space, specified by p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP the point in space for which we need the tile index\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the tile index on Y axis that contains the point specified by p, i\&.e\&. a number between 0 and \fBgetNoTilesY()\fP - 1\&. 
 .RE
 .PP
 
-.SS "unsigned long Grid::getTileIndexY (double y) const\fC [private]\fP"
-
 .SS "unsigned long Grid::getTileNo (const Point * p) const"
 Computes the tile index of the tile that contains the Point indicated by p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP a pointer to a Point object\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the tile index of the tile that contains the Point indicated by p\&. 
 .RE
@@ -239,14 +231,14 @@ the tile index of the tile that contains the Point indicated by p\&.
 .SS "unsigned long Grid::getTileNo (double x, double y) const"
 Computes the tile index of the tile that contains a point with coordinates indicated by x and y\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIx\fP x coordinate of a location\&. 
 .br
 \fIy\fP y coordinate of a location\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the tile index of the tile that contains a point with coordinates indicated by x and y\&. 
 .RE
@@ -255,7 +247,7 @@ the tile index of the tile that contains a point with coordinates indicated by x
 .SS "double Grid::getXOrigin () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the x coordinate of the origin of the grid (i\&.e\&. the x coordinate of the bottom left corner of the grid)\&. 
 .RE
@@ -264,7 +256,7 @@ the x coordinate of the origin of the grid (i\&.e\&. the x coordinate of the bot
 .SS "double Grid::getXTileDim () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the dimension of a tile on X axis direction\&. 
 .RE
@@ -273,7 +265,7 @@ the dimension of a tile on X axis direction\&.
 .SS "double Grid::getYOrigin () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the y coordinate of the origin of the grid (i\&.e\&. the y coordinate of the bottom left corner of the grid)\&. 
 .RE
@@ -282,18 +274,9 @@ the y coordinate of the origin of the grid (i\&.e\&. the y coordinate of the bot
 .SS "double Grid::getYTileDim () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the dimension of a tile on Y axis direction\&. 
-.RE
-.PP
-
-.SS "string Grid::toString () const\fC [private]\fP"
-
-.PP
-\fBReturns\fP
-.RS 4
-a string representation of an object of type \fBGrid\fP\&. This is useful to write a textual description of the grid in a file for later processing\&. 
 .RE
 .PP
 

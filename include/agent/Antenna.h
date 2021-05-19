@@ -60,16 +60,19 @@ using namespace tinyxml2;
  *
  * The signal strength at distance \a r from the antenna's location is given by :
  *
- * \f$ RSS(r) = 30 + 10 log10(P) - 10 gamma log10(r)\f$
- * where P is the power of the antenna in Watts and gamma is the attenuation factor of the signal (also called the path loss exponent),
+ * RSS(r) = 30 + 10 log10(P) - 10 gamma log10(r)
+ * where \a P is the power of the antenna in Watts and \a gamma is the attenuation factor of the signal (also called the path loss exponent),
+ *
  * while the signal dominance is given by:
  *
- *  \f$ SDM(r) = 1/(1 + exp (-Ssteep ( RSS(r) - Smid)))\f$
+ *  SDM(r) = 1/(1 + exp (-Ssteep ( RSS(r) - Smid)))
  *
- *  where Ssteep and Smid are parameters that should be given in the configuration file.
+ *  where \a Ssteep and \a Smid are parameters that should be given in the configuration file.
+ *
  *  For a complete definition of the signal dominance one can consult:
  *  Tennekes M, Gootzen YAPM, Shah SH (2020) A Bayesian approach to location estimation of mobile devices from
  *  mobile network operator data. Research Report, Statistics Netherlands (CBS).
+ *
  *  A directional antenna has a specific signal emission pattern and one can find a description of it in the work mentioned above.
  *
  */
@@ -79,11 +82,11 @@ public:
 	/**
 	 * This is the constructor of the class. It is used to build antenna objects.
 	 * @param id the ID of this object, which is unique throughout the entire collection of agents.
-	 * @param sc a pointer to a \code{SimulationConfiguration} object that contains the parameters
+	 * @param sc a pointer to a SimulationConfiguration object that contains the parameters
 	 * of the simulation read from the configuration file.
-	 * @param ac an \code{AntennaConfiguration} object that contains all the technical parameters of an antenna, together with its type.
+	 * @param ac an AntennaConfiguration object that contains all the technical parameters of an antenna, together with its type.
 	 * These parameters are specified in the antennas' configuration file.
-	 * @param factory a pointer to an \code{EventFactory} object used to create \code{Event} objects according to the event type
+	 * @param factory a pointer to an EventFactory object used to create Event objects according to the event type
 	 * specified in the simulation configuration file.
 	 */
 	explicit Antenna(const unsigned long id, SimulationConfiguration* sc, AntennaConfiguration ac, EventFactory* factory);
@@ -94,8 +97,8 @@ public:
 	virtual ~Antenna();
 
 	/**
-	 * Overrides the same method from the superclass. It is used to write the parameters of the \code{Antenna}
-	 * object to a \code{string} object.
+	 * Overrides the same method from the superclass. It is used to write the parameters of the Antenna
+	 * object to a string object.
 	 * @param detailed if false the output string will contain the following values:
 	 * \li location on map
 	 * \li id
@@ -103,6 +106,7 @@ public:
 	 * \li the maximum number of mobile devices that can be handled by this antenna
 	 * \li the path loss exponent
 	 * \li the Mobile Network Operator that owns this antenna
+	 *
 	 * otherwise it will contain:
 	 * \li location on map
 	 * \li id
@@ -124,34 +128,34 @@ public:
 	 * \li the height of the antenna
 	 * \li the tile number of the location where this antenna is placed on the map.
 	 *
-	 * @return a \code{string} object that describes the parameters of the Antenna. The string representation of an \code{Antenna} object depends o the value of the
-	 * \param{detailed} param (see the above explanation).
+	 * @return a string object that describes the parameters of the Antenna. The string representation of an Antenna object depends o the value of the
+	 * parameter <tt>detailed</tt> (see the above explanation).
 	 */
 	const string toString(bool detailed = false) const override;
 
 	/**
-	 * Builds a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString(detailed)} method. Each value in the
-	 * \code{string} returned by \code{toString(detailed)} method has a column name in the \code{string} object returned by this function.  This is a static method since
+	 * Builds a string object the contains the header corresponding to the string object returned by the toString(detailed) method. Each value in the
+	 * string returned by toString(detailed) method has a column name in the string object returned by this function.  This is a static method since
 	 * the header should be the same for all antennas.
-	 * @param detailed if false, the header is build for the string representation returned by \code{toString(false)}, otherwise
-	 * the header corresponds to the string returned by \code{toString(true)}.
-	 * @return a \code{string} object the contains the header corresponding to the \code{string} object returned by the \code{toString(detailed)} method
+	 * @param detailed if false, the header is build for the string representation returned by toString(false), otherwise
+	 * the header corresponds to the string returned by toString(true).
+	 * @return a string object the contains the header corresponding to the string object returned by the toString(detailed) method.
 	 */
 	static const string getHeader(bool detailed = false);
 
 	/**
-	 * Tries to register a mobile device as being connected to this antenna. An \code{Antenna} object maintains an internal list keeping
+	 * Tries to register a mobile device as being connected to this antenna. An Antenna object maintains an internal list keeping
 	 * the ids of all mobile devices connected to this object at each time instant. In case the connection is successful, the mobile device
-	 * is added to this list (by calling the \code{attachDevice()} method) and a connection event (code \code{EventCode::ATTACH_DEVICE})
-	 * is appended to the events file. In case the mobile device is already registered by this \code{Antenna} object in a previous
+	 * is added to this list (by calling the attachDevice() method) and a connection event (code EventCode::ATTACH_DEVICE)
+	 * is appended to the events file. In case the mobile device is already registered by this Antenna object in a previous
 	 * time instant an "already connected" event (code EventCode::ALREADY_ATTACHED_DEVICE) is registered to the events file.
-	 * In case the \code{Antenna} object has already connected the maximum allowable devices an "in range, not connected" event
+	 * In case the Antenna object has already connected the maximum allowable devices an "in range, not connected" event
 	 * will be appended to the events file (code EventCode::IN_RANGE_NOT_ATTACHED_DEVICE). This means that the device is close enough
 	 * to the antenna to receive a signal that can be used but the antenna cannot register the mobile device.
-	 * @param device a pointer to the object that represents a mobile device (which is a subclass of the \code{HoldableAgent} class.
+	 * @param device a pointer to the object that represents a mobile device (which is a subclass of the HoldableAgent class.
 	 * @return true if the connection is successful, false otherwise. A connection is not successful
-	 * if this \code{Antenna} already reached its maximum capacity, i.e. the maximum number of connections it can handle
-	 * (a parameter read from the antenna configuration file.
+	 * if this Antenna already reached its maximum capacity, i.e. the maximum number of connections it can handle
+	 * (a parameter read from the antenna configuration file).
 	 */
 	bool tryRegisterDevice(HoldableAgent *device);
 
@@ -167,49 +171,49 @@ public:
 
 	/**
 	 * Returns the antenna type: omnidirectional or directional.
-	 * @return the antenna type : \code{AntennaType::OMNIDIRECTIONAL} or \code{AntennaType::DIRECTIONAL}.
+	 * @return the antenna type : AntennaType::OMNIDIRECTIONAL or AntennaType::DIRECTIONAL.
 	 */
 	AntennaType getType() const;
 
 	/**
-	 * Computes the signal dominance given by this \code{Antenna} object in a certain location.
-	 * @param p a pointer to a \code{Point} object giving the location where we want to compute the signal dominance.
+	 * Computes the signal dominance given by this Antenna object in a certain location.
+	 * @param p a pointer to a Point object giving the location where we want to compute the signal dominance.
 	 * @return the value of the signal dominance.
 	 */
 	double computeSignalDominance(const Point *p) const;
 
 	/**
-	 * Computes the signal dominance given by this \code{Antenna} object in a certain location.
+	 * Computes the signal dominance given by this Antenna object in a certain location.
 	 * @param c the coordinates of the location where we want to compute the signal dominance.
 	 * @return the value of the signal dominance.
 	 */
 	double computeSignalDominance(const Coordinate c) const;
 
 	/**
-	 * Computes the signal power given by this \code{Antenna} object in a certain location.
-	 * @param p a pointer to a \code{Point} object giving the location where we want to compute the signal power.
-	 * @return the power of the signal in the location given by \code{Point} p.
+	 * Computes the signal power given by this Antenna object in a certain location.
+	 * @param p a pointer to a Point object giving the location where we want to compute the signal power.
+	 * @return the power of the signal in the location given by Point p.
 	 */
 	double computePower(const Point *p) const;
 
 	/**
-	 * Computes the signal power given by this \code{Antenna} object in a certain location.
+	 * Computes the signal power given by this Antenna object in a certain location.
 	 * @param c the coordinates of the location where we want to compute the signal power.
-	 * @return the power of the signal in the location given by \code{Coordinate} c.
+	 * @return the power of the signal in the location given by Coordinate c.
 	 */
 	double computePower(const Coordinate c) const;
 
 	/**
-	 * Returns a pointer to a \code{MobileOperator} object representing the Mobile Network Operator that owns this antenna.
-	 * @return a pointer to a \code{MobileOperator} object representing the Mobile Network Operator that owns this antenna.
+	 * Returns a pointer to a MobileOperator object representing the Mobile Network Operator that owns this antenna.
+	 * @return a pointer to a MobileOperator object representing the Mobile Network Operator that owns this antenna.
 	 */
 	MobileOperator* getMNO() const;
 
 	/**
-	 * Builds the name of the output file where the events registered by this \code{Antenna} object during a simulation are saved.
+	 * Builds the name of the output file where the events registered by this Antenna object during a simulation are saved.
 	 * The name is built by by concatenating "Antenna", its id, "_MNO_" and the MNO name read from the
      * configuration file
-	 * @return the name of the output file where the events registered by this \code{Antenna} object during a simulation are saved.
+	 * @return the name of the output file where the events registered by this Antenna object during a simulation are saved.
 	 */
 	string getAntennaOutputFileName() const;
 
@@ -222,17 +226,17 @@ public:
 	double getRmax() const;
 
 	/**
-	 * Builds a \code{wkt} string that represents the coverage area of this antenna. This area is a circle with the radius given by \code{getRmax()}
-	 * in case the antenna in omnidirectional. In case of a directional antenna this coverage area is computed as a \code{Polygon} made up of points
-	 * on segments starting from the antenna location where the signal strength/dominance drop below the minimum allowable limit. The segments covers the trigonometric
-	 * circle, with a direction angle from the vertical axis starting from 0 and going to 2 * PI, with a step of 2PI/100.
-	 * @return a \code{wkt} \code{string} object that represents the coverage area of this antenna.
+	 * Builds a <tt>wkt</tt> string that represents the coverage area of this antenna. This area is a circle with the radius given by getRmax()
+	 * in case the antenna in omnidirectional. In case of a directional antenna this coverage area is computed as a Polygon made up of points
+	 * on segments starting from the antenna location where the signal strength/dominance drop below the minimum allowable limit. The segments
+	 * covers the trigonometric circle, with a direction angle from the vertical axis starting from 0 and going to 2 * PI, with a step of 2PI/100.
+	 * @return a <tt>wkt</tt> string object that represents the coverage area of this antenna.
 	 */
 	string dumpCell() const;
 
 	/**
-	 * Computes the signal strength given by this \code{Antenna} object in a certain location.
-	 * @param p a pointer to a \code{Point} object giving the location where we want to compute the signal strength.
+	 * Computes the signal strength given by this Antenna object in a certain location.
+	 * @param p a pointer to a Point object giving the location where we want to compute the signal strength.
 	 * @return the value of the signal strength.
 	 */
 	double computeSignalStrength(const Point *p) const;
@@ -241,17 +245,17 @@ public:
 	/**
 	 * Writes the values of the signal strength/dominance in a .csv file.
 	 * These values are computed in the center of each tile covering the map. The name of the file is obtained
-	 * from the \code{MobileOperator} object that owns this antenna, by calling \code{getSignalFile()}. The strength or dominance
+	 * from the MobileOperator object that owns this antenna, by calling getSignalFile(). The strength or dominance
 	 * is chosen according to the handover mechanism specified in the simulation configuration file.
 	 */
 	void dumpSignal() const;
 
 	/**
-	 * Builds a \code{string} object representing the header of the events file. Since the structure of the events files is the same
-	 * for all \{Antenna} objects, this is a static method. The fields included in the header depend of the type of events used in
+	 * Builds a string object representing the header of the events file. Since the structure of the events files is the same
+	 * for all Antenna objects, this is a static method. The fields included in the header depend of the type of events used in
 	 * a simulation.
-	 * @param evType the event type, which can be \code{EventType::CELLID} or \code{EventType::CELLIDTA}.
-	 * @return a \code{string} object with the header of the events file.
+	 * @param evType the event type, which can be EventType::CELLID or EventType::CELLIDTA.
+	 * @return a string object with the header of the events file.
 	 */
 	static string getEventHeader(EventType evType);
 

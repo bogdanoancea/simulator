@@ -1,5 +1,5 @@
-\hypertarget{class_input_parser}{}\doxysection{Input\+Parser Class Reference}
-\label{class_input_parser}\index{InputParser@{InputParser}}
+\hypertarget{class_input_parser}{}\section{Input\+Parser Class Reference}
+\label{class_input_parser}\index{Input\+Parser@{Input\+Parser}}
 
 
 {\ttfamily \#include $<$Input\+Parser.\+h$>$}
@@ -13,30 +13,30 @@ Collaboration diagram for Input\+Parser\+:\nopagebreak
 \includegraphics[width=187pt]{class_input_parser__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_input_parser_af9fa5ead1f28b5294a713410df5b9531}{Input\+Parser}} (int \&argc, char $\ast$$\ast$argv)
+\hyperlink{class_input_parser_af9fa5ead1f28b5294a713410df5b9531}{Input\+Parser} (int \&argc, char $\ast$$\ast$argv)
 \item 
-const string \& \mbox{\hyperlink{class_input_parser_aac05d7ad7794084907a0b57ab3e7d607}{get\+Cmd\+Option}} (const string \&option) const
+const string \& \hyperlink{class_input_parser_aac05d7ad7794084907a0b57ab3e7d607}{get\+Cmd\+Option} (const string \&option) const
 \item 
-bool \mbox{\hyperlink{class_input_parser_ad3d06a9c59e91f425295bdc8408e0544}{cmd\+Option\+Exists}} (const string \&option) const
+bool \hyperlink{class_input_parser_ad3d06a9c59e91f425295bdc8408e0544}{cmd\+Option\+Exists} (const string \&option) const
 \end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-vector$<$ string $>$ \mbox{\hyperlink{class_input_parser_a4bd1105d6fc64bd0e825dc2e34515d75}{tokens}}
+vector$<$ string $>$ \hyperlink{class_input_parser_a4bd1105d6fc64bd0e825dc2e34515d75}{tokens}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
+\subsection{Detailed Description}
 Utility class used to parse the command line and extract the parameters and their values. An option is passed with a \char`\"{}-\/\char`\"{} sign in front of it. Example\+: \$simulator -\/s simulation.\+xml -\/p persons Here -\/s and -\/p are options and simulation.\+xml and persons.\+xml are their corresponding values. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+\subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_input_parser_af9fa5ead1f28b5294a713410df5b9531}\label{class_input_parser_af9fa5ead1f28b5294a713410df5b9531}} 
-\index{InputParser@{InputParser}!InputParser@{InputParser}}
-\index{InputParser@{InputParser}!InputParser@{InputParser}}
-\doxysubsubsection{\texorpdfstring{InputParser()}{InputParser()}}
+\index{Input\+Parser@{Input\+Parser}!Input\+Parser@{Input\+Parser}}
+\index{Input\+Parser@{Input\+Parser}!Input\+Parser@{Input\+Parser}}
+\subsubsection{\texorpdfstring{Input\+Parser()}{InputParser()}}
 {\footnotesize\ttfamily Input\+Parser\+::\+Input\+Parser (\begin{DoxyParamCaption}\item[{int \&}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
 
 Constructor of the class. 
@@ -48,11 +48,11 @@ Constructor of the class.
 \end{DoxyParams}
 
 
-\doxysubsection{Member Function Documentation}
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_input_parser_ad3d06a9c59e91f425295bdc8408e0544}\label{class_input_parser_ad3d06a9c59e91f425295bdc8408e0544}} 
-\index{InputParser@{InputParser}!cmdOptionExists@{cmdOptionExists}}
-\index{cmdOptionExists@{cmdOptionExists}!InputParser@{InputParser}}
-\doxysubsubsection{\texorpdfstring{cmdOptionExists()}{cmdOptionExists()}}
+\index{Input\+Parser@{Input\+Parser}!cmd\+Option\+Exists@{cmd\+Option\+Exists}}
+\index{cmd\+Option\+Exists@{cmd\+Option\+Exists}!Input\+Parser@{Input\+Parser}}
+\subsubsection{\texorpdfstring{cmd\+Option\+Exists()}{cmdOptionExists()}}
 {\footnotesize\ttfamily bool Input\+Parser\+::cmd\+Option\+Exists (\begin{DoxyParamCaption}\item[{const string \&}]{option }\end{DoxyParamCaption}) const}
 
 Checks if an option was passed as a command line parameter. 
@@ -64,9 +64,9 @@ Checks if an option was passed as a command line parameter.
 true if the option is present in the command line, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_input_parser_aac05d7ad7794084907a0b57ab3e7d607}\label{class_input_parser_aac05d7ad7794084907a0b57ab3e7d607}} 
-\index{InputParser@{InputParser}!getCmdOption@{getCmdOption}}
-\index{getCmdOption@{getCmdOption}!InputParser@{InputParser}}
-\doxysubsubsection{\texorpdfstring{getCmdOption()}{getCmdOption()}}
+\index{Input\+Parser@{Input\+Parser}!get\+Cmd\+Option@{get\+Cmd\+Option}}
+\index{get\+Cmd\+Option@{get\+Cmd\+Option}!Input\+Parser@{Input\+Parser}}
+\subsubsection{\texorpdfstring{get\+Cmd\+Option()}{getCmdOption()}}
 {\footnotesize\ttfamily const string\& Input\+Parser\+::get\+Cmd\+Option (\begin{DoxyParamCaption}\item[{const string \&}]{option }\end{DoxyParamCaption}) const}
 
 Returns the value of an option passed as a command line parameter. 
@@ -79,15 +79,15 @@ the value of the option passed as a command line parameter.
 \end{DoxyReturn}
 
 
-\doxysubsection{Member Data Documentation}
+\subsection{Member Data Documentation}
 \mbox{\Hypertarget{class_input_parser_a4bd1105d6fc64bd0e825dc2e34515d75}\label{class_input_parser_a4bd1105d6fc64bd0e825dc2e34515d75}} 
-\index{InputParser@{InputParser}!tokens@{tokens}}
-\index{tokens@{tokens}!InputParser@{InputParser}}
-\doxysubsubsection{\texorpdfstring{tokens}{tokens}}
+\index{Input\+Parser@{Input\+Parser}!tokens@{tokens}}
+\index{tokens@{tokens}!Input\+Parser@{Input\+Parser}}
+\subsubsection{\texorpdfstring{tokens}{tokens}}
 {\footnotesize\ttfamily vector$<$string$>$ Input\+Parser\+::tokens\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{_input_parser_8h}{Input\+Parser.\+h}}\end{DoxyCompactItemize}
+include/\hyperlink{_input_parser_8h}{Input\+Parser.\+h}\end{DoxyCompactItemize}

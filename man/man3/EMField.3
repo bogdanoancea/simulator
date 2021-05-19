@@ -1,4 +1,4 @@
-.TH "EMField" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "EMField" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -27,10 +27,10 @@ EMField
 .RI "pair< \fBAntenna\fP *, double > \fBcomputeMaxStrength\fP (const Point *p, const unsigned long mnoId)"
 .br
 .ti -1c
-.RI "vector< pair< \fBAntenna\fP *, double > > \fBgetInRangeAntennas\fP (const Point *p, const double threshold, const \fBHoldableAgent::CONNECTION_TYPE\fP connType, unsigned long mnoId)"
+.RI "vector< pair< \fBAntenna\fP *, double > > \fBgetInRangeAntennas\fP (const Point *p, const double threshold, const HoldableAgent::CONNECTION_TYPE connType, unsigned long mnoId)"
 .br
 .ti -1c
-.RI "bool \fBisAntennaInRange\fP (const Point *p, \fBAntenna\fP *a, const double threshold, const \fBHoldableAgent::CONNECTION_TYPE\fP connType)"
+.RI "bool \fBisAntennaInRange\fP (const Point *p, \fBAntenna\fP *a, const double threshold, const HoldableAgent::CONNECTION_TYPE connType)"
 .br
 .ti -1c
 .RI "double \fBconnectionLikelihood\fP (\fBAntenna\fP *a, const Point *p)"
@@ -107,7 +107,7 @@ Default destructor\&.
 .SS "void EMField::addAntenna (\fBAntenna\fP * a)"
 Add a pointer to an \fBAntenna\fP object to an internal collection needed for computations\&. Although these pointers are kept in an AgentCollection object they are also added to a local vector in this class for performance reasons\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIa\fP a pointer to the \fBAntenna\fP object 
 .RE
@@ -116,14 +116,14 @@ Add a pointer to an \fBAntenna\fP object to an internal collection needed for co
 .SS "pair<\fBAntenna\fP*, double> EMField::computeMaxPower (const Point * p, const unsigned long mnoId)"
 Returns a pair made of a pointer to an \fBAntenna\fP object and its power with the property that in the location specified by parameter p, the \fBAntenna\fP returned by this method provides the highest power (the power of the field is considered to decrease according a power-law)\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP the location where we want to find which \fBAntenna\fP provides the highest power the of electromagnetic field\&. 
 .br
 \fImnoId\fP the id of the MNO for which we compute the power\&. Only antennas belonging to this MNO will be considered during computations\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that provides the highest power of the field in the location specified by p\&. 
 .RE
@@ -132,14 +132,14 @@ a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that p
 .SS "pair<\fBAntenna\fP*, double> EMField::computeMaxQuality (const Point * p, const unsigned long mnoId)"
 Returns a pair made of a pointer to an \fBAntenna\fP object and its signal quality with the property that in the location specified by p, the \fBAntenna\fP returned by this method provides signal with the highest quality\&. The signal quality in this pair is the computed in location given by p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP indicates the location where we want to find which \fBAntenna\fP provides the highest quality of the signal\&. 
 .br
 \fImnoId\fP the id of the MNO for which we compute the signal quality\&. Only antennas belonging to this MNO will be considered during computations\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that provides a signal with the highest quality in location given by p\&. 
 .RE
@@ -148,14 +148,14 @@ a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that p
 .SS "pair<\fBAntenna\fP*, double> EMField::computeMaxStrength (const Point * p, const unsigned long mnoId)"
 Returns a pair made of a pointer to an \fBAntenna\fP object and its signal strength with the property that in the location specified by p, the \fBAntenna\fP returned by this method provides signal with the highest strength\&. The signal strength in this pair is the computed in location given by p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP indicates the location where we want to find which \fBAntenna\fP provides the highest strength of the signal\&. 
 .br
 \fImnoId\fP the id of the MNO for which we compute the signal strength\&. Only antennas belonging to this MNO will be considered during computations\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that provides a signal with the highest strength in location given by p\&. 
 .RE
@@ -164,14 +164,14 @@ a pair<Antenna*, double> containing a pointer to the \fBAntenna\fP object that p
 .SS "double EMField::connectionLikelihood (\fBAntenna\fP * a, const Point * p)"
 Computes the connection likelihood for \fBAntenna\fP indicated by a in a certain location given by p\&. The connection likelihood is computed dividing the signal quality provided by \fBAntenna\fP indicated through p by the sum of the signal quality provided by all antennas of an MNO\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIa\fP a pointer to an \fBAntenna\fP object\&. 
 .br
 \fIp\fP a location in space\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the connection likelihood for \fBAntenna\fP a in location p\&. 
 .RE
@@ -180,7 +180,7 @@ the connection likelihood for \fBAntenna\fP a in location p\&.
 .SS "double EMField::connectionLikelihoodGrid (\fBAntenna\fP * a, const \fBMap\fP * map, unsigned long tileIndex)"
 Computes the connection likelihood for \fBAntenna\fP indicated by a in the center of the tile indicated by tileIndex 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIa\fP a pointer to an \fBAntenna\fP object\&. 
 .br
@@ -189,7 +189,7 @@ Computes the connection likelihood for \fBAntenna\fP indicated by a in the cente
 \fItileIndex\fP the index of the tile where we want to compute the connection likelihood\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the connection likelihood for \fBAntenna\fP a in the center of the tile with the index tileIndex\&. 
 .RE
@@ -197,10 +197,10 @@ the connection likelihood for \fBAntenna\fP a in the center of the tile with the
 
 .SS "const double* EMField::getAntennaMin3DbArray () const"
 
-.SS "vector<pair<\fBAntenna\fP*, double> > EMField::getInRangeAntennas (const Point * p, const double threshold, const \fBHoldableAgent::CONNECTION_TYPE\fP connType, unsigned long mnoId)"
+.SS "vector<pair<\fBAntenna\fP*, double> > EMField::getInRangeAntennas (const Point * p, const double threshold, const HoldableAgent::CONNECTION_TYPE connType, unsigned long mnoId)"
 Returns a vector of pairs made up of a pointer to an \fBAntenna\fP object and its power, signal quality or signal strength\&. All the antennas in this vector provides a signal with a power or signal quality greater than the threshold provided as threshold, i\&.e\&. this vector contains all antennas that have in their coverage area the location given by point p\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP the location where we want to have the list with the all antennas that covers it\&. 
 .br
@@ -211,7 +211,7 @@ Returns a vector of pairs made up of a pointer to an \fBAntenna\fP object and it
 \fImnoId\fP the id of the MNO for which we build the resulting vector\&. Only antennas belonging to this MNO will be considered during computations\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a vector of pairs made up of a pointer to an \fBAntenna\fP object and its power, signal quality or signal strength, according to the value of the connType\&. All the antennas in this vector provides a signal with a power, signal quality or signal strength greater than the threshold\&. 
 .RE
@@ -222,16 +222,16 @@ a vector of pairs made up of a pointer to an \fBAntenna\fP object and its power,
 .SS "static \fBEMField\fP* EMField::instance ()\fC [inline]\fP, \fC [static]\fP"
 Returns an instance of this class\&. This class is a singleton\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 an instance of this class\&. 
 .RE
 .PP
 
-.SS "bool EMField::isAntennaInRange (const Point * p, \fBAntenna\fP * a, const double threshold, const \fBHoldableAgent::CONNECTION_TYPE\fP connType)"
+.SS "bool EMField::isAntennaInRange (const Point * p, \fBAntenna\fP * a, const double threshold, const HoldableAgent::CONNECTION_TYPE connType)"
 Checks if p is in the coverage area of \fBAntenna\fP pointed out by a\&. The coverage area is considered the area where the signal quality or the power of the field is greater than the value of threshold\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIp\fP the location that we want to check the power or the quality of the signal 
 .br
@@ -242,7 +242,7 @@ Checks if p is in the coverage area of \fBAntenna\fP pointed out by a\&. The cov
 \fIconnType\fP indicates the mechanism used to set up a connection between an antenna and a mobile phone\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 true is the \fBAntenna\fP object provide enough power or signal quality in the location given as p\&. 
 .RE
@@ -253,14 +253,14 @@ true is the \fBAntenna\fP object provide enough power or signal quality in the l
 .SS "vector<double> EMField::sumSignalQuality (const \fBMap\fP * map, const unsigned long mnoID)"
 Computes the sum of the signal quality given by all antennas belonging to an MNO for all tiles in the reference grid\&. The signal quality is computed in the center of each tile\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fImap\fP the of the simulation\&. It is needed to extract the grid of tiles where this method computes the sum of the signal quality\&. This grid is set at the beginning of the simulation and it overlaps the \fBMap\fP\&. 
 .br
 \fImnoID\fP the id of the MNO for which we want to compute this sum\&. 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 a vector containing the sum of the signal quality given by all antennas of an MNO, for all tiles in the reference grid\&. An element of the vector corresponds to a tile in the grid\&. The tiles are linearized in a row-major order starting with the bottom-left corner\&. 
 .RE

@@ -1,4 +1,4 @@
-.TH "Clock" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "Clock" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -80,7 +80,7 @@ Default constructor
 .SS "Clock::Clock (unsigned long start, unsigned long end, unsigned long incr)"
 Constructor of the class\&. It takes the starting and ending time of the simulation as parameters as well as the time increment\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIstart\fP the initial moment when the simulation starts\&. 
 .br
@@ -97,7 +97,7 @@ Default destructor
 .SS "unsigned long Clock::getCurrentTime () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the current time of the simulator\&. 
 .RE
@@ -106,7 +106,7 @@ the current time of the simulator\&.
 .SS "unsigned long Clock::getFinalTime () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the ending time of the simulation\&. 
 .RE
@@ -115,7 +115,7 @@ the ending time of the simulation\&.
 .SS "unsigned long Clock::getIncrement () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the time increment used in simulation\&. 
 .RE
@@ -124,7 +124,7 @@ the time increment used in simulation\&.
 .SS "unsigned long Clock::getInitialTime () const"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the starting time of the simulation\&. 
 .RE
@@ -133,7 +133,7 @@ the starting time of the simulation\&.
 .SS "time_t Clock::realTime ()"
 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the real time read from the computer clock\&. It is used only to register the exact date and time of a simulation\&. 
 .RE
@@ -144,7 +144,7 @@ Resets the current time and makes it equal to the starting time such that a new 
 .SS "void Clock::setCurrentTime (unsigned long currentTime)"
 Sets the current time of the simulator\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIcurrentTime\fP the value of the current time to be set\&. 
 .RE
@@ -153,7 +153,7 @@ Sets the current time of the simulator\&.
 .SS "void Clock::setFinalTime (unsigned long finalTime)"
 Sets the ending time of a simulation\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIfinalTime\fP the value of the ending time of a simulation\&. 
 .RE
@@ -162,7 +162,7 @@ Sets the ending time of a simulation\&.
 .SS "void Clock::setIncrement (unsigned long increment)"
 Sets the time increment to be used in a simulation\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIincrement\fP the value of the time increment\&. 
 .RE
@@ -171,7 +171,7 @@ Sets the time increment to be used in a simulation\&.
 .SS "void Clock::setInitialTime (unsigned long initialTime)"
 Sets the starting time of the simulation\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIinitialTime\fP the value of the starting time of the simulation\&. 
 .RE
@@ -180,7 +180,7 @@ Sets the starting time of the simulation\&.
 .SS "unsigned long Clock::tick ()"
 increments the current time\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the current time after incrementation\&. 
 .RE

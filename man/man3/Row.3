@@ -1,4 +1,4 @@
-.TH "Row" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "Row" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -64,7 +64,7 @@ This class is used to represent a line from a \&.csv file\&. It is a container o
 .SS "Row::Row (const vector< string > & header)"
 Constructor\&. It takes a a line of text representing the header of the csv file\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIheader\fP the header line 
 .RE
@@ -77,49 +77,49 @@ Destructor\&.
 .SS "template<typename T > const T Row::getValue (unsigned int pos) const\fC [inline]\fP"
 Returns the value of an element from a row 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIpos\fP the number of the element in row 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the value 
-.RE
-.PP
-
-.SS "const string Row::operator[] (const string & valueName) const"
-Overloaded operator 
-.PP
-\fBParameters\fP
-.RS 4
-\fIvalueName\fP the name of the column from which we want to extract a the value 
-.RE
-.PP
-\fBReturns\fP
-.RS 4
-the value from the column specified by its name 
 .RE
 .PP
 
 .SS "const string Row::operator[] (unsigned int i) const"
 Overloaded operator 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIi\fP the position of the value that we want to extract 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the value from position i 
+.RE
+.PP
+
+.SS "const string Row::operator[] (const string & valueName) const"
+Overloaded operator 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvalueName\fP the name of the column from which we want to extract a the value 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the value from the column specified by its name 
 .RE
 .PP
 
 .SS "void Row::push (const string & value)"
 Add a new value on a row 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIvalue\fP to be added 
 .RE
@@ -128,14 +128,14 @@ Add a new value on a row
 .SS "bool Row::set (const string & key, const string & value)"
 Sets the value of a specific element in a row\&. The element is specified by the column name\&. 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIkey\fP the name of the column (given in the header of the file) 
 .br
 \fIvalue\fP the value to be set 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 .RE
 .PP
@@ -143,7 +143,7 @@ Sets the value of a specific element in a row\&. The element is specified by the
 .SS "unsigned int Row::size (void) const"
 Returns the number of values on a row\&. 
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the number of values on a row\&. 
 .RE
@@ -151,35 +151,35 @@ the number of values on a row\&.
 
 .SH "Friends And Related Function Documentation"
 .PP 
-.SS "ofstream& operator<< (ofstream & os, const \fBRow\fP & row)\fC [friend]\fP"
-Overloaded operator outputs the content of a row in a file stream 
-.PP
-\fBParameters\fP
-.RS 4
-\fIos\fP the file stream where we want to send the content of the row\&. 
-.br
-\fIrow\fP the row that we want to output 
-.RE
-.PP
-\fBReturns\fP
-.RS 4
-the same output file stream 
-.RE
-.PP
-
 .SS "ostream& operator<< (ostream & os, const \fBRow\fP & row)\fC [friend]\fP"
 Overloaded operator outputs the content of a row in a stream 
 .PP
-\fBParameters\fP
+\fBParameters:\fP
 .RS 4
 \fIos\fP the stream where we want to send the content of the row\&. 
 .br
 \fIrow\fP the row that we want to output 
 .RE
 .PP
-\fBReturns\fP
+\fBReturns:\fP
 .RS 4
 the same output stream 
+.RE
+.PP
+
+.SS "ofstream& operator<< (ofstream & os, const \fBRow\fP & row)\fC [friend]\fP"
+Overloaded operator outputs the content of a row in a file stream 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIos\fP the file stream where we want to send the content of the row\&. 
+.br
+\fIrow\fP the row that we want to output 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the same output file stream 
 .RE
 .PP
 

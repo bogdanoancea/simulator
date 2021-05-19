@@ -1,4 +1,4 @@
-\hypertarget{class_world}{}\doxysection{World Class Reference}
+\hypertarget{class_world}{}\section{World Class Reference}
 \label{class_world}\index{World@{World}}
 
 
@@ -13,72 +13,72 @@ Collaboration diagram for World\+:\nopagebreak
 \includegraphics[width=350pt]{class_world__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_world_adeb8454b3713d9dc1d05ca1f901e7b77}{World}} (\mbox{\hyperlink{class_map}{Map}} $\ast$map, const string \&config\+Persons\+File\+Name, const string \&config\+Antennas\+File\+Name, const string \&config\+Simulation\+File\+Name, const string \&probabilities\+File\+Name) noexcept(false)
+\hyperlink{class_world_adeb8454b3713d9dc1d05ca1f901e7b77}{World} (\hyperlink{class_map}{Map} $\ast$map, const string \&config\+Persons\+File\+Name, const string \&config\+Antennas\+File\+Name, const string \&config\+Simulation\+File\+Name, const string \&probabilities\+File\+Name) noexcept(false)
 \item 
-virtual \mbox{\hyperlink{class_world_a9ce9875f5e35e293661857e4a2c1d2e4}{$\sim$\+World}} ()
+virtual \hyperlink{class_world_a9ce9875f5e35e293661857e4a2c1d2e4}{$\sim$\+World} ()
 \item 
-void \mbox{\hyperlink{class_world_aa825a43f968c8fe750c67156e64721ff}{run\+Simulation}} () noexcept(false)
+void \hyperlink{class_world_aa825a43f968c8fe750c67156e64721ff}{run\+Simulation} () noexcept(false)
 \item 
-Agents\+Collection $\ast$ \mbox{\hyperlink{class_world_a8cf8a54ae1f3cb61efeba2b3acebb7cc}{get\+Agents}} () const
+\hyperlink{class_agents_collection}{Agents\+Collection} $\ast$ \hyperlink{class_world_a8cf8a54ae1f3cb61efeba2b3acebb7cc}{get\+Agents} () const
 \item 
-const \mbox{\hyperlink{class_map}{Map}} $\ast$ \mbox{\hyperlink{class_world_a33b8543ee812ae4f8ff93329444da4cb}{get\+Map}} () const
+const \hyperlink{class_map}{Map} $\ast$ \hyperlink{class_world_a33b8543ee812ae4f8ff93329444da4cb}{get\+Map} () const
 \item 
-const string \& \mbox{\hyperlink{class_world_a7d07b06f9884185161c5cc34034a7212}{get\+Grid\+Filename}} () const
+const string \& \hyperlink{class_world_a7d07b06f9884185161c5cc34034a7212}{get\+Grid\+Filename} () const
 \item 
-\mbox{\hyperlink{class_clock}{Clock}} $\ast$ \mbox{\hyperlink{class_world_aa51e0799a58035305307e398a81ffeb2}{get\+Clock}} ()
+\hyperlink{class_clock}{Clock} $\ast$ \hyperlink{class_world_aa51e0799a58035305307e398a81ffeb2}{get\+Clock} ()
 \item 
-void \mbox{\hyperlink{class_world_ad98b713484ef1c92ded7eec352a496a5}{compute\+Probabilities}} (std\+::map$<$ unsigned long, vector$<$ \mbox{\hyperlink{class_antenna_info}{Antenna\+Info}} $>$$>$ data)
+void \hyperlink{class_world_ad98b713484ef1c92ded7eec352a496a5}{compute\+Probabilities} (std\+::map$<$ unsigned long, vector$<$ \hyperlink{class_antenna_info}{Antenna\+Info} $>$$>$ data)
 \item 
-const string \& \mbox{\hyperlink{class_world_a2830d2aea7d91f98257c1e661527289e}{get\+Output\+Dir}} () const
+const string \& \hyperlink{class_world_a2830d2aea7d91f98257c1e661527289e}{get\+Output\+Dir} () const
 \item 
-std\+::map$<$ unsigned long, vector$<$ \mbox{\hyperlink{class_antenna_info}{Antenna\+Info}} $>$ $>$ \mbox{\hyperlink{class_world_a65eab81f8a895b605cbc90d887d0671a}{get\+Events}} ()
+std\+::map$<$ unsigned long, vector$<$ \hyperlink{class_antenna_info}{Antenna\+Info} $>$ $>$ \hyperlink{class_world_a65eab81f8a895b605cbc90d887d0671a}{get\+Events} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Private Member Functions}
+\subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_world_adf473b1600b41a11c7ef1f0251abb5b7}{which\+M\+NO}} (vector$<$ pair$<$ string, double $>$$>$ probs, vector$<$ \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ $>$ mnos)
+int \hyperlink{class_world_a9a982977a44c9e8a4724eaa1e4108679}{which\+M\+NO} (vector$<$ pair$<$ string, double $>$$>$ probs, vector$<$ Mobile\+Operator $\ast$$>$ mnos)
 \item 
-string \mbox{\hyperlink{class_world_a5675c3a896891827dd59255a9761f08e}{parse\+Probabilities}} (const string \&probabilities\+File\+Name)
+string \hyperlink{class_world_a5675c3a896891827dd59255a9761f08e}{parse\+Probabilities} (const string \&probabilities\+File\+Name)
 \item 
-void \mbox{\hyperlink{class_world_a3f069fb694d8f17b23bda291bea47446}{write\+Signal\+And\+Cells}} (ostream \&antenna\+File)
+void \hyperlink{class_world_a3f069fb694d8f17b23bda291bea47446}{write\+Signal\+And\+Cells} (ostream \&antenna\+File)
 \item 
-\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \mbox{\hyperlink{class_world_a35aafc469b9146b4b6f72c6adaa3e067}{get\+Connection\+Type}} () const
+Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE \hyperlink{class_world_a35aafc469b9146b4b6f72c6adaa3e067}{get\+Connection\+Type} () const
 \end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
+\subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Agents\+Collection $\ast$ \mbox{\hyperlink{class_world_ae1262689381f00828c0a639b7cbb52a3}{m\+\_\+agents\+Collection}}
+\hyperlink{class_agents_collection}{Agents\+Collection} $\ast$ \hyperlink{class_world_ae1262689381f00828c0a639b7cbb52a3}{m\+\_\+agents\+Collection}
 \item 
-\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$ \mbox{\hyperlink{class_world_ac1da5b3ecad51c54f1ff0c8e8c0fb611}{m\+\_\+sp}}
+\hyperlink{class_simulation_configuration}{Simulation\+Configuration} $\ast$ \hyperlink{class_world_ac1da5b3ecad51c54f1ff0c8e8c0fb611}{m\+\_\+sp}
 \item 
-shared\+\_\+ptr$<$ \mbox{\hyperlink{class_post_loc_prob}{Post\+Loc\+Prob}} $>$ \mbox{\hyperlink{class_world_a434bcb4c18cc7b3194d1ea6c09b76284}{m\+\_\+post\+Method}}
+shared\+\_\+ptr$<$ \hyperlink{class_post_loc_prob}{Post\+Loc\+Prob} $>$ \hyperlink{class_world_a434bcb4c18cc7b3194d1ea6c09b76284}{m\+\_\+post\+Method}
 \item 
-\mbox{\hyperlink{class_event_factory}{Event\+Factory}} $\ast$ \mbox{\hyperlink{class_world_a0fc6b10e0bceb90958d2bdfd04f247c7}{m\+\_\+event\+Factory}}
+\hyperlink{class_event_factory}{Event\+Factory} $\ast$ \hyperlink{class_world_a0fc6b10e0bceb90958d2bdfd04f247c7}{m\+\_\+event\+Factory}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-This is the class where the simulation process takes place. A \mbox{\hyperlink{class_world}{World}} object has a \mbox{\hyperlink{class_map}{Map}}, a \mbox{\hyperlink{class_clock}{Clock}}, a set of Agents than can be persons, mobile phones, antennas, mobile operators etc. After generating all the required objects for simulation by reading the parameters from the input configuration files \mbox{\hyperlink{class_world_aa825a43f968c8fe750c67156e64721ff}{run\+Simulation()}} method is called to perform the actual simulation. The output of the simulation process is written in several files. \mbox{\hyperlink{class_antenna}{Antenna}} objects output their registered events in a .csv file and after the simulation ends, these files are merged in a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities are computed using a \mbox{\hyperlink{class_grid}{Grid}} that is overlapped on the \mbox{\hyperlink{class_map}{Map}}, i.\+e. we compute the probability of a mobile phone to be in a tile of the grid. A finer the grid means more accurate localization but this come with an important computational cost. 
+\subsection{Detailed Description}
+This is the class where the simulation process takes place. A \hyperlink{class_world}{World} object has a \hyperlink{class_map}{Map}, a \hyperlink{class_clock}{Clock}, a set of Agents than can be persons, mobile phones, antennas, mobile operators etc. After generating all the required objects for simulation by reading the parameters from the input configuration files \hyperlink{class_world_aa825a43f968c8fe750c67156e64721ff}{run\+Simulation()} method is called to perform the actual simulation. The output of the simulation process is written in several files. \hyperlink{class_antenna}{Antenna} objects output their registered events in a .csv file and after the simulation ends, these files are merged in a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities are computed using a \hyperlink{class_grid}{Grid} that is overlapped on the \hyperlink{class_map}{Map}, i.\+e. we compute the probability of a mobile phone to be in a tile of the grid. A finer the grid means more accurate localization but this come with an important computational cost. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+\subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_world_adeb8454b3713d9dc1d05ca1f901e7b77}\label{class_world_adeb8454b3713d9dc1d05ca1f901e7b77}} 
 \index{World@{World}!World@{World}}
 \index{World@{World}!World@{World}}
-\doxysubsubsection{\texorpdfstring{World()}{World()}}
-{\footnotesize\ttfamily World\+::\+World (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_map}{Map}} $\ast$}]{map,  }\item[{const string \&}]{config\+Persons\+File\+Name,  }\item[{const string \&}]{config\+Antennas\+File\+Name,  }\item[{const string \&}]{config\+Simulation\+File\+Name,  }\item[{const string \&}]{probabilities\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+\subsubsection{\texorpdfstring{World()}{World()}}
+{\footnotesize\ttfamily World\+::\+World (\begin{DoxyParamCaption}\item[{\hyperlink{class_map}{Map} $\ast$}]{map,  }\item[{const string \&}]{config\+Persons\+File\+Name,  }\item[{const string \&}]{config\+Antennas\+File\+Name,  }\item[{const string \&}]{config\+Simulation\+File\+Name,  }\item[{const string \&}]{probabilities\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Builds a new \mbox{\hyperlink{class_world}{World}} object, randomly generating a set of persons, antennas and mobile devices with the default parameters. This class is used only for testing and developing new features. For a real simulation the user should build the Wolrd object using the other constructor that takes the name of the input files as params. 
+Builds a new \hyperlink{class_world}{World} object, randomly generating a set of persons, antennas and mobile devices with the default parameters. This class is used only for testing and developing new features. For a real simulation the user should build the Wolrd object using the other constructor that takes the name of the input files as params. 
 \begin{DoxyParams}{Parameters}
-{\em map} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object where the simulation takes place. \\
+{\em map} & a pointer to a \hyperlink{class_map}{Map} object where the simulation takes place. \\
 \hline
 {\em num\+Persons} & the number of persons to be generated. \\
 \hline
 {\em num\+Antennas} & the number of antennas to be generated. \\
 \hline
-{\em num\+Mobile\+Phones} & the number of mobile phones to be generated. These phones are randomly given to persons. Builds a new \mbox{\hyperlink{class_world}{World}} object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files. The configuration files are in X\+ML format and they should be provided as command line parameters. The general parameters of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc. are also read from a configuration file\+:
+{\em num\+Mobile\+Phones} & the number of mobile phones to be generated. These phones are randomly given to persons. Builds a new \hyperlink{class_world}{World} object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files. The configuration files are in X\+ML format and they should be provided as command line parameters. The general parameters of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc. are also read from a configuration file\+:
 \begin{DoxyItemize}
 \item the persons configuration file is provided through the -\/p parameter in the command line.
 \item the antennas configuration file is provided through the -\/a parameter in the command line.
@@ -86,7 +86,7 @@ Builds a new \mbox{\hyperlink{class_world}{World}} object, randomly generating a
 \item the posterior probabilities configuration file is provided through the -\/pb parameter in the command line.
 \end{DoxyItemize}\\
 \hline
-{\em map} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object where the simulation takes place \\
+{\em map} & a pointer to a \hyperlink{class_map}{Map} object where the simulation takes place \\
 \hline
 {\em config\+Persons\+File\+Name} & the configuration file name for the persons objects. \\
 \hline
@@ -98,130 +98,130 @@ Builds a new \mbox{\hyperlink{class_world}{World}} object, randomly generating a
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_world_a9ce9875f5e35e293661857e4a2c1d2e4}\label{class_world_a9ce9875f5e35e293661857e4a2c1d2e4}} 
-\index{World@{World}!````~World@{$\sim$World}}
-\index{````~World@{$\sim$World}!World@{World}}
-\doxysubsubsection{\texorpdfstring{$\sim$World()}{~World()}}
+\index{World@{World}!````~World@{$\sim$\+World}}
+\index{````~World@{$\sim$\+World}!World@{World}}
+\subsubsection{\texorpdfstring{$\sim$\+World()}{~World()}}
 {\footnotesize\ttfamily virtual World\+::$\sim$\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Destructor It releases the memory allocated for the agents collection and the \mbox{\hyperlink{class_clock}{Clock}} object. 
+Destructor It releases the memory allocated for the agents collection and the \hyperlink{class_clock}{Clock} object. 
 
-\doxysubsection{Member Function Documentation}
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{class_world_ad98b713484ef1c92ded7eec352a496a5}\label{class_world_ad98b713484ef1c92ded7eec352a496a5}} 
-\index{World@{World}!computeProbabilities@{computeProbabilities}}
-\index{computeProbabilities@{computeProbabilities}!World@{World}}
-\doxysubsubsection{\texorpdfstring{computeProbabilities()}{computeProbabilities()}}
-{\footnotesize\ttfamily void World\+::compute\+Probabilities (\begin{DoxyParamCaption}\item[{std\+::map$<$ unsigned long, vector$<$ \mbox{\hyperlink{class_antenna_info}{Antenna\+Info}} $>$$>$}]{data }\end{DoxyParamCaption})}
+\index{World@{World}!compute\+Probabilities@{compute\+Probabilities}}
+\index{compute\+Probabilities@{compute\+Probabilities}!World@{World}}
+\subsubsection{\texorpdfstring{compute\+Probabilities()}{computeProbabilities()}}
+{\footnotesize\ttfamily void World\+::compute\+Probabilities (\begin{DoxyParamCaption}\item[{std\+::map$<$ unsigned long, vector$<$ \hyperlink{class_antenna_info}{Antenna\+Info} $>$$>$}]{data }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_world_a8cf8a54ae1f3cb61efeba2b3acebb7cc}\label{class_world_a8cf8a54ae1f3cb61efeba2b3acebb7cc}} 
-\index{World@{World}!getAgents@{getAgents}}
-\index{getAgents@{getAgents}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getAgents()}{getAgents()}}
-{\footnotesize\ttfamily Agents\+Collection$\ast$ World\+::get\+Agents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\index{World@{World}!get\+Agents@{get\+Agents}}
+\index{get\+Agents@{get\+Agents}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Agents()}{getAgents()}}
+{\footnotesize\ttfamily \hyperlink{class_agents_collection}{Agents\+Collection}$\ast$ World\+::get\+Agents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Returns the Agents\+Collection used in simulation. \begin{DoxyReturn}{Returns}
-a pointer to Agents\+Collection object. 
+Returns the \hyperlink{class_agents_collection}{Agents\+Collection} used in simulation. \begin{DoxyReturn}{Returns}
+a pointer to \hyperlink{class_agents_collection}{Agents\+Collection} object. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_world_aa51e0799a58035305307e398a81ffeb2}\label{class_world_aa51e0799a58035305307e398a81ffeb2}} 
-\index{World@{World}!getClock@{getClock}}
-\index{getClock@{getClock}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getClock()}{getClock()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_clock}{Clock}}$\ast$ World\+::get\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{World@{World}!get\+Clock@{get\+Clock}}
+\index{get\+Clock@{get\+Clock}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Clock()}{getClock()}}
+{\footnotesize\ttfamily \hyperlink{class_clock}{Clock}$\ast$ World\+::get\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{class_world_a35aafc469b9146b4b6f72c6adaa3e067}\label{class_world_a35aafc469b9146b4b6f72c6adaa3e067}} 
-\index{World@{World}!getConnectionType@{getConnectionType}}
-\index{getConnectionType@{getConnectionType}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getConnectionType()}{getConnectionType()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} World\+::get\+Connection\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+\index{World@{World}!get\+Connection\+Type@{get\+Connection\+Type}}
+\index{get\+Connection\+Type@{get\+Connection\+Type}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Connection\+Type()}{getConnectionType()}}
+{\footnotesize\ttfamily Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE World\+::get\+Connection\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_a65eab81f8a895b605cbc90d887d0671a}\label{class_world_a65eab81f8a895b605cbc90d887d0671a}} 
-\index{World@{World}!getEvents@{getEvents}}
-\index{getEvents@{getEvents}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getEvents()}{getEvents()}}
-{\footnotesize\ttfamily std\+::map$<$unsigned long, vector$<$\mbox{\hyperlink{class_antenna_info}{Antenna\+Info}}$>$ $>$ World\+::get\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{World@{World}!get\+Events@{get\+Events}}
+\index{get\+Events@{get\+Events}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Events()}{getEvents()}}
+{\footnotesize\ttfamily std\+::map$<$unsigned long, vector$<$\hyperlink{class_antenna_info}{Antenna\+Info}$>$ $>$ World\+::get\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 At the end of a simulation this method merges all the events saved by individual antennas in a single data structure. \begin{DoxyReturn}{Returns}
 a map of $<$M\+N\+O\+\_\+\+ID, vector$<$\+Antenn\+Info$>$$>$ where for each M\+NO identified by its ID has vector of all events saved by all antennas belonging to that M\+NO. This map is needed for computation of location probabilities. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_world_a7d07b06f9884185161c5cc34034a7212}\label{class_world_a7d07b06f9884185161c5cc34034a7212}} 
-\index{World@{World}!getGridFilename@{getGridFilename}}
-\index{getGridFilename@{getGridFilename}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getGridFilename()}{getGridFilename()}}
+\index{World@{World}!get\+Grid\+Filename@{get\+Grid\+Filename}}
+\index{get\+Grid\+Filename@{get\+Grid\+Filename}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Grid\+Filename()}{getGridFilename()}}
 {\footnotesize\ttfamily const string\& World\+::get\+Grid\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the file name where the grid parameters are saved. They are needed for the visualization software. \begin{DoxyReturn}{Returns}
 the file name where the grid parameters are saved. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_world_a33b8543ee812ae4f8ff93329444da4cb}\label{class_world_a33b8543ee812ae4f8ff93329444da4cb}} 
-\index{World@{World}!getMap@{getMap}}
-\index{getMap@{getMap}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getMap()}{getMap()}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{class_map}{Map}}$\ast$ World\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+\index{World@{World}!get\+Map@{get\+Map}}
+\index{get\+Map@{get\+Map}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Map()}{getMap()}}
+{\footnotesize\ttfamily const \hyperlink{class_map}{Map}$\ast$ World\+::get\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Returns a pointer to a \mbox{\hyperlink{class_map}{Map}} object where the simulation takes place. \begin{DoxyReturn}{Returns}
-a pointer to a \mbox{\hyperlink{class_map}{Map}} object where the simulation takes place. 
+Returns a pointer to a \hyperlink{class_map}{Map} object where the simulation takes place. \begin{DoxyReturn}{Returns}
+a pointer to a \hyperlink{class_map}{Map} object where the simulation takes place. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_world_a2830d2aea7d91f98257c1e661527289e}\label{class_world_a2830d2aea7d91f98257c1e661527289e}} 
-\index{World@{World}!getOutputDir@{getOutputDir}}
-\index{getOutputDir@{getOutputDir}!World@{World}}
-\doxysubsubsection{\texorpdfstring{getOutputDir()}{getOutputDir()}}
+\index{World@{World}!get\+Output\+Dir@{get\+Output\+Dir}}
+\index{get\+Output\+Dir@{get\+Output\+Dir}!World@{World}}
+\subsubsection{\texorpdfstring{get\+Output\+Dir()}{getOutputDir()}}
 {\footnotesize\ttfamily const string\& World\+::get\+Output\+Dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 Returns the name of the output folder. \begin{DoxyReturn}{Returns}
 the name of the output folder. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_world_a5675c3a896891827dd59255a9761f08e}\label{class_world_a5675c3a896891827dd59255a9761f08e}} 
-\index{World@{World}!parseProbabilities@{parseProbabilities}}
-\index{parseProbabilities@{parseProbabilities}!World@{World}}
-\doxysubsubsection{\texorpdfstring{parseProbabilities()}{parseProbabilities()}}
+\index{World@{World}!parse\+Probabilities@{parse\+Probabilities}}
+\index{parse\+Probabilities@{parse\+Probabilities}!World@{World}}
+\subsubsection{\texorpdfstring{parse\+Probabilities()}{parseProbabilities()}}
 {\footnotesize\ttfamily string World\+::parse\+Probabilities (\begin{DoxyParamCaption}\item[{const string \&}]{probabilities\+File\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_aa825a43f968c8fe750c67156e64721ff}\label{class_world_aa825a43f968c8fe750c67156e64721ff}} 
-\index{World@{World}!runSimulation@{runSimulation}}
-\index{runSimulation@{runSimulation}!World@{World}}
-\doxysubsubsection{\texorpdfstring{runSimulation()}{runSimulation()}}
+\index{World@{World}!run\+Simulation@{run\+Simulation}}
+\index{run\+Simulation@{run\+Simulation}!World@{World}}
+\subsubsection{\texorpdfstring{run\+Simulation()}{runSimulation()}}
 {\footnotesize\ttfamily void World\+::run\+Simulation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-This method is called to perform the actual simulation. During the simulation it outputs the exact positions of all persons in a .csv file and the positions of antennas at the starting time of the simulation. A simulation means a number of time steps, at each step every person move to another position and after arriving at their new positions the mobile phones that they carry try to connect to one of the available antennas. The antennas record these events and output them in a file. \mbox{\Hypertarget{class_world_adf473b1600b41a11c7ef1f0251abb5b7}\label{class_world_adf473b1600b41a11c7ef1f0251abb5b7}} 
-\index{World@{World}!whichMNO@{whichMNO}}
-\index{whichMNO@{whichMNO}!World@{World}}
-\doxysubsubsection{\texorpdfstring{whichMNO()}{whichMNO()}}
-{\footnotesize\ttfamily int World\+::which\+M\+NO (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, double $>$$>$}]{probs,  }\item[{vector$<$ \mbox{\hyperlink{class_mobile_operator}{Mobile\+Operator}} $\ast$ $>$}]{mnos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+This method is called to perform the actual simulation. During the simulation it outputs the exact positions of all persons in a .csv file and the positions of antennas at the starting time of the simulation. A simulation means a number of time steps, at each step every person move to another position and after arriving at their new positions the mobile phones that they carry try to connect to one of the available antennas. The antennas record these events and output them in a file. \mbox{\Hypertarget{class_world_a9a982977a44c9e8a4724eaa1e4108679}\label{class_world_a9a982977a44c9e8a4724eaa1e4108679}} 
+\index{World@{World}!which\+M\+NO@{which\+M\+NO}}
+\index{which\+M\+NO@{which\+M\+NO}!World@{World}}
+\subsubsection{\texorpdfstring{which\+M\+N\+O()}{whichMNO()}}
+{\footnotesize\ttfamily int World\+::which\+M\+NO (\begin{DoxyParamCaption}\item[{vector$<$ pair$<$ string, double $>$$>$}]{probs,  }\item[{vector$<$ Mobile\+Operator $\ast$$>$}]{mnos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_a3f069fb694d8f17b23bda291bea47446}\label{class_world_a3f069fb694d8f17b23bda291bea47446}} 
-\index{World@{World}!writeSignalAndCells@{writeSignalAndCells}}
-\index{writeSignalAndCells@{writeSignalAndCells}!World@{World}}
-\doxysubsubsection{\texorpdfstring{writeSignalAndCells()}{writeSignalAndCells()}}
+\index{World@{World}!write\+Signal\+And\+Cells@{write\+Signal\+And\+Cells}}
+\index{write\+Signal\+And\+Cells@{write\+Signal\+And\+Cells}!World@{World}}
+\subsubsection{\texorpdfstring{write\+Signal\+And\+Cells()}{writeSignalAndCells()}}
 {\footnotesize\ttfamily void World\+::write\+Signal\+And\+Cells (\begin{DoxyParamCaption}\item[{ostream \&}]{antenna\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
-\doxysubsection{Member Data Documentation}
+\subsection{Member Data Documentation}
 \mbox{\Hypertarget{class_world_ae1262689381f00828c0a639b7cbb52a3}\label{class_world_ae1262689381f00828c0a639b7cbb52a3}} 
-\index{World@{World}!m\_agentsCollection@{m\_agentsCollection}}
-\index{m\_agentsCollection@{m\_agentsCollection}!World@{World}}
-\doxysubsubsection{\texorpdfstring{m\_agentsCollection}{m\_agentsCollection}}
-{\footnotesize\ttfamily Agents\+Collection$\ast$ World\+::m\+\_\+agents\+Collection\hspace{0.3cm}{\ttfamily [private]}}
+\index{World@{World}!m\+\_\+agents\+Collection@{m\+\_\+agents\+Collection}}
+\index{m\+\_\+agents\+Collection@{m\+\_\+agents\+Collection}!World@{World}}
+\subsubsection{\texorpdfstring{m\+\_\+agents\+Collection}{m\_agentsCollection}}
+{\footnotesize\ttfamily \hyperlink{class_agents_collection}{Agents\+Collection}$\ast$ World\+::m\+\_\+agents\+Collection\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_a0fc6b10e0bceb90958d2bdfd04f247c7}\label{class_world_a0fc6b10e0bceb90958d2bdfd04f247c7}} 
-\index{World@{World}!m\_eventFactory@{m\_eventFactory}}
-\index{m\_eventFactory@{m\_eventFactory}!World@{World}}
-\doxysubsubsection{\texorpdfstring{m\_eventFactory}{m\_eventFactory}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_event_factory}{Event\+Factory}}$\ast$ World\+::m\+\_\+event\+Factory\hspace{0.3cm}{\ttfamily [private]}}
+\index{World@{World}!m\+\_\+event\+Factory@{m\+\_\+event\+Factory}}
+\index{m\+\_\+event\+Factory@{m\+\_\+event\+Factory}!World@{World}}
+\subsubsection{\texorpdfstring{m\+\_\+event\+Factory}{m\_eventFactory}}
+{\footnotesize\ttfamily \hyperlink{class_event_factory}{Event\+Factory}$\ast$ World\+::m\+\_\+event\+Factory\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_a434bcb4c18cc7b3194d1ea6c09b76284}\label{class_world_a434bcb4c18cc7b3194d1ea6c09b76284}} 
-\index{World@{World}!m\_postMethod@{m\_postMethod}}
-\index{m\_postMethod@{m\_postMethod}!World@{World}}
-\doxysubsubsection{\texorpdfstring{m\_postMethod}{m\_postMethod}}
-{\footnotesize\ttfamily shared\+\_\+ptr$<$\mbox{\hyperlink{class_post_loc_prob}{Post\+Loc\+Prob}}$>$ World\+::m\+\_\+post\+Method\hspace{0.3cm}{\ttfamily [private]}}
+\index{World@{World}!m\+\_\+post\+Method@{m\+\_\+post\+Method}}
+\index{m\+\_\+post\+Method@{m\+\_\+post\+Method}!World@{World}}
+\subsubsection{\texorpdfstring{m\+\_\+post\+Method}{m\_postMethod}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$\hyperlink{class_post_loc_prob}{Post\+Loc\+Prob}$>$ World\+::m\+\_\+post\+Method\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_world_ac1da5b3ecad51c54f1ff0c8e8c0fb611}\label{class_world_ac1da5b3ecad51c54f1ff0c8e8c0fb611}} 
-\index{World@{World}!m\_sp@{m\_sp}}
-\index{m\_sp@{m\_sp}!World@{World}}
-\doxysubsubsection{\texorpdfstring{m\_sp}{m\_sp}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}}$\ast$ World\+::m\+\_\+sp\hspace{0.3cm}{\ttfamily [private]}}
+\index{World@{World}!m\+\_\+sp@{m\+\_\+sp}}
+\index{m\+\_\+sp@{m\+\_\+sp}!World@{World}}
+\subsubsection{\texorpdfstring{m\+\_\+sp}{m\_sp}}
+{\footnotesize\ttfamily \hyperlink{class_simulation_configuration}{Simulation\+Configuration}$\ast$ World\+::m\+\_\+sp\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{_world_8h}{World.\+h}}\end{DoxyCompactItemize}
+include/\hyperlink{_world_8h}{World.\+h}\end{DoxyCompactItemize}

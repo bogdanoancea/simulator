@@ -32,36 +32,33 @@
 /**
  * This is an abstract class, the base class for all agents involved in a simulation.
  * A simulation involves different types of agents implemented by specific subclasses:
- *
- * 	\code{Antenna}
- * 	\code{MobilePhone}
- * 	\code{MobileOperator}
- * 	\code{Person}
- *
- * All agents are stored in a container: an \code{AgentsCollection} object.
- * Some of the agents have a location on the map and they are derived from the \code{LocatableAgent}
- * class that adds the location of the agent on the map. There are two types of \code{LocatableAgent}s:
+ * Antenna, MobilePhone, MobileOperator, Person. All agents are stored in a container: an AgentsCollection object.
+ * Some of the agents have a location on the map and they are derived from the LocatableAgent
+ * class that adds the location of the agent on the map. There are two types of LocatableAgent s:
  * with a fixed location on the map during the simulation and this type of behavior is
- * defined by the \code{ImmovableAgent} class and with a location that can change during the
- * simulation and they are subclasses of the \code{MovableAgent} class.
- * \code{MovableAgent} objects can be either a \code{Person} instance or a \code{HoldableAgent}
- * subclass which means a device: a \code{MobilePhone} object or a \code{Tablet} object.
- * \code{LocatableAgent}, \code{ImmovableAgent}, \code{HoldableAgent} are abstract classes. The only classes
- * that can be instantiated are \code{Antenna}, \code{MobilePhone}, \code{MobileOperator}, \code{Person}
- * \code{Tablet}.
+ * defined by the ImmovableAgent class and with a location that can change during the
+ * simulation and they are subclasses of the MovableAgent class.
+ * MovableAgent objects can be either a Person instance or a HoldableAgent subclass which means a
+ * device: a MobilePhone object or a Tablet object.
+ * LocatableAgent, ImmovableAgent, HoldableAgent are abstract classes. The only classes
+ * that can be instantiated are Antenna, MobilePhone, MobileOperator, Person, Tablet.
  * An agent object has a unique id in the whole set of agents.
  */
 class Agent {
 public:
-	Agent();
 	/**
-	 * Constructor of the class. \code{Agent} is the base class for all agents used in the simulator: persons,
-	 * antennas, mobile devices, mobile network operators. \code{Agent} is an abstract class,
-	 * users should build specific subclasses. An \code{Agent} keeps a pointer to the map of the simulation,
+	 * Default constructor.
+	 */
+	Agent();
+
+	/**
+	 * Constructor of the class. Agent is the base class for all agents used in the simulator: persons,
+	 * antennas, mobile devices, mobile network operators. Agent is an abstract class,
+	 * users should build specific subclasses. An Agent keeps a pointer to the map of the simulation,
 	 * and pointer to the simulation clock.
-	 * @param m - a pointer to the \code{Map} object where the simulation take place.
+	 * @param m - a pointer to the Map object where the simulation take place.
 	 * @param id - the id of this agent, it uniquely identifies the agent.
-	 * @param clock - a pointer to a \code{Clock} object used by the simulator, the \code{Clock} object is the same for all agents.
+	 * @param clock - a pointer to a Clock object used by the simulator, the Clock object is the same for all agents.
 	 */
 	Agent(const Map* m, const unsigned long id, const Clock* clock);
 
@@ -78,14 +75,14 @@ public:
 	bool operator==(const Agent& a);
 
 	/**
-	 * Getter function that returns a pointer to the \code{Map} object passed to the constructor when an \code{Agent} object was build.
-	 * @return a pointer to the \code{Map} object that was passed to the constructor. All agents use the same map for a simulation.
+	 * Getter function that returns a pointer to the Map object passed to the constructor when an Agent object was build.
+	 * @return a pointer to the Map object that was passed to the constructor. All agents use the same map for a simulation.
 	 */
 	const virtual Map* getMap() const;
 
 	/**
-	 * Returns a pointer to the \code{Clock} object used for simulation. All agents use the same \code{Clock} object for a simulation.
-	 * @return a pointer to the \code{Clock} object used for simulation.
+	 * Returns a pointer to the Clock object used for simulation. All agents use the same Clock object for a simulation.
+	 * @return a pointer to the Clock object used for simulation.
 	 */
 	const virtual Clock* getClock() const;
 
@@ -96,12 +93,12 @@ public:
 	const virtual unsigned long getId() const;
 
 	/**
-	 * Builds a \code{string} with the most relevant or all information of the class. It is useful to output the description of concrete agents
-	 * to the console or to a file. Depending on the value of the \param{detailed} parameter, the string can contain only the values of the
-	 * the most important members (\code{detailed = false}) or all members of the class.
-	 * @param detailed if true, the string will contain the values of all members/parameters of the agent, otherwise only the most
+	 * Builds a string with the most relevant or all information of the class. It is useful to output the description of concrete agents
+	 * to the console or to a file. Depending on the value of the <tt>detailed</tt> parameter, the string can contain only the values of the
+	 * the most important members (detailed = false) or all members of the class.
+	 * @param detailed if true, the string will contain the values of all members (parameters) of the agent, otherwise only the most
 	 * important ones are written to the output string. Each derived class will decide which are the most important members.
-	 * @return a \code{string} object containing the most important or all parameters/members of the agent.
+	 * @return a string object containing the most important or all members (parameters) of the agent.
 	 */
 	const virtual string toString(bool detailed = false) const = 0;
 
