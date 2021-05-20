@@ -33,7 +33,12 @@ using namespace std;
 /**
  * This class encapsulates the information needed to generate the home or work location on the map. All
  * the information need to build a HomeWorkLocation object are read from the simulation configuration file.
- *
+ * There could be several home and work locations defined in the simulation configuration file. For each of
+ * them a HomeWorkLocation object is build while this file is parsed and they a kept in two vectors: one for the
+ * home locations and one for the work locations. Then, for each person, a random HomeWorkLocation
+ * object is selected, and based on the information in this object, the home location is generated using a normal
+ * distribution with the mean (x,y,z) and the standard distribution (sdx, sdy, sdz). Then, a HomeWorkLocation object is
+ * randomly selected from the vector storing work locations and a work location is generated.
  *
  */
 class HomeWorkLocation {
