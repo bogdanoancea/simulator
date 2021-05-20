@@ -33,7 +33,8 @@
 
 
 /**
- * A class that contains all the technical parameters needed to build an Antenna object.
+ * A class that contains all the technical parameters needed to build an Antenna object. This object is build during the parsing
+ * of the antenna configuration file and it is passed to the constructor of the Antenna object.
  */
 class AntennaConfiguration {
 public:
@@ -129,172 +130,159 @@ public:
 	double getQmin() const;
 
 	/**
-	 * Returns the
-	 * @return
-	 */
-	double getS0() const;
-
-	/**
+	 * Returns the Smid parameter of the signal propagation model. For details see
 	 *
-	 * @return
-	 */
-	double getSdAzim() const;
-
-	/**
-	 *
-	 * @return
-	 */
-	double getSdElev() const;
-
-	/**
-	 *
-	 * @return
+	 * Salgado, D., Sanguiao, L., Oancea, B. et al. An end-to-end statistical process with mobile network data for official statistics.
+	 * EPJ Data Science, 10, 20 (2021). https://doi.org/10.1140/epjds/s13688-021-00275-w.
+	 * @return the Smid parameter of the signal propagation model.
 	 */
 	double getSmid() const;
 
 	/**
-	 *
-	 * @return
+	 * Returns the minimum value of the signal strength that can be used to connect a mobile device.
+	 * @return the minimum value of the signal strength that can be used to connect a mobile device.
 	 */
 	double getSmin() const;
 
 	/**
+	 * Returns the SSteep parameter of the signal propagation model. For details see
 	 *
-	 * @return
+	 * Salgado, D., Sanguiao, L., Oancea, B. et al. An end-to-end statistical process with mobile network data for official statistics.
+	 * EPJ Data Science, 10, 20 (2021). https://doi.org/10.1140/epjds/s13688-021-00275-w.
+	 * @return the SSteep parameter of the signal propagation model.
 	 */
 	double getSSteep() const;
 
 	/**
-	 *
-	 * @return
+	 * Returns the tilt of the antenna.
+	 * @return the tilt of the antenna.
 	 */
 	double getTilt() const;
 
 	/**
-	 *
-	 * @return
+	 * Returns the antenna type: AntennaType::DIRECTIONAL or AntennaType::OMNIDIRECTIONAL.
+	 * @return the antenna type: AntennaType::DIRECTIONAL or AntennaType::OMNIDIRECTIONAL.
 	 */
 	AntennaType getType() const;
 
 	/**
-	 *
-	 * @param mAzimDBBack
+	 * Sets the difference in signal strength between front and back in the azimuth plane for directional antennas.
+	 * @param azimDBBack the difference in signal strength between front and back in the azimuth plane for directional antennas.
 	 */
-	void setAzimDBBack(double mAzimDBBack);
+	void setAzimDBBack(double azimDBBack);
 
 	/**
-	 *
-	 * @param mBeamH
+	 * Sets the horizontal beam width for a directional antenna.
+	 * @param beamH the horizontal beam width for a directional antenna.
 	 */
-	void setBeamH(double mBeamH);
+	void setBeamH(double beamH);
 
 	/**
-	 *
-	 * @param mBeamV
+	 * Sets the vertical beam width for a directional antenna.
+	 * @param beamV the vertical beam width for a directional antenna.
 	 */
-	void setBeamV(double mBeamV);
+	void setBeamV(double beamV);
 
 	/**
-	 *
-	 * @param mDirection
+	 * Sets the direction angle of a directional antenna. It is a number between 0 and 360.
+	 * @param direction the direction angle of a directional antenna.
 	 */
-	void setDirection(double mDirection);
+	void setDirection(double direction);
 
 	/**
-	 *
-	 * @param mElevDBBack
+	 * Sets the difference in signal strength between front and back in the elevation plane for directional antennas.
+	 * @param elevDBBack the difference in signal strength between front and back in the elevation plane for directional antennas.
 	 */
-	void setElevDBBack(double mElevDBBack);
+	void setElevDBBack(double elevDBBack);
 
 	/**
-	 *
-	 * @param mHeight
+	 * Sets the height of the antenna (the z coordinate of location of the antenna).
+	 * @param height the height of the antenna (the z coordinate of location of the antenna).
 	 */
-	void setHeight(double mHeight);
+	void setHeight(double height);
 
 	/**
-	 *
-	 * @param mLocation
+	 * Sets the location of the antenna on the map.
+	 * @param location the location of the antenna on the map.
 	 */
-	void setLocation(Point *mLocation);
+	void setLocation(Point *location);
 
 	/**
-	 *
-	 * @param mMaxConnections
+	 * Sets the maximum number of simultaneous connections an antenna could handle.
+	 * @param maxConnections the maximum number of simultaneous connections an antenna could handle.
 	 */
-	void setMaxConnections(unsigned long mMaxConnections);
+	void setMaxConnections(unsigned long maxConnections);
 
 	/**
-	 *
-	 * @param mMno
+	 * Sets the MobileOperator object that owns this antenna.
+	 * @param mno a pointer to a MobileOperator object that owns this antenna.
 	 */
-	void setMno( MobileOperator *mMno);
+	void setMno(MobileOperator *mno);
 
 	/**
-	 *
-	 * @param mNetworkType
+	 * Sets the network type of the antenna: NetworkType::_3G or NetworkType::_4G.
+	 * @param networkType the network type of the antenna: NetworkType::_3G or NetworkType::_4G.
 	 */
-	void setNetworkType(NetworkType mNetworkType);
+	void setNetworkType(NetworkType networkType);
 
 	/**
-	 *
-	 * @param mPle
+	 * Sets the path loss exponent (the attenuation factor of the signal). This is a feature of the surrounding
+	 * environment of the antenna.
+	 * @param ple the path loss exponent (the attenuation factor of the signal). This is a feature of the surrounding
+	 * environment of the antenna.
 	 */
-	void setPle(double mPle);
+	void setPle(double ple);
 
 	/**
-	 *
-	 * @param mPower
+	 * Sets the power of the antenna measured in Watts.
+	 * @param power the power of the antenna measured in Watts.
 	 */
-	void setPower(double mPower);
+	void setPower(double power);
 
 	/**
-	 *
-	 * @param mQmin
+	 * Sets the minimum value of the signal dominance that can be used to connect a mobile device.
+	 * @param qmin the minimum value of the signal dominance that can be used to connect a mobile device.
 	 */
-	void setQmin(double mQmin);
+	void setQmin(double qmin);
 
 	/**
+	 * sets the Smid parameter of the signal propagation model. For details see
 	 *
-	 * @param mSdAzim
+	 * Salgado, D., Sanguiao, L., Oancea, B. et al. An end-to-end statistical process with mobile network data for official statistics.
+	 * EPJ Data Science, 10, 20 (2021). https://doi.org/10.1140/epjds/s13688-021-00275-w.
+	 *
+	 * @param Smid the Smid parameter of the signal propagation model.
 	 */
-	void setSdAzim(double mSdAzim);
+	void setSmid(double Smid);
 
 	/**
-	 *
-	 * @param mSdElev
+	 * Sets the minimum value of the signal strength that can be used to connect a mobile device.
+	 * @param Smin the minimum value of the signal strength that can be used to connect a mobile device.
 	 */
-	void setSdElev(double mSdElev);
+	void setSmin(double Smin);
 
 	/**
+	 * sets the SSteep parameter of the signal propagation model. For details see
 	 *
-	 * @param mSmid
+	 * Salgado, D., Sanguiao, L., Oancea, B. et al. An end-to-end statistical process with mobile network data for official statistics.
+	 * EPJ Data Science, 10, 20 (2021). https://doi.org/10.1140/epjds/s13688-021-00275-w.
+	 *
+	 * @param SSteep the SSteep parameter of the signal propagation model.
 	 */
-	void setSmid(double mSmid);
+	void setSSteep(double SSteep);
 
 	/**
-	 *
-	 * @param mSmin
+	 * Sets the tilt angle of the antenna.
+	 * @param tilt the tilt angle of the antenna.
 	 */
-	void setSmin(double mSmin);
+	void setTilt(double tilt);
 
 	/**
-	 *
-	 * @param mSSteep
+	 * Sets the type of the antenna: AntennaType::DIRECTIONAL or AntennaType::OMNIDIRECTIONAL.
+	 * @param type the type of the antenna: AntennaType::DIRECTIONAL or AntennaType::OMNIDIRECTIONAL.
 	 */
-	void setSSteep(double mSSteep);
+	void setType(AntennaType type);
 
-	/**
-	 *
-	 * @param mTilt
-	 */
-	void setTilt(double mTilt);
-
-	/**
-	 *
-	 * @param mType
-	 */
-	void setType(AntennaType mType);
 
 private:
 	double m_ple;
