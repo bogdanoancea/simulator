@@ -26,7 +26,7 @@ Collaboration diagram for Holdable\+Agent\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}} \{ \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ab8f4a3956d88a54e0aad08e89e203fd6}{U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER}}, 
-\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a93c5b260edf949c65b96fec443c33f2b}{U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY}}, 
+\mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a39c440419bdad2854a2c51969e3d431e}{U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+D\+O\+M\+I\+N\+A\+N\+CE}}, 
 \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ac0a762a4e8fa38dd6285f84aefadd3f4}{U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+T\+R\+E\+N\+G\+TH}}, 
 \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a6bdb1529a2032a4648226328e179f552}{U\+N\+K\+N\+O\+WN}}
  \}
@@ -36,23 +36,19 @@ enum \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{C\
 \item 
 \mbox{\hyperlink{class_holdable_agent_a04f50f7e7cd8efa7666657de6d5ef22c}{Holdable\+Agent}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$init\+Position, \mbox{\hyperlink{class_agent}{Agent}} $\ast$holder, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock)
 \item 
-\mbox{\hyperlink{class_holdable_agent_a9b7c1494266c0a807d809461b59ced80}{Holdable\+Agent}} (const \mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} \&h)
-\item 
 virtual \mbox{\hyperlink{class_holdable_agent_a33ef709d65757cd7e5c3f3cdc40e96a4}{$\sim$\+Holdable\+Agent}} ()
 \item 
 \mbox{\hyperlink{class_agent}{Agent}} $\ast$ \mbox{\hyperlink{class_holdable_agent_a51f29e5aecf9d288935ddae6da4096ed}{get\+Holder}} () const
 \item 
 void \mbox{\hyperlink{class_holdable_agent_a39b53c9c6cacca716f38fccc520e9f52}{set\+Holder}} (\mbox{\hyperlink{class_agent}{Agent}} $\ast$holder)
 \item 
-const string \mbox{\hyperlink{class_holdable_agent_a2c581226b8994f24b6b2306ae17dbb52}{to\+String}} () const override
+const string \mbox{\hyperlink{class_holdable_agent_a104d14d5742847a9d5fc74d18f2c1571}{to\+String}} (bool detailed=false) const override
 \item 
 virtual bool \mbox{\hyperlink{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}{try\+Connect}} ()=0
 \item 
 virtual bool \mbox{\hyperlink{class_holdable_agent_a1578388e51fefe7c19cd3b7c93a184eb}{is\+Connected}} () const
 \item 
 void \mbox{\hyperlink{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}{set\+Location}} (Point $\ast$location) override
-\item 
-vector$<$ \mbox{\hyperlink{class_antenna}{Antenna}} $\ast$ $>$ \mbox{\hyperlink{class_holdable_agent_a226459f2721e5b7b3c72de4b0f05ffbb}{get\+Antennas}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -64,7 +60,7 @@ vector$<$ \mbox{\hyperlink{class_antenna}{Antenna}} $\ast$ $>$ \mbox{\hyperlink{
 
 
 \doxysubsection{Detailed Description}
-This is the superclass for all agents that represent a device that can by held by a person. 
+This is the superclass for all agents that represent a device (\mbox{\hyperlink{class_mobile_phone}{Mobile\+Phone}} or \mbox{\hyperlink{class_tablet}{Tablet}}), can by held by a person and can interact with the network. The interaction is triggered every time the location of this agent is set. 
 
 \doxysubsection{Member Enumeration Documentation}
 \mbox{\Hypertarget{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}} 
@@ -73,13 +69,15 @@ This is the superclass for all agents that represent a device that can by held b
 \doxysubsubsection{\texorpdfstring{CONNECTION\_TYPE}{CONNECTION\_TYPE}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518}{Holdable\+Agent\+::\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+PE}}}
 
-an enumeration of the modes used by the device to connect to an antenna\+: U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER -\/ connects to the antenna that provides the maximum power of the field in the location of the device. U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY -\/ connects to the antenna that provides the maximum value of the signal quality in the location of the device. U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+T\+R\+E\+N\+G\+TH -\/ connects to the antenna that provides the maximum value of the signal strength in the location of the device. U\+N\+K\+N\+O\+WN -\/ this should by an error. \begin{DoxyEnumFields}{Enumerator}
+An enumeration of the modes used by the device to connect to an antenna\+: \begin{DoxyItemize}
+\item U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER -\/ connects to the antenna that provides the maximum power of the field in the location of the device. \item U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY -\/ connects to the antenna that provides the maximum value of the signal quality in the location of the device. \item U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+S\+T\+R\+E\+N\+G\+TH -\/ connects to the antenna that provides the maximum value of the signal strength in the location of the device. \item U\+N\+K\+N\+O\+WN -\/ this should by an error. The actual handover mechanism is set in the simulation configuration file. \end{DoxyItemize}
+\begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_POWER@{USING\_POWER}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_POWER@{USING\_POWER}}}\mbox{\Hypertarget{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ab8f4a3956d88a54e0aad08e89e203fd6}\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ab8f4a3956d88a54e0aad08e89e203fd6}} 
 U\+S\+I\+N\+G\+\_\+\+P\+O\+W\+ER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_SIGNAL\_QUALITY@{USING\_SIGNAL\_QUALITY}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_SIGNAL\_QUALITY@{USING\_SIGNAL\_QUALITY}}}\mbox{\Hypertarget{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a93c5b260edf949c65b96fec443c33f2b}\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a93c5b260edf949c65b96fec443c33f2b}} 
-U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+Q\+U\+A\+L\+I\+TY&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_SIGNAL\_DOMINANCE@{USING\_SIGNAL\_DOMINANCE}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_SIGNAL\_DOMINANCE@{USING\_SIGNAL\_DOMINANCE}}}\mbox{\Hypertarget{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a39c440419bdad2854a2c51969e3d431e}\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518a39c440419bdad2854a2c51969e3d431e}} 
+U\+S\+I\+N\+G\+\_\+\+S\+I\+G\+N\+A\+L\+\_\+\+D\+O\+M\+I\+N\+A\+N\+CE&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{USING\_SIGNAL\_STRENGTH@{USING\_SIGNAL\_STRENGTH}!HoldableAgent@{HoldableAgent}}\index{HoldableAgent@{HoldableAgent}!USING\_SIGNAL\_STRENGTH@{USING\_SIGNAL\_STRENGTH}}}\mbox{\Hypertarget{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ac0a762a4e8fa38dd6285f84aefadd3f4}\label{class_holdable_agent_ae2c334b004d7b9c5a999cf2618e4e518ac0a762a4e8fa38dd6285f84aefadd3f4}} 
@@ -97,31 +95,20 @@ U\+N\+K\+N\+O\+WN&\\
 \mbox{\Hypertarget{class_holdable_agent_a04f50f7e7cd8efa7666657de6d5ef22c}\label{class_holdable_agent_a04f50f7e7cd8efa7666657de6d5ef22c}} 
 \index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
 \index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
-\doxysubsubsection{\texorpdfstring{HoldableAgent()}{HoldableAgent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{HoldableAgent()}{HoldableAgent()}}
 {\footnotesize\ttfamily Holdable\+Agent\+::\+Holdable\+Agent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{init\+Position,  }\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{holder,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
-Constructor of the class. It builds an \mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} object with the parameters provided by user. 
+Constructor of the class. It builds a \mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} object with the parameters provided by user. 
 \begin{DoxyParams}{Parameters}
 {\em m} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object used for this simulation. \\
 \hline
 {\em id} & the id of the object. \\
 \hline
-{\em init\+Position} & the initial location on the map of the object. \\
+{\em init\+Position} & a pointer to a Point object representing the initial location on the map of this object. \\
 \hline
-{\em holder} & a pointer to an \mbox{\hyperlink{class_agent}{Agent}} that owns this device. \\
+{\em holder} & a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns (and carries) this device. \\
 \hline
 {\em clock} & a pointer to a \mbox{\hyperlink{class_clock}{Clock}} object used by this simulation. \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{class_holdable_agent_a9b7c1494266c0a807d809461b59ced80}\label{class_holdable_agent_a9b7c1494266c0a807d809461b59ced80}} 
-\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
-\index{HoldableAgent@{HoldableAgent}!HoldableAgent@{HoldableAgent}}
-\doxysubsubsection{\texorpdfstring{HoldableAgent()}{HoldableAgent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Holdable\+Agent\+::\+Holdable\+Agent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_holdable_agent}{Holdable\+Agent}} \&}]{h }\end{DoxyParamCaption})}
-
-Copy constructor. 
-\begin{DoxyParams}{Parameters}
-{\em h} & another object of the same type. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_holdable_agent_a33ef709d65757cd7e5c3f3cdc40e96a4}\label{class_holdable_agent_a33ef709d65757cd7e5c3f3cdc40e96a4}} 
@@ -130,26 +117,17 @@ Copy constructor.
 \doxysubsubsection{\texorpdfstring{$\sim$HoldableAgent()}{~HoldableAgent()}}
 {\footnotesize\ttfamily virtual Holdable\+Agent\+::$\sim$\+Holdable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Destructor 
+Destructor of the class. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_holdable_agent_a226459f2721e5b7b3c72de4b0f05ffbb}\label{class_holdable_agent_a226459f2721e5b7b3c72de4b0f05ffbb}} 
-\index{HoldableAgent@{HoldableAgent}!getAntennas@{getAntennas}}
-\index{getAntennas@{getAntennas}!HoldableAgent@{HoldableAgent}}
-\doxysubsubsection{\texorpdfstring{getAntennas()}{getAntennas()}}
-{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_antenna}{Antenna}}$\ast$$>$ Holdable\+Agent\+::get\+Antennas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-\begin{DoxyReturn}{Returns}
-a vector with pointers to antennas where this device is connected 
-\end{DoxyReturn}
 \mbox{\Hypertarget{class_holdable_agent_a51f29e5aecf9d288935ddae6da4096ed}\label{class_holdable_agent_a51f29e5aecf9d288935ddae6da4096ed}} 
 \index{HoldableAgent@{HoldableAgent}!getHolder@{getHolder}}
 \index{getHolder@{getHolder}!HoldableAgent@{HoldableAgent}}
 \doxysubsubsection{\texorpdfstring{getHolder()}{getHolder()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_agent}{Agent}}$\ast$ Holdable\+Agent\+::get\+Holder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Returns a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns this device \begin{DoxyReturn}{Returns}
-a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns this device 
+Returns a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns this device. Actually, the holder can be a \mbox{\hyperlink{class_person}{Person}} object. \begin{DoxyReturn}{Returns}
+a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns this device. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_holdable_agent_a1578388e51fefe7c19cd3b7c93a184eb}\label{class_holdable_agent_a1578388e51fefe7c19cd3b7c93a184eb}} 
 \index{HoldableAgent@{HoldableAgent}!isConnected@{isConnected}}
@@ -157,8 +135,8 @@ a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object that owns this devi
 \doxysubsubsection{\texorpdfstring{isConnected()}{isConnected()}}
 {\footnotesize\ttfamily virtual bool Holdable\+Agent\+::is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
-check if this device is connected to an antenna \begin{DoxyReturn}{Returns}
-true if the device is conneted to an antenna, false otherwise. 
+Check if this device is connected to an antenna. \begin{DoxyReturn}{Returns}
+true if the device is connected to an antenna, false otherwise. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_holdable_agent_a39b53c9c6cacca716f38fccc520e9f52}\label{class_holdable_agent_a39b53c9c6cacca716f38fccc520e9f52}} 
 \index{HoldableAgent@{HoldableAgent}!setHolder@{setHolder}}
@@ -166,9 +144,9 @@ true if the device is conneted to an antenna, false otherwise.
 \doxysubsubsection{\texorpdfstring{setHolder()}{setHolder()}}
 {\footnotesize\ttfamily void Holdable\+Agent\+::set\+Holder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_agent}{Agent}} $\ast$}]{holder }\end{DoxyParamCaption})}
 
-Sets the owner of this device 
+Sets the owner agent of this device. 
 \begin{DoxyParams}{Parameters}
-{\em holder} & a pointer to the owner of this device \\
+{\em holder} & a pointer to an \mbox{\hyperlink{class_agent}{Agent}} object which is the owner of this device. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}\label{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}} 
@@ -177,31 +155,44 @@ Sets the owner of this device
 \doxysubsubsection{\texorpdfstring{setLocation()}{setLocation()}}
 {\footnotesize\ttfamily void Holdable\+Agent\+::set\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Sets the location of this device. After a new location is set, the device tries to connect to an antenna, i.\+e. the \mbox{\hyperlink{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}{try\+Connect()}} method is called. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override this method and provide the correct mode of connection. 
+Sets the location of this device. After a new location is set, the device tries to connect to an antenna, i.\+e. the \mbox{\hyperlink{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}{try\+Connect()}} method is called. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override the \mbox{\hyperlink{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}{try\+Connect()}} method and provide the correct mode of connection. 
 \begin{DoxyParams}{Parameters}
-{\em location} & a point on the \mbox{\hyperlink{class_map}{Map}} of the simulation \\
+{\em location} & a pointer to a Point object that represent the new position on the map. \\
 \hline
 \end{DoxyParams}
 
 
 Reimplemented from \mbox{\hyperlink{class_locatable_agent_a754b237c404b77714fedd397f214bc02}{Locatable\+Agent}}.
 
-\mbox{\Hypertarget{class_holdable_agent_a2c581226b8994f24b6b2306ae17dbb52}\label{class_holdable_agent_a2c581226b8994f24b6b2306ae17dbb52}} 
+\mbox{\Hypertarget{class_holdable_agent_a104d14d5742847a9d5fc74d18f2c1571}\label{class_holdable_agent_a104d14d5742847a9d5fc74d18f2c1571}} 
 \index{HoldableAgent@{HoldableAgent}!toString@{toString}}
 \index{toString@{toString}!HoldableAgent@{HoldableAgent}}
 \doxysubsubsection{\texorpdfstring{toString()}{toString()}}
-{\footnotesize\ttfamily const string Holdable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+{\footnotesize\ttfamily const string Holdable\+Agent\+::to\+String (\begin{DoxyParamCaption}\item[{bool}]{detailed = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Returns a string representation of this class, useful to print it to the console or in a file. \begin{DoxyReturn}{Returns}
-a string representation of this class, useful to print it to the console or in a file. 
+Builds a string with the most relevant or all information of the class. It is useful to output the description of concrete agents to the console or to a file. Depending on the value of the {\ttfamily detailed} parameter, the string can contain only the values of the the most important members ({\ttfamily detailed = false}) or all members of the class. 
+\begin{DoxyParams}{Parameters}
+{\em detailed} & if true, the string will contain the values of all members/parameters of the agent, otherwise only the most important ones are written to the output string. Each derived class will decide which are the most important members. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string object containing the most important or all parameters/members of the agent. 
 \end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_a109600f8f99a2ad75dddc611583b050f}{Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_mobile_phone_a818272053e6e52ecc217dc5ee234ff69}{Mobile\+Phone}}, and \mbox{\hyperlink{class_tablet_aae4c82133cbf3e7d7e8c0cca11925159}{Tablet}}.
+
 \mbox{\Hypertarget{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}\label{class_holdable_agent_a0789d757d81b43ee016e9362046f6dea}} 
 \index{HoldableAgent@{HoldableAgent}!tryConnect@{tryConnect}}
 \index{tryConnect@{tryConnect}!HoldableAgent@{HoldableAgent}}
 \doxysubsubsection{\texorpdfstring{tryConnect()}{tryConnect()}}
 {\footnotesize\ttfamily virtual bool Holdable\+Agent\+::try\+Connect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
-Called when a device wants to connect to an antenna \begin{DoxyReturn}{Returns}
+A pure virtual method which is called when a device interacts with an antenna. This function is called every time when \mbox{\hyperlink{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}{set\+Location()}} was called, i.\+e. the location of the device on the map was updated. If the connection was successful, i.\+e. an antenna accepted and connected this device, the id of the antenna is saved in an internal list. \begin{DoxyReturn}{Returns}
 true if the connection succeeds, false otherwise. 
 \end{DoxyReturn}
 

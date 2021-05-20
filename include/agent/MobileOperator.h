@@ -53,7 +53,7 @@ public:
 	 * concatenating "SignalMeasure_" with the name of the Mobile Operator.  A line of this file contains the antenna id followed
 	 * by a set of values for the signal strength/dominance computed in the center of each tile of the grid.
 	 * @param m a pointer to a Map object of the simulation.
-	 * @param id the id of the \code{MobileOperator} object.
+	 * @param id the id of the MobileOperator object.
 	 * @param clock a pointer to a Clock object used for a simulation.
 	 * @param name the name of the Mobile Operator.
 	 * @param probMobilePhone represents the probability for a person to have a mobile phone subscribed to this company.

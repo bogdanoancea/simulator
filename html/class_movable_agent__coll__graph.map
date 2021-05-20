@@ -1,7 +1,15 @@
 <map id="MovableAgent" name="MovableAgent">
-<area shape="rect" id="node1" title=" " alt="" coords="102,359,233,509"/>
-<area shape="rect" id="node2" href="$class_locatable_agent.html" title=" " alt="" coords="5,145,145,296"/>
-<area shape="rect" id="node3" href="$class_agent.html" title=" " alt="" coords="6,5,62,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="86,5,147,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="169,182,229,259"/>
+<area shape="rect" id="node1" title=" " alt="" coords="381,1499,512,1649"/>
+<area shape="rect" id="node2" href="$class_locatable_agent.html" title=" " alt="" coords="313,1299,453,1449"/>
+<area shape="rect" id="node3" href="$class_agent.html" title=" " alt="" coords="199,1056,305,1236"/>
+<area shape="rect" id="node4" title=" " alt="" coords="171,784,309,861"/>
+<area shape="rect" id="node5" href="$class_map.html" title=" " alt="" coords="5,652,147,993"/>
+<area shape="rect" id="node6" title=" " alt="" coords="49,329,103,406"/>
+<area shape="rect" id="node7" href="$class_grid.html" title=" " alt="" coords="151,189,305,545"/>
+<area shape="rect" id="node8" title=" " alt="" coords="79,5,172,83"/>
+<area shape="rect" id="node9" title=" " alt="" coords="422,5,482,83"/>
+<area shape="rect" id="node10" title=" " alt="" coords="222,5,269,83"/>
+<area shape="rect" id="node11" href="$class_clock.html" title=" " alt="" coords="333,689,464,957"/>
+<area shape="rect" id="node12" title=" " alt="" coords="339,329,442,406"/>
+<area shape="rect" id="node13" title=" " alt="" coords="352,1107,413,1185"/>
 </map>

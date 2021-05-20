@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['eventcode',['EventCode',['../_event_code_8h.html#a080ee5c80bcb8b9f3fda41b5e4eb0ef8',1,'EventCode.h']]],
-  ['eventtype',['EventType',['../_event_type_8h.html#a2628ea8d12e8b2563c32f05dc7fff6fa',1,'EventType.h']]]
+  ['datatype_1501',['DataType',['../_c_s_vparser_8hpp.html#ad8ed01ff3ff33333d8e19db4d2818bb6',1,'CSVparser.hpp']]],
+  ['distributiontype_1502',['DistributionType',['../_distribution_type_8h.html#a379a030cc5c116910d8ac63ada868a62',1,'DistributionType.h']]]
 ];

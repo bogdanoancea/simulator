@@ -174,7 +174,7 @@ private:
 	unsigned long getTileIndexY(const Point* p) const;
 
 	/**
-	 * @return a string representation of a \code{Grid} object. This is useful to write a textual description of the grid to a file
+	 * @return a string representation of a Grid object. This is useful to write a textual description of the grid to a file
 	 * for later processing. The string contains the x and y coordinates of the origin of the grid, the tile dimensions on OX and OY axes
 	 * and the number of tiles on OX and OY axes, all these values being comma separated.
 	 */

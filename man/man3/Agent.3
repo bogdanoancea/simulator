@@ -1,4 +1,4 @@
-.TH "Agent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "Agent" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -7,7 +7,139 @@ Agent
 .br
 .PP
 .PP
+\fC#include <Agent\&.h>\fP
+.PP
 Inherited by \fBLocatableAgent\fP, and \fBMobileOperator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAgent\fP ()"
+.br
+.ti -1c
+.RI "\fBAgent\fP (const \fBMap\fP *m, const unsigned long id, const \fBClock\fP *clock)"
+.br
+.ti -1c
+.RI "virtual \fB~Agent\fP ()"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBAgent\fP &a)"
+.br
+.ti -1c
+.RI "const virtual \fBMap\fP * \fBgetMap\fP () const"
+.br
+.ti -1c
+.RI "const virtual \fBClock\fP * \fBgetClock\fP () const"
+.br
+.ti -1c
+.RI "const virtual unsigned long \fBgetId\fP () const"
+.br
+.ti -1c
+.RI "const virtual string \fBtoString\fP (bool detailed=false) const =0"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBMap\fP * \fBm_map\fP"
+.br
+.ti -1c
+.RI "const unsigned long \fBm_id\fP"
+.br
+.ti -1c
+.RI "const \fBClock\fP * \fBm_clock\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is an abstract class, the base class for all agents involved in a simulation\&. A simulation involves different types of agents implemented by specific subclasses: \fBAntenna\fP, \fBMobilePhone\fP, \fBMobileOperator\fP, \fBPerson\fP\&. All agents are stored in a container: an \fBAgentsCollection\fP object\&. Some of the agents have a location on the map and they are derived from the \fBLocatableAgent\fP class that adds the location of the agent on the map\&. There are two types of \fBLocatableAgent\fP s: with a fixed location on the map during the simulation and this type of behavior is defined by the \fBImmovableAgent\fP class and with a location that can change during the simulation and they are subclasses of the \fBMovableAgent\fP class\&. \fBMovableAgent\fP objects can be either a \fBPerson\fP instance or a \fBHoldableAgent\fP subclass which means a device: a \fBMobilePhone\fP object or a \fBTablet\fP object\&. \fBLocatableAgent\fP, \fBImmovableAgent\fP, \fBHoldableAgent\fP are abstract classes\&. The only classes that can be instantiated are \fBAntenna\fP, \fBMobilePhone\fP, \fBMobileOperator\fP, \fBPerson\fP, \fBTablet\fP\&. An agent object has a unique id in the whole set of agents\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Agent::Agent ()"
+Default constructor\&. 
+.SS "Agent::Agent (const \fBMap\fP * m, const unsigned long id, const \fBClock\fP * clock)"
+Constructor of the class\&. \fBAgent\fP is the base class for all agents used in the simulator: persons, antennas, mobile devices, mobile network operators\&. \fBAgent\fP is an abstract class, users should build specific subclasses\&. An \fBAgent\fP keeps a pointer to the map of the simulation, and pointer to the simulation clock\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP - a pointer to the \fBMap\fP object where the simulation take place\&. 
+.br
+\fIid\fP - the id of this agent, it uniquely identifies the agent\&. 
+.br
+\fIclock\fP - a pointer to a \fBClock\fP object used by the simulator, the \fBClock\fP object is the same for all agents\&. 
+.RE
+.PP
+
+.SS "virtual Agent::~Agent ()\fC [virtual]\fP"
+Default destructor of the class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "const virtual \fBClock\fP* Agent::getClock () const\fC [virtual]\fP"
+Returns a pointer to the \fBClock\fP object used for simulation\&. All agents use the same \fBClock\fP object for a simulation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to the \fBClock\fP object used for simulation\&. 
+.RE
+.PP
+
+.SS "const virtual unsigned long Agent::getId () const\fC [virtual]\fP"
+Returns the id of the object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the id of the object\&. 
+.RE
+.PP
+
+.SS "const virtual \fBMap\fP* Agent::getMap () const\fC [virtual]\fP"
+Getter function that returns a pointer to the \fBMap\fP object passed to the constructor when an \fBAgent\fP object was build\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to the \fBMap\fP object that was passed to the constructor\&. All agents use the same map for a simulation\&. 
+.RE
+.PP
+
+.SS "bool Agent::operator== (const \fBAgent\fP & a)"
+The equal operator for agents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the object with which we test the equality\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if this object is the equal to a, false otherwise\&. Two objects are considered to be equal if they have the same id\&. 
+.RE
+.PP
+
+.SS "const virtual string Agent::toString (bool detailed = \fCfalse\fP) const\fC [pure virtual]\fP"
+Builds a string with the most relevant or all information of the class\&. It is useful to output the description of concrete agents to the console or to a file\&. Depending on the value of the \fCdetailed\fP parameter, the string can contain only the values of the the most important members (detailed = false) or all members of the class\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdetailed\fP if true, the string will contain the values of all members (parameters) of the agent, otherwise only the most important ones are written to the output string\&. Each derived class will decide which are the most important members\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string object containing the most important or all members (parameters) of the agent\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBAntenna\fP, \fBHoldableAgent\fP, \fBPerson\fP, \fBMobileOperator\fP, \fBMobilePhone\fP, \fBImmovableAgent\fP, \fBMovableAgent\fP, \fBTablet\fP, and \fBLocatableAgent\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBClock\fP* Agent::m_clock\fC [private]\fP"
+
+.SS "const unsigned long Agent::m_id\fC [private]\fP"
+
+.SS "const \fBMap\fP* Agent::m_map\fC [private]\fP"
+
 
 .SH "Author"
 .PP 

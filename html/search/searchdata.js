@@ -7,9 +7,9 @@ var indexSectionsWithContent =
   4: "abcdefghilmnoprstuw~",
   5: "_acdegmnoprst",
   6: "u",
-  7: "adeghmnp",
+  7: "acdeghmnp",
   8: "_abcdefghilmnorstu",
-  9: "o"
+  9: "eo"
 };
 
 var indexSectionNames =

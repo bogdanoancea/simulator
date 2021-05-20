@@ -1,4 +1,4 @@
-.TH "Antenna" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
+.TH "Antenna" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -23,10 +23,10 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "const string \fBtoString\fP (bool detailed=false) const override"
 .br
 .ti -1c
-.RI "bool \fBtryRegisterDevice\fP (HoldableAgent *device)"
+.RI "bool \fBtryRegisterDevice\fP (\fBHoldableAgent\fP *device)"
 .br
 .ti -1c
-.RI "void \fBdettachDevice\fP (HoldableAgent *device)"
+.RI "void \fBdettachDevice\fP (\fBHoldableAgent\fP *device)"
 .br
 .ti -1c
 .RI "\fBAntennaType\fP \fBgetType\fP () const"
@@ -44,7 +44,7 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "double \fBcomputePower\fP (const Coordinate c) const"
 .br
 .ti -1c
-.RI "MobileOperator * \fBgetMNO\fP () const"
+.RI "\fBMobileOperator\fP * \fBgetMNO\fP () const"
 .br
 .ti -1c
 .RI "string \fBgetAntennaOutputFileName\fP () const"
@@ -76,13 +76,13 @@ Inherits \fBImmovableAgent\fP\&.
 
 .in +1c
 .ti -1c
-.RI "void \fBattachDevice\fP (HoldableAgent *device)"
+.RI "void \fBattachDevice\fP (\fBHoldableAgent\fP *device)"
 .br
 .ti -1c
-.RI "bool \fBalreadyRegistered\fP (HoldableAgent *ag)"
+.RI "bool \fBalreadyRegistered\fP (\fBHoldableAgent\fP *ag)"
 .br
 .ti -1c
-.RI "void \fBregisterEvent\fP (Event *ev, Point *evtLocation)"
+.RI "void \fBregisterEvent\fP (\fBEvent\fP *ev, Point *evtLocation)"
 .br
 .ti -1c
 .RI "unsigned long \fBgetNumActiveConections\fP ()"
@@ -136,7 +136,7 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "Geometry * \fBgetCoverageAreaDirectional\fP () const"
 .br
 .ti -1c
-.RI "void \fBsetCell\fP (HoldableAgent::CONNECTION_TYPE handoverMechanism)"
+.RI "void \fBsetCell\fP (\fBHoldableAgent::CONNECTION_TYPE\fP handoverMechanism)"
 .br
 .ti -1c
 .RI "double \fBS\fP (double dist) const"
@@ -148,10 +148,10 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "double \fBcomputeSignalStrength\fP (const Coordinate c) const"
 .br
 .ti -1c
-.RI "double \fBcomputeSignalMeasure\fP (HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const"
+.RI "double \fBcomputeSignalMeasure\fP (\fBHoldableAgent::CONNECTION_TYPE\fP handoverType, const Coordinate c) const"
 .br
 .ti -1c
-.RI "EventConfig * \fBbuildEventConfig\fP (\fBEventType\fP evType, \fBEventCode\fP code, HoldableAgent *device)"
+.RI "\fBEventConfig\fP * \fBbuildEventConfig\fP (\fBEventType\fP evType, \fBEventCode\fP code, \fBHoldableAgent\fP *device)"
 .br
 .ti -1c
 .RI "unsigned long \fBgetMaxConnections\fP () const"
@@ -206,7 +206,7 @@ Inherits \fBImmovableAgent\fP\&.
 .RI "Geometry * \fBm_cell\fP"
 .br
 .ti -1c
-.RI "vector< HoldableAgent * > \fBm_devices\fP"
+.RI "vector< \fBHoldableAgent\fP * > \fBm_devices\fP"
 .br
 .ti -1c
 .RI "ofstream \fBm_file\fP"
@@ -289,7 +289,7 @@ A directional antenna has a specific signal emission pattern and one can find a 
 .SS "Antenna::Antenna (const unsigned long id, \fBSimulationConfiguration\fP * sc, \fBAntennaConfiguration\fP ac, \fBEventFactory\fP * factory)\fC [explicit]\fP"
 This is the constructor of the class\&. It is used to build antenna objects\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIid\fP the ID of this object, which is unique throughout the entire collection of agents\&. 
 .br
@@ -297,7 +297,7 @@ This is the constructor of the class\&. It is used to build antenna objects\&.
 .br
 \fIac\fP an \fBAntennaConfiguration\fP object that contains all the technical parameters of an antenna, together with its type\&. These parameters are specified in the antennas' configuration file\&. 
 .br
-\fIfactory\fP a pointer to an \fBEventFactory\fP object used to create Event objects according to the event type specified in the simulation configuration file\&. 
+\fIfactory\fP a pointer to an \fBEventFactory\fP object used to create \fBEvent\fP objects according to the event type specified in the simulation configuration file\&. 
 .RE
 .PP
 
@@ -305,89 +305,89 @@ This is the constructor of the class\&. It is used to build antenna objects\&.
 Destructor of the class\&. It closes the file where the \fBAntenna\fP dumps the registered events during the simulation\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "bool Antenna::alreadyRegistered (HoldableAgent * ag)\fC [private]\fP"
+.SS "bool Antenna::alreadyRegistered (\fBHoldableAgent\fP * ag)\fC [private]\fP"
 
-.SS "void Antenna::attachDevice (HoldableAgent * device)\fC [private]\fP"
+.SS "void Antenna::attachDevice (\fBHoldableAgent\fP * device)\fC [private]\fP"
 
-.SS "EventConfig* Antenna::buildEventConfig (\fBEventType\fP evType, \fBEventCode\fP code, HoldableAgent * device)\fC [private]\fP"
-
-.SS "double Antenna::computePower (const Point * p) const"
-Computes the signal power given by this \fBAntenna\fP object in a certain location\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIp\fP a pointer to a Point object giving the location where we want to compute the signal power\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-the power of the signal in the location given by Point p\&. 
-.RE
-.PP
+.SS "\fBEventConfig\fP* Antenna::buildEventConfig (\fBEventType\fP evType, \fBEventCode\fP code, \fBHoldableAgent\fP * device)\fC [private]\fP"
 
 .SS "double Antenna::computePower (const Coordinate c) const"
 Computes the signal power given by this \fBAntenna\fP object in a certain location\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIc\fP the coordinates of the location where we want to compute the signal power\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the power of the signal in the location given by Coordinate c\&. 
 .RE
 .PP
 
-.SS "double Antenna::computeSignalDominance (const Point * p) const"
-Computes the signal dominance given by this \fBAntenna\fP object in a certain location\&. 
+.SS "double Antenna::computePower (const Point * p) const"
+Computes the signal power given by this \fBAntenna\fP object in a certain location\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
-\fIp\fP a pointer to a Point object giving the location where we want to compute the signal dominance\&. 
+\fIp\fP a pointer to a Point object giving the location where we want to compute the signal power\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-the value of the signal dominance\&. 
+the power of the signal in the location given by Point p\&. 
 .RE
 .PP
 
 .SS "double Antenna::computeSignalDominance (const Coordinate c) const"
 Computes the signal dominance given by this \fBAntenna\fP object in a certain location\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIc\fP the coordinates of the location where we want to compute the signal dominance\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of the signal dominance\&. 
 .RE
 .PP
 
-.SS "double Antenna::computeSignalMeasure (HoldableAgent::CONNECTION_TYPE handoverType, const Coordinate c) const\fC [private]\fP"
+.SS "double Antenna::computeSignalDominance (const Point * p) const"
+Computes the signal dominance given by this \fBAntenna\fP object in a certain location\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP a pointer to a Point object giving the location where we want to compute the signal dominance\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the value of the signal dominance\&. 
+.RE
+.PP
+
+.SS "double Antenna::computeSignalMeasure (\fBHoldableAgent::CONNECTION_TYPE\fP handoverType, const Coordinate c) const\fC [private]\fP"
 
 .SS "double Antenna::computeSignalQualityDirectional (const Coordinate c) const\fC [private]\fP"
 
 .SS "double Antenna::computeSignalQualityOmnidirectional (const Coordinate c) const\fC [private]\fP"
 
+.SS "double Antenna::computeSignalStrength (const Coordinate c) const\fC [private]\fP"
+
 .SS "double Antenna::computeSignalStrength (const Point * p) const"
 Computes the signal strength given by this \fBAntenna\fP object in a certain location\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIp\fP a pointer to a Point object giving the location where we want to compute the signal strength\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of the signal strength\&. 
 .RE
 .PP
-
-.SS "double Antenna::computeSignalStrength (const Coordinate c) const\fC [private]\fP"
 
 .SS "double Antenna::computeSignalStrengthDirectional (const Coordinate c) const\fC [private]\fP"
 
@@ -395,10 +395,10 @@ the value of the signal strength\&.
 
 .SS "vector<pair<double, double> > Antenna::createMapping (double dbBack) const\fC [private]\fP"
 
-.SS "void Antenna::dettachDevice (HoldableAgent * device)"
+.SS "void Antenna::dettachDevice (\fBHoldableAgent\fP * device)"
 Disconnects a mobile device from the antenna and outputs a detach event (code EventType::DETACH_DEVICE) in the events file\&. This happens when the device the device has moved far enough away from the antenna so that it can no longer receive a signal that can be useful\&. Internally, the mobile device is removed from the list of the connected mobile devices\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIdevice\fP a pointer to the device to be disconnected/detached from this antenna\&. 
 .RE
@@ -407,20 +407,20 @@ Disconnects a mobile device from the antenna and outputs a detach event (code Ev
 .SS "string Antenna::dumpCell () const"
 Builds a \fCwkt\fP string that represents the coverage area of this antenna\&. This area is a circle with the radius given by \fBgetRmax()\fP in case the antenna in omnidirectional\&. In case of a directional antenna this coverage area is computed as a Polygon made up of points on segments starting from the antenna location where the signal strength/dominance drop below the minimum allowable limit\&. The segments covers the trigonometric circle, with a direction angle from the vertical axis starting from 0 and going to 2 * PI, with a step of 2PI/100\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a \fCwkt\fP string object that represents the coverage area of this antenna\&. 
 .RE
 .PP
 
 .SS "void Antenna::dumpSignal () const"
-Writes the values of the signal strength/dominance in a \&.csv file\&. These values are computed in the center of each tile covering the map\&. The name of the file is obtained from the MobileOperator object that owns this antenna, by calling getSignalFile()\&. The strength or dominance is chosen according to the handover mechanism specified in the simulation configuration file\&. 
+Writes the values of the signal strength/dominance in a \&.csv file\&. These values are computed in the center of each tile covering the map\&. The name of the file is obtained from the \fBMobileOperator\fP object that owns this antenna, by calling getSignalFile()\&. The strength or dominance is chosen according to the handover mechanism specified in the simulation configuration file\&. 
 .SS "double Antenna::findSD (double beamWidth, double dbBack, vector< pair< double, double >> & mapping) const\fC [private]\fP"
 
 .SS "string Antenna::getAntennaOutputFileName () const"
 Builds the name of the output file where the events registered by this \fBAntenna\fP object during a simulation are saved\&. The name is built by by concatenating 'Antenna', its id, '_MNO_' and the MNO name read from the configuration file 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the name of the output file where the events registered by this \fBAntenna\fP object during a simulation are saved\&. 
 .RE
@@ -447,12 +447,12 @@ the name of the output file where the events registered by this \fBAntenna\fP ob
 .SS "static string Antenna::getEventHeader (\fBEventType\fP evType)\fC [static]\fP"
 Builds a string object representing the header of the events file\&. Since the structure of the events files is the same for all \fBAntenna\fP objects, this is a static method\&. The fields included in the header depend of the type of events used in a simulation\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIevType\fP the event type, which can be \fBEventType::CELLID\fP or \fBEventType::CELLIDTA\fP\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string object with the header of the events file\&. 
 .RE
@@ -461,12 +461,12 @@ a string object with the header of the events file\&.
 .SS "static const string Antenna::getHeader (bool detailed = \fCfalse\fP)\fC [static]\fP"
 Builds a string object the contains the header corresponding to the string object returned by the toString(detailed) method\&. Each value in the string returned by toString(detailed) method has a column name in the string object returned by this function\&. This is a static method since the header should be the same for all antennas\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIdetailed\fP if false, the header is build for the string representation returned by toString(false), otherwise the header corresponds to the string returned by toString(true)\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string object the contains the header corresponding to the string object returned by the toString(detailed) method\&. 
 .RE
@@ -478,12 +478,12 @@ a string object the contains the header corresponding to the string object retur
 
 .SS "double Antenna::getMin3db (double sd, double dbBack) const\fC [private]\fP"
 
-.SS "MobileOperator* Antenna::getMNO () const"
-Returns a pointer to a MobileOperator object representing the Mobile Network Operator that owns this antenna\&. 
+.SS "\fBMobileOperator\fP* Antenna::getMNO () const"
+Returns a pointer to a \fBMobileOperator\fP object representing the Mobile Network Operator that owns this antenna\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-a pointer to a MobileOperator object representing the Mobile Network Operator that owns this antenna\&. 
+a pointer to a \fBMobileOperator\fP object representing the Mobile Network Operator that owns this antenna\&. 
 .RE
 .PP
 
@@ -496,7 +496,7 @@ a pointer to a MobileOperator object representing the Mobile Network Operator th
 .SS "double Antenna::getRmax () const"
 Computes the radius of the coverage area for an omnidirectional antenna\&. This area is a circle where the signal strength is greater than S_min parameter read from the antennas configuration file in case the simulation is based on signal strength or Q_min parameter in case the simulation uses signal dominance\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the radius of the coverage area for an omnidirectional antenna\&. 
 .RE
@@ -513,7 +513,7 @@ the radius of the coverage area for an omnidirectional antenna\&.
 .SS "\fBAntennaType\fP Antenna::getType () const"
 Returns the antenna type: omnidirectional or directional\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the antenna type : \fBAntennaType::OMNIDIRECTIONAL\fP or \fBAntennaType::DIRECTIONAL\fP\&. 
 .RE
@@ -527,7 +527,7 @@ the antenna type : \fBAntennaType::OMNIDIRECTIONAL\fP or \fBAntennaType::DIRECTI
 
 .SS "double Antenna::projectToEPlane (double b, double c, double beta) const\fC [private]\fP"
 
-.SS "void Antenna::registerEvent (Event * ev, Point * evtLocation)\fC [private]\fP"
+.SS "void Antenna::registerEvent (\fBEvent\fP * ev, Point * evtLocation)\fC [private]\fP"
 
 .SS "double Antenna::S (double dist) const\fC [private]\fP"
 
@@ -537,14 +537,14 @@ the antenna type : \fBAntennaType::OMNIDIRECTIONAL\fP or \fBAntennaType::DIRECTI
 
 .SS "double Antenna::searchMin (double dg, vector< pair< double, double >> _3dBDegrees) const\fC [private]\fP"
 
-.SS "void Antenna::setCell (HoldableAgent::CONNECTION_TYPE handoverMechanism)\fC [private]\fP"
+.SS "void Antenna::setCell (\fBHoldableAgent::CONNECTION_TYPE\fP handoverMechanism)\fC [private]\fP"
 
 .SS "void Antenna::setLocationWithElevation ()\fC [private]\fP"
 
-.SS "const string Antenna::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP"
+.SS "const string Antenna::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP, \fC [virtual]\fP"
 Overrides the same method from the superclass\&. It is used to write the parameters of the \fBAntenna\fP object to a string object\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIdetailed\fP if false the output string will contain the following values: 
 .PD 0
@@ -606,21 +606,23 @@ the tile number of the location where this antenna is placed on the map\&.
 .PP
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a string object that describes the parameters of the \fBAntenna\fP\&. The string representation of an \fBAntenna\fP object depends o the value of the parameter \fCdetailed\fP (see the above explanation)\&. 
 .RE
 .PP
 
-.SS "bool Antenna::tryRegisterDevice (HoldableAgent * device)"
+.PP
+Implements \fBAgent\fP\&.
+.SS "bool Antenna::tryRegisterDevice (\fBHoldableAgent\fP * device)"
 Tries to register a mobile device as being connected to this antenna\&. An \fBAntenna\fP object maintains an internal list keeping the ids of all mobile devices connected to this object at each time instant\&. In case the connection is successful, the mobile device is added to this list (by calling the \fBattachDevice()\fP method) and a connection event (code \fBEventCode::ATTACH_DEVICE\fP) is appended to the events file\&. In case the mobile device is already registered by this \fBAntenna\fP object in a previous time instant an 'already connected' event (code \fBEventCode::ALREADY_ATTACHED_DEVICE\fP) is registered to the events file\&. In case the \fBAntenna\fP object has already connected the maximum allowable devices an 'in range, not connected' event will be appended to the events file (code \fBEventCode::IN_RANGE_NOT_ATTACHED_DEVICE\fP)\&. This means that the device is close enough to the antenna to receive a signal that can be used but the antenna cannot register the mobile device\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
-\fIdevice\fP a pointer to the object that represents a mobile device (which is a subclass of the HoldableAgent class\&. 
+\fIdevice\fP a pointer to the object that represents a mobile device (which is a subclass of the \fBHoldableAgent\fP class\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 true if the connection is successful, false otherwise\&. A connection is not successful if this \fBAntenna\fP already reached its maximum capacity, i\&.e\&. the maximum number of connections it can handle (a parameter read from the antenna configuration file)\&. 
 .RE
@@ -640,7 +642,7 @@ true if the connection is successful, false otherwise\&. A connection is not suc
 
 .SS "Geometry* Antenna::m_cell\fC [private]\fP"
 
-.SS "vector<HoldableAgent*> Antenna::m_devices\fC [private]\fP"
+.SS "vector<\fBHoldableAgent\fP*> Antenna::m_devices\fC [private]\fP"
 
 .SS "\fBEventFactory\fP* Antenna::m_eventFactory\fC [private]\fP"
 

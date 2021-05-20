@@ -1,8 +1,16 @@
 <map id="MobileOperator" name="MobileOperator">
-<area shape="rect" id="node1" title=" " alt="" coords="190,160,357,369"/>
-<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="5,5,61,83"/>
-<area shape="rect" id="node3" title=" " alt="" coords="86,5,146,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="237,5,309,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="420,5,511,83"/>
-<area shape="rect" id="node6" title=" " alt="" coords="535,5,638,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="487,1313,654,1523"/>
+<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="245,1056,350,1236"/>
+<area shape="rect" id="node3" title=" " alt="" coords="171,784,309,861"/>
+<area shape="rect" id="node4" href="$class_map.html" title=" " alt="" coords="5,652,147,993"/>
+<area shape="rect" id="node5" title=" " alt="" coords="49,329,103,406"/>
+<area shape="rect" id="node6" href="$class_grid.html" title=" " alt="" coords="155,189,309,545"/>
+<area shape="rect" id="node7" title=" " alt="" coords="84,5,177,83"/>
+<area shape="rect" id="node8" title=" " alt="" coords="433,5,493,83"/>
+<area shape="rect" id="node9" title=" " alt="" coords="227,5,274,83"/>
+<area shape="rect" id="node10" href="$class_clock.html" title=" " alt="" coords="333,689,464,957"/>
+<area shape="rect" id="node11" title=" " alt="" coords="347,329,450,406"/>
+<area shape="rect" id="node12" title=" " alt="" coords="549,1107,621,1185"/>
+<area shape="rect" id="node13" title=" " alt="" coords="717,1107,808,1185"/>
+<area shape="rect" id="node14" title=" " alt="" coords="833,1107,935,1185"/>
 </map>

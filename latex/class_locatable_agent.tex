@@ -19,7 +19,7 @@ Collaboration diagram for Locatable\+Agent\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=206pt]{class_locatable_agent__coll__graph}
+\includegraphics[height=550pt]{class_locatable_agent__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -29,13 +29,13 @@ Collaboration diagram for Locatable\+Agent\+:\nopagebreak
 \item 
 virtual \mbox{\hyperlink{class_locatable_agent_ad721398f0b4e841aad377cd91a7f5e3a}{$\sim$\+Locatable\+Agent}} ()
 \item 
-const string \mbox{\hyperlink{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}{to\+String}} () const override
+const string \mbox{\hyperlink{class_locatable_agent_ac3761e9b566f8ddcd1a663fcbf97eeac}{to\+String}} (bool detailed=false) const override
 \item 
 virtual Point $\ast$ \mbox{\hyperlink{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}{get\+Location}} () const
 \item 
 virtual void \mbox{\hyperlink{class_locatable_agent_a754b237c404b77714fedd397f214bc02}{set\+Location}} (Point $\ast$location)
 \item 
-const string \mbox{\hyperlink{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}{dump\+Location}} ()
+const string \mbox{\hyperlink{class_locatable_agent_ac71b7c6c5e26f9c65b906010050e66ba}{dump\+Location}} () const
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -45,7 +45,7 @@ Point $\ast$ \mbox{\hyperlink{class_locatable_agent_a2a76ba315733ab26f19229a7107
 
 
 \doxysubsection{Detailed Description}
-This class extends the \mbox{\hyperlink{class_agent}{Agent}} class and defines an object with a location on a map. 
+This class extends the \mbox{\hyperlink{class_agent}{Agent}} class and adds location on a map. It has methods to set and get the location on the map and also to build a string with the coordinates of the location. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_locatable_agent_ab4939cf1ef1352acdac76736bfe47fc7}\label{class_locatable_agent_ab4939cf1ef1352acdac76736bfe47fc7}} 
@@ -60,7 +60,7 @@ Constructor of the class. Builds an object that has a location on the map of the
 \hline
 {\em id} & the id of the object. \\
 \hline
-{\em init\+Location} & the initial location of the object. \\
+{\em init\+Location} & a pointer to a Point object representing the initial location of the object. \\
 \hline
 {\em clock} & a pointer to a \mbox{\hyperlink{class_clock}{Clock}} object used in this simulation. \\
 \hline
@@ -71,17 +71,17 @@ Constructor of the class. Builds an object that has a location on the map of the
 \doxysubsubsection{\texorpdfstring{$\sim$LocatableAgent()}{~LocatableAgent()}}
 {\footnotesize\ttfamily virtual Locatable\+Agent\+::$\sim$\+Locatable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Destructor 
+Destructor of the class. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}\label{class_locatable_agent_af9a6dbd25b47c23a71c95b205da3a28d}} 
+\mbox{\Hypertarget{class_locatable_agent_ac71b7c6c5e26f9c65b906010050e66ba}\label{class_locatable_agent_ac71b7c6c5e26f9c65b906010050e66ba}} 
 \index{LocatableAgent@{LocatableAgent}!dumpLocation@{dumpLocation}}
 \index{dumpLocation@{dumpLocation}!LocatableAgent@{LocatableAgent}}
 \doxysubsubsection{\texorpdfstring{dumpLocation()}{dumpLocation()}}
-{\footnotesize\ttfamily const string Locatable\+Agent\+::dump\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily const string Locatable\+Agent\+::dump\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Builds a human readable string representation of the location \begin{DoxyReturn}{Returns}
-a human readable string representation of the location 
+Builds a string representation of the location. \begin{DoxyReturn}{Returns}
+a string representation of the location, containing the values of the coordinates of the location. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}\label{class_locatable_agent_ad779af171c67ce0d478fc79b904e2d90}} 
 \index{LocatableAgent@{LocatableAgent}!getLocation@{getLocation}}
@@ -89,7 +89,7 @@ a human readable string representation of the location
 \doxysubsubsection{\texorpdfstring{getLocation()}{getLocation()}}
 {\footnotesize\ttfamily virtual Point$\ast$ Locatable\+Agent\+::get\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
-\begin{DoxyReturn}{Returns}
+Returns the location on the map. \begin{DoxyReturn}{Returns}
 the location on the map as a pointer to a Point object. 
 \end{DoxyReturn}
 Here is the caller graph for this function\+:\nopagebreak
@@ -114,15 +114,28 @@ Sets the location of the agent on the map.
 
 Reimplemented in \mbox{\hyperlink{class_person_a05f4ac2107d59e03f0f336eda08aa358}{Person}}, and \mbox{\hyperlink{class_holdable_agent_aec98d2fe325b48d9a84ad3dad44700e0}{Holdable\+Agent}}.
 
-\mbox{\Hypertarget{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}\label{class_locatable_agent_a88674f4c8ab9b1b2f3986b226bf4244f}} 
+\mbox{\Hypertarget{class_locatable_agent_ac3761e9b566f8ddcd1a663fcbf97eeac}\label{class_locatable_agent_ac3761e9b566f8ddcd1a663fcbf97eeac}} 
 \index{LocatableAgent@{LocatableAgent}!toString@{toString}}
 \index{toString@{toString}!LocatableAgent@{LocatableAgent}}
 \doxysubsubsection{\texorpdfstring{toString()}{toString()}}
-{\footnotesize\ttfamily const string Locatable\+Agent\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+{\footnotesize\ttfamily const string Locatable\+Agent\+::to\+String (\begin{DoxyParamCaption}\item[{bool}]{detailed = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Builds a human readable string representation of this class useful to output it to a file or on the screen. \begin{DoxyReturn}{Returns}
-a string representation of this class. 
+Builds a string with the most relevant information of the class. It is useful to output the description of concrete agents to the console or to a file. Currently, the value of the {\ttfamily detailed} parameter is ignored. 
+\begin{DoxyParams}{Parameters}
+{\em detailed} & the value of this parameter is ignored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string object containing the id and the coordinates of the location of the agent. 
 \end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_a109600f8f99a2ad75dddc611583b050f}{Agent}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_person_a3c38c40dab5c071d20fe3aaab51975a2}{Person}}, \mbox{\hyperlink{class_mobile_phone_a818272053e6e52ecc217dc5ee234ff69}{Mobile\+Phone}}, \mbox{\hyperlink{class_movable_agent_a6cd9a1dc9104b5703f74785a87d2c320}{Movable\+Agent}}, and \mbox{\hyperlink{class_tablet_aae4c82133cbf3e7d7e8c0cca11925159}{Tablet}}.
+
 
 
 \doxysubsection{Member Data Documentation}

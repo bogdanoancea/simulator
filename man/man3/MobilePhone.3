@@ -1,4 +1,4 @@
-.TH "MobilePhone" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "MobilePhone" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -20,7 +20,7 @@ Inherits \fBHoldableAgent\fP\&.
 .RI "virtual \fB~MobilePhone\fP ()"
 .br
 .ti -1c
-.RI "const string \fBtoString\fP () const override"
+.RI "const string \fBtoString\fP (bool detailed=false) const override"
 .br
 .ti -1c
 .RI "Point * \fBmove\fP () override"
@@ -33,9 +33,6 @@ Inherits \fBHoldableAgent\fP\&.
 .br
 .ti -1c
 .RI "void \fBsetMobileOperator\fP (\fBMobileOperator\fP *mno)"
-.br
-.ti -1c
-.RI "double \fBgetConnectionThreshold\fP () const"
 .br
 .in -1c
 .SS "Static Public Member Functions"
@@ -64,85 +61,92 @@ Inherits \fBHoldableAgent\fP\&.
 .SS "Additional Inherited Members"
 .SH "Detailed Description"
 .PP 
-This class represents a mobile phone\&. A mobile phone is own by a \fBPerson\fP and it moves on the map together with its owner\&. While moving, at every time step it tries to connect to an antenna\&. The connection event is triggered by \fBsetLocation()\fP\&. The connection to antenna is determined by the signal emitted by antennas\&. A parameter in the simulation configuration file set the criterion used to connect: the power of the signal, the signal strength or the signal quality\&. 
+This class represents a mobile phone\&. A mobile phone is owned by a \fBPerson\fP object and it moves on the map together with its owner\&. While moving, at every time step, when a new location is set, it interacts with surrounding antennas, trying to connect to the antenna that provides the best signal in terms of signal strength/dominance, according to the handover mechanism read from the simulation configuration file\&. The connection event is triggered by the call of \fBsetLocation()\fP\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "MobilePhone::MobilePhone (const \fBMap\fP * m, const unsigned long id, Point * initPosition, \fBAgent\fP * holder, const \fBClock\fP * clock, double threshold, \fBHoldableAgent::CONNECTION_TYPE\fP connType)\fC [explicit]\fP"
-Builds a new MobilewPhone object with the parameters provided by the user\&. 
+Builds a new \fBMobilePhone\fP object with the parameters provided by the user\&. 
 .PP
 \fBParameters\fP
 .RS 4
 \fIm\fP a pointer to the \fBMap\fP object where the simulation takes place\&. 
 .br
-\fIid\fP the id of the mobile phone\&. 
+\fIid\fP the id of the \fBMobilePhone\fP object\&. 
 .br
-\fIinitPosition\fP the initial location of the phone on the map\&. 
+\fIinitPosition\fP the initial location of the mobile phone on the map\&. 
 .br
 \fIholder\fP a pointer to the \fBAgent\fP object that owns this mobile phone\&. 
 .br
 \fIclock\fP a pointer to the \fBClock\fP object used in this simulation\&. 
 .br
-\fIthreshold\fP the minimum power, signal qaulity or signal strength of the field below which the mobile phone cannot connect to an antenna\&. 
+\fIthreshold\fP the minimum signal dominance or signal strength of the field below which the mobile phone cannot connect to an antenna\&. 
 .br
-\fIconnType\fP the criterion used for the connection to an antenna: based on the power of the signal or based on the signal quality\&. It could take three values: HoldableAgent::CONNECTION_TYPE::USING_POWER, HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_QUALITY or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH\&. 
+\fIconnType\fP the type of the handover mechanism: based on the signal strength or signal dominance\&. It could take one of the following values: HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_DOMINANCE or HoldableAgent::CONNECTION_TYPE::USING_SIGNAL_STRENGTH\&. 
 .RE
 .PP
 
 .SS "virtual MobilePhone::~MobilePhone ()\fC [virtual]\fP"
-The default destructor\&. 
+The default destructor of the class\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "double MobilePhone::getConnectionThreshold () const"
-Returns the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i\&.e\&. the signal is considered noise)\&. The returned value is interpreted as signal strength, power or quality according to the connection type\&. 
+.SS "static const string MobilePhone::getHeader ()\fC [static]\fP"
+Returns a string with the header line of the description of the mobile phone returned by the \fBtoString()\fP method\&. It is a static method, the header line being the same for all mobile phones regardless the owner\&. 
 .PP
 \fBReturns\fP
 .RS 4
-the minimum value of the signal strength/power/quality below which the phone cannot use the signal (i\&.e\&. the signal is considered noise)\&. 
+a string with the header line of the description of the mobile phone returned by the \fBtoString()\fP method\&. 
 .RE
 .PP
 
-.SS "static const string MobilePhone::getHeader ()\fC [static]\fP"
-
 .SS "const \fBMobileOperator\fP* MobilePhone::getMobileOperator () const"
-Returns the \fBMobileOperator\fP object of this mobile phone\&. Each \fBMobilePhone\fP should belong to a Mobile Operator\&. 
+Returns the \fBMobileOperator\fP object that owns this mobile phone\&. Each mobile phone should belong to a Mobile Operator\&. 
 .PP
 \fBReturns\fP
 .RS 4
-the \fBMobileOperator\fP object of this mobile phone\&. Each \fBMobilePhone\fP should belong to a Mobile Operator\&. 
+the \fBMobileOperator\fP object that owns this mobile phone\&. Each mobile phone should belong to a Mobile Operator\&. 
 .RE
 .PP
 
 .SS "Point* MobilePhone::move ()\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
-Makes a step on the map according to an algorithm\&. The direction and the length of the step is determined by the displacement strategy and by the \fBPerson\fP object who owns this phone\&. The displacement strategy is set at the \fBPerson\fP object creation and currently two strategies are supported: \fBRandomWalkDisplacement\fP and \fBRandomWalkDriftDisplacement\fP\&. \fBRandomWalkDisplacement\fP means that at each time instant the direction is generated as a uniformly distributed random value and the step length is computed multiplying the speed with the time interval set in the simulation configuration file\&. If a step projects it outside the map, it stops on the boundary\&. \fBRandomWalkDriftDisplacement\fP means that there is a preference in the direction of the movement\&. There are two constants defined, SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4), and in the first half of the simulation the direction is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_1 and sd = 0\&.1 while during the second half of the simulation it is generated as a normal distributed random value with the mean equals to SIM_TREND_ANGLE_2 and the same sd\&. Again, any kind of \fBMovableAgent\fP can only move inside the map boundary\&. If a step projects it outside the map, it stops on the boundary\&. 
+Makes a step on the map according to the movement strategy set to the \fBPerson\fP object which owns this mobile phone\&. The displacement strategy is set at the \fBPerson\fP object creation and currently the following strategies are supported: \fBRandomWalkDisplacement\fP, \fBRandomWalkDriftDisplacement\fP, \fBLevyFlightDisplacement\fP and \fBHomeWorkDisplacement\fP\&. 
 .PP
 \fBReturns\fP
 .RS 4
-the final location after the displacement\&. 
+the final location after the displacement\&. The mobile phone moves together with the \fBPerson\fP which owns it\&. 
 .RE
 .PP
 
 .PP
 Implements \fBMovableAgent\fP\&.
 .SS "void MobilePhone::setMobileOperator (\fBMobileOperator\fP * mno)"
-Sets the \fBMobileOperator\fP object which owns this phone\&. 
+Sets the \fBMobileOperator\fP object which owns this mobile phone\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fImno\fP the \fBMobileOperator\fP object which owns this phone\&. 
+\fImno\fP a pointer to the \fBMobileOperator\fP object which owns this mobile phone\&. 
 .RE
 .PP
 
-.SS "const string MobilePhone::toString () const\fC [override]\fP"
-Returns a human readable string representation of this class useful to output it to a file or console\&. 
+.SS "const string MobilePhone::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP, \fC [virtual]\fP"
+Builds a string with the most relevant information of the class\&. It is useful to output the description of the mobile phone to the console or to a file\&. The parameter
+.PP
+\fBParameters\fP
+.RS 4
+\fIis\fP currently ignored\&. 
+.br
+\fIdetailed\fP is currently ignored\&. 
+.RE
 .PP
 \fBReturns\fP
 .RS 4
-a human readable string representation of this class\&. 
+a string object containing the id of the mobile phone, the coordinates of the location, the current speed of movement, the id of the \fBPerson\fP object that owns this mobile phone and the id of the mobile network operator where this mobile phone has a subscription\&. 
 .RE
 .PP
 
+.PP
+Reimplemented from \fBHoldableAgent\fP\&.
 .SS "bool MobilePhone::tryConnect ()\fC [override]\fP, \fC [virtual]\fP"
-This method is called after the phone moves (together with its owner) to a new location\&. It tries to connect the mobile phone to an antenna\&. The connection method is determined by inspecting the m_connType: using the power of the signal, using the quality of the signal or using the signal strength\&. The value of the m_connType is set by the constructor of the class\&. If the connection is successfully a pointer to the \fBAntenna\fP object where this mobile phone was connected is stored internally\&. 
+This method is called after the mobile phone moves (together with its owner) to a new location\&. It tries to connect the mobile phone to an antenna\&. The connection method is determined by inspecting the \fIm_connType\fP member: using the signal dominance or using the signal strength\&. The value of the \fIm_connType\fP member is set by the constructor of the class\&. If the connection is successfully, a pointer to the \fBAntenna\fP object where this mobile phone was connected is stored internally\&. First, if the mobile phone is already connected to an antenna, this method checks if the mobile phone is still providing a signal strong enough for a connection and if not it detaches from that antenna\&. Then it selects the antenna providing the best signal (in terms of signal strength or dominance) and tries to connect to it\&. If the connection is successful it saves a pointer to that \fBAntenna\fP object\&. If this antenna reject the connection( for example it reached its maximum number of simultaneous connections) then a list of all other antennas is build, ordered by the signal strength/dominance\&. The mobile phone iterates through this list and tries to connect to an antenna\&. If one antenna accepts the incoming connection the method returns true, otherwise it returns false\&. When a connection is established, the pointer to the \fBAntenna\fP object is updated accordingly\&. 
 .PP
 \fBReturns\fP
 .RS 4

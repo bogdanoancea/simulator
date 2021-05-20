@@ -1,12 +1,16 @@
-\hypertarget{class_immovable_agent}{}\section{Immovable\+Agent Class Reference}
-\label{class_immovable_agent}\index{Immovable\+Agent@{Immovable\+Agent}}
+\hypertarget{class_immovable_agent}{}\doxysection{Immovable\+Agent Class Reference}
+\label{class_immovable_agent}\index{ImmovableAgent@{ImmovableAgent}}
+
+
+{\ttfamily \#include $<$Immovable\+Agent.\+h$>$}
+
 
 
 Inheritance diagram for Immovable\+Agent\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=189pt]{class_immovable_agent__inherit__graph}
+\includegraphics[height=550pt]{class_immovable_agent__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -15,11 +19,70 @@ Collaboration diagram for Immovable\+Agent\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{class_immovable_agent__coll__graph}
+\includegraphics[height=550pt]{class_immovable_agent__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_immovable_agent_a0b4253828510a7212b77c5921a057900}{Immovable\+Agent}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, const unsigned long id, Point $\ast$initial\+Position, const \mbox{\hyperlink{class_clock}{Clock}} $\ast$clock)
+\item 
+virtual \mbox{\hyperlink{class_immovable_agent_aa2dfb26891059da00ff897a7c6e6a47c}{$\sim$\+Immovable\+Agent}} ()
+\item 
+const string \mbox{\hyperlink{class_immovable_agent_a4e4851029e1e9c33baa2a193e95b8838}{to\+String}} (bool detailed=false) const override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a class that represents an agent which has a fixed location on the map. The only subclass of it is \mbox{\hyperlink{class_antenna}{Antenna}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_immovable_agent_a0b4253828510a7212b77c5921a057900}\label{class_immovable_agent_a0b4253828510a7212b77c5921a057900}} 
+\index{ImmovableAgent@{ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\index{ImmovableAgent@{ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\doxysubsubsection{\texorpdfstring{ImmovableAgent()}{ImmovableAgent()}}
+{\footnotesize\ttfamily Immovable\+Agent\+::\+Immovable\+Agent (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{const unsigned long}]{id,  }\item[{Point $\ast$}]{initial\+Position,  }\item[{const \mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clock }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor of the class. It builds an \mbox{\hyperlink{class_immovable_agent}{Immovable\+Agent}} object with the parameters provided by the user. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to a \mbox{\hyperlink{class_map}{Map}} object used for a simulation. \\
+\hline
+{\em id} & the id of this object. \\
+\hline
+{\em initial\+Position} & the initial location on map. \\
+\hline
+{\em clock} & a pointer to a \mbox{\hyperlink{class_clock}{Clock}} object used for a simulation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_immovable_agent_aa2dfb26891059da00ff897a7c6e6a47c}\label{class_immovable_agent_aa2dfb26891059da00ff897a7c6e6a47c}} 
+\index{ImmovableAgent@{ImmovableAgent}!````~ImmovableAgent@{$\sim$ImmovableAgent}}
+\index{````~ImmovableAgent@{$\sim$ImmovableAgent}!ImmovableAgent@{ImmovableAgent}}
+\doxysubsubsection{\texorpdfstring{$\sim$ImmovableAgent()}{~ImmovableAgent()}}
+{\footnotesize\ttfamily virtual Immovable\+Agent\+::$\sim$\+Immovable\+Agent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_immovable_agent_a4e4851029e1e9c33baa2a193e95b8838}\label{class_immovable_agent_a4e4851029e1e9c33baa2a193e95b8838}} 
+\index{ImmovableAgent@{ImmovableAgent}!toString@{toString}}
+\index{toString@{toString}!ImmovableAgent@{ImmovableAgent}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Immovable\+Agent\+::to\+String (\begin{DoxyParamCaption}\item[{bool}]{detailed = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Builds a string with the most relevant or all information of the class. It is useful to output the description of concrete agents to the console or to a file. Depending on the value of the {\ttfamily detailed} parameter, the string can contain only the values of the the most important members ({\ttfamily detailed = false}) or all members of the class. 
+\begin{DoxyParams}{Parameters}
+{\em detailed} & if true, the string will contain the values of all members/parameters of the agent, otherwise only the most important ones are written to the output string. Each derived class will decide which are the most important members. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a string object containing the most important or all parameters/members of the agent. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_agent_a109600f8f99a2ad75dddc611583b050f}{Agent}}.
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/agent/\hyperlink{_antenna_8h}{Antenna.\+h}\end{DoxyCompactItemize}
+include/agent/\mbox{\hyperlink{_immovable_agent_8h}{Immovable\+Agent.\+h}}\end{DoxyCompactItemize}

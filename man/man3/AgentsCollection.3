@@ -1,4 +1,4 @@
-.TH "AgentsCollection" 3 "Wed Aug 26 2020" "Simulator" \" -*- nroff -*-
+.TH "AgentsCollection" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -18,10 +18,10 @@ AgentsCollection
 .RI "virtual \fB~AgentsCollection\fP ()"
 .br
 .ti -1c
-.RI "void \fBaddAgent\fP (\fBAgent\fP *a)"
+.RI "void \fBaddAgent\fP (\fBAgent\fP *ag)"
 .br
 .ti -1c
-.RI "\fBAgent\fP * \fBdeleteAgent\fP (\fBAgent\fP *a)"
+.RI "\fBAgent\fP * \fBdeleteAgent\fP (\fBAgent\fP *ag)"
 .br
 .ti -1c
 .RI "\fBAgent\fP * \fBgetAgent\fP (const unsigned long id) const"
@@ -51,7 +51,7 @@ AgentsCollection
 .in -1c
 .SH "Detailed Description"
 .PP 
-This is actually a container for all the agents used for simulation\&. An agent could be an object of one the the derived classes of \fBAgent\fP\&. The Agents are kept in an unordered_multimap as pairs <string, Agent*> where the first element of the pair is the name of the concrete agent (a person, a mobile device, an antenna, a mno, etc\&.) and the second element is a pointer to the actual object (agent)\&. 
+This is actually a container for all the agents used for simulation\&. An agent could be an object of one the the derived classes of \fBAgent\fP\&. The Agents are kept in an unordered_multimap as pairs of <string, Agent*> where the first element of the pair is the name of the concrete agent (a person, a mobile device, an antenna, a mobile network operator, etc\&.) and the second element is a pointer to the actual object (agent)\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "AgentsCollection::AgentsCollection ()"
@@ -60,82 +60,83 @@ The default constructor of the class\&.
 Default destructor: it iterates through the collection of agents and frees the memory allocated for each agent in the collection\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "void AgentsCollection::addAgent (\fBAgent\fP * a)"
-Adds a new \fBAgent\fP to the collection\&. For performance reasons the \fBAgentsCollection\fP class keep only a pointer to actual agents (objects)\&. 
+.SS "void AgentsCollection::addAgent (\fBAgent\fP * ag)"
+Adds a new \fBAgent\fP object to the collection\&. For performance reasons the \fBAgentsCollection\fP class keep only a pointer to actual agents (objects)\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
-\fIa\fP a pointer to the object (one of the derived classes of the \fBAgent\fP) to be added to the collection\&. 
+\fIag\fP a pointer to the object (one of the derived classes of the \fBAgent\fP) to be added to the collection\&. 
 .RE
 .PP
 
 .SS "\fBum_iterator\fP AgentsCollection::begin ()"
-Iterator to the first agent of the container\&. 
+Iterator to the first object of the container\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a random access iterator pointing to the first element (agent) in the container\&. If the container is empty, the returned iterator value shall not be dereferenced\&. 
 .RE
 .PP
 
-.SS "\fBAgent\fP* AgentsCollection::deleteAgent (\fBAgent\fP * a)"
+.SS "\fBAgent\fP* AgentsCollection::deleteAgent (\fBAgent\fP * ag)"
 Removes an object from the collection\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
-\fIa\fP a pointer to the object to be removed from the collection\&. 
+\fIag\fP a pointer to the object to be removed from the collection\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
+a pointer to the object removed from the collection 
 .RE
 .PP
 
 .SS "\fBum_iterator\fP AgentsCollection::end ()"
-Iterator to the past-the-end of the collection\&. It does not point to any agent, and thus shall not be dereferenced\&. 
+Iterator to the past-the-end object of the collection\&. It does not point to any agent, and thus shall not be dereferenced\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-an iterator referring to the past-the-end element in the agents container\&. If the container is empty, this function returns the same as AgentsColletion::begin()\&. 
+an iterator referring to the past-the-end element in the agents container\&. If the container is empty, this function returns the same as \fBAgentsCollection::begin()\fP\&. 
 .RE
 .PP
 
 .SS "\fBAgent\fP* AgentsCollection::getAgent (const unsigned long id) const"
-Returns a pointer to an agent from the collection\&. The agent/object is identified by its id\&. 
+Returns a pointer to an agent from the collection\&. The agent/object is identified by its id which is unique throughout the collection\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIid\fP the id of the agent to be returned\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-a pointer to the agent with the id equal to the parameter id\&. If there is no agent with the provided id, this method returns nullptr\&. 
+a pointer to the agent with the id equals to the parameter \fCid\fP\&. If there is no agent with the provided id, this method returns \fCnullptr\fP\&. 
 .RE
 .PP
 
 .SS "pair<\fBum_iterator\fP, \fBum_iterator\fP> AgentsCollection::getAgentListByType (const string & agentType)"
-This method is used to get a subset with a certain type of agents: persons, mobile phones etc\&. 
+This method is used to retrieve a subset of agents with a certain type: persons, mobile phones etc\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIagentType\fP is the name of the class of agents that the user wants to retrieve from the collection of all agents\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a std::pair of iterators of type unordered_multimap<string, Agent*>::iterator that can be used to iterate through to subset of the agents\&. 
 .RE
 .PP
 
 .SS "void AgentsCollection::printAgents ()"
-Print out all agents in the collection\&. 
+Prints out all agents in the collection calling \fBtoString()\fP method for each agent\&. 
 .SS "unsigned long AgentsCollection::size ()"
-
+Returns the number of elements in the container\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
-the number of elements in the container\&. This is the number of actual objects held in the container, which is not necessarily equal to its storage capacity\&. 
+the number of elements in the container\&. This is the number of actual objects held in the container,which is not necessarily equal to its storage capacity\&. 
 .RE
 .PP
 

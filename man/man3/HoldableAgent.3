@@ -1,4 +1,4 @@
-.TH "HoldableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "HoldableAgent" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,7 +16,7 @@ Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
 
 .in +1c
 .ti -1c
-.RI "enum \fBCONNECTION_TYPE\fP { \fBUSING_POWER\fP, \fBUSING_SIGNAL_QUALITY\fP, \fBUSING_SIGNAL_STRENGTH\fP, \fBUNKNOWN\fP }"
+.RI "enum \fBCONNECTION_TYPE\fP { \fBUSING_POWER\fP, \fBUSING_SIGNAL_DOMINANCE\fP, \fBUSING_SIGNAL_STRENGTH\fP, \fBUNKNOWN\fP }"
 .br
 .in -1c
 .SS "Public Member Functions"
@@ -24,9 +24,6 @@ Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
 .in +1c
 .ti -1c
 .RI "\fBHoldableAgent\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, \fBAgent\fP *holder, const \fBClock\fP *clock)"
-.br
-.ti -1c
-.RI "\fBHoldableAgent\fP (const \fBHoldableAgent\fP &h)"
 .br
 .ti -1c
 .RI "virtual \fB~HoldableAgent\fP ()"
@@ -38,7 +35,7 @@ Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
 .RI "void \fBsetHolder\fP (\fBAgent\fP *holder)"
 .br
 .ti -1c
-.RI "const string \fBtoString\fP () const override"
+.RI "const string \fBtoString\fP (bool detailed=false) const override"
 .br
 .ti -1c
 .RI "virtual bool \fBtryConnect\fP ()=0"
@@ -48,9 +45,6 @@ Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
 .br
 .ti -1c
 .RI "void \fBsetLocation\fP (Point *location) override"
-.br
-.ti -1c
-.RI "vector< \fBAntenna\fP * > \fBgetAntennas\fP () const"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -65,18 +59,30 @@ Inherited by \fBMobilePhone\fP, and \fBTablet\fP\&.
 .in -1c
 .SH "Detailed Description"
 .PP 
-This is the superclass for all agents that represent a device that can by held by a person\&. 
+This is the superclass for all agents that represent a device (\fBMobilePhone\fP or \fBTablet\fP), can by held by a person and can interact with the network\&. The interaction is triggered every time the location of this agent is set\&. 
 .SH "Member Enumeration Documentation"
 .PP 
 .SS "enum \fBHoldableAgent::CONNECTION_TYPE\fP"
-an enumeration of the modes used by the device to connect to an antenna: USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device\&. USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device\&. USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device\&. UNKNOWN - this should by an error\&. 
+An enumeration of the modes used by the device to connect to an antenna: 
+.PD 0
+
+.IP "\(bu" 2
+USING_POWER - connects to the antenna that provides the maximum power of the field in the location of the device\&. 
+.IP "\(bu" 2
+USING_SIGNAL_QUALITY - connects to the antenna that provides the maximum value of the signal quality in the location of the device\&. 
+.IP "\(bu" 2
+USING_SIGNAL_STRENGTH - connects to the antenna that provides the maximum value of the signal strength in the location of the device\&. 
+.IP "\(bu" 2
+UNKNOWN - this should by an error\&. The actual handover mechanism is set in the simulation configuration file\&. 
+.PP
+
 .PP
 \fBEnumerator\fP
 .in +1c
 .TP
 \fB\fIUSING_POWER \fP\fP
 .TP
-\fB\fIUSING_SIGNAL_QUALITY \fP\fP
+\fB\fIUSING_SIGNAL_DOMINANCE \fP\fP
 .TP
 \fB\fIUSING_SIGNAL_STRENGTH \fP\fP
 .TP
@@ -84,7 +90,7 @@ an enumeration of the modes used by the device to connect to an antenna: USING_P
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "HoldableAgent::HoldableAgent (const \fBMap\fP * m, const unsigned long id, Point * initPosition, \fBAgent\fP * holder, const \fBClock\fP * clock)\fC [explicit]\fP"
-Constructor of the class\&. It builds an \fBHoldableAgent\fP object with the parameters provided by user\&. 
+Constructor of the class\&. It builds a \fBHoldableAgent\fP object with the parameters provided by user\&. 
 .PP
 \fBParameters\fP
 .RS 4
@@ -92,85 +98,76 @@ Constructor of the class\&. It builds an \fBHoldableAgent\fP object with the par
 .br
 \fIid\fP the id of the object\&. 
 .br
-\fIinitPosition\fP the initial location on the map of the object\&. 
+\fIinitPosition\fP a pointer to a Point object representing the initial location on the map of this object\&. 
 .br
-\fIholder\fP a pointer to an \fBAgent\fP that owns this device\&. 
+\fIholder\fP a pointer to an \fBAgent\fP object that owns (and carries) this device\&. 
 .br
 \fIclock\fP a pointer to a \fBClock\fP object used by this simulation\&. 
 .RE
 .PP
 
-.SS "HoldableAgent::HoldableAgent (const \fBHoldableAgent\fP & h)"
-Copy constructor\&. 
-.PP
-\fBParameters\fP
-.RS 4
-\fIh\fP another object of the same type\&. 
-.RE
-.PP
-
 .SS "virtual HoldableAgent::~HoldableAgent ()\fC [virtual]\fP"
-Destructor 
+Destructor of the class\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "vector<\fBAntenna\fP*> HoldableAgent::getAntennas () const"
-
-.PP
-\fBReturns\fP
-.RS 4
-a vector with pointers to antennas where this device is connected 
-.RE
-.PP
-
 .SS "\fBAgent\fP* HoldableAgent::getHolder () const"
-Returns a pointer to an \fBAgent\fP object that owns this device 
+Returns a pointer to an \fBAgent\fP object that owns this device\&. Actually, the holder can be a \fBPerson\fP object\&. 
 .PP
 \fBReturns\fP
 .RS 4
-a pointer to an \fBAgent\fP object that owns this device 
+a pointer to an \fBAgent\fP object that owns this device\&. 
 .RE
 .PP
 
 .SS "virtual bool HoldableAgent::isConnected () const\fC [virtual]\fP"
-check if this device is connected to an antenna 
+Check if this device is connected to an antenna\&. 
 .PP
 \fBReturns\fP
 .RS 4
-true if the device is conneted to an antenna, false otherwise\&. 
+true if the device is connected to an antenna, false otherwise\&. 
 .RE
 .PP
 
 .SS "void HoldableAgent::setHolder (\fBAgent\fP * holder)"
-Sets the owner of this device 
+Sets the owner agent of this device\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIholder\fP a pointer to the owner of this device 
+\fIholder\fP a pointer to an \fBAgent\fP object which is the owner of this device\&. 
 .RE
 .PP
 
 .SS "void HoldableAgent::setLocation (Point * location)\fC [override]\fP, \fC [virtual]\fP"
-Sets the location of this device\&. After a new location is set, the device tries to connect to an antenna, i\&.e\&. the \fBtryConnect()\fP method is called\&. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override this method and provide the correct mode of connection\&. 
+Sets the location of this device\&. After a new location is set, the device tries to connect to an antenna, i\&.e\&. the \fBtryConnect()\fP method is called\&. Since this is an abstract class and the connection type is unknown it is the responsibility of subclasses to override the \fBtryConnect()\fP method and provide the correct mode of connection\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIlocation\fP a point on the \fBMap\fP of the simulation 
+\fIlocation\fP a pointer to a Point object that represent the new position on the map\&. 
 .RE
 .PP
 
 .PP
 Reimplemented from \fBLocatableAgent\fP\&.
-.SS "const string HoldableAgent::toString () const\fC [override]\fP"
-Returns a string representation of this class, useful to print it to the console or in a file\&. 
+.SS "const string HoldableAgent::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP, \fC [virtual]\fP"
+Builds a string with the most relevant or all information of the class\&. It is useful to output the description of concrete agents to the console or to a file\&. Depending on the value of the \fCdetailed\fP parameter, the string can contain only the values of the the most important members (\fCdetailed = false\fP) or all members of the class\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdetailed\fP if true, the string will contain the values of all members/parameters of the agent, otherwise only the most important ones are written to the output string\&. Each derived class will decide which are the most important members\&. 
+.RE
 .PP
 \fBReturns\fP
 .RS 4
-a string representation of this class, useful to print it to the console or in a file\&. 
+a string object containing the most important or all parameters/members of the agent\&. 
 .RE
 .PP
 
+.PP
+Implements \fBAgent\fP\&.
+.PP
+Reimplemented in \fBMobilePhone\fP, and \fBTablet\fP\&.
 .SS "virtual bool HoldableAgent::tryConnect ()\fC [pure virtual]\fP"
-Called when a device wants to connect to an antenna 
+A pure virtual method which is called when a device interacts with an antenna\&. This function is called every time when \fBsetLocation()\fP was called, i\&.e\&. the location of the device on the map was updated\&. If the connection was successful, i\&.e\&. an antenna accepted and connected this device, the id of the antenna is saved in an internal list\&. 
 .PP
 \fBReturns\fP
 .RS 4

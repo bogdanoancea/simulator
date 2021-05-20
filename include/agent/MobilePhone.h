@@ -102,7 +102,7 @@ public:
 	 * its maximum number of simultaneous connections) then a list of all other antennas is build, ordered by the signal strength/dominance.
 	 * The mobile phone iterates through this list and tries to connect to an antenna. If one antenna accepts the incoming connection
 	 * the method returns true, otherwise it returns false.
-	 *  When a connection is established, the pointer to the \code{Antenna} object is updated accordingly.
+	 *  When a connection is established, the pointer to the Antenna object is updated accordingly.
 	 * @return true if the connection succeeds, false otherwise.
 	 */
 	bool tryConnect() override;

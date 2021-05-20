@@ -1,4 +1,4 @@
-.TH "utils" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
+.TH "utils" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -19,7 +19,7 @@ utils
 .RI "vector< Point * > \fBgenerateHomeWorkPoints\fP (\fBSimulationConfiguration\fP *sc, unsigned long n, double percentHome)"
 .br
 .ti -1c
-.RI "void \fBgenerateHomeLocation\fP (\fBMap\fP *m, \fBHomeWorkLocation\fP hLoc, unsigned int npers, \fBRandomNumberGenerator\fP *random_gernerator, vector< Point *> &result)"
+.RI "void \fBgenerateHomeLocation\fP (\fBMap\fP *m, \fBHomeWorkLocation\fP hLoc, unsigned int npers, \fBRandomNumberGenerator\fP *random_gernerator, vector< Point * > &result)"
 .br
 .ti -1c
 .RI "vector< Point * > \fBgenerateFixedPoints\fP (const \fBMap\fP *m, unsigned long n, \fBRandomNumberGenerator\fP *random_generator)"
@@ -79,12 +79,12 @@ This namespace contains utility functions that don't belong to any class\&.
 .SS "double utils::d2r (double x)\fC [inline]\fP"
 Transforms a number from degrees to radians\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIx\fP the angle to be transformed from degrees to radians\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of x in radians\&. 
 .RE
@@ -92,21 +92,21 @@ the value of x in radians\&.
 
 .SS "vector<Point*> utils::generateFixedPoints (const \fBMap\fP * m, unsigned long n, \fBRandomNumberGenerator\fP * random_generator)"
 
-.SS "void utils::generateHomeLocation (\fBMap\fP * m, \fBHomeWorkLocation\fP hLoc, unsigned int npers, \fBRandomNumberGenerator\fP * random_gernerator, vector< Point *> & result)"
+.SS "void utils::generateHomeLocation (\fBMap\fP * m, \fBHomeWorkLocation\fP hLoc, unsigned int npers, \fBRandomNumberGenerator\fP * random_gernerator, vector< Point * > & result)"
 
 .SS "vector<Point*> utils::generateHomeWorkPoints (\fBSimulationConfiguration\fP * sc, unsigned long n, double percentHome)"
 
 .SS "vector<Point*> utils::generatePoints (\fBSimulationConfiguration\fP * sc, unsigned long n, double percentHome)"
 Generates n random points on a map\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIn\fP the number of points to generate\&. 
 .br
 \fIpercentHome\fP a percent of the total number of points considered to be 'home locations', i\&.e\&. each time they have the same values\&. The rest of the points differ from a simulation to another\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a vector of pointers to Point objects\&. 
 .RE
@@ -117,14 +117,14 @@ a vector of pointers to Point objects\&.
 .SS "XMLElement* utils::getFirstChildElement (XMLElement * el, const char * name)\fC [noexcept]\fP"
 Returns a pointer to an XMLElement which is the first child of another XMLElement\&. This function is used to parse the content of the configuration files\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIel\fP a pointer to the parent XMLElement\&. 
 .br
 \fIname\fP the name of the child XMLElement\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a pointer to an XMLElement which is the first child of another XMLElement\&. 
 .RE
@@ -133,115 +133,115 @@ a pointer to an XMLElement which is the first child of another XMLElement\&.
 .SS "XMLNode* utils::getNode (XMLElement * el, const char * name)"
 Returns a pointer to an XMLNode with a specific name that belongs to an XMLElement\&. This function is used to parse the content of the configuration files\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIel\fP a pointer to the the XMLElement where to search the XMLNode\&. 
 .br
 \fIname\fP the name of the node\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a pointer to an XMLNode with a specific name that belongs to an XMLElement\&. 
-.RE
-.PP
-
-.SS "double utils::getValue (XMLElement * el, const char * name, double default_value)"
-Returns a double value obtained by converting the text in an XMLNode to a double\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
-.br
-\fIname\fP the name of the XMLNode\&. 
-.br
-\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-a double value obtained by converting the text in an XMLNode to a double\&. 
-.RE
-.PP
-
-.SS "int utils::getValue (XMLElement * el, const char * name, int default_value)"
-Returns an int value obtained by converting the text in an XMLNode to an int\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
-.br
-\fIname\fP the name of the XMLNode\&. 
-.br
-\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-an int value obtained by converting the text in an XMLNode to an int\&. 
-.RE
-.PP
-
-.SS "unsigned long utils::getValue (XMLElement * el, const char * name, unsigned long default_value)"
-Returns an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
-.br
-\fIname\fP the name of the XMLNode\&. 
-.br
-\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. 
-.RE
-.PP
-
-.SS "const char* utils::getValue (XMLElement * el, const char * name, const char * default_value)"
-Returns a string (const char*) value obtained by converting the text in an XMLNode to a const char* pointer\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
-.br
-\fIname\fP the name of the XMLNode\&. 
-.br
-\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-a const char* value obtained by converting the text in an XMLNode to a const char*\&. 
 .RE
 .PP
 
 .SS "double utils::getValue (XMLElement * el, const char * name)"
 Returns a double value obtained by converting the text in an XMLNode to a double\&. In case the node does not exist this method throws an exection\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
 .br
 \fIname\fP the name of the XMLNode\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a double value obtained by converting the text in an XMLNode to a double 
 .RE
 .PP
 
-.SS "\fBNetworkType\fP utils::getValue (XMLElement * el, const char * name, \fBNetworkType\fP default_value)"
+.SS "const char* utils::getValue (XMLElement * el, const char * name, const char * default_value)"
+Returns a string (const char*) value obtained by converting the text in an XMLNode to a const char* pointer\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a const char* value obtained by converting the text in an XMLNode to a const char*\&. 
+.RE
+.PP
+
+.SS "double utils::getValue (XMLElement * el, const char * name, double default_value)"
+Returns a double value obtained by converting the text in an XMLNode to a double\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a double value obtained by converting the text in an XMLNode to a double\&. 
+.RE
+.PP
 
 .SS "\fBEventType\fP utils::getValue (XMLElement * el, const char * name, \fBEventType\fP default_value)"
+
+.SS "int utils::getValue (XMLElement * el, const char * name, int default_value)"
+Returns an int value obtained by converting the text in an XMLNode to an int\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an int value obtained by converting the text in an XMLNode to an int\&. 
+.RE
+.PP
+
+.SS "\fBNetworkType\fP utils::getValue (XMLElement * el, const char * name, \fBNetworkType\fP default_value)"
+
+.SS "unsigned long utils::getValue (XMLElement * el, const char * name, unsigned long default_value)"
+Returns an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. In case the node does not exists, this function returns a default value passed as a parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIel\fP a pointer to the XMLElement where the XMLNode is located\&. 
+.br
+\fIname\fP the name of the XMLNode\&. 
+.br
+\fIdefault_value\fP is the value returned in case the function doesn'f find any XMLNode with the specified name under the XMLElement\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an unsigned long value obtained by converting the text in an XMLNode to an unsigned long\&. 
+.RE
+.PP
 
 .SS "double utils::inverseNormalCDF (const double p, const double mu, const double sigma)"
 Computes the inverse of the normal CDF\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIp\fP the value of a probability\&. 
 .br
@@ -250,7 +250,7 @@ Computes the inverse of the normal CDF\&.
 \fIsigma\fP the standard deviation of the normal distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of the inverse normal CDF\&. 
 .RE
@@ -259,12 +259,12 @@ the value of the inverse normal CDF\&.
 .SS "double utils::r2d (double x)\fC [inline]\fP"
 Transforms a number from radians to degrees\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIx\fP the angle to be transformed from radians to degrees\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 the value of x in degrees\&. 
 .RE
@@ -273,9 +273,9 @@ the value of x in degrees\&.
 .SS "string utils::toString (\fBNetworkType\fP type)"
 Computes the posterior probability of a mobile device to be in a tile of the \fBGrid\fP according to the method described in he paper 'Deriving geographic location of mobile devices from network data' by Martijn Tennekes, Yvonne A\&.P\&.M\&. Gootzen, Shan H\&. Shah\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
-\fIt\fP the time instant when the posterior localization probability is computed\&.  m a pointer to a MobilePhone object for which the posterior localization probability is computed\&. 
+\fIt\fP the time instant when the posterior localization probability is computed\&. @paratype m a pointer to a \fBMobilePhone\fP object for which the posterior localization probability is computed\&. 
 .br
 \fIdata\fP a vector of \fBAntennaInfo\fP objects generated and recorded by each antenna during the simulation\&. It contains the events recorder by each antenna during the simulation\&. 
 .br
@@ -284,7 +284,7 @@ Computes the posterior probability of a mobile device to be in a tile of the \fB
 \fIprior\fP is used to set the method of computing the prior probabilities\&. It could take 3 values: \fBPriorType::UNIFORM\fP, \fBPriorType::NETWORK\fP or \fBPriorType::REGISTER\fP\&. Currently only UNIFORM and NETWORK methods are implemented\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a vector with the posterior probability of the mobile phone given by m to be localized in a tile\&. The index of a value in this vector indicates the corresponding tile index\&. The size of this vector is equal to the total number of tiles in the \fBGrid\fP\&. 
 .RE

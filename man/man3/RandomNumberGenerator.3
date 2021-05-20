@@ -1,4 +1,4 @@
-.TH "RandomNumberGenerator" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
+.TH "RandomNumberGenerator" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -191,12 +191,12 @@ Utility singleton class to generate random numbers according to different distri
 .SS "int RandomNumberGenerator::generateBernoulliInt (const double p)"
 Generates an int random value from a Bernoulli distribution\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIp\fP the parameter of the Bernoulli distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an int random value from a Bernoulii distribution\&. 
 .RE
@@ -205,14 +205,14 @@ an int random value from a Bernoulii distribution\&.
 .SS "int* RandomNumberGenerator::generateBernoulliInt (const double p, const int n)"
 Generates n int random values from a Bernoulli distribution\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIp\fP the parameter of the Bernoulli distribution\&. 
 .br
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 array with n int values from a Bernoulli distribution\&. 
 .RE
@@ -221,14 +221,14 @@ array with n int values from a Bernoulli distribution\&.
 .SS "int RandomNumberGenerator::generateBinomialInt (const int max, const double p)"
 Generates a int random value from a binomial distribution inside the interval [0, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImax\fP the upper limit of the value\&. 
 .br
 \fIp\fP the parameter of the binomial distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a int random value from a binomial distribution inside the interval [0, max]\&. 
 .RE
@@ -237,7 +237,7 @@ a int random value from a binomial distribution inside the interval [0, max]\&.
 .SS "int* RandomNumberGenerator::generateBinomialInt (const int max, const double p, const int n)"
 Generates n int random values from a binomial distribution inside the interval [0, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImax\fP the upper limit of the value\&. 
 .br
@@ -246,7 +246,7 @@ Generates n int random values from a binomial distribution inside the interval [
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 array with n int values from a binomial distribution\&. 
 .RE
@@ -259,12 +259,12 @@ array with n int values from a binomial distribution\&.
 .SS "double RandomNumberGenerator::generateExponentialDouble (const double lambda)"
 Generates a random value distributed according to an exponential distribution with parameter lambda\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIlambda\fP the parameter of the exponential distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a random value distributed according to an exponential distribution with parameter lambda\&. 
 .RE
@@ -288,10 +288,26 @@ a random value distributed according to an exponential distribution with paramet
 
 .SS "int* RandomNumberGenerator::generateLaplaceInt (const double lambda, const int n)"
 
+.SS "double RandomNumberGenerator::generateLevyDouble (const double mu, const double c)"
+Generates a double random value from a Levy distribution 
+.PP
+\fBParameters\fP
+.RS 4
+\fImu\fP the displacement of the Levy distribution 
+.br
+\fIc\fP the scale parameter of the Levy distribution 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an array with n double values from a Levy distribution 
+.RE
+.PP
+
 .SS "double* RandomNumberGenerator::generateLevyDouble (const double mu, const double c, const int n)"
 Generates n double random values from a Levy distribution 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImu\fP the displacement of the Levy distribution 
 .br
@@ -300,36 +316,20 @@ Generates n double random values from a Levy distribution
 \fIn\fP the number of values to be generated 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an array with n double values from a Levy distribution 
 .RE
 .PP
-
-.SS "double RandomNumberGenerator::generateLevyDouble (const double mu, const double c)"
-Generates a double random value from a Levy distribution 
-.PP
-\fBParameters:\fP
-.RS 4
-\fImu\fP the displacement of the Levy distribution 
-.br
-\fIc\fP the scale parameter of the Levy distribution 
-.RE
-.PP
-\fBReturns:\fP
-.RS 4
-an array with n double values from a Levy distribution 
-.RE
-.PP
-
-.SS "int* RandomNumberGenerator::generateLevyInt (const double mu, const double c, const int n)"
 
 .SS "int RandomNumberGenerator::generateLevyInt (const double mu, const double c)"
+
+.SS "int* RandomNumberGenerator::generateLevyInt (const double mu, const double c, const int n)"
 
 .SS "double* RandomNumberGenerator::generateNormal2Double (const double m1, const double sd1, const double m2, const double sd2, int n)"
 Generates n random numbers with a normal distribution\&. Half of them are N(m1,sd1), the other half N(m2,sd2)\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm1\fP the mean of the first normal distribution\&. 
 .br
@@ -342,7 +342,7 @@ Generates n random numbers with a normal distribution\&. Half of them are N(m1,s
 \fIn\fP the total number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an array with random numbers according to two normal distributions\&. 
 .RE
@@ -351,14 +351,14 @@ an array with random numbers according to two normal distributions\&.
 .SS "double RandomNumberGenerator::generateNormalDouble (const double m, const double sd)"
 Generates a random value, normally distributed with mean m and standard distribution sd 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP the mean of the normal distribution\&. 
 .br
 \fIsd\fP the standard deviation of the normal distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a random value, normally distributed with mean m and standard distribution sd\&. 
 .RE
@@ -367,7 +367,7 @@ a random value, normally distributed with mean m and standard distribution sd\&.
 .SS "double* RandomNumberGenerator::generateNormalDouble (const double m, const double sd, const int n)"
 Generates an array with n double values normally distributed with mean m and standard deviation sd\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIm\fP the mean of the normal distribution\&. 
 .br
@@ -376,7 +376,7 @@ Generates an array with n double values normally distributed with mean m and sta
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an array with n double values normally distributed with mean m and standard deviation sd\&. 
 .RE
@@ -386,10 +386,12 @@ an array with n double values normally distributed with mean m and standard devi
 
 .SS "int* RandomNumberGenerator::generateNormalInt (const double m, const double sd, const int n)"
 
+.SS "double RandomNumberGenerator::generateTruncatedNormalDouble (const double a, const double b, const double m, const double sd)"
+
 .SS "double* RandomNumberGenerator::generateTruncatedNormalDouble (const double a, const double b, const double m, const double sd, const unsigned long n)"
 Generates n double values from a truncated normal distribution\&. All values will be in [a, b]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIa\fP the inferior limit of the truncated normal distribution\&. 
 .br
@@ -402,31 +404,7 @@ Generates n double values from a truncated normal distribution\&. All values wil
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
-.RS 4
-an array with n double values from a truncated normal distribution\&. 
-.RE
-.PP
-
-.SS "double RandomNumberGenerator::generateTruncatedNormalDouble (const double a, const double b, const double m, const double sd)"
-
-.SS "int* RandomNumberGenerator::generateTruncatedNormalInt (const int a, const int b, const double m, const double sd, const unsigned long n)"
-Generates n int values from a truncated normal distribution\&. All values will be in [a, b]\&. 
-.PP
-\fBParameters:\fP
-.RS 4
-\fIa\fP the inferior limit of the truncated normal distribution\&. 
-.br
-\fIb\fP the superior limit of the truncated normal distribution\&. 
-.br
-\fIm\fP the mean of the normal distribution\&. 
-.br
-\fIsd\fP the standard deviation of the normal distribution\&. 
-.br
-\fIn\fP the number of values to be generated\&. 
-.RE
-.PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an array with n double values from a truncated normal distribution\&. 
 .RE
@@ -434,17 +412,39 @@ an array with n double values from a truncated normal distribution\&.
 
 .SS "int RandomNumberGenerator::generateTruncatedNormalInt (const int a, const int b, const double m, const double sd)"
 
+.SS "int* RandomNumberGenerator::generateTruncatedNormalInt (const int a, const int b, const double m, const double sd, const unsigned long n)"
+Generates n int values from a truncated normal distribution\&. All values will be in [a, b]\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the inferior limit of the truncated normal distribution\&. 
+.br
+\fIb\fP the superior limit of the truncated normal distribution\&. 
+.br
+\fIm\fP the mean of the normal distribution\&. 
+.br
+\fIsd\fP the standard deviation of the normal distribution\&. 
+.br
+\fIn\fP the number of values to be generated\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an array with n double values from a truncated normal distribution\&. 
+.RE
+.PP
+
 .SS "double RandomNumberGenerator::generateUniformDouble (const double min, const double max)"
 Generates a random double value from a uniform distribution which lies inside [min, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImin\fP the lower limit of the value\&. 
 .br
 \fImax\fP the upper limit of the value\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 a double value, uniformly distributed in [min, max]\&. 
 .RE
@@ -453,7 +453,7 @@ a double value, uniformly distributed in [min, max]\&.
 .SS "double* RandomNumberGenerator::generateUniformDouble (const double min, const double max, const int n)"
 Generates n uniform distributed random values which lie inside [min, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImin\fP the lower limit of the values\&. 
 .br
@@ -462,7 +462,7 @@ Generates n uniform distributed random values which lie inside [min, max]\&.
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 n array with n double values from a uniform distribution\&. 
 .RE
@@ -471,14 +471,14 @@ n array with n double values from a uniform distribution\&.
 .SS "int RandomNumberGenerator::generateUniformInt (const int min, const int max)"
 Generates a random int value from a uniform distribution which lies inside [min, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImin\fP the lower limit of the value\&. 
 .br
 \fImax\fP the upper limit of the value\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an int value, uniformly distributed in [min, max]\&. 
 .RE
@@ -487,7 +487,7 @@ an int value, uniformly distributed in [min, max]\&.
 .SS "int* RandomNumberGenerator::generateUniformInt (const int min, const int max, const int n)"
 Generates n uniform distributed random values which lie inside [min, max]\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fImin\fP the lower limit of the values\&. 
 .br
@@ -496,7 +496,7 @@ Generates n uniform distributed random values which lie inside [min, max]\&.
 \fIn\fP the number of values to be generated\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 an array with n int values from a uniform distribution\&. 
 .RE
@@ -505,7 +505,7 @@ an array with n int values from a uniform distribution\&.
 .SS "static \fBRandomNumberGenerator\fP* RandomNumberGenerator::instance ()\fC [inline]\fP, \fC [static]\fP"
 Returns an instance of this class\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 n instance of this class\&. 
 .RE
@@ -514,7 +514,7 @@ n instance of this class\&.
 .SS "static \fBRandomNumberGenerator\fP* RandomNumberGenerator::instance (unsigned seed)\fC [inline]\fP, \fC [static]\fP"
 Returns an instance of this class and also sets the seed of the random number generator\&. 
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 n instance of this class\&. 
 .RE
@@ -523,7 +523,7 @@ n instance of this class\&.
 .SS "double RandomNumberGenerator::normal_pdf (double x, double m, double s)"
 The value of the PDF of the normal distribution for x\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIx\fP the value for which we need the PDF\&. 
 .br
@@ -532,7 +532,7 @@ The value of the PDF of the normal distribution for x\&.
 \fIs\fP the standard deviation of the normal distribution\&. 
 .RE
 .PP
-\fBReturns:\fP
+\fBReturns\fP
 .RS 4
 The value of the PDF of the normal distribution for x\&. 
 .RE
@@ -543,7 +543,7 @@ The value of the PDF of the normal distribution for x\&.
 .SS "void RandomNumberGenerator::setSeed (unsigned seed)"
 Sets the seed of the random number generator\&. 
 .PP
-\fBParameters:\fP
+\fBParameters\fP
 .RS 4
 \fIseed\fP the value of the seed used to initialize the random number generator 
 .RE

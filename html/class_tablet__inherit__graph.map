@@ -1,7 +1,7 @@
 <map id="Tablet" name="Tablet">
-<area shape="rect" id="node1" title=" " alt="" coords="23,800,128,951"/>
-<area shape="rect" id="node2" href="$class_holdable_agent.html" title=" " alt="" coords="8,528,143,752"/>
-<area shape="rect" id="node3" href="$class_movable_agent.html" title=" " alt="" coords="10,329,141,480"/>
-<area shape="rect" id="node4" href="$class_locatable_agent.html" title=" " alt="" coords="5,131,145,281"/>
-<area shape="rect" id="node5" href="$class_agent.html" title=" " alt="" coords="47,5,103,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="23,903,128,1053"/>
+<area shape="rect" id="node2" href="$class_holdable_agent.html" title=" " alt="" coords="8,660,143,855"/>
+<area shape="rect" id="node3" href="$class_movable_agent.html" title=" " alt="" coords="10,461,141,612"/>
+<area shape="rect" id="node4" href="$class_locatable_agent.html" title=" " alt="" coords="5,263,145,413"/>
+<area shape="rect" id="node5" href="$class_agent.html" title=" " alt="" coords="23,5,128,215"/>
 </map>

@@ -1,11 +1,11 @@
 <map id="LocatableAgent" name="LocatableAgent">
-<area shape="rect" id="node1" title=" " alt="" coords="89,131,229,281"/>
-<area shape="rect" id="node3" href="$class_immovable_agent.html" title=" " alt="" coords="5,351,151,458"/>
-<area shape="rect" id="node5" href="$class_movable_agent.html" title=" " alt="" coords="175,329,306,480"/>
-<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="131,5,187,83"/>
-<area shape="rect" id="node4" href="$class_antenna.html" title=" " alt="" coords="43,763,113,840"/>
-<area shape="rect" id="node6" href="$class_holdable_agent.html" title=" " alt="" coords="155,689,289,913"/>
-<area shape="rect" id="node9" href="$class_person.html" title=" " alt="" coords="313,528,563,1075"/>
-<area shape="rect" id="node7" href="$class_mobile_phone.html" title=" " alt="" coords="47,1123,229,1361"/>
-<area shape="rect" id="node8" href="$class_tablet.html" title=" " alt="" coords="253,1167,359,1317"/>
+<area shape="rect" id="node1" title=" " alt="" coords="179,263,319,413"/>
+<area shape="rect" id="node3" href="$class_immovable_agent.html" title=" " alt="" coords="95,483,240,590"/>
+<area shape="rect" id="node5" href="$class_movable_agent.html" title=" " alt="" coords="294,461,425,612"/>
+<area shape="rect" id="node2" href="$class_agent.html" title=" " alt="" coords="196,5,301,215"/>
+<area shape="rect" id="node4" href="$class_antenna.html" title=" " alt="" coords="5,660,268,1837"/>
+<area shape="rect" id="node6" href="$class_holdable_agent.html" title=" " alt="" coords="292,1151,427,1346"/>
+<area shape="rect" id="node9" href="$class_person.html" title=" " alt="" coords="451,983,700,1515"/>
+<area shape="rect" id="node7" href="$class_mobile_phone.html" title=" " alt="" coords="211,1885,359,2109"/>
+<area shape="rect" id="node8" href="$class_tablet.html" title=" " alt="" coords="383,1922,488,2073"/>
 </map>

@@ -1,4 +1,4 @@
-.TH "Person" 3 "Wed May 19 2021" "Simulator" \" -*- nroff -*-
+.TH "Person" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -17,6 +17,117 @@ Inherits \fBMovableAgent\fP\&.
 .RI "enum \fBGender\fP { \fBMALE\fP, \fBFEMALE\fP }"
 .br
 .in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPerson\fP (const \fBMap\fP *m, const unsigned long id, Point *initPosition, const \fBClock\fP *clock, double initSpeed, int age, \fBGender\fP gender, shared_ptr< \fBDistribution\fP > timeStayDistribution, shared_ptr< \fBDistribution\fP > intervalBetweenStaysDistribution)"
+.br
+.ti -1c
+.RI "virtual \fB~Person\fP ()"
+.br
+.ti -1c
+.RI "const string \fBtoString\fP (bool detailed=false) const override"
+.br
+.ti -1c
+.RI "string \fBdumpDevices\fP ()"
+.br
+.ti -1c
+.RI "bool \fBhasDevices\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetAge\fP () const"
+.br
+.ti -1c
+.RI "virtual Point * \fBmove\fP () override"
+.br
+.ti -1c
+.RI "virtual void \fBsetLocation\fP (Point *pt) override"
+.br
+.ti -1c
+.RI "void \fBaddDevice\fP (string type, \fBAgent\fP *agent)"
+.br
+.ti -1c
+.RI "void \fBsetDisplacementMethod\fP (const shared_ptr< \fBDisplace\fP > &displace)"
+.br
+.ti -1c
+.RI "void \fBsetHomeLocation\fP (Point *hl)"
+.br
+.ti -1c
+.RI "Point * \fBgetHomeLocation\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetWorkLocation\fP (Point *wl)"
+.br
+.ti -1c
+.RI "Point * \fBgetWorkLocation\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetAnchorLocation\fP (Point *al)"
+.br
+.ti -1c
+.RI "Point * \fBgetAnchorLocation\fP () const"
+.br
+.ti -1c
+.RI "bool \fBisHomePerson\fP () const"
+.br
+.ti -1c
+.RI "const shared_ptr< \fBDistribution\fP > & \fBgetIntervalBetweenStaysDistribution\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetIntervalBetweenStaysDistribution\fP (const shared_ptr< \fBDistribution\fP > &intervalBetweenStaysDistribution)"
+.br
+.ti -1c
+.RI "const shared_ptr< \fBDistribution\fP > & \fBgetTimeStayDistribution\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetTimeStayDistribution\fP (const shared_ptr< \fBDistribution\fP > &timeStayDistribution)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const string \fBgetHeader\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_age\fP"
+.br
+.ti -1c
+.RI "\fBGender\fP \fBm_gender\fP"
+.br
+.ti -1c
+.RI "unordered_multimap< string, \fBAgent\fP * > \fBm_idDevices\fP"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDistribution\fP > \fBm_timeStayDistribution\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_timeStay\fP"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDistribution\fP > \fBm_intervalBetweenStaysDistribution\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_nextStay\fP"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDisplace\fP > \fBm_displacementMethod\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_homeLocation\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_workLocation\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_anchorLocation\fP"
+.br
+.in -1c
 .SH "Detailed Description"
 .PP 
 This class represents a person that can have 0, 1 or 2 mobile phone(s)\&. During the simulation, the person move around the map, carrying his/her mobile device(s)\&. At every time step, a new location is computed according to a movement strategy\&. 
@@ -31,6 +142,253 @@ This class represents a person that can have 0, 1 or 2 mobile phone(s)\&. During
 \fB\fIMALE \fP\fP
 .TP
 \fB\fIFEMALE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Person::Person (const \fBMap\fP * m, const unsigned long id, Point * initPosition, const \fBClock\fP * clock, double initSpeed, int age, \fBGender\fP gender, shared_ptr< \fBDistribution\fP > timeStayDistribution, shared_ptr< \fBDistribution\fP > intervalBetweenStaysDistribution)\fC [explicit]\fP"
+Builds a new \fBPerson\fP object with the characteristics given as parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIm\fP a pointer to the \fBMap\fP object where this \fBPerson\fP move\&. 
+.br
+\fIid\fP the id of the \fBPerson\fP object\&. 
+.br
+\fIinitPosition\fP the initial location of the person on the map\&. 
+.br
+\fIclock\fP a pointer to a \fBClock\fP object used for this simulation\&. 
+.br
+\fIinitSpeed\fP the initial speed of this person\&. It is provided in the configuration file\&. 
+.br
+\fIage\fP the age of the person\&. The age is generated using a uniform or a truncated normal distribution\&. The actual type of the age distribution is specified in the persons configuration file\&. Each person will have an age generated according to this distribution\&. 
+.br
+\fIgender\fP the gender of the person\&. 
+.br
+\fItimeStayDistribution\fP the \fBDistribution\fP of the time interval the person stays in the same location\&. For certain types of movement patterns (random move, random move with drift, Levy flights the movement consists in a sequence of time intervals when the person stays in the same position and time intervals when the person move to a new position\&. The time interval when the person stays in the same position is a random value generated according the distribution given as parameter\&. 
+.br
+\fIintervalBetweenStays\fP the \fBDistribution\fP of the time interval between two consecutive stops of the person\&. 
+.RE
+.PP
+
+.SS "virtual Person::~Person ()\fC [virtual]\fP"
+The default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void Person::addDevice (string type, \fBAgent\fP * agent)"
+Adds a mobile device to this person\&. Internally, all mobile devices are kept in an unordered_multimap as pairs composed by the device class name and a pointer to the device object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP the device class name 
+.br
+\fIagent\fP a pointer to the device object\&. 
+.RE
+.PP
+
+.SS "string Person::dumpDevices ()"
+Builds a string containing a list with the ids of the mobile devices that this person owns\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a string containing a list with the ids of the mobile devices that this person owns\&. 
+.RE
+.PP
+
+.SS "int Person::getAge () const"
+Returns the age of the person\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the age of the person\&. 
+.RE
+.PP
+
+.SS "Point* Person::getAnchorLocation () const"
+Returns the anchor location of the person when a home-work displacement pattern is used for simulation\&. For other displacement patterns this method return nullptr\&. An anchor point is optional in the home-work displacement pattern and is a place visited by a person in his/her trip from the work location to the home location\&. Once reached this point, the person will stay here for a period of time and then goes toward the home location\&. Information about the anchor points are read from the simulation configuration file\&. The details about how to anchor point locations are generated, the trajectory work location - anchor location - home location can be found in the documentation of the \fBHomeWorkScenario\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a Point object representing the anchor location of the person\&. 
+.RE
+.PP
+
+.SS "static const string Person::getHeader ()\fC [static]\fP"
+Builds a string with the column names of the values included in the result of the \fBtoString()\fP method\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a string with the column names of the values included in the result of the \fBtoString()\fP method\&. 
+.RE
+.PP
+
+.SS "Point* Person::getHomeLocation () const"
+Returns the home location of the person in case a home-work displacement pattern is used for simulation and nullptr otherwise\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the home location of the person in case a home-work displacement pattern is used for simulation and nullptr otherwise\&. 
+.RE
+.PP
+
+.SS "const shared_ptr<\fBDistribution\fP>& Person::getIntervalBetweenStaysDistribution () const"
+Returns a shared pointer to a \fBDistribution\fP object representing the probability distribution of the time interval between two consecutive stops of a person\&. This time interval is generated as a random value using a distribution specified by the user in the simulation configuration file\&. Currently, only the exponential distribution is accepted\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to a shared_ptr<Distribution> object representing the probability distribution of the time interval between two consecutive stops of a person\&. 
+.RE
+.PP
+
+.SS "const shared_ptr<\fBDistribution\fP>& Person::getTimeStayDistribution () const"
+Returns a shared pointer to a \fBDistribution\fP object representing the probability distribution of the time interval a person stays in the same location\&. This time interval is generated as a random value using a distribution specified by the user in the simulation configuration file\&. Currently, only the normal and uniform distributions are accepted\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to ashared_ptr<Distribution> object representing the probability distribution of the time interval a person stops in the same location\&. 
+.RE
+.PP
+
+.SS "Point* Person::getWorkLocation () const"
+Returns the work location of the person in case a home-work displacement pattern is used for simulation and nullptr otherwise\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the work location of the person in case a home-work displacement pattern is used for simulation and nullptr otherwise\&. 
+.RE
+.PP
+
+.SS "bool Person::hasDevices ()"
+Returns true if this person has at least one mobile device, false otherwise\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if this person has at least one mobile device, false otherwise\&. 
+.RE
+.PP
+
+.SS "bool Person::isHomePerson () const"
+Returns true if this person is a person who follows a home-work trajectory\&. Even for the home-work simulation scenario, a number of persons will move randomly on the map\&. For there persons, the method will return false\&. The number of such persons who move randomly is given (as a proportion) in the simulation configuration file\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the person follow a home-work trajectory, false otherwise\&. 
+.RE
+.PP
+
+.SS "virtual Point* Person::move ()\fC [override]\fP, \fC [virtual]\fP"
+This method is called at every time step\&. It computes a new location on the map, according to a movement pattern\&. The direction and the length of the step is determined by the displacement strategy set at the \fBPerson\fP creation and currently four strategies are supported \fBRandomWalkDisplacement\fP, \fBRandomWalkDriftDisplacement\fP, \fBLevyFlightDisplacement\fP and \fBHomeWorkDisplacement\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the final location after the displacement\&. 
+.RE
+.PP
+
+.PP
+Implements \fBMovableAgent\fP\&.
+.SS "void Person::setAnchorLocation (Point * al)"
+Sets the anchor location of the person when a home-work displacement pattern is used for simulation\&. For other displacement patterns this method is not used\&. An anchor point is optional in the home-work displacement pattern and is a place visited by a person in his/her trip from the work location to the home location\&. Once reached this point, the person will stay here for a period of time and then goes toward the home location\&. Information about the anchor points are read from the simulation configuration file\&. The details about how to anchor point locations are generated, the trajectory work location - anchor location - home location can be found in the documentation of the \fBHomeWorkScenario\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIal\fP a pointer to a Point object representing the anchor location of the person\&. 
+.RE
+.PP
+
+.SS "void Person::setDisplacementMethod (const shared_ptr< \fBDisplace\fP > & displace)"
+Sets the displacement pattern of the person\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdisplace\fP a reference to a shared_ptr<Displace> pointer to the displacement pattern object\&. \fBDisplace\fP is an abstract class, and this method is actually called with a concrete implementation of it\&. 
+.RE
+.PP
+
+.SS "void Person::setHomeLocation (Point * hl)"
+Sets the home location of the person when a home-work displacement pattern is used for simulation\&. For other displacement patterns this method is not used\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhl\fP a pointer to a Point object representing the home location of the person\&. 
+.RE
+.PP
+
+.SS "void Person::setIntervalBetweenStaysDistribution (const shared_ptr< \fBDistribution\fP > & intervalBetweenStaysDistribution)"
+Sets the probability distribution of the time interval between two consecutive stops of a person\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIintervalBetweenStaysDistribution\fP a reference to a shared pointer to a \fBDistribution\fP object representing the probability distribution of the time interval between two consecutive stops of a person\&. This time interval is generated as a random value using a distribution specified by the user in the simulation configuration file\&. Currently, only the exponential distribution is accepted\&. This method is currently used to set this pointer to nullptr for a home-work displacement scenario, for the persons that move randomly on the map\&. For the other displacement patterns this distribution is set by the constructor of the \fBPerson\fP class\&. 
+.RE
+.PP
+
+.SS "virtual void Person::setLocation (Point * pt)\fC [override]\fP, \fC [virtual]\fP"
+Sets the location of the person on the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpt\fP a pointer to a Point object that represent the location of the person on the map\&. If the person has mobile devices (phones, tablets) this function calls \fBsetLocation()\fP for all mobile devices too\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBLocatableAgent\fP\&.
+.SS "void Person::setTimeStayDistribution (const shared_ptr< \fBDistribution\fP > & timeStayDistribution)"
+Sets the probability distribution of the time interval a person stops in the same location\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItimeStayDistribution\fP a shared pointer to a \fBDistribution\fP object representing the probability distribution of the time interval a person stops in the same location\&. This time interval is generated as a random value using a distribution specified by the user in the simulation configuration file\&. Currently, only the normal and uniform distributions are accepted\&. This method is currently used to set this pointer to nullptr for a home-work displacement scenario, for the persons that move randomly on the map\&. For the other displacement patterns this distribution is set by the constructor of the \fBPerson\fP class\&. 
+.RE
+.PP
+
+.SS "void Person::setWorkLocation (Point * wl)"
+Sets the work location of the person when a home-work displacement pattern is used for simulation\&. For other displacement patterns this method is not used\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwl\fP a pointer to a Point object representing the work location of the person\&. 
+.RE
+.PP
+
+.SS "const string Person::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP, \fC [virtual]\fP"
+Builds a string with the most relevant information of the class\&. It is useful to output the description of a person to the console or to a file\&. Currently, the value of the \fCdetailed\fP parameter is ignored\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdetailed\fP the value of this parameter is ignored\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string object containing the id, coordinates of the location of the person, speed of movement, age, gender, and the ids of the devices held by this person\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBMovableAgent\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "int Person::m_age\fC [private]\fP"
+
+.SS "Point* Person::m_anchorLocation\fC [private]\fP"
+
+.SS "shared_ptr<\fBDisplace\fP> Person::m_displacementMethod\fC [private]\fP"
+
+.SS "\fBGender\fP Person::m_gender\fC [private]\fP"
+
+.SS "Point* Person::m_homeLocation\fC [private]\fP"
+
+.SS "unordered_multimap<string, \fBAgent\fP*> Person::m_idDevices\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> Person::m_intervalBetweenStaysDistribution\fC [private]\fP"
+
+.SS "unsigned long Person::m_nextStay\fC [private]\fP"
+
+.SS "unsigned long Person::m_timeStay\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> Person::m_timeStayDistribution\fC [private]\fP"
+
+.SS "Point* Person::m_workLocation\fC [private]\fP"
 
 
 .SH "Author"

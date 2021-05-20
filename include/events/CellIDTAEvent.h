@@ -39,14 +39,14 @@
 class CellIDTAEvent: public Event {
 public:
 	/**
-	 * This is the factory class that creates \code{Event} objects.
+	 * This is the factory class that creates Event objects.
 	*/
 	friend class EventFactory;
 
 	/**
 	 * Builds and returns a csv string with the information of the event. This this contains the timestamp of the event,
 	 * the cell id (antenna id), the event code (@see EventType enumeration for the possible values), the device id
-	 * and the network type (one of the \code{NetworkType::_3G} or \code{NetworkType::_4G} values) and the timing advance (TA) value.
+	 * and the network type (one of the NetworkType::_3G or NetworkType::_4G values) and the timing advance (TA) value.
 	 * Time advancing corresponds to the length of time a signal takes to reach the base station (antenna) from a mobile phone.
 	 * For 3G networks the TA value is normally between 0 and 219 (we use the extended range of TA), one TA step representing a change in round-trip distance
 	 * (twice the propagation range) of about 1,108 m which means that the mobile device is at 554 m from the base station (antenna).

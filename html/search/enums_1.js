@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['datatype',['DataType',['../_c_s_vparser_8hpp.html#ad8ed01ff3ff33333d8e19db4d2818bb6',1,'CSVparser.hpp']]],
-  ['distributiontype',['DistributionType',['../_distribution_type_8h.html#a379a030cc5c116910d8ac63ada868a62',1,'DistributionType.h']]]
+  ['connection_5ftype_1500',['CONNECTION_TYPE',['../class_holdable_agent.html#ae2c334b004d7b9c5a999cf2618e4e518',1,'HoldableAgent']]]
 ];

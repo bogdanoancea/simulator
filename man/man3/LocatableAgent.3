@@ -1,4 +1,4 @@
-.TH "LocatableAgent" 3 "Wed May 12 2021" "Simulator" \" -*- nroff -*-
+.TH "LocatableAgent" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -22,7 +22,7 @@ Inherited by \fBImmovableAgent\fP, and \fBMovableAgent\fP\&.
 .RI "virtual \fB~LocatableAgent\fP ()"
 .br
 .ti -1c
-.RI "const string \fBtoString\fP () const override"
+.RI "const string \fBtoString\fP (bool detailed=false) const override"
 .br
 .ti -1c
 .RI "virtual Point * \fBgetLocation\fP () const"
@@ -31,7 +31,7 @@ Inherited by \fBImmovableAgent\fP, and \fBMovableAgent\fP\&.
 .RI "virtual void \fBsetLocation\fP (Point *location)"
 .br
 .ti -1c
-.RI "const string \fBdumpLocation\fP ()"
+.RI "const string \fBdumpLocation\fP () const"
 .br
 .in -1c
 .SS "Private Attributes"
@@ -43,7 +43,7 @@ Inherited by \fBImmovableAgent\fP, and \fBMovableAgent\fP\&.
 .in -1c
 .SH "Detailed Description"
 .PP 
-This class extends the \fBAgent\fP class and defines an object with a location on a map\&. 
+This class extends the \fBAgent\fP class and adds location on a map\&. It has methods to set and get the location on the map and also to build a string with the coordinates of the location\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "LocatableAgent::LocatableAgent (const \fBMap\fP * m, const unsigned long id, Point * initLocation, const \fBClock\fP * clock)\fC [explicit]\fP"
@@ -55,27 +55,27 @@ Constructor of the class\&. Builds an object that has a location on the map of t
 .br
 \fIid\fP the id of the object\&. 
 .br
-\fIinitLocation\fP the initial location of the object\&. 
+\fIinitLocation\fP a pointer to a Point object representing the initial location of the object\&. 
 .br
 \fIclock\fP a pointer to a \fBClock\fP object used in this simulation\&. 
 .RE
 .PP
 
 .SS "virtual LocatableAgent::~LocatableAgent ()\fC [virtual]\fP"
-Destructor 
+Destructor of the class\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "const string LocatableAgent::dumpLocation ()"
-Builds a human readable string representation of the location 
+.SS "const string LocatableAgent::dumpLocation () const"
+Builds a string representation of the location\&. 
 .PP
 \fBReturns\fP
 .RS 4
-a human readable string representation of the location 
+a string representation of the location, containing the values of the coordinates of the location\&. 
 .RE
 .PP
 
 .SS "virtual Point* LocatableAgent::getLocation () const\fC [virtual]\fP"
-
+Returns the location on the map\&. 
 .PP
 \fBReturns\fP
 .RS 4
@@ -94,15 +94,24 @@ Sets the location of the agent on the map\&.
 
 .PP
 Reimplemented in \fBPerson\fP, and \fBHoldableAgent\fP\&.
-.SS "const string LocatableAgent::toString () const\fC [override]\fP"
-Builds a human readable string representation of this class useful to output it to a file or on the screen\&. 
+.SS "const string LocatableAgent::toString (bool detailed = \fCfalse\fP) const\fC [override]\fP, \fC [virtual]\fP"
+Builds a string with the most relevant information of the class\&. It is useful to output the description of concrete agents to the console or to a file\&. Currently, the value of the \fCdetailed\fP parameter is ignored\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdetailed\fP the value of this parameter is ignored\&. 
+.RE
 .PP
 \fBReturns\fP
 .RS 4
-a string representation of this class\&. 
+a string object containing the id and the coordinates of the location of the agent\&. 
 .RE
 .PP
 
+.PP
+Implements \fBAgent\fP\&.
+.PP
+Reimplemented in \fBPerson\fP, \fBMobilePhone\fP, \fBMovableAgent\fP, and \fBTablet\fP\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "Point* LocatableAgent::m_location\fC [private]\fP"

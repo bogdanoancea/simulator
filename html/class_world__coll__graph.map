@@ -1,7 +1,8 @@
 <map id="World" name="World">
-<area shape="rect" id="node1" title=" " alt="" coords="288,175,451,443"/>
-<area shape="rect" id="node2" href="$class_simulation_configuration.html" title=" " alt="" coords="5,13,192,105"/>
-<area shape="rect" id="node3" href="$class_event_factory.html" title=" " alt="" coords="217,5,343,112"/>
-<area shape="rect" id="node4" title=" " alt="" coords="367,20,550,97"/>
-<area shape="rect" id="node5" title=" " alt="" coords="574,20,703,97"/>
+<area shape="rect" id="node1" title=" " alt="" coords="304,432,467,700"/>
+<area shape="rect" id="node2" href="$class_simulation_configuration.html" title=" " alt="" coords="5,219,192,311"/>
+<area shape="rect" id="node3" href="$class_agents_collection.html" title=" " alt="" coords="217,160,375,369"/>
+<area shape="rect" id="node4" title=" " alt="" coords="227,5,365,97"/>
+<area shape="rect" id="node5" href="$class_event_factory.html" title=" " alt="" coords="399,211,526,318"/>
+<area shape="rect" id="node6" title=" " alt="" coords="550,226,733,303"/>
 </map>

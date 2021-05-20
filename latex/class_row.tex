@@ -1,4 +1,4 @@
-\hypertarget{class_row}{}\section{Row Class Reference}
+\hypertarget{class_row}{}\doxysection{Row Class Reference}
 \label{class_row}\index{Row@{Row}}
 
 
@@ -13,49 +13,49 @@ Collaboration diagram for Row\+:\nopagebreak
 \includegraphics[width=164pt]{class_row__coll__graph}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_row_afc5afcd4b8560ddd3b7372df2bc063a8}{Row} (const vector$<$ string $>$ \&header)
+\mbox{\hyperlink{class_row_afc5afcd4b8560ddd3b7372df2bc063a8}{Row}} (const vector$<$ string $>$ \&header)
 \item 
-\hyperlink{class_row_a671be9f718722eccb2d3121f1579733e}{$\sim$\+Row} (void)
+\mbox{\hyperlink{class_row_a671be9f718722eccb2d3121f1579733e}{$\sim$\+Row}} (void)
 \item 
-unsigned int \hyperlink{class_row_ac3dce6d0bd64e944a932a5a26c3ebcef}{size} (void) const
+unsigned int \mbox{\hyperlink{class_row_ac3dce6d0bd64e944a932a5a26c3ebcef}{size}} (void) const
 \item 
-void \hyperlink{class_row_ac18926c6dc8fdfb37894009a8c80fdb1}{push} (const string \&value)
+void \mbox{\hyperlink{class_row_ac18926c6dc8fdfb37894009a8c80fdb1}{push}} (const string \&value)
 \item 
-bool \hyperlink{class_row_a74ab22cc8f79c7a1c87da8fefae0d834}{set} (const string \&key, const string \&value)
+bool \mbox{\hyperlink{class_row_a74ab22cc8f79c7a1c87da8fefae0d834}{set}} (const string \&key, const string \&value)
 \item 
-{\footnotesize template$<$typename T $>$ }\\const T \hyperlink{class_row_a06931bff452df5a451da2268423bb6ea}{get\+Value} (unsigned int pos) const
+{\footnotesize template$<$typename T $>$ }\\const T \mbox{\hyperlink{class_row_a06931bff452df5a451da2268423bb6ea}{get\+Value}} (unsigned int pos) const
 \item 
-const string \hyperlink{class_row_a705ecee70126716fbe16337e4a2b8764}{operator\mbox{[}$\,$\mbox{]}} (unsigned int i) const
+const string \mbox{\hyperlink{class_row_a705ecee70126716fbe16337e4a2b8764}{operator\mbox{[}$\,$\mbox{]}}} (unsigned int i) const
 \item 
-const string \hyperlink{class_row_a42f23dd69d591da253b7428647f16ff8}{operator\mbox{[}$\,$\mbox{]}} (const string \&value\+Name) const
+const string \mbox{\hyperlink{class_row_a42f23dd69d591da253b7428647f16ff8}{operator\mbox{[}$\,$\mbox{]}}} (const string \&value\+Name) const
 \end{DoxyCompactItemize}
-\subsection*{Private Attributes}
+\doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const vector$<$ string $>$ \hyperlink{class_row_a98603a15923aa97e15198393ef3080c0}{\+\_\+header}
+const vector$<$ string $>$ \mbox{\hyperlink{class_row_a98603a15923aa97e15198393ef3080c0}{\+\_\+header}}
 \item 
-vector$<$ string $>$ \hyperlink{class_row_ab064db33f941055c8d99a6f47eae733c}{\+\_\+values}
+vector$<$ string $>$ \mbox{\hyperlink{class_row_ab064db33f941055c8d99a6f47eae733c}{\+\_\+values}}
 \end{DoxyCompactItemize}
-\subsection*{Friends}
+\doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-ostream \& \hyperlink{class_row_a8962fdc6373687757234a811e803a1da}{operator$<$$<$} (ostream \&os, const \hyperlink{class_row}{Row} \&row)
+ostream \& \mbox{\hyperlink{class_row_a8962fdc6373687757234a811e803a1da}{operator$<$$<$}} (ostream \&os, const \mbox{\hyperlink{class_row}{Row}} \&row)
 \item 
-ofstream \& \hyperlink{class_row_ad4e8b6c4b0238a50bde8e99ec8a0dcb0}{operator$<$$<$} (ofstream \&os, const \hyperlink{class_row}{Row} \&row)
+ofstream \& \mbox{\hyperlink{class_row_ad4e8b6c4b0238a50bde8e99ec8a0dcb0}{operator$<$$<$}} (ofstream \&os, const \mbox{\hyperlink{class_row}{Row}} \&row)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 This class is used to represent a line from a .csv file. It is a container of the values from a line of text. 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_row_afc5afcd4b8560ddd3b7372df2bc063a8}\label{class_row_afc5afcd4b8560ddd3b7372df2bc063a8}} 
 \index{Row@{Row}!Row@{Row}}
 \index{Row@{Row}!Row@{Row}}
-\subsubsection{\texorpdfstring{Row()}{Row()}}
+\doxysubsubsection{\texorpdfstring{Row()}{Row()}}
 {\footnotesize\ttfamily Row\+::\+Row (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{header }\end{DoxyParamCaption})}
 
 Constructor. It takes a a line of text representing the header of the csv file. 
@@ -64,18 +64,18 @@ Constructor. It takes a a line of text representing the header of the csv file.
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{class_row_a671be9f718722eccb2d3121f1579733e}\label{class_row_a671be9f718722eccb2d3121f1579733e}} 
-\index{Row@{Row}!````~Row@{$\sim$\+Row}}
-\index{````~Row@{$\sim$\+Row}!Row@{Row}}
-\subsubsection{\texorpdfstring{$\sim$\+Row()}{~Row()}}
+\index{Row@{Row}!````~Row@{$\sim$Row}}
+\index{````~Row@{$\sim$Row}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{$\sim$Row()}{~Row()}}
 {\footnotesize\ttfamily Row\+::$\sim$\+Row (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 Destructor. 
 
-\subsection{Member Function Documentation}
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_row_a06931bff452df5a451da2268423bb6ea}\label{class_row_a06931bff452df5a451da2268423bb6ea}} 
-\index{Row@{Row}!get\+Value@{get\+Value}}
-\index{get\+Value@{get\+Value}!Row@{Row}}
-\subsubsection{\texorpdfstring{get\+Value()}{getValue()}}
+\index{Row@{Row}!getValue@{getValue}}
+\index{getValue@{getValue}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 const T Row\+::get\+Value (\begin{DoxyParamCaption}\item[{unsigned int}]{pos }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
@@ -87,24 +87,10 @@ Returns the value of an element from a row
 \begin{DoxyReturn}{Returns}
 the value 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_row_a705ecee70126716fbe16337e4a2b8764}\label{class_row_a705ecee70126716fbe16337e4a2b8764}} 
-\index{Row@{Row}!operator\mbox{[}\mbox{]}@{operator[]}}
-\index{operator\mbox{[}\mbox{]}@{operator[]}!Row@{Row}}
-\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily const string Row\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{unsigned int}]{i }\end{DoxyParamCaption}) const}
-
-Overloaded operator 
-\begin{DoxyParams}{Parameters}
-{\em i} & the position of the value that we want to extract \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-the value from position i 
-\end{DoxyReturn}
 \mbox{\Hypertarget{class_row_a42f23dd69d591da253b7428647f16ff8}\label{class_row_a42f23dd69d591da253b7428647f16ff8}} 
 \index{Row@{Row}!operator\mbox{[}\mbox{]}@{operator[]}}
 \index{operator\mbox{[}\mbox{]}@{operator[]}!Row@{Row}}
-\subsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily const string Row\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const string \&}]{value\+Name }\end{DoxyParamCaption}) const}
 
 Overloaded operator 
@@ -115,10 +101,24 @@ Overloaded operator
 \begin{DoxyReturn}{Returns}
 the value from the column specified by its name 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_row_a705ecee70126716fbe16337e4a2b8764}\label{class_row_a705ecee70126716fbe16337e4a2b8764}} 
+\index{Row@{Row}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const string Row\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{unsigned int}]{i }\end{DoxyParamCaption}) const}
+
+Overloaded operator 
+\begin{DoxyParams}{Parameters}
+{\em i} & the position of the value that we want to extract \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value from position i 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_row_ac18926c6dc8fdfb37894009a8c80fdb1}\label{class_row_ac18926c6dc8fdfb37894009a8c80fdb1}} 
 \index{Row@{Row}!push@{push}}
 \index{push@{push}!Row@{Row}}
-\subsubsection{\texorpdfstring{push()}{push()}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
 {\footnotesize\ttfamily void Row\+::push (\begin{DoxyParamCaption}\item[{const string \&}]{value }\end{DoxyParamCaption})}
 
 Add a new value on a row 
@@ -129,7 +129,7 @@ Add a new value on a row
 \mbox{\Hypertarget{class_row_a74ab22cc8f79c7a1c87da8fefae0d834}\label{class_row_a74ab22cc8f79c7a1c87da8fefae0d834}} 
 \index{Row@{Row}!set@{set}}
 \index{set@{set}!Row@{Row}}
-\subsubsection{\texorpdfstring{set()}{set()}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
 {\footnotesize\ttfamily bool Row\+::set (\begin{DoxyParamCaption}\item[{const string \&}]{key,  }\item[{const string \&}]{value }\end{DoxyParamCaption})}
 
 Sets the value of a specific element in a row. The element is specified by the column name. 
@@ -145,7 +145,7 @@ Sets the value of a specific element in a row. The element is specified by the c
 \mbox{\Hypertarget{class_row_ac3dce6d0bd64e944a932a5a26c3ebcef}\label{class_row_ac3dce6d0bd64e944a932a5a26c3ebcef}} 
 \index{Row@{Row}!size@{size}}
 \index{size@{size}!Row@{Row}}
-\subsubsection{\texorpdfstring{size()}{size()}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
 {\footnotesize\ttfamily unsigned int Row\+::size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
 Returns the number of values on a row. \begin{DoxyReturn}{Returns}
@@ -153,28 +153,12 @@ the number of values on a row.
 \end{DoxyReturn}
 
 
-\subsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{class_row_a8962fdc6373687757234a811e803a1da}\label{class_row_a8962fdc6373687757234a811e803a1da}} 
-\index{Row@{Row}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!Row@{Row}}
-\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{const \hyperlink{class_row}{Row} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
-
-Overloaded operator outputs the content of a row in a stream 
-\begin{DoxyParams}{Parameters}
-{\em os} & the stream where we want to send the content of the row. \\
-\hline
-{\em row} & the row that we want to output \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-the same output stream 
-\end{DoxyReturn}
+\doxysubsection{Friends And Related Function Documentation}
 \mbox{\Hypertarget{class_row_ad4e8b6c4b0238a50bde8e99ec8a0dcb0}\label{class_row_ad4e8b6c4b0238a50bde8e99ec8a0dcb0}} 
 \index{Row@{Row}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!Row@{Row}}
-\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily ofstream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ofstream \&}]{os,  }\item[{const \hyperlink{class_row}{Row} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ofstream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ofstream \&}]{os,  }\item[{const \mbox{\hyperlink{class_row}{Row}} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 Overloaded operator outputs the content of a row in a file stream 
 \begin{DoxyParams}{Parameters}
@@ -186,23 +170,39 @@ Overloaded operator outputs the content of a row in a file stream
 \begin{DoxyReturn}{Returns}
 the same output file stream 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_row_a8962fdc6373687757234a811e803a1da}\label{class_row_a8962fdc6373687757234a811e803a1da}} 
+\index{Row@{Row}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{const \mbox{\hyperlink{class_row}{Row}} \&}]{row }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Overloaded operator outputs the content of a row in a stream 
+\begin{DoxyParams}{Parameters}
+{\em os} & the stream where we want to send the content of the row. \\
+\hline
+{\em row} & the row that we want to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the same output stream 
+\end{DoxyReturn}
 
 
-\subsection{Member Data Documentation}
+\doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{class_row_a98603a15923aa97e15198393ef3080c0}\label{class_row_a98603a15923aa97e15198393ef3080c0}} 
-\index{Row@{Row}!\+\_\+header@{\+\_\+header}}
-\index{\+\_\+header@{\+\_\+header}!Row@{Row}}
-\subsubsection{\texorpdfstring{\+\_\+header}{\_header}}
+\index{Row@{Row}!\_header@{\_header}}
+\index{\_header@{\_header}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{\_header}{\_header}}
 {\footnotesize\ttfamily const vector$<$string$>$ Row\+::\+\_\+header\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_row_ab064db33f941055c8d99a6f47eae733c}\label{class_row_ab064db33f941055c8d99a6f47eae733c}} 
-\index{Row@{Row}!\+\_\+values@{\+\_\+values}}
-\index{\+\_\+values@{\+\_\+values}!Row@{Row}}
-\subsubsection{\texorpdfstring{\+\_\+values}{\_values}}
+\index{Row@{Row}!\_values@{\_values}}
+\index{\_values@{\_values}!Row@{Row}}
+\doxysubsubsection{\texorpdfstring{\_values}{\_values}}
 {\footnotesize\ttfamily vector$<$string$>$ Row\+::\+\_\+values\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\hyperlink{_c_s_vparser_8hpp}{C\+S\+Vparser.\+hpp}\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_c_s_vparser_8hpp}{C\+S\+Vparser.\+hpp}}\end{DoxyCompactItemize}
