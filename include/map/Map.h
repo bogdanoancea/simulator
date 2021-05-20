@@ -59,22 +59,23 @@ public:
 	virtual Geometry* getBoundary() const = 0;
 
 	/**
-	 * Returns the map bounding box.
-	 * @return the map bounding box.
+	 * Returns the bounding box of the map.
+	 * @return the bounding box of the map.
 	 */
 	virtual Geometry* getEnvelope() const = 0;
 
 	/**
-	 * It actually returns a pointer to the  GeometryFactory of the GEOS++ library needed to create Geometry objects.
-	 * @return a pointer to the  GeometryFactory of the GEOS++ library needed to create Geometry objects.
+	 * It returns a pointer to the GeometryFactory of the GEOS++ library needed to create Geometry objects.
+	 * @return a pointer to the GeometryFactory of the GEOS++ library needed to create Geometry objects.
 	 */
 	const virtual GeometryFactory::Ptr& getGlobalFactory() const = 0;
 
 	/**
 	 * Creates a Grid object with the dimensions of tiles specified as parameters. It computes to necessary number of tiles such that the Grid covers
-	 * the bounding box of the map. A pointer to the Grid object is tehn stored as a member of the Map class.
-	 * @param dimTileX
-	 * @param dimTileY
+	 * the bounding box of the map. The origin point of the grid (the left bottom point) is set to the minimum values for x and y coordinates
+	 * of the bounding box of the Map. A pointer to the Grid object is then stored as a member of the Map class.
+	 * @param dimTileX the dimension of a tile on OX axis.
+	 * @param dimTileY the dimension of a grid on OY axis.
 	 */
 	virtual void addGrid(double dimTileX, double dimTileY);
 

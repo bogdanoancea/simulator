@@ -35,38 +35,43 @@ using namespace geos::geom;
 
 /**
  * This is the map where the simulation takes place. It could be a simple rectangle or any kind of geometry object(s)
- * read from a wkt file. The map has a boundary that is implemented as a Geometry object, a factory object of GeometryFactory type
- * used to create other objects. All geometric and geographic features of the simulator uses the GEOS library.
- * GEOS is an open source C++ library which is just a port to C++ of the well known Java Topology Suite.
+ * read from a <tt>WKT</tt> file. The map has a boundary that is implemented as a Geometry object, a factory object of GeometryFactory type
+ * used to create other objects. All geometric and geographic features of the simulator uses the GEOS++ library.
+ * GEOS++ is an open source C++ library which is just a port to C++ of the well known Java Topology Suite.
  */
 
 class WKTMap: public Map {
 public:
 	/**
-	 * Builds a map reading it from a .wkt file.
+	 * Builds a map, reading its external boundary from a .wkt file.
 	 * @param wktFile the name of the .wkt file that contains the description of the map.
-	 * Currently, the first row of this file should contain the external boundary geometry of the map.
+	 * Currently, the first row of this file should contain the external boundary geometry of the map specified as a text in
+	 * WKT (Well Known Text) format.
 	 */
 	WKTMap(string wktFile);
 
 	/**
-	 * Default destructor
+	 * Default destructor.
 	 */
 	virtual ~WKTMap();
 
 	/**
-	 * Returns a pointer to the GeometryFactory object which is a factory object used to create other geometric objects. The GEOS
+	 * Returns a pointer to the GeometryFactory object which is a factory object used to create other geometric objects. The GEOS++
 	 * library allows users to create geometric objects only using this factory, all the constructors are made private.
 	 * @return a pointer to the GeometryFactory object used to create other geometric objects.
 	 */
 	const GeometryFactory::Ptr& getGlobalFactory() const override;
 
 	/**
-	 * Returns a pointer to the Geometry object that represents the external boundary of the map.
-	 * @return a pointer to the Geometry object that represents the external boundary of the map.
+	 * Returns a pointer to the Geometry object that represents the actual external boundary of the map.
+	 * @return a pointer to the Geometry object that represents the actual external boundary of the map.
 	 */
 	virtual Geometry* getBoundary() const override;
 
+	/**
+	 * Returns the bounding box of the map.
+	 * @return the bounding box of the map.
+	 */
 	virtual Geometry* getEnvelope() const override;
 
 private:
