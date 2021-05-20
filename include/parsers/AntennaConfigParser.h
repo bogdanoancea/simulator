@@ -42,7 +42,9 @@
 class AntennaConfigParser: public ConfigParser {
 public:
 	/**
-	 *
+	 * Constructor of the class. It takes the filename of the antenna configuration files, a pointer to the SimulationConfiguration object,
+	 * a pointer to the AgentsCollection container class and a pointer to the EventFactory.
+	 * The AgentsCollection and EventFactory object are created in the caller of this constructor, in this case the main()
 	 * @param fileName
 	 * @param sc
 	 * @param ag

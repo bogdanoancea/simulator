@@ -54,7 +54,7 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	m_agentsCollection = new AgentsCollection();
 	m_eventFactory = new EventFactory();
-	SimConfigParser sConfigParser(configSimulationFileName, m_agentsCollection, mmap);
+	SimulationConfigurationParser sConfigParser(configSimulationFileName, m_agentsCollection, mmap);
 	sConfigParser.parse();
 	m_sp = sConfigParser.getSimulationConfiguration();
 	mmap->addGrid(m_sp->getGridDimTileX(), m_sp->getGridDimTileY());

@@ -32,8 +32,8 @@
 #include <parsers/AntennaConfigParser.h>
 #include <parsers/PersonsConfigParser.h>
 #include <parsers/ProbabilitiesConfigParser.h>
-#include <parsers/SimConfigParser.h>
 #include <parsers/SimulationConfiguration.h>
+#include <parsers/SimulationConfigurationParser.h>
 #include <RandomNumberGenerator.h>
 #include <PostLocProb.h>
 #include <PriorType.h>

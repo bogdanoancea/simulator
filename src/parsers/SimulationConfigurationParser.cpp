@@ -32,7 +32,7 @@
 #include <IDGenerator.h>
 #include <map/Map.h>
 #include <parsers/HomeWorkLocation.h>
-#include <parsers/SimConfigParser.h>
+#include <parsers/SimulationConfigurationParser.h>
 #include <Utils.h>
 #include <cstring>
 #include <filesystem>
@@ -43,7 +43,7 @@
 using namespace utils;
 using namespace std;
 
-SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agents, Map* map) :
+SimulationConfigurationParser::SimulationConfigurationParser(const string& filename, AgentsCollection* agents, Map* map) :
 		ConfigParser(filename) {
 
 	m_simConfig = new SimulationConfiguration();
@@ -54,10 +54,10 @@ SimConfigParser::SimConfigParser(const string& filename, AgentsCollection* agent
 //		agents->addAgent(m_simConfig->getMnos()[i]);
 }
 
-SimConfigParser::~SimConfigParser() {
+SimulationConfigurationParser::~SimulationConfigurationParser() {
 }
 
-void SimConfigParser::parse() {
+void SimulationConfigurationParser::parse() {
 	XMLDocument doc;
 	XMLError err = doc.LoadFile(getFileName().c_str());
 	if (err != XML_SUCCESS)
@@ -107,7 +107,7 @@ void SimConfigParser::parse() {
 	}
 }
 
-shared_ptr<Distribution> SimConfigParser::parseStayTimeDistribution(XMLElement* parent) {
+shared_ptr<Distribution> SimulationConfigurationParser::parseStayTimeDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
 	XMLElement *ts = parent->FirstChildElement("time_stay");
 	if (ts) {
@@ -134,7 +134,7 @@ shared_ptr<Distribution> SimConfigParser::parseStayTimeDistribution(XMLElement* 
 }
 
 
-shared_ptr<Distribution> SimConfigParser::parseIntervalBetweenStaysDistribution(XMLElement* parent) {
+shared_ptr<Distribution> SimulationConfigurationParser::parseIntervalBetweenStaysDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
 	XMLElement *its = parent->FirstChildElement("interval_between_stays");
 	if (its) {
@@ -159,7 +159,7 @@ shared_ptr<Distribution> SimConfigParser::parseIntervalBetweenStaysDistribution(
 }
 
 
-void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
+void SimulationConfigurationParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
 	XMLElement* home = homeWorkElement->FirstChildElement("home");
 	if(!home) {
 		throw std::runtime_error("Home location missing!");
@@ -224,7 +224,7 @@ void SimConfigParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWor
 	hws->setAngleDistribution(p);
 }
 
-Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
+Distribution* SimulationConfigurationParser::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
 	Distribution* result = nullptr;
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
 	DistributionType dType;
@@ -258,7 +258,7 @@ Distribution* SimConfigParser::parseDirectionAngleDistribution(XMLElement* homeW
 
 
 
-vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
+vector<MobileOperator*> SimulationConfigurationParser::parseMNOs(XMLElement* el) {
 	vector<MobileOperator*> result;
 	unsigned numMNO = 0;
 	XMLElement* mnoEl = utils::getFirstChildElement(el, "mno");
@@ -279,7 +279,7 @@ vector<MobileOperator*> SimConfigParser::parseMNOs(XMLElement* el) {
 	return (result);
 }
 
-MovementType SimConfigParser::parseMovement(XMLElement* el) {
+MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 	MovementType result = MovementType::UNKNOWN;
 	XMLElement* mvEl = el->FirstChildElement("movement_pattern");
 	if(mvEl) {
@@ -314,19 +314,19 @@ MovementType SimConfigParser::parseMovement(XMLElement* el) {
 	return (result);
 }
 
-void SimConfigParser::parseLevyFlight(XMLElement* mvEl, LevyFlightScenario* lfs) {
+void SimulationConfigurationParser::parseLevyFlight(XMLElement* mvEl, LevyFlightScenario* lfs) {
 	lfs->setSpeedDistribution(parseSpeedDistribution(mvEl));
 	lfs->setCutOffPoint(getValue(mvEl, "cutOffSpeed", Constants::CUTOFFSPEED));
 }
 
-void SimConfigParser::parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws) {
+void SimulationConfigurationParser::parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws) {
 	rws->setTrendAngle1Distribution(parseTrendAngleDistribution(mvEl,1));
 	rws->setTrendAngle2Distribution(parseTrendAngleDistribution(mvEl,2));
 	Distribution* retAngle = parseReturnAngleDistribution(mvEl);
 	rws->setReturnAngleDistribution(retAngle);
 }
 
-Distribution* SimConfigParser::parseSpeedDistribution(XMLElement* mvEl) {
+Distribution* SimulationConfigurationParser::parseSpeedDistribution(XMLElement* mvEl) {
 	Distribution *result = nullptr;
 	XMLElement *distribution = mvEl->FirstChildElement("speed_distribution");
 	DistributionType dType;
@@ -350,7 +350,7 @@ Distribution* SimConfigParser::parseSpeedDistribution(XMLElement* mvEl) {
 }
 
 
-Distribution* SimConfigParser::parseTrendAngleDistribution(XMLElement* mvEl, int noAngle) {
+Distribution* SimulationConfigurationParser::parseTrendAngleDistribution(XMLElement* mvEl, int noAngle) {
 	Distribution *result = nullptr;
 	ostringstream elem;
 	elem << "trend_angle_" << noAngle << "_distribution";
@@ -377,7 +377,7 @@ Distribution* SimConfigParser::parseTrendAngleDistribution(XMLElement* mvEl, int
 	return result;
 }
 
-Distribution* SimConfigParser::parseReturnAngleDistribution(XMLElement* mvEl) {
+Distribution* SimulationConfigurationParser::parseReturnAngleDistribution(XMLElement* mvEl) {
 	Distribution *result = nullptr;
 	XMLElement *distribution = mvEl->FirstChildElement("return_angle_distribution");
 	DistributionType dType;
@@ -403,7 +403,7 @@ Distribution* SimConfigParser::parseReturnAngleDistribution(XMLElement* mvEl) {
 }
 
 
-HoldableAgent::CONNECTION_TYPE SimConfigParser::parseConnectionType(XMLElement* el) {
+HoldableAgent::CONNECTION_TYPE SimulationConfigurationParser::parseConnectionType(XMLElement* el) {
 	HoldableAgent::CONNECTION_TYPE result;
 	const char* connType = getValue(el, "connection_type", "UNKNOWN");
 	if (!strcmp(connType, "power"))
@@ -417,7 +417,7 @@ HoldableAgent::CONNECTION_TYPE SimConfigParser::parseConnectionType(XMLElement* 
 	return (result);
 }
 
-double SimConfigParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType) {
+double SimulationConfigurationParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType) {
 	double result = -1;
 	if (connType == HoldableAgent::CONNECTION_TYPE::USING_POWER)
 		result = Constants::PHONE_POWER_THRESHOLD;
@@ -428,6 +428,6 @@ double SimConfigParser::getDefaultConnectionThreshold(HoldableAgent::CONNECTION_
 	return (result);
 }
 
-SimulationConfiguration* SimConfigParser::getSimulationConfiguration() {
+SimulationConfiguration* SimulationConfigurationParser::getSimulationConfiguration() {
 	return m_simConfig;
 }

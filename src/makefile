@@ -25,7 +25,7 @@ parsers/HomeWorkLocation.o\
 parsers/HomeWorkScenario.o\
 parsers/SimulationConfiguration.o\
 parsers/ConfigParser.o\
-parsers/SimConfigParser.o\
+parsers/SimulationConfigurationParser.o\
 parsers/PersonsConfigParser.o\
 parsers/PersonConfiguration.o\
 parsers/AntennaConfiguration.o\
