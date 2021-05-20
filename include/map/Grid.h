@@ -37,7 +37,7 @@ using namespace geos::geom;
 
 /**
  * This class implements a grid  of rectangular tiles overlapped on the map of the simulation. This grid is used to compute
- * the "observed" location of a mobile phone. This means that we compute the probability of a mobile device to be in a
+ * the "observed" location of a mobile phone. This means that we compute the probability of a mobile device to be located in a
  * specific tile of the grid using the data recorded by each antenna during the simulation. A finer grid will give a
  * more accurate location but the computational cost increase when the size of the tiles decrease.
  * The tiles of the grid are indexed starting with 0 for the tile in the bottom left corner of the
@@ -47,7 +47,7 @@ class Grid {
 public:
 
 	/**
-	 * Constructor of the class. Build a Grid object with the specified parameters.
+	 * Constructor of the class. Builds a Grid object with the specified parameters.
 	 * @param xOrig the x coordinate of the origin of the grid (i.e. the x coordinate of the bottom left corner of the grid).
 	 * @param yOrig the y coordinate of the origin of the grid (i.e. the y coordinate of the bottom left corner of the grid).
 	 * @param xTiledim the dimension of a tile on X axis.
@@ -63,32 +63,37 @@ public:
 	virtual ~Grid();
 
 	/**
+	 * Returns the number of tiles on X axis direction.
 	 * @return the number of tiles of the grid on X axis direction.
 	 */
 	unsigned long getNoTilesX() const;
 
 	/**
+	 * Returns the number of the tiles on Y axis direction.
 	 * @return the number of tiles of the grid on Y axis direction.
 	 */
 	unsigned long getNoTilesY() const;
 
 	/**
+	 * Returns the dimension of a tile on X axis direction.
 	 * @return the dimension of a tile on X axis direction.
 	 */
 	double getXTileDim() const;
 
 	/**
+	 * Returns the dimension of a tile on Y axis direction.
 	 * @return the dimension of a tile on Y axis direction.
 	 */
 	double getYTileDim() const;
 
 	/**
+	 * Returns the x coordinate of the origin of the grid (i.e. the x coordinate of the bottom left corner of the grid).
 	 * @return the x coordinate of the origin of the grid (i.e. the x coordinate of the bottom left corner of the grid).
 	 */
 	double getXOrigin() const;
 
 	/**
-	 *
+	 * Returns the y coordinate of the origin of the grid (i.e. the y coordinate of the bottom left corner of the grid).
 	 * @return the y coordinate of the origin of the grid (i.e. the y coordinate of the bottom left corner of the grid).
 	 */
 	double getYOrigin() const;
@@ -102,30 +107,34 @@ public:
 
 
 	/**
-	 * Computes the coordinates of the tile center given by its index in the grid.
+	 * Computes the coordinates of the tile center given its index in the grid.
 	 * @param tileIndex the tile index.
-	 * @return the coordinates of the center of the tile.
+	 * @return the coordinates of the center of the tile as a Coordinate object.
 	 */
 	Coordinate getTileCenter(unsigned long tileIndex) const;
 
 	/**
-	 * Computes the tile index of the tile that contains the Point indicated by p.
+	 * Computes the tile index of the tile that contains the Point p.
 	 * @param p a pointer to a Point object.
-	 * @return the tile index of the tile that contains the Point indicated by p.
+	 * @return the tile index of the tile that contains the Point p.
 	 */
 	unsigned long getTileNo(const Point* p) const;
 
 
 	/**
-	 * Computes the tile index of the tile that contains a point with coordinates indicated by x and y.
+	 * Computes the tile index of the tile that contains a point with coordinates given by \a x and \a y.
 	 * @param x x coordinate of a location.
 	 * @param y y coordinate of a location.
-	 * @return the tile index of the tile that contains a point with coordinates indicated by x and y.
+	 * @return the tile index of the tile that contains a point with coordinates given by \a x and \a y.
 	 */
 	unsigned long getTileNo(double x, double y) const;
 
 	/**
-	 * Writes the grid description in a .csv file for later processing.
+	 * Writes the grid description in a .csv file for later processing. An example file:
+	 * \code
+	 * Origin X,Origin Y,X Tile Dim,Y Tile Dim,No Tiles X,No Tiles Y
+	 * 0.000000,0.000000,250.000000,250.000000,40,40
+	 * \endcode
 	 * @param gridFileName the name of the output file.
 	 */
 	void dumpGrid(const string& gridFileName) const;
@@ -166,7 +175,8 @@ private:
 
 	/**
 	 * @return a string representation of a \code{Grid} object. This is useful to write a textual description of the grid to a file
-	 * for later processing.
+	 * for later processing. The string contains the x and y coordinates of the origin of the grid, the tile dimensions on OX and OY axes
+	 * and the number of tiles on OX and OY axes, all these values being comma separated.
 	 */
 	string toString() const;
 
