@@ -38,6 +38,7 @@
 #include <parsers/ConfigParser.h>
 #include <parsers/SimulationConfiguration.h>
 #include <parsers/RandomWalkDriftScenario.h>
+#include <parsers/ManhattanScenario.h>
 
 using namespace tinyxml2;
 

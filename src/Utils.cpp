@@ -120,14 +120,14 @@ vector<Point*> generateHomeWorkPoints(SimulationConfiguration* sc, unsigned long
 
 void generateHomeLocation(Map* m, HomeWorkLocation hLoc, unsigned int npers, RandomNumberGenerator* random_generator, vector<Point*>& result) {
 	vector<pair<const char*, double>> distrPars;
-	std::pair<const char*, double> p1 = std::make_pair("mean",hLoc.m_x );
-	std::pair<const char*, double> p2 = std::make_pair("sd", hLoc.m_sdx);
+	std::pair<const char*, double> p1 = std::make_pair("mean",hLoc.getX());
+	std::pair<const char*, double> p2 = std::make_pair("sd", hLoc.getSdX());
 	distrPars.push_back(p1);
 	distrPars.push_back(p2);
 	Distribution normalX(DistributionType::NORMAL, distrPars);
 	vector<pair<const char*, double>> distrPars2;
-	p1 = std::make_pair("mean",hLoc.m_y );
-	p2 = std::make_pair("sd", hLoc.m_sdy);
+	p1 = std::make_pair("mean",hLoc.getY());
+	p2 = std::make_pair("sd", hLoc.getSdY());
 	distrPars2.push_back(p1);
 	distrPars2.push_back(p2);
 	Distribution normalY(DistributionType::NORMAL, distrPars2);

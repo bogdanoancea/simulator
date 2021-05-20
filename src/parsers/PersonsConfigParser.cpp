@@ -306,11 +306,11 @@ Point* PersonsConfigParser::generateLocation(unsigned int index, vector<HomeWork
 	Point* result = nullptr;
 	double angle = RandomNumberGenerator::instance()->generateUniformDouble(0, 2.0 * utils::PI);
 	HomeWorkLocation wl = locations.at(index);
-	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.m_sdx + pow(sin(angle),2)/wl.m_sdy) );
+	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.getSdX() + pow(sin(angle),2)/wl.getSdY()) );
 	double l = RandomNumberGenerator::instance()->generateUniformDouble(0, L);
-	double x = wl.m_x + l * cos(angle);
-	double y = wl.m_y + l * sin(angle);
-	Coordinate c1(x, y, wl.m_z);
+	double x = wl.getSdX() + l * cos(angle);
+	double y = wl.getSdY() + l * sin(angle);
+	Coordinate c1(x, y, wl.getZ());
 	result = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 
 	return result;

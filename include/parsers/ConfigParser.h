@@ -34,7 +34,7 @@ using namespace std;
  * The base class for the configuration file parsers. All derived classes handle a specific type of
  * configuration file: simulation, persons, antennas, probabilities. These derived classes parse the
  * corresponding configuration file, build the corresponding objects (Antenna, Person, MobilePhone, MobileOperator)
- * and add them to the AgentsCollection container. This is an abstract class since it contains one pure virtual function, parse()
+ * and add them to the AgentsCollection container. This is an abstract class, it contains one pure virtual function, parse()
  * that has to be implemented by subclasses.
  */
 class ConfigParser {
