@@ -84,6 +84,7 @@ private:
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
 	void parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws);
 	void parseLevyFlight(XMLElement* mvEl, LevyFlightScenario* lfs);
+	void parseManhattan(XMLElement* mhEl, ManhattanScenario* mhs);
 	Distribution* parseSpeedDistribution(XMLElement* mvEl);
 	Distribution* parseDirectionAngleDistribution(XMLElement* homeWorkElement);
 	Distribution* parseReturnAngleDistribution(XMLElement* mvElement);

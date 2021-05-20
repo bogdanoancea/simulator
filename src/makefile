@@ -33,6 +33,7 @@ parsers/AntennaConfigParser.o\
 parsers/ProbabilitiesConfiguration.o\
 parsers/ProbabilitiesConfigParser.o\
 parsers/RandomWalkDriftScenario.o\
+parsers/ManhattanScenario.o\
 parsers/LevyFlightScenario.o\
 AntennaInfo.o\
 CSVParser.o\
