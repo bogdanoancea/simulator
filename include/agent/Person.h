@@ -60,7 +60,7 @@ public:
 	 * of movement patterns (random move, random move with drift, Levy flights the movement consists in a sequence of time intervals
 	 * when the person stays in the same position and time intervals when the person move to a new position. The time interval when the
 	 * person stays in the same position is a random value generated according the distribution given as parameter.
-	 * @param intervalBetweenStays the Distribution of the time interval between two consecutive stops of the person.
+	 * @param intervalBetweenStaysDistribution the Distribution of the time interval between two consecutive stops of the person.
 	 */
 	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender,
 			shared_ptr<Distribution> timeStayDistribution, shared_ptr<Distribution> intervalBetweenStaysDistribution);
