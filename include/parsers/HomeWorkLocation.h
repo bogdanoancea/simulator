@@ -41,27 +41,33 @@ public:
 	/**
 	 * Constructor of the class. It builds a HomeWorkLocation object by setting its members using the values passed as parameters.
 	 * @param x the x coordinate of a Home - Work location.
-	 * @param y
-	 * @param z
-	 * @param sdx
-	 * @param sdy
-	 * @param sdz
+	 * @param y  the y coordinate of a Home - Work location.
+	 * @param z  the z coordinate of a Home - Work location.
+	 * @param sdx the standard deviation / radius of the x coordinate of a Home - Work location.
+	 * @param sdy the standard deviation / radius of the y coordinate of a Home - Work location.
+	 * @param sdz the standard deviation / radius of the z coordinate of a Home - Work location.
 	 */
 	HomeWorkLocation(double x, double y, double z, double sdx, double sdy, double sdz);
 
 	/**
-	 *
+	 * The default constructor is deleted. A HomeWorkLocation object without the values for the members makes no sense.
 	 */
 	HomeWorkLocation() = delete;
 
 	/**
-	 *
+	 * Default destructor.
 	 */
 	virtual ~HomeWorkLocation();
 
 	/**
+	 * Return a string representation of the class, containing the values of all members, comma separated. It is useful
+	 * for debugging or for printing these information. An example of such a string:
 	 *
-	 * @return
+	 * \code
+	 * X:2000 Y:7500 Z:0 Sd_x:1000 Sd_y:1000 Sd_z:0
+	 * \endcode
+	 *
+	 * @return a string representation of the class, containing the values of all members, comma separated.
 	 */
 	string toString();
 
