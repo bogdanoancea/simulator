@@ -35,18 +35,32 @@
 
 
 /**
- * Parses the antenna.xml configuration file and builds the antenna objects
+ * Parses the antenna configuration file specified by "-a" option in the command line and builds the antenna objects.
+ * This file is named antenna.xml in all example configuration folders.
+ * While it parses the parameters of each antenna, it builds Antenna objects and adds them to the AgentsCollection container.
  */
-
 class AntennaConfigParser: public ConfigParser {
 public:
+	/**
+	 *
+	 * @param fileName
+	 * @param sc
+	 * @param ag
+	 * @param evFactory
+	 */
 	AntennaConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag, EventFactory* evFactory);
-	virtual ~AntennaConfigParser();
-	//const vector<Antenna*>& getAntennas() const;
-	void parse() override;
-private:
 
-	//vector<Antenna*> m_antennas;
+	/**
+	 *
+	 */
+	virtual ~AntennaConfigParser();
+
+	/**
+	 *
+	 */
+	void parse() override;
+
+private:
 	SimulationConfiguration* m_simConfig;
 	EventFactory* m_eventFactory;
 	AgentsCollection* m_agents;

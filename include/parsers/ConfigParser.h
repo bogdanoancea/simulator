@@ -32,15 +32,15 @@ using namespace std;
 
 /**
  * The base class for the configuration file parsers. All derived classes handle a specific type of
- * configuration file: simulation, persons, antennas, probabilities. These devired classes parse the
- * corresponding configuration file and provided getters to access the values of the configuration
- * parameters. This is an abstract class since it contains one pure virtual function, \code{parse()}
+ * configuration file: simulation, persons, antennas, probabilities. These derived classes parse the
+ * corresponding configuration file, build the corresponding objects (Antenna, Person, MobilePhone, MobileOperator)
+ * and add them to the AgentsCollection container. This is an abstract class since it contains one pure virtual function, parse()
  * that has to be implemented by subclasses.
  */
 class ConfigParser {
 public:
 	/**
-	 * Constructor of the class. It takes the filename of the configuration file as a parameter.
+	 * Constructor of the class. It takes the filename of the configuration file as a parameter and stores it internally.
 	 * @param fileName the name of configuration file to be parsed.
 	 */
 	ConfigParser(string fileName);
@@ -58,8 +58,9 @@ public:
 
 	/**
 	 * This pure virtual function has to be implemented by specific subclasses. Each subclass
-	 * will be specialized to parse one of the configuration file used by this simulation software:
-	 * simulation, persons, antennas, probabilities.
+	 * will be specialized to parse one of the configuration file used by the simulation software:
+	 * simulation, persons, antennas, probabilities. They are passed in the command line of the software
+	 * using the "-s", "-p", "-a", "-pb" options.
 	 */
 	virtual void parse() = 0;
 
