@@ -73,43 +73,121 @@ public:
 	 */
 	virtual ~HomeWorkScenario();
 
-
+	/**
+	 * Adds a new HomeWorkLocation object for a home location read from the simulation configuration file to the an internal vector keeping all home locations.
+	 * @param h a new HomeWorkLocation object for a home location read from the simulation configuration file to the an internal vector keeping all home locations.
+	 */
 	void addHomeLocation(HomeWorkLocation h);
 
+
+	/**
+	 * Adds a new HomeWorkLocation object for a work location read from the simulation configuration file to the an internal vector keeping all work locations.
+	 * @param h a new HomeWorkLocation object for a work location read from the simulation configuration file to the an internal vector keeping all work locations.
+
+	 */
 	void addWorkLocation(HomeWorkLocation h);
 
+	/**
+	 * Adds a new HomeWorkLocation object for an anchor point location read from the simulation configuration file to the an internal vector keeping all anchor point locations.
+	 * @param h a new HomeWorkLocation object for an anchor point location read from the simulation configuration file to the an internal vector keeping all anchor point locations.
+	 */
 	void addAnchorLocation(HomeWorkLocation h);
 
+	/**
+	 * Returns the vector keeping all home locations.
+	 * @return the vector keeping all home locations.
+	 */
 	vector<HomeWorkLocation> getHomeLocations() const;
 
+	/**
+	 * Returns the vector keeping all work locations.
+	 * @return the vector keeping all work locations.
+	 */
 	vector<HomeWorkLocation> getWorkLocations() const;
 
+	/**
+	 * Returns the vector keeping all anchor point locations.
+	 * @return the vector keeping all anchor point locations.
+	 */
 	vector<HomeWorkLocation> getAnchorLocations() const;
 
+	/**
+	 * Returns the percent of the total time of simulation spent at home by a person. This percent is read from the simulation configuration file.
+	 * @return the percent of the total time of simulation spent at home by a person. This percent is read from the simulation configuration file.
+	 */
 	double getPrecentTimeHome() const;
 
+	/**
+	 * Sets the percent of the total time of simulation spent at home by a person. This percent is read from the simulation configuration file.
+	 * @param precentTimeHome the percent of the total time of simulation spent at home by a person. This percent is read from the simulation configuration file.
+	 */
 	void setPrecentTimeHome(double precentTimeHome);
 
+
+	/**
+	 * Returns the percent of the total time of simulation spent at work by a person. This percent is read from the simulation configuration file.
+	 * @return the percent of the total time of simulation spent at work by a person. This percent is read from the simulation configuration file.
+	 */
 	double getPrecentTimeWork() const;
 
+	/**
+	 * Sets the percent of the total time of simulation spent at work by a person. This percent is read from the simulation configuration file.
+	 * @param precentTimeWork the percent of the total time of simulation spent at work by a person. This percent is read from the simulation configuration file.
+	 */
 	void setPrecentTimeWork(double precentTimeWork);
 
+	/**
+	 * Returns the percent of the total time of simulation spent during the trip home-work. This percent is read from the simulation configuration file.
+	 * @return the percent of the total time of simulation spent during the trip home-work. This percent is read from the simulation configuration file.
+	 */
 	double getPrecentTimeTravel() const;
 
+	/**
+	 * Sets the percent of the total time of simulation spent during the trip home-work. This percent is read from the simulation configuration file.
+	 * @param precentTimetravel the percent of the total time of simulation spent during the trip home-work. This percent is read from the simulation configuration file.
+	 */
 	void setPrecentTimeTravel(double precentTimetravel);
 
+	/**
+	 * Returns the percent of the total time of simulation spent at an anchor point by a person. This percent is read from the simulation configuration file.
+	 * @param precentTimeWork the percent of the total time of simulation spent at an anchor point by a person. This percent is read from the simulation configuration file.
+	 */
 	double getPrecentTimeAnchorPoint() const;
 
+	/**
+	 * Sets the percent of the total time of simulation spent at an anchor point by a person. This percent is read from the simulation configuration file.
+	 * @param precentTimeAnchor the percent of the total time of simulation spent at an anchor point by a person. This percent is read from the simulation configuration file.
+	 */
 	void setPrecentTimeAnchorPoint(double precentTimeAnchor);
 
+	/**
+	 * Returns the probability for a person to stop at an anchor point. This probability is read from the simulation configuration file.
+	 * @return the probability for a person to stop at an anchor point. This probability is read from the simulation configuration file.
+	 */
 	double getProbAnchorPoint() const;
 
+	/**
+	 * Sets the probability for a person to stop at an anchor point. This probability is read from the simulation configuration file.
+	 * @param precentTimeAnchor the probability for a person to stop at an anchor point. This probability is read from the simulation configuration file.
+	 */
 	void setProbAnchorPoint(double precentTimeAnchor);
 
+	/**
+	 * Returns a string showing all home, work and anchor point locations.
+	 * @return a string showing all home, work and anchor point locations.
+	 */
 	const string toString();
 
+	/**
+	 * Sets the probability distribution used to generate the random noise added to the direction angle at every time step.
+	 * @param distr a pointer to a Distribution object representing the probability distribution used to generate the random noise added to the direction angle at every time step.
+	 */
 	void setAngleDistribution(Distribution* distr);
 
+	/**
+	 * Returns the probability distribution used to generate the random noise added to the direction angle at every time step.
+	 * @return a pointer to a Distribution object representing the probability distribution used to generate the random noise added to the direction angle at every time step.
+	 */
 	Distribution* getAngleDistribution();
 
 private:
