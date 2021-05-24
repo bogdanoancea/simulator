@@ -36,11 +36,35 @@
 #include <string>
 #include <vector>
 
-
+/**
+ * Parses the persons configuration file specified by "-p" option in the command line and builds the Person objects.
+ * This file is named persons.xml in all example configuration folders.
+ * After it parses the configuration file, it builds Person objects and adds them to the AgentsCollection container.
+ */
 class PersonsConfigParser: public ConfigParser {
 public:
+	/**
+	 * Constructor of the class. It store internally the value of the parameters.
+	 * @param fileName the name of the persons configuration file, passed with the "-p" option in the command line.
+	 * @param sc  a pointer to a SimulationConfiguration object. This object is needed for different parameters :the map and the
+	 *  clock of the simulation, the MobileOperator objects, a person's probability of having 2 mobile devices.
+	 * @param ag a pointer to the AgentsCollection container class created by the constructor of the World class.
+	 */
 	PersonsConfigParser(const string& fileName, SimulationConfiguration* sc, AgentsCollection* ag);
+
+	/**
+	 *  Default destructor.
+	 */
 	virtual ~PersonsConfigParser();
+
+	/**
+	 * A method to parse the persons configuration file. After it parses this file, it builds a PersonConfiguration object
+	 * and passes it to the constructor of the Person class. All Person objects are added to the
+	 * AgentsCollection container class.
+	 * It reads the total number of persons, the probability distribution for the speed and age of persons, the male share and
+	 * the percent of the people that will have the same initial location on map at each simulation (home persons). Then it generates the Person objects
+	 * by generating an initial position on map, a speed according to the speed distribution , an age, it assigns 1 or 2 mobile devices and sets the displacement pettern.
+	 */
 	void parse() override;
 private:
 
