@@ -28,13 +28,53 @@
 
 #include <Distribution.h>
 
+/**
+ * This class encapsulates all the parameters needed by the Levy flight mobility pattern. Under this pattern, at each time step a new speed for each person
+ * is generated according to a Levy distribution with the mean specified in the simulation configuration file. When a random value generated using this
+ * distribution is very large, it is set to a fixed threshold value. In the simulation configuration file there is a parameter named "cut off point" which
+ * is an integer. If the actual value of the speed is greater than the mean value times the value of the cutoff point, the speed is set to
+ * the mean value times the value of the cutoff point.
+ */
 class LevyFlightScenario {
 public:
+	/**
+	 * Default constructor of the class.
+	 */
 	LevyFlightScenario();
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~LevyFlightScenario();
+
+	/**
+	 * Return a value that represents a maximum level used to limit the speed. If the actual speed of a person is
+	 * greater than the mean value times the value of the cutoff point, the speed is set to
+	 * the mean value times the value of the cutoff point. This value is read from the simulation configuration file.
+	 * @return
+	 */
 	unsigned int getCutOffPoint() const;
+
+	/**
+	 * Sets a value that represents a maximum level used to limit the speed. If the actual speed of a person is
+	 * greater than the mean value times the value of the cutoff point, the speed is set to
+	 * the mean value times the value of the cutoff point. This value is read from the simulation configuration file.
+	 * @param cutOffPoint a value that represents a maximum level used to limit the speed. If the actual speed of a person is
+	 * greater than the mean value times the value of the cutoff point, the speed is set to
+	 * the mean value times the value of the cutoff point.
+	 */
 	void setCutOffPoint(unsigned int cutOffPoint);
+
+	/**
+	 * Returns a pointer to a Distribution object representing the probability distribution (Levy) used to generate the speed of each person.
+	 * @return a pointer to a Distribution object representing the probability distribution (Levy) used to generate the speed of each person.
+	 */
 	Distribution* getSpeedDistribution() const;
+
+	/**
+	 * Sets the Distribution object representing the probability distribution (Levy) used to generate the speed of each person.
+	 * @param speedDistribution a pointer to a Distribution object representing the probability distribution (Levy) used to generate the speed of each person.
+	 */
 	void setSpeedDistribution(Distribution *speedDistribution);
 
 private:
