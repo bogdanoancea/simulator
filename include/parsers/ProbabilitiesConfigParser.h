@@ -34,14 +34,35 @@
 
 
 
-
+/**
+ * This class parses the probabilities configuration file, passed with "-pb" option in the command line.
+ * It reads the method used to compute the location probabilities for each device and the prior distribution.
+ * These location probabilities are computed here only for a preliminary study, they are actually computed with another software tool.
+ */
 
 class ProbabilitiesConfigParser: public ConfigParser {
 public:
+
+	/**
+	 * constructor of the class. It takes the name of the probabilities configuration file as parameter and stores it internally.
+	 * @param fileName the name of the probabilities configuration file passed with "-pb" option in the command line.
+	 */
 	ProbabilitiesConfigParser(const string& fileName);
+
+	/**
+	 * default destructor.
+	 */
 	virtual ~ProbabilitiesConfigParser();
 
+	/**
+	 * Returns a ProbabilitiesConfiguration object which encapsulates the parameters need to computed the location probabilities.
+	 * @return a ProbabilitiesConfiguration object which encapsulates the parameters need to computed the location probabilities.
+	 */
 	ProbabilitiesConfiguration getConfiguration() const;
+
+	/**
+	 * It parses the probabilities configuration file and builds a ProbabilitiesConfiguration object.
+	 */
 	void parse() override;
 private:
 
