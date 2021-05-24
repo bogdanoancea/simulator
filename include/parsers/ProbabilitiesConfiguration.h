@@ -30,13 +30,49 @@
 #include <string>
 using namespace std;
 
+/**
+ * This class encapsulates the parameters read from the probabilities configuration file.
+ */
 class ProbabilitiesConfiguration {
 public:
+
+	/**
+	 * Default constructor.
+	 */
 	ProbabilitiesConfiguration();
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~ProbabilitiesConfiguration();
+
+	/**
+	 * Returns the prior probability type (PriorType::UNIFORM, PriorType::REGISTER, PriorType::NETWORK).
+	 * @return
+	 */
 	PriorType getPriorType() const;
+
+	/**
+	 * Sets the the prior probability type (PriorType::UNIFORM, PriorType::REGISTER, PriorType::NETWORK).
+	 * @param prior
+	 */
 	void setPrior(PriorType prior);
+
+	/**
+	 * Returns the prefix of the output file where the location probabilities are saved. The file name is composed concatenating the
+	 * prefix with "_" and MNO name read from the simulation configuration files. The files extension is ".csv".
+	 *
+	 * @return the prefix of the output file where the location probabilities are saved. The file name is composed concatenating the
+	 * prefix with "_" and MNO name read from the simulation configuration files. The files extension is ".csv".
+	 */
 	string getProbsFilenamePrefix() const;
+
+	/**
+	 * Sets the prefix of the output file where the location probabilities are saved. The file name is composed concatenating the
+	 * prefix with "_" and MNO name read from the simulation configuration files. The files extension is ".csv".
+	 * @param prefix the prefix of the output file where the location probabilities are saved. The file name is composed concatenating the
+	 * prefix with "_" and MNO name read from the simulation configuration files. The files extension is ".csv".
+	 */
 	void setPrefix(std::string prefix);
 
 private:
