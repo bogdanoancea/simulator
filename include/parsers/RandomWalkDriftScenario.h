@@ -28,21 +28,71 @@
 
 #include <Distribution.h>
 
+/**
+ * This class encapsulates the parameters of the random walk with drift scenario. These parameters are:
+ * \li the probability distribution for the drift direction for the first half of the simulation time, trend angle 1;
+ * \li the probability distribution for the the drift direction for the second half of the simulation time, trend angle 2;
+ * \li the probability distribution for the direction angle in case the new position of the person is outside the map.
+ * In this case the position outside the map is ignored and anew direction angle is generated hoping that the new position will
+ * be inside the map.
+ * For each person a "trend angle 1" and "trend angle 2" are generated at every time step of the simulation.
+ */
 class RandomWalkDriftScenario {
 public:
+
+	/**
+	 * Default constructor.
+	 */
 	RandomWalkDriftScenario();
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~RandomWalkDriftScenario();
 
+	/**
+	 * Returns the probability distribution for the trend angle during the first half of the simulation.
+	 * @return the probability distribution for the trend angle during the first half of the simulation.
+	 */
 	Distribution* getTrendAngle1Distribution() const;
+
+	/**
+	 * Sets the probability distribution for the trend angle during the first half of the simulation.
+	 * @param trendAngle1 the probability distribution for the trend angle during the first half of the simulation.
+	 */
 	void setTrendAngle1Distribution(Distribution* trendAngle1);
+
+	/**
+	 * Returns the probability distribution for the trend angle during the second half of the simulation.
+	 * @return the probability distribution for the trend angle during the second half of the simulation.
+	 */
 	Distribution* getTrendAngle2Distribution() const;
+
+	/**
+	 * Sets the probability distribution for the trend angle during the second half of the simulation.
+	 * @param trendAngle2 the probability distribution for the trend angle during the second half of the simulation.
+	 */
 	void setTrendAngle2Distribution(Distribution* trendAngle2);
+
+	/**
+	 * Returns the probability distribution of the "return angle". This is the direction angle used when a new step would fall outside the map.
+	 * Instead of taking this step, a new direction angle is used hoping that a step in this direction will fall inside the map.This process
+	 * is repeated until the new position is inside the map.
+	 * @return he probability distribution of the "return angle". This is the direction angle used when a new step would fall outside the map.
+	 */
 	Distribution* getReturnAngleDistribution() const;
+
+	/**
+	 * Sets the probability distribution of the "return angle". This is the direction angle used when a new step would fall outside the map.
+	 * Instead of taking this step, a new direction angle is used hoping that a step in this direction will fall inside the map.This process
+	 * is repeted until the new position is inside the map.
+	 * @param returnAngleDistribution the probability distribution of the "return angle". This is the direction angle used when a new step would fall outside the map.
+	 */
 	void setReturnAngleDistribution(Distribution *returnAngleDistribution);
 
 private:
-	Distribution*  m_trendAngle1Distribution;
-	Distribution*  m_trendAngle2Distribution;
+	Distribution* m_trendAngle1Distribution;
+	Distribution* m_trendAngle2Distribution;
 	Distribution* m_returnAngleDistribution;
 };
 

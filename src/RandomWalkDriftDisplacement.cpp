@@ -38,8 +38,10 @@ RandomWalkDriftDisplacement::~RandomWalkDriftDisplacement() {
 
 Point* RandomWalkDriftDisplacement::generateNewLocation(Point* initLocation) {
 
-	double theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle1Distribution())  * utils::PI / 180.0;
-	if (m_simConfig->getClock()->getCurrentTime() >= m_simConfig->getClock()->getFinalTime() / 2) {
+	double theta = 0.0;
+	if (m_simConfig->getClock()->getCurrentTime() < m_simConfig->getClock()->getFinalTime() / 2)
+		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle1Distribution())  * utils::PI / 180.0;
+	else {
 		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle2Distribution()) * utils::PI / 180.0;
 	}
 	if (m_changeDirection) {
