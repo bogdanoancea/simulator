@@ -26,14 +26,75 @@
 #ifndef INCLUDE_PARSERS_MANHATTANSCENARIO_H_
 #define INCLUDE_PARSERS_MANHATTANSCENARIO_H_
 
+/**
+ * This class contains the parameters of the Manhattan mobility pattern.
+ */
 class ManhattanScenario {
 public:
+	/**
+	 * Default constructor.
+	 */
 	ManhattanScenario();
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~ManhattanScenario();
 
+	/**
+	 * Returns the dimension of the x step of the Manhattan grid.
+	 * @return the the dimension of the x step of the Manhattan grid.
+	 */
+	double getXStep() const;
+
+	/**
+	 * Sets the dimension of the x step of the Manhattan grid.
+	 * @param xs the dimension of the x step of the Manhattan grid.
+	 */
+	void setXStep(double xs);
+
+	/**
+	 * Returns the dimension of the y step of the Manhattan grid.
+	 * @return the dimension of the y step of the Manhattan grid.
+	 */
+	double getYStep() const;
+
+	/**
+	 * Returns the dimension of the y step of the Manhattan grid.
+	 * @param ys the dimension of the y step of the Manhattan grid.
+	 */
+	void setYStep(double ys);
+
+	/**
+	 * Returns the x coordinate of the origin of the Manhattan grid.
+	 * @return the x coordinate of the origin of the Manhattan grid.
+	 */
+	double getXOrigin() const;
+
+	/**
+	 * Sets the x coordinate of the origin of the Manhattan grid.
+	 * @param xOrigin the x coordinate of the origin of the Manhattan grid.
+	 */
+	void setXOrigin(double xOrigin);
+
+	/**
+	 * Returns the y coordinate of the origin of the Manhattan grid.
+	 * @return the y coordinate of the origin of the Manhattan grid.
+	 */
+	double getYOrigin() const;
+
+	/**
+	 * Sets the y coordinate of the origin of the Manhattan grid.
+	 * @param yOrigin the y coordinate of the origin of the Manhattan grid.
+	 */
+	void setYOrigin(double yOrigin);
+
+
 private:
-	double x_step;
-	double y_step;
+	double m_Xstep;
+	double m_Ystep;
+	double m_XOrigin;
+	double m_YOrigin;
 };
 
 #endif /* INCLUDE_PARSERS_MANHATTANSCENARIO_H_ */
