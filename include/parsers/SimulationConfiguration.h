@@ -306,67 +306,158 @@ public:
 	 */
 	unsigned long getStartTime() const;
 
-
+	/**
+	 * Sets the initial time instant of a simulation measured by the simulation clock.
+	 * @param startTime the initial time instant of a simulation measured by the simulation clock.
+	 */
 	void setStartTime(unsigned long startTime);
 
 
+	/**
+	 * Returns the probability distribution of the time interval a person stops in the same position. Some of the mobility patterns (random_walk, random_walk_with_drift,
+	 * levy_flight) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
+	 * The actual time intervals a person stops are generated from a probability distribution returned by this function as a pointer to a Distribution object.
+	 * The type of the distribution and its parameters are read from the simulation configuration file.
+	 * @return the probability distribution of the time a person  stops in the same position. Currently only the Normal and Uniform distributions are accepted.
+	 */
 	shared_ptr<Distribution> getStay() const;
 
-
+	/**
+	 * the probability distribution of the time interval a person stops in the same position. Some of the mobility patterns (random_walk, random_walk_with_drift,
+	 * levy_flight) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
+	 * The actual time intervals a person stops are generated from a probability distribution returned by this function as a pointer to a Distribution object.
+	 * The type of the distribution and its parameters are read from the simulation configuration file.
+	 * @param stay the probability distribution of the time a person  stops in the same position. Currently only the Normal and Uniform distributions are accepted.
+	 */
 	void setStay(shared_ptr<Distribution> stay);
 
-
+	/**
+	 * Returns the time increment of the simulation clock. A clock tick will increment the value of the clock with this time increment.
+	 * @return the time increment of the simulation clock.
+	 */
 	unsigned long getTimeIncrement() const;
 
-
+	/**
+	 * Sets the time increment of the simulation clock. A clock tick will increment the value of the clock with this time increment.
+	 * @param timeIncrement the time increment of the simulation clock.
+	 */
 	void setTimeIncrement(unsigned long timeIncrement);
 
 
+	/**
+	 * Returns a pointer to the Clock object of the simulation.
+	 * @return a pointer to the Clock object of the simulation.
+	 */
 	Clock* getClock();
 
-
+	/**
+	 * Builds a new Clock object stored by this class.
+	 */
 	void setClock();
 
 
+	/**
+	 * Returns a pointer to the Map object of a simulation.
+	 * @return a pointer to the Map object of a simulation.
+	 */
 	Map* getMap();
 
 
+	/**
+	 * Sets the Map object of a simulation.
+	 * @param map a pointer to the Map object of a simulation.
+	 */
 	void setMap(Map* map);
 
 
+	/**
+	 * Returns true if the mobility pattern is set to the home-work pattern, false otherwise.
+	 * @return true if the mobility pattern is set to the home-work pattern, false otherwise.
+	 */
 	bool isHomeWorkScenario() const;
 
 
+	/**
+	 * Returns the number of home locations read from the configuration file.
+	 * @return the number of home locations read from the configuration file.
+	 */
 	unsigned int getNumHomeLocations() const;
 
 
+	/**
+	 * Returns the number of work locations read from the configuration file.
+	 * @return the number of work locations read from the configuration file.
+	 */
 	unsigned int getNumWorkLocations() const;
 
-
+	/**
+	 * Returns the number of anchor point locations read from the configuration file.
+	 * @return the number of anchor point locations read from the configuration file.
+	 */
 	unsigned int getNumAnchorLocations() const;
 
 
+	/**
+	 * Returns the HomeLocation object corresponding to the home location with index i.
+	 * @param i the index of the home location.
+	 * @return the index of the home location.
+	 */
 	HomeWorkLocation getHomeLocation(unsigned int i) const;
 
-
+	/**
+	 * Returns the HomeLocation object corresponding to the work location with index i.
+	 * @param i the index of the work location.
+	 * @return the index of the work location.
+	 */
 	HomeWorkLocation getWorkLocation(unsigned int i) const;
 
-
+	/**
+	 * Returns a pointer to a HomeWorkScenario object containing the parameters of a home-work mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @return a pointer to a HomeWorkScenario object containing the parameters of a home-work mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 */
 	HomeWorkScenario* getHomeWorkScenario();
 
-
+	/**
+	 * Sets the HomeWorkScenario object containing the parameters of a home-work mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @param hws the HomeWorkScenario object containing the parameters of a home-work mobility pattern in case this pattern
+	 * was specified in the configuration file.
+	 */
 	void setHomeWorkScenario(HomeWorkScenario* hws);
 
-
+	/**
+	 * Returns a pointer to a RandomWalkDriftScenario object containing the parameters of a random walk with drift mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @return a pointer to a RandomWalkDriftScenario object containing the parameters of a random walk with drift mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 */
 	RandomWalkDriftScenario* getRandomWalkDriftScenario() const;
 
-
+	/**
+	 * Sets the RandomWalkDriftScenario object containing the parameters of a random walk with drift mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @param randomWalkDriftScenario a pointer to a RandomWalkDriftScenario object containing the parameters of a random walk with drift mobility pattern in case this pattern
+	 * was specified in the configuration file.
+	 */
 	void setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario);
 
 
+	/**
+	 * Returns a pointer to a LevyFlightScenario object containing the parameters of a Levy flight mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @return a pointer to a LevyFlightScenario object containing the parameters of a Levy flight mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 */
 	LevyFlightScenario* getLevyFlightScenario() const;
 
-
+	/**
+	 * Sets the LevyFlightScenario object containing the parameters of a Levy flight mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @param levyFlightScenario a pointer to a LevyFlightScenario object containing the parameters of a Levy flight mobility pattern in case this pattern
+	 * was specified in the configuration file.
+	 */
 	void setLevyFlightScenario(LevyFlightScenario *levyFlightScenario);
 
 private:
