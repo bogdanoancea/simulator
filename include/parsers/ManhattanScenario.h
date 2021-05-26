@@ -91,8 +91,8 @@ public:
 
 
 private:
-	double m_Xstep;
-	double m_Ystep;
+	double m_XStep;
+	double m_YStep;
 	double m_XOrigin;
 	double m_YOrigin;
 };
