@@ -260,33 +260,113 @@ public:
 	 */
 	const string& getPersonsFilename() const;
 
+	/**
+	 * Sets the name of the file where the details about all persons involved in a simulation are saved. The first few rows of such a file are presented below:
+	 * \code
+	 * t,Person ID,x,y,Tile ID,Mobile Phone(s) ID
+	 *	0,627,1114.405501,6554.977894,1044
+	 *	0,626,7472.134000,4195.835899,669
+	 *	0,625,9625.145461,2383.061919,398
+	 *	...
+	 * \endcode
+	 * For each time instant, the following parameters are recorded: the ID of the person, the position on map (x,y), the tile ID of the person's location and the
+	 * mobile device ID(s) if the person has mobile device(s).
+	 * @param personsFilename the name of the file where the details about all persons involved in a simulation are saved.
+	 */
 	void setPersonsFilename(const string& personsFilename);
 
+	/**
+	 * Returns a person's probability of have 2 mobile devices.
+	 * @return a person's probability of have 2 mobile devices.
+	 */
 	double getProbSecMobilePhone() const;
+
+	/**
+	 * Sets a person's probability of have 2 mobile devices.
+	 * @param probSecMobilePhone a person's probability of have 2 mobile devices.
+	 */
 	void setProbSecMobilePhone(double probSecMobilePhone);
+
+
+	/**
+	 * Returns the seed used to initialize the random number generator.
+	 * @return the seed used to initialize the random number generator.
+	 */
 	unsigned getSeed() const;
+
+	/**
+	 * Sets the seed used to initialize the random number generator.
+	 * @param seed the seed used to initialize the random number generator.
+	 */
 	void setSeed(unsigned seed);
+
+	/**
+	 * Returns the initial time instant of a simulation measured by the simulation clock.
+	 * @returns the initial time instant of a simulation measured by the simulation clock.
+	 */
 	unsigned long getStartTime() const;
+
+
 	void setStartTime(unsigned long startTime);
+
+
 	shared_ptr<Distribution> getStay() const;
+
+
 	void setStay(shared_ptr<Distribution> stay);
+
+
 	unsigned long getTimeIncrement() const;
+
+
 	void setTimeIncrement(unsigned long timeIncrement);
+
+
 	Clock* getClock();
+
+
 	void setClock();
+
+
 	Map* getMap();
+
+
 	void setMap(Map* map);
+
+
 	bool isHomeWorkScenario() const;
+
+
 	unsigned int getNumHomeLocations() const;
+
+
 	unsigned int getNumWorkLocations() const;
+
+
 	unsigned int getNumAnchorLocations() const;
+
+
 	HomeWorkLocation getHomeLocation(unsigned int i) const;
+
+
 	HomeWorkLocation getWorkLocation(unsigned int i) const;
+
+
 	HomeWorkScenario* getHomeWorkScenario();
+
+
 	void setHomeWorkScenario(HomeWorkScenario* hws);
+
+
 	RandomWalkDriftScenario* getRandomWalkDriftScenario() const;
+
+
 	void setRandomWalkDriftScenario(RandomWalkDriftScenario *randomWalkDriftScenario);
+
+
 	LevyFlightScenario* getLevyFlightScenario() const;
+
+
 	void setLevyFlightScenario(LevyFlightScenario *levyFlightScenario);
 
 private:
