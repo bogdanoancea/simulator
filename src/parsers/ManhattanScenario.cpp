@@ -6,6 +6,8 @@
  */
 
 #include <parsers/ManhattanScenario.h>
+#include <Constants.h>
+#include <sstream>
 
 ManhattanScenario::ManhattanScenario() {
 	// TODO Auto-generated constructor stub
@@ -47,4 +49,9 @@ void ManhattanScenario::setYOrigin(double yOrigin) {
 	m_YOrigin = yOrigin;
 }
 
+const string ManhattanScenario::toString() const {
+	ostringstream result;
+	result << left << fixed << "Origin X: " << m_XOrigin << " Origin Y: " << m_YOrigin << " X Step: " << m_XStep << " Y Step: " << m_YStep <<endl;
+	return result.str();
+}
 

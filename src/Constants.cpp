@@ -60,6 +60,9 @@ const char* Constants::OUTPUT_DIR = "output";
 //const unsigned long Constants::GRID_NO_TILES_Y = 10;
 const double Constants::GRID_DIM_TILE_X = 1000;
 const double Constants::GRID_DIM_TILE_Y = 1000;
+const double Constants::GRID_X_ORIG = 0;
+const double Constants::GRID_Y_ORIG = 0;
+
 
 const PriorType Constants::PRIOR_PROBABILITY = PriorType::UNIFORM;
 const NetworkType Constants::NETWORK_TYPE = NetworkType::_3G;

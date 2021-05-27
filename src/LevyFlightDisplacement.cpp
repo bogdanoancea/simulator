@@ -57,7 +57,7 @@ Point* LevyFlightDisplacement::generateNewLocation(Point* initLocation) {
 Point* LevyFlightDisplacement::computeNewLocation(Point* initLocation, double theta) {
 	double x = initLocation->getX();
 	double y = initLocation->getY();
-	m_levyFlightScenario->getSpeedDistribution()->setParam("mean", m_speed);
+	m_levyFlightScenario->getSpeedDistribution()->setParam("location", m_speed);
 	double speed = RandomNumberGenerator::instance()->generateDouble(m_levyFlightScenario->getSpeedDistribution());
 	if (speed > m_speed * m_levyFlightScenario->getCutOffPoint())
 		speed = m_speed *m_levyFlightScenario->getCutOffPoint();

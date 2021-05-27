@@ -1,0 +1,19 @@
+<persons>
+        <num_persons>400</num_persons>
+        <age distributionType = "TruncatedNormal">
+            <mean>42</mean>
+            <sd>25</sd>
+            <min>10</min>
+        	<max>87</max>
+        </age>
+        <male_share>0.48</male_share>
+        <speed_walk distributionType = "Normal">
+        	<mean>3</mean>
+        	<sd>0.3</sd>
+        </speed_walk>
+        <speed_car distributionType = "Normal">
+        	<mean>16</mean>
+        	<sd>1.6</sd>
+        </speed_car>
+        <percent_home>0.9</percent_home>
+</persons>

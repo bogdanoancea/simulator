@@ -44,37 +44,41 @@ using namespace tinyxml2;
 
 
 /**
- * This class parses the simulation configuration file, given in the command line with the prefix -s.
- * It provides getters for all fields parsed from the xml file.
+ * This class parses the simulation configuration file, given in the command line with the prefix "-s".
+ * It provides getters for all fields parsed from the .xml file.
  */
 class SimulationConfigurationParser: public ConfigParser {
 public:
 	/**
 	 * The constructor of the class. It takes the simulation file name as a parameter and it passes it to the constructor of its superclass.
-	 * It also takes as parameters a pointer to the map of the simulation and a pointer to the agents' collection. It stores locally the pointer
-	 * to the map object, initialize the \code{m_homeWorkScenario} member with \code{nullptr},and after parsing the xml
-	 * configuration file it builds the clock of the simulation and adds the MNOs objects to the agents' collection.
-	 * @param fileName the name of the simulation configuration file, given in the command line with the prefix -s.
-	 * @param agents a pointer to the collection of all agents involved in a simulation.After parsing the configuration file, it adds
-	 * the MNOs objects to this collection.
+	 * It also takes as parameters: a pointer to the map of the simulation and a pointer to the agents' collection. It stores locally the pointer
+	 * to the map object, and after parsing the .xml configuration file it builds the clock of the simulation.
+	 * @param fileName the name of the simulation configuration file, given in the command line with the prefix "-s".
+	 * @param agents a pointer to the collection of all agents involved in a simulation. After parsing the configuration file, it adds
+	 * the MobileOperator objects to this collection.
 	 * @param map a pointer to the map of the simulation. Even the map file is parsed elsewhere, this pointer is also stored here
 	 * to be passed to other objects that need it.
 	 */
 	SimulationConfigurationParser(const string& fileName, AgentsCollection* agents, Map* map);
 
 	/**
-	 * Destructor of the class. It frees the memory allocated for the \code{m_clock} member, (the \code{Clock}
-	 * object of the simulation}, and for the
-	 * \code{m_homeWorkScenario} member in case this simulation is a home-work type of simulation.
+	 * Destructor of the class. It frees the memory allocated for the <tt>m_clock</tt> member, (the Clock
+	 * object of the simulation).
 	 */
 	virtual ~SimulationConfigurationParser();
 
+	/**
+	 * Returns a SimulationConfiguration object which encapsulates the parameters of the simulation.
+	 * @return a SimulationConfiguration object which encapsulates the parameters of the simulation.
+	 */
 	SimulationConfiguration* getSimulationConfiguration();
 
+	/**
+	 * Parses the simulation configuration file, and sets the parameters (members) of the SimulationConfiguration object. It also
+	 * adds all the MobileOperator objects created to the AgentsCollection container.
+	 */
 	void parse() override;
 private:
-
-
 
 	SimulationConfiguration* m_simConfig;
 	AgentsCollection* m_agents;

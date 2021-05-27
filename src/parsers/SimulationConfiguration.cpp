@@ -26,12 +26,22 @@
 #include <parsers/SimulationConfiguration.h>
 
 SimulationConfiguration::SimulationConfiguration() {
+	m_manhattanScenario = nullptr;
+	m_homeWorkScenario = nullptr;
+	m_randomWalkDriftScenario = nullptr;
+	m_levyFlightScenario = nullptr;
 
 }
 
 SimulationConfiguration::~SimulationConfiguration() {
 	if(m_homeWorkScenario)
 		delete m_homeWorkScenario;
+	if(m_randomWalkDriftScenario)
+		delete m_randomWalkDriftScenario;
+	if(m_levyFlightScenario)
+		delete m_levyFlightScenario;
+	if(m_manhattanScenario)
+		delete m_manhattanScenario;
 	delete m_clock;
 
 }
@@ -264,3 +274,10 @@ void SimulationConfiguration::setLevyFlightScenario(LevyFlightScenario *levyFlig
 	m_levyFlightScenario = levyFlightScenario;
 }
 
+ManhattanScenario* SimulationConfiguration::getManhattanScenario() const {
+	return m_manhattanScenario;
+}
+
+void SimulationConfiguration::setManhattanScenario(ManhattanScenario *ms) {
+	m_manhattanScenario = ms;
+}

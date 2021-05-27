@@ -134,9 +134,9 @@ public:
 	 */
 	static const char* GRID_FILE_NAME;
 
-	static const unsigned long GRID_X_ORIG;
+	static const double GRID_X_ORIG;
 
-	static const unsigned long GRID_Y_ORIG;
+	static const double GRID_Y_ORIG;
 
 	static const double GRID_DIM_TILE_X;
 

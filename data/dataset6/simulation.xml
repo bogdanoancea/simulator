@@ -1,0 +1,33 @@
+<simulation>
+        <start_time>0</start_time>
+        <end_time>240</end_time>
+		<time_increment>30</time_increment>
+		<time_stay distributionType = "Normal">
+			<mean>20</mean>
+			<sd>2</sd>
+		</time_stay>
+        <interval_between_stays distributionType = "Exponential">
+        	<mean>120</mean>
+        </interval_between_stays>
+		<mno>
+        	<mno_name>MNO1</mno_name>
+        	<prob_mobile_phone>0.35</prob_mobile_phone>
+		</mno>
+		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
+		<movement_pattern type = "manhattan">
+			<x_step>50</x_step>
+			<y_step>50</y_step>
+			<x_origin>0</x_origin>
+			<y_origin>0</y_origin>
+		</movement_pattern>
+		<connection_type>strength</connection_type>
+		<event_type>cellIDTA</event_type>
+		<conn_threshold>-85</conn_threshold>
+		<grid_file>grid.csv</grid_file>
+		<grid_dim_tile_x>250</grid_dim_tile_x>
+		<grid_dim_tile_y>250</grid_dim_tile_y>
+		<persons_file>persons.csv</persons_file>
+		<antennas_file>antennas.csv</antennas_file>
+		<random_seed>12</random_seed>
+		<output_dir>output2</output_dir>
+</simulation>

@@ -46,6 +46,7 @@ RandomWalkDisplacement.o\
 RandomWalkDriftDisplacement.o\
 LevyFlightDisplacement.o\
 HomeWorkDisplacement.o\
+ManhattanDisplacement.o\
 PostLocProb.o\
 NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\

@@ -48,7 +48,6 @@ SimulationConfigurationParser::SimulationConfigurationParser(const string& filen
 
 	m_simConfig = new SimulationConfiguration();
 	m_simConfig->setMap(map);
-	m_simConfig->setHomeWorkScenario(nullptr);
 	m_agents = agents;
 //	for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
 //		agents->addAgent(m_simConfig->getMnos()[i]);
@@ -103,7 +102,6 @@ void SimulationConfigurationParser::parse() {
 		m_simConfig->setClock();
 		for (unsigned long i = 0; i < m_simConfig->getMnos().size(); i++)
 			m_agents->addAgent(m_simConfig->getMnos()[i]);
-
 	}
 }
 
@@ -301,7 +299,14 @@ MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 				parseHomeWorkScenario(mvEl, m_simConfig->getHomeWorkScenario());
 				cout << m_simConfig->getHomeWorkScenario()->toString() << endl;
 				result = MovementType::HOME_WORK;
-			} else
+			} else if(!strcmp(mvType, "manhattan")){
+				ManhattanScenario* ms  = new ManhattanScenario();
+				parseManhattan(mvEl, ms);
+				m_simConfig->setManhattanScenario(ms);
+				cout << m_simConfig->getManhattanScenario()->toString() << endl;
+				result = MovementType::MANHATTAN;
+			}
+			else
 				throw runtime_error("Unknown movement mechanism!");
 		}
 		else {
@@ -324,6 +329,13 @@ void SimulationConfigurationParser::parseRandomWalkDrift(XMLElement* mvEl, Rando
 	rws->setTrendAngle2Distribution(parseTrendAngleDistribution(mvEl,2));
 	Distribution* retAngle = parseReturnAngleDistribution(mvEl);
 	rws->setReturnAngleDistribution(retAngle);
+}
+
+void SimulationConfigurationParser::parseManhattan(XMLElement* mvEl, ManhattanScenario* ms) {
+	ms->setXStep(getValue(mvEl, "x_step", Constants::GRID_DIM_TILE_X));
+	ms->setYStep(getValue(mvEl, "y_step", Constants::GRID_DIM_TILE_Y));
+	ms->setXOrigin(getValue(mvEl, "x_origin", Constants::GRID_X_ORIG));
+	ms->setYOrigin(getValue(mvEl, "y_origin", Constants::GRID_Y_ORIG));
 }
 
 Distribution* SimulationConfigurationParser::parseSpeedDistribution(XMLElement* mvEl) {

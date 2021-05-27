@@ -26,6 +26,9 @@
 #ifndef INCLUDE_PARSERS_MANHATTANSCENARIO_H_
 #define INCLUDE_PARSERS_MANHATTANSCENARIO_H_
 
+#include <string>
+using namespace std;
+
 /**
  * This class contains the parameters of the Manhattan mobility pattern.
  */
@@ -89,6 +92,11 @@ public:
 	 */
 	void setYOrigin(double yOrigin);
 
+	/**
+	 * Returns a string with the parameters of the Manhattan grid.
+	 * @return a string with the parameters of the Manhattan grid.
+	 */
+	const string toString() const;
 
 private:
 	double m_XStep;

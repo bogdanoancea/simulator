@@ -32,6 +32,7 @@
 #include <parsers/HomeWorkScenario.h>
 #include <parsers/RandomWalkDriftScenario.h>
 #include <parsers/LevyFlightScenario.h>
+#include <parsers/ManhattanScenario.h>
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <events/EventType.h>
@@ -50,7 +51,8 @@ public:
 	SimulationConfiguration();
 
 	/**
-	 * Default destructor.
+	 * Default destructor. It frees the memory of the Clock object and of the HomeWorkScenario/RandomWalkDriftScenario/LevyFlightScenario/ManhattanScenario objects
+	 * depending on which one was created.
 	 */
 	virtual ~SimulationConfiguration();
 
@@ -460,6 +462,22 @@ public:
 	 */
 	void setLevyFlightScenario(LevyFlightScenario *levyFlightScenario);
 
+	/**
+	 * Returns a pointer to a ManhattanScenario object containing the parameters of a Manhattan mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @return a pointer to a ManhattanScenario object containing the parameters of a Manhattan mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 */
+	ManhattanScenario* getManhattanScenario() const;
+
+	/**
+	 * Sets the ManhattanScenario object containing the parameters of a Manhattan mobility pattern in case this pattern
+	 * was specified in the configuration file, nullptr otherwise.
+	 * @param ms a pointer to a Manhattan object containing the parameters of a Manhattan mobility pattern in case this pattern
+	 * was specified in the configuration file.
+	 */
+	void setManhattanScenario(ManhattanScenario* ms);
+
 private:
 	string m_outputDir;
 	unsigned long m_startTime;
@@ -485,6 +503,7 @@ private:
 	HomeWorkScenario *m_homeWorkScenario;
 	RandomWalkDriftScenario* m_randomWalkDriftScenario;
 	LevyFlightScenario* m_levyFlightScenario;
+	ManhattanScenario* m_manhattanScenario;
 };
 
 #endif /* INCLUDE_PARSERS_SIMULATIONCONFIGURATION_H_ */

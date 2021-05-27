@@ -41,6 +41,7 @@
 #include <parsers/PersonsConfigParser.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
+#include <ManhattanDisplacement.h>
 #include <TinyXML2.h>
 #include <Utils.h>
 #include <cmath>
@@ -298,6 +299,9 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 			auto displace2 = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
 			p->setDisplacementMethod(displace2);
 		}
+	} else if (type == MovementType::MANHATTAN) {
+		auto displace = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed());
+		p->setDisplacementMethod(displace);
 	}
 }
 

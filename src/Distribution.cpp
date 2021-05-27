@@ -161,16 +161,16 @@ void Distribution::parseUniformDistributionParams(XMLElement* el) {
 
 
 void Distribution::parseLevyDistributionParams(XMLElement* el) {
-	double mean = Constants::DEFAULT_MEAN_LEVY;
+	double location = Constants::DEFAULT_MEAN_LEVY;
 	double c = getValue(el, "c", Constants::DEFAULT_C_LEVY);
 	std::pair<const char*, double> p2 = std::make_pair("c", c);
 	m_params.push_back(p2);
 	try {
-		mean = getValue(el, "mean", Constants::DEFAULT_MEAN_LEVY);
-		std::pair<const char*, double> p1 = std::make_pair("mean", mean);
+		location = getValue(el, "location", Constants::DEFAULT_MEAN_LEVY);
+		std::pair<const char*, double> p1 = std::make_pair("location", location);
 		m_params.push_back(p1);
 	} catch(std::runtime_error &e) {
-		// ignore, no mean, it will be set later
+		// ignore, no location, it will be set later
 	}
 }
 
