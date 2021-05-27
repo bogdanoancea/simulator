@@ -17,7 +17,7 @@
 	<movement_pattern type="levy_flight">
 		<cutOffSpeed>25</cutOffSpeed>
 		<speed_distribution distributionType = "Levy">
-			<mean/>
+			<location/>
 			<c>10</c>
 		</speed_distribution>
 	</movement_pattern>
