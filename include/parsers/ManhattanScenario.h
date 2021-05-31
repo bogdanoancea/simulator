@@ -30,7 +30,11 @@
 using namespace std;
 
 /**
- * This class contains the parameters of the Manhattan mobility pattern.
+ * This class contains the parameters of the Manhattan mobility pattern. It stores the
+ * "block" (or step) dimension on Ox and OY axes and the origin of the Manhattan grid.
+ * Manhattan mobility pattern involves moving along a rectangular grid. The origin and
+ * the step dimensions are store in this class. These parameters are ared from the
+ * simulation configuration files.
  */
 class ManhattanScenario {
 public:

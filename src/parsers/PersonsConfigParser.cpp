@@ -300,10 +300,8 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 			p->setDisplacementMethod(displace2);
 		}
 	} else if (type == MovementType::MANHATTAN) {
-		auto displace = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed(), p->getId());
+		auto displace = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
-		p->setTimeStayDistribution(nullptr);
-		p->setIntervalBetweenStaysDistribution(nullptr);
 	}
 }
 

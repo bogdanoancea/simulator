@@ -8,13 +8,12 @@
 #include <ManhattanDisplacement.h>
 #include <RandomNumberGenerator.h>
 
-ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed, unsigned long id) :
+ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed) :
 		Displace(simConfig, speed) {
 	m_manhattanScenario = simConfig->getManhattanScenario();
 	m_status = STATE::OUTSIDE;
 	m_theta = Directions::EAST;
 	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
-	m_id = id;
 }
 
 ManhattanDisplacement::~ManhattanDisplacement() {

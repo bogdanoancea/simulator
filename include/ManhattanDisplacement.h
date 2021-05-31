@@ -28,15 +28,19 @@
 #include <Directions.h>
 #include <parsers/ManhattanScenario.h>
 
+/**
+ * This class implements the Manhattan mobility pattern. It first computes the closest corner of the grid to the initial location
+ * of the person. The first step mmoves the person between the  initial location on map and this corner.
+ * Then it computes the distance a person can travel in a time step considering the travel speed. I
+ */
 class ManhattanDisplacement: public Displace {
 public:
 	/**
 	 *
 	 * @param simconfig
 	 * @param speed
-	 * @param id
 	 */
-	ManhattanDisplacement(SimulationConfiguration* simconfig, double speed, unsigned long id);
+	ManhattanDisplacement(SimulationConfiguration* simconfig, double speed);
 
 	/**
 	 *
@@ -73,7 +77,6 @@ private:
 	ManhattanScenario* m_manhattanScenario;
 	STATE m_status;
 	double m_distance;
-	unsigned long m_id;
 	Directions m_theta;
 
 };
