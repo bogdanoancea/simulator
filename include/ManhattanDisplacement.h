@@ -25,21 +25,56 @@
 #define INCLUDE_MANHATTANDISPLACEMENT_H_
 
 #include <Displace.h>
+#include <Directions.h>
 #include <parsers/ManhattanScenario.h>
 
 class ManhattanDisplacement: public Displace {
 public:
-	ManhattanDisplacement(SimulationConfiguration* simconfig, double speed);
+	/**
+	 *
+	 * @param simconfig
+	 * @param speed
+	 * @param id
+	 */
+	ManhattanDisplacement(SimulationConfiguration* simconfig, double speed, unsigned long id);
 
+	/**
+	 *
+	 */
 	virtual ~ManhattanDisplacement();
 
+	/**
+	 *
+	 * @param initLocation
+	 * @return
+	 */
 	virtual Point* generateNewLocation(Point * initLocation) override;
 
+
 private:
-	Point* closestCorner(Point* location) const;
+	enum STATE {OUTSIDE=0, ONCORNER, ONEDGE};
+
+	Coordinate closestCorner(Coordinate location) const;
 	//virtual Point* computeNewLocation(Point* initLocation, double theta) override;
-	unsigned selectDirection();
+
+	Directions selectDirection() const;
+	bool atCorner(Coordinate pos, Coordinate corner) const;
+	bool doubleCompare(double x, double y) const;
+
+	Coordinate makeBlockStep(Coordinate location,  Directions angle) const;
+	Coordinate makeIncompleteStep(Coordinate location,  Directions angle, double length) const;
+	double makeMultipleBlocksStep(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status);
+	void startFromCorner(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status);
+	void startFromEdge(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status);
+	double blockLength( Directions theta) const;
+	Directions reverseDirection(Directions dir) const;
+
+	//STATE checkStatus(Point* location) const;
 	ManhattanScenario* m_manhattanScenario;
+	STATE m_status;
+	double m_distance;
+	unsigned long m_id;
+	Directions m_theta;
 
 };
 

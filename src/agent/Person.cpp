@@ -36,6 +36,7 @@
 #include <sstream>
 #include <utility>
 #include <HomeWorkDisplacement.h>
+#include <ManhattanDisplacement.h>
 using namespace geos;
 using namespace geos::geom;
 
@@ -111,9 +112,9 @@ Point* Person::move() {
 		}
 		setLocation(pt);
 	}
-//	if(getId() == 426) {
+//	if(getId() == 72) {
 //		shared_ptr<Displace> dpl = m_displacementMethod;
-//		cout << "locatia:" << getLocation()->toString() << "state " << static_cast<int>(((HomeWorkDisplacement*)dpl.get())->getState()) << "delta stay anchor: " << ((HomeWorkDisplacement*)dpl.get())->getDeltaTStayAnchor() <<  endl;
+//		cout << "locatia:" << getLocation()->toString() << "on corner " << static_cast<int>(((ManhattanDisplacement*)dpl.get())->m_onCorner) << "on edge: " << ((ManhattanDisplacement*)dpl.get())->m_onEdge <<  "closest corner: " << (((ManhattanDisplacement*)dpl.get())->m_corner)<< " theta: " <<static_cast<int>((((ManhattanDisplacement*)dpl.get())->m_theta)) << "current : " << (((ManhattanDisplacement*)dpl.get())->m_current) <<endl;
 //	}
 	return (getLocation());
 }

@@ -1,10 +1,10 @@
 <simulation>
         <start_time>0</start_time>
-        <end_time>240</end_time>
-		<time_increment>30</time_increment>
+        <end_time>2400</end_time>
+		<time_increment>1</time_increment>
 		<time_stay distributionType = "Normal">
-			<mean>20</mean>
-			<sd>2</sd>
+			<mean>1</mean>
+			<sd>1</sd>
 		</time_stay>
         <interval_between_stays distributionType = "Exponential">
         	<mean>120</mean>

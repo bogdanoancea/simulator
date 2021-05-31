@@ -8,9 +8,13 @@
 #include <ManhattanDisplacement.h>
 #include <RandomNumberGenerator.h>
 
-ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed) :
+ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed, unsigned long id) :
 		Displace(simConfig, speed) {
 	m_manhattanScenario = simConfig->getManhattanScenario();
+	m_status = STATE::OUTSIDE;
+	m_theta = Directions::EAST;
+	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
+	m_id = id;
 }
 
 ManhattanDisplacement::~ManhattanDisplacement() {
@@ -18,88 +22,246 @@ ManhattanDisplacement::~ManhattanDisplacement() {
 }
 
 Point* ManhattanDisplacement::generateNewLocation(Point * initLocation) {
-	Point* result = initLocation;
-	double xstep  = m_manhattanScenario->getXStep();
-	double ystep  = m_manhattanScenario->getYStep();
+	Point* result;
+	const Coordinate* initC = initLocation->getCoordinate();
+	double x = initC->x;
+	double y = initC->y;
+	Coordinate current = Coordinate(x,y,0.0);
+	STATE savedStatus = m_status;
+	Directions savedTheta  = m_theta;
 
 	if(m_simConfig->getClock()->getCurrentTime() == m_simConfig->getClock()->getInitialTime() +  m_simConfig->getClock()->getIncrement()) {
-		//cout << "trec pe aici" << endl;
-		result = closestCorner(initLocation);
+		current = closestCorner(*initC);
+		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
+		m_status = STATE::ONCORNER;
 	} else {
-		double distance = m_speed * m_simConfig->getClock()->getIncrement();
-		double x = result->getX();
-		double y = result->getY();
-
-		double maxstep = xstep >= ystep ? xstep : ystep;
-		while(distance > maxstep) {
-			unsigned theta = selectDirection();
-			if( theta == 0) {
-				x += xstep;
-				distance -=xstep;
-			}
-			else if(theta == 90) {
-				y += ystep;
-				distance -=ystep;
-			}
-			else if(theta == 180) {
-				x -= xstep;
-				distance -=xstep;
-			}
-			else if(theta == 270) {
-				y -= ystep;
-				distance -=ystep;
-			}
-
+		double distanceToGo = m_distance;
+		if(m_status == STATE::ONCORNER) {
+			startFromCorner(current, distanceToGo, m_theta, m_status);
 		}
-		if(maxstep == xstep) // make a step on OY
-			y += ystep;
-		else
-			x += xstep;
-		Coordinate c1 = Coordinate(x, y, 0);
-		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
+		else if(m_status == STATE::ONEDGE) {
+			startFromEdge(current, distanceToGo, m_theta, m_status);
+		}
+		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
 		Geometry* g = m_simConfig->getMap()->getBoundary();
-		if (!result->within(g))
+		if (!result->within(g)) {
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(result);
 			result = initLocation;
+			m_status = savedStatus;
+			if(m_status == STATE::ONCORNER)
+				m_theta = savedTheta;
+			else {
+				m_theta = reverseDirection(savedTheta);
+			}
+		}
 	}
-
 	return result;
 
 }
 
-Point* ManhattanDisplacement::closestCorner(Point* location) const {
+void ManhattanDisplacement::startFromCorner(Coordinate &current, double distanceToGo, Directions &angle, ManhattanDisplacement::STATE &status) {
+	while (distanceToGo > 0) {
+		if (status == STATE::ONCORNER)
+			angle = selectDirection();
+		double stepLDir = blockLength(angle);
+		if (stepLDir < distanceToGo) {
+			current = makeBlockStep(current, angle);
+			distanceToGo -= stepLDir;
+			status = STATE::ONCORNER;
+		} else {
+			distanceToGo = makeMultipleBlocksStep(current, distanceToGo, angle, status);
+		}
+	}
+}
+
+
+void ManhattanDisplacement::startFromEdge(Coordinate &current, double distanceToGo, Directions &angle, ManhattanDisplacement::STATE &status) {
+	Coordinate previous;
+	while (distanceToGo > 0) {
+		if (m_status == STATE::ONCORNER)
+			m_theta = selectDirection();
+		double stepLDir = blockLength(m_theta);
+		if (stepLDir < distanceToGo) {
+			previous = current;
+			current = makeBlockStep(current, m_theta);
+			distanceToGo -= stepLDir;
+			Coordinate corner = closestCorner(current);
+			if (!(doubleCompare(corner.x, previous.x)
+					&& doubleCompare(corner.y, previous.y))) {
+				if (atCorner(current, corner)) {
+					current = corner;
+					m_status = STATE::ONCORNER;
+				} else {
+					m_status = STATE::ONEDGE;
+				}
+			} else {
+				m_status = STATE::ONEDGE;
+			}
+		} else {
+			distanceToGo = makeMultipleBlocksStep(current, distanceToGo, m_theta, m_status);
+		}
+	}
+}
+
+
+
+double ManhattanDisplacement::makeMultipleBlocksStep(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status)  {
+	Coordinate previous = current;
+	current = makeIncompleteStep(current, angle, distanceToGo);
+	Coordinate corner = closestCorner(current);
+	if( !(doubleCompare(corner.x, previous.x) &&  doubleCompare(corner.y, previous.y)) ) {
+		if(atCorner(current, corner)) {
+			current = corner;
+			status = STATE::ONCORNER;
+
+		} else {
+			status = STATE::ONEDGE;
+		}
+	}
+	else {
+		status = STATE::ONEDGE;
+	}
+	return -1;
+}
+
+
+Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 	double xcorner, ycorner;
-	double x = location->getX();
-	double y = location->getY();
+	double x = location.x;
+	double y = location.y;
 
 	double x1 = floor((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double x2 = ceil((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double y1 = floor((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
 	double y2 = ceil((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
-	if(abs(x-x1) < abs(x-x2))
+	if(fabs(x-x1) < fabs(x-x2))
 		xcorner = x1;
 	else
 		xcorner = x2;
 
-	if(abs(y-y1) < abs(y-y2))
+	if(fabs(y-y1) < fabs(y-y2))
 		ycorner = y1;
 	else
 		ycorner = y2;
 
-	Coordinate c1 = Coordinate(xcorner, ycorner, 0);
-	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
-	return pt;
+	Coordinate c1 = Coordinate(xcorner, ycorner, 0.0);
+	return c1;
 }
 
-unsigned ManhattanDisplacement::selectDirection() {
+Directions ManhattanDisplacement::selectDirection() const{
+	Directions result;
 	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
 	unsigned theta = rng->generateUniformInt(0, 3);
-	return theta * 90;
+	if(theta == 0)
+		result = Directions::EAST;
+	else if(theta == 1)
+		result = Directions::NORTH;
+	else if(theta == 2)
+		result = Directions::WEST;
+	else
+		result = Directions::SOUTH;
+	return result;
+}
+
+bool ManhattanDisplacement::atCorner(Coordinate pos, Coordinate corner) const {
+
+	double distToCorner = 0.0;
+	if(doubleCompare(pos.x, corner.x))
+		distToCorner = fabs(pos.y - corner.y);
+	else if(doubleCompare(pos.y, corner.y))
+		distToCorner = fabs(pos.x - corner.x);
+	else if (doubleCompare(pos.x, corner.x) && doubleCompare(pos.y, corner.y))
+		distToCorner = 0.0;
+	else
+		distToCorner = sqrt(pow(pos.x - corner.x, 2) + pow(pos.y - corner.y, 2));
+
+	if(distToCorner < m_distance)
+		return true;
+	else
+		return false;
+}
+
+bool ManhattanDisplacement::doubleCompare(double x, double y) const {
+    double maxXYOne = std::max( { 1.0, std::fabs(x) , std::fabs(y) } ) ;
+    return std::fabs(x - y) <= std::numeric_limits<double>::epsilon()*maxXYOne ;
+}
+
+Coordinate ManhattanDisplacement::makeBlockStep(Coordinate location, Directions theta) const{
+	double x = location.x;
+	double y = location.y;
+	double xstep  = m_manhattanScenario->getXStep();
+	double ystep  = m_manhattanScenario->getYStep();
+	if(theta == Directions::EAST) {
+		x += xstep;
+	} else if(theta == Directions::NORTH) {
+		y += ystep;
+	}
+	else if(theta == Directions::WEST) {
+		x -= xstep;
+	}
+	else if(theta == Directions::SOUTH ){
+		y -= ystep;
+	}
+	return Coordinate(x, y, 0.0);
 }
 
 
-//
-//Point* LevyFlightDisplacement::computeNewLocation(Point* initLocation, double theta) {
-//	double x = initLocation->getX();
-//	double y = initLocation->getY();
-//	return pt;
+Coordinate ManhattanDisplacement::makeIncompleteStep(Coordinate location, Directions theta, double length) const {
+	double x = location.x;
+	double y = location.y;
+	if(theta == Directions::EAST) {
+		x += length;
+	} else if(theta == Directions::NORTH) {
+		y += length;
+	}
+	else if(theta == Directions::WEST) {
+		x -= length;
+	}
+	else if(theta == Directions::SOUTH) {
+		y -= length;
+	}
+	Coordinate c = Coordinate(x, y, 0.0);
+	return c;
+}
+
+double ManhattanDisplacement::blockLength(Directions theta) const {
+	double result = 0;
+	if( theta == Directions::EAST || theta == Directions::WEST)
+		result = m_manhattanScenario->getXStep();
+	else if(theta == Directions::NORTH || theta == Directions::SOUTH) {
+		result = m_manhattanScenario->getYStep();
+	}
+	return result;
+}
+
+Directions ManhattanDisplacement::reverseDirection(Directions dir) const {
+	Directions result;
+	if(dir == Directions::SOUTH)
+		result = Directions::NORTH;
+	else if(dir == Directions::EAST)
+		result = Directions::WEST;
+	else if(dir == Directions::NORTH)
+		result = Directions::SOUTH;
+	else
+		result = Directions::EAST;
+	return result;
+}
+
+//STATE ManhattanDisplacement::checkStatus(Point* location) const {
+//	STATE result;
+//	double x = location->getX();
+//	double y = location->getY();
+//	double xManhattanStep =  m_manhattanScenario->getXStep();
+//	double yManhattanStep =  m_manhattanScenario->getYStep();
+//	if(compareDouble(fmod(x, xManhattanStep), 0.0) && compareDouble(fmod(y, yManhattanStep), 0.0)){
+//		result = STATE::ONCORNER;
+//	}
+//	else if(compareDouble(fmod(x, xManhattanStep), 0.0) ||compareDouble(fmod(y, yManhattanStep), 0.0)) {
+//		result = STATE::ONEDGE
+//	}
+//	else {
+//		result = STATE::OUTSIDE;
+//	}
+//	return result;
 //}
+
