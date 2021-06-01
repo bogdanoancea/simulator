@@ -57,8 +57,8 @@ vector<double> UnifPriorPostLocProb::prob(unsigned long t, MobilePhone* m, vecto
 	for (vector<AntennaInfo>::iterator i = data.begin(); i != data.end(); i++) {
 		ai = i;
 		if (ai->getTime() == t && ai->getDeviceId() == m->getId()
-				&& (ai->getEventCode() == static_cast<int>(EventCode::ATTACH_DEVICE)
-						|| ai->getEventCode() == static_cast<int>(EventCode::ALREADY_ATTACHED_DEVICE))) {
+				&& (ai->getEventCode() == EventCode::ATTACH_DEVICE
+						|| ai->getEventCode() == EventCode::ALREADY_ATTACHED_DEVICE)) {
 			found = true;
 			break;
 		}

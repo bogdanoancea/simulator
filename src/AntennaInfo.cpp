@@ -62,25 +62,25 @@ const unsigned long AntennaInfo::getDeviceId() const {
 
 }
 
-const unsigned long AntennaInfo::getEventCode() const {
-	unsigned long result =-1;
+const EventCode AntennaInfo::getEventCode() const {
+	EventCode result;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
-		result = stoul(m_textRow[2]);
+		result = static_cast<EventCode>(stoul(m_textRow[2]));
 	return result;
 }
 
-unsigned long AntennaInfo::getTime() const {
+const unsigned long AntennaInfo::getTime() const {
 	return (m_time);
 }
 
-double AntennaInfo::getX() const {
+const double AntennaInfo::getX() const {
 	double result = -1;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
 		result = stod(m_textRow[5]);
 	return result;
 }
 
-double AntennaInfo::getY() const {
+const double AntennaInfo::getY() const {
 	double result = -1;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
 		result = stod(m_textRow[6]);
