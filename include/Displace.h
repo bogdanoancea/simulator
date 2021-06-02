@@ -37,13 +37,14 @@ using namespace geos::geom;
 
 
 /**
- * This class implements a Strategy design pattern. It acts as an interface to different displacement algorithms.
+ * This class implements a Strategy design pattern. It acts as an interface for different displacement algorithms.
  */
 class Displace {
 public:
 
 	/**
-	 * Constructor of the class. Initializes members.
+	 * Constructor of the class. It initializes members of the class
+	 * @param simconfig a pointer to  a SimulationConfiguration containing the paramteres of the simulation read from the simulation configuration file.
 	 * @param speed the speed of displacement.
 	 */
 	Displace(SimulationConfiguration* simconfig, double speed);
@@ -54,7 +55,7 @@ public:
 	virtual ~Displace();
 
 	/**
-	 * This pure virtual method is implemented in each of the concrete subclasses derived from \code{Displace}.
+	 * This pure virtual method is implemented by each of the concrete subclasses derived from Displace.
 	 * @return the new location where the object subject to the displacement operation has to move.
 	 */
 	virtual Point* generateNewLocation(Point * initLocation) = 0;

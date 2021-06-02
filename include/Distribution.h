@@ -33,23 +33,83 @@
 #include <string>
 
 using namespace tinyxml2;
-
-
-using namespace tinyxml2;
 using namespace std;
 
+/**
+ * This is the class represents a probability distribution used for simulations. The parameters of the concrete distributions
+ * are read from different configuration files.
+ */
 class Distribution {
 public:
+	/**
+	 * The default constructor  is deleted. A Distribution object needs to know its type and parameters.
+	 */
 	Distribution() = delete;
+
+	/**
+	 * Constructor of the class. It takes the distribution type and the parameters of the distribution as arguments.
+	 * @param type the type of the distribution. It could take one of the following values:
+	 * DistributionType::LAPLACE, DistributionType::UNIFORM, DistributionType::NORMAL, DistributionType::TRUNCATED_NORMAL,
+	 * DistributionType::LEVY, DistributionType::EXPONENTIAL, DistributionType::BINOMIAL, DistributionType::BERNOULLI
+	 * @param params
+	 */
 	Distribution(DistributionType type, vector<pair<const char*, double>> params);
+
+	/**
+	 *
+	 * @param type
+	 * @param element
+	 */
 	Distribution(DistributionType type, XMLElement* element);
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~Distribution();
+
+	/**
+	 *
+	 * @param name
+	 * @return
+	 */
 	double getParam(const char* name);
+
+	/**
+	 *
+	 * @return
+	 */
 	vector<pair<const char*, double>>& getParams();
+
+	/**
+	 *
+	 * @param params
+	 */
 	void setParams(vector<pair<const char*, double>> params);
+
+	/**
+	 *
+	 * @return
+	 */
 	DistributionType getType();
+
+	/**
+	 *
+	 * @return
+	 */
 	string paramsToString();
+
+	/**
+	 *
+	 * @param name
+	 * @return
+	 */
 	bool hasParam(const char* name) const;
+
+	/**
+	 *
+	 * @param name
+	 * @param value
+	 */
 	void setParam(const char* name, double value);
 
 private:
