@@ -73,7 +73,7 @@ pair<Antenna*, double> EMField::computeMaxPower(const Point* p, const unsigned l
 }
 
 
-pair<Antenna*, double> EMField::computeMaxQuality(const Point* p, const unsigned long mnoId) {
+pair<Antenna*, double> EMField::computeMaxDominance(const Point* p, const unsigned long mnoId) {
 	pair<Antenna*, double> result { nullptr, 0.0 };
 	unsigned long size = m_antennas.size();
 	if (size > 0) {
@@ -196,7 +196,7 @@ bool EMField::isAntennaInRange(const Point* p, Antenna* a, const double threshol
 	return (result);
 }
 
-vector<double> EMField::sumSignalQuality(const Map* map, const unsigned long mnoID) {
+vector<double> EMField::sumSignalDominance(const Map* map, const unsigned long mnoID) {
 	vector<double> tmp;
 	for (unsigned long tileIndex = 0; tileIndex < map->getNoTiles(); tileIndex++) {
 		double sum = 0.0;

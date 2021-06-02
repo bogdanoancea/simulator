@@ -55,8 +55,8 @@ void PostLocProb::computeProbabilities(std::map<unsigned long, vector<AntennaInf
 
 	auto itrm = m_agents->getAgentListByType(typeid(MobilePhone).name());
 	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
-		cout << "Sum signal quality" << " MNO : " << itmno->second->getId() << endl;
-		EMField::instance()->sumSignalQuality(m_map, itmno->second->getId());
+		cout << "Sum signal dominance" << " MNO : " << itmno->second->getId() << endl;
+		EMField::instance()->sumSignalDominance(m_map, itmno->second->getId());
 	}
 
 	ofstream p_file;
