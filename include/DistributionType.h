@@ -26,6 +26,10 @@
 #ifndef INCLUDE_DISTRIBUTIONTYPE_H_
 #define INCLUDE_DISTRIBUTIONTYPE_H_
 
+/**
+ * This is an enum class with all the values supported for the type of the probability distributions
+ * accepted by the Distribution class.
+ */
 enum class DistributionType {
 	LAPLACE, UNIFORM, NORMAL, TRUNCATED_NORMAL, LEVY, EXPONENTIAL, BINOMIAL, BERNOULLI
 };

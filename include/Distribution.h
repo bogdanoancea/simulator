@@ -51,14 +51,17 @@ public:
 	 * @param type the type of the distribution. It could take one of the following values:
 	 * DistributionType::LAPLACE, DistributionType::UNIFORM, DistributionType::NORMAL, DistributionType::TRUNCATED_NORMAL,
 	 * DistributionType::LEVY, DistributionType::EXPONENTIAL, DistributionType::BINOMIAL, DistributionType::BERNOULLI
-	 * @param params
+	 * @param params a vector of pairs name-value specifying the name and the values of the parameters of a distribution.
 	 */
 	Distribution(DistributionType type, vector<pair<const char*, double>> params);
 
 	/**
-	 *
-	 * @param type
-	 * @param element
+	 * Constructor of the class. It takes the distribution type and a pointer to an XMLElement to be parsed to extract
+	 * the parameters.
+	 * @param type thr distribution type: DistributionType::LAPLACE, DistributionType::UNIFORM, DistributionType::NORMAL, DistributionType::TRUNCATED_NORMAL,
+	 * DistributionType::LEVY, DistributionType::EXPONENTIAL, DistributionType::BINOMIAL, DistributionType::BERNOULLI.
+	 * @param element a pointer to an XMLElement object obtained after parsing a configuration file. The parameters of the distribution
+	 * are extracted from this object.
 	 */
 	Distribution(DistributionType type, XMLElement* element);
 
@@ -68,47 +71,49 @@ public:
 	virtual ~Distribution();
 
 	/**
-	 *
-	 * @param name
-	 * @return
+	 * Returns the value of a parameter given its name.
+	 * @param name the name of the parameter whose value we want to obtain.
+	 * @return the value of a parameter with the specified name.
 	 */
 	double getParam(const char* name);
 
 	/**
-	 *
-	 * @return
+	 * Returns a vector of pairs name-value containing the names and values of the parameters of the distribution.
+	 * @return a vector of pairs name-value containing the names and values of the parameters of the distribution.
 	 */
 	vector<pair<const char*, double>>& getParams();
 
 	/**
-	 *
-	 * @param params
+	 * Sets the vector of pairs name-value containing the names and values of the parameters of the distribution.
+	 * @param params the vector of pairs name-value containing the names and values of the parameters of the distribution.
 	 */
 	void setParams(vector<pair<const char*, double>> params);
 
 	/**
-	 *
-	 * @return
+	 * Returns the distribution type.
+	 * @return the distribution type.
 	 */
 	DistributionType getType();
 
 	/**
-	 *
-	 * @return
+	 * Returns a string representation of the distribution. It contains the names and the values of the parameters of the distribution.
+	 * @return  a string representation of the distribution. It contains the names and the values of the parameters of the distribution.
 	 */
 	string paramsToString();
 
 	/**
-	 *
-	 * @param name
-	 * @return
+	 * Checks if this Distribution object has a parameter with the name given as argument and returns true if it has, false otherwise.
+	 * @param name the name of a parameter.
+	 * @return true if this Distribution object has a parameter with the name given as argument to this method, false otherwise.
 	 */
 	bool hasParam(const char* name) const;
 
 	/**
-	 *
-	 * @param name
-	 * @param value
+	 * Sets a new pair name-value representing a parameter of this distribution. If the Distribution object already has
+	 * a parameter with the name given as argument to this method, its sets the value of this parameter to the value
+	 * given as the second argument to this function.
+	 * @param name the name of a parameter of the distribution.
+	 * @param value the value of a parameter of the distribution to be set.
 	 */
 	void setParam(const char* name, double value);
 
