@@ -36,16 +36,16 @@ using namespace std::chrono;
 /**
  * This is the clock used to synchronize the simulation. All the agents and all other objects involved in a simulation
  * use the same Clock object.
- * The Clock will be initialized with the value of the starting and ending time of the simulation and will keep a current time during
- * the simulation. At each step of the simulation the current time will be increased by an increment. Starting time, ending time, current
+ * The Clock object is initialized with the value of the starting and ending time of the simulation and keeps a current time during
+ * the simulation. At each step of the simulation the current time is increased by an increment. Starting time, ending time, current
  * time and the time increment are only conventional units and they do not depend in any way on the real clock of the computer.
  */
 class Clock {
 public:
 	/**
-	 * Default constructor
+	 * Default constructor. Never used
 	 */
-	Clock();
+	Clock() = delete;
 
 	/**
 	 * Constructor of the class. It takes the starting and ending time of the simulation as parameters as well as the time increment.
@@ -56,17 +56,18 @@ public:
 	Clock(unsigned long start, unsigned long end, unsigned long incr);
 
 	/**
-	 * Default destructor
+	 * Default destructor.
 	 */
 	virtual ~Clock();
 
 	/**
-	 * increments the current time.
+	 * Increments the current time.
 	 * @return the current time after incrementation.
 	 */
 	unsigned long tick();
 
 	/**
+	 * Returns the current time of the simulator.
 	 * @return the current time of the simulator.
 	 */
 	unsigned long getCurrentTime() const;
@@ -78,6 +79,7 @@ public:
 	void setCurrentTime(unsigned long currentTime);
 
 	/**
+	 * Returns the time increment used in simulation.
 	 * @return the time increment used in simulation.
 	 */
 	unsigned long getIncrement() const;
@@ -89,6 +91,7 @@ public:
 	void setIncrement(unsigned long increment);
 
 	/**
+	 * Returns the starting time of the simulation.
 	 *@return the starting time of the simulation.
 	 */
 	unsigned long getInitialTime() const;
@@ -100,13 +103,14 @@ public:
 	void setInitialTime(unsigned long initialTime);
 
 	/**
-	 *
-	 * @return the real time read from the computer clock. It is used only to register the
+	 * Returns the real time read from the computer clock.  It is used only to register the
 	 * exact date and time of a simulation.
+	 * @return the real time read from the computer clock.
 	 */
 	time_t realTime();
 
 	/**
+	 * Returns the ending time of the simulation.
 	 *@return the ending time of the simulation.
 	 */
 	unsigned long getFinalTime() const;
