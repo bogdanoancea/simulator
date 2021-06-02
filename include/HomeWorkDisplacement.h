@@ -62,7 +62,8 @@ public:
 	virtual Point* generateNewLocation(Point* p) override;
 
 	HomeWorkState getState() const;
-	unsigned long getDeltaTStayAnchor() const {return m_deltaTStayAnchor;}
+
+	//unsigned long getDeltaTStayAnchor() const {return m_deltaTStayAnchor;}
 
 private:
 	HomeWorkState stateTransition(Point* position);

@@ -34,8 +34,9 @@
 #include <map>
 
 using namespace std;
+
 /**
- * This utility singleton class is used to compute different measures of the electromagnetic field radiated by an antenna (power, signal strength etc)
+ * This utility singleton class is used to compute different measures of the electromagnetic field radiated by an antenna (power, signal strength, signal dominance)
  * and it also provides methods needed to decide to which antenna a mobile device connects.
  */
 class EMField {
@@ -155,8 +156,16 @@ public:
 	 */
 	double connectionLikelihoodGrid(Antenna* a, const Map* map, unsigned long tileIndex);
 
+	/**
+	 *
+	 * @return
+	 */
 	const double* getAntennaMin3DbArray() const;
 
+	/**
+	 *
+	 * @return
+	 */
 	double* getSd() const;
 
 private:
