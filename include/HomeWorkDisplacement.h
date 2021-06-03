@@ -31,7 +31,8 @@
 
 /**
  * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
- * the home-work scenario, overriding the generateNewLocation() method from its superclass, Displace.
+ * the home-work scenario, overriding the generateNewLocation() method from its superclass, Displace. For an explanation on how this
+ * mobility pattern works see HomeWorkScenario class.
  */
 class HomeWorkDisplacement: public Displace {
 public:
@@ -61,7 +62,7 @@ public:
 	 */
 	virtual Point* generateNewLocation(Point* p) override;
 
-	HomeWorkState getState() const;
+
 
 	//unsigned long getDeltaTStayAnchor() const {return m_deltaTStayAnchor;}
 
@@ -75,6 +76,9 @@ private:
 	Point* makeRandomStepAtWork(Point* initLocation);
 	Point* toDestination(Point*  initLocation, Point* destination);
 	double computeTheta(Point* p1, Point* p2) const;
+	HomeWorkState getState() const;
+
+
 	long m_deltaTStayHome;
 	long m_deltaTStayWork;
 	long m_deltaTStayAnchor;

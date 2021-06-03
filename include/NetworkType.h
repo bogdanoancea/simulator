@@ -28,8 +28,8 @@
 
 /**
  * This class is an enumeration of network type currently supported:
- * _3G
- * _4G
+ * \li _3G
+ * \li _4G
   */
 enum class NetworkType {
 	_3G, _4G

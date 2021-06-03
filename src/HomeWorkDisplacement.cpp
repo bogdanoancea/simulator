@@ -256,6 +256,7 @@ const bool HomeWorkDisplacement::arrivedAtDestination(Point* position, Point* de
 	return result;
 }
 
+
 HomeWorkState HomeWorkDisplacement::getState() const {
 	return m_state;
 }

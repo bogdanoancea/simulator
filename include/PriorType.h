@@ -28,9 +28,9 @@
 
 /**
  * An enum class that enumerates the types of the prior used to computed the posterior localization probability.
- * UNIFORM : the prior is an uniform probability, i.e. each object is equally located in each tile of the map.
- * REGISTER: the prior probability is given by an administrative register.
- * NETWORK: the prior probability is given by the mobile network - it is computed as the ratio between the signal quality
+ * \li UNIFORM : the prior is an uniform probability, i.e. each object is equally located in each tile of the map.
+ * \li REGISTER: the prior probability is given by an administrative register.
+ * \li NETWORK: the prior probability is given by the mobile network - it is computed as the ratio between the signal quality
  * given by Antenna a in tile t and the sum of the signal quality given by all antennas in all tiles of the grid.
  */
 enum class PriorType {

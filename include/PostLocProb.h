@@ -64,7 +64,7 @@ public:
 	virtual void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 
 	/**
-	 * A pure virtual function that is implemented in each of the concrete subclasses derived from \code{PostLocProb}.
+	 * A pure virtual function that is implemented in each of the concrete subclasses derived from PostLocProb.
 	 * @param t the time instant for which the location probabilities are computed.
 	 * @param m a pointer to a MobilePhone object for which the location probabilities are computed.
 	 * @param data a vector with network events registered during the simulation.

@@ -27,12 +27,16 @@
 #define MOVEMENTTYPE_H_
 
 /**
- * An enum class that enumerates the types of the methods used to move the people on the map.
- * RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary. The direction is generated
+ * An enum class that enumerates the types of the methods used to move the people on the map:
+ * \li RANDOM_WALK_CLOSED_MAP - the agent moves randomly inside the map boundary. The direction is generated
  * as a random value at each time step and the step length is computed multiplying the speed with the time interval.
- * RANDOM_WALK_CLOSED_MAP_WITH_DRIFT:  the agent moves in a preferential direction. There are two constants defining these directions:
- * SIM_TREND_ANGLE_1 and SIM_TREND_ANGLE_2 (3PI/4 and 5PI/4). The actual direction is generated as a normally distributed random
- * value with means equals to these constants and sad = 0.1.
+ * \li RANDOM_WALK_CLOSED_MAP_WITH_DRIFT:  the agent moves in a preferential direction. See the documentation of the
+ * RnadomWalkDriftScenario for more details.
+ * \li LEVY_FLIGHT - the agent moves according to a "Levy flight" i.e. the travel distance for each time step
+ * is distributed according to a Levy distribution.
+ * \li HOME_WORK - the agent moves from a home location to a work location and optionally to an anchor point location. It stays
+ * for a configurable time interval at each location.
+ * \li MANHATTAN - the agent follows a Manhattan mobility patern.
  */
 enum class MovementType {
 	RANDOM_WALK_CLOSED_MAP, RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, LEVY_FLIGHT, HOME_WORK, MANHATTAN, UNKNOWN

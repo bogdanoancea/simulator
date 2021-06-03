@@ -31,6 +31,8 @@
  * STAY_HOME
  * GO_WORK
  * STAY_WORK
+ * GO_ANCHOR
+ * STAY_ANCHOR
  * GO_HOME
   */
 enum class HomeWorkState {
