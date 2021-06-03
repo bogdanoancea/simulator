@@ -198,7 +198,7 @@ namespace utils {
 	 * @param name the name of the XMLNode.
 	 * @return a double value obtained by converting the text in an XMLNode to a double
 	 */
-	double getValue(XMLElement* el, const char* name) throw (runtime_error);
+	double getValue(XMLElement* el, const char* name);
 
 	/**
 	 * Returns the network type obtained by converting the text in an XMLNode to a NetworkType value. In case
