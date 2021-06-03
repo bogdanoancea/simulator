@@ -88,6 +88,14 @@ public:
 	pair<um_iterator, um_iterator> getAgentListByType(const string& agentType);
 
 	/**
+	 * Returns a vector of pointers to Agent objects with the type (Antenna, MobileDevice, etc) passed as parameter to this method.
+	 * @param agentType the agent type: all subclasses of Agent class.
+	 * @return a vector of pointers to Agent objects with the type (Antenna, MobileDevice, etc) passed as parameter to this method.
+	 */
+	vector<Agent*> getAgentsByType(const string& agentType);
+
+
+	/**
 	 * Iterator to the past-the-end object of the collection. It does not point to any agent,
 	 * and thus shall not be dereferenced.
 	 * @return an iterator referring to the past-the-end element in the agents container. If the container

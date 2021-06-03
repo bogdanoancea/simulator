@@ -61,6 +61,14 @@ std::pair<um_iterator, um_iterator> AgentsCollection::getAgentListByType(const s
 	return (m_agents.equal_range(agentType));
 }
 
+vector<Agent*> AgentsCollection::getAgentsByType(const string& agentType) {
+	vector<Agent*> result;
+	std::pair<um_iterator, um_iterator> r = getAgentListByType(agentType);
+	for (auto it = r.first; it != r.second; it++)
+		result.push_back(it->second);
+	return result;
+}
+
 Agent* AgentsCollection::getAgent(const unsigned long id) const {
 	Agent* result = nullptr;
 	for (auto& a : m_agents) {
