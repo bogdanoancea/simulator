@@ -66,6 +66,8 @@ const EventCode AntennaInfo::getEventCode() const {
 	EventCode result;
 	if(m_eventType == EventType::CELLID || m_eventType == EventType::CELLIDTA)
 		result = static_cast<EventCode>(stoul(m_textRow[2]));
+	else
+		throw runtime_error("Unknown event code");
 	return result;
 }
 
