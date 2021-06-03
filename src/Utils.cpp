@@ -74,7 +74,7 @@ vector<Point*> generateRandomPoints(SimulationConfiguration* sc, unsigned long n
 	Geometry* g = m->getBoundary();
 	if (g != nullptr) {
 		unsigned long nhome = (unsigned long) n * percentHome;
-		cout << "aici " << nhome << ":" << n-nhome<< endl;
+		//cout << "aici " << nhome << ":" << n-nhome<< endl;
 		vector<Point*> r = generateFixedPoints(m , nhome, random_generator);
 		std::move (r.begin(), r.end(), std::back_inserter(result));
 		random_generator->setSeed(time(0));

@@ -61,7 +61,7 @@ public:
 	 * @param m a pointer to a MobilePhone object for which the probabilities are computed.
 	 * @param data a vector with the network events.
 	 * @param it an iterator the the antenna's list.
-	 * @return a vector with the posterior location probabilities for each time instant and mobile phone.
+	 * @return a vector with the posterior location probabilities for each time instant.
 	 **/
 	virtual vector<double> prob(unsigned long t, MobilePhone* m, vector<AntennaInfo>& data, pair<um_iterator, um_iterator> it) override;
 };

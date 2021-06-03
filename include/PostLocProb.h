@@ -38,7 +38,9 @@
 using namespace std;
 /**
  * This class implements a Strategy design pattern. It acts as an interface to different algorithms for posterior
- * location probabilities computation.
+ * location probabilities computation. The methods used to computed these probabilities are described in he paper
+ * "Deriving geographic location of mobile devices from network data" by Martijn Tennekes, Yvonne A.P.M. Gootzen, Shan H. Shah and
+ * they are implemented by subclasses.
  */
 class PostLocProb {
 public:

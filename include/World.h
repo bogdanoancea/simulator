@@ -51,10 +51,10 @@ using namespace tinyxml2;
 /**
  * This is the class where the simulation process takes place. A World object has a Map, a Clock, a set of Agents
  * than can be persons, mobile phones, antennas, mobile operators etc. After generating all the required objects
- * for simulation by reading the parameters from the input configuration files runSimulation() method is
+ * for a simulation by reading the parameters from the input configuration files, the runSimulation() method is
  * called to perform the actual simulation. The output of the simulation process is written in several files.
  * Antenna objects output their registered events in a .csv file and after the simulation ends, these files are merged
- * in a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities
+ * into a single file that is used to compute the posterior localization probabilities for each mobile device. These probabilities
  * are computed using a Grid that is overlapped on the Map, i.e. we compute the probability of a mobile phone to be in a tile
  * of the grid. A finer the grid means more accurate localization but this come with an important computational cost.
  */
@@ -62,38 +62,26 @@ class World {
 public:
 
 	/**
-	 * Builds a new World object, randomly generating a set of persons, antennas and mobile devices with the default parameters.
-	 * This class is used only for testing and developing new features. For a real simulation the user should build the Wolrd
-	 * object using the other constructor that takes the name of the input files as params.
-	 * @param map a pointer to a Map object where the simulation takes place.
-	 * @param numPersons the number of persons to be generated.
-	 * @param numAntennas the number of antennas to be generated.
-	 * @param numMobilePhones the number of mobile phones to be generated. These phones are randomly given to persons.
-	 */
-	//World(Map* map, int numPersons, int numAntennas, int numMobilePhones);
-
-	/**
 	 * Builds a new World object, reading the parameters for the Persons, Antennas and Mobile Phones from configuration files.
 	 * The configuration files are in XML format and they should be provided as command line parameters. The general parameters
-	 * of the simulation (duration, how people move around the map, how mobile phone try to connect to antennas, etc. are also
+	 * of the simulation (duration, how people move around the map, how mobile phones try to connect to antennas, etc. are also
 	 * read from a configuration file:
-	 * 	- the persons configuration file is provided through the -p parameter in the command line.
-	 * 	- the antennas configuration file is provided through the -a parameter in the command line.
-	 * 	- the simulation configuration file is provided through the -s parameter in the command line.
-	 * 	- the posterior probabilities configuration file is provided through the -pb parameter in the command line.
+	 * 	\li the persons configuration file is provided through the -p parameter in the command line.
+	 * 	\li the antennas configuration file is provided through the -a parameter in the command line.
+	 * 	\li the simulation configuration file is provided through the -s parameter in the command line.
+	 * 	\li the posterior probabilities configuration file is provided through the -pb parameter in the command line.
 	 *
-	 * @param map a pointer to a Map object where the simulation takes place
+	 * @param map a pointer to a Map object where the simulation takes place.
 	 * @param configPersonsFileName the configuration file name for the persons objects.
 	 * @param configAntennasFileName the configuration file name for antenna objects.
 	 * @param configSimulationFileName the general configuration file for a simulation.
-	 * @param probabilitiesFileName the config file for the posterior location probabilites.
+	 * @param probabilitiesFileName the configuration file for the posterior location probabilities.
 	 */
 	World(Map* map, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName,
 			const string& probabilitiesFileName) noexcept(false);
 
 	/**
-	 * Destructor
-	 * It releases the memory allocated for the agents collection and the Clock object.
+	 * Destructor. It releases the memory allocated for the agents collection, the event factory and the SimulationConfiguration object.
 	 */
 	virtual ~World();
 
@@ -124,20 +112,28 @@ public:
 	 */
 	const string& getGridFilename() const;
 
+	/**
+	 * Returns a pointer to the Clock object of the simulation.
+	 * @return a pointer to the Clock object of the simulation.
+	 */
 	Clock* getClock();
 
+	/**
+	 * Computes the posterior location probabilities for each device.
+	 * @param data a vector with all the network events recorded during a simulation.
+	 */
 	void computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> data);
 
 
 	/**
-	 * Returns the name of the output folder.
+	 * Returns the name of the output folder. If this folder does not exists, it will be created.
 	 * @return the name of the output folder.
 	 */
 	const string& getOutputDir() const;
 
 	/**
-	 * At the end of a simulation this method merges all the events saved by individual antennas in a single data structure.
-	 * @return a map of <MNO_ID, vector<AntennInfo>> where for each MNO identified by its ID has
+	 * At the end of a simulation this method merges all the events saved by individual antennas into a single data structure.
+	 * @return a map of <MNO_ID, vector<AntennInfo>> where each MNO identified by its ID has a
 	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
 	 */
 	std::map<unsigned long, vector<AntennaInfo>> getEvents();
