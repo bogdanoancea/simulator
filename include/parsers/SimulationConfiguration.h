@@ -215,20 +215,20 @@ public:
 
 	/**
 	 * Returns the movement type of a person involved in a simulation, which can take one of the following values given by the enumeration MovementType:
-	 *  MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT}, MovementType::HOME_WORK. In the first three
-	 *  cases, all persons in a simulation have the same movement pattern while in the last  one( MovementType::HOME_WORK) there is a small percent having a random type of
-	 *  movement (MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT) while the rest
-	 *  follows a home-work pattern.
+	 *  MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT, MovementType::HOME_WORK, MovementType::MANHATTAN.
+	 *  In the first three cases and the last one, all persons in a simulation have the same movement pattern while in the case of MovementType::HOME_WORK there is a small
+	 *  percent of persons having a random type of movement (MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT)
+	 *  while the rest follow a home-work pattern.
 	 * @return the movement type of a person.
 	 */
 	MovementType getMvType() const;
 
 	/**
 	 * Sets the movement type of a person involved in a simulation, which can take one of the following values given by the enumeration MovementType:
-	 *  MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT}, MovementType::HOME_WORK. In the first three
-	 *  cases, all persons in a simulation have the same movement pattern while in the last  one( MovementType::HOME_WORK) there is a small percent having a random type of
-	 *  movement (MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT) while the rest
-	 *  follows a home-work pattern.
+	 *  MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT}, MovementType::HOME_WORK, MovementType::MANHATTAN.
+	 *  In the first three cases and the last one, all persons in a simulation have the same movement pattern while in the case of MovementType::HOME_WORK there is a small
+	 *  percent of persons having a random type of movement (MovementType::RANDOM_WALK_CLOSED_MAP, MovementType::RANDOM_WALK_CLOSED_MAP_WITH_DRIFT, MovementType::LEVY_FLIGHT)
+	 *  while the rest follow a home-work pattern.
 	 * @param mvType the movement type of a person involved in a simulation.
 	 */
 	void setMvType(MovementType mvType);
@@ -317,7 +317,7 @@ public:
 
 	/**
 	 * Returns the probability distribution of the time interval a person stops in the same position. Some of the mobility patterns (random_walk, random_walk_with_drift,
-	 * levy_flight) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
+	 * levy_flight, manhattan) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
 	 * The actual time intervals a person stops are generated from a probability distribution returned by this function as a pointer to a Distribution object.
 	 * The type of the distribution and its parameters are read from the simulation configuration file.
 	 * @return the probability distribution of the time a person  stops in the same position. Currently only the Normal and Uniform distributions are accepted.
@@ -326,7 +326,7 @@ public:
 
 	/**
 	 * the probability distribution of the time interval a person stops in the same position. Some of the mobility patterns (random_walk, random_walk_with_drift,
-	 * levy_flight) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
+	 * levy_flight, manhattan) consist in a sequence of periods of time when the person move and  periods of time when the person stays in the same position.
 	 * The actual time intervals a person stops are generated from a probability distribution returned by this function as a pointer to a Distribution object.
 	 * The type of the distribution and its parameters are read from the simulation configuration file.
 	 * @param stay the probability distribution of the time a person  stops in the same position. Currently only the Normal and Uniform distributions are accepted.
