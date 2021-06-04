@@ -223,7 +223,7 @@ void SimulationConfigurationParser::parseHomeWorkScenario(XMLElement* homeWorkEl
 }
 
 
-void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* homeWorkElement, HomeWorkManhattanScenario* hws) {
+void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
 	XMLElement* home = homeWorkElement->FirstChildElement("home");
 	if(!home) {
 		throw std::runtime_error("Home location missing!");
@@ -280,7 +280,7 @@ void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* h
 	}
 	XMLElement* manhattan_grid = homeWorkElement->FirstChildElement("manhattan_grid");
 	if(manhattan_grid)
-		parseManhattan(manhattan_grid, hws);
+		parseManhattan(manhattan_grid, ((HomeWorkManhattanScenario*)hws)->getManhattanScenario());
 
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
@@ -377,7 +377,7 @@ MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 				cout << m_simConfig->getManhattanScenario()->toString() << endl;
 				result = MovementType::MANHATTAN;
 			} else if (!strcmp(mvType, "home_work_manhattan")) {
-				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario());
+				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario(new ManhattanScenario()));
 				parseHomeWorkManhattanScenario(mvEl, m_simConfig->getHomeWorkManhattanScenario());
 				cout << m_simConfig->getHomeWorkManhattanScenario()->toString() << endl;
 				result = MovementType::HOME_WORK_MANHATTAN;

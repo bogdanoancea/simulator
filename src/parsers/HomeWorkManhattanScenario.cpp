@@ -23,19 +23,25 @@
 #include <parsers/HomeWorkManhattanScenario.h>
 #include <sstream>
 
-HomeWorkManhattanScenario::HomeWorkManhattanScenario() {
-	// TODO Auto-generated constructor stub
+HomeWorkManhattanScenario::HomeWorkManhattanScenario(ManhattanScenario *ms) {
+	m_manhattanScenario = ms;
 
 }
 
 HomeWorkManhattanScenario::~HomeWorkManhattanScenario() {
-	// TODO Auto-generated destructor stub
+	if(m_manhattanScenario)
+		delete m_manhattanScenario;
 }
 
 const string HomeWorkManhattanScenario::toString() {
 	cout << "aici" << endl;
 	ostringstream result;
 	result << HomeWorkScenario::toString();
-	result << ManhattanScenario::toString();
+	if(m_manhattanScenario)
+		result << m_manhattanScenario->toString();
 	return result.str();
+}
+
+ManhattanScenario* HomeWorkManhattanScenario::getManhattanScenario() {
+	return m_manhattanScenario;
 }

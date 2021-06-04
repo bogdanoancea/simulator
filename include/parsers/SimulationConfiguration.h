@@ -479,8 +479,8 @@ public:
 	 */
 	void setManhattanScenario(ManhattanScenario* ms);
 
-	HomeWorkManhattanScenario* getHomeWorkManhattanScenario() const;
-	void setHomeWorkManhattanScenario(HomeWorkManhattanScenario* hwms);
+	HomeWorkScenario* getHomeWorkManhattanScenario() const;
+	void setHomeWorkManhattanScenario(HomeWorkScenario* hwms);
 	bool isHomeWorkManhattanScenario() const;
 
 private:
@@ -506,7 +506,7 @@ private:
 	Map *m_map;
 
 	HomeWorkScenario *m_homeWorkScenario;
-	HomeWorkManhattanScenario *m_homeWorkManhattanScenario;
+	//HomeWorkScenario *m_homeWorkManhattanScenario;
 	RandomWalkDriftScenario* m_randomWalkDriftScenario;
 	LevyFlightScenario* m_levyFlightScenario;
 	ManhattanScenario* m_manhattanScenario;
