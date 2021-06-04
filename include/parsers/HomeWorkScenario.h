@@ -176,7 +176,7 @@ public:
 	 * Returns a string showing all home, work and anchor point locations.
 	 * @return a string showing all home, work and anchor point locations.
 	 */
-	const string toString();
+	virtual const string toString();
 
 	/**
 	 * Sets the probability distribution used to generate the random noise added to the direction angle at every time step.

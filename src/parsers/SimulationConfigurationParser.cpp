@@ -222,6 +222,77 @@ void SimulationConfigurationParser::parseHomeWorkScenario(XMLElement* homeWorkEl
 	hws->setAngleDistribution(p);
 }
 
+
+void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* homeWorkElement, HomeWorkManhattanScenario* hws) {
+	XMLElement* home = homeWorkElement->FirstChildElement("home");
+	if(!home) {
+		throw std::runtime_error("Home location missing!");
+	}
+	double x = getValue(home, "x_home");
+	double y = getValue(home, "y_home");
+	double xSd = getValue(home, "x_sd_home");
+	double ySd = getValue(home, "y_sd_home");
+	HomeWorkLocation h(x,y,0,xSd,ySd,0);
+	hws->addHomeLocation(h);
+	while( (home = home->NextSiblingElement("home")) != nullptr ) {
+		x = getValue(home, "x_home");
+		y = getValue(home, "y_home");
+		xSd = getValue(home, "x_sd_home");
+		ySd = getValue(home, "y_sd_home");
+		HomeWorkLocation h1(x,y,0,xSd,ySd,0);
+		hws->addHomeLocation(h1);
+	}
+
+	XMLElement* work = homeWorkElement->FirstChildElement("work");
+	if(!work) {
+		throw std::runtime_error("Work location missing!");
+	}
+	x = getValue(work, "x_work");
+	y = getValue(work, "y_work");
+	xSd = getValue(work, "x_sd_work");
+	ySd = getValue(work, "y_sd_work");
+	HomeWorkLocation w(x,y,0,xSd,ySd,0);
+	hws->addWorkLocation(w);
+	while( (work = work->NextSiblingElement("work")) != nullptr ) {
+		x = getValue(work, "x_work");
+		y = getValue(work, "y_work");
+		xSd = getValue(work, "x_sd_work");
+		ySd = getValue(work, "y_sd_work");
+		HomeWorkLocation w1(x,y,0,xSd,ySd,0);
+		hws->addWorkLocation(w1);
+	}
+	XMLElement* anchor = homeWorkElement->FirstChildElement("anchor_point");
+	if (anchor) {
+		x = getValue(anchor, "x_anchor");
+		y = getValue(anchor, "y_anchor");
+		xSd = getValue(anchor, "x_sd_anchor");
+		ySd = getValue(anchor, "y_sd_anchor");
+		HomeWorkLocation a(x, y, 0, xSd, ySd, 0);
+		hws->addAnchorLocation(a);
+		while ((anchor = anchor->NextSiblingElement("anchor_point")) != nullptr) {
+			x = getValue(anchor, "x_anchor");
+			y = getValue(anchor, "y_anchor");
+			xSd = getValue(anchor, "x_sd_anchor");
+			ySd = getValue(anchor, "y_sd_anchor");
+			HomeWorkLocation a1(x, y, 0, xSd, ySd, 0);
+			hws->addAnchorLocation(a1);
+		}
+	}
+	XMLElement* manhattan_grid = homeWorkElement->FirstChildElement("manhattan_grid");
+	if(manhattan_grid)
+		parseManhattan(manhattan_grid, hws);
+
+	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
+	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
+	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
+	hws->setPrecentTimeTravel(getValue(homeWorkElement, "percent_time_travel"));
+	hws->setProbAnchorPoint(getValue(homeWorkElement, "prob_anchor_point"));
+	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
+	hws->setAngleDistribution(p);
+
+}
+
+
 Distribution* SimulationConfigurationParser::parseDirectionAngleDistribution(XMLElement* homeWorkElement) {
 	Distribution* result = nullptr;
 	XMLElement* distribution = homeWorkElement->FirstChildElement("direction_angle_distribution");
@@ -305,6 +376,11 @@ MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 				m_simConfig->setManhattanScenario(ms);
 				cout << m_simConfig->getManhattanScenario()->toString() << endl;
 				result = MovementType::MANHATTAN;
+			} else if (!strcmp(mvType, "home_work_manhattan")) {
+				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario());
+				parseHomeWorkManhattanScenario(mvEl, m_simConfig->getHomeWorkManhattanScenario());
+				cout << m_simConfig->getHomeWorkManhattanScenario()->toString() << endl;
+				result = MovementType::HOME_WORK_MANHATTAN;
 			}
 			else
 				throw runtime_error("Unknown movement mechanism!");

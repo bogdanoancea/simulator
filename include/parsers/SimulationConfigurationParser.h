@@ -29,6 +29,7 @@
 
 
 #include <parsers/HomeWorkScenario.h>
+#include <parsers/HomeWorkManhattanScenario.h>
 #include <agent/AgentsCollection.h>
 #include <TinyXML2.h>
 #include <string>
@@ -87,6 +88,7 @@ private:
 	HoldableAgent::CONNECTION_TYPE parseConnectionType(XMLElement* el);
 	double getDefaultConnectionThreshold(HoldableAgent::CONNECTION_TYPE connType);
 	void parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws);
+	void parseHomeWorkManhattanScenario(XMLElement* homeWorkElement, HomeWorkManhattanScenario* hws);
 	void parseRandomWalkDrift(XMLElement* mvEl, RandomWalkDriftScenario* rws);
 	void parseLevyFlight(XMLElement* mvEl, LevyFlightScenario* lfs);
 	void parseManhattan(XMLElement* mhEl, ManhattanScenario* mhs);

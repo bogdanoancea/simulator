@@ -56,11 +56,6 @@ using namespace utils;
 PersonsConfigParser::PersonsConfigParser(const string& filename, SimulationConfiguration* sc, AgentsCollection* ag) : ConfigParser(filename) {
 	m_simConfig = sc;
 	m_agents = ag;
-//	parse();
-//
-//	for (unsigned long i = 0; i < m_persons.size(); i++) {
-//			m_agents->addAgent(m_persons[i]);
-//	}
 }
 
 PersonsConfigParser::~PersonsConfigParser() {
@@ -192,10 +187,12 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 		double speed = walk_car[i] ? speeds_car[cars++] : speeds_walk[walks++];
 		Person* p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speed, ages[i],
 				gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
-		if(m_simConfig->isHomeWorkScenario()) {
+		if(m_simConfig->isHomeWorkScenario() || m_simConfig->isHomeWorkManhattanScenario()) {
 			 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 			 if( homePerson) {
+				 cout << "este home person 1" << endl;
 				 setHomePersonHWLocations(p, positions[i]);
+				 cout << "este home person 2" << endl;
 			 }
 		}
 		int np1 = phone1[i];
@@ -302,6 +299,18 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 	} else if (type == MovementType::MANHATTAN) {
 		auto displace = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed());
 		p->setDisplacementMethod(displace);
+	} else if (type == MovementType::HOME_WORK_MANHATTAN) {
+		if(p->isHomePerson()) {
+			cout << "aici setez displacement 0" << endl;
+			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
+			p->setDisplacementMethod(displace1);
+			cout << "aici setez displacement 1" << endl;
+		}
+		else {
+			auto displace2 = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed());
+			p->setDisplacementMethod(displace2);
+			cout << "aici setez displacement 2" << endl;
+		}
 	}
 }
 
@@ -324,17 +333,39 @@ void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
 	 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
 	 p->setHomeLocation(hl);
 	 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
-	 Point* workLocation = generateLocation(workLocationIndex, m_simConfig->getHomeWorkScenario()->getWorkLocations());
+	 vector<HomeWorkLocation> hwl;
+	 cout << "setez work location" << endl;
+	 if(m_simConfig->isHomeWorkScenario()) {
+		hwl = m_simConfig->getHomeWorkScenario()->getWorkLocations();
+	 }
+	 else if(m_simConfig->isHomeWorkManhattanScenario()) {
+		 hwl = m_simConfig->getHomeWorkManhattanScenario()->getWorkLocations();
+	 }
+	 Point* workLocation = generateLocation(workLocationIndex, hwl);
 	 p->setWorkLocation(workLocation);
+	 cout << "am setat work location" << endl;
 	if (m_simConfig->getNumAnchorLocations() > 0) {
-		int goAnchor = RandomNumberGenerator::instance()->generateBernoulliInt(m_simConfig->getHomeWorkScenario()->getProbAnchorPoint());
+		cout << "setez anchor location" << endl;
+		double probAnchor = 0.0;
+		if(m_simConfig->isHomeWorkScenario())
+			probAnchor = m_simConfig->getHomeWorkScenario()->getProbAnchorPoint();
+		else if(m_simConfig->isHomeWorkManhattanScenario())
+			probAnchor = m_simConfig->getHomeWorkManhattanScenario()->getProbAnchorPoint();
+		int goAnchor = RandomNumberGenerator::instance()->generateBernoulliInt(probAnchor);
 		if (goAnchor) {
 			int anchorLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0, m_simConfig->getNumAnchorLocations() - 1);
-			Point *anchorLocation = generateLocation(anchorLocationIndex, m_simConfig->getHomeWorkScenario()->getAnchorLocations());
+			vector<HomeWorkLocation> apl;
+			if(m_simConfig->isHomeWorkScenario())
+				apl = m_simConfig->getHomeWorkScenario()->getAnchorLocations();
+			else if(m_simConfig->isHomeWorkManhattanScenario())
+				apl = m_simConfig->getHomeWorkManhattanScenario()->getAnchorLocations();
+			Point *anchorLocation = generateLocation(anchorLocationIndex, apl);
 			///cout << "anchor point: " << anchorLocation->toString() << "person id: " << p->getId() << endl;
 			p->setAnchorLocation(anchorLocation);
+			cout << "am setat anchor location" << endl;
 		}
 	}
 	 p->setIntervalBetweenStaysDistribution(nullptr);
 	 p->setTimeStayDistribution(nullptr);
+	 cout << "am setat hw location" << endl;
 }

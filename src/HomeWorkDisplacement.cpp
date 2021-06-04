@@ -40,6 +40,7 @@ using namespace std;
 
 HomeWorkDisplacement::HomeWorkDisplacement(SimulationConfiguration *simConfig, double speed, Point *homeLocation, Point* workLocation, Point* anchorLocation) :
 		Displace(simConfig, speed) {
+	cout << "aici c1" << endl;
 	m_deltaTStayHome = initDeltaTStayHome();
 	m_deltaTStayWork = initDeltaTStayWork();
 	m_deltaTStayAnchor = initDeltaTStayAnchor();
@@ -55,6 +56,7 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimulationConfiguration *simConfig, d
 	//cout << "dist to work "  << dist << " speed to work " << est_speed << " time to work: " << ((simConfig->getEndTime()-simConfig->getStartTime()) * simConfig->getHomeWorkScenario()->getPrecentTimeTravel())<< endl;
 	m_speed = est_speed;
 	m_stepLength = (m_speed / 10.0) * m_simConfig->getClock()->getIncrement();
+	cout << "aici c2" << endl;
 }
 
 HomeWorkDisplacement::~HomeWorkDisplacement() {
@@ -62,6 +64,7 @@ HomeWorkDisplacement::~HomeWorkDisplacement() {
 
 Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 	Point* pt;
+	cout << "aici 1" << endl;
 	switch (m_state) {
 	case HomeWorkState::STAY_HOME:
 		pt = initLocation;
@@ -86,8 +89,9 @@ Point* HomeWorkDisplacement::generateNewLocation(Point *initLocation) {
 	default:
 		pt = initLocation;
 	}
+	cout << "aici 2" << endl;
 	m_state = stateTransition(pt);
-
+	cout << "aici 3" << endl;
 	return pt;
 }
 

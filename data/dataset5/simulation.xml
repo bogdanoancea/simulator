@@ -14,7 +14,7 @@
         	<prob_mobile_phone>0.35</prob_mobile_phone>
 		</mno>
 		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
-		<movement_pattern type = "home_work">
+		<movement_pattern type = "home_work_manhattan">
 			<home>
 				<x_home>2000</x_home>
 				<y_home>7500</y_home>

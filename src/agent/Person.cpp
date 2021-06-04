@@ -106,6 +106,7 @@ Point* Person::move() {
 				m_timeStay++;
 		}
 	} else {
+		cout << getId() << endl;
 		Point* pt = m_displacementMethod->generateNewLocation(currentLocation);
 		if (pt != currentLocation) {
 			this->getMap()->getGlobalFactory()->destroyGeometry(currentLocation);
@@ -116,6 +117,7 @@ Point* Person::move() {
 //		shared_ptr<Displace> dpl = m_displacementMethod;
 //		cout << "locatia:" << getLocation()->toString() << "on corner " << static_cast<int>(((ManhattanDisplacement*)dpl.get())->m_onCorner) << "on edge: " << ((ManhattanDisplacement*)dpl.get())->m_onEdge <<  "closest corner: " << (((ManhattanDisplacement*)dpl.get())->m_corner)<< " theta: " <<static_cast<int>((((ManhattanDisplacement*)dpl.get())->m_theta)) << "current : " << (((ManhattanDisplacement*)dpl.get())->m_current) <<endl;
 //	}
+
 	return (getLocation());
 }
 
