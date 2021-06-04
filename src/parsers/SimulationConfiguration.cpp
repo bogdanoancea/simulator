@@ -249,14 +249,15 @@ HomeWorkLocation SimulationConfiguration::getHomeLocation(unsigned int i) const 
 HomeWorkScenario* SimulationConfiguration::getHomeWorkScenario() {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario;
-	else {
-		return nullptr;
+	else if(isHomeWorkManhattanScenario()){
+		return m_homeWorkManhattanScenario;
 	}
+	else return nullptr;
 
 }
 
 HomeWorkLocation SimulationConfiguration::getWorkLocation(unsigned int i) const {
-	if(isHomeWorkScenario() || isHomeWorkManhattanScenario())
+	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getWorkLocations().at(i);
 	else if(isHomeWorkManhattanScenario())
 		return m_homeWorkManhattanScenario->getWorkLocations().at(i);

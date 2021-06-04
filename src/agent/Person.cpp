@@ -106,7 +106,7 @@ Point* Person::move() {
 				m_timeStay++;
 		}
 	} else {
-		cout << getId() << endl;
+		cout << getId() << ":" << isHomePerson() <<   endl;
 		Point* pt = m_displacementMethod->generateNewLocation(currentLocation);
 		if (pt != currentLocation) {
 			this->getMap()->getGlobalFactory()->destroyGeometry(currentLocation);
