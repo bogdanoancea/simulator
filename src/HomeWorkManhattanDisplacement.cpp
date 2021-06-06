@@ -11,8 +11,6 @@ HomeWorkManhattanDisplacement::HomeWorkManhattanDisplacement(
 		SimulationConfiguration *simConfig, double speed, Point *homeLocation,
 		Point *workLocation, Point *anchorLocation) :
 		HomeWorkDisplacement(simConfig, speed, homeLocation, workLocation, anchorLocation) {
-	// TODO Auto-generated constructor stub
-
 }
 
 HomeWorkManhattanDisplacement::~HomeWorkManhattanDisplacement() {

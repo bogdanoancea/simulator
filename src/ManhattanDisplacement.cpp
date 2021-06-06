@@ -10,10 +10,12 @@
 
 ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed) :
 		Displace(simConfig, speed) {
+	//cout << "aici 0" << endl;
 	m_manhattanScenario = simConfig->getManhattanScenario();
 	m_status = STATE::OUTSIDE;
 	m_theta = Directions::EAST;
 	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
+	//cout << "aici 1" << endl;
 }
 
 ManhattanDisplacement::~ManhattanDisplacement() {
@@ -28,12 +30,13 @@ Point* ManhattanDisplacement::generateNewLocation(Point * initLocation) {
 	Coordinate current = Coordinate(x,y,0.0);
 	STATE savedStatus = m_status;
 	Directions savedTheta  = m_theta;
-
+//cout << "generez 1" << endl;
 	if(m_simConfig->getClock()->getCurrentTime() == m_simConfig->getClock()->getInitialTime() +  m_simConfig->getClock()->getIncrement()) {
 		current = closestCorner(*initC);
 		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
 		m_status = STATE::ONCORNER;
 	} else {
+		//cout << "generez 2" << endl;
 		double distanceToGo = m_distance;
 		if(m_status == STATE::ONCORNER) {
 			startFromCorner(current, distanceToGo, m_theta, m_status);
@@ -41,6 +44,7 @@ Point* ManhattanDisplacement::generateNewLocation(Point * initLocation) {
 		else if(m_status == STATE::ONEDGE) {
 			startFromEdge(current, distanceToGo, m_theta, m_status);
 		}
+//		cout << "generez 3" << endl;
 		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
 		Geometry* g = m_simConfig->getMap()->getBoundary();
 		if (!result->within(g)) {
@@ -128,11 +132,12 @@ Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 	double xcorner, ycorner;
 	double x = location.x;
 	double y = location.y;
-
+	//cout << "generez 2.1" << endl;
 	double x1 = floor((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double x2 = ceil((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double y1 = floor((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
 	double y2 = ceil((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
+	//cout << "generez 2.2" << endl;
 	if(fabs(x-x1) < fabs(x-x2))
 		xcorner = x1;
 	else

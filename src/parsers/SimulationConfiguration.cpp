@@ -294,7 +294,11 @@ void SimulationConfiguration::setLevyFlightScenario(LevyFlightScenario *levyFlig
 }
 
 ManhattanScenario* SimulationConfiguration::getManhattanScenario() const {
-	return m_manhattanScenario;
+	if(isHomeWorkManhattanScenario()) {
+		return dynamic_cast<HomeWorkManhattanScenario*>(m_homeWorkScenario)->getManhattanScenario();
+	}
+	else
+		return m_manhattanScenario;
 }
 
 void SimulationConfiguration::setManhattanScenario(ManhattanScenario *ms) {

@@ -120,17 +120,17 @@ Distribution* HomeWorkScenario::getAngleDistribution() {
 const string HomeWorkScenario::toString(){
 	ostringstream result;
 	//output home locations
-	//result << "Home locations" << endl;
+	result << "Home locations" << endl;
 	for(auto& l : m_homeLocations) {
 		result <<  l.toString() << endl;
 	}
 	//output works locations
-	//result << "Work locations" << endl;
+	result << "Work locations" << endl;
 	for(auto & w : m_workLocations) {
 		result << w.toString() << endl;
 	}
 	//output anchor locations
-	//result << "Anchor locations" << endl;
+	result << "Anchor locations" << endl;
 	for(auto & w : m_anchorLocations) {
 		result << w.toString() << endl;
 	}

@@ -377,7 +377,9 @@ MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 				cout << m_simConfig->getManhattanScenario()->toString() << endl;
 				result = MovementType::MANHATTAN;
 			} else if (!strcmp(mvType, "home_work_manhattan")) {
-				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario(new ManhattanScenario()));
+				ManhattanScenario* ms  = new ManhattanScenario();
+				parseManhattan(mvEl, ms);
+				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario(ms));
 				parseHomeWorkManhattanScenario(mvEl, m_simConfig->getHomeWorkManhattanScenario());
 				cout << m_simConfig->getHomeWorkManhattanScenario()->toString() << endl;
 				result = MovementType::HOME_WORK_MANHATTAN;
