@@ -71,6 +71,7 @@ public:
 	void setStatus(STATE status);
 	void setDirection(double direction);
 	double getDirection() const;
+	void setSpeed(double speed);
 
 private:
 

@@ -52,8 +52,8 @@
 				<y_sd_anchor>700</y_sd_anchor>
 			</anchor_point>
 			<manhattan_grid>
-				<x_step>50</x_step>
-				<y_step>50</y_step>
+				<x_step>150</x_step>
+				<y_step>150</y_step>
 				<x_origin>0</x_origin>
 				<y_origin>0</y_origin>
 			</manhattan_grid>
@@ -61,9 +61,6 @@
 			<percent_time_work>0.3</percent_time_work>
 			<percent_time_anchor_point>0.1</percent_time_anchor_point>
 			<percent_time_travel>0.03</percent_time_travel>
-			<direction_angle_distribution type = "Laplace">
-					<scale>15</scale>
-			</direction_angle_distribution>
 			<prob_anchor_point>0.8</prob_anchor_point>
 		</movement_pattern>
 		<connection_type>strength</connection_type>

@@ -324,3 +324,7 @@ double ManhattanDisplacement::getDirection() const {
 	return m_direction;
 }
 
+void ManhattanDisplacement::setSpeed(double speed) {
+	m_speed = speed;
+	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
+}

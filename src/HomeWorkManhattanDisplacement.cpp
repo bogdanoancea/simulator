@@ -18,7 +18,8 @@ HomeWorkManhattanDisplacement::HomeWorkManhattanDisplacement(
 		SimulationConfiguration *simConfig, double speed, Point *homeLocation,
 		Point *workLocation, Point *anchorLocation) :
 		HomeWorkDisplacement(simConfig, speed, homeLocation, workLocation, anchorLocation), m_manhattanDisplacement(simConfig, speed) {
-
+	m_speed *= sqrt(2);
+	m_manhattanDisplacement.setSpeed(m_speed);
 }
 
 HomeWorkManhattanDisplacement::~HomeWorkManhattanDisplacement() {
@@ -36,6 +37,7 @@ Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point*
 	}
 	m_manhattanDisplacement.setDirection(theta);
 	pt = m_manhattanDisplacement.generateNewLocation(initLocation);
+
 	Geometry *g = m_simConfig->getMap()->getBoundary();
 	if (!pt->within(g)) {
 		int k = 10;

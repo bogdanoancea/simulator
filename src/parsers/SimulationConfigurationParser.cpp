@@ -287,8 +287,8 @@ void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* h
 	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
 	hws->setPrecentTimeTravel(getValue(homeWorkElement, "percent_time_travel"));
 	hws->setProbAnchorPoint(getValue(homeWorkElement, "prob_anchor_point"));
-	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
-	hws->setAngleDistribution(p);
+//	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
+//	hws->setAngleDistribution(p);
 
 }
 
