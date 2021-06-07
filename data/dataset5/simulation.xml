@@ -30,14 +30,14 @@
 			<work>
 				<x_work>2500</x_work>
 				<y_work>8500</y_work>
-				<x_sd_work>750</x_sd_work>
-				<y_sd_work>750</y_sd_work>
+				<x_sd_work>50</x_sd_work>
+				<y_sd_work>50</y_sd_work>
 			</work>
 			<work>
 				<x_work>5000</x_work>
 				<y_work>2000</y_work>
-				<x_sd_work>750</x_sd_work>
-				<y_sd_work>750</y_sd_work>
+				<x_sd_work>50</x_sd_work>
+				<y_sd_work>50</y_sd_work>
 			</work>
 			<anchor_point>
 				<x_anchor>8000</x_anchor>

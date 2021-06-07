@@ -41,6 +41,7 @@
 #include <parsers/PersonsConfigParser.h>
 #include <RandomWalkDisplacement.h>
 #include <RandomWalkDriftDisplacement.h>
+#include <HomeWorkManhattanDisplacement.h>
 #include <ManhattanDisplacement.h>
 #include <TinyXML2.h>
 #include <Utils.h>
@@ -299,7 +300,7 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 		p->setDisplacementMethod(displace);
 	} else if (type == MovementType::HOME_WORK_MANHATTAN) {
 		if(p->isHomePerson()) {
-			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
+			auto displace1 = std::make_shared<HomeWorkManhattanDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
 			p->setDisplacementMethod(displace1);
 		}
 		else {
@@ -316,8 +317,8 @@ Point* PersonsConfigParser::generateLocation(unsigned int index, vector<HomeWork
 	HomeWorkLocation wl = locations.at(index);
 	double L = sqrt( 1.0/(pow(cos(angle),2)/wl.getSdX() + pow(sin(angle),2)/wl.getSdY()) );
 	double l = RandomNumberGenerator::instance()->generateUniformDouble(0, L);
-	double x = wl.getSdX() + l * cos(angle);
-	double y = wl.getSdY() + l * sin(angle);
+	double x = wl.getX() + l * cos(angle);
+	double y = wl.getY() + l * sin(angle);
 	Coordinate c1(x, y, wl.getZ());
 	result = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 
@@ -357,4 +358,5 @@ void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
 	}
 	 p->setIntervalBetweenStaysDistribution(nullptr);
 	 p->setTimeStayDistribution(nullptr);
+	 cout << p->getId() << ":" << p->isHomePerson() <<  " Home:" << p->getHomeLocation()->toString() << " Work:" << p->getWorkLocation()->toString() << " Anchor:" <<( p->getAnchorLocation() ? p->getAnchorLocation()->toString(): "fara anchor")  << endl;
 }

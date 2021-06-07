@@ -7,15 +7,15 @@
 
 #include <ManhattanDisplacement.h>
 #include <RandomNumberGenerator.h>
+#include <Utils.h>
 
 ManhattanDisplacement::ManhattanDisplacement(SimulationConfiguration *simConfig, double speed) :
 		Displace(simConfig, speed) {
-	//cout << "aici 0" << endl;
 	m_manhattanScenario = simConfig->getManhattanScenario();
 	m_status = STATE::OUTSIDE;
 	m_theta = Directions::EAST;
 	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
-	//cout << "aici 1" << endl;
+	m_direction = -1;
 }
 
 ManhattanDisplacement::~ManhattanDisplacement() {
@@ -155,15 +155,54 @@ Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 Directions ManhattanDisplacement::selectDirection() const{
 	Directions result;
 	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
-	unsigned theta = rng->generateUniformInt(0, 3);
-	if(theta == 0)
-		result = Directions::EAST;
-	else if(theta == 1)
-		result = Directions::NORTH;
-	else if(theta == 2)
-		result = Directions::WEST;
-	else
-		result = Directions::SOUTH;
+	if(m_direction  >= 0 ) {
+		if(m_direction == 0.0)
+			result = Directions::EAST;
+		else if(m_direction > 0.0 && m_direction < utils::PI / 2) {
+			unsigned d = rng->generateUniformInt(0, 1);
+			if(d == 0)
+				result = Directions::EAST;
+			else if(d == 1)
+				result = Directions::NORTH;
+		}
+		else if(m_direction == utils::PI)
+			result = Directions::NORTH;
+		else if(m_direction > utils::PI / 2 && m_direction < utils::PI) {
+			unsigned d = rng->generateUniformInt(0, 1);
+			if(d == 0)
+				result = Directions::NORTH;
+			else if(d == 1)
+				result = Directions::WEST;
+		} else if( m_direction == utils::PI)
+			result = Directions::WEST;
+		else if(m_direction > utils::PI && m_direction < 3.0 * utils::PI / 2.0) {
+			unsigned d = rng->generateUniformInt(0, 1);
+			if(d == 0)
+				result = Directions::WEST;
+			else if(d == 1)
+				result = Directions::SOUTH;
+		}
+		else if(m_direction == 3.0 * utils::PI / 2.0)
+			result = Directions::SOUTH;
+		else if(m_direction > 3.0 * utils::PI / 2.0 && m_direction < 2 * utils::PI) {
+			unsigned d = rng->generateUniformInt(0, 1);
+			if(d == 0)
+				result = Directions::SOUTH;
+			else if(d == 1)
+				result = Directions::EAST;
+		}
+	}
+	else {
+		unsigned theta = rng->generateUniformInt(0, 3);
+		if(theta == 0)
+			result = Directions::EAST;
+		else if(theta == 1)
+			result = Directions::NORTH;
+		else if(theta == 2)
+			result = Directions::WEST;
+		else
+			result = Directions::SOUTH;
+		}
 	return result;
 }
 
@@ -268,4 +307,20 @@ Directions ManhattanDisplacement::reverseDirection(Directions dir) const {
 //	}
 //	return result;
 //}
+
+ManhattanDisplacement::STATE ManhattanDisplacement::getStatus() const {
+	return m_status;
+}
+
+void ManhattanDisplacement::setStatus(STATE status) {
+	m_status = status;
+}
+
+void ManhattanDisplacement::setDirection(double direction) {
+	m_direction = direction;
+}
+
+double ManhattanDisplacement::getDirection() const {
+	return m_direction;
+}
 

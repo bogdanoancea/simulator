@@ -47,6 +47,7 @@
  */
 class ManhattanDisplacement: public Displace {
 public:
+	enum STATE {OUTSIDE=0, ONCORNER, ONEDGE};
 	/**
 	 * This is the constructor of the class. It stores internally the SimulationConfiguration object and the speed of the person.
 	 * @param simconfig a pointer to the SimulationConfiguration object
@@ -65,12 +66,16 @@ public:
 	 * @return the new location after a time step.
 	 */
 	virtual Point* generateNewLocation(Point * initLocation) override;
-
+	Coordinate closestCorner(Coordinate location) const;
+	STATE getStatus() const;
+	void setStatus(STATE status);
+	void setDirection(double direction);
+	double getDirection() const;
 
 private:
-	enum STATE {OUTSIDE=0, ONCORNER, ONEDGE};
 
-	Coordinate closestCorner(Coordinate location) const;
+
+
 	//virtual Point* computeNewLocation(Point* initLocation, double theta) override;
 
 	Directions selectDirection() const;
@@ -90,6 +95,7 @@ private:
 	STATE m_status;
 	double m_distance;
 	Directions m_theta;
+	double m_direction;
 
 };
 

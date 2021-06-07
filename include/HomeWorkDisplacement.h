@@ -61,10 +61,13 @@ public:
 	 * @return the new location.
 	 */
 	virtual Point* generateNewLocation(Point* p) override;
+protected:
+	virtual Point* toDestination(Point*  initLocation, Point* destination);
+	double computeTheta(Point* p1, Point* p2) const;
+	const bool arrivedAtDestination(Point* position, Point* destination) const;
 
+	Distribution* m_angleDistribution;
 
-
-	//unsigned long getDeltaTStayAnchor() const {return m_deltaTStayAnchor;}
 
 private:
 	HomeWorkState stateTransition(Point* position);
@@ -72,10 +75,10 @@ private:
 	long initDeltaTStayWork() const;
 	long initDeltaTStayAnchor() const;
 	const bool posAtDestination(Point* position, Point* destination) const;
-	const bool arrivedAtDestination(Point* position, Point* destination) const;
+
 	Point* makeRandomStepAtWork(Point* initLocation);
-	Point* toDestination(Point*  initLocation, Point* destination);
-	double computeTheta(Point* p1, Point* p2) const;
+
+
 	HomeWorkState getState() const;
 
 
@@ -86,7 +89,7 @@ private:
 	Point* m_homeLocation;
 	Point* m_workLocation;
 	Point* m_anchorLocation;
-	Distribution* m_angleDistribution;
+
 	double m_stepLength;
 };
 
