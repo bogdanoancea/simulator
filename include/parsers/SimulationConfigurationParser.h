@@ -98,6 +98,8 @@ private:
 	Distribution* parseTrendAngleDistribution(XMLElement* mvEl, int noAngle);
 	shared_ptr<Distribution> parseStayTimeDistribution(XMLElement* parent);
 	shared_ptr<Distribution> parseIntervalBetweenStaysDistribution(XMLElement* parent);
+	void parseLocations(XMLElement* elem, const char* name, HomeWorkScenario* hws);
+	void addLocation(const char* name, HomeWorkLocation h, HomeWorkScenario* hws);
 
 };
 

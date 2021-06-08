@@ -29,7 +29,6 @@ HomeWorkManhattanDisplacement::~HomeWorkManhattanDisplacement() {
 Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point* destination) {
 	Point* pt;
 	double theta = computeTheta(initLocation, destination);
-	//cout << "theta este: " << theta << endl;
 	if(m_manhattanDisplacement.getStatus() == ManhattanDisplacement::STATE::OUTSIDE) {
 		Coordinate c = m_manhattanDisplacement.closestCorner(*initLocation->getCoordinate());
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c);
@@ -43,8 +42,7 @@ Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point*
 		int k = 10;
 		while (--k && !pt->within(g)) {
 			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			theta = RandomNumberGenerator::instance()->generateUniformDouble(0, utils::PI * 2);
-			pt = computeNewLocation(initLocation, theta);
+			pt = m_manhattanDisplacement.generateNewLocation(initLocation);
 		}
 		if (!k) {
 			pt = initLocation;
@@ -54,8 +52,6 @@ Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point*
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
 	}
 	return pt;
-
-	//return destination;
 }
 
 
@@ -65,7 +61,6 @@ Point* HomeWorkManhattanDisplacement::generateNewLocation(Point * initLocation) 
 	result =  HomeWorkDisplacement::generateNewLocation(initLocation);
 	return result;
 }
-
 
 
 Directions selectDirectionToDestination(double theta) {

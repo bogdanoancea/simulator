@@ -156,63 +156,42 @@ shared_ptr<Distribution> SimulationConfigurationParser::parseIntervalBetweenStay
 	return result;
 }
 
+void SimulationConfigurationParser::addLocation(const char* name, HomeWorkLocation h, HomeWorkScenario* hws) {
+	if(!strcmp(name, "home"))
+		hws->addHomeLocation(h);
+	else if(!strcmp(name, "work"))
+		hws->addWorkLocation(h);
+	else if(!strcmp(name, "anchor_point"))
+		hws->addAnchorLocation(h);
+}
+
+void SimulationConfigurationParser::parseLocations(XMLElement* elem, const char* name, HomeWorkScenario* hws) {
+	XMLElement* home = elem->FirstChildElement(name);
+	if(!home) {
+		ostringstream res;
+		res << name << "  location missing!";
+		throw std::runtime_error(res.str());
+	}
+	double x = getValue(home, "x");
+	double y = getValue(home, "y");
+	double xSd = getValue(home, "x_sd");
+	double ySd = getValue(home, "y_sd");
+	HomeWorkLocation h(x, y, 0, xSd, ySd, 0);
+	addLocation(name, h, hws);
+	while( (home = home->NextSiblingElement(name)) != nullptr ) {
+		x = getValue(home, "x");
+		y = getValue(home, "y");
+		xSd = getValue(home, "x_sd");
+		ySd = getValue(home, "y_sd");
+		HomeWorkLocation h1(x, y, 0, xSd, ySd, 0);
+		addLocation(name, h1, hws);
+	}
+}
 
 void SimulationConfigurationParser::parseHomeWorkScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
-	XMLElement* home = homeWorkElement->FirstChildElement("home");
-	if(!home) {
-		throw std::runtime_error("Home location missing!");
-	}
-
-	double x = getValue(home, "x_home");
-	double y = getValue(home, "y_home");
-	double xSd = getValue(home, "x_sd_home");
-	double ySd = getValue(home, "y_sd_home");
-	HomeWorkLocation h(x,y,0,xSd,ySd,0);
-	hws->addHomeLocation(h);
-	while( (home = home->NextSiblingElement("home")) != nullptr ) {
-		x = getValue(home, "x_home");
-		y = getValue(home, "y_home");
-		xSd = getValue(home, "x_sd_home");
-		ySd = getValue(home, "y_sd_home");
-		HomeWorkLocation h1(x,y,0,xSd,ySd,0);
-		hws->addHomeLocation(h1);
-	}
-
-	XMLElement* work = homeWorkElement->FirstChildElement("work");
-	if(!work) {
-		throw std::runtime_error("Work location missing!");
-	}
-	x = getValue(work, "x_work");
-	y = getValue(work, "y_work");
-	xSd = getValue(work, "x_sd_work");
-	ySd = getValue(work, "y_sd_work");
-	HomeWorkLocation w(x,y,0,xSd,ySd,0);
-	hws->addWorkLocation(w);
-	while( (work = work->NextSiblingElement("work")) != nullptr ) {
-		x = getValue(work, "x_work");
-		y = getValue(work, "y_work");
-		xSd = getValue(work, "x_sd_work");
-		ySd = getValue(work, "y_sd_work");
-		HomeWorkLocation w1(x,y,0,xSd,ySd,0);
-		hws->addWorkLocation(w1);
-	}
-	XMLElement* anchor = homeWorkElement->FirstChildElement("anchor_point");
-	if (anchor) {
-		x = getValue(anchor, "x_anchor");
-		y = getValue(anchor, "y_anchor");
-		xSd = getValue(anchor, "x_sd_anchor");
-		ySd = getValue(anchor, "y_sd_anchor");
-		HomeWorkLocation a(x, y, 0, xSd, ySd, 0);
-		hws->addAnchorLocation(a);
-		while ((anchor = anchor->NextSiblingElement("anchor_point")) != nullptr) {
-			x = getValue(anchor, "x_anchor");
-			y = getValue(anchor, "y_anchor");
-			xSd = getValue(anchor, "x_sd_anchor");
-			ySd = getValue(anchor, "y_sd_anchor");
-			HomeWorkLocation a1(x, y, 0, xSd, ySd, 0);
-			hws->addAnchorLocation(a1);
-		}
-	}
+	parseLocations(homeWorkElement, "home", hws);
+	parseLocations(homeWorkElement, "work", hws);
+	parseLocations(homeWorkElement, "anchor_point", hws);
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
 	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
@@ -224,72 +203,17 @@ void SimulationConfigurationParser::parseHomeWorkScenario(XMLElement* homeWorkEl
 
 
 void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* homeWorkElement, HomeWorkScenario* hws) {
-	XMLElement* home = homeWorkElement->FirstChildElement("home");
-	if(!home) {
-		throw std::runtime_error("Home location missing!");
-	}
-	double x = getValue(home, "x_home");
-	double y = getValue(home, "y_home");
-	double xSd = getValue(home, "x_sd_home");
-	double ySd = getValue(home, "y_sd_home");
-	HomeWorkLocation h(x,y,0,xSd,ySd,0);
-	hws->addHomeLocation(h);
-	while( (home = home->NextSiblingElement("home")) != nullptr ) {
-		x = getValue(home, "x_home");
-		y = getValue(home, "y_home");
-		xSd = getValue(home, "x_sd_home");
-		ySd = getValue(home, "y_sd_home");
-		HomeWorkLocation h1(x,y,0,xSd,ySd,0);
-		hws->addHomeLocation(h1);
-	}
-
-	XMLElement* work = homeWorkElement->FirstChildElement("work");
-	if(!work) {
-		throw std::runtime_error("Work location missing!");
-	}
-	x = getValue(work, "x_work");
-	y = getValue(work, "y_work");
-	xSd = getValue(work, "x_sd_work");
-	ySd = getValue(work, "y_sd_work");
-	HomeWorkLocation w(x,y,0,xSd,ySd,0);
-	hws->addWorkLocation(w);
-	while( (work = work->NextSiblingElement("work")) != nullptr ) {
-		x = getValue(work, "x_work");
-		y = getValue(work, "y_work");
-		xSd = getValue(work, "x_sd_work");
-		ySd = getValue(work, "y_sd_work");
-		HomeWorkLocation w1(x,y,0,xSd,ySd,0);
-		hws->addWorkLocation(w1);
-	}
-	XMLElement* anchor = homeWorkElement->FirstChildElement("anchor_point");
-	if (anchor) {
-		x = getValue(anchor, "x_anchor");
-		y = getValue(anchor, "y_anchor");
-		xSd = getValue(anchor, "x_sd_anchor");
-		ySd = getValue(anchor, "y_sd_anchor");
-		HomeWorkLocation a(x, y, 0, xSd, ySd, 0);
-		hws->addAnchorLocation(a);
-		while ((anchor = anchor->NextSiblingElement("anchor_point")) != nullptr) {
-			x = getValue(anchor, "x_anchor");
-			y = getValue(anchor, "y_anchor");
-			xSd = getValue(anchor, "x_sd_anchor");
-			ySd = getValue(anchor, "y_sd_anchor");
-			HomeWorkLocation a1(x, y, 0, xSd, ySd, 0);
-			hws->addAnchorLocation(a1);
-		}
-	}
+	parseLocations(homeWorkElement, "home", hws);
+	parseLocations(homeWorkElement, "work", hws);
+	parseLocations(homeWorkElement, "anchor_point", hws);
 	XMLElement* manhattan_grid = homeWorkElement->FirstChildElement("manhattan_grid");
 	if(manhattan_grid)
 		parseManhattan(manhattan_grid, ((HomeWorkManhattanScenario*)hws)->getManhattanScenario());
-
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
 	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
 	hws->setPrecentTimeTravel(getValue(homeWorkElement, "percent_time_travel"));
 	hws->setProbAnchorPoint(getValue(homeWorkElement, "prob_anchor_point"));
-//	Distribution* p = parseDirectionAngleDistribution(homeWorkElement);
-//	hws->setAngleDistribution(p);
-
 }
 
 
