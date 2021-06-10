@@ -30,6 +30,7 @@
 #include <MovementType.h>
 #include <parsers/HomeWorkLocation.h>
 #include <parsers/HomeWorkScenario.h>
+#include <parsers/HomeWorkManhattanScenario.h>
 #include <parsers/RandomWalkDriftScenario.h>
 #include <parsers/LevyFlightScenario.h>
 #include <parsers/ManhattanScenario.h>
@@ -478,6 +479,10 @@ public:
 	 */
 	void setManhattanScenario(ManhattanScenario* ms);
 
+	HomeWorkScenario* getHomeWorkManhattanScenario() const;
+	void setHomeWorkManhattanScenario(HomeWorkScenario* hwms);
+	bool isHomeWorkManhattanScenario() const;
+
 private:
 	string m_outputDir;
 	unsigned long m_startTime;
@@ -501,6 +506,7 @@ private:
 	Map *m_map;
 
 	HomeWorkScenario *m_homeWorkScenario;
+	//HomeWorkScenario *m_homeWorkManhattanScenario;
 	RandomWalkDriftScenario* m_randomWalkDriftScenario;
 	LevyFlightScenario* m_levyFlightScenario;
 	ManhattanScenario* m_manhattanScenario;

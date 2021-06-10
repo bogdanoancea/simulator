@@ -52,3 +52,6 @@ Point* Displace::computeNewLocation(Point* initLocation, double theta) {
 	return pt;
 }
 
+double Displace::getSpeed() {
+	return m_speed;
+}

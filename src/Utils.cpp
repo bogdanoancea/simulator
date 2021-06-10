@@ -55,7 +55,7 @@ using namespace std;
 
 //TODO it is a mess, this function should be written again.
 vector<Point*> generatePoints(SimulationConfiguration* sc, unsigned long n, double percentHome) {
-	if(sc->isHomeWorkScenario()) {
+	if(sc->isHomeWorkScenario() || sc->isHomeWorkManhattanScenario()) {
 		return generateHomeWorkPoints(sc, n, percentHome);
 	}
 	else {

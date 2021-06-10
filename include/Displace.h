@@ -44,7 +44,7 @@ public:
 
 	/**
 	 * Constructor of the class. It initializes members of the class
-	 * @param simconfig a pointer to  a SimulationConfiguration containing the paramteres of the simulation read from the simulation configuration file.
+	 * @param simconfig a pointer to  a SimulationConfiguration containing the parameters of the simulation read from the simulation configuration file.
 	 * @param speed the speed of displacement.
 	 */
 	Displace(SimulationConfiguration* simconfig, double speed);
@@ -59,6 +59,15 @@ public:
 	 * @return the new location where the object subject to the displacement operation has to move.
 	 */
 	virtual Point* generateNewLocation(Point * initLocation) = 0;
+
+	/**
+	 * Returns the speed of movement. Normally it is the speed set in the constructor of the Person object but in case of the HomeWorkDisplacement
+	 * or HomeWorkMahattanDisplacement mobility patterns the speed is computed using the "time to travel" parameter of the corresponding simulation
+	 * scenario object and the distance from the home location to the work location or from the anchor point to the home location in case the person
+	 * visits an anchor point. The maximum from the two values is chosen as the movement speed.
+	 * @return the speed of movement.
+	 */
+	double getSpeed();
 
 
 protected:
