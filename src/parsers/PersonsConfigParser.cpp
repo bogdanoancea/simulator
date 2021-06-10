@@ -290,6 +290,7 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 		if(p->isHomePerson()) {
 			auto displace1 = std::make_shared<HomeWorkDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
 			p->setDisplacementMethod(displace1);
+			p->setSpeed(displace1->getSpeed());
 		}
 		else {
 			auto displace2 = std::make_shared<RandomWalkDisplacement>(m_simConfig, p->getSpeed());
@@ -302,6 +303,7 @@ void PersonsConfigParser::setPersonDisplacementPattern(Person* p) {
 		if(p->isHomePerson()) {
 			auto displace1 = std::make_shared<HomeWorkManhattanDisplacement>(m_simConfig, p->getSpeed(), p->getHomeLocation(), p->getWorkLocation(), p->getAnchorLocation());
 			p->setDisplacementMethod(displace1);
+			p->setSpeed(displace1->getSpeed());
 		}
 		else {
 			auto displace2 = std::make_shared<ManhattanDisplacement>(m_simConfig, p->getSpeed());
@@ -358,5 +360,5 @@ void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
 	}
 	 p->setIntervalBetweenStaysDistribution(nullptr);
 	 p->setTimeStayDistribution(nullptr);
-	 cout << p->getId() << ":" << p->isHomePerson() <<  " Home:" << p->getHomeLocation()->toString() << " Work:" << p->getWorkLocation()->toString() << " Anchor:" <<( p->getAnchorLocation() ? p->getAnchorLocation()->toString(): "fara anchor")  << endl;
+	 //cout << p->getId() << ":" << p->isHomePerson() <<  " Home:" << p->getHomeLocation()->toString() << " Work:" << p->getWorkLocation()->toString() << " Anchor:" <<( p->getAnchorLocation() ? p->getAnchorLocation()->toString(): "fara anchor")  << endl;
 }

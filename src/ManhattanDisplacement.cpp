@@ -30,13 +30,11 @@ Point* ManhattanDisplacement::generateNewLocation(Point * initLocation) {
 	Coordinate current = Coordinate(x,y,0.0);
 	STATE savedStatus = m_status;
 	Directions savedTheta  = m_theta;
-//cout << "generez 1" << endl;
 	if(m_simConfig->getClock()->getCurrentTime() == m_simConfig->getClock()->getInitialTime() +  m_simConfig->getClock()->getIncrement()) {
 		current = closestCorner(*initC);
 		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
 		m_status = STATE::ONCORNER;
 	} else {
-		//cout << "generez 2" << endl;
 		double distanceToGo = m_distance;
 		if(m_status == STATE::ONCORNER) {
 			startFromCorner(current, distanceToGo, m_theta, m_status);
@@ -44,7 +42,6 @@ Point* ManhattanDisplacement::generateNewLocation(Point * initLocation) {
 		else if(m_status == STATE::ONEDGE) {
 			startFromEdge(current, distanceToGo, m_theta, m_status);
 		}
-//		cout << "generez 3" << endl;
 		result = m_simConfig->getMap()->getGlobalFactory()->createPoint(current);
 		Geometry* g = m_simConfig->getMap()->getBoundary();
 		if (!result->within(g)) {
@@ -82,11 +79,11 @@ void ManhattanDisplacement::startFromEdge(Coordinate &current, double distanceTo
 	Coordinate previous;
 	while (distanceToGo > 0) {
 		if (m_status == STATE::ONCORNER)
-			m_theta = selectDirection();
-		double stepLDir = blockLength(m_theta);
+			angle = selectDirection();
+		double stepLDir = blockLength(angle);
 		if (stepLDir < distanceToGo) {
 			previous = current;
-			current = makeBlockStep(current, m_theta);
+			current = makeBlockStep(current, angle);
 			distanceToGo -= stepLDir;
 			Coordinate corner = closestCorner(current);
 			if (!(doubleCompare(corner.x, previous.x)
@@ -101,7 +98,7 @@ void ManhattanDisplacement::startFromEdge(Coordinate &current, double distanceTo
 				m_status = STATE::ONEDGE;
 			}
 		} else {
-			distanceToGo = makeMultipleBlocksStep(current, distanceToGo, m_theta, m_status);
+			distanceToGo = makeMultipleBlocksStep(current, distanceToGo, angle, status);
 		}
 	}
 }
@@ -116,7 +113,6 @@ double ManhattanDisplacement::makeMultipleBlocksStep(Coordinate& current, double
 		if(atCorner(current, corner)) {
 			current = corner;
 			status = STATE::ONCORNER;
-
 		} else {
 			status = STATE::ONEDGE;
 		}
@@ -132,12 +128,10 @@ Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 	double xcorner, ycorner;
 	double x = location.x;
 	double y = location.y;
-	//cout << "generez 2.1" << endl;
 	double x1 = floor((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double x2 = ceil((x - m_manhattanScenario->getXOrigin()) / m_manhattanScenario->getXStep()) * m_manhattanScenario->getXStep();
 	double y1 = floor((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
 	double y2 = ceil((y - m_manhattanScenario->getYOrigin()) / m_manhattanScenario->getYStep()) * m_manhattanScenario->getYStep();
-	//cout << "generez 2.2" << endl;
 	if(fabs(x-x1) < fabs(x-x2))
 		xcorner = x1;
 	else
@@ -152,57 +146,101 @@ Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 	return c1;
 }
 
-Directions ManhattanDisplacement::selectDirection() const{
+
+Directions ManhattanDisplacement::selectDirection()  {
 	Directions result;
 	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
 	if(m_direction  >= 0 ) {
+//		result = selectDirection(m_direction);
+		double d;
 		if(m_direction == 0.0)
 			result = Directions::EAST;
 		else if(m_direction > 0.0 && m_direction < utils::PI / 2) {
-			unsigned d = rng->generateUniformInt(0, 1);
-			if(d == 0)
-				result = Directions::EAST;
-			else if(d == 1)
-				result = Directions::NORTH;
+			double d1 = difference(m_direction, Directions::EAST);
+			double d2 = difference(m_direction, Directions::NORTH);
+			d = rng->generateUniformDouble(0, 1);
+			if(d < 0.2) {
+				if( d1 < d2 )
+					result = Directions::NORTH;
+				else
+					result = Directions::EAST;
+			}
+			else {
+				if( d1 < d2 )
+					result = Directions::EAST;
+				else
+					result = Directions::NORTH;
+			}
 		}
 		else if(m_direction == utils::PI)
 			result = Directions::NORTH;
 		else if(m_direction > utils::PI / 2 && m_direction < utils::PI) {
-			unsigned d = rng->generateUniformInt(0, 1);
-			if(d == 0)
-				result = Directions::NORTH;
-			else if(d == 1)
-				result = Directions::WEST;
+			double d1 = difference(m_direction, Directions::NORTH);
+			double d2 = difference(m_direction, Directions::WEST);
+			d = rng->generateUniformDouble(0, 1);
+			if(d < 0.2) {
+				if( d1 < d2 )
+					result = Directions::WEST;
+				else
+					result = Directions::NORTH;
+			}
+			else {
+				if( d1 < d2 )
+					result = Directions::NORTH;
+				else
+					result = Directions::WEST;
+			}
 		} else if( m_direction == utils::PI)
 			result = Directions::WEST;
 		else if(m_direction > utils::PI && m_direction < 3.0 * utils::PI / 2.0) {
-			unsigned d = rng->generateUniformInt(0, 1);
-			if(d == 0)
-				result = Directions::WEST;
-			else if(d == 1)
-				result = Directions::SOUTH;
+			double d1 = difference(m_direction, Directions::WEST);
+			double d2 = difference(m_direction, Directions::SOUTH);
+			d = rng->generateUniformDouble(0, 1);
+			if(d < 0.2) {
+				if( d1 < d2 )
+					result = Directions::SOUTH;
+				else
+					result = Directions::WEST;
+			}
+			else {
+				if( d1 < d2 )
+					result = Directions::WEST;
+				else
+					result = Directions::SOUTH;
+			}
 		}
 		else if(m_direction == 3.0 * utils::PI / 2.0)
 			result = Directions::SOUTH;
 		else if(m_direction > 3.0 * utils::PI / 2.0 && m_direction < 2 * utils::PI) {
-			unsigned d = rng->generateUniformInt(0, 1);
-			if(d == 0)
-				result = Directions::SOUTH;
-			else if(d == 1)
-				result = Directions::EAST;
+			double d1 = difference(m_direction, Directions::SOUTH);
+			double d2 = difference(m_direction, Directions::EAST);
+			d = rng->generateUniformDouble(0, 1);
+			if(d < 0.2) {
+				if( d1 < d2 )
+					result = Directions::EAST;
+				else
+					result = Directions::SOUTH;
+			}
+			else {
+				if( d1 < d2 )
+					result = Directions::SOUTH;
+				else
+					result = Directions::EAST;
+			}
 		}
 	}
 	else {
-		unsigned theta = rng->generateUniformInt(0, 3);
-		if(theta == 0)
+
+		unsigned d = rng->generateUniformInt(0, 3);
+		if(d == 0)
 			result = Directions::EAST;
-		else if(theta == 1)
+		else if(d == 1)
 			result = Directions::NORTH;
-		else if(theta == 2)
+		else if(d == 2)
 			result = Directions::WEST;
-		else
+		else if(d == 3)
 			result = Directions::SOUTH;
-		}
+	}
 	return result;
 }
 
@@ -290,23 +328,23 @@ Directions ManhattanDisplacement::reverseDirection(Directions dir) const {
 	return result;
 }
 
-//STATE ManhattanDisplacement::checkStatus(Point* location) const {
-//	STATE result;
-//	double x = location->getX();
-//	double y = location->getY();
-//	double xManhattanStep =  m_manhattanScenario->getXStep();
-//	double yManhattanStep =  m_manhattanScenario->getYStep();
-//	if(compareDouble(fmod(x, xManhattanStep), 0.0) && compareDouble(fmod(y, yManhattanStep), 0.0)){
-//		result = STATE::ONCORNER;
-//	}
-//	else if(compareDouble(fmod(x, xManhattanStep), 0.0) ||compareDouble(fmod(y, yManhattanStep), 0.0)) {
-//		result = STATE::ONEDGE
-//	}
-//	else {
-//		result = STATE::OUTSIDE;
-//	}
-//	return result;
-//}
+ManhattanDisplacement::STATE ManhattanDisplacement::checkStatus(Point* location) const {
+	STATE result;
+	double x = location->getX();
+	double y = location->getY();
+	double xManhattanStep =  m_manhattanScenario->getXStep();
+	double yManhattanStep =  m_manhattanScenario->getYStep();
+	if(doubleCompare(fmod(x - m_manhattanScenario->getXOrigin(), xManhattanStep), 0.0) && doubleCompare(fmod(y - m_manhattanScenario->getYOrigin(), yManhattanStep), 0.0)){
+		result = STATE::ONCORNER;
+	}
+	else if(doubleCompare(fmod(x- m_manhattanScenario->getXOrigin(), xManhattanStep), 0.0) || doubleCompare(fmod(y- m_manhattanScenario->getYOrigin(), yManhattanStep), 0.0)) {
+		result = STATE::ONEDGE;
+	}
+	else {
+		result = STATE::OUTSIDE;
+	}
+	return result;
+}
 
 ManhattanDisplacement::STATE ManhattanDisplacement::getStatus() const {
 	return m_status;
@@ -327,4 +365,24 @@ double ManhattanDisplacement::getDirection() const {
 void ManhattanDisplacement::setSpeed(double speed) {
 	m_speed = speed;
 	m_distance = m_speed * m_simConfig->getClock()->getIncrement();
+}
+
+
+double ManhattanDisplacement::difference(double dir1, Directions dir2) {
+	double result = 0.0;
+	switch(dir2) {
+	case Directions::NORTH:
+		result = fabs(utils::PI/2.0-dir1);
+		break;
+	case Directions::SOUTH:
+		result = fabs(3 * utils::PI/2.0-dir1);
+		break;
+	case Directions::EAST:
+		result = fabs(0-dir1);
+		break;
+	case Directions::WEST:
+		result = fabs(utils::PI-dir1);
+		break;
+	}
+	return result;
 }

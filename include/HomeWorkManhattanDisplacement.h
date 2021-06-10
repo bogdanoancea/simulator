@@ -10,6 +10,9 @@
 
 #include <HomeWorkDisplacement.h>
 #include <ManhattanDisplacement.h>
+#include <Directions.h>
+
+
 
 class HomeWorkManhattanDisplacement: public HomeWorkDisplacement {
 public:
@@ -19,6 +22,8 @@ public:
 
 private:
 	virtual Point* toDestination(Point*  initLocation, Point* destination) override;
+	virtual const bool arrivedAtDestination(Point* position, Point* destination) const override;
+	virtual Point* makeRandomStepAtWork(Point* initLocation) override;
 	ManhattanDisplacement m_manhattanDisplacement;
 };
 

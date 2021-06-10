@@ -52,8 +52,8 @@
 				<y_sd>700</y_sd>
 			</anchor_point>
 			<manhattan_grid>
-				<x_step>150</x_step>
-				<y_step>150</y_step>
+				<x_step>50</x_step>
+				<y_step>50</y_step>
 				<x_origin>0</x_origin>
 				<y_origin>0</y_origin>
 			</manhattan_grid>

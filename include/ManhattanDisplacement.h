@@ -72,17 +72,13 @@ public:
 	void setDirection(double direction);
 	double getDirection() const;
 	void setSpeed(double speed);
+	STATE checkStatus(Point* location) const;
 
 private:
-
-
-
-	//virtual Point* computeNewLocation(Point* initLocation, double theta) override;
-
-	Directions selectDirection() const;
+	Directions selectDirection() ;
 	bool atCorner(Coordinate pos, Coordinate corner) const;
 	bool doubleCompare(double x, double y) const;
-
+	double difference(double dir1, Directions dir2);
 	Coordinate makeBlockStep(Coordinate location,  Directions angle) const;
 	Coordinate makeIncompleteStep(Coordinate location,  Directions angle, double length) const;
 	double makeMultipleBlocksStep(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status);
@@ -91,13 +87,11 @@ private:
 	double blockLength( Directions theta) const;
 	Directions reverseDirection(Directions dir) const;
 
-	//STATE checkStatus(Point* location) const;
 	ManhattanScenario* m_manhattanScenario;
 	STATE m_status;
 	double m_distance;
 	Directions m_theta;
 	double m_direction;
-
 };
 
 #endif /* INCLUDE_MANHATTANDISPLACEMENT_H_ */

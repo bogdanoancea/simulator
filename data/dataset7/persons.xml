@@ -8,11 +8,11 @@
         </age>
         <male_share>0.48</male_share>
         <speed_walk distributionType = "Normal">
-        	<mean>3</mean>
+        	<mean>5</mean>
         	<sd>0.3</sd>
         </speed_walk>
         <speed_car distributionType = "Normal">
-        	<mean>16</mean>
+        	<mean>25</mean>
         	<sd>1.6</sd>
         </speed_car>
         <percent_home>0.9</percent_home>

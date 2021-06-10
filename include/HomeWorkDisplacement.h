@@ -64,8 +64,8 @@ public:
 protected:
 	virtual Point* toDestination(Point*  initLocation, Point* destination);
 	double computeTheta(Point* p1, Point* p2) const;
-	const bool arrivedAtDestination(Point* position, Point* destination) const;
-
+	virtual const bool arrivedAtDestination(Point* position, Point* destination) const;
+	virtual Point* makeRandomStepAtWork(Point* initLocation);
 	Distribution* m_angleDistribution;
 
 
@@ -75,10 +75,6 @@ private:
 	long initDeltaTStayWork() const;
 	long initDeltaTStayAnchor() const;
 	const bool posAtDestination(Point* position, Point* destination) const;
-
-	Point* makeRandomStepAtWork(Point* initLocation);
-
-
 	HomeWorkState getState() const;
 
 
@@ -89,7 +85,6 @@ private:
 	Point* m_homeLocation;
 	Point* m_workLocation;
 	Point* m_anchorLocation;
-
 	double m_stepLength;
 };
 

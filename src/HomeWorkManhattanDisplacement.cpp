@@ -5,14 +5,15 @@
  *      Author: bogdan
  */
 
-#include <HomeWorkManhattanDisplacement.h>
-#include <ManhattanDisplacement.h>
-#include <RandomNumberGenerator.h>
-#include <Utils.h>
 #include <geos/geom/Coordinate.h>
 #include <geos/geom/GeometryFactory.h>
 #include <geos/geom/Point.h>
+#include <HomeWorkManhattanDisplacement.h>
+#include <parsers/SimulationConfiguration.h>
+#include <cmath>
+#include <Utils.h>
 
+using namespace std;
 
 HomeWorkManhattanDisplacement::HomeWorkManhattanDisplacement(
 		SimulationConfiguration *simConfig, double speed, Point *homeLocation,
@@ -27,33 +28,30 @@ HomeWorkManhattanDisplacement::~HomeWorkManhattanDisplacement() {
 }
 
 Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point* destination) {
-	Point* pt;
+	Point* pt = nullptr;
 	double theta = computeTheta(initLocation, destination);
+
 	if(m_manhattanDisplacement.getStatus() == ManhattanDisplacement::STATE::OUTSIDE) {
 		Coordinate c = m_manhattanDisplacement.closestCorner(*initLocation->getCoordinate());
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c);
 		m_manhattanDisplacement.setStatus(ManhattanDisplacement::STATE::ONCORNER);
+		theta = computeTheta(pt, destination);
 	}
 	m_manhattanDisplacement.setDirection(theta);
-	pt = m_manhattanDisplacement.generateNewLocation(initLocation);
-
-	Geometry *g = m_simConfig->getMap()->getBoundary();
-	if (!pt->within(g)) {
-		int k = 10;
-		while (--k && !pt->within(g)) {
-			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
-			pt = m_manhattanDisplacement.generateNewLocation(initLocation);
-		}
-		if (!k) {
-			pt = initLocation;
-		}
+	if(pt == nullptr)
+		pt = m_manhattanDisplacement.generateNewLocation(initLocation);
+	else
+		pt = m_manhattanDisplacement.generateNewLocation(pt);
+	if (pt->equals(initLocation)) {
+		m_manhattanDisplacement.setDirection(-1);
+		pt = m_manhattanDisplacement.generateNewLocation(initLocation);
 	}
 	if(arrivedAtDestination(pt, destination)) {
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
+		m_manhattanDisplacement.setStatus(m_manhattanDisplacement.checkStatus(destination));
 	}
 	return pt;
 }
-
 
 
 Point* HomeWorkManhattanDisplacement::generateNewLocation(Point * initLocation) {
@@ -62,44 +60,32 @@ Point* HomeWorkManhattanDisplacement::generateNewLocation(Point * initLocation) 
 	return result;
 }
 
-
-Directions selectDirectionToDestination(double theta) {
-	Directions result =  Directions::EAST;
-	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
-	if(theta == 0.0)
-		result = Directions::EAST;
-	else if(theta > 0.0 && theta < utils::PI / 2) {
-		unsigned d = rng->generateUniformInt(0, 1);
-		if(d == 0)
-			result = Directions::EAST;
-		else if(d == 1)
-			result = Directions::NORTH;
-	}
-	else if(theta == utils::PI)
-		result = Directions::NORTH;
-	else if(theta > utils::PI / 2 && theta < utils::PI) {
-		unsigned d = rng->generateUniformInt(0, 1);
-		if(d == 0)
-			result = Directions::NORTH;
-		else if(d == 1)
-			result = Directions::WEST;
-	} else if( theta == utils::PI)
-		result = Directions::WEST;
-	else if(theta > utils::PI && theta < 3.0 * utils::PI / 2.0) {
-		unsigned d = rng->generateUniformInt(0, 1);
-		if(d == 0)
-			result = Directions::WEST;
-		else if(d == 1)
-			result = Directions::SOUTH;
-	}
-	else if(theta == 3.0 * utils::PI / 2.0)
-		result = Directions::SOUTH;
-	else if(theta > 3.0 * utils::PI / 2.0 && theta < 2 * utils::PI) {
-		unsigned d = rng->generateUniformInt(0, 1);
-		if(d == 0)
-			result = Directions::SOUTH;
-		else if(d == 1)
-			result = Directions::EAST;
+const bool HomeWorkManhattanDisplacement::arrivedAtDestination(Point* position, Point* destination) const {
+	bool result = false;
+	double dist = sqrt(pow((position->getX() - destination->getX()), 2)	+ pow((position->getY() - destination->getY()), 2) + pow((position->getZ() - destination->getZ()), 2));
+	// allowable dist is a step length
+	double allowableDist = m_speed * m_simConfig->getClock()->getIncrement();
+	if (dist < allowableDist) {
+		result = true;
+	} else	{
+		ManhattanScenario* mht = static_cast<HomeWorkManhattanScenario*>(m_simConfig->getHomeWorkManhattanScenario())->getManhattanScenario();
+		const Coordinate* dc = destination->getCoordinate();
+		const Coordinate* posc = position->getCoordinate();
+		double x1 = floor((dc->x - mht->getXOrigin()) / mht->getXStep()) * mht->getXStep();
+		double x2 = ceil((dc->x - mht->getXOrigin()) / mht->getXStep()) * mht->getXStep();
+		double y1 = floor((dc->y - mht->getYOrigin()) / mht->getYStep()) * mht->getYStep();
+		double y2 = ceil((dc->y - mht->getYOrigin()) / mht->getYStep()) * mht->getYStep();
+		if( (posc->y == y1 || posc->y == y2) && (posc->x >= x1 && posc->x <= x2))
+			result = true;
+		else if ((posc->x == x1 || posc->x == x2) && (posc->y >= y1 && posc->y <= y2))
+			result = true;
 	}
 	return result;
+
 }
+
+
+Point* HomeWorkManhattanDisplacement::makeRandomStepAtWork(Point* initLocation) {
+	return initLocation;
+}
+
