@@ -48,6 +48,10 @@ HomeWorkDisplacement::HomeWorkDisplacement(SimulationConfiguration *simConfig, d
 	m_workLocation = workLocation;
 	m_anchorLocation = anchorLocation;
 	m_angleDistribution = simConfig->getHomeWorkScenario()->getAngleDistribution();
+	vector<pair<const char*, double>> params;
+	params.push_back(make_pair("mean", 0));
+	params.push_back(make_pair("sd", 45));
+	m_defaultAngleDistribution = make_shared<Distribution>(DistributionType::NORMAL, params);
 
 	//compute estimated speed
 	double dist = m_homeLocation->distance(m_workLocation);
@@ -212,8 +216,10 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 	double eps = 0.0;
 	switch(dType) {
 	case DistributionType::LAPLACE:
-		eps = utils::PI* RandomNumberGenerator::instance()->generateDouble(m_angleDistribution) / 180.0;
+		eps = utils::PI * RandomNumberGenerator::instance()->generateDouble(m_angleDistribution) / 180.0;
 		break;
+	default:
+		eps = utils::PI * RandomNumberGenerator::instance()->generateDouble(m_defaultAngleDistribution.get()) / 180.0;
 	}
 	theta += eps;
 	pt = computeNewLocation(initLocation, theta);

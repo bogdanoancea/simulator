@@ -86,6 +86,7 @@ private:
 	Point* m_workLocation;
 	Point* m_anchorLocation;
 	double m_stepLength;
+	shared_ptr<Distribution> m_defaultAngleDistribution;
 };
 
 #endif /* INCLUDE_HOMEWORKDISPLACEMENT_H_ */

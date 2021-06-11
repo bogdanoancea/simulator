@@ -86,6 +86,7 @@ private:
 	void startFromEdge(Coordinate& current, double distanceToGo, Directions& angle, ManhattanDisplacement::STATE& status);
 	double blockLength( Directions theta) const;
 	Directions reverseDirection(Directions dir) const;
+	Directions selectDirection(double dir);
 
 	ManhattanScenario* m_manhattanScenario;
 	STATE m_status;

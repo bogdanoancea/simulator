@@ -1,8 +1,25 @@
 /*
+ * Copyright (C) 2019  Bogdan Oancea
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version and under the EUPL free software license version 1.0 or later.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/> and
+ * <https://ec.europa.eu/info/european-union-public-licence_en>
+ *
+ * A data simulator for mobile phone network events
+ *
  * ManhattanDisplacement.cpp
  *
  *  Created on: May 27, 2021
- *      Author: bogdan
+ *      Author: Bogdan Oancea
+ *      Email:  bogdan.oancea@gmail.com
  */
 
 #include <ManhattanDisplacement.h>
@@ -148,89 +165,12 @@ Coordinate ManhattanDisplacement::closestCorner(Coordinate location) const {
 
 
 Directions ManhattanDisplacement::selectDirection()  {
-	Directions result;
-	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
+	Directions result = m_theta;
 	if(m_direction  >= 0 ) {
-//		result = selectDirection(m_direction);
-		double d;
-		if(m_direction == 0.0)
-			result = Directions::EAST;
-		else if(m_direction > 0.0 && m_direction < utils::PI / 2) {
-			double d1 = difference(m_direction, Directions::EAST);
-			double d2 = difference(m_direction, Directions::NORTH);
-			d = rng->generateUniformDouble(0, 1);
-			if(d < 0.2) {
-				if( d1 < d2 )
-					result = Directions::NORTH;
-				else
-					result = Directions::EAST;
-			}
-			else {
-				if( d1 < d2 )
-					result = Directions::EAST;
-				else
-					result = Directions::NORTH;
-			}
-		}
-		else if(m_direction == utils::PI)
-			result = Directions::NORTH;
-		else if(m_direction > utils::PI / 2 && m_direction < utils::PI) {
-			double d1 = difference(m_direction, Directions::NORTH);
-			double d2 = difference(m_direction, Directions::WEST);
-			d = rng->generateUniformDouble(0, 1);
-			if(d < 0.2) {
-				if( d1 < d2 )
-					result = Directions::WEST;
-				else
-					result = Directions::NORTH;
-			}
-			else {
-				if( d1 < d2 )
-					result = Directions::NORTH;
-				else
-					result = Directions::WEST;
-			}
-		} else if( m_direction == utils::PI)
-			result = Directions::WEST;
-		else if(m_direction > utils::PI && m_direction < 3.0 * utils::PI / 2.0) {
-			double d1 = difference(m_direction, Directions::WEST);
-			double d2 = difference(m_direction, Directions::SOUTH);
-			d = rng->generateUniformDouble(0, 1);
-			if(d < 0.2) {
-				if( d1 < d2 )
-					result = Directions::SOUTH;
-				else
-					result = Directions::WEST;
-			}
-			else {
-				if( d1 < d2 )
-					result = Directions::WEST;
-				else
-					result = Directions::SOUTH;
-			}
-		}
-		else if(m_direction == 3.0 * utils::PI / 2.0)
-			result = Directions::SOUTH;
-		else if(m_direction > 3.0 * utils::PI / 2.0 && m_direction < 2 * utils::PI) {
-			double d1 = difference(m_direction, Directions::SOUTH);
-			double d2 = difference(m_direction, Directions::EAST);
-			d = rng->generateUniformDouble(0, 1);
-			if(d < 0.2) {
-				if( d1 < d2 )
-					result = Directions::EAST;
-				else
-					result = Directions::SOUTH;
-			}
-			else {
-				if( d1 < d2 )
-					result = Directions::SOUTH;
-				else
-					result = Directions::EAST;
-			}
-		}
+		result = selectDirection(m_direction);
 	}
 	else {
-
+		RandomNumberGenerator* rng = RandomNumberGenerator::instance();
 		unsigned d = rng->generateUniformInt(0, 3);
 		if(d == 0)
 			result = Directions::EAST;
@@ -383,6 +323,75 @@ double ManhattanDisplacement::difference(double dir1, Directions dir2) {
 	case Directions::WEST:
 		result = fabs(utils::PI-dir1);
 		break;
+	}
+	return result;
+}
+
+Directions ManhattanDisplacement::selectDirection(double dir) {
+	Directions result = m_theta;
+	RandomNumberGenerator* rng = RandomNumberGenerator::instance();
+	double dE, dN, dS, dW;
+	dE = difference(dir, Directions::EAST);
+	dN = difference(dir, Directions::NORTH);
+	dS = difference(dir, Directions::SOUTH);
+	dW = difference(dir, Directions::WEST);
+	double d = rng->generateUniformDouble(0, 1);
+	if (dir == 0.0)
+		result = Directions::EAST;
+	else if (dir > 0.0 && dir < utils::PI / 2) {
+		if (d < 0.2) {
+			if (dE < dN)
+				result = Directions::NORTH;
+			else
+				result = Directions::EAST;
+		} else {
+			if (dE < dN)
+				result = Directions::EAST;
+			else
+				result = Directions::NORTH;
+		}
+	} else if (dir == utils::PI)
+		result = Directions::NORTH;
+	else if (dir > utils::PI / 2 && dir < utils::PI) {
+		if (d < 0.2) {
+			if (dN < dW)
+				result = Directions::WEST;
+			else
+				result = Directions::NORTH;
+		} else {
+			if (dN < dW)
+				result = Directions::NORTH;
+			else
+				result = Directions::WEST;
+		}
+	} else if (dir == utils::PI)
+		result = Directions::WEST;
+	else if (dir > utils::PI && dir < 3.0 * utils::PI / 2.0) {
+		if (d < 0.2) {
+			if (dW < dS)
+				result = Directions::SOUTH;
+			else
+				result = Directions::WEST;
+		} else {
+			if (dW < dS)
+				result = Directions::WEST;
+			else
+				result = Directions::SOUTH;
+		}
+	} else if (dir == 3.0 * utils::PI / 2.0)
+		result = Directions::SOUTH;
+	else if (dir > 3.0 * utils::PI / 2.0 && dir < 2 * utils::PI) {
+		if (d < 0.2) {
+			if (dS < dE)
+				result = Directions::EAST;
+			else
+				result = Directions::SOUTH;
+		} else {
+			if (dS < dE)
+				result = Directions::SOUTH;
+			else
+				result = Directions::EAST;
+		}
 	}
 	return result;
 }
