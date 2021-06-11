@@ -1,8 +1,0 @@
-<map id="include/agent/MobilePhone.h" name="include/agent/MobilePhone.h">
-<area shape="rect" id="node1" title=" " alt="" coords="293,5,483,32"/>
-<area shape="rect" id="node2" href="$_post_loc_prob_8h.html" title=" " alt="" coords="235,80,389,107"/>
-<area shape="rect" id="node6" href="$_utils_8h.html" title=" " alt="" coords="413,80,517,107"/>
-<area shape="rect" id="node3" href="$_net_prior_post_loc_prob_8h.html" title=" " alt="" coords="5,162,205,189"/>
-<area shape="rect" id="node4" href="$_unif_prior_post_loc_prob_8h.html" title=" " alt="" coords="230,155,394,196"/>
-<area shape="rect" id="node5" href="$_world_8h.html" title=" " alt="" coords="419,162,531,189"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="MovableAgent" name="MovableAgent">
-<area shape="rect" id="node1" title=" " alt="" coords="197,461,327,612"/>
-<area shape="rect" id="node4" href="$class_holdable_agent.html" title=" " alt="" coords="87,829,221,1023"/>
-<area shape="rect" id="node7" href="$class_person.html" title=" " alt="" coords="245,660,495,1192"/>
-<area shape="rect" id="node2" href="$class_locatable_agent.html" title=" " alt="" coords="192,263,332,413"/>
-<area shape="rect" id="node3" href="$class_agent.html" title=" " alt="" coords="209,5,315,215"/>
-<area shape="rect" id="node5" href="$class_mobile_phone.html" title=" " alt="" coords="5,1240,153,1464"/>
-<area shape="rect" id="node6" href="$class_tablet.html" title=" " alt="" coords="177,1277,283,1427"/>
-</map>

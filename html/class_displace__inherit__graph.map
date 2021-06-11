@@ -1,7 +1,0 @@
-<map id="Displace" name="Displace">
-<area shape="rect" id="node1" title=" " alt="" coords="378,5,478,97"/>
-<area shape="rect" id="node2" href="$class_home_work_displacement.html" title=" " alt="" coords="5,145,200,531"/>
-<area shape="rect" id="node3" href="$class_levy_flight_displacement.html" title=" " alt="" coords="224,277,411,399"/>
-<area shape="rect" id="node4" href="$class_random_walk_displacement.html" title=" " alt="" coords="435,285,642,391"/>
-<area shape="rect" id="node5" href="$class_random_walk_drift_displacement.html" title=" " alt="" coords="666,277,897,399"/>
-</map>
