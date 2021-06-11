@@ -76,8 +76,9 @@ void PersonsConfigParser::parse() noexcept(false) {
 	else {
 		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
 		shared_ptr<Distribution> ageDistr = parseAgeDistribution(personsEl);
-		shared_ptr<Distribution> speedWalkDistribution = parseSpeedWalkDistribution(personsEl);
-		shared_ptr<Distribution> speedCarDistribution = parseSpeedCarDistribution(personsEl);
+		shared_ptr<Distribution> speedWalkDistribution = parseSpeedDistribution(personsEl, "speed_car_distribution");
+		shared_ptr<Distribution> speedCarDistribution = parseSpeedDistribution(personsEl, "speed_walk_distribution");
+
 		double male_share = getValue(personsEl, "male_share");
 		double percentHome = getValue(personsEl, "percent_home");
 		vector<Person* >persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
@@ -114,34 +115,9 @@ shared_ptr<Distribution> PersonsConfigParser::parseAgeDistribution(XMLElement* p
 	return ageDistr;
 }
 
-shared_ptr<Distribution> PersonsConfigParser::parseSpeedWalkDistribution(XMLElement* parent) {
+shared_ptr<Distribution> PersonsConfigParser::parseSpeedDistribution(XMLElement *parent, const char* name) {
 	shared_ptr<Distribution> result;
-	XMLElement *speedWEl = parent->FirstChildElement("speed_walk_distribution");
-	if (speedWEl) {
-		const XMLAttribute *type = speedWEl->FindAttribute("type");
-		DistributionType dType;
-		if (type) {
-			const char *dname = type->Value();
-			if (!strcmp(dname, "Uniform")) {
-				dType = DistributionType::UNIFORM;
-			} else if (!strcmp(dname, "Normal")) {
-				dType = DistributionType::NORMAL;
-			} else {
-				throw std::runtime_error("Unknown/unsupported speed distribution");
-			}
-		} else {
-			throw std::runtime_error("Speed distribution type not specified ");
-		}
-		result = make_shared<Distribution>(Distribution(dType, speedWEl));
-	} else {
-		throw std::runtime_error("Speed distribution not specified ");
-	}
-	return result;
-}
-
-shared_ptr<Distribution> PersonsConfigParser::parseSpeedCarDistribution(XMLElement *parent) {
-	shared_ptr<Distribution> result;
-	XMLElement *speedCEl = parent->FirstChildElement("speed_car_distribution");
+	XMLElement *speedCEl = parent->FirstChildElement(name);
 	if (speedCEl) {
 		const XMLAttribute *type = speedCEl->FindAttribute("type");
 		DistributionType dType;
@@ -163,6 +139,7 @@ shared_ptr<Distribution> PersonsConfigParser::parseSpeedCarDistribution(XMLEleme
 	}
 	return result;
 }
+
 
 
 vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons, shared_ptr<Distribution> ageDistribution,

@@ -77,8 +77,7 @@ private:
 	void setPersonDisplacementPattern(Person* p);
 	Point* generateLocation(unsigned int index, vector<HomeWorkLocation> locations);
 	shared_ptr<Distribution> parseAgeDistribution(XMLElement* parent);
-	shared_ptr<Distribution> parseSpeedWalkDistribution(XMLElement* parent);
-	shared_ptr<Distribution> parseSpeedCarDistribution(XMLElement* parent);
+	shared_ptr<Distribution> parseSpeedDistribution(XMLElement* parent, const char* name);
 	void setHomePersonHWLocations(Person* p, Point* pt);
 	SimulationConfiguration* m_simConfig;
 	AgentsCollection* m_agents;
