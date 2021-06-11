@@ -1,0 +1,103 @@
+\hypertarget{class_levy_flight_displacement}{}\doxysection{Levy\+Flight\+Displacement Class Reference}
+\label{class_levy_flight_displacement}\index{LevyFlightDisplacement@{LevyFlightDisplacement}}
+
+
+{\ttfamily \#include $<$Levy\+Flight\+Displacement.\+h$>$}
+
+
+
+Inheritance diagram for Levy\+Flight\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_levy_flight_displacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Levy\+Flight\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_levy_flight_displacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_levy_flight_displacement_ae807b06a0d81cf1f703c41c480a5a02f}{Levy\+Flight\+Displacement}} (\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$sim\+Config, double speed)
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_levy_flight_displacement_ae9b877b962cfbab65ba538da0e10b0f7}{generate\+New\+Location}} (Point $\ast$p) override
+\item 
+virtual \mbox{\hyperlink{class_levy_flight_displacement_ac5a53d10d6b3e30b96e1ccc91a1b448e}{$\sim$\+Levy\+Flight\+Displacement}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_levy_flight_displacement_af95a25afc1f0f29a0e0e01e144925183}{compute\+New\+Location}} (Point $\ast$init\+Location, double theta) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_levy_flight_scenario}{Levy\+Flight\+Scenario}} $\ast$ \mbox{\hyperlink{class_levy_flight_displacement_a52c76c9dee0a2b241cf44c5c7307cd97}{m\+\_\+levy\+Flight\+Scenario}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements the Levy flights, overriding the \mbox{\hyperlink{class_levy_flight_displacement_ae9b877b962cfbab65ba538da0e10b0f7}{generate\+New\+Location()}} method from its superclass, \mbox{\hyperlink{class_displace}{Displace}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_levy_flight_displacement_ae807b06a0d81cf1f703c41c480a5a02f}\label{class_levy_flight_displacement_ae807b06a0d81cf1f703c41c480a5a02f}} 
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\doxysubsubsection{\texorpdfstring{LevyFlightDisplacement()}{LevyFlightDisplacement()}}
+{\footnotesize\ttfamily Levy\+Flight\+Displacement\+::\+Levy\+Flight\+Displacement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$}]{sim\+Config,  }\item[{double}]{speed }\end{DoxyParamCaption})}
+
+Constructor of the class. It only passes the arguments to the superclass, \mbox{\hyperlink{class_displace}{Displace}}. 
+\begin{DoxyParams}{Parameters}
+{\em speed} & the speed of displacement. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_levy_flight_displacement_ac5a53d10d6b3e30b96e1ccc91a1b448e}\label{class_levy_flight_displacement_ac5a53d10d6b3e30b96e1ccc91a1b448e}} 
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!````~LevyFlightDisplacement@{$\sim$LevyFlightDisplacement}}
+\index{````~LevyFlightDisplacement@{$\sim$LevyFlightDisplacement}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\doxysubsubsection{\texorpdfstring{$\sim$LevyFlightDisplacement()}{~LevyFlightDisplacement()}}
+{\footnotesize\ttfamily virtual Levy\+Flight\+Displacement\+::$\sim$\+Levy\+Flight\+Displacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor. Does nothing. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_levy_flight_displacement_af95a25afc1f0f29a0e0e01e144925183}\label{class_levy_flight_displacement_af95a25afc1f0f29a0e0e01e144925183}} 
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!computeNewLocation@{computeNewLocation}}
+\index{computeNewLocation@{computeNewLocation}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\doxysubsubsection{\texorpdfstring{computeNewLocation()}{computeNewLocation()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Levy\+Flight\+Displacement\+::compute\+New\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{init\+Location,  }\item[{double}]{theta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_levy_flight_displacement_ae9b877b962cfbab65ba538da0e10b0f7}\label{class_levy_flight_displacement_ae9b877b962cfbab65ba538da0e10b0f7}} 
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!generateNewLocation@{generateNewLocation}}
+\index{generateNewLocation@{generateNewLocation}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\doxysubsubsection{\texorpdfstring{generateNewLocation()}{generateNewLocation()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Levy\+Flight\+Displacement\+::generate\+New\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Implements the Levy flight behavior. It takes a pointer to the current location, generates a uniformly distributed value between 0 and 2$\ast$\+PI as the angle of displacement and computes the length of the step in this direction using the speed and the time duration of a simulation step. To simulate a Levy flight, the value of the speed is generated at each time instant from a Levy distribution. If the new location is outside the map, it tries 10 times to generate another location. If after 10 trials the position is still outside the map returns the current location, i.\+e. the object will stay in the same location until the next simulation step. 
+\begin{DoxyParams}{Parameters}
+{\em p} & a pointer to the current location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new location 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_levy_flight_displacement_a52c76c9dee0a2b241cf44c5c7307cd97}\label{class_levy_flight_displacement_a52c76c9dee0a2b241cf44c5c7307cd97}} 
+\index{LevyFlightDisplacement@{LevyFlightDisplacement}!m\_levyFlightScenario@{m\_levyFlightScenario}}
+\index{m\_levyFlightScenario@{m\_levyFlightScenario}!LevyFlightDisplacement@{LevyFlightDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_levyFlightScenario}{m\_levyFlightScenario}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_levy_flight_scenario}{Levy\+Flight\+Scenario}}$\ast$ Levy\+Flight\+Displacement\+::m\+\_\+levy\+Flight\+Scenario\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_levy_flight_displacement_8h}{Levy\+Flight\+Displacement.\+h}}\end{DoxyCompactItemize}

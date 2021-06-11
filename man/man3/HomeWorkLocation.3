@@ -1,0 +1,183 @@
+.TH "HomeWorkLocation" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HomeWorkLocation
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <HomeWorkLocation\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHomeWorkLocation\fP (double x, double y, double z, double sdx, double sdy, double sdz)"
+.br
+.ti -1c
+.RI "\fBHomeWorkLocation\fP ()=delete"
+.br
+.ti -1c
+.RI "virtual \fB~HomeWorkLocation\fP ()"
+.br
+.ti -1c
+.RI "string \fBtoString\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetX\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetY\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetZ\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetSdX\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetSdY\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetSdZ\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBm_x\fP"
+.br
+.ti -1c
+.RI "double \fBm_y\fP"
+.br
+.ti -1c
+.RI "double \fBm_z\fP"
+.br
+.ti -1c
+.RI "double \fBm_sdx\fP"
+.br
+.ti -1c
+.RI "double \fBm_sdy\fP"
+.br
+.ti -1c
+.RI "double \fBm_sdz\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class encapsulates the information needed to generate the home or work location on the map\&. All the information need to build a \fBHomeWorkLocation\fP object are read from the simulation configuration file\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "HomeWorkLocation::HomeWorkLocation (double x, double y, double z, double sdx, double sdy, double sdz)"
+Constructor of the class\&. It builds a \fBHomeWorkLocation\fP object by setting its members using the values passed as parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the x coordinate of a Home - Work location\&. 
+.br
+\fIy\fP the y coordinate of a Home - Work location\&. 
+.br
+\fIz\fP the z coordinate of a Home - Work location\&. 
+.br
+\fIsdx\fP the standard deviation / radius of the x coordinate of a Home - Work location\&. 
+.br
+\fIsdy\fP the standard deviation / radius of the y coordinate of a Home - Work location\&. 
+.br
+\fIsdz\fP the standard deviation / radius of the z coordinate of a Home - Work location\&. 
+.RE
+.PP
+
+.SS "HomeWorkLocation::HomeWorkLocation ()\fC [delete]\fP"
+The default constructor is deleted\&. A \fBHomeWorkLocation\fP object without the values for the members makes no sense\&. 
+.SS "virtual HomeWorkLocation::~HomeWorkLocation ()\fC [virtual]\fP"
+Default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "double HomeWorkLocation::getSdX ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "double HomeWorkLocation::getSdY ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "double HomeWorkLocation::getSdZ ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "double HomeWorkLocation::getX ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "double HomeWorkLocation::getY ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "double HomeWorkLocation::getZ ()\fC [inline]\fP"
+
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "string HomeWorkLocation::toString ()"
+Return a string representation of the class, containing the values of all members, comma separated\&. It is useful for debugging or for printing these information\&. An example of such a string:
+.PP
+.PP
+.nf
+X:2000 Y:7500 Z:0 Sd_x:1000 Sd_y:1000 Sd_z:0
+.fi
+.PP
+.PP
+\fBReturns\fP
+.RS 4
+a string representation of the class, containing the values of all members, comma separated\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "double HomeWorkLocation::m_sdx\fC [private]\fP"
+
+.SS "double HomeWorkLocation::m_sdy\fC [private]\fP"
+
+.SS "double HomeWorkLocation::m_sdz\fC [private]\fP"
+
+.SS "double HomeWorkLocation::m_x\fC [private]\fP"
+
+.SS "double HomeWorkLocation::m_y\fC [private]\fP"
+
+.SS "double HomeWorkLocation::m_z\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

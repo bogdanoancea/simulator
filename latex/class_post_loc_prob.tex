@@ -1,0 +1,85 @@
+\hypertarget{class_post_loc_prob}{}\doxysection{Post\+Loc\+Prob Class Reference}
+\label{class_post_loc_prob}\index{PostLocProb@{PostLocProb}}
+
+
+{\ttfamily \#include $<$Unif\+Prior\+Post\+Loc\+Prob.\+h$>$}
+
+
+
+Inheritance diagram for Post\+Loc\+Prob\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_post_loc_prob__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Post\+Loc\+Prob\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_post_loc_prob__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_post_loc_prob_a39ab5febb285ce080a63dc6ca22a469e}{Post\+Loc\+Prob}} (const \mbox{\hyperlink{class_map}{Map}} $\ast$m, \mbox{\hyperlink{class_clock}{Clock}} $\ast$clk, \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} $\ast$agents, map$<$ const unsigned long, const string $>$ prob\+Files)
+\item 
+virtual \mbox{\hyperlink{class_post_loc_prob_a73f8382a010f05c6420bc3f834ba0406}{$\sim$\+Post\+Loc\+Prob}} ()
+\item 
+virtual void \mbox{\hyperlink{class_post_loc_prob_afb088584bf019b228463fa9191652f55}{compute\+Probabilities}} (std\+::map$<$ unsigned long, vector$<$ \mbox{\hyperlink{class_antenna_info}{Antenna\+Info}} $>$$>$ data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class implements a Strategy design pattern. It acts as an interface to different algorithms for posterior location probabilities computation.
+
+This class is part of the Strategy design pattern used to compute the posterior location probabilities. It implements the computation of the posterior location probabilities starting from the prior probabilities given by the network, overriding the prob() method from its superclass,
+
+This class is part of the Strategy design pattern used to compute the posterior location probabilities. It implements the computation of the posterior location probabilities starting from the uniform prior probabilities, overriding the prob() method from its superclass, 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_post_loc_prob_a39ab5febb285ce080a63dc6ca22a469e}\label{class_post_loc_prob_a39ab5febb285ce080a63dc6ca22a469e}} 
+\index{PostLocProb@{PostLocProb}!PostLocProb@{PostLocProb}}
+\index{PostLocProb@{PostLocProb}!PostLocProb@{PostLocProb}}
+\doxysubsubsection{\texorpdfstring{PostLocProb()}{PostLocProb()}}
+{\footnotesize\ttfamily Post\+Loc\+Prob\+::\+Post\+Loc\+Prob (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_map}{Map}} $\ast$}]{m,  }\item[{\mbox{\hyperlink{class_clock}{Clock}} $\ast$}]{clk,  }\item[{\mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} $\ast$}]{agents,  }\item[{map$<$ const unsigned long, const string $>$}]{prob\+Files }\end{DoxyParamCaption})}
+
+Constructor of the class. It initializes the members according to the values given as parameters. 
+\begin{DoxyParams}{Parameters}
+{\em m} & a pointer to the \mbox{\hyperlink{class_map}{Map}} object of the simulation. \\
+\hline
+{\em clk} & a pointer to the \mbox{\hyperlink{class_clock}{Clock}} object of the simulation. \\
+\hline
+{\em agents} & a pointer to the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} object (it contains all the agents in a simulation). \\
+\hline
+{\em prob\+Files} & a map object containing the name of the files where the probabilities are saved, one file per M\+NO. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_post_loc_prob_a73f8382a010f05c6420bc3f834ba0406}\label{class_post_loc_prob_a73f8382a010f05c6420bc3f834ba0406}} 
+\index{PostLocProb@{PostLocProb}!````~PostLocProb@{$\sim$PostLocProb}}
+\index{````~PostLocProb@{$\sim$PostLocProb}!PostLocProb@{PostLocProb}}
+\doxysubsubsection{\texorpdfstring{$\sim$PostLocProb()}{~PostLocProb()}}
+{\footnotesize\ttfamily virtual Post\+Loc\+Prob\+::$\sim$\+Post\+Loc\+Prob (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_post_loc_prob_afb088584bf019b228463fa9191652f55}\label{class_post_loc_prob_afb088584bf019b228463fa9191652f55}} 
+\index{PostLocProb@{PostLocProb}!computeProbabilities@{computeProbabilities}}
+\index{computeProbabilities@{computeProbabilities}!PostLocProb@{PostLocProb}}
+\doxysubsubsection{\texorpdfstring{computeProbabilities()}{computeProbabilities()}}
+{\footnotesize\ttfamily virtual void Post\+Loc\+Prob\+::compute\+Probabilities (\begin{DoxyParamCaption}\item[{std\+::map$<$ unsigned long, vector$<$ \mbox{\hyperlink{class_antenna_info}{Antenna\+Info}} $>$$>$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the posterior location probabilities. It iterates over all time instants and mobile phone and calls the prob() pure virtual function which implements the actual algorithm for the location probabilities. 
+\begin{DoxyParams}{Parameters}
+{\em data} & a vector with the network events. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_post_loc_prob_8h}{Post\+Loc\+Prob.\+h}}\end{DoxyCompactItemize}

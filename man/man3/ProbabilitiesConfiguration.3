@@ -1,0 +1,68 @@
+.TH "ProbabilitiesConfiguration" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ProbabilitiesConfiguration
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ProbabilitiesConfiguration\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBProbabilitiesConfiguration\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~ProbabilitiesConfiguration\fP ()"
+.br
+.ti -1c
+.RI "\fBPriorType\fP \fBgetPriorType\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetPrior\fP (\fBPriorType\fP prior)"
+.br
+.ti -1c
+.RI "string \fBgetProbsFilenamePrefix\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetPrefix\fP (std::string prefix)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBPriorType\fP \fBm_prior\fP"
+.br
+.ti -1c
+.RI "string \fBm_probsFileNamePrefix\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ProbabilitiesConfiguration::ProbabilitiesConfiguration ()"
+
+.SS "virtual ProbabilitiesConfiguration::~ProbabilitiesConfiguration ()\fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBPriorType\fP ProbabilitiesConfiguration::getPriorType () const"
+
+.SS "string ProbabilitiesConfiguration::getProbsFilenamePrefix () const"
+
+.SS "void ProbabilitiesConfiguration::setPrefix (std::string prefix)"
+
+.SS "void ProbabilitiesConfiguration::setPrior (\fBPriorType\fP prior)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBPriorType\fP ProbabilitiesConfiguration::m_prior\fC [private]\fP"
+
+.SS "string ProbabilitiesConfiguration::m_probsFileNamePrefix\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

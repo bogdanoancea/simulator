@@ -1,0 +1,253 @@
+\hypertarget{class_home_work_displacement}{}\doxysection{Home\+Work\+Displacement Class Reference}
+\label{class_home_work_displacement}\index{HomeWorkDisplacement@{HomeWorkDisplacement}}
+
+
+{\ttfamily \#include $<$Home\+Work\+Displacement.\+h$>$}
+
+
+
+Inheritance diagram for Home\+Work\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_home_work_displacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Home\+Work\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_home_work_displacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_home_work_displacement_ab3ef91491bb9c4663de2b3e4735d3714}{Home\+Work\+Displacement}} (\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$sim\+Config, double speed, Point $\ast$home\+Location, Point $\ast$work\+Location, Point $\ast$anchor\+Location)
+\item 
+virtual \mbox{\hyperlink{class_home_work_displacement_af47a955c24033e193c478c4271e2dbec}{$\sim$\+Home\+Work\+Displacement}} ()
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_a5379a2d3450654a73104e8b0a0695a4c}{generate\+New\+Location}} (Point $\ast$p) override
+\item 
+\mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} \mbox{\hyperlink{class_home_work_displacement_a7104ff2e0ffca587c41b6995094a8e9d}{get\+State}} () const
+\item 
+unsigned long \mbox{\hyperlink{class_home_work_displacement_ab43675d71bcc2676c0e3522282fb82be}{get\+Delta\+T\+Stay\+Anchor}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} \mbox{\hyperlink{class_home_work_displacement_aa1890fd829a803ec09f831e5107d5dc0}{state\+Transition}} (Point $\ast$position)
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_a74f427c0bb25790be490e896fc245cf9}{init\+Delta\+T\+Stay\+Home}} () const
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_a39144ce504871bcf7e9692af07c633ab}{init\+Delta\+T\+Stay\+Work}} () const
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_a2aeacd3f9f30c5d5c4790d9db8f95fcc}{init\+Delta\+T\+Stay\+Anchor}} () const
+\item 
+const bool \mbox{\hyperlink{class_home_work_displacement_a6ff9dc0862bd1671241de38b23dd275a}{pos\+At\+Destination}} (Point $\ast$position, Point $\ast$destination) const
+\item 
+const bool \mbox{\hyperlink{class_home_work_displacement_afdaadf769b146c0c8a5be908cc1606d7}{arrived\+At\+Destination}} (Point $\ast$position, Point $\ast$destination) const
+\item 
+Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_a8f004b1c7b587fbe80c92a3554ea20e4}{make\+Random\+Step\+At\+Work}} (Point $\ast$init\+Location)
+\item 
+Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_a88335e3c66951079c690afe0df1e64a0}{to\+Destination}} (Point $\ast$init\+Location, Point $\ast$destination)
+\item 
+double \mbox{\hyperlink{class_home_work_displacement_a92e2b356a691c04368e553e780ec4672}{compute\+Theta}} (Point $\ast$p1, Point $\ast$p2) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_ac8ce5bd605e720932b0b8d22e68eb690}{m\+\_\+delta\+T\+Stay\+Home}}
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_a9924c54bac8a6fbb55c29e08c609ce43}{m\+\_\+delta\+T\+Stay\+Work}}
+\item 
+long \mbox{\hyperlink{class_home_work_displacement_a1fa8110be32d8a229f40f9f2228e8173}{m\+\_\+delta\+T\+Stay\+Anchor}}
+\item 
+\mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} \mbox{\hyperlink{class_home_work_displacement_a8ad94bb03504523cea98e1393d742e88}{m\+\_\+state}}
+\item 
+Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_a57b11a4d9fef87b48105fc575ba28e42}{m\+\_\+home\+Location}}
+\item 
+Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_aa3e7cb21c7f436f8c3f66cc4fbe565ab}{m\+\_\+work\+Location}}
+\item 
+Point $\ast$ \mbox{\hyperlink{class_home_work_displacement_acbd2ebba8551f709d8cb0bf28f7376a8}{m\+\_\+anchor\+Location}}
+\item 
+\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$ \mbox{\hyperlink{class_home_work_displacement_ac3345fc1cb1b2e19eb9bc2c5df55eb06}{m\+\_\+angle\+Distribution}}
+\item 
+double \mbox{\hyperlink{class_home_work_displacement_ad8b747521ec921a026040fd3b6655cb8}{m\+\_\+step\+Length}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements the home-\/work scenario, overriding the \mbox{\hyperlink{class_home_work_displacement_a5379a2d3450654a73104e8b0a0695a4c}{generate\+New\+Location()}} method from its superclass, \mbox{\hyperlink{class_displace}{Displace}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_home_work_displacement_ab3ef91491bb9c4663de2b3e4735d3714}\label{class_home_work_displacement_ab3ef91491bb9c4663de2b3e4735d3714}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{HomeWorkDisplacement()}{HomeWorkDisplacement()}}
+{\footnotesize\ttfamily Home\+Work\+Displacement\+::\+Home\+Work\+Displacement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$}]{sim\+Config,  }\item[{double}]{speed,  }\item[{Point $\ast$}]{home\+Location,  }\item[{Point $\ast$}]{work\+Location,  }\item[{Point $\ast$}]{anchor\+Location }\end{DoxyParamCaption})}
+
+This is the constructor of the class. 
+\begin{DoxyParams}{Parameters}
+{\em sim\+Config} & the Sim\+Config object containing the simulation configuration options read from the simulation configuration file. \\
+\hline
+{\em speed} & the speed of the person. This value is read from persons configuration file. \\
+\hline
+{\em home\+Location} & the home location. This value is set at the creation of the \mbox{\hyperlink{class_person}{Person}} object and it is a point whose coordinates are generated from a normal distribution with the parameters read from the simulation configuration file. The persons involved in a simulation are equally distributed among the home locations. \\
+\hline
+{\em work\+Location} & the work location the work location. This value is set at the creation of the \mbox{\hyperlink{class_person}{Person}} object and it is a point whose coordinates are generated from a normal distribution with the parameters read from the simulation configuration file. If there are several work locations in this file, a work location is assigned for each person using a uniform distribution. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_home_work_displacement_af47a955c24033e193c478c4271e2dbec}\label{class_home_work_displacement_af47a955c24033e193c478c4271e2dbec}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!````~HomeWorkDisplacement@{$\sim$HomeWorkDisplacement}}
+\index{````~HomeWorkDisplacement@{$\sim$HomeWorkDisplacement}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{$\sim$HomeWorkDisplacement()}{~HomeWorkDisplacement()}}
+{\footnotesize\ttfamily virtual Home\+Work\+Displacement\+::$\sim$\+Home\+Work\+Displacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This is the destructor of the class. It does nothing. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_home_work_displacement_afdaadf769b146c0c8a5be908cc1606d7}\label{class_home_work_displacement_afdaadf769b146c0c8a5be908cc1606d7}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!arrivedAtDestination@{arrivedAtDestination}}
+\index{arrivedAtDestination@{arrivedAtDestination}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{arrivedAtDestination()}{arrivedAtDestination()}}
+{\footnotesize\ttfamily const bool Home\+Work\+Displacement\+::arrived\+At\+Destination (\begin{DoxyParamCaption}\item[{Point $\ast$}]{position,  }\item[{Point $\ast$}]{destination }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a92e2b356a691c04368e553e780ec4672}\label{class_home_work_displacement_a92e2b356a691c04368e553e780ec4672}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!computeTheta@{computeTheta}}
+\index{computeTheta@{computeTheta}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{computeTheta()}{computeTheta()}}
+{\footnotesize\ttfamily double Home\+Work\+Displacement\+::compute\+Theta (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p1,  }\item[{Point $\ast$}]{p2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a5379a2d3450654a73104e8b0a0695a4c}\label{class_home_work_displacement_a5379a2d3450654a73104e8b0a0695a4c}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!generateNewLocation@{generateNewLocation}}
+\index{generateNewLocation@{generateNewLocation}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{generateNewLocation()}{generateNewLocation()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Home\+Work\+Displacement\+::generate\+New\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Implements the home -\/ work behavior. It takes a pointer to the current location, and generates a new location according to the current status of the person. 
+\begin{DoxyParams}{Parameters}
+{\em p} & a pointer to the current location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new location. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_home_work_displacement_ab43675d71bcc2676c0e3522282fb82be}\label{class_home_work_displacement_ab43675d71bcc2676c0e3522282fb82be}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!getDeltaTStayAnchor@{getDeltaTStayAnchor}}
+\index{getDeltaTStayAnchor@{getDeltaTStayAnchor}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{getDeltaTStayAnchor()}{getDeltaTStayAnchor()}}
+{\footnotesize\ttfamily unsigned long Home\+Work\+Displacement\+::get\+Delta\+T\+Stay\+Anchor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a7104ff2e0ffca587c41b6995094a8e9d}\label{class_home_work_displacement_a7104ff2e0ffca587c41b6995094a8e9d}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!getState@{getState}}
+\index{getState@{getState}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} Home\+Work\+Displacement\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_displacement_a2aeacd3f9f30c5d5c4790d9db8f95fcc}\label{class_home_work_displacement_a2aeacd3f9f30c5d5c4790d9db8f95fcc}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!initDeltaTStayAnchor@{initDeltaTStayAnchor}}
+\index{initDeltaTStayAnchor@{initDeltaTStayAnchor}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{initDeltaTStayAnchor()}{initDeltaTStayAnchor()}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::init\+Delta\+T\+Stay\+Anchor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a74f427c0bb25790be490e896fc245cf9}\label{class_home_work_displacement_a74f427c0bb25790be490e896fc245cf9}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!initDeltaTStayHome@{initDeltaTStayHome}}
+\index{initDeltaTStayHome@{initDeltaTStayHome}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{initDeltaTStayHome()}{initDeltaTStayHome()}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::init\+Delta\+T\+Stay\+Home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a39144ce504871bcf7e9692af07c633ab}\label{class_home_work_displacement_a39144ce504871bcf7e9692af07c633ab}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!initDeltaTStayWork@{initDeltaTStayWork}}
+\index{initDeltaTStayWork@{initDeltaTStayWork}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{initDeltaTStayWork()}{initDeltaTStayWork()}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::init\+Delta\+T\+Stay\+Work (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a8f004b1c7b587fbe80c92a3554ea20e4}\label{class_home_work_displacement_a8f004b1c7b587fbe80c92a3554ea20e4}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!makeRandomStepAtWork@{makeRandomStepAtWork}}
+\index{makeRandomStepAtWork@{makeRandomStepAtWork}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{makeRandomStepAtWork()}{makeRandomStepAtWork()}}
+{\footnotesize\ttfamily Point$\ast$ Home\+Work\+Displacement\+::make\+Random\+Step\+At\+Work (\begin{DoxyParamCaption}\item[{Point $\ast$}]{init\+Location }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a6ff9dc0862bd1671241de38b23dd275a}\label{class_home_work_displacement_a6ff9dc0862bd1671241de38b23dd275a}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!posAtDestination@{posAtDestination}}
+\index{posAtDestination@{posAtDestination}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{posAtDestination()}{posAtDestination()}}
+{\footnotesize\ttfamily const bool Home\+Work\+Displacement\+::pos\+At\+Destination (\begin{DoxyParamCaption}\item[{Point $\ast$}]{position,  }\item[{Point $\ast$}]{destination }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_aa1890fd829a803ec09f831e5107d5dc0}\label{class_home_work_displacement_aa1890fd829a803ec09f831e5107d5dc0}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!stateTransition@{stateTransition}}
+\index{stateTransition@{stateTransition}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{stateTransition()}{stateTransition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} Home\+Work\+Displacement\+::state\+Transition (\begin{DoxyParamCaption}\item[{Point $\ast$}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a88335e3c66951079c690afe0df1e64a0}\label{class_home_work_displacement_a88335e3c66951079c690afe0df1e64a0}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!toDestination@{toDestination}}
+\index{toDestination@{toDestination}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{toDestination()}{toDestination()}}
+{\footnotesize\ttfamily Point$\ast$ Home\+Work\+Displacement\+::to\+Destination (\begin{DoxyParamCaption}\item[{Point $\ast$}]{init\+Location,  }\item[{Point $\ast$}]{destination }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_home_work_displacement_acbd2ebba8551f709d8cb0bf28f7376a8}\label{class_home_work_displacement_acbd2ebba8551f709d8cb0bf28f7376a8}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_anchorLocation@{m\_anchorLocation}}
+\index{m\_anchorLocation@{m\_anchorLocation}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_anchorLocation}{m\_anchorLocation}}
+{\footnotesize\ttfamily Point$\ast$ Home\+Work\+Displacement\+::m\+\_\+anchor\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_ac3345fc1cb1b2e19eb9bc2c5df55eb06}\label{class_home_work_displacement_ac3345fc1cb1b2e19eb9bc2c5df55eb06}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_angleDistribution@{m\_angleDistribution}}
+\index{m\_angleDistribution@{m\_angleDistribution}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_angleDistribution}{m\_angleDistribution}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_distribution}{Distribution}}$\ast$ Home\+Work\+Displacement\+::m\+\_\+angle\+Distribution\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a1fa8110be32d8a229f40f9f2228e8173}\label{class_home_work_displacement_a1fa8110be32d8a229f40f9f2228e8173}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_deltaTStayAnchor@{m\_deltaTStayAnchor}}
+\index{m\_deltaTStayAnchor@{m\_deltaTStayAnchor}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_deltaTStayAnchor}{m\_deltaTStayAnchor}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::m\+\_\+delta\+T\+Stay\+Anchor\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_ac8ce5bd605e720932b0b8d22e68eb690}\label{class_home_work_displacement_ac8ce5bd605e720932b0b8d22e68eb690}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_deltaTStayHome@{m\_deltaTStayHome}}
+\index{m\_deltaTStayHome@{m\_deltaTStayHome}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_deltaTStayHome}{m\_deltaTStayHome}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::m\+\_\+delta\+T\+Stay\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a9924c54bac8a6fbb55c29e08c609ce43}\label{class_home_work_displacement_a9924c54bac8a6fbb55c29e08c609ce43}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_deltaTStayWork@{m\_deltaTStayWork}}
+\index{m\_deltaTStayWork@{m\_deltaTStayWork}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_deltaTStayWork}{m\_deltaTStayWork}}
+{\footnotesize\ttfamily long Home\+Work\+Displacement\+::m\+\_\+delta\+T\+Stay\+Work\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a57b11a4d9fef87b48105fc575ba28e42}\label{class_home_work_displacement_a57b11a4d9fef87b48105fc575ba28e42}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_homeLocation@{m\_homeLocation}}
+\index{m\_homeLocation@{m\_homeLocation}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_homeLocation}{m\_homeLocation}}
+{\footnotesize\ttfamily Point$\ast$ Home\+Work\+Displacement\+::m\+\_\+home\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_a8ad94bb03504523cea98e1393d742e88}\label{class_home_work_displacement_a8ad94bb03504523cea98e1393d742e88}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_state@{m\_state}}
+\index{m\_state@{m\_state}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_state}{m\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_home_work_state_8h_a79c3624425f2ecf87bbc751b0194a5fe}{Home\+Work\+State}} Home\+Work\+Displacement\+::m\+\_\+state\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_ad8b747521ec921a026040fd3b6655cb8}\label{class_home_work_displacement_ad8b747521ec921a026040fd3b6655cb8}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_stepLength@{m\_stepLength}}
+\index{m\_stepLength@{m\_stepLength}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_stepLength}{m\_stepLength}}
+{\footnotesize\ttfamily double Home\+Work\+Displacement\+::m\+\_\+step\+Length\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_displacement_aa3e7cb21c7f436f8c3f66cc4fbe565ab}\label{class_home_work_displacement_aa3e7cb21c7f436f8c3f66cc4fbe565ab}} 
+\index{HomeWorkDisplacement@{HomeWorkDisplacement}!m\_workLocation@{m\_workLocation}}
+\index{m\_workLocation@{m\_workLocation}!HomeWorkDisplacement@{HomeWorkDisplacement}}
+\doxysubsubsection{\texorpdfstring{m\_workLocation}{m\_workLocation}}
+{\footnotesize\ttfamily Point$\ast$ Home\+Work\+Displacement\+::m\+\_\+work\+Location\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_home_work_displacement_8h}{Home\+Work\+Displacement.\+h}}\end{DoxyCompactItemize}

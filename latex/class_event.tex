@@ -1,0 +1,87 @@
+\hypertarget{class_event}{}\doxysection{Event Class Reference}
+\label{class_event}\index{Event@{Event}}
+
+
+{\ttfamily \#include $<$Event.\+h$>$}
+
+
+
+Inheritance diagram for Event\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{class_event__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Event\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_event__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual const string \mbox{\hyperlink{class_event_ae8d96af1c7bc64ff1f17acb0777c79b8}{to\+String}} ()=0
+\item 
+virtual \mbox{\hyperlink{class_event_config}{Event\+Config}} $\ast$ \mbox{\hyperlink{class_event_a9af1a5902be53968d3dff3e77b77ce6e}{get\+Event\+Config}} ()=0
+\item 
+virtual \mbox{\hyperlink{class_event_ab864fd85c758006c42cd7a1b3369b483}{$\sim$\+Event}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{Event}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the interface of an event object. All types of events should implement the functions declared here. An \mbox{\hyperlink{class_event}{Event}} object is to be created by the \mbox{\hyperlink{class_event_factory}{Event\+Factory}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_event_ab864fd85c758006c42cd7a1b3369b483}\label{class_event_ab864fd85c758006c42cd7a1b3369b483}} 
+\index{Event@{Event}!````~Event@{$\sim$Event}}
+\index{````~Event@{$\sim$Event}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{$\sim$Event()}{~Event()}}
+{\footnotesize\ttfamily virtual Event\+::$\sim$\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor. \mbox{\Hypertarget{class_event_a5a40dd4708297f7031e29b39e039ae10}\label{class_event_a5a40dd4708297f7031e29b39e039ae10}} 
+\index{Event@{Event}!Event@{Event}}
+\index{Event@{Event}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{Event()}{Event()}}
+{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_event_a9af1a5902be53968d3dff3e77b77ce6e}\label{class_event_a9af1a5902be53968d3dff3e77b77ce6e}} 
+\index{Event@{Event}!getEventConfig@{getEventConfig}}
+\index{getEventConfig@{getEventConfig}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{getEventConfig()}{getEventConfig()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_event_config}{Event\+Config}}$\ast$ Event\+::get\+Event\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns a pointer to the \mbox{\hyperlink{class_event_config}{Event\+Config}} object used to create the \mbox{\hyperlink{class_event}{Event}} object by the factory method. return a pointer to the \mbox{\hyperlink{class_event_config}{Event\+Config}} object used to create the \mbox{\hyperlink{class_event}{Event}} object by the factory method. 
+
+Implemented in \mbox{\hyperlink{class_cell_i_d_t_a_event_a234d065ce5d9f546ecca14ad6d6aaab6}{Cell\+I\+D\+T\+A\+Event}}, and \mbox{\hyperlink{class_cell_i_d_event_abb8cbf1cbf9ca46d18ca72b7b914728a}{Cell\+I\+D\+Event}}.
+
+\mbox{\Hypertarget{class_event_ae8d96af1c7bc64ff1f17acb0777c79b8}\label{class_event_ae8d96af1c7bc64ff1f17acb0777c79b8}} 
+\index{Event@{Event}!toString@{toString}}
+\index{toString@{toString}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily virtual const string Event\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Returns the string representation of an \mbox{\hyperlink{class_event}{Event}} object. \begin{DoxyReturn}{Returns}
+the string representation of an \mbox{\hyperlink{class_event}{Event}} object. The content of the string depends on the concrete type of the event. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_cell_i_d_t_a_event_a533c3e5012385226fc55df89559dd95a}{Cell\+I\+D\+T\+A\+Event}}, and \mbox{\hyperlink{class_cell_i_d_event_a56a4efc6f7b82119d2686818445c7488}{Cell\+I\+D\+Event}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/events/\mbox{\hyperlink{_event_8h}{Event.\+h}}\end{DoxyCompactItemize}

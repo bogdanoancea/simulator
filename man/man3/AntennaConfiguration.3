@@ -1,0 +1,575 @@
+.TH "AntennaConfiguration" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AntennaConfiguration
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <AntennaConfiguration\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAntennaConfiguration\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~AntennaConfiguration\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetAzimDBBack\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetBeamH\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetBeamV\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetDirection\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetElevDBBack\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetHeight\fP () const"
+.br
+.ti -1c
+.RI "Point * \fBgetLocation\fP () const"
+.br
+.ti -1c
+.RI "unsigned long \fBgetMaxConnections\fP () const"
+.br
+.ti -1c
+.RI "\fBMobileOperator\fP * \fBgetMno\fP () const"
+.br
+.ti -1c
+.RI "\fBNetworkType\fP \fBgetNetworkType\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetPle\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetPower\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetQmin\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetSmid\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetSmin\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetSSteep\fP () const"
+.br
+.ti -1c
+.RI "double \fBgetTilt\fP () const"
+.br
+.ti -1c
+.RI "\fBAntennaType\fP \fBgetType\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetAzimDBBack\fP (double azimDBBack)"
+.br
+.ti -1c
+.RI "void \fBsetBeamH\fP (double beamH)"
+.br
+.ti -1c
+.RI "void \fBsetBeamV\fP (double beamV)"
+.br
+.ti -1c
+.RI "void \fBsetDirection\fP (double direction)"
+.br
+.ti -1c
+.RI "void \fBsetElevDBBack\fP (double elevDBBack)"
+.br
+.ti -1c
+.RI "void \fBsetHeight\fP (double height)"
+.br
+.ti -1c
+.RI "void \fBsetLocation\fP (Point *location)"
+.br
+.ti -1c
+.RI "void \fBsetMaxConnections\fP (unsigned long maxConnections)"
+.br
+.ti -1c
+.RI "void \fBsetMno\fP (\fBMobileOperator\fP *mno)"
+.br
+.ti -1c
+.RI "void \fBsetNetworkType\fP (\fBNetworkType\fP networkType)"
+.br
+.ti -1c
+.RI "void \fBsetPle\fP (double ple)"
+.br
+.ti -1c
+.RI "void \fBsetPower\fP (double power)"
+.br
+.ti -1c
+.RI "void \fBsetQmin\fP (double qmin)"
+.br
+.ti -1c
+.RI "void \fBsetSmid\fP (double Smid)"
+.br
+.ti -1c
+.RI "void \fBsetSmin\fP (double Smin)"
+.br
+.ti -1c
+.RI "void \fBsetSSteep\fP (double SSteep)"
+.br
+.ti -1c
+.RI "void \fBsetTilt\fP (double tilt)"
+.br
+.ti -1c
+.RI "void \fBsetType\fP (\fBAntennaType\fP type)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "double \fBm_ple\fP"
+.br
+.ti -1c
+.RI "double \fBm_power\fP"
+.br
+.ti -1c
+.RI "unsigned long \fBm_maxConnections\fP"
+.br
+.ti -1c
+.RI "double \fBm_Smid\fP"
+.br
+.ti -1c
+.RI "double \fBm_SSteep\fP"
+.br
+.ti -1c
+.RI "\fBAntennaType\fP \fBm_type\fP"
+.br
+.ti -1c
+.RI "double \fBm_height\fP"
+.br
+.ti -1c
+.RI "double \fBm_tilt\fP"
+.br
+.ti -1c
+.RI "double \fBm_beam_V\fP"
+.br
+.ti -1c
+.RI "double \fBm_beam_H\fP"
+.br
+.ti -1c
+.RI "double \fBm_azim_dB_Back\fP"
+.br
+.ti -1c
+.RI "double \fBm_elev_dB_Back\fP"
+.br
+.ti -1c
+.RI "double \fBm_direction\fP"
+.br
+.ti -1c
+.RI "double \fBm_Smin\fP"
+.br
+.ti -1c
+.RI "double \fBm_Qmin\fP"
+.br
+.ti -1c
+.RI "\fBNetworkType\fP \fBm_networkType\fP"
+.br
+.ti -1c
+.RI "Point * \fBm_location\fP"
+.br
+.ti -1c
+.RI "\fBMobileOperator\fP * \fBm_MNO\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A class that contains all the technical parameters needed to build an \fBAntenna\fP object\&. This object is build during the parsing of the antenna configuration file and it is passed to the constructor of the \fBAntenna\fP object\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AntennaConfiguration::AntennaConfiguration ()"
+The constructor of the class\&. It initializes all members of the class with the default values specified in the \fBConstants\fP class\&. While the configuration file is parsed, the setter methods are used to set the values of the corresponding parameter\&. 
+.SS "virtual AntennaConfiguration::~AntennaConfiguration ()\fC [virtual]\fP"
+The default destructor of the class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "double AntennaConfiguration::getAzimDBBack () const"
+Returns the difference in signal strength between front and back in the azimuth plane for directional antennas\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the difference in signal strength between front and back in the azimuth plane for directional antennas\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getBeamH () const"
+Returns the horizontal beam width for directional antennas\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the horizontal beam width for directional antennas\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getBeamV () const"
+Returns the vertical beam width for directional antennas\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the vertical beam width for directional antennas\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getDirection () const"
+Returns the direction angle for directional antennas\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the direction angle for directional antennas\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getElevDBBack () const"
+
+.IP "\(bu" 2
+Returns the difference in signal strength between front and back in the elevation plane for directional antennas\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the difference in signal strength between front and back in the elevation plane for directional antennas\&. 
+.RE
+.PP
+
+.PP
+
+.SS "double AntennaConfiguration::getHeight () const"
+Returns the height of the antenna (the z coordinate of location of the antenna)\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the height of the antenna (the z coordinate of location of the antenna)\&. 
+.RE
+.PP
+
+.SS "Point* AntennaConfiguration::getLocation () const"
+Returns the location of the antenna on the map\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the location of the antenna on the map\&. 
+.RE
+.PP
+
+.SS "unsigned long AntennaConfiguration::getMaxConnections () const"
+Returns the maximum number of simultaneous connections an antenna can accept\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum number of simultaneous connections an antenna can accept\&. 
+.RE
+.PP
+
+.SS "\fBMobileOperator\fP* AntennaConfiguration::getMno () const"
+Returns a pointer to the \fBMobileOperator\fP object that owns this antenna\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to the \fBMobileOperator\fP object that owns this antenna\&. 
+.RE
+.PP
+
+.SS "\fBNetworkType\fP AntennaConfiguration::getNetworkType () const"
+Returns the network type of the antenna : \fBNetworkType::_3G\fP or \fBNetworkType::_4G\fP 
+.PP
+\fBReturns\fP
+.RS 4
+the network type of the antenna : \fBNetworkType::_3G\fP or \fBNetworkType::_4G\fP 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getPle () const"
+Returns the path loss exponent (the attenuation factor of the signal)\&. This is a feature of the surrounding environment of the antenna\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the path loss exponent (the attenuation factor of the signal)\&. This is a feature of the surrounding environment of the antenna\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getPower () const"
+Returns the power of the antenna measured in Watts\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the power of the antenna in measured Watts\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getQmin () const"
+Returns the minimum value of the signal dominance that can be used to connect a mobile device\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value of the signal dominance that can be used to connect a mobile device\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getSmid () const"
+Returns the Smid parameter of the signal propagation model\&. For details see
+.PP
+Salgado, D\&., Sanguiao, L\&., Oancea, B\&. et al\&. An end-to-end statistical process with mobile network data for official statistics\&. EPJ Data Science, 10, 20 (2021)\&. https://doi.org/10.1140/epjds/s13688-021-00275-w\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the Smid parameter of the signal propagation model\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getSmin () const"
+Returns the minimum value of the signal strength that can be used to connect a mobile device\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value of the signal strength that can be used to connect a mobile device\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getSSteep () const"
+Returns the SSteep parameter of the signal propagation model\&. For details see
+.PP
+Salgado, D\&., Sanguiao, L\&., Oancea, B\&. et al\&. An end-to-end statistical process with mobile network data for official statistics\&. EPJ Data Science, 10, 20 (2021)\&. https://doi.org/10.1140/epjds/s13688-021-00275-w\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the SSteep parameter of the signal propagation model\&. 
+.RE
+.PP
+
+.SS "double AntennaConfiguration::getTilt () const"
+Returns the tilt of the antenna\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the tilt of the antenna\&. 
+.RE
+.PP
+
+.SS "\fBAntennaType\fP AntennaConfiguration::getType () const"
+Returns the antenna type: \fBAntennaType::DIRECTIONAL\fP or \fBAntennaType::OMNIDIRECTIONAL\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the antenna type: \fBAntennaType::DIRECTIONAL\fP or \fBAntennaType::OMNIDIRECTIONAL\fP\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setAzimDBBack (double azimDBBack)"
+Sets the difference in signal strength between front and back in the azimuth plane for directional antennas\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIazimDBBack\fP the difference in signal strength between front and back in the azimuth plane for directional antennas\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setBeamH (double beamH)"
+Sets the horizontal beam width for a directional antenna\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbeamH\fP the horizontal beam width for a directional antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setBeamV (double beamV)"
+Sets the vertical beam width for a directional antenna\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbeamV\fP the vertical beam width for a directional antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setDirection (double direction)"
+Sets the direction angle of a directional antenna\&. It is a number between 0 and 360\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdirection\fP the direction angle of a directional antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setElevDBBack (double elevDBBack)"
+Sets the difference in signal strength between front and back in the elevation plane for directional antennas\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelevDBBack\fP the difference in signal strength between front and back in the elevation plane for directional antennas\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setHeight (double height)"
+Sets the height of the antenna (the z coordinate of location of the antenna)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIheight\fP the height of the antenna (the z coordinate of location of the antenna)\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setLocation (Point * location)"
+Sets the location of the antenna on the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlocation\fP the location of the antenna on the map\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setMaxConnections (unsigned long maxConnections)"
+Sets the maximum number of simultaneous connections an antenna could handle\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImaxConnections\fP the maximum number of simultaneous connections an antenna could handle\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setMno (\fBMobileOperator\fP * mno)"
+Sets the \fBMobileOperator\fP object that owns this antenna\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImno\fP a pointer to a \fBMobileOperator\fP object that owns this antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setNetworkType (\fBNetworkType\fP networkType)"
+Sets the network type of the antenna: \fBNetworkType::_3G\fP or \fBNetworkType::_4G\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInetworkType\fP the network type of the antenna: \fBNetworkType::_3G\fP or \fBNetworkType::_4G\fP\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setPle (double ple)"
+Sets the path loss exponent (the attenuation factor of the signal)\&. This is a feature of the surrounding environment of the antenna\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIple\fP the path loss exponent (the attenuation factor of the signal)\&. This is a feature of the surrounding environment of the antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setPower (double power)"
+Sets the power of the antenna measured in Watts\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpower\fP the power of the antenna measured in Watts\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setQmin (double qmin)"
+Sets the minimum value of the signal dominance that can be used to connect a mobile device\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIqmin\fP the minimum value of the signal dominance that can be used to connect a mobile device\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setSmid (double Smid)"
+sets the Smid parameter of the signal propagation model\&. For details see
+.PP
+Salgado, D\&., Sanguiao, L\&., Oancea, B\&. et al\&. An end-to-end statistical process with mobile network data for official statistics\&. EPJ Data Science, 10, 20 (2021)\&. https://doi.org/10.1140/epjds/s13688-021-00275-w\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fISmid\fP the Smid parameter of the signal propagation model\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setSmin (double Smin)"
+Sets the minimum value of the signal strength that can be used to connect a mobile device\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fISmin\fP the minimum value of the signal strength that can be used to connect a mobile device\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setSSteep (double SSteep)"
+sets the SSteep parameter of the signal propagation model\&. For details see
+.PP
+Salgado, D\&., Sanguiao, L\&., Oancea, B\&. et al\&. An end-to-end statistical process with mobile network data for official statistics\&. EPJ Data Science, 10, 20 (2021)\&. https://doi.org/10.1140/epjds/s13688-021-00275-w\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fISSteep\fP the SSteep parameter of the signal propagation model\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setTilt (double tilt)"
+Sets the tilt angle of the antenna\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItilt\fP the tilt angle of the antenna\&. 
+.RE
+.PP
+
+.SS "void AntennaConfiguration::setType (\fBAntennaType\fP type)"
+Sets the type of the antenna: \fBAntennaType::DIRECTIONAL\fP or \fBAntennaType::OMNIDIRECTIONAL\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP the type of the antenna: \fBAntennaType::DIRECTIONAL\fP or \fBAntennaType::OMNIDIRECTIONAL\fP\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "double AntennaConfiguration::m_azim_dB_Back\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_beam_H\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_beam_V\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_direction\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_elev_dB_Back\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_height\fC [private]\fP"
+
+.SS "Point* AntennaConfiguration::m_location\fC [private]\fP"
+
+.SS "unsigned long AntennaConfiguration::m_maxConnections\fC [private]\fP"
+
+.SS "\fBMobileOperator\fP* AntennaConfiguration::m_MNO\fC [private]\fP"
+
+.SS "\fBNetworkType\fP AntennaConfiguration::m_networkType\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_ple\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_power\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_Qmin\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_Smid\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_Smin\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_SSteep\fC [private]\fP"
+
+.SS "double AntennaConfiguration::m_tilt\fC [private]\fP"
+
+.SS "\fBAntennaType\fP AntennaConfiguration::m_type\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

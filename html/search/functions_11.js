@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uniformagedistribution_1234',['UniformAgeDistribution',['../class_uniform_age_distribution.html#a23b0b34c1d939b3c4837327e6c2883b7',1,'UniformAgeDistribution']]],
-  ['unifpriorpostlocprob_1235',['UnifPriorPostLocProb',['../class_unif_prior_post_loc_prob.html#ae8c9e20d0e41710764ab8711ab6a4126',1,'UnifPriorPostLocProb']]]
+  ['uniformagedistribution_1243',['UniformAgeDistribution',['../class_uniform_age_distribution.html#a23b0b34c1d939b3c4837327e6c2883b7',1,'UniformAgeDistribution']]],
+  ['unifpriorpostlocprob_1244',['UnifPriorPostLocProb',['../class_unif_prior_post_loc_prob.html#ae8c9e20d0e41710764ab8711ab6a4126',1,'UnifPriorPostLocProb']]]
 ];

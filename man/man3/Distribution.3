@@ -1,0 +1,132 @@
+.TH "Distribution" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Distribution
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Distribution\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDistribution\fP ()=delete"
+.br
+.ti -1c
+.RI "\fBDistribution\fP (\fBDistributionType\fP type, vector< pair< const char *, double >> params)"
+.br
+.ti -1c
+.RI "\fBDistribution\fP (\fBDistributionType\fP type, XMLElement *element)"
+.br
+.ti -1c
+.RI "virtual \fB~Distribution\fP ()"
+.br
+.ti -1c
+.RI "double \fBgetParam\fP (const char *name)"
+.br
+.ti -1c
+.RI "vector< pair< const char *, double > > & \fBgetParams\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetParams\fP (vector< pair< const char *, double >> params)"
+.br
+.ti -1c
+.RI "\fBDistributionType\fP \fBgetType\fP ()"
+.br
+.ti -1c
+.RI "string \fBparamsToString\fP ()"
+.br
+.ti -1c
+.RI "bool \fBhasParam\fP (const char *name) const"
+.br
+.ti -1c
+.RI "void \fBsetParam\fP (const char *name, double value)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBparseParams\fP (\fBDistributionType\fP type, XMLElement *element)"
+.br
+.ti -1c
+.RI "void \fBparseNormalDistributionParams\fP (XMLElement *el)"
+.br
+.ti -1c
+.RI "void \fBparseTruncatedNormalDistributionParams\fP (XMLElement *el)"
+.br
+.ti -1c
+.RI "void \fBparseUniformDistributionParams\fP (XMLElement *el)"
+.br
+.ti -1c
+.RI "void \fBparseLaplaceDistributionParams\fP (XMLElement *el)"
+.br
+.ti -1c
+.RI "void \fBparseExponentialDistributionParams\fP (XMLElement *el)"
+.br
+.ti -1c
+.RI "void \fBparseLevyDistributionParams\fP (XMLElement *el)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBDistributionType\fP \fBm_type\fP"
+.br
+.ti -1c
+.RI "vector< pair< const char *, double > > \fBm_params\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Distribution::Distribution ()\fC [delete]\fP"
+
+.SS "Distribution::Distribution (\fBDistributionType\fP type, vector< pair< const char *, double >> params)"
+
+.SS "Distribution::Distribution (\fBDistributionType\fP type, XMLElement * element)"
+
+.SS "virtual Distribution::~Distribution ()\fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "double Distribution::getParam (const char * name)"
+
+.SS "vector<pair<const char*, double> >& Distribution::getParams ()"
+
+.SS "\fBDistributionType\fP Distribution::getType ()"
+
+.SS "bool Distribution::hasParam (const char * name) const"
+
+.SS "string Distribution::paramsToString ()"
+
+.SS "void Distribution::parseExponentialDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::parseLaplaceDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::parseLevyDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::parseNormalDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::parseParams (\fBDistributionType\fP type, XMLElement * element)\fC [private]\fP"
+
+.SS "void Distribution::parseTruncatedNormalDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::parseUniformDistributionParams (XMLElement * el)\fC [private]\fP"
+
+.SS "void Distribution::setParam (const char * name, double value)"
+
+.SS "void Distribution::setParams (vector< pair< const char *, double >> params)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "vector<pair<const char*, double> > Distribution::m_params\fC [private]\fP"
+
+.SS "\fBDistributionType\fP Distribution::m_type\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

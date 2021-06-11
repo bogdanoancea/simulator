@@ -1,0 +1,68 @@
+.TH "LevyFlightScenario" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LevyFlightScenario
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <LevyFlightScenario\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLevyFlightScenario\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~LevyFlightScenario\fP ()"
+.br
+.ti -1c
+.RI "unsigned int \fBgetCutOffPoint\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetCutOffPoint\fP (unsigned int cutOffPoint)"
+.br
+.ti -1c
+.RI "\fBDistribution\fP * \fBgetSpeedDistribution\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetSpeedDistribution\fP (\fBDistribution\fP *speedDistribution)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBDistribution\fP * \fBm_speedDistribution\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_cutOffPoint\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LevyFlightScenario::LevyFlightScenario ()"
+
+.SS "virtual LevyFlightScenario::~LevyFlightScenario ()\fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned int LevyFlightScenario::getCutOffPoint () const"
+
+.SS "\fBDistribution\fP* LevyFlightScenario::getSpeedDistribution () const"
+
+.SS "void LevyFlightScenario::setCutOffPoint (unsigned int cutOffPoint)"
+
+.SS "void LevyFlightScenario::setSpeedDistribution (\fBDistribution\fP * speedDistribution)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned int LevyFlightScenario::m_cutOffPoint\fC [private]\fP"
+
+.SS "\fBDistribution\fP* LevyFlightScenario::m_speedDistribution\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

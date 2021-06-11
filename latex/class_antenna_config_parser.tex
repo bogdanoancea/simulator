@@ -1,0 +1,112 @@
+\hypertarget{class_antenna_config_parser}{}\doxysection{Antenna\+Config\+Parser Class Reference}
+\label{class_antenna_config_parser}\index{AntennaConfigParser@{AntennaConfigParser}}
+
+
+{\ttfamily \#include $<$Antenna\+Config\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Antenna\+Config\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{class_antenna_config_parser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Antenna\+Config\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_antenna_config_parser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_antenna_config_parser_abaa2fda855a6f540abcac030fd8593f0}{Antenna\+Config\+Parser}} (const string \&file\+Name, \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$sc, \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} $\ast$ag, \mbox{\hyperlink{class_event_factory}{Event\+Factory}} $\ast$ev\+Factory)
+\item 
+virtual \mbox{\hyperlink{class_antenna_config_parser_a8383797b060d1a52c1a255242d5047d2}{$\sim$\+Antenna\+Config\+Parser}} ()
+\item 
+void \mbox{\hyperlink{class_antenna_config_parser_a19b457a8adbecb36dc97b2449dae76c9}{parse}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$ \mbox{\hyperlink{class_antenna_config_parser_a1c17aac32514f4962711a531c7fec6be}{m\+\_\+sim\+Config}}
+\item 
+\mbox{\hyperlink{class_event_factory}{Event\+Factory}} $\ast$ \mbox{\hyperlink{class_antenna_config_parser_af364fc3d782f515761ba1ce630eb51be}{m\+\_\+event\+Factory}}
+\item 
+\mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} $\ast$ \mbox{\hyperlink{class_antenna_config_parser_a3a2762b82f4d177b4754865e6292cf5b}{m\+\_\+agents}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parses the antenna configuration file specified by \char`\"{}-\/a\char`\"{} option in the command line and builds the antenna objects. This file is named antenna.\+xml in all example configuration folders. While it parses the parameters of each antenna, it builds \mbox{\hyperlink{class_antenna}{Antenna}} objects and adds them to the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} container. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_antenna_config_parser_abaa2fda855a6f540abcac030fd8593f0}\label{class_antenna_config_parser_abaa2fda855a6f540abcac030fd8593f0}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!AntennaConfigParser@{AntennaConfigParser}}
+\index{AntennaConfigParser@{AntennaConfigParser}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{AntennaConfigParser()}{AntennaConfigParser()}}
+{\footnotesize\ttfamily Antenna\+Config\+Parser\+::\+Antenna\+Config\+Parser (\begin{DoxyParamCaption}\item[{const string \&}]{file\+Name,  }\item[{\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$}]{sc,  }\item[{\mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} $\ast$}]{ag,  }\item[{\mbox{\hyperlink{class_event_factory}{Event\+Factory}} $\ast$}]{ev\+Factory }\end{DoxyParamCaption})}
+
+Constructor of the class. It takes the filename of the antenna configuration files, a pointer to the \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} object, a pointer to the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} container class and a pointer to the \mbox{\hyperlink{class_event_factory}{Event\+Factory}}. The \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} and \mbox{\hyperlink{class_event_factory}{Event\+Factory}} object are created outside, in the caller of this constructor, in this case the constructor of the \mbox{\hyperlink{class_world}{World}} object. The \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} object is also created by the constructor of the \mbox{\hyperlink{class_world}{World}} object by parsing the simulation configuration file. While this constructor parses the antenna configuration file, an \mbox{\hyperlink{class_antenna_configuration}{Antenna\+Configuration}} object is created for each antenna. This object encapsulates all required parameters to build an \mbox{\hyperlink{class_antenna}{Antenna}} object and it is passed to the constructor of the \mbox{\hyperlink{class_antenna}{Antenna}} class. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & the name of the antenna configuration file, given in the command line of the software with \char`\"{}-\/a\char`\"{} option. \\
+\hline
+{\em sc} & a pointer to the \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} object created by the \mbox{\hyperlink{class_simulation_configuration_parser}{Simulation\+Configuration\+Parser}}. It contains the parameters of the simulation read from the simulation configuration file, given in the command line of the software with \char`\"{}-\/s\char`\"{} option. \\
+\hline
+{\em ag} & a pointer to the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} container class created by the constructor of the \mbox{\hyperlink{class_world}{World}} class. \\
+\hline
+{\em ev\+Factory} & a pointer to the \mbox{\hyperlink{class_event_factory}{Event\+Factory}} class created by the constructor of the \mbox{\hyperlink{class_world}{World}} class. This factory is used by each \mbox{\hyperlink{class_antenna}{Antenna}} object the generate network events. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_antenna_config_parser_a8383797b060d1a52c1a255242d5047d2}\label{class_antenna_config_parser_a8383797b060d1a52c1a255242d5047d2}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!````~AntennaConfigParser@{$\sim$AntennaConfigParser}}
+\index{````~AntennaConfigParser@{$\sim$AntennaConfigParser}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{$\sim$AntennaConfigParser()}{~AntennaConfigParser()}}
+{\footnotesize\ttfamily virtual Antenna\+Config\+Parser\+::$\sim$\+Antenna\+Config\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_antenna_config_parser_a19b457a8adbecb36dc97b2449dae76c9}\label{class_antenna_config_parser_a19b457a8adbecb36dc97b2449dae76c9}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!parse@{parse}}
+\index{parse@{parse}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily void Antenna\+Config\+Parser\+::parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+A method to parse the antenna configuration file. While it parses this file, it builds an \mbox{\hyperlink{class_antenna_configuration}{Antenna\+Configuration}} object for each antenna and passes it to the constructor of the \mbox{\hyperlink{class_antenna}{Antenna}} class. All \mbox{\hyperlink{class_antenna}{Antenna}} objects are added to the \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}} container class. 
+
+Implements \mbox{\hyperlink{class_config_parser_afc13df32c129e923c7aa33db7413dd2e}{Config\+Parser}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_antenna_config_parser_a3a2762b82f4d177b4754865e6292cf5b}\label{class_antenna_config_parser_a3a2762b82f4d177b4754865e6292cf5b}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!m\_agents@{m\_agents}}
+\index{m\_agents@{m\_agents}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{m\_agents}{m\_agents}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_agents_collection}{Agents\+Collection}}$\ast$ Antenna\+Config\+Parser\+::m\+\_\+agents\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_config_parser_af364fc3d782f515761ba1ce630eb51be}\label{class_antenna_config_parser_af364fc3d782f515761ba1ce630eb51be}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!m\_eventFactory@{m\_eventFactory}}
+\index{m\_eventFactory@{m\_eventFactory}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{m\_eventFactory}{m\_eventFactory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_event_factory}{Event\+Factory}}$\ast$ Antenna\+Config\+Parser\+::m\+\_\+event\+Factory\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_antenna_config_parser_a1c17aac32514f4962711a531c7fec6be}\label{class_antenna_config_parser_a1c17aac32514f4962711a531c7fec6be}} 
+\index{AntennaConfigParser@{AntennaConfigParser}!m\_simConfig@{m\_simConfig}}
+\index{m\_simConfig@{m\_simConfig}!AntennaConfigParser@{AntennaConfigParser}}
+\doxysubsubsection{\texorpdfstring{m\_simConfig}{m\_simConfig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}}$\ast$ Antenna\+Config\+Parser\+::m\+\_\+sim\+Config\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/parsers/\mbox{\hyperlink{_antenna_config_parser_8h}{Antenna\+Config\+Parser.\+h}}\end{DoxyCompactItemize}

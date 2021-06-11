@@ -1,0 +1,110 @@
+.TH "AgeDistribution" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AgeDistribution
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <AgeDistribution\&.h>\fP
+.PP
+Inherited by \fBTruncatedNormalAgeDistribution\fP, and \fBUniformAgeDistribution\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAgeDistribution\fP (int min_age, int max_age)"
+.br
+.ti -1c
+.RI "virtual \fB~AgeDistribution\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetMaxAge\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetMaxAge\fP (int maxAge)"
+.br
+.ti -1c
+.RI "int \fBgetMinAge\fP () const"
+.br
+.ti -1c
+.RI "void \fBsetMinAge\fP (int minAge)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_minAge\fP"
+.br
+.ti -1c
+.RI "int \fBm_maxAge\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is the base class for the age distribution among the individuals involved in a simulation\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AgeDistribution::AgeDistribution (int min_age, int max_age)"
+Constructor of the class\&. It only sets the minimum and maximum age\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImin_age\fP the minimum age of a person\&. 
+.br
+\fImax_age\fP the maximum age of a person\&. 
+.RE
+.PP
+
+.SS "virtual AgeDistribution::~AgeDistribution ()\fC [virtual]\fP"
+Destructor of the class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "int AgeDistribution::getMaxAge () const"
+Returns the value of the maximum age\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the value of the maximum age\&. 
+.RE
+.PP
+
+.SS "int AgeDistribution::getMinAge () const"
+Returns the value of the minimum age of a person\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the value of the minimum age of a person\&. 
+.RE
+.PP
+
+.SS "void AgeDistribution::setMaxAge (int maxAge)"
+Sets the maximum age\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImaxAge\fP the value of the maximum age\&. 
+.RE
+.PP
+
+.SS "void AgeDistribution::setMinAge (int minAge)"
+Sets the minimum age\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIminAge\fP the value of the minimum age\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int AgeDistribution::m_maxAge\fC [private]\fP"
+
+.SS "int AgeDistribution::m_minAge\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

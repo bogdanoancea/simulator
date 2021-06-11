@@ -1,0 +1,275 @@
+\hypertarget{class_home_work_scenario}{}\doxysection{Home\+Work\+Scenario Class Reference}
+\label{class_home_work_scenario}\index{HomeWorkScenario@{HomeWorkScenario}}
+
+
+{\ttfamily \#include $<$Home\+Work\+Scenario.\+h$>$}
+
+
+
+Collaboration diagram for Home\+Work\+Scenario\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_home_work_scenario__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_home_work_scenario_a9401be1318be8a3cc2484e4f47dd8937}{Home\+Work\+Scenario}} ()
+\item 
+virtual \mbox{\hyperlink{class_home_work_scenario_ada2d075a585e9e258642d486b1087cc1}{$\sim$\+Home\+Work\+Scenario}} ()
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_a161ff2fc62e20284bd74260b0e55508b}{add\+Home\+Location}} (\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} h)
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_a4dac1088a1702823cdfd210f262f09da}{add\+Work\+Location}} (\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} h)
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_ae4bc8100869e3ff8ded3c1404c38b678}{add\+Anchor\+Location}} (\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} h)
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_acfeaf7a6e25c64cac62a9776cf8bb341}{get\+Home\+Locations}} () const
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_abc93a27b7d5e438ad377e6380889094e}{get\+Work\+Locations}} () const
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_a3a7f3011fa1f5ed0ff5b5056faab8115}{get\+Anchor\+Locations}} () const
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_a6e99d6ec212721d6b542e06aca768c97}{get\+Precent\+Time\+Home}} () const
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_add355d82806b3c32c1da9ae5360937d4}{set\+Precent\+Time\+Home}} (double precent\+Time\+Home)
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_adfa68f72b123bf36f8aa97a986f08565}{get\+Precent\+Time\+Work}} () const
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_ac287b0faaae42cd917a06e1dd9b49f69}{set\+Precent\+Time\+Work}} (double precent\+Time\+Work)
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_aa4c6f4ce09a2f38a62e787c60e1dec6b}{get\+Precent\+Time\+Travel}} () const
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_a7d7fc398d7748e915370dc08417d2d85}{set\+Precent\+Time\+Travel}} (double precent\+Timetravel)
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_a420d76c8e88f762833744680407d3265}{get\+Precent\+Time\+Anchor\+Point}} () const
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_a0acbf37eb6ab3c09c4092ccc481f1497}{set\+Precent\+Time\+Anchor\+Point}} (double precent\+Time\+Anchor)
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_aa3ecc23cfe53510130073d8abe96b434}{get\+Prob\+Anchor\+Point}} () const
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_afb2d2cfcdd225c95da44e642f907f8bc}{set\+Prob\+Anchor\+Point}} (double precent\+Time\+Anchor)
+\item 
+const string \mbox{\hyperlink{class_home_work_scenario_a099fe2cf41a05087752efb96a3c8f068}{to\+String}} ()
+\item 
+void \mbox{\hyperlink{class_home_work_scenario_a900316b0eebefa3d1190190627593c35}{set\+Angle\+Distribution}} (\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$distr)
+\item 
+\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$ \mbox{\hyperlink{class_home_work_scenario_a45fe6d50574b00a8ea6d895d667d275b}{get\+Angle\+Distribution}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_a9996ae2074dcce49ed9ee8d8a90c8dc6}{m\+\_\+home\+Locations}}
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_a0a04c40ac3f3a4723499d275b415fbf0}{m\+\_\+work\+Locations}}
+\item 
+vector$<$ \mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}} $>$ \mbox{\hyperlink{class_home_work_scenario_a6efe837def2eb5a74f536bdf42eedfd9}{m\+\_\+anchor\+Locations}}
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_adb5d68236b7b8719b82170a02ee257e2}{m\+\_\+precent\+Time\+Home}}
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_a5ac962b01265541ac5dea2b622e52caf}{m\+\_\+precent\+Time\+Work}}
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_a9806633ba24978407f8e7d248e49cee6}{m\+\_\+precent\+Time\+Anchor}}
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_aa051d3cbf714fdeba83982c1cb0b6962}{m\+\_\+precent\+Time\+Travel}}
+\item 
+double \mbox{\hyperlink{class_home_work_scenario_a34a02f9267f5006190cedd251bb4b00f}{m\+\_\+prob\+Anchor\+Point}}
+\item 
+\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$ \mbox{\hyperlink{class_home_work_scenario_a8181bf6ba705970683baa6d57151fa39}{m\+\_\+angle\+Distribution}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_home_work_scenario_a9401be1318be8a3cc2484e4f47dd8937}\label{class_home_work_scenario_a9401be1318be8a3cc2484e4f47dd8937}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!HomeWorkScenario@{HomeWorkScenario}}
+\index{HomeWorkScenario@{HomeWorkScenario}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{HomeWorkScenario()}{HomeWorkScenario()}}
+{\footnotesize\ttfamily Home\+Work\+Scenario\+::\+Home\+Work\+Scenario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_ada2d075a585e9e258642d486b1087cc1}\label{class_home_work_scenario_ada2d075a585e9e258642d486b1087cc1}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!````~HomeWorkScenario@{$\sim$HomeWorkScenario}}
+\index{````~HomeWorkScenario@{$\sim$HomeWorkScenario}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{$\sim$HomeWorkScenario()}{~HomeWorkScenario()}}
+{\footnotesize\ttfamily virtual Home\+Work\+Scenario\+::$\sim$\+Home\+Work\+Scenario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_home_work_scenario_ae4bc8100869e3ff8ded3c1404c38b678}\label{class_home_work_scenario_ae4bc8100869e3ff8ded3c1404c38b678}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!addAnchorLocation@{addAnchorLocation}}
+\index{addAnchorLocation@{addAnchorLocation}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{addAnchorLocation()}{addAnchorLocation()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::add\+Anchor\+Location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a161ff2fc62e20284bd74260b0e55508b}\label{class_home_work_scenario_a161ff2fc62e20284bd74260b0e55508b}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!addHomeLocation@{addHomeLocation}}
+\index{addHomeLocation@{addHomeLocation}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{addHomeLocation()}{addHomeLocation()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::add\+Home\+Location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a4dac1088a1702823cdfd210f262f09da}\label{class_home_work_scenario_a4dac1088a1702823cdfd210f262f09da}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!addWorkLocation@{addWorkLocation}}
+\index{addWorkLocation@{addWorkLocation}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{addWorkLocation()}{addWorkLocation()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::add\+Work\+Location (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a3a7f3011fa1f5ed0ff5b5056faab8115}\label{class_home_work_scenario_a3a7f3011fa1f5ed0ff5b5056faab8115}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getAnchorLocations@{getAnchorLocations}}
+\index{getAnchorLocations@{getAnchorLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getAnchorLocations()}{getAnchorLocations()}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::get\+Anchor\+Locations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_a45fe6d50574b00a8ea6d895d667d275b}\label{class_home_work_scenario_a45fe6d50574b00a8ea6d895d667d275b}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getAngleDistribution@{getAngleDistribution}}
+\index{getAngleDistribution@{getAngleDistribution}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getAngleDistribution()}{getAngleDistribution()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_distribution}{Distribution}}$\ast$ Home\+Work\+Scenario\+::get\+Angle\+Distribution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_acfeaf7a6e25c64cac62a9776cf8bb341}\label{class_home_work_scenario_acfeaf7a6e25c64cac62a9776cf8bb341}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getHomeLocations@{getHomeLocations}}
+\index{getHomeLocations@{getHomeLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getHomeLocations()}{getHomeLocations()}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::get\+Home\+Locations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_a420d76c8e88f762833744680407d3265}\label{class_home_work_scenario_a420d76c8e88f762833744680407d3265}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getPrecentTimeAnchorPoint@{getPrecentTimeAnchorPoint}}
+\index{getPrecentTimeAnchorPoint@{getPrecentTimeAnchorPoint}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getPrecentTimeAnchorPoint()}{getPrecentTimeAnchorPoint()}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::get\+Precent\+Time\+Anchor\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_a6e99d6ec212721d6b542e06aca768c97}\label{class_home_work_scenario_a6e99d6ec212721d6b542e06aca768c97}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getPrecentTimeHome@{getPrecentTimeHome}}
+\index{getPrecentTimeHome@{getPrecentTimeHome}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getPrecentTimeHome()}{getPrecentTimeHome()}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::get\+Precent\+Time\+Home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_aa4c6f4ce09a2f38a62e787c60e1dec6b}\label{class_home_work_scenario_aa4c6f4ce09a2f38a62e787c60e1dec6b}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getPrecentTimeTravel@{getPrecentTimeTravel}}
+\index{getPrecentTimeTravel@{getPrecentTimeTravel}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getPrecentTimeTravel()}{getPrecentTimeTravel()}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::get\+Precent\+Time\+Travel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_adfa68f72b123bf36f8aa97a986f08565}\label{class_home_work_scenario_adfa68f72b123bf36f8aa97a986f08565}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getPrecentTimeWork@{getPrecentTimeWork}}
+\index{getPrecentTimeWork@{getPrecentTimeWork}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getPrecentTimeWork()}{getPrecentTimeWork()}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::get\+Precent\+Time\+Work (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_aa3ecc23cfe53510130073d8abe96b434}\label{class_home_work_scenario_aa3ecc23cfe53510130073d8abe96b434}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getProbAnchorPoint@{getProbAnchorPoint}}
+\index{getProbAnchorPoint@{getProbAnchorPoint}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getProbAnchorPoint()}{getProbAnchorPoint()}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::get\+Prob\+Anchor\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_abc93a27b7d5e438ad377e6380889094e}\label{class_home_work_scenario_abc93a27b7d5e438ad377e6380889094e}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!getWorkLocations@{getWorkLocations}}
+\index{getWorkLocations@{getWorkLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{getWorkLocations()}{getWorkLocations()}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::get\+Work\+Locations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_home_work_scenario_a900316b0eebefa3d1190190627593c35}\label{class_home_work_scenario_a900316b0eebefa3d1190190627593c35}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setAngleDistribution@{setAngleDistribution}}
+\index{setAngleDistribution@{setAngleDistribution}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setAngleDistribution()}{setAngleDistribution()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Angle\+Distribution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_distribution}{Distribution}} $\ast$}]{distr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a0acbf37eb6ab3c09c4092ccc481f1497}\label{class_home_work_scenario_a0acbf37eb6ab3c09c4092ccc481f1497}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setPrecentTimeAnchorPoint@{setPrecentTimeAnchorPoint}}
+\index{setPrecentTimeAnchorPoint@{setPrecentTimeAnchorPoint}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setPrecentTimeAnchorPoint()}{setPrecentTimeAnchorPoint()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Precent\+Time\+Anchor\+Point (\begin{DoxyParamCaption}\item[{double}]{precent\+Time\+Anchor }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_add355d82806b3c32c1da9ae5360937d4}\label{class_home_work_scenario_add355d82806b3c32c1da9ae5360937d4}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setPrecentTimeHome@{setPrecentTimeHome}}
+\index{setPrecentTimeHome@{setPrecentTimeHome}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setPrecentTimeHome()}{setPrecentTimeHome()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Precent\+Time\+Home (\begin{DoxyParamCaption}\item[{double}]{precent\+Time\+Home }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a7d7fc398d7748e915370dc08417d2d85}\label{class_home_work_scenario_a7d7fc398d7748e915370dc08417d2d85}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setPrecentTimeTravel@{setPrecentTimeTravel}}
+\index{setPrecentTimeTravel@{setPrecentTimeTravel}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setPrecentTimeTravel()}{setPrecentTimeTravel()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Precent\+Time\+Travel (\begin{DoxyParamCaption}\item[{double}]{precent\+Timetravel }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_ac287b0faaae42cd917a06e1dd9b49f69}\label{class_home_work_scenario_ac287b0faaae42cd917a06e1dd9b49f69}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setPrecentTimeWork@{setPrecentTimeWork}}
+\index{setPrecentTimeWork@{setPrecentTimeWork}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setPrecentTimeWork()}{setPrecentTimeWork()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Precent\+Time\+Work (\begin{DoxyParamCaption}\item[{double}]{precent\+Time\+Work }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_afb2d2cfcdd225c95da44e642f907f8bc}\label{class_home_work_scenario_afb2d2cfcdd225c95da44e642f907f8bc}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!setProbAnchorPoint@{setProbAnchorPoint}}
+\index{setProbAnchorPoint@{setProbAnchorPoint}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{setProbAnchorPoint()}{setProbAnchorPoint()}}
+{\footnotesize\ttfamily void Home\+Work\+Scenario\+::set\+Prob\+Anchor\+Point (\begin{DoxyParamCaption}\item[{double}]{precent\+Time\+Anchor }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_home_work_scenario_a099fe2cf41a05087752efb96a3c8f068}\label{class_home_work_scenario_a099fe2cf41a05087752efb96a3c8f068}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!toString@{toString}}
+\index{toString@{toString}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily const string Home\+Work\+Scenario\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_home_work_scenario_a6efe837def2eb5a74f536bdf42eedfd9}\label{class_home_work_scenario_a6efe837def2eb5a74f536bdf42eedfd9}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_anchorLocations@{m\_anchorLocations}}
+\index{m\_anchorLocations@{m\_anchorLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_anchorLocations}{m\_anchorLocations}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::m\+\_\+anchor\+Locations\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a8181bf6ba705970683baa6d57151fa39}\label{class_home_work_scenario_a8181bf6ba705970683baa6d57151fa39}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_angleDistribution@{m\_angleDistribution}}
+\index{m\_angleDistribution@{m\_angleDistribution}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_angleDistribution}{m\_angleDistribution}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_distribution}{Distribution}}$\ast$ Home\+Work\+Scenario\+::m\+\_\+angle\+Distribution\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a9996ae2074dcce49ed9ee8d8a90c8dc6}\label{class_home_work_scenario_a9996ae2074dcce49ed9ee8d8a90c8dc6}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_homeLocations@{m\_homeLocations}}
+\index{m\_homeLocations@{m\_homeLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_homeLocations}{m\_homeLocations}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::m\+\_\+home\+Locations\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a9806633ba24978407f8e7d248e49cee6}\label{class_home_work_scenario_a9806633ba24978407f8e7d248e49cee6}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_precentTimeAnchor@{m\_precentTimeAnchor}}
+\index{m\_precentTimeAnchor@{m\_precentTimeAnchor}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_precentTimeAnchor}{m\_precentTimeAnchor}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::m\+\_\+precent\+Time\+Anchor\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_adb5d68236b7b8719b82170a02ee257e2}\label{class_home_work_scenario_adb5d68236b7b8719b82170a02ee257e2}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_precentTimeHome@{m\_precentTimeHome}}
+\index{m\_precentTimeHome@{m\_precentTimeHome}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_precentTimeHome}{m\_precentTimeHome}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::m\+\_\+precent\+Time\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_aa051d3cbf714fdeba83982c1cb0b6962}\label{class_home_work_scenario_aa051d3cbf714fdeba83982c1cb0b6962}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_precentTimeTravel@{m\_precentTimeTravel}}
+\index{m\_precentTimeTravel@{m\_precentTimeTravel}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_precentTimeTravel}{m\_precentTimeTravel}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::m\+\_\+precent\+Time\+Travel\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a5ac962b01265541ac5dea2b622e52caf}\label{class_home_work_scenario_a5ac962b01265541ac5dea2b622e52caf}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_precentTimeWork@{m\_precentTimeWork}}
+\index{m\_precentTimeWork@{m\_precentTimeWork}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_precentTimeWork}{m\_precentTimeWork}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::m\+\_\+precent\+Time\+Work\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a34a02f9267f5006190cedd251bb4b00f}\label{class_home_work_scenario_a34a02f9267f5006190cedd251bb4b00f}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_probAnchorPoint@{m\_probAnchorPoint}}
+\index{m\_probAnchorPoint@{m\_probAnchorPoint}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_probAnchorPoint}{m\_probAnchorPoint}}
+{\footnotesize\ttfamily double Home\+Work\+Scenario\+::m\+\_\+prob\+Anchor\+Point\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_home_work_scenario_a0a04c40ac3f3a4723499d275b415fbf0}\label{class_home_work_scenario_a0a04c40ac3f3a4723499d275b415fbf0}} 
+\index{HomeWorkScenario@{HomeWorkScenario}!m\_workLocations@{m\_workLocations}}
+\index{m\_workLocations@{m\_workLocations}!HomeWorkScenario@{HomeWorkScenario}}
+\doxysubsubsection{\texorpdfstring{m\_workLocations}{m\_workLocations}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{class_home_work_location}{Home\+Work\+Location}}$>$ Home\+Work\+Scenario\+::m\+\_\+work\+Locations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/parsers/\mbox{\hyperlink{_home_work_scenario_8h}{Home\+Work\+Scenario.\+h}}\end{DoxyCompactItemize}

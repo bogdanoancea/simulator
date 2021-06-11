@@ -1,0 +1,33 @@
+.TH "include/events/EventCode.h" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+include/events/EventCode.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBEventCode\fP { \fBEventCode::ATTACH_DEVICE\fP, \fBEventCode::DETACH_DEVICE\fP, \fBEventCode::ALREADY_ATTACHED_DEVICE\fP, \fBEventCode::IN_RANGE_NOT_ATTACHED_DEVICE\fP }"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBEventCode\fP\fC [strong]\fP"
+This class is an enumeration of network events currently registered: ATTACH_DEVICE - means that an antenna (base station) connects a new mobile device\&. DETACH_DEVICE - means that an antenna (base station) disconnects a mobile device, i\&.e\&. this mobile device is no longer connected to that antenna\&. ALREADY_ATTACHED_DEVICE - means that an antenna (base station) is connected with a mobile device and that mobile was connected to the same antenna in the previous time step too\&. IN_RANGE_NOT_ATTACHED_DEVICE - means that a mobile device tried to connect to an antenna (base station), the antenna provided enough signal strength/quality but the connection was not successful (for example antenna is at its maximum capacity and cannot connect any new devices)\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIATTACH_DEVICE \fP\fP
+.TP
+\fB\fIDETACH_DEVICE \fP\fP
+.TP
+\fB\fIALREADY_ATTACHED_DEVICE \fP\fP
+.TP
+\fB\fIIN_RANGE_NOT_ATTACHED_DEVICE \fP\fP
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

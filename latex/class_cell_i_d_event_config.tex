@@ -1,0 +1,199 @@
+\hypertarget{class_cell_i_d_event_config}{}\doxysection{Cell\+I\+D\+Event\+Config Class Reference}
+\label{class_cell_i_d_event_config}\index{CellIDEventConfig@{CellIDEventConfig}}
+
+
+{\ttfamily \#include $<$Cell\+I\+D\+Event\+Config.\+h$>$}
+
+
+
+Inheritance diagram for Cell\+I\+D\+Event\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_cell_i_d_event_config__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Cell\+I\+D\+Event\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_cell_i_d_event_config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cell_i_d_event_config_af349ad9c9da69f7b00ea906dd8dd860c}{Cell\+I\+D\+Event\+Config}} (unsigned long t, unsigned long cell\+ID, \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} code, unsigned long device\+ID, \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} net\+Type)
+\item 
+virtual const unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_af86e86050d498e4fb6d373dc182fdab7}{get\+Cell\+ID}} () override
+\item 
+virtual const unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_ae2350ff14b8d8e43460998cea0085537}{get\+Device\+ID}} () override
+\item 
+virtual const unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_ae770f263d55672277e90d71bb6393ca7}{get\+Timestamp}} () override
+\item 
+virtual const \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} \mbox{\hyperlink{class_cell_i_d_event_config_a9a8044b029651d7615df86db74f97775}{get\+Event\+Code}} () override
+\item 
+virtual const \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} \mbox{\hyperlink{class_cell_i_d_event_config_accdb657959fba5bd1d7bede4431427fc}{get\+Network\+Type}} () override
+\item 
+virtual \mbox{\hyperlink{class_cell_i_d_event_config_a63526d5c18367d597c0686a3cc91d6d7}{$\sim$\+Cell\+I\+D\+Event\+Config}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_ab5cb65755caf1f75d7fc5942c4378dd5}{m\+\_\+timestamp}}
+\item 
+unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_a859297bd751ec4c8d8efd8799dd5a4b9}{m\+\_\+cell\+ID}}
+\item 
+\mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} \mbox{\hyperlink{class_cell_i_d_event_config_a54c16ff0a535f22b02872520f75828a2}{m\+\_\+code}}
+\item 
+unsigned long \mbox{\hyperlink{class_cell_i_d_event_config_aac44792fa8f23d61bfd555964cadaff9}{m\+\_\+device\+ID}}
+\item 
+\mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} \mbox{\hyperlink{class_cell_i_d_event_config_ae03ef872cf8c4e800f301b8153df8e0c}{m\+\_\+network\+Type}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class encapsulated the parameters needed by the factory class to build a \mbox{\hyperlink{class_cell_i_d_event}{Cell\+I\+D\+Event}} object. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cell_i_d_event_config_af349ad9c9da69f7b00ea906dd8dd860c}\label{class_cell_i_d_event_config_af349ad9c9da69f7b00ea906dd8dd860c}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!CellIDEventConfig@{CellIDEventConfig}}
+\index{CellIDEventConfig@{CellIDEventConfig}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{CellIDEventConfig()}{CellIDEventConfig()}}
+{\footnotesize\ttfamily Cell\+I\+D\+Event\+Config\+::\+Cell\+I\+D\+Event\+Config (\begin{DoxyParamCaption}\item[{unsigned long}]{t,  }\item[{unsigned long}]{cell\+ID,  }\item[{\mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}}}]{code,  }\item[{unsigned long}]{device\+ID,  }\item[{\mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}}}]{net\+Type }\end{DoxyParamCaption})}
+
+Constructor of the class. Builds a \mbox{\hyperlink{class_cell_i_d_event_config}{Cell\+I\+D\+Event\+Config}} object. 
+\begin{DoxyParams}{Parameters}
+{\em t} & the timestamp of the event. This is the time measured by the simulation clock. \\
+\hline
+{\em cell\+ID} & the id of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated the event. \\
+\hline
+{\em code} & -\/ the event code. It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a9893a3a649e7100d87b1560bd8202ec2}{Event\+Code\+::\+A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8ad4d5a45ac3a7a538879a9525fed18ddf}{Event\+Code\+::\+D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8aea76d50440d9cdc0ad1cac6ab9ac4f27}{Event\+Code\+::\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a6ac0995df1d7ce888368dccf7af3e737}{Event\+Code\+::\+I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \end{DoxyItemize}
+\\
+\hline
+{\em device\+ID} & the id of the mobile device which generated the event. \\
+\hline
+{\em net\+Type} & the network type (a parameter of the antenna). It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ac88ee8f01394dbabf5c4487986d04971}{Network\+Type\+::\+\_\+3G}} \item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ae5ee9782bb207b843ba97eaa2d0fe26b}{Network\+Type\+::\+\_\+4G}} \end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_cell_i_d_event_config_a63526d5c18367d597c0686a3cc91d6d7}\label{class_cell_i_d_event_config_a63526d5c18367d597c0686a3cc91d6d7}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!````~CellIDEventConfig@{$\sim$CellIDEventConfig}}
+\index{````~CellIDEventConfig@{$\sim$CellIDEventConfig}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{$\sim$CellIDEventConfig()}{~CellIDEventConfig()}}
+{\footnotesize\ttfamily virtual Cell\+I\+D\+Event\+Config\+::$\sim$\+Cell\+I\+D\+Event\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Default destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cell_i_d_event_config_af86e86050d498e4fb6d373dc182fdab7}\label{class_cell_i_d_event_config_af86e86050d498e4fb6d373dc182fdab7}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!getCellID@{getCellID}}
+\index{getCellID@{getCellID}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{getCellID()}{getCellID()}}
+{\footnotesize\ttfamily virtual const unsigned long Cell\+I\+D\+Event\+Config\+::get\+Cell\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the id of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated the event. \begin{DoxyReturn}{Returns}
+the id of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated the event. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_event_config_a063d06be0bd8e5c7bcebe09d195dfb95}{Event\+Config}}.
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_ae2350ff14b8d8e43460998cea0085537}\label{class_cell_i_d_event_config_ae2350ff14b8d8e43460998cea0085537}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!getDeviceID@{getDeviceID}}
+\index{getDeviceID@{getDeviceID}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{getDeviceID()}{getDeviceID()}}
+{\footnotesize\ttfamily virtual const unsigned long Cell\+I\+D\+Event\+Config\+::get\+Device\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the id of the mobile device which generated the event. \begin{DoxyReturn}{Returns}
+the id of the mobile device which generated the event. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_event_config_a0e7d0b16aa4237d7aa53d2c9f43c4206}{Event\+Config}}.
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_a9a8044b029651d7615df86db74f97775}\label{class_cell_i_d_event_config_a9a8044b029651d7615df86db74f97775}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!getEventCode@{getEventCode}}
+\index{getEventCode@{getEventCode}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{getEventCode()}{getEventCode()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} Cell\+I\+D\+Event\+Config\+::get\+Event\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the event code. \begin{DoxyReturn}{Returns}
+the event code. It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a9893a3a649e7100d87b1560bd8202ec2}{Event\+Code\+::\+A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8ad4d5a45ac3a7a538879a9525fed18ddf}{Event\+Code\+::\+D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8aea76d50440d9cdc0ad1cac6ab9ac4f27}{Event\+Code\+::\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a6ac0995df1d7ce888368dccf7af3e737}{Event\+Code\+::\+I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \end{DoxyItemize}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_event_config_a1f2a8f624e970a8f1fe6a8a903faaac6}{Event\+Config}}.
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_accdb657959fba5bd1d7bede4431427fc}\label{class_cell_i_d_event_config_accdb657959fba5bd1d7bede4431427fc}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!getNetworkType@{getNetworkType}}
+\index{getNetworkType@{getNetworkType}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{getNetworkType()}{getNetworkType()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} Cell\+I\+D\+Event\+Config\+::get\+Network\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the network type of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated this event. \begin{DoxyReturn}{Returns}
+the network type of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated this event. It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ac88ee8f01394dbabf5c4487986d04971}{Network\+Type\+::\+\_\+3G}} \item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ae5ee9782bb207b843ba97eaa2d0fe26b}{Network\+Type\+::\+\_\+4G}} \end{DoxyItemize}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_event_config_a4c206f85def490abb47664236593f5d0}{Event\+Config}}.
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_ae770f263d55672277e90d71bb6393ca7}\label{class_cell_i_d_event_config_ae770f263d55672277e90d71bb6393ca7}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily virtual const unsigned long Cell\+I\+D\+Event\+Config\+::get\+Timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Returns the timestamp of the event (measured by the simulation clock). \begin{DoxyReturn}{Returns}
+the timestamp of the event (measured by the simulation clock). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_event_config_a6551fe1d0067afab8d92d3dab5ccc3fe}{Event\+Config}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_cell_i_d_event_config_a859297bd751ec4c8d8efd8799dd5a4b9}\label{class_cell_i_d_event_config_a859297bd751ec4c8d8efd8799dd5a4b9}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!m\_cellID@{m\_cellID}}
+\index{m\_cellID@{m\_cellID}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_cellID}{m\_cellID}}
+{\footnotesize\ttfamily unsigned long Cell\+I\+D\+Event\+Config\+::m\+\_\+cell\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_a54c16ff0a535f22b02872520f75828a2}\label{class_cell_i_d_event_config_a54c16ff0a535f22b02872520f75828a2}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!m\_code@{m\_code}}
+\index{m\_code@{m\_code}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_code}{m\_code}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} Cell\+I\+D\+Event\+Config\+::m\+\_\+code\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_aac44792fa8f23d61bfd555964cadaff9}\label{class_cell_i_d_event_config_aac44792fa8f23d61bfd555964cadaff9}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!m\_deviceID@{m\_deviceID}}
+\index{m\_deviceID@{m\_deviceID}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_deviceID}{m\_deviceID}}
+{\footnotesize\ttfamily unsigned long Cell\+I\+D\+Event\+Config\+::m\+\_\+device\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_ae03ef872cf8c4e800f301b8153df8e0c}\label{class_cell_i_d_event_config_ae03ef872cf8c4e800f301b8153df8e0c}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!m\_networkType@{m\_networkType}}
+\index{m\_networkType@{m\_networkType}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_networkType}{m\_networkType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} Cell\+I\+D\+Event\+Config\+::m\+\_\+network\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_cell_i_d_event_config_ab5cb65755caf1f75d7fc5942c4378dd5}\label{class_cell_i_d_event_config_ab5cb65755caf1f75d7fc5942c4378dd5}} 
+\index{CellIDEventConfig@{CellIDEventConfig}!m\_timestamp@{m\_timestamp}}
+\index{m\_timestamp@{m\_timestamp}!CellIDEventConfig@{CellIDEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_timestamp}{m\_timestamp}}
+{\footnotesize\ttfamily unsigned long Cell\+I\+D\+Event\+Config\+::m\+\_\+timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/events/\mbox{\hyperlink{_cell_i_d_event_config_8h}{Cell\+I\+D\+Event\+Config.\+h}}\end{DoxyCompactItemize}

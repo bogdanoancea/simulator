@@ -1,0 +1,90 @@
+\hypertarget{class_probabilities_config_parser}{}\doxysection{Probabilities\+Config\+Parser Class Reference}
+\label{class_probabilities_config_parser}\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+
+
+{\ttfamily \#include $<$Probabilities\+Config\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Probabilities\+Config\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_probabilities_config_parser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Probabilities\+Config\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_probabilities_config_parser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_probabilities_config_parser_a59a20d66530237bce7a7ef1d1129a731}{Probabilities\+Config\+Parser}} (const string \&file\+Name)
+\item 
+virtual \mbox{\hyperlink{class_probabilities_config_parser_aa729df9e442af82f42ff64e092afa487}{$\sim$\+Probabilities\+Config\+Parser}} ()
+\item 
+\mbox{\hyperlink{class_probabilities_configuration}{Probabilities\+Configuration}} \mbox{\hyperlink{class_probabilities_config_parser_ab0428d9b58e58b2483ba0b81aa434256}{get\+Configuration}} () const
+\item 
+void \mbox{\hyperlink{class_probabilities_config_parser_ad330952ebf080070f9407d829ca99dcd}{parse}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_probabilities_configuration}{Probabilities\+Configuration}} \mbox{\hyperlink{class_probabilities_config_parser_a4cc47f22aa31bc3f1550e1d215006bac}{m\+\_\+configuration}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_probabilities_config_parser_a59a20d66530237bce7a7ef1d1129a731}\label{class_probabilities_config_parser_a59a20d66530237bce7a7ef1d1129a731}} 
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\doxysubsubsection{\texorpdfstring{ProbabilitiesConfigParser()}{ProbabilitiesConfigParser()}}
+{\footnotesize\ttfamily Probabilities\+Config\+Parser\+::\+Probabilities\+Config\+Parser (\begin{DoxyParamCaption}\item[{const string \&}]{file\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_probabilities_config_parser_aa729df9e442af82f42ff64e092afa487}\label{class_probabilities_config_parser_aa729df9e442af82f42ff64e092afa487}} 
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!````~ProbabilitiesConfigParser@{$\sim$ProbabilitiesConfigParser}}
+\index{````~ProbabilitiesConfigParser@{$\sim$ProbabilitiesConfigParser}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\doxysubsubsection{\texorpdfstring{$\sim$ProbabilitiesConfigParser()}{~ProbabilitiesConfigParser()}}
+{\footnotesize\ttfamily virtual Probabilities\+Config\+Parser\+::$\sim$\+Probabilities\+Config\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_probabilities_config_parser_ab0428d9b58e58b2483ba0b81aa434256}\label{class_probabilities_config_parser_ab0428d9b58e58b2483ba0b81aa434256}} 
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!getConfiguration@{getConfiguration}}
+\index{getConfiguration@{getConfiguration}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\doxysubsubsection{\texorpdfstring{getConfiguration()}{getConfiguration()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_probabilities_configuration}{Probabilities\+Configuration}} Probabilities\+Config\+Parser\+::get\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_probabilities_config_parser_ad330952ebf080070f9407d829ca99dcd}\label{class_probabilities_config_parser_ad330952ebf080070f9407d829ca99dcd}} 
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!parse@{parse}}
+\index{parse@{parse}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily void Probabilities\+Config\+Parser\+::parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This pure virtual function has to be implemented by specific subclasses. Each subclass will be specialized to parse one of the configuration file used by the simulation software\+: simulation, persons, antennas, probabilities. They are passed in the command line of the software using the \char`\"{}-\/s\char`\"{}, \char`\"{}-\/p\char`\"{}, \char`\"{}-\/a\char`\"{}, \char`\"{}-\/pb\char`\"{} options. 
+
+Implements \mbox{\hyperlink{class_config_parser_afc13df32c129e923c7aa33db7413dd2e}{Config\+Parser}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_probabilities_config_parser_a4cc47f22aa31bc3f1550e1d215006bac}\label{class_probabilities_config_parser_a4cc47f22aa31bc3f1550e1d215006bac}} 
+\index{ProbabilitiesConfigParser@{ProbabilitiesConfigParser}!m\_configuration@{m\_configuration}}
+\index{m\_configuration@{m\_configuration}!ProbabilitiesConfigParser@{ProbabilitiesConfigParser}}
+\doxysubsubsection{\texorpdfstring{m\_configuration}{m\_configuration}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_probabilities_configuration}{Probabilities\+Configuration}} Probabilities\+Config\+Parser\+::m\+\_\+configuration\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/parsers/\mbox{\hyperlink{_probabilities_config_parser_8h}{Probabilities\+Config\+Parser.\+h}}\end{DoxyCompactItemize}

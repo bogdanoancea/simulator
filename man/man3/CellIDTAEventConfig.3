@@ -1,0 +1,105 @@
+.TH "CellIDTAEventConfig" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CellIDTAEventConfig
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <CellIDTAEventConfig\&.h>\fP
+.PP
+Inherits \fBCellIDEventConfig\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCellIDTAEventConfig\fP (unsigned long t, unsigned long cellID, \fBEventCode\fP code, unsigned long deviceID, \fBNetworkType\fP netType, unsigned int ta)"
+.br
+.ti -1c
+.RI "const unsigned int \fBgetTA\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~CellIDTAEventConfig\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBm_ta\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class encapsulated the parameters needed by the factory class to build a \fBCellIDTAEvent\fP object\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "CellIDTAEventConfig::CellIDTAEventConfig (unsigned long t, unsigned long cellID, \fBEventCode\fP code, unsigned long deviceID, \fBNetworkType\fP netType, unsigned int ta)"
+Constructor of the class\&. Builds a \fBCellIDTAEventConfig\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the timestamp of the event\&. This is the time measured by the simulation clock\&. 
+.br
+\fIcellID\fP the id of the \fBAntenna\fP object which generated the event\&. 
+.br
+\fIcode\fP - the event code\&. It can take one of the following values: 
+.PD 0
+
+.IP "\(bu" 2
+\fBEventCode::ATTACH_DEVICE\fP 
+.IP "\(bu" 2
+\fBEventCode::DETACH_DEVICE\fP 
+.IP "\(bu" 2
+\fBEventCode::ALREADY_ATTACHED_DEVICE\fP 
+.IP "\(bu" 2
+\fBEventCode::IN_RANGE_NOT_ATTACHED_DEVICE\fP 
+.PP
+.br
+\fIdeviceID\fP the id of the mobile device which generated the event\&. 
+.br
+\fInetType\fP the network type (a parameter of the antenna)\&. It can take one of the following values: 
+.PD 0
+
+.IP "\(bu" 2
+\fBNetworkType::_3G\fP 
+.IP "\(bu" 2
+\fBNetworkType::_4G\fP 
+.PP
+.br
+\fIta\fP the timing advance value\&. For an explanation of this variable 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCellIDTAEvent\fP\&. 
+.RE
+.PP
+
+.SS "virtual CellIDTAEventConfig::~CellIDTAEventConfig ()\fC [virtual]\fP"
+Dafault destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "const unsigned int CellIDTAEventConfig::getTA ()"
+Returns the timing advance value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the timing advance value\&. For an explanation of this variable 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCellIDTAEvent\fP\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned int CellIDTAEventConfig::m_ta\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

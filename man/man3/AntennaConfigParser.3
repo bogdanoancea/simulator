@@ -1,0 +1,78 @@
+.TH "AntennaConfigParser" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AntennaConfigParser
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <AntennaConfigParser\&.h>\fP
+.PP
+Inherits \fBConfigParser\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAntennaConfigParser\fP (const string &fileName, \fBSimulationConfiguration\fP *sc, \fBAgentsCollection\fP *ag, \fBEventFactory\fP *evFactory)"
+.br
+.ti -1c
+.RI "virtual \fB~AntennaConfigParser\fP ()"
+.br
+.ti -1c
+.RI "void \fBparse\fP () override"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSimulationConfiguration\fP * \fBm_simConfig\fP"
+.br
+.ti -1c
+.RI "\fBEventFactory\fP * \fBm_eventFactory\fP"
+.br
+.ti -1c
+.RI "\fBAgentsCollection\fP * \fBm_agents\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Parses the antenna configuration file specified by '-a' option in the command line and builds the antenna objects\&. This file is named antenna\&.xml in all example configuration folders\&. While it parses the parameters of each antenna, it builds \fBAntenna\fP objects and adds them to the \fBAgentsCollection\fP container\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AntennaConfigParser::AntennaConfigParser (const string & fileName, \fBSimulationConfiguration\fP * sc, \fBAgentsCollection\fP * ag, \fBEventFactory\fP * evFactory)"
+Constructor of the class\&. It takes the filename of the antenna configuration files, a pointer to the \fBSimulationConfiguration\fP object, a pointer to the \fBAgentsCollection\fP container class and a pointer to the \fBEventFactory\fP\&. The \fBAgentsCollection\fP and \fBEventFactory\fP object are created outside, in the caller of this constructor, in this case the constructor of the \fBWorld\fP object\&. The \fBSimulationConfiguration\fP object is also created by the constructor of the \fBWorld\fP object by parsing the simulation configuration file\&. While this constructor parses the antenna configuration file, an \fBAntennaConfiguration\fP object is created for each antenna\&. This object encapsulates all required parameters to build an \fBAntenna\fP object and it is passed to the constructor of the \fBAntenna\fP class\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfileName\fP the name of the antenna configuration file, given in the command line of the software with '-a' option\&. 
+.br
+\fIsc\fP a pointer to the \fBSimulationConfiguration\fP object created by the \fBSimulationConfigurationParser\fP\&. It contains the parameters of the simulation read from the simulation configuration file, given in the command line of the software with '-s' option\&. 
+.br
+\fIag\fP a pointer to the \fBAgentsCollection\fP container class created by the constructor of the \fBWorld\fP class\&. 
+.br
+\fIevFactory\fP a pointer to the \fBEventFactory\fP class created by the constructor of the \fBWorld\fP class\&. This factory is used by each \fBAntenna\fP object the generate network events\&. 
+.RE
+.PP
+
+.SS "virtual AntennaConfigParser::~AntennaConfigParser ()\fC [virtual]\fP"
+Default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void AntennaConfigParser::parse ()\fC [override]\fP, \fC [virtual]\fP"
+A method to parse the antenna configuration file\&. While it parses this file, it builds an \fBAntennaConfiguration\fP object for each antenna and passes it to the constructor of the \fBAntenna\fP class\&. All \fBAntenna\fP objects are added to the \fBAgentsCollection\fP container class\&. 
+.PP
+Implements \fBConfigParser\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAgentsCollection\fP* AntennaConfigParser::m_agents\fC [private]\fP"
+
+.SS "\fBEventFactory\fP* AntennaConfigParser::m_eventFactory\fC [private]\fP"
+
+.SS "\fBSimulationConfiguration\fP* AntennaConfigParser::m_simConfig\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

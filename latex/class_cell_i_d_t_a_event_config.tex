@@ -1,0 +1,107 @@
+\hypertarget{class_cell_i_d_t_a_event_config}{}\doxysection{Cell\+I\+D\+T\+A\+Event\+Config Class Reference}
+\label{class_cell_i_d_t_a_event_config}\index{CellIDTAEventConfig@{CellIDTAEventConfig}}
+
+
+{\ttfamily \#include $<$Cell\+I\+D\+T\+A\+Event\+Config.\+h$>$}
+
+
+
+Inheritance diagram for Cell\+I\+D\+T\+A\+Event\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{class_cell_i_d_t_a_event_config__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Cell\+I\+D\+T\+A\+Event\+Config\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_cell_i_d_t_a_event_config__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cell_i_d_t_a_event_config_a641e898bf899840bbb0c53dcea4f18a3}{Cell\+I\+D\+T\+A\+Event\+Config}} (unsigned long t, unsigned long cell\+ID, \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}} code, unsigned long device\+ID, \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}} net\+Type, unsigned int ta)
+\item 
+const unsigned int \mbox{\hyperlink{class_cell_i_d_t_a_event_config_a4b5447417bc7a5a2d4d11fea04bc7e5f}{get\+TA}} ()
+\item 
+virtual \mbox{\hyperlink{class_cell_i_d_t_a_event_config_aafec2a2abf9b5e0ac5548e227a5dda82}{$\sim$\+Cell\+I\+D\+T\+A\+Event\+Config}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{class_cell_i_d_t_a_event_config_ac07f229c0c9c2b2dcbe480b6116313a8}{m\+\_\+ta}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class encapsulated the parameters needed by the factory class to build a \mbox{\hyperlink{class_cell_i_d_t_a_event}{Cell\+I\+D\+T\+A\+Event}} object. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cell_i_d_t_a_event_config_a641e898bf899840bbb0c53dcea4f18a3}\label{class_cell_i_d_t_a_event_config_a641e898bf899840bbb0c53dcea4f18a3}} 
+\index{CellIDTAEventConfig@{CellIDTAEventConfig}!CellIDTAEventConfig@{CellIDTAEventConfig}}
+\index{CellIDTAEventConfig@{CellIDTAEventConfig}!CellIDTAEventConfig@{CellIDTAEventConfig}}
+\doxysubsubsection{\texorpdfstring{CellIDTAEventConfig()}{CellIDTAEventConfig()}}
+{\footnotesize\ttfamily Cell\+I\+D\+T\+A\+Event\+Config\+::\+Cell\+I\+D\+T\+A\+Event\+Config (\begin{DoxyParamCaption}\item[{unsigned long}]{t,  }\item[{unsigned long}]{cell\+ID,  }\item[{\mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8}{Event\+Code}}}]{code,  }\item[{unsigned long}]{device\+ID,  }\item[{\mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83}{Network\+Type}}}]{net\+Type,  }\item[{unsigned int}]{ta }\end{DoxyParamCaption})}
+
+Constructor of the class. Builds a \mbox{\hyperlink{class_cell_i_d_t_a_event_config}{Cell\+I\+D\+T\+A\+Event\+Config}} object. 
+\begin{DoxyParams}{Parameters}
+{\em t} & the timestamp of the event. This is the time measured by the simulation clock. \\
+\hline
+{\em cell\+ID} & the id of the \mbox{\hyperlink{class_antenna}{Antenna}} object which generated the event. \\
+\hline
+{\em code} & -\/ the event code. It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a9893a3a649e7100d87b1560bd8202ec2}{Event\+Code\+::\+A\+T\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8ad4d5a45ac3a7a538879a9525fed18ddf}{Event\+Code\+::\+D\+E\+T\+A\+C\+H\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8aea76d50440d9cdc0ad1cac6ab9ac4f27}{Event\+Code\+::\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \item \mbox{\hyperlink{_event_code_8h_a080ee5c80bcb8b9f3fda41b5e4eb0ef8a6ac0995df1d7ce888368dccf7af3e737}{Event\+Code\+::\+I\+N\+\_\+\+R\+A\+N\+G\+E\+\_\+\+N\+O\+T\+\_\+\+A\+T\+T\+A\+C\+H\+E\+D\+\_\+\+D\+E\+V\+I\+CE}} \end{DoxyItemize}
+\\
+\hline
+{\em device\+ID} & the id of the mobile device which generated the event. \\
+\hline
+{\em net\+Type} & the network type (a parameter of the antenna). It can take one of the following values\+: \begin{DoxyItemize}
+\item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ac88ee8f01394dbabf5c4487986d04971}{Network\+Type\+::\+\_\+3G}} \item \mbox{\hyperlink{_network_type_8h_a3a159600500d5d7248be5bd1ca1f8d83ae5ee9782bb207b843ba97eaa2d0fe26b}{Network\+Type\+::\+\_\+4G}} \end{DoxyItemize}
+\\
+\hline
+{\em ta} & the timing advance value. For an explanation of this variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_cell_i_d_t_a_event}{Cell\+I\+D\+T\+A\+Event}}. 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_cell_i_d_t_a_event_config_aafec2a2abf9b5e0ac5548e227a5dda82}\label{class_cell_i_d_t_a_event_config_aafec2a2abf9b5e0ac5548e227a5dda82}} 
+\index{CellIDTAEventConfig@{CellIDTAEventConfig}!````~CellIDTAEventConfig@{$\sim$CellIDTAEventConfig}}
+\index{````~CellIDTAEventConfig@{$\sim$CellIDTAEventConfig}!CellIDTAEventConfig@{CellIDTAEventConfig}}
+\doxysubsubsection{\texorpdfstring{$\sim$CellIDTAEventConfig()}{~CellIDTAEventConfig()}}
+{\footnotesize\ttfamily virtual Cell\+I\+D\+T\+A\+Event\+Config\+::$\sim$\+Cell\+I\+D\+T\+A\+Event\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Dafault destructor. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cell_i_d_t_a_event_config_a4b5447417bc7a5a2d4d11fea04bc7e5f}\label{class_cell_i_d_t_a_event_config_a4b5447417bc7a5a2d4d11fea04bc7e5f}} 
+\index{CellIDTAEventConfig@{CellIDTAEventConfig}!getTA@{getTA}}
+\index{getTA@{getTA}!CellIDTAEventConfig@{CellIDTAEventConfig}}
+\doxysubsubsection{\texorpdfstring{getTA()}{getTA()}}
+{\footnotesize\ttfamily const unsigned int Cell\+I\+D\+T\+A\+Event\+Config\+::get\+TA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns the timing advance value. \begin{DoxyReturn}{Returns}
+the timing advance value. For an explanation of this variable 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_cell_i_d_t_a_event}{Cell\+I\+D\+T\+A\+Event}}. 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_cell_i_d_t_a_event_config_ac07f229c0c9c2b2dcbe480b6116313a8}\label{class_cell_i_d_t_a_event_config_ac07f229c0c9c2b2dcbe480b6116313a8}} 
+\index{CellIDTAEventConfig@{CellIDTAEventConfig}!m\_ta@{m\_ta}}
+\index{m\_ta@{m\_ta}!CellIDTAEventConfig@{CellIDTAEventConfig}}
+\doxysubsubsection{\texorpdfstring{m\_ta}{m\_ta}}
+{\footnotesize\ttfamily unsigned int Cell\+I\+D\+T\+A\+Event\+Config\+::m\+\_\+ta\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/events/\mbox{\hyperlink{_cell_i_d_t_a_event_config_8h}{Cell\+I\+D\+T\+A\+Event\+Config.\+h}}\end{DoxyCompactItemize}

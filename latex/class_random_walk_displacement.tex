@@ -1,0 +1,78 @@
+\hypertarget{class_random_walk_displacement}{}\doxysection{Random\+Walk\+Displacement Class Reference}
+\label{class_random_walk_displacement}\index{RandomWalkDisplacement@{RandomWalkDisplacement}}
+
+
+{\ttfamily \#include $<$Random\+Walk\+Displacement.\+h$>$}
+
+
+
+Inheritance diagram for Random\+Walk\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_random_walk_displacement__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Random\+Walk\+Displacement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_random_walk_displacement__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_random_walk_displacement_a1e2f6707c935b0460f300617b4b7262c}{Random\+Walk\+Displacement}} (\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$sim\+Config, double speed)
+\item 
+virtual Point $\ast$ \mbox{\hyperlink{class_random_walk_displacement_abce6bc5d5bd68f685b8eaa7d956834c4}{generate\+New\+Location}} (Point $\ast$p) override
+\item 
+virtual \mbox{\hyperlink{class_random_walk_displacement_a93c0a997a41e9a820b0994436fc0bb26}{$\sim$\+Random\+Walk\+Displacement}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements the pure random walk behaviour, overriding the \mbox{\hyperlink{class_random_walk_displacement_abce6bc5d5bd68f685b8eaa7d956834c4}{generate\+New\+Location()}} method from its superclass, \mbox{\hyperlink{class_displace}{Displace}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_random_walk_displacement_a1e2f6707c935b0460f300617b4b7262c}\label{class_random_walk_displacement_a1e2f6707c935b0460f300617b4b7262c}} 
+\index{RandomWalkDisplacement@{RandomWalkDisplacement}!RandomWalkDisplacement@{RandomWalkDisplacement}}
+\index{RandomWalkDisplacement@{RandomWalkDisplacement}!RandomWalkDisplacement@{RandomWalkDisplacement}}
+\doxysubsubsection{\texorpdfstring{RandomWalkDisplacement()}{RandomWalkDisplacement()}}
+{\footnotesize\ttfamily Random\+Walk\+Displacement\+::\+Random\+Walk\+Displacement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_configuration}{Simulation\+Configuration}} $\ast$}]{sim\+Config,  }\item[{double}]{speed }\end{DoxyParamCaption})}
+
+Constructor of the class. It only passes the arguments to the superclass, \mbox{\hyperlink{class_displace}{Displace}}. 
+\begin{DoxyParams}{Parameters}
+{\em speed} & the speed of displacement. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_random_walk_displacement_a93c0a997a41e9a820b0994436fc0bb26}\label{class_random_walk_displacement_a93c0a997a41e9a820b0994436fc0bb26}} 
+\index{RandomWalkDisplacement@{RandomWalkDisplacement}!````~RandomWalkDisplacement@{$\sim$RandomWalkDisplacement}}
+\index{````~RandomWalkDisplacement@{$\sim$RandomWalkDisplacement}!RandomWalkDisplacement@{RandomWalkDisplacement}}
+\doxysubsubsection{\texorpdfstring{$\sim$RandomWalkDisplacement()}{~RandomWalkDisplacement()}}
+{\footnotesize\ttfamily virtual Random\+Walk\+Displacement\+::$\sim$\+Random\+Walk\+Displacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor. It does nothing. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_random_walk_displacement_abce6bc5d5bd68f685b8eaa7d956834c4}\label{class_random_walk_displacement_abce6bc5d5bd68f685b8eaa7d956834c4}} 
+\index{RandomWalkDisplacement@{RandomWalkDisplacement}!generateNewLocation@{generateNewLocation}}
+\index{generateNewLocation@{generateNewLocation}!RandomWalkDisplacement@{RandomWalkDisplacement}}
+\doxysubsubsection{\texorpdfstring{generateNewLocation()}{generateNewLocation()}}
+{\footnotesize\ttfamily virtual Point$\ast$ Random\+Walk\+Displacement\+::generate\+New\+Location (\begin{DoxyParamCaption}\item[{Point $\ast$}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Implements the random walk behaviour. It takes a pointer to the current location, generates a uniformly distributed value between 0 and 2 PI as the angle of displacement and computes the length of the step in this direction using the speed and the time duration of a simulation step. If the new location is outside the map, it returns the current location, i.\+e. the object will stay in the same location until the next simulation step. 
+\begin{DoxyParams}{Parameters}
+{\em p} & a pointer to the current location. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the new location 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_random_walk_displacement_8h}{Random\+Walk\+Displacement.\+h}}\end{DoxyCompactItemize}

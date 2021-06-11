@@ -1,0 +1,111 @@
+.TH "PersonsConfigParser" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PersonsConfigParser
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <PersonsConfigParser\&.h>\fP
+.PP
+Inherits \fBConfigParser\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPersonsConfigParser\fP (const string &fileName, \fBSimulationConfiguration\fP *sc, \fBAgentsCollection\fP *ag)"
+.br
+.ti -1c
+.RI "virtual \fB~PersonsConfigParser\fP ()"
+.br
+.ti -1c
+.RI "void \fBparse\fP () override"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "vector< \fBPerson\fP * > \fBgeneratePopulation\fP (const unsigned long numPersons, shared_ptr< \fBDistribution\fP > age_distribution, double male_share, shared_ptr< \fBDistribution\fP > speed_walk, shared_ptr< \fBDistribution\fP > speed_car, double percentHome)"
+.br
+.ti -1c
+.RI "void \fBsetPhones\fP (int *&ph1, int *&ph2, double probSecMobilePhone, double numPersons, \fBRandomNumberGenerator\fP *rng)"
+.br
+.ti -1c
+.RI "int * \fBgenerateAges\fP (int n, shared_ptr< \fBDistribution\fP > distr, \fBRandomNumberGenerator\fP *rng)"
+.br
+.ti -1c
+.RI "void \fBaddMobilePhoneToPerson\fP (\fBPerson\fP *p, \fBMobileOperator\fP *mno, \fBAgentsCollection\fP *ag)"
+.br
+.ti -1c
+.RI "void \fBsetPersonDisplacementPattern\fP (\fBPerson\fP *p)"
+.br
+.ti -1c
+.RI "Point * \fBgenerateLocation\fP (unsigned int index, vector< \fBHomeWorkLocation\fP > locations)"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDistribution\fP > \fBparseAgeDistribution\fP (XMLElement *parent)"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDistribution\fP > \fBparseSpeedWalkDistribution\fP (XMLElement *parent)"
+.br
+.ti -1c
+.RI "shared_ptr< \fBDistribution\fP > \fBparseSpeedCarDistribution\fP (XMLElement *parent)"
+.br
+.ti -1c
+.RI "void \fBsetHomePersonHWLocations\fP (\fBPerson\fP *p, Point *pt)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSimulationConfiguration\fP * \fBm_simConfig\fP"
+.br
+.ti -1c
+.RI "\fBAgentsCollection\fP * \fBm_agents\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "PersonsConfigParser::PersonsConfigParser (const string & fileName, \fBSimulationConfiguration\fP * sc, \fBAgentsCollection\fP * ag)"
+
+.SS "virtual PersonsConfigParser::~PersonsConfigParser ()\fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void PersonsConfigParser::addMobilePhoneToPerson (\fBPerson\fP * p, \fBMobileOperator\fP * mno, \fBAgentsCollection\fP * ag)\fC [private]\fP"
+
+.SS "int* PersonsConfigParser::generateAges (int n, shared_ptr< \fBDistribution\fP > distr, \fBRandomNumberGenerator\fP * rng)\fC [private]\fP"
+
+.SS "Point* PersonsConfigParser::generateLocation (unsigned int index, vector< \fBHomeWorkLocation\fP > locations)\fC [private]\fP"
+
+.SS "vector<\fBPerson\fP*> PersonsConfigParser::generatePopulation (const unsigned long numPersons, shared_ptr< \fBDistribution\fP > age_distribution, double male_share, shared_ptr< \fBDistribution\fP > speed_walk, shared_ptr< \fBDistribution\fP > speed_car, double percentHome)\fC [private]\fP"
+
+.SS "void PersonsConfigParser::parse ()\fC [override]\fP, \fC [virtual]\fP"
+This pure virtual function has to be implemented by specific subclasses\&. Each subclass will be specialized to parse one of the configuration file used by the simulation software: simulation, persons, antennas, probabilities\&. They are passed in the command line of the software using the '-s', '-p', '-a', '-pb' options\&. 
+.PP
+Implements \fBConfigParser\fP\&.
+.SS "shared_ptr<\fBDistribution\fP> PersonsConfigParser::parseAgeDistribution (XMLElement * parent)\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> PersonsConfigParser::parseSpeedCarDistribution (XMLElement * parent)\fC [private]\fP"
+
+.SS "shared_ptr<\fBDistribution\fP> PersonsConfigParser::parseSpeedWalkDistribution (XMLElement * parent)\fC [private]\fP"
+
+.SS "void PersonsConfigParser::setHomePersonHWLocations (\fBPerson\fP * p, Point * pt)\fC [private]\fP"
+
+.SS "void PersonsConfigParser::setPersonDisplacementPattern (\fBPerson\fP * p)\fC [private]\fP"
+
+.SS "void PersonsConfigParser::setPhones (int *& ph1, int *& ph2, double probSecMobilePhone, double numPersons, \fBRandomNumberGenerator\fP * rng)\fC [private]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAgentsCollection\fP* PersonsConfigParser::m_agents\fC [private]\fP"
+
+.SS "\fBSimulationConfiguration\fP* PersonsConfigParser::m_simConfig\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

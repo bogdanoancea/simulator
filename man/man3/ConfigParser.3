@@ -1,0 +1,74 @@
+.TH "ConfigParser" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConfigParser
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ConfigParser\&.h>\fP
+.PP
+Inherited by \fBAntennaConfigParser\fP, \fBPersonsConfigParser\fP, \fBProbabilitiesConfigParser\fP, and \fBSimulationConfigurationParser\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBConfigParser\fP (string fileName)"
+.br
+.ti -1c
+.RI "string \fBgetFileName\fP () const"
+.br
+.ti -1c
+.RI "virtual \fB~ConfigParser\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBparse\fP ()=0"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBm_fileName\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The base class for the configuration file parsers\&. All derived classes handle a specific type of configuration file: simulation, persons, antennas, probabilities\&. These derived classes parse the corresponding configuration file, build the corresponding objects (\fBAntenna\fP, \fBPerson\fP, \fBMobilePhone\fP, \fBMobileOperator\fP) and add them to the \fBAgentsCollection\fP container\&. This is an abstract class, it contains one pure virtual function, \fBparse()\fP that has to be implemented by subclasses\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ConfigParser::ConfigParser (string fileName)"
+Constructor of the class\&. It takes the filename of the configuration file as a parameter and stores it internally\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfileName\fP the name of configuration file to be parsed\&. 
+.RE
+.PP
+
+.SS "virtual ConfigParser::~ConfigParser ()\fC [virtual]\fP"
+Virtual destructor of the class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "string ConfigParser::getFileName () const"
+Returns the name of the configuration file\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the name of the configuration file\&. 
+.RE
+.PP
+
+.SS "virtual void ConfigParser::parse ()\fC [pure virtual]\fP"
+This pure virtual function has to be implemented by specific subclasses\&. Each subclass will be specialized to parse one of the configuration file used by the simulation software: simulation, persons, antennas, probabilities\&. They are passed in the command line of the software using the '-s', '-p', '-a', '-pb' options\&. 
+.PP
+Implemented in \fBAntennaConfigParser\fP, \fBProbabilitiesConfigParser\fP, and \fBPersonsConfigParser\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "string ConfigParser::m_fileName\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.

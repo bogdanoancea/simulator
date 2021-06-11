@@ -1,0 +1,54 @@
+.TH "EventFactory" 3 "Thu May 20 2021" "Simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EventFactory
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventFactory\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEventFactory\fP ()"
+.br
+.ti -1c
+.RI "\fBEvent\fP * \fBcreateEvent\fP (\fBEventConfig\fP *config)"
+.br
+.ti -1c
+.RI "virtual \fB~EventFactory\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This is the factory class that builds different types of network events according to the configuration of the simulator\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EventFactory::EventFactory ()"
+Default constructor 
+.SS "virtual EventFactory::~EventFactory ()\fC [virtual]\fP"
+Default destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBEvent\fP* EventFactory::createEvent (\fBEventConfig\fP * config)"
+Creates a concrete \fBEvent\fP object according to the actual type of the \fCconfig\fP argument\&. Two types of events are implemented: \fBCellIDEvent\fP and \fBCellIDTAEvent\fP\&. \fBCellIDEvent\fP contains the ID of the cell where a mobile device was detected at a time instant, the network type and the timestamp of the event and the \fBCellIDTAEvent\fP additionally contains the timing advance value of the event\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a concrete \fBEvent\fP object created according to the actual type of the of the \fCconfig\fP argument\&. The two types of event objects supported are: 
+.PD 0
+
+.IP "\(bu" 2
+\fBCellIDEvent\fP and in this case the \fCconfig\fP parameter should point to a CellIDEventconfig object 
+.IP "\(bu" 2
+\fBCellIDTAEvent\fP and in this case the \fCconfig\fP parameter should point to a CellIDTAEventconfig object\&. 
+.PP
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Simulator from the source code\&.
