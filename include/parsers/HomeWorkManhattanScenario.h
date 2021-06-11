@@ -27,32 +27,36 @@
 #include <parsers/ManhattanScenario.h>
 
 /**
- *
+ * This class contains the parameters of an home-work scenario using a Manhattan mobility pattern. For details about the
+ * home-work scenario consul the documentation of the HomeWorkScenario class. This scenario adds the Manhattan mobility
+ * pattern between home, work and anchor point location.
  */
 class HomeWorkManhattanScenario: public HomeWorkScenario {
 
 public:
 
 	/**
-	 *
+	 * The constructor of the class. It takes a point to a ManhattanScenario object and stores it internally.
+	 * It need this object to implement the Manhattan mobility scenario.
 	 * @param ms
 	 */
 	HomeWorkManhattanScenario(ManhattanScenario* ms);
 
 	/**
-	 *
+	 * default destructor.
 	 */
 	virtual ~HomeWorkManhattanScenario();
 
 	/**
-	 *
-	 * @return
+	 *	/**
+	 * Returns a string showing all home, work, anchor point locations and the parameters of the Manhattan grid.
+	 * @return a string showing all home, work, anchor point locations and the parameters of the Manhattan grid.
 	 */
 	const string toString() override;
 
 	/**
-	 *
-	 * @return
+	 * Returns a pointer to the ManhattanScenario object passed to the constructor.
+	 * @return  a pointer to the ManhattanScenario object passed to the constructor.
 	 */
 	ManhattanScenario* getManhattanScenario();
 

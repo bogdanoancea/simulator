@@ -34,6 +34,8 @@
  * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
  * the home-work scenario with Manhattan mobility pattern, overriding the generateNewLocation() method from its superclass, HomeWorkDisplacement.
  * For an explanation on how this mobility pattern works see HomeWorkManhattanScenario class.
+ * This class overrides the <tt>toDestination()</tt>, <tt>arrivedAtDestination()</tt> method inherited from
+ * the HomeWorkDisplacement class to implement the Manhattan mobility pattern between home, work and anchor points.
  */
 class HomeWorkManhattanDisplacement: public HomeWorkDisplacement {
 public:
