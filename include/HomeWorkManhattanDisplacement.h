@@ -30,11 +30,40 @@
 #include <Directions.h>
 
 
-
+/**
+ * This class is part of the Strategy design pattern used to implement the displacement of persons on the map. It implements
+ * the home-work scenario with Manhattan mobility pattern, overriding the generateNewLocation() method from its superclass, HomeWorkDisplacement.
+ * For an explanation on how this mobility pattern works see HomeWorkManhattanScenario class.
+ */
 class HomeWorkManhattanDisplacement: public HomeWorkDisplacement {
 public:
-	HomeWorkManhattanDisplacement(SimulationConfiguration* simConfig, double speed, Point* homeLocation, Point* workLocation, Point* anchorLocation);
+	/**
+	 * This is the constructor of the class.
+	 * @param simConfig the SimConfig object containing the simulation configuration options read from the simulation configuration file.
+	 * @param speed the speed of the person. This value is initially read from persons configuration file.
+	 * @param homeLocation the home location. This value is set at the creation of the Person object and it is a point whose coordinates are
+	 * generated from a normal distribution with the parameters read from the simulation configuration file. The persons involved in a simulation
+	 * are equally distributed among the home locations.
+	 * @param workLocation the work location . This value is set at the creation of the Person object and it is a point whose coordinates are uniformly
+	 * generated inside a disk with the parameters read from the simulation configuration file. If there are several work locations in this file,
+	 * a work location is assigned for each person using a uniform distribution.
+	 * @param anchorLocation the anchor point location. This value is set at the creation of the Person object and it is a point whose coordinates are uniformly
+	 * generated inside a disk with the parameters read from the simulation configuration file. If there are several anchor point locations in this file,
+	 * a work location is assigned for each person using a uniform distribution. An anchor point is optional, only some persons will have an anchor point.
+	 * The persons who have an anchor point are selected randomly according to a probability specified in the simulation configuration file.
+	 */
+	HomeWorkManhattanDisplacement(SimulationConfiguration *simConfig, double speed, Point *homeLocation, Point *workLocation, Point *anchorLocation);
+
+	/**
+	 * Default destructor.
+	 */
 	virtual ~HomeWorkManhattanDisplacement();
+
+	/**
+	 *
+	 * @param initLocation
+	 * @return
+	 */
 	virtual Point* generateNewLocation(Point * initLocation) override;
 
 private:

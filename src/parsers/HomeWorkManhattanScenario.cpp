@@ -34,7 +34,7 @@ HomeWorkManhattanScenario::~HomeWorkManhattanScenario() {
 }
 
 const string HomeWorkManhattanScenario::toString() {
-	cout << "aici" << endl;
+
 	ostringstream result;
 	result << HomeWorkScenario::toString();
 	if(m_manhattanScenario)
