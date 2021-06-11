@@ -23,6 +23,7 @@ map/Map.o\
 map/WKTMap.o\
 parsers/HomeWorkLocation.o\
 parsers/HomeWorkScenario.o\
+parsers/HomeWorkManhattanScenario.o\
 parsers/SimulationConfiguration.o\
 parsers/ConfigParser.o\
 parsers/SimulationConfigurationParser.o\
@@ -47,6 +48,7 @@ RandomWalkDriftDisplacement.o\
 LevyFlightDisplacement.o\
 HomeWorkDisplacement.o\
 ManhattanDisplacement.o\
+HomeWorkManhattanDisplacement.o\
 PostLocProb.o\
 NetPriorPostLocProb.o\
 UnifPriorPostLocProb.o\

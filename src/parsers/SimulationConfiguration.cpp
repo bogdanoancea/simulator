@@ -28,6 +28,7 @@
 SimulationConfiguration::SimulationConfiguration() {
 	m_manhattanScenario = nullptr;
 	m_homeWorkScenario = nullptr;
+	//m_homeWorkManhattanScenario = nullptr;
 	m_randomWalkDriftScenario = nullptr;
 	m_levyFlightScenario = nullptr;
 
@@ -36,6 +37,8 @@ SimulationConfiguration::SimulationConfiguration() {
 SimulationConfiguration::~SimulationConfiguration() {
 	if(m_homeWorkScenario)
 		delete m_homeWorkScenario;
+//	if(m_homeWorkManhattanScenario)
+//		delete m_homeWorkManhattanScenario;
 	if(m_randomWalkDriftScenario)
 		delete m_randomWalkDriftScenario;
 	if(m_levyFlightScenario)
@@ -201,33 +204,46 @@ void SimulationConfiguration::setMap(Map* map) {
 	m_map = map;
 }
 
-
 bool SimulationConfiguration::isHomeWorkScenario() const {
 	return (m_homeWorkScenario != nullptr);
 }
 
+bool SimulationConfiguration::isHomeWorkManhattanScenario() const {
+	if(dynamic_cast<HomeWorkManhattanScenario*>(m_homeWorkScenario))
+		return true;
+	else
+		return false;
+}
 
 unsigned int SimulationConfiguration::getNumHomeLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getHomeLocations().size();
+//	else if(isHomeWorkManhattanScenario())
+//		return m_homeWorkManhattanScenario->getHomeLocations().size();
 	else return -1;
 }
 
 unsigned int SimulationConfiguration::getNumWorkLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getWorkLocations().size();
+//	else if(isHomeWorkManhattanScenario())
+//		return m_homeWorkManhattanScenario->getWorkLocations().size();
 	else return -1;
 }
 
 unsigned int SimulationConfiguration::getNumAnchorLocations() const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getAnchorLocations().size();
+//	else if(isHomeWorkManhattanScenario())
+//		return m_homeWorkManhattanScenario->getAnchorLocations().size();
 	else return -1;
 }
 
 HomeWorkLocation SimulationConfiguration::getHomeLocation(unsigned int i) const {
-	if(isHomeWorkScenario())
+	if(isHomeWorkScenario() )
 		return m_homeWorkScenario->getHomeLocations().at(i);
+//	else if(isHomeWorkManhattanScenario())
+//		return m_homeWorkManhattanScenario->getHomeLocations().at(i);
 	else {
 		throw std::runtime_error("No Home - Work scenario defined!");
 	}
@@ -236,15 +252,18 @@ HomeWorkLocation SimulationConfiguration::getHomeLocation(unsigned int i) const 
 HomeWorkScenario* SimulationConfiguration::getHomeWorkScenario() {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario;
-	else {
-		return nullptr;
-	}
+//	else if(isHomeWorkManhattanScenario()){
+//		return m_homeWorkManhattanScenario;
+//	}
+	else return nullptr;
 
 }
 
 HomeWorkLocation SimulationConfiguration::getWorkLocation(unsigned int i) const {
 	if(isHomeWorkScenario())
 		return m_homeWorkScenario->getWorkLocations().at(i);
+//	else if(isHomeWorkManhattanScenario())
+//		return m_homeWorkManhattanScenario->getWorkLocations().at(i);
 	else {
 		throw std::runtime_error("No Home - Work scenario defined!");
 	}
@@ -275,9 +294,25 @@ void SimulationConfiguration::setLevyFlightScenario(LevyFlightScenario *levyFlig
 }
 
 ManhattanScenario* SimulationConfiguration::getManhattanScenario() const {
-	return m_manhattanScenario;
+	if(isHomeWorkManhattanScenario()) {
+		return dynamic_cast<HomeWorkManhattanScenario*>(m_homeWorkScenario)->getManhattanScenario();
+	}
+	else
+		return m_manhattanScenario;
 }
 
 void SimulationConfiguration::setManhattanScenario(ManhattanScenario *ms) {
 	m_manhattanScenario = ms;
+}
+
+HomeWorkScenario* SimulationConfiguration::getHomeWorkManhattanScenario() const {
+	if(isHomeWorkManhattanScenario())
+		return m_homeWorkScenario;
+	else {
+		return nullptr;
+	}
+}
+
+void SimulationConfiguration::setHomeWorkManhattanScenario(HomeWorkScenario* hwms) {
+	m_homeWorkScenario = hwms;
 }

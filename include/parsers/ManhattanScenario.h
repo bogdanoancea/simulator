@@ -100,7 +100,7 @@ public:
 	 * Returns a string with the parameters of the Manhattan grid.
 	 * @return a string with the parameters of the Manhattan grid.
 	 */
-	const string toString() const;
+	virtual const string toString() const;
 
 private:
 	double m_XStep;
