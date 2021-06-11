@@ -77,6 +77,7 @@ protected:
 	 * @return a new location on the map, toward the destination location.
 	 */
 	virtual Point* toDestination(Point*  initLocation, Point* destination);
+
 	/**
 	 * Computes the direction angle (on the trigonometric circle) of the line segment defined by the p1 and p2 parameters. The value of this angle is between 0 and 2 PI.
 	 * @param p1 the first point of the line segment.
@@ -96,8 +97,8 @@ protected:
 	virtual const bool arrivedAtDestination(Point* position, Point* destination) const;
 
 	/**
-	 * While at work position, this method generates a random location starting from the initLocation. While at work location, a person
-	 * will have a random walk closely to the work location.
+	 * While at work position, this method generates a random location starting from the initLocation to implement a random walk
+	 * closely to the work location.
 	 * @param initLocation the initial location.
 	 * @return a random location starting from the initLocation
 	 */

@@ -26,12 +26,36 @@
 #include <parsers/HomeWorkScenario.h>
 #include <parsers/ManhattanScenario.h>
 
+/**
+ *
+ */
 class HomeWorkManhattanScenario: public HomeWorkScenario {
+
 public:
+
+	/**
+	 *
+	 * @param ms
+	 */
 	HomeWorkManhattanScenario(ManhattanScenario* ms);
+
+	/**
+	 *
+	 */
 	virtual ~HomeWorkManhattanScenario();
+
+	/**
+	 *
+	 * @return
+	 */
 	const string toString() override;
+
+	/**
+	 *
+	 * @return
+	 */
 	ManhattanScenario* getManhattanScenario();
+
 private:
 	ManhattanScenario* m_manhattanScenario;
 };
