@@ -1,28 +1,18 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+<xs:include schemaLocation = "distribution.xsd"/>
+
+
 <xs:element name="persons">
 	<xs:complexType>
 		<xs:sequence>
 			<xs:element name="num_persons" type="xs:integer" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="min_age" type="xs:integer" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="max_age" type="xs:integer" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="age_distribution" minOccurs="1" maxOccurs="1">
-				<xs:complexType>
-					<xs:sequence>
-						<xs:element name="type" minOccurs="1" maxOccurs="1">
-							<xs:simpleType>	
-								<xs:restriction base="xs:string">
-									<xs:enumeration value="normal"/>
-									<xs:enumeration value="uniform"/>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>	
-						<xs:element name="mean" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-						<xs:element name="sd" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-					</xs:sequence>
-				</xs:complexType>
+			<xs:element name="age_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='TruncatedNormal'" type="TruncatedNormal"/>
+				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
 			</xs:element>
+			
 			<xs:element name="male_share" minOccurs="1" maxOccurs="1">
 				<xs:simpleType>	
 					<xs:restriction base="xs:decimal">
@@ -31,8 +21,14 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>	
-			<xs:element name="speed_walk" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="speed_car" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="speed_walk_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Normal'" type="Normal"/>
+				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+			</xs:element>
+			<xs:element name="speed_car_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Normal'" type="Normal"/>
+				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+			</xs:element>
 			<xs:element name="percent_home" minOccurs="1" maxOccurs="1">
 				<xs:simpleType>	
 					<xs:restriction base="xs:decimal">

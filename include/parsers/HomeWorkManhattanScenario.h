@@ -48,7 +48,7 @@ public:
 	virtual ~HomeWorkManhattanScenario();
 
 	/**
-	 *	/**
+	 *
 	 * Returns a string showing all home, work, anchor point locations and the parameters of the Manhattan grid.
 	 * @return a string showing all home, work, anchor point locations and the parameters of the Manhattan grid.
 	 */

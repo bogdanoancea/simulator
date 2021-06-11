@@ -91,9 +91,9 @@ void PersonsConfigParser::parse() noexcept(false) {
 
 shared_ptr<Distribution> PersonsConfigParser::parseAgeDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> ageDistr;
-	XMLElement *distributionEl = parent->FirstChildElement("age");
+	XMLElement *distributionEl = parent->FirstChildElement("age_distribution");
 	if (distributionEl) {
-		const XMLAttribute *type = distributionEl->FindAttribute("distributionType");
+		const XMLAttribute *type = distributionEl->FindAttribute("type");
 		DistributionType dType;
 		if (type) {
 			const char *dname = type->Value();
@@ -116,9 +116,9 @@ shared_ptr<Distribution> PersonsConfigParser::parseAgeDistribution(XMLElement* p
 
 shared_ptr<Distribution> PersonsConfigParser::parseSpeedWalkDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
-	XMLElement *speedWEl = parent->FirstChildElement("speed_walk");
+	XMLElement *speedWEl = parent->FirstChildElement("speed_walk_distribution");
 	if (speedWEl) {
-		const XMLAttribute *type = speedWEl->FindAttribute("distributionType");
+		const XMLAttribute *type = speedWEl->FindAttribute("type");
 		DistributionType dType;
 		if (type) {
 			const char *dname = type->Value();
@@ -141,9 +141,9 @@ shared_ptr<Distribution> PersonsConfigParser::parseSpeedWalkDistribution(XMLElem
 
 shared_ptr<Distribution> PersonsConfigParser::parseSpeedCarDistribution(XMLElement *parent) {
 	shared_ptr<Distribution> result;
-	XMLElement *speedCEl = parent->FirstChildElement("speed_car");
+	XMLElement *speedCEl = parent->FirstChildElement("speed_car_distribution");
 	if (speedCEl) {
-		const XMLAttribute *type = speedCEl->FindAttribute("distributionType");
+		const XMLAttribute *type = speedCEl->FindAttribute("type");
 		DistributionType dType;
 		if (type) {
 			const char *dname = type->Value();
