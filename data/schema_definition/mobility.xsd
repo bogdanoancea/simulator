@@ -76,83 +76,21 @@
 <xs:complexType name="HomeWork">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
-			<xs:sequence>
-				<xs:element name="home" minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
-				<xs:element name="work" minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
-				<xs:element name="anchor_point"  minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
-				<xs:element name="percent_time_home" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="percent_time_work" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="percent_time_anchor_point" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="percent_time_travel" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+			<xs:all>
+				<xs:element name="home" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="work" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="anchor_point" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="percent_time_home" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_work" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_anchor_point" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_travel" type = "precent" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="direction_angle_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
 					<xs:alternative test="@type ='Normal'" type="Normal"/>
 					<xs:alternative test="@type ='Laplace'" type="Laplace"/>
 					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
 				</xs:element>				
-				<xs:element name="prob_anchor_point" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-			</xs:sequence>
+				<xs:element name="prob_anchor_point" type = "prob" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
@@ -160,81 +98,17 @@
 <xs:complexType name="HomeWorkManhattan">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
-			<xs:sequence>
-				<xs:element name="home" minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
-				<xs:element name="work" minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
-				<xs:element name="anchor_point" minOccurs="1" maxOccurs="unbounded">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>	
-				</xs:element>
+			<xs:all>
+				<xs:element name="home" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="work" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="anchor_point" type = "location_coords" minOccurs="1" maxOccurs="unbounded"/>
 				<xs:element name = "manhattan_grid" type = "manhattan_grid" minOccurs="1" maxOccurs="1"/> 
-				<xs:element name="percent_time_home" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="percent_time_work" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="percent_time_anchor_point" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				
-				<xs:element name="percent_time_travel" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="prob_anchor_point" minOccurs="1" maxOccurs="1">
-					<xs:simpleType>	
-						<xs:restriction base="xs:decimal">
-							<xs:minInclusive value="0.0"/>
-							<xs:maxInclusive value="1.0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-								
-			</xs:sequence>
+				<xs:element name="percent_time_home" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_work" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_anchor_point" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="percent_time_travel" type = "precent" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="prob_anchor_point" type = "prob" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
@@ -247,6 +121,32 @@
 		<xs:element name="y_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 	</xs:all>
 </xs:complexType>
+
+
+<xs:complexType name="location_coords">
+	<xs:all>
+		<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="x_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="y_sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+	</xs:all>
+</xs:complexType>
+
+<xs:simpleType name="prob">
+	<xs:restriction base="xs:decimal">
+		<xs:minInclusive value="0.0"/>
+		<xs:maxInclusive value="1.0"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="precent">
+	<xs:restriction base="xs:decimal">
+		<xs:minInclusive value="0.0"/>
+		<xs:maxInclusive value="1.0"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
 </xs:schema>
 
 
