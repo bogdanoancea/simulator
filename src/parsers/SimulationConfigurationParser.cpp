@@ -107,9 +107,9 @@ void SimulationConfigurationParser::parse() {
 
 shared_ptr<Distribution> SimulationConfigurationParser::parseStayTimeDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
-	XMLElement *ts = parent->FirstChildElement("time_stay");
+	XMLElement *ts = parent->FirstChildElement("time_stay_distribution");
 	if (ts) {
-		const XMLAttribute *type = ts->FindAttribute("distributionType");
+		const XMLAttribute *type = ts->FindAttribute("type");
 		DistributionType dType;
 		if (type) {
 			const char *dname = type->Value();
@@ -134,9 +134,9 @@ shared_ptr<Distribution> SimulationConfigurationParser::parseStayTimeDistributio
 
 shared_ptr<Distribution> SimulationConfigurationParser::parseIntervalBetweenStaysDistribution(XMLElement* parent) {
 	shared_ptr<Distribution> result;
-	XMLElement *its = parent->FirstChildElement("interval_between_stays");
+	XMLElement *its = parent->FirstChildElement("interval_between_stays_distribution");
 	if (its) {
-		const XMLAttribute *type = its->FindAttribute("distributionType");
+		const XMLAttribute *type = its->FindAttribute("type");
 		DistributionType dType;
 		if (type) {
 			const char *dname = type->Value();
@@ -345,7 +345,7 @@ Distribution* SimulationConfigurationParser::parseSpeedDistribution(XMLElement* 
 	XMLElement *distribution = mvEl->FirstChildElement("speed_distribution");
 	DistributionType dType;
 	if (distribution) {
-		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		const XMLAttribute *type = distribution->FindAttribute("type");
 		if (type) {
 			const char *dname = type->Value();
 			if (!strcmp(dname, "Levy")) {
@@ -371,7 +371,7 @@ Distribution* SimulationConfigurationParser::parseTrendAngleDistribution(XMLElem
 	XMLElement *distribution = mvEl->FirstChildElement(elem.str().c_str());
 	DistributionType dType;
 	if (distribution) {
-		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		const XMLAttribute *type = distribution->FindAttribute("type");
 		if (type) {
 			const char *dname = type->Value();
 			if (!strcmp(dname, "Normal")) {
@@ -396,7 +396,7 @@ Distribution* SimulationConfigurationParser::parseReturnAngleDistribution(XMLEle
 	XMLElement *distribution = mvEl->FirstChildElement("return_angle_distribution");
 	DistributionType dType;
 	if (distribution) {
-		const XMLAttribute *type = distribution->FindAttribute("distributionType");
+		const XMLAttribute *type = distribution->FindAttribute("type");
 		if (type) {
 			const char *dname = type->Value();
 			if (!strcmp(dname, "Normal")) {

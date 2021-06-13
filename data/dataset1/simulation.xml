@@ -2,13 +2,13 @@
 	<start_time>0</start_time>
 	<end_time>900</end_time>
 	<time_increment>1</time_increment>
-	<time_stay distributionType = "Normal">
+	<time_stay_distribution type = "Normal">
 		<mean>0</mean>
 		<sd>0</sd>
-	</time_stay>
-    <interval_between_stays distributionType = "Exponential">
+	</time_stay_distribution>
+    <interval_between_stays_distribution type = "Exponential">
        	<mean>25</mean>
-    </interval_between_stays>
+    </interval_between_stays_distribution>
 	<mno>
 		<mno_name>MNO1</mno_name>
 		<prob_mobile_phone>0.35</prob_mobile_phone>
@@ -19,15 +19,15 @@
 	</mno>
 	<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
 	<movement_pattern type = "random_walk_closed_map_drift">
-		<trend_angle_1_distribution distributionType = "Normal">
+		<trend_angle_1_distribution type = "Normal">
 			<mean>135</mean>
 			<sd>20</sd>
 		</trend_angle_1_distribution>
-		<trend_angle_2_distribution distributionType = "Normal">>
+		<trend_angle_2_distribution type = "Normal">
 			<mean>225</mean>
 			<sd>20</sd>
 		</trend_angle_2_distribution>
-		<return_angle_distribution distributionType = "Uniform">
+		<return_angle_distribution type = "Uniform">
 			<min>120</min>
 			<max>240</max>
 		</return_angle_distribution>

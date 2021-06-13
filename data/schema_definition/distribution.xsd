@@ -67,10 +67,10 @@
 <xs:complexType name="Levy">
 	<xs:complexContent>
 		<xs:extension base = "distr_type">
-			<xs:sequence>
+			<xs:choice>
 				<xs:element name="c" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="location" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-			</xs:sequence>
+			</xs:choice>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>

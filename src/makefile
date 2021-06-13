@@ -23,6 +23,7 @@ map/Map.o\
 map/WKTMap.o\
 parsers/HomeWorkLocation.o\
 parsers/HomeWorkScenario.o\
+parsers/ManhattanScenario.o\
 parsers/HomeWorkManhattanScenario.o\
 parsers/SimulationConfiguration.o\
 parsers/ConfigParser.o\
@@ -34,7 +35,6 @@ parsers/AntennaConfigParser.o\
 parsers/ProbabilitiesConfiguration.o\
 parsers/ProbabilitiesConfigParser.o\
 parsers/RandomWalkDriftScenario.o\
-parsers/ManhattanScenario.o\
 parsers/LevyFlightScenario.o\
 AntennaInfo.o\
 CSVParser.o\
