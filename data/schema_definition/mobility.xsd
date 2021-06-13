@@ -20,12 +20,12 @@
 <xs:complexType name="Manhattan">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
-			<xs:sequence>
+			<xs:all>
 				<xs:element name="x_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="y_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="x_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="y_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-			</xs:sequence>
+			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
@@ -40,7 +40,7 @@
 <xs:complexType name="RandomWalkDrift">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
-			<xs:sequence>
+			<xs:all>
 				<xs:element name="trend_angle_1_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
 					<xs:alternative test="@type ='Normal'" type="Normal"/>
 					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
@@ -54,7 +54,7 @@
 					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
 				</xs:element>
 				
-			</xs:sequence>
+			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
@@ -63,12 +63,12 @@
 <xs:complexType name="LevyFlight">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
-			<xs:sequence>
+			<xs:all>
 				<xs:element name="cutOffSpeed" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="speed_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
 					<xs:alternative test="@type ='Levy'" type="Levy"/>
 				</xs:element>
-			</xs:sequence>
+			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
@@ -157,7 +157,6 @@
 	</xs:complexContent>
 </xs:complexType>
 
-
 <xs:complexType name="HomeWorkManhattan">
 	<xs:complexContent>
 		<xs:extension base = "mobility">
@@ -192,16 +191,7 @@
 						</xs:sequence>
 					</xs:complexType>	
 				</xs:element>
-				<xs:element name = "manhattan_grid" minOccurs="1" maxOccurs="1"> 
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="x_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="x_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-							<xs:element name="y_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
+				<xs:element name = "manhattan_grid" type = "manhattan_grid" minOccurs="1" maxOccurs="1"/> 
 				<xs:element name="percent_time_home" minOccurs="1" maxOccurs="1">
 					<xs:simpleType>	
 						<xs:restriction base="xs:decimal">
@@ -247,6 +237,15 @@
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="manhattan_grid">
+	<xs:all>
+		<xs:element name="x_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="y_step" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="x_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="y_origin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+	</xs:all>
 </xs:complexType>
 </xs:schema>
 
