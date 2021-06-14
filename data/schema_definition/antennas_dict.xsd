@@ -6,7 +6,7 @@
 		<xs:sequence>
 			<xs:element name="antenna" minOccurs="1" maxOccurs="unbounded">
 				<xs:complexType>
-					<xs:sequence>
+					<xs:all>
 						<xs:element name="mno_name" type="xs:string" minOccurs="1" maxOccurs="1"/>
 						<xs:element name="maxconnections" type="xs:integer" minOccurs="1" maxOccurs="1"/>
 						<xs:element name="power" type="xs:decimal" minOccurs="1" maxOccurs="1"/>						
@@ -18,7 +18,15 @@
 									<xs:enumeration value="omnidirectional"/>
 								</xs:restriction>
 							</xs:simpleType>
-						</xs:element>	
+						</xs:element>
+						<xs:element name="network_type" minOccurs="0" maxOccurs="1">
+							<xs:simpleType>	
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="3G"/>
+									<xs:enumeration value="4G"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
 						<xs:element name="Smin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>						
 						<xs:element name="Qmin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>	
 						<xs:element name="tilt" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
@@ -33,7 +41,7 @@
 						<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>	
 						<xs:element name="z" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
 						<xs:element name="rmax" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
-					</xs:sequence>
+					</xs:all>
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>

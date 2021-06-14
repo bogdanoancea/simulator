@@ -61,7 +61,7 @@
         <power>10</power>
         <attenuationfactor>3.55</attenuationfactor>
         <type>omnidirectional</type>
-        <network_type>5G</network_type>
+        <network_type>4G</network_type>
         <Smin>-80</Smin>
         <Qmin>0.5</Qmin>
         <Smid>-92.5</Smid>

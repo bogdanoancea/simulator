@@ -2,10 +2,11 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 <xs:include schemaLocation = "distribution.xsd"/>
 <xs:include schemaLocation = "mobility.xsd"/>
+<xs:include schemaLocation = "common.xsd"/>
 
 <xs:element name="simulation">
 	<xs:complexType>
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="start_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="end_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="time_increment" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
@@ -23,27 +24,12 @@
 				<xs:complexType>
 					<xs:sequence>
 						<xs:element name="mno_name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="prob_mobile_phone" minOccurs="1" maxOccurs="1">
-							<xs:simpleType>	
-								<xs:restriction base="xs:decimal">
-									<xs:minInclusive value="0.0"/>
-									<xs:maxInclusive value="1.0"/>
-								</xs:restriction>
-							</xs:simpleType>
-						</xs:element>	
+						<xs:element name="prob_mobile_phone" type = "prob" minOccurs="1" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 			
-			<xs:element name="prob_sec_mobile_phone" minOccurs="1" maxOccurs="1">
-				<xs:simpleType>	
-					<xs:restriction base="xs:decimal">
-						<xs:minInclusive value="0.0"/>
-						<xs:maxInclusive value="1.0"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-				
+			<xs:element name="prob_sec_mobile_phone" type = "prob" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="movement_pattern" type="mobility" minOccurs="1" maxOccurs="1">
 				<xs:alternative test="@type ='random_walk_closed_map'" type="RandomWalk"/>
 				<xs:alternative test="@type ='random_walk_closed_map_drift'" type="RandomWalkDrift"/>
@@ -70,10 +56,8 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			
 			<xs:element name="conn_threshold" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="qual_min" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
-			
 			<xs:element name="grid_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="grid_dim_tile_x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="grid_dim_tile_y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
@@ -81,7 +65,7 @@
 			<xs:element name="antennas_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="random_seed" type="xs:integer" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="output_dir" type="xs:string" minOccurs="0" maxOccurs="1"/>
-		</xs:sequence>
+		</xs:all>
 	</xs:complexType>
 </xs:element>
 </xs:schema>

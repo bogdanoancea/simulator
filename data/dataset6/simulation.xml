@@ -15,10 +15,12 @@
 		</mno>
 		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
 		<movement_pattern type = "manhattan">
-			<x_step>50</x_step>
-			<y_step>50</y_step>
-			<x_origin>0</x_origin>
-			<y_origin>0</y_origin>
+			<manhattan_grid>
+				<x_step>50</x_step>
+				<y_step>50</y_step>
+				<x_origin>0</x_origin>
+				<y_origin>0</y_origin>
+			</manhattan_grid>
 		</movement_pattern>
 		<connection_type>strength</connection_type>
 		<event_type>cellIDTA</event_type>

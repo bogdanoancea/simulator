@@ -3,7 +3,7 @@
 
 <xs:element name="probabilities">
 	<xs:complexType>
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="prior" minOccurs="1" maxOccurs="1">
 				<xs:simpleType>	
 					<xs:restriction base="xs:string">
@@ -13,7 +13,7 @@
 				</xs:simpleType>
 			</xs:element>
 			<xs:element name="prob_file_name_prefix" type="xs:string" minOccurs="1" maxOccurs="1"/>
-		</xs:sequence>
+		</xs:all>
 	</xs:complexType>
 </xs:element>
 </xs:schema>

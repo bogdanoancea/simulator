@@ -2,25 +2,18 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
 <xs:include schemaLocation = "distribution.xsd"/>
-
+<xs:include schemaLocation = "common.xsd"/>
 
 <xs:element name="persons">
 	<xs:complexType>
-		<xs:sequence>
+		<xs:all>
 			<xs:element name="num_persons" type="xs:integer" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="age_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
 				<xs:alternative test="@type ='TruncatedNormal'" type="TruncatedNormal"/>
 				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
 			</xs:element>
 			
-			<xs:element name="male_share" minOccurs="1" maxOccurs="1">
-				<xs:simpleType>	
-					<xs:restriction base="xs:decimal">
-						<xs:minInclusive value="0.0"/>
-						<xs:maxInclusive value="1.0"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>	
+			<xs:element name="male_share" type = "percent" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="speed_walk_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
 				<xs:alternative test="@type ='Normal'" type="Normal"/>
 				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
@@ -29,15 +22,8 @@
 				<xs:alternative test="@type ='Normal'" type="Normal"/>
 				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
 			</xs:element>
-			<xs:element name="percent_home" minOccurs="1" maxOccurs="1">
-				<xs:simpleType>	
-					<xs:restriction base="xs:decimal">
-						<xs:minInclusive value="0.0"/>
-						<xs:maxInclusive value="1.0"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>	
-		</xs:sequence>
+			<xs:element name="percent_home" type = "percent" minOccurs="1" maxOccurs="1"/>
+		</xs:all>
 	</xs:complexType>
 </xs:element>
 </xs:schema>

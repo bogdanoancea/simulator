@@ -206,9 +206,7 @@ void SimulationConfigurationParser::parseHomeWorkManhattanScenario(XMLElement* h
 	parseLocations(homeWorkElement, "home", hws);
 	parseLocations(homeWorkElement, "work", hws);
 	parseLocations(homeWorkElement, "anchor_point", hws);
-	XMLElement* manhattan_grid = homeWorkElement->FirstChildElement("manhattan_grid");
-	if(manhattan_grid)
-		parseManhattan(manhattan_grid, ((HomeWorkManhattanScenario*)hws)->getManhattanScenario());
+	parseManhattan(homeWorkElement, ((HomeWorkManhattanScenario*)hws)->getManhattanScenario());
 	hws->setPrecentTimeHome(getValue(homeWorkElement, "percent_time_home"));
 	hws->setPrecentTimeWork(getValue(homeWorkElement, "percent_time_work"));
 	hws->setPrecentTimeAnchorPoint(getValue(homeWorkElement, "percent_time_anchor_point"));
@@ -302,7 +300,7 @@ MovementType SimulationConfigurationParser::parseMovement(XMLElement* el) {
 				result = MovementType::MANHATTAN;
 			} else if (!strcmp(mvType, "home_work_manhattan")) {
 				ManhattanScenario* ms  = new ManhattanScenario();
-				parseManhattan(mvEl, ms);
+				//parseManhattan(mvEl, ms);
 				m_simConfig->setHomeWorkManhattanScenario(new HomeWorkManhattanScenario(ms));
 				parseHomeWorkManhattanScenario(mvEl, m_simConfig->getHomeWorkManhattanScenario());
 				cout << m_simConfig->getHomeWorkManhattanScenario()->toString() << endl;
@@ -334,10 +332,16 @@ void SimulationConfigurationParser::parseRandomWalkDrift(XMLElement* mvEl, Rando
 }
 
 void SimulationConfigurationParser::parseManhattan(XMLElement* mvEl, ManhattanScenario* ms) {
-	ms->setXStep(getValue(mvEl, "x_step", Constants::GRID_DIM_TILE_X));
-	ms->setYStep(getValue(mvEl, "y_step", Constants::GRID_DIM_TILE_Y));
-	ms->setXOrigin(getValue(mvEl, "x_origin", Constants::GRID_X_ORIG));
-	ms->setYOrigin(getValue(mvEl, "y_origin", Constants::GRID_Y_ORIG));
+	XMLElement* manhattan_grid = mvEl->FirstChildElement("manhattan_grid");
+		if(manhattan_grid) {
+			ms->setXStep(getValue(manhattan_grid, "x_step", Constants::GRID_DIM_TILE_X));
+			ms->setYStep(getValue(manhattan_grid, "y_step", Constants::GRID_DIM_TILE_Y));
+			ms->setXOrigin(getValue(manhattan_grid, "x_origin", Constants::GRID_X_ORIG));
+			ms->setYOrigin(getValue(manhattan_grid, "y_origin", Constants::GRID_Y_ORIG));
+		}
+		else {
+			throw std::runtime_error("Manhattan grid not specified");
+		}
 }
 
 Distribution* SimulationConfigurationParser::parseSpeedDistribution(XMLElement* mvEl) {
