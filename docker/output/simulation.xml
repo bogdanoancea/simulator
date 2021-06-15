@@ -2,13 +2,13 @@
         <start_time>0</start_time>
         <end_time>2400</end_time>
 		<time_increment>1</time_increment>
-		<time_stay distributionType = "Normal">
+		<time_stay_distribution type = "Normal">
 			<mean>20</mean>
 			<sd>2</sd>
-		</time_stay>
-        <interval_between_stays distributionType = "Exponential">
+		</time_stay_distribution>
+        <interval_between_stays_distribution type = "Exponential">
         	<mean>120</mean>
-        </interval_between_stays>
+        </interval_between_stays_distribution>
 		<mno>
         	<mno_name>MNO1</mno_name>
         	<prob_mobile_phone>0.35</prob_mobile_phone>
@@ -16,40 +16,40 @@
 		<prob_sec_mobile_phone>0.15</prob_sec_mobile_phone>
 		<movement_pattern type = "home_work">
 			<home>
-				<x_home>2000</x_home>
-				<y_home>7500</y_home>
-				<x_sd_home>1000</x_sd_home>
-				<y_sd_home>1000</y_sd_home>
+				<x>2000</x>
+				<y>7500</y>
+				<x_sd>1000</x_sd>
+				<y_sd>1000</y_sd>
 			</home>
 			<home>
-				<x_home>8000</x_home>
-				<y_home>7500</y_home>
-				<x_sd_home>750</x_sd_home>
-				<y_sd_home>750</y_sd_home>
+				<x>8000</x>
+				<y>7500</y>
+				<x_sd>750</x_sd>
+				<y_sd>750</y_sd>
 			</home>
 			<work>
-				<x_work>2500</x_work>
-				<y_work>8500</y_work>
-				<x_sd_work>750</x_sd_work>
-				<y_sd_work>750</y_sd_work>
+				<x>2500</x>
+				<y>8500</y>
+				<x_sd>750</x_sd>
+				<y_sd>750</y_sd>
 			</work>
 			<work>
-				<x_work>5000</x_work>
-				<y_work>2000</y_work>
-				<x_sd_work>750</x_sd_work>
-				<y_sd_work>750</y_sd_work>
+				<x>5000</x>
+				<y>2000</y>
+				<x_sd>750</x_sd>
+				<y_sd>750</y_sd>
 			</work>
 			<anchor_point>
-				<x_anchor>8000</x_anchor>
-				<y_anchor>4000</y_anchor>
-				<x_sd_anchor>700</x_sd_anchor>
-				<y_sd_anchor>700</y_sd_anchor>
+				<x>8000</x>
+				<y>4000</y>
+				<x_sd>700</x_sd>
+				<y_sd>700</y_sd>
 			</anchor_point>
 			<anchor_point>
-				<x_anchor>3000</x_anchor>
-				<y_anchor>5000</y_anchor>
-				<x_sd_anchor>700</x_sd_anchor>
-				<y_sd_anchor>700</y_sd_anchor>
+				<x>3000</x>
+				<y>5000</y>
+				<x_sd>700</x_sd>
+				<y_sd>700</y_sd>
 			</anchor_point>
 			<percent_time_home>0.5</percent_time_home>
 			<percent_time_work>0.3</percent_time_work>
