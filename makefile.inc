@@ -21,7 +21,7 @@ ifeq ($(OS),Windows_NT)
  	CXX    = g++.exe
 	TARGET = simulator.exe
 	LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
-	LIBS = $(GEOS_HOME)/libgeos.dll.a -lstdc++fs
+	LIBS = -Wl,-Bstatic $(GEOS_HOME)/libgeos.a -lstdc++fs
 	CXXFLAGS += -march=native
 
 else
