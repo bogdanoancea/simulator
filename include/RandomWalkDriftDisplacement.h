@@ -64,6 +64,8 @@ public:
 private:
 	bool m_changeDirection;
 	RandomWalkDriftScenario* m_randomWalkDriftScenario;
+	double m_pi180;
+	Geometry* m_mapBoundary;
 };
 
 #endif /* INCLUDE_RANDOMWALKDRIFTDISPLACEMENT_H_ */

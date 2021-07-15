@@ -39,6 +39,12 @@
 #include <utility>
 #include <vector>
 #include <TinyXML2.h>
+#ifdef _MSC_VER
+typedef __int32 int32_t;
+#else
+#include <stdint.h>
+#endif
+
 
 using namespace geos;
 using namespace geos::geom;
@@ -238,6 +244,20 @@ namespace utils {
 	 * @return a NetworkType value converted to a string.
 	 */
 	string toString(NetworkType type);
+
+	/**
+	 * Needed to compute fast sin and cos
+	 * @param x the value to be truncated
+	 * @return
+	 */
+	int32_t fast_round(double x);
+
+	/**
+	 * Fast sin computation.
+	 * @param x the angel in radians
+	 * @return the value of sin function
+	 */
+	double fast_sin(double x);
 
 }
 

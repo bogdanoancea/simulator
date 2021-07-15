@@ -43,11 +43,26 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
-
+#include <fstream>
+#include <sstream>
+#include <queue>
+#include <AntennaInfo.h>
+#include <CSVparser.hpp>
+#include <chrono>
+#include <time.h>
 
 using namespace std;
 using namespace tinyxml2;
 
+class Compare
+{
+public:
+    //Ascending order sort
+    bool operator() (pair<AntennaInfo, int> pair1, pair<AntennaInfo, int> pair2)
+    {
+        return pair1.first > pair2.first;
+    }
+};
 
 World::World(Map* mmap, const string& configPersonsFileName, const string& configAntennasFileName, const string& configSimulationFileName,
 		const string& probabilitiesFileName) {
@@ -164,7 +179,7 @@ void World::computeProbabilities(std::map<unsigned long, vector<AntennaInfo>> da
 	m_postMethod->computeProbabilities(data);
 }
 
-std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
+std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) {
 	std::map<unsigned long, vector<AntennaInfo>> data;
 	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
@@ -172,27 +187,44 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents() {
 	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 		vector<AntennaInfo> tmp;
+		std::priority_queue<pair<AntennaInfo, int>, std::vector<pair<AntennaInfo, int>>, Compare > minHeap;
+		vector<ifstream> handles;
+		int i = 0;
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = static_cast<Antenna*>(it->second);
 			if (a->getMNO()->getId() == mo->getId()) {
 				string fileName = mo->getOutputDir() + "/" + a->getAntennaOutputFileName();
-				CSVParser file = CSVParser(fileName, DataType::eFILE, ',', true);
-				for (unsigned long i = 0; i < file.rowCount(); i++) {
-					Row s = file[i];
-					AntennaInfo a(m_sp->getEventType(), s);
-					tmp.push_back(a);
-				}
+				handles.push_back(ifstream(fileName.c_str()));
+				//handles[i]->open(fileName.c_str());
+				string firstValue, headerValue;
+				handles[i] >> headerValue; //first value in the file (minimum in the file)
+				handles[i] >> firstValue; //first value in the file (minimum in the file)
+				AntennaInfo a(firstValue);
+				//cout << " introduc: " << a.toString() << endl;
+				minHeap.push(pair<AntennaInfo, int>(a, i));
+				if(computeProb)
+				   	tmp.push_back(a);
+				i++;
 			}
-
 		}
-		sort(tmp.begin(), tmp.end());
 		ofstream antennaInfoFile;
 		string name = mo->getOutputDir() + "/" + string("AntennaInfo_MNO_" + mo->getMNOName() + ".csv");
 		antennaInfoFile.open(name, ios::out);
 		antennaInfoFile << Antenna::getEventHeader(m_sp->getEventType()) <<  endl;
-		for (AntennaInfo& ai : tmp) {
-			antennaInfoFile << ai.toString() <<  endl;
-		}
+	    while (minHeap.size() > 0) {
+	        pair<AntennaInfo, int> minPair = minHeap.top();
+	        minHeap.pop();
+	        antennaInfoFile << minPair.first.toString() << '\n';
+	        if(computeProb)
+	        	tmp.push_back(minPair.first);
+	        //cout << "am scos: " << minPair.first.toString() << endl;
+	        flush(antennaInfoFile);
+	        string nextValue;
+	        if (handles[minPair.second] >> nextValue) {
+	        	AntennaInfo b(nextValue);
+	            minHeap.push(pair <AntennaInfo, int>(b, minPair.second));
+	        }
+	    }
 		antennaInfoFile.close();
 		data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}

@@ -122,6 +122,12 @@ public:
 	 */
 	void printAgents();
 
+	/**
+	 * Returns the number of agents with the type passed as parameter.
+	 * @param agentType the number of agents with the type passed as parameter.
+	 */
+	unsigned long getNumAgentsByType(const string& agentType);
+
 private:
 	unordered_multimap<string, Agent*> m_agents;
 };

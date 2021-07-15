@@ -133,10 +133,11 @@ public:
 
 	/**
 	 * At the end of a simulation this method merges all the events saved by individual antennas into a single data structure.
+	 * @param computeProb if TRUE returns a list of all events needed to compute the location probabilities.
 	 * @return a map of <MNO_ID, vector<AntennInfo>> where each MNO identified by its ID has a
 	 * vector of all events saved by all antennas belonging to that MNO. This map is needed for computation of location probabilities.
 	 */
-	std::map<unsigned long, vector<AntennaInfo>> getEvents();
+	std::map<unsigned long, vector<AntennaInfo>> getEvents(bool computeProb);
 
 private:
 	AgentsCollection* m_agentsCollection;

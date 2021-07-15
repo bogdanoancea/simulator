@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 //#endif
 
 
-
+	//ios_base::sync_with_stdio(false);
 	InputParser parser(argc, argv);
 	if (argc == 2 && parser.cmdOptionExists("-h")) {
 		cout
@@ -92,9 +92,9 @@ int main(int argc, char** argv) {
 		w.getMap()->dumpGrid(w.getOutputDir() + "/" + w.getGridFilename());
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
-			w.getEvents();
+			w.getEvents(false);
 		} else {
-			std::map<unsigned long, vector<AntennaInfo>> data = w.getEvents();
+			std::map<unsigned long, vector<AntennaInfo>> data = w.getEvents(true);
 			w.computeProbabilities(data);
 		}
 	} catch (const std::bad_alloc& e) {

@@ -31,6 +31,8 @@ using namespace utils;
 RandomWalkDriftDisplacement::RandomWalkDriftDisplacement(SimulationConfiguration* simConfig, double speed):
 		Displace(simConfig, speed), m_changeDirection{false} {
 	m_randomWalkDriftScenario = simConfig->getRandomWalkDriftScenario();
+	m_pi180 = utils::PI / 180.0;
+	m_mapBoundary = m_simConfig->getMap()->getBoundary();
 }
 
 RandomWalkDriftDisplacement::~RandomWalkDriftDisplacement() {
@@ -40,12 +42,12 @@ Point* RandomWalkDriftDisplacement::generateNewLocation(Point* initLocation) {
 
 	double theta = 0.0;
 	if (m_simConfig->getClock()->getCurrentTime() < m_simConfig->getClock()->getFinalTime() / 2)
-		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle1Distribution())  * utils::PI / 180.0;
+		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle1Distribution())  *  utils::PI / 180.0;
 	else {
-		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle2Distribution()) * utils::PI / 180.0;
+		theta = RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getTrendAngle2Distribution()) *  utils::PI / 180.0;
 	}
 	if (m_changeDirection) {
-		theta = theta + utils::PI * RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getReturnAngleDistribution()) / 180.0;
+		theta = theta +  utils::PI / 180.0 * RandomNumberGenerator::instance()->generateDouble(m_randomWalkDriftScenario->getReturnAngleDistribution());
 	}
 	Point* pt = computeNewLocation(initLocation, theta);
 

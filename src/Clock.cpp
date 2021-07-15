@@ -84,3 +84,7 @@ unsigned long Clock::getFinalTime() const {
 void Clock::setFinalTime(unsigned long finalTime) {
 	m_finalTime = finalTime;
 }
+
+unsigned long Clock::getNTimeSteps() {
+	return (m_finalTime - m_initialTime)/ m_increment;
+}

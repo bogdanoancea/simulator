@@ -42,6 +42,16 @@ AntennaInfo::AntennaInfo(EventType evtType, Row r): m_eventType{evtType}  {
 }
 
 
+AntennaInfo::AntennaInfo(string line) {
+	vector<string> tok;
+	tokenize(line, tok, ",");
+	m_time = stoul(tok[0]);
+	unsigned int size = tok.size();
+	for(unsigned int i = 0; i < size; i++)
+		m_textRow.push_back(tok[i]);
+	m_eventType = EventType::CELLID;
+}
+
 //AntennaInfo::AntennaInfo(const unsigned long time, const unsigned long antennaId, const unsigned long event, const unsigned long deviceId, const double x, const double y) :
 //		m_time { time }, m_antennaId { antennaId }, m_eventCode { event }, m_deviceId { deviceId }, m_x { x }, m_y { y } {
 //}
@@ -104,3 +114,26 @@ bool AntennaInfo::operator <(const AntennaInfo& ai) const {
 	return (m_time < ai.getTime());
 }
 
+
+bool AntennaInfo::operator >(const AntennaInfo& ai) const {
+	return (m_time > ai.getTime());
+}
+
+void AntennaInfo::tokenize(string& str, vector<string>& tokens, const string& delimiters) {
+  // Skip delimiters at beginning.
+  string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+
+  // Find first non-delimiter.
+  string::size_type pos = str.find_first_of(delimiters, lastPos);
+
+  while (string::npos != pos || string::npos != lastPos) {
+    // Found a token, add it to the vector.
+    tokens.push_back(str.substr(lastPos, pos - lastPos));
+
+    // Skip delimiters.
+    lastPos = str.find_first_not_of(delimiters, pos);
+
+    // Find next non-delimiter.
+    pos = str.find_first_of(delimiters, lastPos);
+  }
+}

@@ -126,6 +126,12 @@ public:
 	 */
 	void reset();
 
+	/**
+	 * Returns the number of time steps of the simulation.
+	 * @returns the number of time steps of the simulation.
+	 */
+	unsigned long getNTimeSteps();
+
 private:
 	unsigned long m_initialTime;
 	unsigned long m_currentTime;

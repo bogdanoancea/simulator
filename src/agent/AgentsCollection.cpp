@@ -69,6 +69,14 @@ vector<Agent*> AgentsCollection::getAgentsByType(const string& agentType) {
 	return result;
 }
 
+unsigned long AgentsCollection::getNumAgentsByType(const string& agentType) {
+	unsigned long result = 0;
+	std::pair<um_iterator, um_iterator> r = getAgentListByType(agentType);
+	for (auto it = r.first; it != r.second; it++)
+		result++;
+	return result;
+}
+
 Agent* AgentsCollection::getAgent(const unsigned long id) const {
 	Agent* result = nullptr;
 	for (auto& a : m_agents) {
