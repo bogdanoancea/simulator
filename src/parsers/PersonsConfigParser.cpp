@@ -305,7 +305,16 @@ Point* PersonsConfigParser::generateLocation(unsigned int index, vector<HomeWork
 }
 
 void PersonsConfigParser::setHomePersonHWLocations(Person* p, Point* pt) {
-	 Point* hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
+	Point* hl;
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(*pt->getCoordinates());
+	#else
+		hl = m_simConfig->getMap()->getGlobalFactory()->createPoint(pt->getCoordinates());
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 	 p->setHomeLocation(hl);
 	 int workLocationIndex = RandomNumberGenerator::instance()->generateUniformInt(0,  m_simConfig->getNumWorkLocations() - 1);
 	 vector<HomeWorkLocation> hwl;

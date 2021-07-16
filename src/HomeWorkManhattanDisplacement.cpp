@@ -64,7 +64,15 @@ Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point*
 		pt = m_manhattanDisplacement.generateNewLocation(initLocation);
 	}
 	if(arrivedAtDestination(pt, destination)) {
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(*destination->getCoordinates());
+	#else
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 		m_manhattanDisplacement.setStatus(m_manhattanDisplacement.checkStatus(destination));
 	}
 	return pt;

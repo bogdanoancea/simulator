@@ -236,7 +236,15 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 		}
 	}
 	if(arrivedAtDestination(pt, destination)) {
+#if GEOS_VERSION_MAJOR >= 3
+	#if GEOS_VERSION_MINOR > 7
+		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(*destination->getCoordinates());
+	#else
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(destination->getCoordinates());
+	#endif
+#else
+		throw std::runtime_error("unsupported geos version");
+#endif
 	}
 	return pt;
 }

@@ -27,29 +27,24 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/Person.h>
-#include <AntennaType.h>
+#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
-#include <CSVparser.hpp>
 #include <events/EventType.h>
 #include <geos/geom/Point.h>
 #include <map/Map.h>
 #include <NetPriorPostLocProb.h>
+#include <parsers/ProbabilitiesConfiguration.h>
 #include <UnifPriorPostLocProb.h>
 #include <World.h>
-#include <algorithm>
 #include <ctime>
+#include <fstream>
 #include <iostream>
+#include <map>
+#include <queue>
 #include <typeinfo>
 #include <unordered_map>
 #include <utility>
-#include <fstream>
-#include <sstream>
-#include <queue>
-#include <AntennaInfo.h>
-#include <CSVparser.hpp>
-#include <chrono>
-#include <time.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -195,12 +190,10 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 			if (a->getMNO()->getId() == mo->getId()) {
 				string fileName = mo->getOutputDir() + "/" + a->getAntennaOutputFileName();
 				handles.push_back(ifstream(fileName.c_str()));
-				//handles[i]->open(fileName.c_str());
 				string firstValue, headerValue;
-				handles[i] >> headerValue; //first value in the file (minimum in the file)
-				handles[i] >> firstValue; //first value in the file (minimum in the file)
+				handles[i] >> headerValue;
+				handles[i] >> firstValue;
 				AntennaInfo a(firstValue);
-				//cout << " introduc: " << a.toString() << endl;
 				minHeap.push(pair<AntennaInfo, int>(a, i));
 				if(computeProb)
 				   	tmp.push_back(a);
@@ -217,7 +210,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 	        antennaInfoFile << minPair.first.toString() << '\n';
 	        if(computeProb)
 	        	tmp.push_back(minPair.first);
-	        //cout << "am scos: " << minPair.first.toString() << endl;
 	        flush(antennaInfoFile);
 	        string nextValue;
 	        if (handles[minPair.second] >> nextValue) {
