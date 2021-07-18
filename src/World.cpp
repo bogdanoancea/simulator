@@ -27,7 +27,6 @@
 #include <agent/HoldableAgent.h>
 #include <agent/MobileOperator.h>
 #include <agent/Person.h>
-#include <crtdefs.h>
 #include <Clock.h>
 #include <Constants.h>
 #include <events/EventType.h>
@@ -178,25 +177,32 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 	std::map<unsigned long, vector<AntennaInfo>> data;
 	auto itr_mno = m_agentsCollection->getAgentListByType(typeid(MobileOperator).name());
 	auto itra = m_agentsCollection->getAgentListByType(typeid(Antenna).name());
-
 	for (auto itmno = itr_mno.first; itmno != itr_mno.second; itmno++) {
 		MobileOperator* mo = static_cast<MobileOperator*>(itmno->second);
 		vector<AntennaInfo> tmp;
 		std::priority_queue<pair<AntennaInfo, int>, std::vector<pair<AntennaInfo, int>>, Compare > minHeap;
 		vector<ifstream> handles;
 		int i = 0;
+
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = static_cast<Antenna*>(it->second);
 			if (a->getMNO()->getId() == mo->getId()) {
 				string fileName = mo->getOutputDir() + "/" + a->getAntennaOutputFileName();
+//				cout << "introduc 1: " << fileName << endl;
 				handles.push_back(ifstream(fileName.c_str()));
 				string firstValue, headerValue;
 				handles[i] >> headerValue;
 				handles[i] >> firstValue;
-				AntennaInfo a(firstValue);
-				minHeap.push(pair<AntennaInfo, int>(a, i));
-				if(computeProb)
-				   	tmp.push_back(a);
+//				cout << "header: " << headerValue << endl;
+//				cout << "first: " << firstValue << endl;
+				if(!firstValue.empty()) {
+//					cout << "introduc 2: " << fileName << endl;
+					AntennaInfo a(firstValue);
+					minHeap.push(pair<AntennaInfo, int>(a, i));
+					if(computeProb)
+						tmp.push_back(a);
+
+				}
 				i++;
 			}
 		}
@@ -218,7 +224,8 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 	        }
 	    }
 		antennaInfoFile.close();
-		data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
+		if(computeProb)
+			data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}
 	return (data);
 }
