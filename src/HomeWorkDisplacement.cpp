@@ -35,6 +35,7 @@
 #include <RandomNumberGenerator.h>
 #include <Utils.h>
 #include <cmath>
+#include <geos/version.h>
 
 using namespace std;
 

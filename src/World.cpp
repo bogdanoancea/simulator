@@ -73,8 +73,10 @@ World::World(Map* mmap, const string& configPersonsFileName, const string& confi
 
 	std::unique_ptr<ConfigParser> antennaConfig = make_unique<AntennaConfigParser>(configAntennasFileName, m_sp, m_agentsCollection, m_eventFactory);
 	antennaConfig->parse();
+
 	std::unique_ptr<ConfigParser> persConfig = make_unique<PersonsConfigParser>(configPersonsFileName, m_sp, m_agentsCollection);
 	persConfig->parse();
+
 	if (!probabilitiesFileName.empty()) {
 		std::unique_ptr<ProbabilitiesConfigParser> probabilitiesConfig = make_unique<ProbabilitiesConfigParser>(probabilitiesFileName);
 		probabilitiesConfig->parse();

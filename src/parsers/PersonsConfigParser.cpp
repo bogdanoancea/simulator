@@ -50,6 +50,7 @@
 #include <numeric>
 #include <stdexcept>
 #include <typeinfo>
+#include <geos/version.h>
 
 using namespace tinyxml2;
 using namespace utils;
@@ -82,6 +83,7 @@ void PersonsConfigParser::parse() noexcept(false) {
 		double male_share = getValue(personsEl, "male_share");
 		double percentHome = getValue(personsEl, "percent_home");
 		vector<Person* >persons = generatePopulation(numPersons, ageDistr, male_share, speedWalkDistribution, speedCarDistribution, percentHome);
+
 		for (unsigned long i = 0; i < persons.size(); i++) {
 				m_agents->addAgent(persons[i]);
 		}
@@ -183,6 +185,7 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 				np2--;
 			}
 		}
+
 		setPersonDisplacementPattern(p);
 		result.push_back(p);
 	}

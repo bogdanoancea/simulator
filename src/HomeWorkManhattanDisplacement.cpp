@@ -29,6 +29,7 @@
 #include <parsers/SimulationConfiguration.h>
 #include <cmath>
 #include <Utils.h>
+#include <geos/version.h>
 
 using namespace std;
 
