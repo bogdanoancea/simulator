@@ -46,8 +46,8 @@ Point* Displace::computeNewLocation(Point* initLocation, double theta) {
 	double y = initLocation->getY();
 
 	unsigned long delta_t = m_simConfig->getClock()->getIncrement();
-	double newX = x + m_speed * utils::fast_sin(utils::PI/2.0 -theta) * delta_t;
-	double newY = y + m_speed * utils::fast_sin(theta) * delta_t;
+	double newX = x + m_speed * cos(theta) * delta_t;
+	double newY = y + m_speed * sin(theta) * delta_t;
 	Coordinate c1 = Coordinate(newX, newY, initLocation->getZ());
 	Point* pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 	return pt;

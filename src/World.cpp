@@ -135,7 +135,7 @@ void World::runSimulation() noexcept(false) {
 		cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
-			p->move();
+			Point* pt = p->move();
 			Point* loc = p->getLocation();
 			personsFile << p->dumpLocation() << sep << m_sp->getMap()->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 		}

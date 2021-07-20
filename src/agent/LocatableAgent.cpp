@@ -39,6 +39,8 @@ LocatableAgent::LocatableAgent(const Map* m, const unsigned long id, Point* init
 }
 
 LocatableAgent::~LocatableAgent() {
+	if(m_location)
+		delete m_location;
 }
 
 Point* LocatableAgent::getLocation() const {

@@ -70,7 +70,9 @@ Person::~Person() {
 	if(m_workLocation) {
 		getMap()->getGlobalFactory()->destroyGeometry(m_workLocation);
 	}
-
+	if(m_anchorLocation) {
+		getMap()->getGlobalFactory()->destroyGeometry(m_anchorLocation);
+	}
 }
 
 

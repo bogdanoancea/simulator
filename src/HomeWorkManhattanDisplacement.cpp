@@ -58,13 +58,18 @@ Point* HomeWorkManhattanDisplacement::toDestination(Point*  initLocation, Point*
 	m_manhattanDisplacement.setDirection(theta);
 	if(pt == nullptr)
 		pt = m_manhattanDisplacement.generateNewLocation(initLocation);
-	else
+	else {
+		Point* tmp = pt;
 		pt = m_manhattanDisplacement.generateNewLocation(pt);
+		if( tmp != pt)
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(tmp);
+	}
 	if (pt->equals(initLocation)) {
 		m_manhattanDisplacement.setDirection(-1);
 		pt = m_manhattanDisplacement.generateNewLocation(initLocation);
 	}
 	if(arrivedAtDestination(pt, destination)) {
+		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 #if GEOS_VERSION_MAJOR >= 3
 	#if GEOS_VERSION_MINOR > 7
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(*destination->getCoordinates());

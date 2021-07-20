@@ -182,8 +182,10 @@ Point* HomeWorkDisplacement::makeRandomStepAtWork(Point *initLocation) {
 			c1 = Coordinate(newX, newY, initLocation->getZ());
 			pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(c1);
 		}
-		if (!k)
+		if (!k) {
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			pt = initLocation;
+		}
 	}
 	return pt;
 }
@@ -233,10 +235,13 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 			pt = computeNewLocation(initLocation, theta);
 		}
 		if (!k) {
+			m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
 			pt = initLocation;
 		}
 	}
 	if(arrivedAtDestination(pt, destination)) {
+		m_simConfig->getMap()->getGlobalFactory()->destroyGeometry(pt);
+
 #if GEOS_VERSION_MAJOR >= 3
 	#if GEOS_VERSION_MINOR > 7
 		pt = m_simConfig->getMap()->getGlobalFactory()->createPoint(*destination->getCoordinates());
@@ -246,6 +251,7 @@ Point* HomeWorkDisplacement::toDestination(Point*  initLocation, Point* destinat
 #else
 		throw std::runtime_error("unsupported geos version");
 #endif
+
 	}
 	return pt;
 }

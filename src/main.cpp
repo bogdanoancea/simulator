@@ -97,6 +97,7 @@ int main(int argc, char** argv) {
 			std::map<unsigned long, vector<AntennaInfo>> data = w.getEvents(true);
 			w.computeProbabilities(data);
 		}
+		delete map;
 	} catch (const std::bad_alloc& e) {
 		cout << e.what() << endl;
 	} catch (const runtime_error& e) {
