@@ -225,7 +225,9 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 	            minHeap.push(pair <AntennaInfo, int>(b, minPair.second));
 	        }
 	    }
+
 		antennaInfoFile.close();
+
 		if(computeProb)
 			data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}
