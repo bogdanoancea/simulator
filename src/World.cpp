@@ -135,7 +135,7 @@ void World::runSimulation() noexcept(false) {
 		cout << "Current simulation step: " << m_sp->getClock()->getCurrentTime() << ":" << ctime(&tt) << endl;
 		for (auto it = itr.first; it != itr.second; it++) {
 			Person* p = static_cast<Person*>(it->second);
-			Point* pt = p->move();
+			p->move();
 			Point* loc = p->getLocation();
 			personsFile << p->dumpLocation() << sep << m_sp->getMap()->getTileNo(loc->getX(), loc->getY()) << p->dumpDevices() << endl;
 		}
@@ -185,7 +185,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 		std::priority_queue<pair<AntennaInfo, int>, std::vector<pair<AntennaInfo, int>>, Compare > minHeap;
 		vector<ifstream> handles;
 		int i = 0;
-
 		for (auto it = itra.first; it != itra.second; it++) {
 			Antenna* a = static_cast<Antenna*>(it->second);
 			if (a->getMNO()->getId() == mo->getId()) {
@@ -227,7 +226,6 @@ std::map<unsigned long, vector<AntennaInfo>> World::getEvents(bool computeProb) 
 	    }
 
 		antennaInfoFile.close();
-
 		if(computeProb)
 			data.insert(std::pair<unsigned long, vector<AntennaInfo>>(mo->getId(),tmp) );
 	}

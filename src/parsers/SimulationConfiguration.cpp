@@ -28,7 +28,6 @@
 SimulationConfiguration::SimulationConfiguration() {
 	m_manhattanScenario = nullptr;
 	m_homeWorkScenario = nullptr;
-	//m_homeWorkManhattanScenario = nullptr;
 	m_randomWalkDriftScenario = nullptr;
 	m_levyFlightScenario = nullptr;
 
@@ -37,8 +36,6 @@ SimulationConfiguration::SimulationConfiguration() {
 SimulationConfiguration::~SimulationConfiguration() {
 	if(m_homeWorkScenario)
 		delete m_homeWorkScenario;
-//	if(m_homeWorkManhattanScenario)
-//		delete m_homeWorkManhattanScenario;
 	if(m_randomWalkDriftScenario)
 		delete m_randomWalkDriftScenario;
 	if(m_levyFlightScenario)
@@ -46,7 +43,7 @@ SimulationConfiguration::~SimulationConfiguration() {
 	if(m_manhattanScenario)
 		delete m_manhattanScenario;
 	delete m_clock;
-
+	delete m_map;
 }
 
 const string& SimulationConfiguration::getAntennasFilename() const {

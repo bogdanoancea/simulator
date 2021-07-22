@@ -77,8 +77,7 @@ WKTMap::WKTMap(string wktFileName) :
 
 WKTMap::~WKTMap() {
 	if (m_boundary != nullptr)
-		delete m_boundary;
-
+		m_globalFactory->destroyGeometry(m_boundary);
 }
 
 const GeometryFactory::Ptr& WKTMap::getGlobalFactory() const {

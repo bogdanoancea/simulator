@@ -158,8 +158,8 @@ public:
 	virtual void dumpGrid(const string& gridFileName) const;
 
 	/**
-	 * Returns an array with the coordinates of the centers of all tiles in the grid.
-	 * @return an array of Coordinate objects with the coordinates of the centers of all tiles in the grid.
+	 * Returns a vector with the coordinates of the centers of all tiles in the grid.
+	 * @return a vector of Coordinate objects with the coordinates of the centers of all tiles in the grid.
 	 */
 	virtual Coordinate* getTileCenters() const;
 

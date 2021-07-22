@@ -93,11 +93,11 @@ int main(int argc, char** argv) {
 		if (!generate_probs) {
 			cout << "Location probabilities will be not computed!" << endl;
 			w.getEvents(false);
+			cout << "Events file written!" << endl;
 		} else {
 			std::map<unsigned long, vector<AntennaInfo>> data = w.getEvents(true);
 			w.computeProbabilities(data);
 		}
-		//delete map;
 	} catch (const std::bad_alloc& e) {
 		cout << e.what() << endl;
 	} catch (const runtime_error& e) {
