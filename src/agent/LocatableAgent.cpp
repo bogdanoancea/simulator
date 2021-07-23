@@ -30,6 +30,9 @@
 #include <sstream>
 #include <sys/stat.h>
 #include <fcntl.h>
+#ifdef LINUX
+#include <unistd.h>
+#endif
 
 using namespace geos;
 using namespace geos::geom;
