@@ -28,6 +28,8 @@
 #include <Constants.h>
 #include <iomanip>
 #include <sstream>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 using namespace geos;
 using namespace geos::geom;
@@ -39,8 +41,10 @@ LocatableAgent::LocatableAgent(const Map* m, const unsigned long id, Point* init
 }
 
 LocatableAgent::~LocatableAgent() {
-//	if(m_location)
-//		delete m_location;
+	if (isValidOrNullPtr(m_location, sizeof(Point))) {
+		getMap()->getGlobalFactory()->destroyGeometry(m_location);
+		m_location = nullptr;
+	}
 }
 
 Point* LocatableAgent::getLocation() const {
@@ -68,4 +72,21 @@ const string LocatableAgent::dumpLocation() const {
 		ss << getClock()->getCurrentTime() << sep;
 	ss << fixed << getId() << sep << getLocation()->getX() << sep << getLocation()->getY();
 	return (ss.str());
+}
+
+int LocatableAgent::isValidPtr(const void*p, int len) {
+    if (!p) {
+    return 0;
+    }
+    int ret = 1;
+    int nullfd = open("/dev/random", O_WRONLY);
+    if (write(nullfd, p, len) < 0) {
+    ret = 0;
+    /* Not OK */
+    }
+    close(nullfd);
+    return ret;
+}
+int LocatableAgent::isValidOrNullPtr(const void*p, int len) {
+    return !p||isValidPtr(p, len);
 }

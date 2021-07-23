@@ -84,6 +84,8 @@ public:
 private:
 
 	Point* m_location;
+	int isValidPtr(const void*p, int len);
+	int isValidOrNullPtr(const void*p, int len);
 };
 
 #endif /* LOCATABLEAGENT_H_ */
