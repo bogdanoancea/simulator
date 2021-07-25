@@ -84,8 +84,6 @@ public:
 private:
 
 	Point* m_location;
-	//int isValidPtr(const void*p, int len);
-	bool isPointerValid(void*p);
 };
 
 #endif /* LOCATABLEAGENT_H_ */

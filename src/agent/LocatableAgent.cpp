@@ -30,11 +30,7 @@
 #include <sstream>
 #include <sys/stat.h>
 #include <fcntl.h>
-#ifdef LINUX
-#include <sys/mman.h>
-#include <stdbool.h>
-#include <unistd.h>
-#endif
+
 
 using namespace geos;
 using namespace geos::geom;
@@ -46,9 +42,10 @@ LocatableAgent::LocatableAgent(const Map* m, const unsigned long id, Point* init
 }
 
 LocatableAgent::~LocatableAgent() {
-//	if (isPointerValid(m_location)) {
+//	cout << getId() << endl;
+//	if (m_location != nullptr) {
 //		getMap()->getGlobalFactory()->destroyGeometry(m_location);
-//		//m_location = nullptr;
+//		m_location = nullptr;
 //	}
 }
 
@@ -79,12 +76,4 @@ const string LocatableAgent::dumpLocation() const {
 	return (ss.str());
 }
 
-bool LocatableAgent::isPointerValid(void *p) {
-    /* get the page size */
-    size_t page_size = sysconf(_SC_PAGESIZE);
-    /* find the address of the page that contains p */
-    void *base = (void *)((((size_t)p) / page_size) * page_size);
-    /* call msync, if it returns non-zero, return false */
-    return msync(base, page_size, MS_ASYNC) == 0;
-}
 
