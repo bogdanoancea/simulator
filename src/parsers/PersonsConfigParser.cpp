@@ -51,7 +51,7 @@
 #include <stdexcept>
 #include <typeinfo>
 #include <geos/version.h>
-
+#include <parsers/PersonConfiguration.h>
 using namespace tinyxml2;
 using namespace utils;
 
@@ -75,6 +75,7 @@ void PersonsConfigParser::parse() noexcept(false) {
 	if (!personsEl)
 		throw std::runtime_error("Syntax error in the configuration file for persons ");
 	else {
+		PersonConfiguration pc;
 		unsigned long numPersons = getValue(personsEl, "num_persons", Constants::SIM_NO_PERSONS);
 		shared_ptr<Distribution> ageDistr = parseAgeDistribution(personsEl);
 		shared_ptr<Distribution> speedWalkDistribution = parseSpeedDistribution(personsEl, "speed_car_distribution");
@@ -163,10 +164,14 @@ vector<Person*> PersonsConfigParser::generatePopulation(unsigned long numPersons
 	vector<Point*> positions = utils::generatePoints(m_simConfig, numPersons, percentHome);
 
 	for (unsigned long i = 0; i < numPersons; i++) {
+		PersonConfiguration pc;
 		unsigned long id = IDGenerator::instance()->next();
 		double speed = walk_car[i] ? speeds_car[cars++] : speeds_walk[walks++];
-		Person* p = new Person(m_simConfig->getMap(), id, positions[i], m_simConfig->getClock(), speed, ages[i],
-				gender[i] ? Person::Gender::MALE : Person::Gender::FEMALE, m_simConfig->getStay(), m_simConfig->getIntevalBetweenStays());
+		pc.setSpeed(speed);
+		pc.setAge(ages[i]);
+		pc.setGender(gender[i] ? Gender::MALE : Gender::FEMALE);
+		pc.setLocation(positions[i]);
+		Person* p = new Person(id, m_simConfig, pc);
 		if(m_simConfig->isHomeWorkScenario() || m_simConfig->isHomeWorkManhattanScenario()) {
 			 bool homePerson = RandomNumberGenerator::instance()->generateBernoulliInt(percentHome);
 			 if( homePerson) {

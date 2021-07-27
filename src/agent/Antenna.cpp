@@ -53,7 +53,7 @@ using namespace std;
 using namespace utils;
 
 
-Antenna::Antenna(const unsigned long id, SimulationConfiguration *sc, AntennaConfiguration ac,EventFactory *factory) :
+Antenna::Antenna(const unsigned long id, SimulationConfiguration *sc, AntennaConfiguration ac, EventFactory *factory) :
 		ImmovableAgent(sc->getMap(), id, nullptr, sc->getClock()), m_cell {	nullptr }, m_rmax { 0 } {
 
 	m_antennaConfig = ac;

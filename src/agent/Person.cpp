@@ -37,31 +37,59 @@
 #include <utility>
 #include <HomeWorkDisplacement.h>
 #include <ManhattanDisplacement.h>
+#include <parsers/PersonConfiguration.h>
+
 using namespace geos;
 using namespace geos::geom;
 
-Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, shared_ptr<Distribution> timeStayDistribution,
-		shared_ptr<Distribution> intervalBetweenStaysDistribution) :
-		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_timeStayDistribution { timeStayDistribution }, m_intervalBetweenStaysDistribution { intervalBetweenStaysDistribution } {
+//Person::Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gen, shared_ptr<Distribution> timeStayDistribution,
+//		shared_ptr<Distribution> intervalBetweenStaysDistribution) :
+//		MovableAgent(m, id, initPosition, clock, initSpeed), m_age { age }, m_gender { gen }, m_timeStayDistribution { timeStayDistribution }, m_intervalBetweenStaysDistribution { intervalBetweenStaysDistribution } {
+//	m_displacementMethod = nullptr;
+//	m_homeLocation = nullptr;
+//	m_workLocation = nullptr;
+//	m_anchorLocation = nullptr;
+//	unsigned long interval = 0;
+//	if(m_intervalBetweenStaysDistribution)
+//		interval = (unsigned long )abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
+//	m_nextStay = getClock()->getCurrentTime() + interval;
+//
+//	while (m_nextStay % getClock()->getIncrement() != 0)
+//		m_nextStay++;
+//
+//	m_timeStay = 0;
+//	if(m_timeStayDistribution)
+//		m_timeStay = (unsigned long) abs(RandomNumberGenerator::instance()->generateInt(m_timeStayDistribution.get()));
+//	while (m_timeStay % getClock()->getIncrement() != 0)
+//		m_timeStay++;
+//
+//}
+
+
+Person::Person(unsigned long id, SimulationConfiguration *sc, PersonConfiguration pc) :
+		MovableAgent(sc->getMap(), id, pc.getLocation(), sc->getClock(), pc.getSpeed()), m_age { pc.getAge() }, m_gender { pc.getGender() }, m_timeStayDistribution { sc->getStay() }, m_intervalBetweenStaysDistribution {
+				sc->getIntevalBetweenStays() } {
 	m_displacementMethod = nullptr;
 	m_homeLocation = nullptr;
 	m_workLocation = nullptr;
 	m_anchorLocation = nullptr;
 	unsigned long interval = 0;
-	if(m_intervalBetweenStaysDistribution)
-		interval = (unsigned long )abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
+	if (m_intervalBetweenStaysDistribution)
+		interval = (unsigned long) abs(RandomNumberGenerator::instance()->generateDouble(m_intervalBetweenStaysDistribution.get()));
 	m_nextStay = getClock()->getCurrentTime() + interval;
 
 	while (m_nextStay % getClock()->getIncrement() != 0)
 		m_nextStay++;
 
 	m_timeStay = 0;
-	if(m_timeStayDistribution)
+	if (m_timeStayDistribution)
 		m_timeStay = (unsigned long) abs(RandomNumberGenerator::instance()->generateInt(m_timeStayDistribution.get()));
 	while (m_timeStay % getClock()->getIncrement() != 0)
 		m_timeStay++;
 
 }
+
+
 
 Person::~Person() {
 	if(m_homeLocation) {
@@ -78,7 +106,7 @@ Person::~Person() {
 
 const string Person::toString(bool detailed) const {
 	ostringstream ss;
-	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Person::Gender::MALE ? "Male" : "Female");
+	ss << MovableAgent::toString() << left << setw(15) << m_age << setw(15) << (m_gender == Gender::MALE ? "Male" : "Female");
 
 	if (m_idDevices.size() > 0) {
 		for (pair<string, Agent*> i : m_idDevices) {

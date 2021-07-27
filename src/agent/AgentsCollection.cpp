@@ -30,13 +30,21 @@
 #include <Utils.h>
 #include <iostream>
 #include <typeinfo>
+#include <unordered_set>
 
 AgentsCollection::AgentsCollection() {
 }
 
 AgentsCollection::~AgentsCollection() {
+	std::unordered_set<Point*> locs;
 	for (auto& a : m_agents) {
+		if (dynamic_cast<LocatableAgent *>(a.second) != nullptr) {
+			locs.insert(dynamic_cast<LocatableAgent *>(a.second)->getLocation());
+		}
 		delete a.second;
+	}
+	for (auto& l : locs) {
+		delete l;
 	}
 }
 

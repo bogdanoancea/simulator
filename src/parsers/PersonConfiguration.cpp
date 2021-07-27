@@ -26,8 +26,10 @@
 #include <parsers/PersonConfiguration.h>
 
 PersonConfiguration::PersonConfiguration() {
-	// TODO Auto-generated constructor stub
-
+	m_location = nullptr;
+	m_age = 0;
+	m_gender = Gender::MALE;
+	m_speed = 0;
 }
 
 PersonConfiguration::~PersonConfiguration() {
@@ -42,20 +44,12 @@ void PersonConfiguration::setAge(int age) {
 	m_age = age;
 }
 
-Person::Gender PersonConfiguration::getGender() const {
+Gender PersonConfiguration::getGender() const {
 	return m_gender;
 }
 
-void PersonConfiguration::setGender(Person::Gender gender) {
+void PersonConfiguration::setGender(Gender gender) {
 	m_gender = gender;
-}
-
-shared_ptr<Distribution> PersonConfiguration::getIntervalBetweenStaysDistribution() const {
-	return m_intervalBetweenStaysDistribution;
-}
-
-void PersonConfiguration::setIntervalBetweenStaysDistribution(shared_ptr<Distribution> intervalBetweenStaysDistribution) {
-	m_intervalBetweenStaysDistribution = intervalBetweenStaysDistribution;
 }
 
 double PersonConfiguration::getSpeed() const {
@@ -66,10 +60,10 @@ void PersonConfiguration::setSpeed(double speed) {
 	m_speed = speed;
 }
 
-shared_ptr<Distribution> PersonConfiguration::getTimeStayDistribution() const {
-	return m_timeStayDistribution;
+Point* PersonConfiguration::getLocation() const {
+	return m_location;
 }
 
-void PersonConfiguration::setTimeStayDistribution(shared_ptr<Distribution> timeStayDistribution) {
-	m_timeStayDistribution = timeStayDistribution;
+void PersonConfiguration::setLocation(Point *loc) {
+	m_location = loc;
 }

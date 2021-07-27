@@ -26,8 +26,12 @@
 #ifndef INCLUDE_PARSERS_PERSONCONFIGURATION_H_
 #define INCLUDE_PARSERS_PERSONCONFIGURATION_H_
 
-#include <agent/Person.h>
+#include <agent/Gender.h>
 #include <Distribution.h>
+#include <geos/geom/Point.h>
+
+using namespace geos;
+using namespace geos::geom;
 
 /**
  * This class encapsulates the parameters needed to generated a Person object. They are read from the persons configuration file.
@@ -59,35 +63,17 @@ public:
 	void setAge(int age);
 
 	/**
-	 * Returns the gender of a person: Person::Gender::MALE or Person::Gender::FEMALE.
-	 * @return the gender of a person: Person::Gender::MALE or Person::Gender::FEMALE.
+	 * Returns the gender of a person: Gender::MALE or Gender::FEMALE.
+	 * @return the gender of a person: Gender::MALE or Gender::FEMALE.
 	 */
-	Person::Gender getGender() const;
+	Gender getGender() const;
 
 	/**
-	 * Sets the gender of a person (Person::Gender::MALE or Person::Gender::FEMALE).
-	 * @param gender the gender of a person (Person::Gender::MALE or Person::Gender::FEMALE).
+	 * Sets the gender of a person (Gender::MALE or Gender::FEMALE).
+	 * @param gender the gender of a person (Gender::MALE or Gender::FEMALE).
 	 */
-	void setGender(Person::Gender gender);
+	void setGender(Gender gender);
 
-	/**
-	 * Returns a shared pointer to a Distribution object representing the probability distribution of the time interval between 2 consecutive stops of a person.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 * @return a shared pointer to a Distribution object representing the probability distribution of the time interval between 2 consecutive stops of a person.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 */
-	shared_ptr<Distribution> getIntervalBetweenStaysDistribution() const;
-
-	/**
-	 * Sets the Distribution object representing the probability distribution of the time
-	 * interval between 2 consecutive stops of a person.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 * @param intervalBetweenStaysDistribution * Sets the Distribution object representing the probability distribution of the time
-	 * interval between 2 consecutive stops of a person.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 *
-	 */
-	void setIntervalBetweenStaysDistribution(shared_ptr<Distribution> intervalBetweenStaysDistribution);
 
 	/**
 	 * Returns the speed of a person. This speed is generated according to a probability distribution specified in the persons configuration file.
@@ -102,27 +88,22 @@ public:
 	void setSpeed(double speed);
 
 	/**
-     * Returns a shared pointer to a Distribution object representing the probability distribution of the time interval a person stops in the same location.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 * @return a shared pointer to a Distribution object representing the probability distribution of the time interval a person stops in the same location.
-	 * The parameters of this distribution are read from the persons configuration file.
+	 * Returns the location of the person.
+	 * @return the location of the person.
 	 */
-	shared_ptr<Distribution> getTimeStayDistribution() const;
+	Point* getLocation() const;
 
 	/**
-	 * Sets the Distribution object representing the probability distribution of the time intervals person stays in the same location.
-	 * The parameters of this distribution are read from the persons configuration file.
-	 * @param timeStayDistribution the Distribution object representing the probability distribution of the time intervals person stays in the same location.
-	 * The parameters of this distribution are read from the persons configuration file.
+	 * Sets the location of the person.
+	 * @param loc the location of the person.
 	 */
-	void setTimeStayDistribution(shared_ptr<Distribution> timeStayDistribution);
+	void setLocation(Point* loc);
 
 private:
 	double m_speed;
 	int m_age;
-	Person::Gender m_gender;
-	shared_ptr<Distribution> m_timeStayDistribution;
-	shared_ptr<Distribution> m_intervalBetweenStaysDistribution;
+	Gender m_gender;
+	Point* m_location;
 };
 
 #endif /* INCLUDE_PARSERS_PERSONCONFIGURATION_H_ */

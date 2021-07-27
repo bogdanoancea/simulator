@@ -31,7 +31,8 @@
 #include <memory>
 #include <string>
 #include <unordered_map>
-
+#include <parsers/PersonConfiguration.h>
+#include <agent/Gender.h>
 using namespace geos;
 using namespace geos::geom;
 
@@ -42,9 +43,7 @@ using namespace geos::geom;
  */
 class Person: public MovableAgent {
 public:
-	enum Gender {
-		MALE, FEMALE
-	};
+
 	/**
 	 * Builds a new Person object with the characteristics given as parameters.
 	 * @param m a pointer to the Map object where this Person move.
@@ -62,8 +61,16 @@ public:
 	 * person stays in the same position is a random value generated according the distribution given as parameter.
 	 * @param intervalBetweenStaysDistribution the Distribution of the time interval between two consecutive stops of the person.
 	 */
-	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender,
-			shared_ptr<Distribution> timeStayDistribution, shared_ptr<Distribution> intervalBetweenStaysDistribution);
+//	explicit Person(const Map* m, const unsigned long id, Point* initPosition, const Clock* clock, double initSpeed, int age, Gender gender,
+//			shared_ptr<Distribution> timeStayDistribution, shared_ptr<Distribution> intervalBetweenStaysDistribution);
+
+	/**
+	 * Builds a new Person object with the characteristics given as parameters.
+	 * @param id the id of the Person object.
+	 * @param sc a pointer to a SimulationConfiguration object.
+	 * @param pc a PersonConfiguration object.
+	*/
+	explicit Person(const unsigned long id, SimulationConfiguration* sc, PersonConfiguration pc);
 
 	/**
 	 * The default destructor.
