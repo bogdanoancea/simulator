@@ -79,12 +79,10 @@
 <xs:complexType name="ExponentialDistr">
 	<xs:complexContent>
 		<xs:extension base = "distr_type">
-			<xs:all>
-				<xs:choice>
-					<xs:element name="mean" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="scale" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
-				</xs:choice>
-			</xs:all>
+			<xs:choice>
+				<xs:element name="mean" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="scale" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>	
