@@ -27,17 +27,17 @@ one wants to build the application on Windows.
  
 <p>Prerequisites
 <p>1. MSYS2 environment. MSYS2 is a software distribution and building platform for Windows. We used the MSYS2 environment provided by RTools 4.0 which
-can be freely downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
-are provided on the project's web page mentioned above.
-<p>After downloading the MSYS2 installer, run it and select to installation directory. 
+can be freely downloaded from https://cran.r-project.org/bin/windows/Rtools/. 
+<p>After downloading the RTools installer, run it and select to installation directory. 
 
 <p>2. GNU C++ compiler on Windows with MSYS2
 While there are a variety of toolchains to build C++ applications on Windows operating system and the most natural choice 
-for Windows seems to be Visual Studio IDE we wanted to avoid proprietary software and use only open source software. This was the main
+for Windows seems to be Visual Studio IDE, we wanted to avoid proprietary software and use only open source software. This was the main
 reason why we chose GNU C++ compiler. Besides being open source, it is also available on most used platforms: Linux, MacOS X, Windows etc.
 The windows port of the GNU C/C++ compiler is called mingw. There are open source IDEs that contain a mingw compiler like CodeBocks or
 Qt Creator, but in this tutorial I will only show how to build the simulator application from the command line.
-After you installed MSYS2 use the <I>pacman</I> package manager to update all the packages. In an MSYS2 shell run the following command:
+After you installed MSYS2 use the <I>pacman</I> package manager to update all the packages. In an MSYS2 shell (started by double-clicking on mingw64.exe)
+run the following command:
 <br>$pacman -Syu
 
 <p>
@@ -47,24 +47,24 @@ After you installed MSYS2 use the <I>pacman</I> package manager to update all th
 <I>vim</I> and <I>cmake</I> are optional but good to have them installed.
 Then, update the system PATH variable by adding the path to the C++ compiler and <I>make</I> utility.
 
-<p>In the following I assume the default location for MSYS2 which is C:\msys64 folder. You can update the PATH variable using the standard Control Panel application provided by Windows.
+<p>In the following I assume the default location for MSYS2 which is C:\rtools40 folder. You can update the PATH variable using the standard Control Panel application provided by Windows.
 If you intend to use the command prompt, your PATH could be updated using the following command:
->setx path C:\msys64\mingw64\bin;C:\msys64\usr\bin;"%path%
+>setx path C:\rtools40\mingw64\bin;C:\rtools40\usr\bin;"%path%
 
-Instead, you can use the shell provided by Mingw MSYS2 by running C:\msys64\mingw64.exe which has all required environment variables already set.
 
 <p>3. GEOS C++ library. GEOS is a C++ port of JTS - Java Topology Suite. JTS 
 is an open-source library that provides an object model for Euclidean planar linear geometry 
 and is intended to be used as a core component of vector-based geographical information systems. GEOS contains a subset of
 functions from JTS. 
-<p>The current version of the micro-simulator is developed using GEOS ver. 3.7.1. The source code can be downloaded from
+<p>The current version of the micro-simulator was developed using GEOS ver. 3.7.1 but it can also use the last version GEOS ver. 3.9.1.
+The source code can be downloaded from
 https://trac.osgeo.org/geos. Instructions how to build the GEOS C++ library are provided here: https://trac.osgeo.org/geos/wiki/BuildingOnUnixWithAutotools
-Mainly, you have to open a shell by running C:\msys64\mingw64.exe, go to the folder where your source code is located and then type
+Mainly, you have to open a shell by running C:\rtools40\mingw64.exe, go to the folder where your source code is located and then type
 <br>$ ./configure
 <br>$ make
 <br>$ make install
 
-<P> Compilation of the GOES library could take several minutes, be patient!.
+<P> Compilation of the GEOS library could take several minutes, be patient!.
 
 <B>Build and run the simulation software</B>
 <p>Download the source code of the micro-simulator from the github repository : https://github.com/bogdanoancea/simulator
@@ -77,17 +77,18 @@ Assuming that you want to download the source code in D:\data-simulator folder, 
 
 <p> PROJ_HOME should point to the folder where you downloaded the source code of the micro-simulator (for example D:\data-simulator\simulator), 
 GEOS_HOME should point to
-the folder where you installed GEOS library (for example C:\msys64\mingw64\lib) and MSYS_HOME should indicate the folder where is your MSYS2 development environment.
-After changing these values, save the file, open an MSYS2 shell (run C:\msys64\mingw64.exe), go to the folder where is your micro-simulator 
+the folder where you installed GEOS library (for example C:\rtools\mingw64\lib) and MSYS_HOME should indicate the folder where is your MSYS2 development environment, 
+for example C:\rtools40.
+After changing these values, save the file, open an MSYS2 shell (run C:\rtools40\mingw64.exe), go to the folder where is your micro-simulator 
 source code and type:
 <br>$ make
 <br>$ make install
 
 <p> The executable is copied under the <I>Release folder</I>. To run a simulation type the following:
-<br>$Release/simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml 
+<br>$Release/simulator.exe -m map.wkt -s simulation.xml -a antennas.xml -p persons.xml -v 
 
-<p> We provide sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the root folder of the simulator source code. 
-The output file is prob.csv.
+<p> We provide several sample map.wkt, simulation.xml, antennas.xml and persons.xml configuration files in the data/dataset1 ... data/dataset7
+folders of the simulator source code. 
 
 <p>
 <b>How to build the application under <I>Linux</I> or <I>Mac OS X</I> operating systems</b>
