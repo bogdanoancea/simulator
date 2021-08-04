@@ -2,22 +2,21 @@
 <b> Framework to run mobile network data micro-simulations </b>
 <p>
 <p>!!! Warning !!!</p>
-This project is in early stages of development. 
-Major code revisions are expected to occur without notice and on a daily basis.
+Code revisions are expected to occur without notice.
 For any question about this software please write me at: <a href="mailto:bogdan.oancea@gmail.com"> bogdan.oancea@gmail.com</a>
 </p>
 
 <p>
-The project implements a "development of a framework to run mobile network data micro-simulations. 
-These simulations will provide us with synthetic data, useful to test the models. 
-Being a micro-simulation, the estimations can be compared to the real data, unavailable in real life. 
+This project implements a tool to run mobile network data micro-simulations. 
+These simulations will provide one with synthetic network event data, useful to test statistical models of population counts computed starting from mobile network data. 
+Proving the so-called ground-truth, the estimations obtained by using statistical models can be compared to the real data, unavailable in real life. 
 While a simulation is (no matter how sophisticated) always different from real data, 
 there is really no reason to expect that a model would perform worse for synthetic data than for real data. 
 On the contrary, dealing with real data would be expected to be even more problematic, 
 so a good performance for simulated data should be demanded anyway." <a href = "https://webgate.ec.europa.eu/fpfis/mwikis/essnetbigdata/images/5/56/WPI_A_framework_for_mobile_network_data_micro-simulation_2019_02_14.pdf">(Salgado, D. et al. 2018)</a>
 
 The code is written in C++. To build the application you need a C++ compiler compliant with C++17.
- 
+Currently, the source code was compiled with GNU C++ and LLVM compilers unde 3 operationg systems: Windows, Linux and MacOS. 
 </p>
 
 <b>How to build the application under <I>Windows</I> operating system</b>
@@ -27,8 +26,8 @@ this is not a very easy task. That's why I provide here some information about t
 one wants to build the application on Windows.
  
 <p>Prerequisites
-<p>1. MSYS2 environment. MSYS2 is a software distribution and building platform for Windows and 
-it can be freely downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
+<p>1. MSYS2 environment. MSYS2 is a software distribution and building platform for Windows. We used the MSYS2 environment provided by RTools 4.0 which
+can be freely downloaded from https://www.msys2.org/. Installing MSYS2 is straightforward, detailed instructions
 are provided on the project's web page mentioned above.
 <p>After downloading the MSYS2 installer, run it and select to installation directory. 
 

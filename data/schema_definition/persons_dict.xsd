@@ -1,26 +1,26 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<xs:include schemaLocation = "distribution.xsd"/>
-<xs:include schemaLocation = "common.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/distribution.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/common.xsd"/>
 
 <xs:element name="persons">
 	<xs:complexType>
 		<xs:all>
 			<xs:element name="num_persons" type="xs:integer" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="age_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='TruncatedNormal'" type="TruncatedNormal"/>
-				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+				<xs:alternative test="@type ='TruncatedNormal'" type="TruncatedNormalDistr"/>
+				<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 			</xs:element>
 			
 			<xs:element name="male_share" type = "percent" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="speed_walk_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='Normal'" type="Normal"/>
-				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+				<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+				<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 			</xs:element>
 			<xs:element name="speed_car_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='Normal'" type="Normal"/>
-				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+				<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+				<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 			</xs:element>
 			<xs:element name="percent_home" type = "percent" minOccurs="1" maxOccurs="1"/>
 		</xs:all>
