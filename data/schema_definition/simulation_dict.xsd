@@ -1,8 +1,7 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/distribution.xsd"/>
+
 <xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/mobility.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/common.xsd"/>
 
 <xs:element name="simulation">
 	<xs:complexType>
@@ -12,12 +11,12 @@
 			<xs:element name="time_increment" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 			
 			<xs:element name="time_stay_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='Normal'" type="Normal"/>
-				<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+				<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+				<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 			</xs:element>
 			
 			<xs:element name="interval_between_stays_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='Exponential'" type="Exponential"/>
+				<xs:alternative test="@type ='Exponential'" type="ExponentialDistr"/>
 			</xs:element>
 			
 			<xs:element name="mno" minOccurs="1" maxOccurs="unbounded">

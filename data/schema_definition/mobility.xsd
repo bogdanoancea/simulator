@@ -1,11 +1,11 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-<xs:include schemaLocation = "distribution.xsd"/>
-<xs:include schemaLocation = "common.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/distribution.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/common.xsd"/>
 
-<xs:complexType name="mobility">
-	<xs:attribute name="type" type = "allowed-mobility-types"/>
+<xs:complexType name = "mobility">
+	<xs:attribute name = "type" type = "allowed-mobility-types"/>
 </xs:complexType>
 
 <xs:simpleType name="allowed-mobility-types">
@@ -41,18 +41,17 @@
 		<xs:extension base = "mobility">
 			<xs:all>
 				<xs:element name="trend_angle_1_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-					<xs:alternative test="@type ='Normal'" type="Normal"/>
-					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+					<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+					<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 				</xs:element>
 				<xs:element name="trend_angle_2_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-					<xs:alternative test="@type ='Normal'" type="Normal"/>
-					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+					<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+					<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 				</xs:element>
 				<xs:element name="return_angle_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-					<xs:alternative test="@type ='Normal'" type="Normal"/>
-					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
-				</xs:element>
-				
+					<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+					<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
+				</xs:element>				
 			</xs:all>
 		</xs:extension>
 	</xs:complexContent>
@@ -65,7 +64,7 @@
 			<xs:all>
 				<xs:element name="cutOffSpeed" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="speed_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-					<xs:alternative test="@type ='Levy'" type="Levy"/>
+					<xs:alternative test="@type ='Levy'" type="LevyDistr"/>
 				</xs:element>
 			</xs:all>
 		</xs:extension>
@@ -84,9 +83,9 @@
 				<xs:element name="percent_time_anchor_point" type = "percent" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="percent_time_travel" type = "percent" minOccurs="1" maxOccurs="1"/>
 				<xs:element name="direction_angle_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
-					<xs:alternative test="@type ='Normal'" type="Normal"/>
-					<xs:alternative test="@type ='Laplace'" type="Laplace"/>
-					<xs:alternative test="@type ='Uniform'" type="Uniform"/>
+					<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+					<xs:alternative test="@type ='Laplace'" type="LaplaceDistr"/>
+					<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
 				</xs:element>				
 				<xs:element name="prob_anchor_point" type = "prob" minOccurs="1" maxOccurs="1"/>
 			</xs:all>
