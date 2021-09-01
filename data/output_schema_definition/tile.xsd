@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<xs:simpleType name = "tileID_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="nonNegativeInteger"/>
+		<xs:enumeration value="unsignedInt"/>
+		<xs:enumeration value="unsignedLong"/>
+	</xs:restriction>
+</xs:simpleType>
+			
+<xs:complexType name = "tile_type">
+	<xs:sequence>
+		<xs:element name="tileColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="tileID_value_type" type = "tileID_type" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name = "tileToFrom_type">
+	<xs:sequence>
+		<xs:element name="tileFromColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="tileToColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="tileID_value_type" type = "tileID_type" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+							
+</xs:schema>

@@ -1,0 +1,69 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+<xs:complexType name="method">
+	<xs:attribute name="name" type = "allowed-method-types"/>
+</xs:complexType>
+
+<xs:simpleType name="allowed-method-types">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="HMM"/>
+		<xs:enumeration value="StaticBayes"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType name="HMMParams">
+	<xs:complexContent>
+		<xs:extension base = "method">
+			<xs:all>
+				<xs:element name="prior" minOccurs="1" maxOccurs="1">
+					<xs:simpleType>		
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="uniform" />
+							<xs:enumeration value="network" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="transition" minOccurs="1" maxOccurs="1">
+					<xs:simpleType>		
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="rectangle" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="emission" minOccurs="1" maxOccurs="1">
+					<xs:simpleType>		
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="RSS" />
+							<xs:enumeration value="SDM" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="BayesParams">
+	<xs:complexContent>
+		<xs:extension base = "method">
+			<xs:all>
+				<xs:element name="prior" minOccurs="1" maxOccurs="1">
+					<xs:simpleType>		
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="uniform" />
+							<xs:enumeration value="network" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+
+</xs:schema>

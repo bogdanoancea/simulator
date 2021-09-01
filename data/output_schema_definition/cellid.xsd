@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="cellID_value_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="string"/>
+		<xs:enumeration value="integer"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType name="cellID_type">
+	<xs:sequence>
+		<xs:element name="cellIDColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="cellID_value_type" type = "cellID_value_type" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+							
+							
+<xs:complexType name="cellIDFromTo_type">
+	<xs:sequence>
+		<xs:element name="cellIDFromColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="cellIDToColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="cellID_value_type" type = "cellID_value_type" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+</xs:schema>

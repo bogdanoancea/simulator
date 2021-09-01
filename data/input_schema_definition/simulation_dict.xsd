@@ -1,0 +1,70 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/simulator/master/data/schema_definition/mobility.xsd"/>
+
+<xs:element name="simulation">
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="start_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="end_time" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="time_increment" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			
+			<xs:element name="time_stay_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Normal'" type="NormalDistr"/>
+				<xs:alternative test="@type ='Uniform'" type="UniformDistr"/>
+			</xs:element>
+			
+			<xs:element name="interval_between_stays_distribution" type="distr_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Exponential'" type="ExponentialDistr"/>
+			</xs:element>
+			
+			<xs:element name="mno" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="mno_name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="prob_mobile_phone" type = "prob" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="prob_sec_mobile_phone" type = "prob" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="movement_pattern" type="mobility" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='random_walk_closed_map'" type="RandomWalk"/>
+				<xs:alternative test="@type ='random_walk_closed_map_drift'" type="RandomWalkDrift"/>
+				<xs:alternative test="@type ='levy_flight'" type="LevyFlight"/>
+				<xs:alternative test="@type ='manhattan'" type="Manhattan"/>
+				<xs:alternative test="@type ='home_work_manhattan'" type="HomeWorkManhattan"/>
+				<xs:alternative test="@type ='home_work'" type="HomeWork"/>
+			</xs:element>	
+			
+			<xs:element name="connection_type" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>	
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="strength"/>
+						<xs:enumeration value="quality"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+
+			<xs:element name="event_type" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>	
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="cellLLID"/>
+						<xs:enumeration value="cellIDTA"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="conn_threshold" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="qual_min" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="grid_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="grid_dim_tile_x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="grid_dim_tile_y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="persons_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="antennas_file" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="random_seed" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="output_dir" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

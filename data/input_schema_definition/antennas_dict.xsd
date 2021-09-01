@@ -1,0 +1,50 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="antennas">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="antenna" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="mno_name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="maxconnections" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="power" type="xs:decimal" minOccurs="1" maxOccurs="1"/>						
+						<xs:element name="attenuationfactor" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>	
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="directional"/>
+									<xs:enumeration value="omnidirectional"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="network_type" minOccurs="0" maxOccurs="1">
+							<xs:simpleType>	
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="3G"/>
+									<xs:enumeration value="4G"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Smin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>						
+						<xs:element name="Qmin" type="xs:decimal" minOccurs="1" maxOccurs="1"/>	
+						<xs:element name="tilt" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="azim_dB_back" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="elev_dB_back" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="beam_h" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="beam_v" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="direction" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="Smid" type="xs:decimal" minOccurs="0" maxOccurs="1"/>						
+						<xs:element name="SSteep" type="xs:decimal" minOccurs="0" maxOccurs="1"/>						
+						<xs:element name="x" type="xs:decimal" minOccurs="1" maxOccurs="1"/>	
+						<xs:element name="y" type="xs:decimal" minOccurs="1" maxOccurs="1"/>	
+						<xs:element name="z" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+						<xs:element name="rmax" type="xs:decimal" minOccurs="0" maxOccurs="1"/>	
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

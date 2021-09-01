@@ -635,7 +635,7 @@ const string Antenna::getHeader(bool detailed) {
 	ostringstream result;
 	char sep = Constants::sep;
 	if(detailed)
-		result <<  "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "mno_name" << sep << "maxconnection"<< sep<< "power" <<sep <<"attentuationfactor"<< sep << "type" << sep << "Smin" << sep << "Qmin" << sep << "Smid" << sep << "SSteep" << sep << "tilt" <<sep <<  "azim_dB_back" << sep << "elev_dB_back" << sep << "beam_h" << sep << "beam_v" << sep << "direction" << sep << "z" << sep <<"Tile ID" << endl;
+		result <<  "t" << sep << "Antenna ID" << sep << "x" << sep << "y" << sep << "MNO ID" << sep << "mno_name" << sep << "maxconnection"<< sep<< "power" <<sep <<"attenuationfactor"<< sep << "type" << sep << "Smin" << sep << "Qmin" << sep << "Smid" << sep << "SSteep" << sep << "tilt" <<sep <<  "azim_dB_back" << sep << "elev_dB_back" << sep << "beam_h" << sep << "beam_v" << sep << "direction" << sep << "z" << sep <<"Tile ID" << endl;
 	else
 
 	result << left << setw(15) << "Antenna ID" << setw(15) << " X " << setw(15) << " Y " << setw(15) << " Power " << setw(15)

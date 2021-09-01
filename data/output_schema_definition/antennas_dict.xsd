@@ -1,0 +1,251 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/file.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/time.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/tile.xsd"/>
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/cellid.xsd"/>
+<xs:include schemaLocation = "./mno.xsd"/>
+
+<xs:simpleType name = "coords_value_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="decimal"/>
+		<xs:enumeration value="integer"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="antennas">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="specs_time" type="time_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Discrete'" type="DiscreteTime"/>
+				<xs:alternative test="@type ='Continuous'" type="ContinuousTime"/>				
+			</xs:element>	
+			<xs:element name="specs_cells" minOccurs="1" maxOccurs="1" type = "cellID_type"/>
+			<xs:element name="specs_antenna_coords" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="XColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="YColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="ZColName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="value_type" type = "coords_value_type" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs_mno" type = "mno_type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="specs_max_connection" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="maxConnColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="integer"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs_power" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="powerColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_attenuationfactor" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="attenuationfactorColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_type" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="typeColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" type = "xs:string" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_Smin" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SminColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_Qmin" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="QminColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_Smid" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SmidColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="specs_SSteep" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SSteepColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_tilt" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tiltColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_azim_dB_back" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="azim_dB_backColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_elev_dB_back" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="elev_dB_backColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_beam_h" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="beam_hColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_beam_v" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="beam_vColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_direction" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="directionColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+			<xs:element name="specs_z" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="zColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="decimal"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>			
+
+			<xs:element name="specs_tile" type = "tile_type" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+</xs:schema>
+

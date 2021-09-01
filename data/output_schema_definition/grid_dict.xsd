@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/file.xsd"/>
+
+<xs:simpleType name = "coords_value_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="decimal"/>
+		<xs:enumeration value="integer"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:element name="grid">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="specs_grid_origin" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OriginXColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="OriginYColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" type = "coords_value_type" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs_grid_tile_dim" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="XTileDimColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="YTileDimColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" type = "coords_value_type" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs_grid_tile_no" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NoTilesXColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="NoTilesYColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="integer" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+</xs:schema>

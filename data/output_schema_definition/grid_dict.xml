@@ -1,0 +1,20 @@
+<grid>
+	<specs_file>
+		<fileName>grid.csv</fileName>
+	</specs_file>
+    <specs_grid_origin>
+		<OriginXColName>Origin X</OriginXColName>
+		<OriginYColName>Origin Y</OriginYColName>
+		<value_type>decimal</value_type>
+	</specs_grid_origin>
+	<specs_grid_tile_dim>
+		<XTileDimColName>X Tile Dim</XTileDimColName>
+		<YTileDimColName>Y Tile Dim</YTileDimColName>
+		<value_type>decimal</value_type>
+	</specs_grid_tile_dim>
+	<specs_grid_tile_no>
+		<NoTilesXColName>No Tiles X</NoTilesXColName>
+		<NoTilesYColName>No Tiles Y</NoTilesYColName>
+		<value_type>integer</value_type>
+	</specs_grid_tile_no>
+</grid>

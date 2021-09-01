@@ -1,0 +1,9 @@
+<signal_measure>	<specs_measure>		<specs_file>			<fileName>SignalMeasure_MNO1.csv</fileName>		</specs_file>		<specs_mno>
+			<name>mno1</name>
+		</specs_mno>
+		<specs_cellIDs>			<cellIDColName>CellID</cellIDColName>			<cellID_value_type>string</cellID_value_type>		</specs_cellIDs>		
+		<specs_signal type = "RSS">
+			<signalColName>Tile</signalColName>
+			<signal_value_type>decimal</signal_value_type>			<description>Each column contains the signal measure for a tile ordered by their IDs</description>
+		</specs_signal>	</specs_measure>
+ </signal_measure>   

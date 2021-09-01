@@ -1,0 +1,59 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:include schemaLocation = "file.xsd"/>
+<xs:include schemaLocation = "time.xsd"/>
+<xs:include schemaLocation = "tile.xsd"/>
+<xs:include schemaLocation = "device.xsd"/>
+<xs:include schemaLocation = "mno.xsd"/>
+
+<xs:simpleType name = "coords_value_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="decimal"/>
+		<xs:enumeration value="integer"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name = "personID_value_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="string"/>
+		<xs:enumeration value="unsignedInt"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:element name="persons">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="specs_personID" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="personIDColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="value_type" type = "personID_value_type" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			
+			</xs:element>
+			
+			<xs:element name="specs_time" type="time_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Discrete'" type="DiscreteTime"/>
+				<xs:alternative test="@type ='Continuous'" type="ContinuousTime"/>				
+			</xs:element>	
+			<xs:element name="specs_person_coords" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="XColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="YColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="ZColName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="value_type" type = "coords_value_type" minOccurs="1" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs_tile" type = "tile_type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="specs_devices" type = "device_type" minOccurs="2" maxOccurs="2"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+</xs:schema>
+

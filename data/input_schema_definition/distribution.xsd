@@ -1,0 +1,114 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name="distr_type">
+	<xs:attribute name="type" type = "allowed-distr-types"/>
+</xs:complexType>
+
+<xs:simpleType name="allowed-distr-types">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="TruncatedNormal"/>
+		<xs:enumeration value="Normal"/>
+		<xs:enumeration value="Uniform"/>
+		<xs:enumeration value="Laplace"/>
+		<xs:enumeration value="Levy"/>
+		<xs:enumeration value="Exponential"/>
+		<xs:enumeration value="Binomial"/>
+		<xs:enumeration value="Bernoulli"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+
+<xs:complexType name="TruncatedNormalDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="mean" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="min" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="max" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="NormalDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="mean" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="sd" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="UniformDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="min" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="max" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="LaplaceDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="scale" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="LevyDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:choice>
+				<xs:element name="c" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="location" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+					
+<xs:complexType name="ExponentialDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:choice>
+				<xs:element name="mean" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="scale" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:choice>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>	
+
+
+<xs:complexType name="BinomialDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="p" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="n" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+					
+<xs:complexType name="BernoulliDistr">
+	<xs:complexContent>
+		<xs:extension base = "distr_type">
+			<xs:all>
+				<xs:element name="p" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			</xs:all>
+		</xs:extension>
+	</xs:complexContent>
+</xs:complexType>
+
+
+</xs:schema>
+

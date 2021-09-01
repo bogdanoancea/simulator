@@ -1,0 +1,19 @@
+<antenna_cells>
+	<specs_cells>
+		<specs_file>
+			<fileName>AntennaCells_MNO1.csv</fileName>
+		</specs_file>
+		<specs_mno>
+			<name>mno1</name>
+		</specs_mno>
+		<specs_cellIDs>
+			<cellIDColName>CellID</cellIDColName>
+			<cellID_value_type>string</cellID_value_type>
+		</specs_cellIDs>
+		
+		<specs_cellcoords>
+			<cellCoordsColName>Cell Coordinates</cellCoordsColName>
+			<cellCoords_value_type>string</cellCoords_value_type>
+		</specs_cellcoords>
+	</specs_cells>
+</antenna_cells>
