@@ -25,6 +25,10 @@
 	<xs:complexType>
 		<xs:sequence>
 			<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="specs_time" type="time_type" minOccurs="1" maxOccurs="1">
+				<xs:alternative test="@type ='Discrete'" type="DiscreteTime"/>
+				<xs:alternative test="@type ='Continuous'" type="ContinuousTime"/>				
+			</xs:element>
 			<xs:element name="specs_personID" minOccurs="1" maxOccurs="1">
 				<xs:complexType>
 					<xs:sequence>
@@ -32,13 +36,7 @@
 						<xs:element name="value_type" type = "personID_value_type" minOccurs="1" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
-			
 			</xs:element>
-			
-			<xs:element name="specs_time" type="time_type" minOccurs="1" maxOccurs="1">
-				<xs:alternative test="@type ='Discrete'" type="DiscreteTime"/>
-				<xs:alternative test="@type ='Continuous'" type="ContinuousTime"/>				
-			</xs:element>	
 			<xs:element name="specs_person_coords" minOccurs="1" maxOccurs="1">
 				<xs:complexType>
 					<xs:sequence>

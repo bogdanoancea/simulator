@@ -1,34 +1,34 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/file.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/mno.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/cellid.xsd"/>
+<xs:include schemaLocation = "file.xsd"/>
+<xs:include schemaLocation = "cellid.xsd"/>
 <xs:element name="antenna_cells">
 	<xs:complexType>
 		<xs:sequence>
-			<xs:element name= "specs_cells" minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="specs_mno" minOccurs="1" maxOccurs="1">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="specs_file" type = "file_type" minOccurs="1" maxOccurs="unbounded"/>
-						<xs:element name="specs_mno" type = "mno_type" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="specs_cellIDs" type = "cellID_type" minOccurs="1" maxOccurs="1"/>
-						<xs:element name="specs_cellcoords"  minOccurs="1" maxOccurs="1">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="cellCoordsColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
-									<xs:element name="cellCoords_value_type" minOccurs="1" maxOccurs="1">
-										<xs:simpleType>	
-											<xs:restriction base="xs:string">
-												<xs:enumeration value="string"/>
-											</xs:restriction>
-										</xs:simpleType>
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>	
+						<xs:element name = "name" type = "xs:string" minOccurs = "1" maxOccurs = "1"/>
+						<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="specs_cellIDs" type = "cellID_type" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="specs_cellcoords"  minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cellCoordsColName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="cellCoords_value_type" minOccurs="1" maxOccurs="1">
+							<xs:simpleType>	
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="string"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>	
 		</xs:sequence>
     </xs:complexType>
 </xs:element>

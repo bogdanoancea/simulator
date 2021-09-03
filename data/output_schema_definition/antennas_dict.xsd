@@ -1,10 +1,10 @@
 <?xml version="1.1" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/file.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/time.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/tile.xsd"/>
-<xs:include schemaLocation = "https://raw.githubusercontent.com/bogdanoancea/MobileNetworkDataSimulationTemplate/master/schemadefinition/cellid.xsd"/>
-<xs:include schemaLocation = "./mno.xsd"/>
+<xs:include schemaLocation = "file.xsd"/>
+<xs:include schemaLocation = "time.xsd"/>
+<xs:include schemaLocation = "tile.xsd"/>
+<xs:include schemaLocation = "cellid.xsd"/>
+<xs:include schemaLocation = "mno.xsd"/>
 
 <xs:simpleType name = "coords_value_type">
 	<xs:restriction base="xs:string">

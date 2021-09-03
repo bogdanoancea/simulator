@@ -9,10 +9,10 @@
 		<time_increment>10</time_increment>
 		<time_unit>s</time_unit>
 	</specs_time>
-	<specs_person_ID>
-		<personIDColName>x</XColName>
+	<specs_personID>
+		<personIDColName>x</personIDColName>
 		<value_type>unsignedInt</value_type>
-	</specs_person_ID>
+	</specs_personID>
 	<specs_person_coords>
 		<XColName>x</XColName>
 		<YColName>y</YColName>
@@ -23,12 +23,11 @@
 		<tileID_value_type>unsignedInt</tileID_value_type>
 	</specs_tile>
 	<specs_devices>
-		<devColName>Device 1</tileColName>
+		<devColName>Device 1</devColName>
 		<devID_value_type>integer</devID_value_type>
 	</specs_devices>
 		<specs_devices>
-		<devColName>Device 2</tileColName>
+		<devColName>Device 2</devColName>
 		<devID_value_type>integer</devID_value_type>
 	</specs_devices>
-
-</antennas>
+</persons>
