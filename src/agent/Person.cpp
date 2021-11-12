@@ -175,9 +175,18 @@ void Person::setLocation(Point* location) {
 string Person::dumpDevices() {
 	stringstream ss;
 	char sep = Constants::sep;
+	char sep2 = '-';
+	bool first  = true;
+	ss << sep;
 	unordered_multimap<string, Agent*>::iterator it;
 	for (it = m_idDevices.begin(); it != m_idDevices.end(); it++) {
-		ss << sep << it->second->getId();
+		if(first) {
+			ss << it->second->getId();
+			first = false;
+		}
+		else {
+			ss << sep2 << it->second->getId();
+		}
 	}
 	return (ss.str());
 }
