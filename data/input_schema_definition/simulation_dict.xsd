@@ -50,7 +50,7 @@
 			<xs:element name="event_type" minOccurs="0" maxOccurs="1">
 				<xs:simpleType>	
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="cellLLID"/>
+						<xs:enumeration value="cellID"/>
 						<xs:enumeration value="cellIDTA"/>
 					</xs:restriction>
 				</xs:simpleType>
