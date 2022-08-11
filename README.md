@@ -1,4 +1,4 @@
-# Simulator
+# Simulator - a mobile network events simulator
 <b> Framework to run mobile network data micro-simulations </b>
 <p>
 <p>!!! Warning !!!</p>
@@ -16,7 +16,7 @@ On the contrary, dealing with real data would be expected to be even more proble
 so a good performance for simulated data should be demanded anyway." <a href = "https://webgate.ec.europa.eu/fpfis/mwikis/essnetbigdata/images/5/56/WPI_A_framework_for_mobile_network_data_micro-simulation_2019_02_14.pdf">(Salgado, D. et al. 2018)</a>
 
 The code is written in C++. To build the application you need a C++ compiler compliant with C++17.
-Currently, the source code was compiled with GNU C++ and LLVM compilers unde 3 operationg systems: Windows, Linux and MacOS. 
+Currently, the source code was compiled with GNU C++ and LLVM compilers under 3 operationg systems: Windows, Linux and MacOS. 
 </p>
 
 <b>How to build the application under <I>Windows</I> operating system</b>
