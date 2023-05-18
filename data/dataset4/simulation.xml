@@ -36,4 +36,5 @@
 	<persons_file>persons.csv</persons_file>
 	<antennas_file>antennas.csv</antennas_file>
 	<random_seed>12</random_seed>
+	<output_dir>output2</output_dir>
 </simulation>
