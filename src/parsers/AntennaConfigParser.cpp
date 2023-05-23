@@ -10,7 +10,6 @@
 #include <Constants.h>
 #include <EMField.h>
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/Coordinate.inl>
 #include <geos/geom/GeometryFactory.h>
 #include <IDGenerator.h>
 #include <map/Map.h>
