@@ -26,7 +26,6 @@
 
 #include <Displace.h>
 #include <geos/geom/Coordinate.h>
-#include <geos/geom/Coordinate.inl>
 #include <geos/geom/GeometryFactory.h>
 #include <Utils.h>
 
