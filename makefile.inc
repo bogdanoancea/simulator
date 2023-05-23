@@ -52,7 +52,9 @@ endif
 INCS   = -I$(PROJ_HOME)/include/
 INCS  += -I$(PROJ_HOME)/include/agent
 INCS  += -I$(PROJ_HOME)/include/map
-INCS  += -I$(GEOS_HOME)/../include
+INCS  += -I$(PROJ_HOME)/include/events
+INCS  += -I$(PROJ_HOME)/include/parsers
+INCS  += -I$(GEOS_HOME)/include
 
 #-------[ compiler flags ]----------
 
