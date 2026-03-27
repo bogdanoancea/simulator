@@ -5,7 +5,7 @@
 Current stable release: **1.3.0**
 
 You can check the installed version with:
-```bach
+```bash
 ../Release/simulator --version
 ```
 
