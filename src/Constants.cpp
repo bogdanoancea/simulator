@@ -92,7 +92,7 @@ const double Constants::SIM_TREND_ANGLE_2 = 5 * utils::PI / 4;
 const double Constants::ANNULUS_SIZE_3G = 554.0;
 const double Constants::ANNULUS_SIZE_4G = 78.07;
 
-const char* Constants::SOFTWARE_VERSION = "0.2.0";
+const char* Constants::SOFTWARE_VERSION = "1.3.0";
 const EventType Constants::EVENTTYPE = EventType::CELLID;
 const char* Constants::DEFAULT_ANGLE_DISTRIBUTION = "Laplace";
 const double Constants::DEFAULT_SCALE_LAPLACE = 10.0;

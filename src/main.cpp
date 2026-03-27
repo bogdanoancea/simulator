@@ -58,8 +58,10 @@ int main(int argc, char** argv) {
 	const bool version = parser.cmdOptionExists("-version");
 
 	cout << "Hello from our mobile phone network simulator!" << endl;
-	if (version)
+	if (version) {
 		cout << "You are using simulation software version " << Constants::SOFTWARE_VERSION << endl;
+		exit(0);
+	}
 	cout << "Now we are building the world!" << endl;
 
 	try {
