@@ -7,6 +7,7 @@ Current stable release: **1.3.0**
 You can check the installed version with:
 ```bach
 ../Release/simulator --version
+```
 
 <b> Framework to run mobile network data micro-simulations </b>
 <p>
