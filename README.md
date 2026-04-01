@@ -23,7 +23,8 @@ This project implements a tool to run mobile network data micro-simulations. The
 
 By providing a kind of ground truth, the estimations obtained by using statistical models can be compared to real values that are unavailable in real life. While a simulation, no matter how sophisticated, is always different from real data, there is no reason to expect that a model would perform worse for synthetic data than for real data. On the contrary, dealing with real data would generally be expected to be even more problematic, so good performance on simulated data should be demanded anyway.
 
-See: [Salgado et al. (2018)](https://webgate.ec.europa.eu/fpfis/mwikis/essnetbigdata/images/5/56/WPI_A_framework_for_mobile_network_data_micro-simulation_2019_02_14.pdf)
+See: [Salgado et al. (2018)]
+(https://cros.ec.europa.eu/system/files/2024-04/WPI_Deliverable_I2_Data_Simulator_-_A_simulator_for_network_event_data.pdf)
 
 The code is written in C++. To build the application you need a C++ compiler compliant with **C++17**. The source code has been compiled with GNU C++ and LLVM compilers under three operating systems: **Windows**, **Linux**, and **macOS**.
 
