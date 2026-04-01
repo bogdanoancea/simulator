@@ -1,4 +1,4 @@
-# Simulator – a Mobile Network Events Simulator
+# NetEventSimulator – a Mobile Network Events Simulator
 
 ## Current Version
 
