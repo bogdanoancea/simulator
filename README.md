@@ -165,7 +165,7 @@ After installation, run:
 sudo ldconfig
 ```
 
-### 2. Download and Build the Simulator
+### 2. Download and Build the NetEventSimulator
 
 Clone the repository:
 
@@ -192,7 +192,7 @@ make install
 
 ---
 
-## Running the Simulator
+## Running the NetEventSimulator
 
 In a terminal, run:
 
