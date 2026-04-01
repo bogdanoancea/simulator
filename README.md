@@ -1,4 +1,4 @@
-# Simulator – a Mobile Network Events Simulator
+# NetEventSimulator – a Mobile Network Events Simulator
 
 ## Current Version
 
@@ -23,7 +23,7 @@ This project implements a tool to run mobile network data micro-simulations. The
 
 By providing a kind of ground truth, the estimations obtained by using statistical models can be compared to real values that are unavailable in real life. While a simulation, no matter how sophisticated, is always different from real data, there is no reason to expect that a model would perform worse for synthetic data than for real data. On the contrary, dealing with real data would generally be expected to be even more problematic, so good performance on simulated data should be demanded anyway.
 
-See: [Salgado et al. (2018)](https://webgate.ec.europa.eu/fpfis/mwikis/essnetbigdata/images/5/56/WPI_A_framework_for_mobile_network_data_micro-simulation_2019_02_14.pdf)
+See: [Oancea et al. (2019)](https://cros.ec.europa.eu/system/files/2024-04/WPI_Deliverable_I2_Data_Simulator_-_A_simulator_for_network_event_data.pdf)
 
 The code is written in C++. To build the application you need a C++ compiler compliant with **C++17**. The source code has been compiled with GNU C++ and LLVM compilers under three operating systems: **Windows**, **Linux**, and **macOS**.
 
@@ -31,7 +31,7 @@ The code is written in C++. To build the application you need a C++ compiler com
 
 ## Building the Application on Windows
 
-Building the simulator application on Unix-like systems (Linux, macOS, etc.) is straightforward, but on Windows this is not very easy. That is why the necessary steps are described below.
+Building the simulator application on Unix-like systems (Linux, macOS, etc.) is straightforward, but on Windows, this is not very easy. That is why the necessary steps are described below.
 
 ### Prerequisites
 
@@ -95,7 +95,7 @@ make install
 
 Compilation of the GEOS library may take several minutes.
 
-### Build and Run the Simulation Software
+### Build and Run the NetEventSimulator Software
 
 Download the source code of the micro-simulator from GitHub:
 
@@ -164,7 +164,7 @@ After installation, run:
 sudo ldconfig
 ```
 
-### 2. Download and Build the Simulator
+### 2. Download and Build the NetEventSimulator
 
 Clone the repository:
 
@@ -191,7 +191,7 @@ make install
 
 ---
 
-## Running the Simulator
+## Running the NetEventSimulator
 
 In a terminal, run:
 
