@@ -270,8 +270,8 @@ double* RandomNumberGenerator::generateLaplaceDouble(const double lambda, const 
 	double* y = generateExponentialDouble(1.0/lambda, n);
 	for(int i =0; i < n; i++)
 		result[i] = x[i] - y[i];
-	delete(x);
-	delete(y);
+	delete[] x;
+	delete[] y;
 
 	return (result);
 }
@@ -295,8 +295,8 @@ int* RandomNumberGenerator::generateLaplaceInt(const double lambda, const int n)
 	int* y = generateExponentialInt(1.0/lambda, n);
 	for(int i =0; i < n; i++)
 		result[i] = (int)(x[i] - y[i]);
-	delete(x);
-	delete(y);
+	delete[] x;
+	delete[] y;
 
 	return (result);
 }

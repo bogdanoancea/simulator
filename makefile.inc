@@ -1,49 +1,44 @@
 #-------[ environment vars ]--------
 
-PROJ_HOME = /Users/bogdanoance/c-projects/simulator
-GEOS_HOME = /usr/local/lib
-MSYS_HOME = C:/rtools40
+PROJ_HOME = /D/c-projects/simulator
+GEOS_HOME = /usr/lib
 DEBUG     = 0
-
-
-ifeq ($(CXX),g++)
-  CXXFLAGS += $(GCC_CXXFLAGS)
-else ifeq ($(CXX),clang)
-  CXXFLAGS += $(CLANG_CXXFLAGS)
-else
-  CXXFLAGS += $(UNKNOWN_CXXFLAGS)
-endif
-
 
 #-------[TARGET, FLAGS etc depending on OS]---------
 
 ifeq ($(OS),Windows_NT)
- 	CXX    = g++.exe
+	CXX    = g++.exe
 	TARGET = simulator.exe
-	LDFLAGS = -L$(MSYS_HOME)/mingw64/lib
-	LIBS = -Wl,-Bstatic $(GEOS_HOME)/libgeos.a -lstdc++fs
+	LDFLAGS =
+	LIBS = -Wl,--push-state,-Bstatic $(GEOS_HOME)/libgeos.a -Wl,--pop-state
 	CXXFLAGS += -march=native
-
 else
-    UNAME_S := $(shell uname -s)
-    ifeq ($(UNAME_S),Linux)
-        CCFLAGS += -D LINUX
-		CXX		= g++
-		TARGET  = simulator
-		LDFLAGS = -L$(GEOS_HOME) -lstdc++fs
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S),Linux)
+		CCFLAGS += -D LINUX
+		CXX = g++
+		TARGET = simulator
+		LDFLAGS =
 		LIBS = $(GEOS_HOME)/libgeos.a
 		CXXFLAGS += -march=native
-
-    endif
-    ifeq ($(UNAME_S),Darwin)
-        CCFLAGS += -D OSX
-		CXX		= g++
-		TARGET	= simulator
+	endif
+	ifeq ($(UNAME_S),Darwin)
+		CCFLAGS += -D OSX
+		CXX = g++
+		TARGET = simulator
 		LDFLAGS = -L$(GEOS_HOME)
 		LIBS = $(GEOS_HOME)/libgeos.dylib -lstdc++
 		CXXFLAGS += -march=native
 		CLANG_CXXFLAGS += -march=native
-    endif
+	endif
+endif
+
+ifeq ($(CXX),g++)
+	CXXFLAGS += $(GCC_CXXFLAGS)
+else ifeq ($(CXX),clang)
+	CXXFLAGS += $(CLANG_CXXFLAGS)
+else
+	CXXFLAGS += $(UNKNOWN_CXXFLAGS)
 endif
 
 
