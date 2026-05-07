@@ -22,6 +22,8 @@ For background, see:
 
 - Oancea et al. (2019): <https://cros.ec.europa.eu/system/files/2024-04/WPI_Deliverable_I2_Data_Simulator_-_A_simulator_for_network_event_data.pdf>
 
+For architecture diagrams and API-level documentation, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 The code is written in C++ and requires a compiler with **C++17** support. The project has been built with GNU and LLVM toolchains on **Windows**, **Linux**, and **macOS**.
 
 > **Warning**
