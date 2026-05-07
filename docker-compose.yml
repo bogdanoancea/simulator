@@ -1,0 +1,22 @@
+services:
+  simulator:
+    build: .
+    # Input files are mounted read-only from the chosen example dataset.
+    # To use a different dataset, change ./data/dataset1 to the desired path.
+    # To use your own data, point the source to a directory that contains
+    # map.wkt, simulation.xml, persons.xml, antennas.xml, and probabilities.xml.
+    volumes:
+      - ./data/dataset1:/data/input:ro
+      # Simulation outputs are written to the directory named by <output_dir>
+      # in simulation.xml (default: output2).  The folder below is created
+      # automatically on the host if it does not exist.
+      - ./output:/data/output2
+    # Adjust the command-line arguments to match your input file names or to
+    # pass additional simulator flags (e.g. remove -v to suppress verbose output).
+    command: >
+      -m /data/input/map.wkt
+      -s /data/input/simulation.xml
+      -p /data/input/persons.xml
+      -a /data/input/antennas.xml
+      -pb /data/input/probabilities.xml
+      -v
