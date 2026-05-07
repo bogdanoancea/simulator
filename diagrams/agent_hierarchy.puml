@@ -1,0 +1,97 @@
+@startuml agent_hierarchy
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam ClassBorderColor #444444
+skinparam ClassBackgroundColor #F8F8F8
+skinparam ClassHeaderBackgroundColor #E3F2FD
+skinparam ArrowColor #444444
+
+abstract class Agent {
+  + getId() : unsigned long
+  + getMap() : Map*
+  + getClock() : Clock*
+  + toString(detailed : bool) : string
+}
+
+abstract class LocatableAgent {
+  # location : Point*
+  + getLocation() : Point*
+  + setLocation(Point*) : void
+}
+
+abstract class ImmovableAgent
+
+abstract class MovableAgent {
+  + move() : Point*
+}
+
+abstract class HoldableAgent {
+  + tryConnect() : bool
+  + getConnectionType() : CONNECTION_TYPE
+  + getMobileOperator() : MobileOperator*
+}
+
+class Antenna {
+  + tryRegisterDevice(HoldableAgent*) : bool
+  + dettachDevice(HoldableAgent*) : void
+  + computeSignalDominance(Point*) : double
+  + computePower(Point*) : double
+  + getRmax() : double
+  + getType() : AntennaType
+  + getMNO() : MobileOperator*
+  + dumpCell() : string
+  + dumpSignal() : void
+}
+
+class Person {
+  + move() : Point*
+  + addDevice(type, Agent*) : void
+  + setDisplacementMethod(Displace&) : void
+  + setHomeLocation(Point*) : void
+  + setWorkLocation(Point*) : void
+  + isHomePerson() : bool
+  + hasDevices() : bool
+}
+
+class MobilePhone {
+  + tryConnect() : bool
+}
+
+class Tablet {
+  + tryConnect() : bool
+}
+
+class MobileOperator {
+  + getId() : unsigned long
+  + getName() : string
+}
+
+class AgentsCollection {
+  + getPersons() : vector<Person*>
+  + getAntennas() : vector<Antenna*>
+  + getDevices() : vector<HoldableAgent*>
+}
+
+Agent <|-- LocatableAgent
+Agent <|-- MobileOperator
+Agent <|-- AgentsCollection
+
+LocatableAgent <|-- ImmovableAgent
+LocatableAgent <|-- MovableAgent
+
+ImmovableAgent <|-- Antenna
+
+MovableAgent <|-- Person
+MovableAgent <|-- HoldableAgent
+
+HoldableAgent <|-- MobilePhone
+HoldableAgent <|-- Tablet
+
+Person "1" o-- "0..*" HoldableAgent : carries
+HoldableAgent "*.." --> "1" MobileOperator : belongs to
+MobileOperator "1" *-- "1..*" Antenna : owns
+HoldableAgent "0..*" --> "0..1" Antenna : connected to
+
+@enduml

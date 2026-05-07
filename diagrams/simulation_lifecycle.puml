@@ -1,0 +1,82 @@
+@startuml simulation_lifecycle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam SequenceArrowColor #444444
+skinparam SequenceLifeLineBorderColor #444444
+skinparam SequenceParticipantBorderColor #444444
+skinparam SequenceParticipantBackgroundColor #F8F8F8
+skinparam SequenceBoxBackgroundColor #E3F2FD
+skinparam SequenceBoxBorderColor #90CAF9
+skinparam SequenceGroupBorderColor #888888
+skinparam SequenceGroupHeaderFontColor #333333
+
+participant "main.cpp" as MAIN
+participant "World" as W
+participant "Clock" as CL
+participant "AgentsCollection" as AC
+participant "Person" as PE
+participant "HoldableAgent\n(MobilePhone)" as MP
+participant "Antenna" as AN
+participant "PostLocProb" as PLP
+
+== Startup ==
+
+MAIN -> W : new World(map, configs)
+activate W
+W -> W : parse XML configs
+W -> AC : build agents\n(Persons, Antennas, Phones)
+activate AC
+AC --> W
+deactivate AC
+W --> MAIN : World ready
+deactivate W
+
+MAIN -> W : runSimulation()
+activate W
+
+== Timestep Loop [for each tick] ==
+
+loop for each timestep
+  W -> CL : tick()
+  activate CL
+  CL --> W : currentTime
+  deactivate CL
+
+  W -> PE : move()
+  activate PE
+  PE -> PE : generateNewLocation\n(via Displace strategy)
+  PE --> W : new Point*
+  deactivate PE
+
+  W -> MP : tryConnect()
+  activate MP
+  MP -> AN : tryRegisterDevice(this)
+  activate AN
+  AN -> AN : computeSignalDominance\nor computePower
+  alt device connects
+    AN --> MP : true
+    MP --> W : connected
+  else already attached
+    AN --> MP : false (already attached)
+  else out of range
+    AN --> MP : false (out of range)
+  end
+  deactivate AN
+  deactivate MP
+
+  AN -> AN : write Event to CSV\n(attach / detach / in-range)
+end
+
+== Post-run ==
+
+W -> PLP : computeProbabilities(eventsByDevice)
+activate PLP
+PLP -> PLP : posterior location\nprobabilities per tile
+PLP --> W : probabilities written to CSV
+deactivate PLP
+
+W --> MAIN : done
+deactivate W
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml module_map
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam ArrowColor #444444
+skinparam PackageBorderColor #444444
+skinparam PackageBackgroundColor #F8F8F8
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #888888
+
+package "main.cpp"  {
+  [CLI Entry Point] as MAIN
+  note right of MAIN
+    Parses CLI args
+    Instantiates World
+    Calls runSimulation()
+  end note
+}
+
+package "core/"  {
+  [World] as W
+  [Clock] as CL
+  [RandomNumberGenerator] as RNG
+  [Distribution] as DIST
+  [Utils / Constants] as UTIL
+}
+
+package "agent/"  {
+  [Agent hierarchy] as AG
+  [Displace strategies] as DS
+  [EMField] as EM
+  [PostLocProb] as PLP
+}
+
+package "map/"  {
+  [Map / WKTMap] as MAP
+  [Grid] as GRID
+  [Tile] as TILE
+}
+
+package "events/"  {
+  [Event hierarchy] as EV
+  [EventFactory] as EF
+}
+
+package "parsers/"  {
+  [SimulationConfigParser] as SP
+  [AntennaConfigParser] as AP
+  [PersonsConfigParser] as PP
+  [ProbabilitiesConfigParser] as PRP
+}
+
+MAIN --> W : creates
+MAIN --> SP
+MAIN --> AP
+MAIN --> PP
+MAIN --> PRP
+
+W --> CL
+W --> RNG
+W --> AG
+W --> MAP
+W --> EV
+W --> PLP
+
+AG --> EM
+AG --> DS
+AG --> EV
+DS --> MAP
+DS --> RNG
+
+GRID -down-> TILE
+MAP -down-> GRID
+
+@enduml

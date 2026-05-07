@@ -1,0 +1,64 @@
+@startuml event_system
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam ClassBorderColor #444444
+skinparam ClassBackgroundColor #F8F8F8
+skinparam ClassHeaderBackgroundColor #FFF3E0
+skinparam ArrowColor #444444
+skinparam EnumBorderColor #444444
+skinparam EnumBackgroundColor #FFF8E1
+
+abstract class Event {
+  + {abstract} getTime() : unsigned long
+  + {abstract} getDeviceId() : unsigned long
+  + {abstract} toString() : string
+}
+
+class CellIDEvent {
+  - time : unsigned long
+  - deviceId : unsigned long
+  - cellId : unsigned long
+  - antennaId : unsigned long
+  - code : EventCode
+  - networkType : string
+  + getTime() : unsigned long
+  + getDeviceId() : unsigned long
+  + getAntennaId() : unsigned long
+  + getCellId() : unsigned long
+  + getCode() : EventCode
+  + getNetworkType() : string
+  + toString() : string
+}
+
+class CellIDTAEvent {
+  - timingAdvance : double
+  + getTimingAdvance() : double
+  + toString() : string
+}
+
+class EventFactory {
+  + {static} createEvent(type, time, deviceId,\n  antennaId, code, networkType,\n  timingAdvance) : Event*
+}
+
+enum EventType {
+  CELLID
+  CELLIDTA
+}
+
+enum EventCode {
+  ATTACH_DEVICE
+  DETACH_DEVICE
+  ALREADY_ATTACHED_DEVICE
+  IN_RANGE_NOT_ATTACHED_DEVICE
+}
+
+Event <|-- CellIDEvent
+CellIDEvent <|-- CellIDTAEvent
+
+EventFactory ..> Event : creates
+EventFactory ..> EventType : uses
+CellIDEvent --> EventCode : uses
+
+@enduml

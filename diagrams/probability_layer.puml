@@ -1,0 +1,55 @@
+@startuml probability_layer
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam ClassBorderColor #444444
+skinparam ClassBackgroundColor #F8F8F8
+skinparam ClassHeaderBackgroundColor #F3E5F5
+skinparam ArrowColor #444444
+
+abstract class PostLocProb {
+  + {abstract} computeLocProb(events : vector<AntennaInfo>,\n  tileIndex : unsigned long) : double
+  # map : Map*
+}
+
+class UnifPriorPostLocProb {
+  + computeLocProb(events, tileIndex) : double
+  ' Uses a uniform prior over all tiles
+}
+
+class NetPriorPostLocProb {
+  + computeLocProb(events, tileIndex) : double
+  ' Prior weighted by antenna network coverage
+}
+
+class World {
+  + computeProbabilities(\n    events : map<ulong, vector<AntennaInfo>>) : void
+  - probMethod : PostLocProb*
+}
+
+class Map {
+  + getTileNo(Point*) : unsigned long
+  + getTileCenter(tileIndex) : Coordinate
+  + getNoTilesX() : unsigned long
+  + getNoTilesY() : unsigned long
+}
+
+PostLocProb <|-- UnifPriorPostLocProb
+PostLocProb <|-- NetPriorPostLocProb
+
+World o--> PostLocProb : uses >
+PostLocProb --> Map : queries tiles
+
+note right of UnifPriorPostLocProb
+  Assumes equal probability
+  for all tiles a priori.
+end note
+
+note right of NetPriorPostLocProb
+  Prior proportional to
+  antenna network coverage
+  of each tile.
+end note
+
+@enduml

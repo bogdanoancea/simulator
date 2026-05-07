@@ -1,0 +1,79 @@
+@startuml displacement_strategy
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam ClassBorderColor #444444
+skinparam ClassBackgroundColor #F8F8F8
+skinparam ClassHeaderBackgroundColor #E8F5E9
+skinparam ArrowColor #444444
+
+abstract class Displace {
+  + {abstract} generateNewLocation(current : Point*) : Point*
+  + getSpeed() : double
+  # map : Map*
+  # rng : RandomNumberGenerator*
+}
+
+class RandomWalkDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - speed : double
+  - direction : double
+}
+
+class RandomWalkDriftDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - drift : double
+}
+
+class LevyFlightDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - alpha : double
+}
+
+class HomeWorkDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - homeLocation : Point*
+  - workLocation : Point*
+  - anchorLocation : Point*
+}
+
+class ManhattanDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - speed : double
+}
+
+class HomeWorkManhattanDisplacement {
+  + generateNewLocation(Point*) : Point*
+  - homeLocation : Point*
+  - workLocation : Point*
+}
+
+class Person {
+  + move() : Point*
+  + setDisplacementMethod(Displace&) : void
+  - strategy : Displace*
+}
+
+Displace <|-- RandomWalkDisplacement
+Displace <|-- RandomWalkDriftDisplacement
+Displace <|-- LevyFlightDisplacement
+Displace <|-- HomeWorkDisplacement
+Displace <|-- ManhattanDisplacement
+Displace <|-- HomeWorkManhattanDisplacement
+
+Person o--> Displace : uses >
+
+note bottom of HomeWorkDisplacement
+  Cycles between home and work
+  locations on a schedule.
+  Optional anchor point.
+end note
+
+note bottom of LevyFlightDisplacement
+  Jump lengths follow a
+  power-law distribution
+  parameterised by alpha.
+end note
+
+@enduml
