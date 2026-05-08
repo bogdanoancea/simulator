@@ -8,7 +8,7 @@ UML diagrams are available as PNG and EPS in the [`diagrams/`](diagrams/) direct
 
 ## 1. Module Map
 
-The codebase is split into five modules. Arrows show compile-time dependencies (→ = "depends on").
+The codebase is split into several modules. Arrows show compile-time dependencies (→ = "depends on").
 
 ![Module Map](diagrams/module_map.png)
 
