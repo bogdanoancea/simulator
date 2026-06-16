@@ -224,7 +224,9 @@ make install
 
 ---
 
-## Running NetEventSimulator
+## Usage
+
+### Running a simulation
 
 Example:
 
@@ -237,6 +239,20 @@ Release/simulator \
   -pb ./data/dataset1/probabilities.xml \
   -v
 ```
+
+On Windows, replace `Release/simulator` with `Release/simulator.exe`.
+
+### Command-line options
+
+| Flag | Argument | Required | Description |
+|------|----------|----------|-------------|
+| `-m` | path to `.wkt` file | Yes | Simulation map in Well-Known Text (WKT) format, defining the geographic area and boundary used for the simulation. |
+| `-s` | path to `.xml` file | Yes | Main simulation configuration (e.g., grid/tile size, population size, simulation length, mobility model parameters). |
+| `-a` | path to `.xml` file | Yes | Antenna/network configuration: number and type of antennas, operators, and technical parameters (power, path-loss exponent, azimuth/elevation patterns). |
+| `-p` | path to `.xml` file | Yes | Population configuration: demographic attributes and mobile-device ownership distribution. |
+| `-pb` | path to `.xml` file | No | Prior probabilities used to compute device-location probabilities. If omitted, location-probability outputs are not produced. |
+| `-v` | — (no argument) | No | Verbose mode. Prints detailed information about persons, operators, antennas, and mobile phones during the run. |
+| `-version` | — (no argument) | No | Prints the installed version and exits. Used standalone, without the other flags (see [Current Version](#current-version)). |
 
 ### Input files
 
